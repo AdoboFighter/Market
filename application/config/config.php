@@ -23,8 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/Market';
-
+$config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://") .$_SERVER['HTTP_HOST'] . preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])) . '/';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -35,7 +34,7 @@ $config['base_url'] = 'http://localhost/Market';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
