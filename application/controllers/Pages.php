@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function index()
     {
-      echo 'gos';
+      echo 'Index';
     }
 
 public function view($pages = '')
@@ -20,6 +20,8 @@ $this->load->view('templates/header');
 $this->load->view('pages/'.$pages);
 $this->load->view('templates/footer');
 }
+
+
 
 
   }
