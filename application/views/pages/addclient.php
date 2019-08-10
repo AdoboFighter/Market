@@ -108,34 +108,33 @@
         </div>
         <input type="text" class="form-control m-2" placeholder="Business Name" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-      
+
+      <div class="row">
+        <div class="col-4 ">
+          <input type="text" class="form-control m-2" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="col-4">
+          <input type="text" class="form-control m-2" placeholder="Location Number" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="col-4">
+          <input type="text" class="form-control m-2" placeholder="Square Meters" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+      </div>
+
     </div>
 
 
     <div class="col-6">
 
       <div class="row m-3">
-        <div class="row">
-          <div class="col-4 ">
-            <input type="text" class="form-control m-2" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-
-          <div class="col-4">
-            <input type="text" class="form-control m-2" placeholder="Location Number" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-          <div class="col-4">
-            <input type="text" class="form-control m-2" placeholder="Square Meters" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-        </div>
+        
 
         <div class="dropdown m-2 ">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Section
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
           </div>
         </div>
 
@@ -144,23 +143,17 @@
             Floor Level
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
           </div>
         </div>
 
         <div class="dropdown m-2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Date Occupied
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
-          </div>
+          <input type="date" name="bday">
+
+
         </div>
+
         <button type="button" class="btn btn-primary">SAVE</button>
+
 
 
       </div>

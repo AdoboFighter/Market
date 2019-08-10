@@ -7,40 +7,40 @@
     <input class="form-control mr-sm-2 col-xs-4" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
-
-    <table class="table table-hover table-bordered">
-    <thead class="">
+<div class="row ml-2 mr-2">
+  <table class="table table-hover table-bordered">
       <tr>
-
-        <th scope="col">No.</th>
-        <th scope="col">Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">Stall Number</th>
-
-      </tr>
-    </thead>
-    <span class="border border-dark">
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Stall Number</th>
       </tr>
       <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
+        <td>1</td>
+        <td>Kenneth</td>
+        <td>SPC</td>
+        <td>F-20</td>
       </tr>
       <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>2</td>
+        <td>Kenneth</td>
+        <td>SPC</td>
+        <td>F-20</td>
       </tr>
-    </tbody>
-
+      <tr>
+        <td>3</td>
+        <td>Kenneth</td>
+        <td>SPC</td>
+        <td>F-20</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Kenneth</td>
+        <td>SPC</td>
+        <td>F-20</td>
+      </tr>
   </table>
+</div>
 
   <form>
   <div class="form-group m-3">
@@ -86,7 +86,7 @@
         <button type="button" class="btn btn-secondary">View Violations</button>
       </div>
 
+  </div>
+  </div>
 
-  </div>
-  </div>
 </div>
