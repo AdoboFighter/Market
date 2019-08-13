@@ -1,172 +1,127 @@
-<div class="container pt-5">
+
+   <!-- Page Content  -->
+   <div id="content">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Control Panel</span>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+        </button>
+    </div>
+</nav>
 
 
-<div class="card">
-<div class="card-header"><h3 style="font-weight: bold;">Owner's Information</h3>
-</div>
-<div class="card-body">
-  <div class="row">
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="first name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Middle name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1">
+<!-- pagecontents dito mo lagay  -->
+<div class="card p-1">
+    <div class="row p-4">
+
+
+
+          <div class="">
+              <form class="p-3">
+              <h5>Owner's Information</h5>
+              Client Type:
+            <select name="cars">
+              <option value="basement">Tenant</option>
+              <option value="saab">Ambulant</option>
+              <option value="fiat">Delivery</option>
+              <option value="audi">Parking</option>
+            </select><br>
+
+            <br>First name:<br>
+            <input type="text" name=""><br>
+            Last name:<br>
+            <input type="text" name=""><br>
+            Middle name:<br>
+            <input type="text" name=""><br>
+            address:<br>
+            <input type="text" name=""><br>
+            Contact Number:<br>
+            <input type="text" name=""><br>
+          </form>
+
+        </div>
+
+        <div class="">
+          <form class="p-3">
+            <h5>Occupant's Information</h5>
+            <input type="checkbox">
+            Same as Owner's Information<br><br>
+            First name:<br>
+            <input type="text" name=""><br>
+            Last name:<br>
+            <input type="text" name=""><br>
+            Middle name:<br>
+            <input type="text" name=""><br>
+            address:<br>
+            <input type="text" name=""><br>
+            Contact Number:<br>
+            <input type="text" name=""><br>
+          </form>
+        </div>
+
+
+
+      <div class="">
+
+        <form class="p-2">
+
+          Section:<br>
+          <select name="cars">
+            <option value="basement">Fish</option>
+            <option value="saab">Meat</option>
+            <option value="fiat">Section 1</option>
+            <option value="audi">Section 2</option>
+          </select><br>
+          Floor Level:<br>
+        <select name="cars">
+          <option value="volvo">Basement</option>
+          <option value="saab">Ground floor</option>
+          <option value="fiat">Second Floor</option>
+          <option value="audi">Third floor</option>
+          <option value="audi">Fourth floor</option>
+        </select><br>
+            Date Occupied:<br>
+            <input type="date">
+        </form>
+
+        <form class="p-2">
+          Stall Number:<br>
+          <input type="text" name=""><br>
+          Business Id:<br>
+          <input type="text" name=""><br>
+          Business Name:<br>
+          <input type="text" name=""><br>
+
+        </form>
     </div>
 
-    <div class="container pt-2">
-    <input type="text" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1">
+    <div class="">
+      <form class="p-2">
+        Daily Fee:<br>
+        <input type="text" name=""><br>
+        Square meters:<br>
+        <input type="text" name=""><br>
+        Location:<br>
+        <input type="text" name=""><br>
+        Location number:<br>
+        <input type="text" name=""><br>
+        <br><button type="button" onclick="alert('Saved!')" class="">Save</button>
+        <button type="button"  class="">Clear</button>
+      </form>
     </div>
 
-    <div class="col-3 pt-2">
-      <input type="text" class="form-control" placeholder="Contact Number" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
 
   </div>
 
 
 
-</div>
-
 
 </div>
 
-
-
-
-</div>
-
-<div class="container pt-5">
-
-
-<div class="card">
-<div class="card-header"><h3 style="font-weight: bold;">Occupant's Information</h3>
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-  <label class="form-check-label" for="defaultCheck1">
-    Same as Owner's Information
-  </label>
-</div>
-</div>
-<div class="card-body">
-  <div class="row">
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="first name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Middle name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-    <div class="container pt-2">
-    <input type="text" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-    <div class="col-3 pt-2">
-      <input type="text" class="form-control" placeholder="Contact Number" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-  </div>
-
-
-
-</div>
-
-
-</div>
-</div>
-
-<div class="container pt-5">
-
-
-<div class="card">
-
-<div class="card-header">
-  <div class="form-check">
-  </div>
-</div>
-
-  <div class="card-body">
-
-    <div class="row">
-
-    <div class="col-6 ">
-      <div class="row m-3">
-        <div class="row pr-3">
-          <div class="col-6">
-            <input type="text" class="form-control m-2" placeholder="Stall Number" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-
-          <div class="col-6">
-            <input type="text" class="form-control m-2" placeholder="Business ID" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-
-        </div>
-        <input type="text" class="form-control m-2" placeholder="Business Name" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-
-      <div class="row">
-        <div class="col-4 ">
-          <input type="text" class="form-control m-2" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-
-        <div class="col-4">
-          <input type="text" class="form-control m-2" placeholder="Location Number" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="col-4">
-          <input type="text" class="form-control m-2" placeholder="Square Meters" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="col-6">
-
-      <div class="row m-3">
-        
-
-        <div class="dropdown m-2 ">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Section
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          </div>
-        </div>
-
-        <div class="dropdown m-2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Floor Level
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          </div>
-        </div>
-
-        <div class="dropdown m-2">
-          <input type="date" name="bday">
-
-
-        </div>
-
-        <button type="button" class="btn btn-primary">SAVE</button>
-
-
-
-      </div>
-
-      </div>
-
-
-    </div>
-  </div>
-
-
-  </div>
-
-
-</div>
 </div>

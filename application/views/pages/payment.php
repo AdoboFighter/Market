@@ -1,355 +1,242 @@
-<div class="row p-3">
+<!-- Page Content  -->
+<div id="content">
 
-  <div class="col-6">
-    <div class="card m-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <div class="container-fluid">
 
-        <form class ="p-1 m-1">
-        <div class="row">
-        <p class ="m-3">Search By: &nbspName<input type="radio"class ="m-2" name="name" value="Name"> Unit No.<input type="radio" class ="m-2" name="unitNum" value=""></p>
-        </div>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search...">
-        </form>
-
-        <div class="row ml-2 mr-2">
-          <table class="table table-hover table-bordered">
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Stall Number</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Kenneth</td>
-                <td>SPC</td>
-                <td>F-20</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Kenneth</td>
-                <td>SPC</td>
-                <td>F-20</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Kenneth</td>
-                <td>SPC</td>
-                <td>F-20</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Kenneth</td>
-                <td>SPC</td>
-                <td>F-20</td>
-              </tr>
-
-          </table>
-        </div>
-
-      <form>
-
-      <div class="form-group ">
-
-        <label for="exampleFormControlInput1"><h5>Details</h5></label>
+     <button type="button" id="sidebarCollapse" class="btn btn-info">
+         <i class="fas fa-align-left"></i>
+         <span>Control Panel</span>
+     </button>
+     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <i class="fas fa-align-justify"></i>
+     </button>
+ </div>
+</nav>
 
 
-            <div class="row pb-2">
-              <div class="col-4 ">
-                <p class="">Type of Payment:</p>
-              </div>
+<!-- pagecontents dito mo lagay  -->
+<center>
+<div class="row">
+  <div class="p-2">
+    <form>
+      Search By: &nbsp
+      <input type="radio" name="gender" value="">
+      Name
+      <input type="radio" name="gender" value="">
+      Unit no <br>
+      <input type="text" class="mb-2">
 
-              <div class="col-4 ">
-                <input type="text" class="form-control" placeholder="Specify" aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-
-              <div class="dropdown  col-4">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Daily Market Fee
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                </div>
-              </div>
-
-            
-
-            </div>
-
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Owner:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Address:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Payor:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Stall No.:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Area(sqm):</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Debt:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-          <div class="row mr-4">
-            <div class="col-4 ">
-              <p class="p-2">Last Payment Effectivity:</p>
-            </div>
-            <div class="col-8">
-              <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-
-        </div>
-
-
-
-
-      </div>
+    <table border="2" cellpadding="10">
+    <tbody>
+    <tr>
+    <td>No</td>
+    <td>Name</td>
+    <td>Address</td>
+    <td>Stall Number</td>
+    </tr>
+    <tr>
+    <td>1</td>
+    <td>Kenneth</td>
+    <td>SPC</td>
+    <td>F-20</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Kenneth</td>
+      <td>SPC</td>
+      <td>F-21</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Kenneth</td>
+      <td>SPC</td>
+      <td>F-22</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Kenneth</td>
+      <td>SPC</td>
+      <td>F-23</td>
+    </tr>
+    </tbody>
+    </table>
+    <br>
+    Type of payment:
+    <select name="cars">
+    <option value="">Daily Market Fee</option>
+    <option value="">Annual Rental Fee</option>
+    <option value="">Semi Annual Rental Fee</option>
+    <option value="">Water Services Fee</option>
+    <option value="">Electrical Services Fee</option>
+    <option value="">Monthly Rental Fee</option>
+    <option value="">Weekly Rental Fee</option>
+    <option value="">Privilage Parking Fee</option>
+    <option value="">Quarterly Fee</option>
+    <option value="">Others</option>
+    <option value="">Certification</option>
+    <option value="">Violation</option>
+    </select>
     </form>
   </div>
 
-  <div class="col-6">
+  <div class="p-2">
 
-    <div class="card m-3 row">
+    <table class="" cellpadding="10">
+      <tr>
+          <td>Specify:</td>
+          <td><input type="text" name=""></td>
+          <td>Stall no:</td>
+          <td><input type="text" name=""></td>
+      </tr>
 
-      <div class="form-group p-3">
+      <tr>
+        <td>Owner:</td>
+        <td><input type="text" name=""></td>
+        <td>Area (sqm):</td>
+        <td><input type="text" name=""></td>
+      </tr>
 
-        <label for="exampleFormControlInput1"><h5>Details</h5></label>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" name=""></td>
+        <td>Specify:</td>
+        <td><input type="text" name=""></td>
+      </tr>
 
-          <div class="row-12">
-            <div>
-              <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">OR:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-              </div>
+      <tr>
+        <td>Payor:</td>
+        <td><input type="text" name=""></td>
+        <td>Debt:</td>
+        <td><input type="text" name=""></td>
+      </tr>
 
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Nature of Payment:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Amount to be Paid:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2" placeholder="0.00" aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Cash Tendered:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row p-3">
-              <div class="col-4 ">
-                <input type="checkbox" name="vehicle1" value="Bike"> Cheque<br>
-              </div>
-              <div class="col-8">
-
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Cheqe Amount:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Cheqe Number:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Bank Branch:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  placeholder=""aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <p class="p-2">Change:</p>
-              </div>
-              <div class="col-8">
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row P-3">
-              <table class="table table-hover table-bordered">
-                  <tr>
-                    <th>Cheuque No.:</th>
-                    <th>Cheque Amount:</th>
-                    <th>Bank/Branch:</th>
-                    <th>Date</th>
-                  </tr>
-                  <tr>
-                    <td>12345654321</td>
-                    <td>1,200 php</td>
-                    <td>BDO</td>
-                    <td>03/06/2019</td>
-                  </tr>
-                  <tr>
-                    <td>12345654321 </td>
-                    <td>1,200 php</td>
-                    <td>BDO</td>
-                    <td>03/06/2019</td>
-                  </tr>
-                  <tr>
-                    <td>12345654321</td>
-                    <td>1,200 php</td>
-                    <td>BDO</td>
-                    <td>03/06/2019</td>
-                  </tr>
-                  <tr>
-                    <td>12345654321</td>
-                    <td>1,200 php</td>
-                    <td>BDO</td>
-                    <td>03/06/2019</td>
-                  </tr>
-              </table>
-            </div>
-
-            <div class="">
-              <div class="col- ">
-                <h4 class="p-2">Particulars</h4>
-              </div>
-
-            </div>
-
-            <div class="row">
-              <div class="col-4 ">
-                <input type="checkbox" name="vehicle1" value="Bike">  &nbspSUB TOTAL<br>
-              </div>
-              <div class="col-8">
-
-              </div>
-            </div>
-
-            <div class="row p-3">
-              <div class="col-4 ">
-
-              </div>
-              <div class="col-8">
-
-              </div>
-            </div>
-
-            <div class="row p-2">
-              <div class="col-8 ">
-                <p>Particulars</p>
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-              <div class="col-4">
-                <p>Price</p>
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row p-2">
-              <div class="col-8 ">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-              <div class="col-4">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row p-2">
-              <div class="col-8 ">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-              <div class="col-4">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-
-            <div class="row p-2">
-              <div class="col-8 ">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-              <div class="col-4">
-
-                <input type="text" class="form-control p-2"  placeholder="0.00"aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Last Payment Effectivity:</td>
+        <td><input type="Text" name=""></td>
+      </tr>
 
 
+    </table>
 
-
-          </div>
-          </div>
-
-        </div>
 
   </div>
 
+  <div class="p-2">
+
+    <form>
+
+      <table cellpadding="10">
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox"> Cheque</td>
+        </tr>
+
+        <tr>
+          <td>O.R:</td>
+          <td><input type="text" name=""></td>
+          <td>Cheque Amount:</td>
+          <td><input type="text" name=""></td>
+
+        </tr>
+
+        <tr>
+          <td>Nature of Payment:</td>
+          <td><input type="text" name=""></td>
+
+          <td>Bank/Branch:</td>
+          <td><input type="text" name=""></td>
+        </tr>
+
+        <tr>
+          <td>Amount to be paid:</td>
+          <td><input type="text" name=""></td>
+
+          <td>Change:</td>
+          <td><input type="text" name="" placeholder="0.00"></td>
+        </tr>
+
+        <tr>
+          <td>Cash Tendered:</td>
+          <td><input type="text" name=""></td>
+          <td>Payment Effectivity:</td>
+          <td><input type="date"></td>
+        </tr>
+
+
+
+      </table>
+
+    </form>
+
+
+    <form class="mt-2">
+
+
+
+      <table border="2" cellpadding="10" class="mt-2">
+      <tbody>
+      <tr>
+      <td>Cheque No</td>
+      <td>Cheque Amount</td>
+      <td>Bank Branch</td>
+      <td>Change</td>
+      <td>Date</td>
+      </tr>
+      <tr>
+      <td>98765</td>
+      <td>120.00 php</td>
+      <td>BDO</td>
+      <td>0.00</td>
+      <td>8/10/2019</td>
+      </tr>
+      <tr>
+        <td>98765</td>
+        <td>120.00 php</td>
+        <td>SPC</td>
+        <td>0.00</td>
+        <td>8/10/2019</td>
+      </tr>
+      <tr>
+        <td>98765</td>
+        <td>120.00 php</td>
+        <td>BDO</td>
+        <td>0.00</td>
+        <td>8/10/2019</td>
+      </tr>
+      <tr>
+        <td>98765</td>
+        <td>120.00 php</td>
+        <td>BDO</td>
+        <td>0.00</td>
+        <td>8/10/2019</td>
+      </tr>
+      </tbody>
+      </table>
+    </form>
+<center>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 </div>
