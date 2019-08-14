@@ -1,41 +1,53 @@
-<div class="card p-2">
-<div class="row">
+<!-- Page Content  -->
+<div id="content">
 
-    <div class="col">
-      <div class="row p-5">
-        <table class="table table-hover table-bordered">
-            <tr>
-              <th>Stall No.</th>
-              <th>Name</th>
-              <th>Violation</th>
-            </tr>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <div class="container-fluid">
 
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-        </table>
-        <button type="button" class="btn btn-secondary">Remove Violation</button>
-      </div>
-    </div>
+     <button type="button" id="sidebarCollapse" class="btn btn-info">
+         <i class="fas fa-align-left"></i>
+         <span>Control Panel</span>
+     </button>
+     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <i class="fas fa-align-justify"></i>
+     </button>
+ </div>
+</nav>
 
-    <div class="col">
-      <div class="form-group p-5">
-      <label for="exampleFormControlTextarea1">Description</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-  </div>
 
-</div>
+<!-- pagecontents dito mo lagay  -->
+<table border="2" cellpadding="10" class="mt-2">
+  <tr>
+    <td>Stall No.</td>
+    <td>Name</td>
+    <td>Violation</td>
+  </tr>
+
+  <tr>
+    <td>F20</td>
+    <td>Kenneth</td>
+    <td>Public Defecation</td>
+  </tr>
+
+  <tr>
+    <td>F21</td>
+    <td>Jhobart</td>
+    <td>Hate Crime</td>
+  </tr>
+
+  <tr>
+    <td>F22</td>
+    <td>MackieBoy</td>
+    <td>Ceo of Racism</td>
+  </tr>
+
+  <tr>
+    <td>F23</td>
+    <td>Harold</td>
+    <td>Cringey Meme</td>
+  </tr>
+</table>
+
+
+<button type="button" class="mt-2">View Violation</button>
 </div>

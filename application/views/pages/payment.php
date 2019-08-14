@@ -16,7 +16,7 @@
 
 
 <!-- pagecontents dito mo lagay  -->
-<center>
+
 <div class="row">
   <div class="p-2">
     <form>
@@ -63,7 +63,7 @@
     </table>
     <br>
     Type of payment:
-    <select name="cars">
+    <select name="">
     <option value="">Daily Market Fee</option>
     <option value="">Annual Rental Fee</option>
     <option value="">Semi Annual Rental Fee</option>
@@ -217,25 +217,9 @@
       </tbody>
       </table>
     </form>
-<center>
+
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </div>

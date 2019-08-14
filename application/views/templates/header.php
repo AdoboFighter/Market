@@ -240,7 +240,7 @@ a.article:hover {
                     <a href="<?php echo site_url('pages/view/certification') ?>">Certification</a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('pages/view/') ?>">Market Floor</a>
+                    <a href="<?php echo site_url('pages/view/marketFloor') ?>">Market Floor</a>
                 </li>
 
                 <li>
@@ -252,15 +252,15 @@ a.article:hover {
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/viewTansaction ') ?>">View Transaction</a>
+                    <a href="<?php echo site_url('pages/view/viewTransactions') ?>">View Transaction</a>
                 </li>
 
                 <li>
-                    <a href="#">Client Information</a>
+                    <a href="<?php echo site_url('pages/view/clientInformation') ?>">Client Information</a>
                 </li>
 
                 <li>
-                    <a href="#">Add System User</a>
+                    <a href="<?php echo site_url('pages/view/addNewSystemUser') ?>">Add System User</a>
                 </li>
             </ul>
 

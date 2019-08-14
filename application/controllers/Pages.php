@@ -18,7 +18,11 @@ public function view($pages = '')
 {
 $this->load->view('templates/header');
 $this->load->view('pages/'.$pages);
-$this->load->view('templates/footer');
+$dataPage = array(
+  'js_file' => $pages. '.js'
+);
+$this->load->view('templates/footer',$dataPage);
+
 }
 
 
