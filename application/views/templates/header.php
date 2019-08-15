@@ -152,7 +152,7 @@ a:focus {
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: #2F80ED;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
@@ -200,7 +200,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #2F80ED;
 }
 
 #sidebar ul.components {
