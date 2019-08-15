@@ -1,122 +1,132 @@
+<div id="content">
 
-   <!-- Page Content  -->
-   <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>Control Panel</span>
-        </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
-    </div>
-</nav>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Control Panel</span>
+                </button>
+            </div>
+        </nav>
 
 
 <!-- pagecontents dito mo lagay  -->
+<table cellpadding="10">
 
-<div class="card p-2">
-<div class="row pb-2">
+  <tr>
+    <td>Collector:</td>
+    <td>
+      <select name="collector">
+      <option value="">Kenneth Hilairon</option>
+      <option value="">Kenneth Hilairon</option>
+      <option value="">Kenneth Hilairon</option>
+      </select>
+    </td>
+    <td>Date From:</td>
+    <td><input type="date"></td>
+    <td>Date To:</td>
+    <td><input type="date"></td>
+    <td>type</td>
+    <td>
+      <select name="">
+      <option value="">tenant</option>
+      <option value="">Ambulant</option>
+      <option value="">Parking</option>
+      <option value="">Delivery</option>
+      </select>
+    </td>
+    <td><button type="button">Search</button></td>
+  </tr>
 
-  <div class="col">
-    <div class="dropdown  ">
-      <p>Collector:</p>
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Collector
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="dropdown">
-      <p>Type:</p>
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Tenant
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      </div>
-    </div>
-
-  </div>
-
-  <div class="col">
-    <p>Date From:</p>
-    <input type="date" name="bday">
-  </div>
-
-  <div class="col">
-    <p>Date To:</p>
-    <input type="date" name="bday">
-  </div>
-
-  <div class="col">
-    <br>
-
-    <button type="button" class="btn btn-primary">Search</button>
-  </div>
+</table>
 
 
+<table  border="2" cellpadding="10" class="mt-2">
+  <tr>
+    <td>No.</td>
+    <td>Name</td>
+    <td>OR</td>
+    <td>Amount</td>
+    <td>Nature of Payment</td>
+    <td>Date and Time</td>
+    <td>Fund</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
 
 
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+</table>
+
+<button type="button" class="mt-3">Generate POS Report</button>
 
 </div>
-
-  <div class="row ml-2 mr-2">
-    <table class="table table-hover table-bordered">
-        <tr>
-          <th>No.</th>
-          <th>Name</th>
-          <th>O.R</th>
-          <th>Amount</th>
-          <th>Nature of Payment</th>
-          <th>Date and Time</th>
-          <th>Fund</th>
-        </tr>
-
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-
-    </table>
-
-    <button type="button" class="btn btn-secondary">Generate POS Report</button>
-
-
-  </div>
-
-
-
-
-</div>
-</div>
+<div class="overlay"></div>

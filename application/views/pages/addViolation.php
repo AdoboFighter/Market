@@ -1,120 +1,150 @@
+<div id="content">
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
 
-
-   <!-- Page Content  -->
-   <div id="content">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>Control Panel</span>
-        </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
-    </div>
-</nav>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Control Panel</span>
+                </button>
+            </div>
+        </nav>
 
 
 <!-- pagecontents dito mo lagay  -->
 
 
-<div class="row p-3">
 
-  <div class="col-6">
-  <div class="card">
+<div class="divTable">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">
+  <input type="text" placeholder="Search">
+  <table  border="2" cellpadding="10" class="mt-2">
+    <tr>
+      <td>No</td>
+      <td>Name</td>
+      <td>Address</td>
+      <td>Stall No.</td>
+    </tr>
 
-    <form class="form-inline p-3">
-    <input class="form-control mr-sm-2 col-xs-4" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-<div class="row ml-2 mr-2">
-  <table class="table table-hover table-bordered">
-      <tr>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Stall Number</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Kenneth</td>
-        <td>SPC</td>
-        <td>F-20</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Kenneth</td>
-        <td>SPC</td>
-        <td>F-20</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Kenneth</td>
-        <td>SPC</td>
-        <td>F-20</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Kenneth</td>
-        <td>SPC</td>
-        <td>F-20</td>
-      </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+
   </table>
-</div>
-
-  <form>
-  <div class="form-group m-3">
-    <label for="exampleFormControlInput1"><h5>Details</h5></label>
-    <div class="m-3">
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Stall No.">
-    </div>
-    <div class="m-3">
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Owner">
-    </div>
-    <div class="m-3">
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Address">
-    </div>
-    <div class="m-3">
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Occupant">
-    </div >
-
-  </div>
-
-</form>
-
-  </div>
-  </div>
 
 
-  <div class="col-6">
-    <div class="card">
-      <div class="m-3">
-        <h5>Date Occured</h5>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Date">
+  <table class="mt-3" cellpadding="5">
+    <tr>
+      <td>Details</td>
+    </tr>
 
-      </div>
+    <tr>
+      <td>Stall No. :</td>
+      <td><input type="text"></td>
+    </tr>
 
-      <div class="form-group m-3">
-        <label for="exampleFormControlSelect2"><h5>Description</h5></label>
-        <select multiple class="form-control" id="exampleFormControlSelect2">
-        </select>
-      </div>
+    <tr>
+      <td>Owner :</td>
+      <td><input type="text"></td>
+    </tr>
 
-      <div class="form-group m-3">
-        <button type="button" class="btn btn-secondary">Save</button>
-        <button type="button" class="btn btn-secondary">Clear</button>
-        <button type="button" class="btn btn-secondary">View Violations</button>
-      </div>
+    <tr>
+      <td>Address :</td>
+      <td><input type="text"></td>
+    </tr>
 
-  </div>
-  </div>
+    <tr>
+      <td>Occupant :</td>
+      <td><input type="text"></td>
+    </tr>
+
+  </table>
 
 </div>
 
+<div class="divTableCell">
+
+<table cellpadding="5">
+  <tr>
+    <td><h5>Violation Details<h5></td>
+
+  </tr>
+
+  <tr>
+    <td>Date Occured</td>
+    <td><input type="date"></td>
+  </tr>
+
+  <tr>
+    <td>
+      Description:
+    </td>
+  </tr>
+
+  <tr>
+    <table>
+      <tr>
+      <td><textarea rows="5" cols="50"></textarea></td>
+      </tr>
+    </table>
+  </tr>
+
+
+  <tr>
+    <table>
+      <tr>
+        <td><button type="button">View Violation</button></td>
+        <td><button type="button">Save</button></td>
+        <td><button type="button">Clear</button></td>
+      </tr>
+    </table>
+
+  </tr>
+
+
+
+</table>
+
+
+</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell"></div>
+<div class="divTableCell"></div>
+</div>
+</div>
+</div>
 
 
 
 </div>
+    <div class="overlay"></div>
