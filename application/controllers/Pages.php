@@ -11,20 +11,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function index()
     {
-      echo 'Index';
+      $this->load->view('pages/login');
     }
 
-public function view($pages = '')
-{
-$this->load->view('templates/header');
-$this->load->view('pages/'.$pages);
-$dataPage = array(
-  'js_file' => $pages. '.js'
-);
-$this->load->view('templates/footer',$dataPage);
 
-}
+    public function view($pages = '')
+    {
 
+
+    $this->load->view('templates/header');
+    $this->load->view('pages/'.$pages);
+    $dataPage = array(
+      'js_file' => $pages. '.js'
+    );
+    $this->load->view('templates/footer',$dataPage);
+
+    }
+
+  
 
 
 
