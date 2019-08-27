@@ -3,68 +3,127 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-secondary btn-light">
-                  <p class="text-dark"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" alt="Test" width="40" height="40"> SPC E-Market</p>
+                <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+                  <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+                  E-Market
                 </button>
             </div>
         </nav>
 
-    <div class="card p-1">
-      <h5 class="card-header">Client's Information</h5>
-    <div class="row p-4">
-        <div class="">
-            <form class="p-3" id="saveclient">
+  <div class="container justify-content-center">
+    <div class="card">
+      <h5 class="card-header text-center bg-primary text-white">Client's Information</h5>
+    <form class="p-3" id="saveclient">
+    <div class="row ">
+      <div class="span6" style="float: none; margin: 0 auto;">
+          <div class="p-3">
+            <div class="form-group">
             <h5>Owner's Information</h5>
-            Client Type:
-              <select name="client[Client_type]" >
+              <label>Client Type</label>
+              <select class="form-control form-control-sm" name="client[Client_type]">
                 <option value="tenant">Tenant</option>
                 <option value="Ambulant">Ambulant</option>
                 <option value="delivery">Delivery</option>
                 <option value="parking">Parking</option>
               </select><br>
-                first name:<br>
-                <input type="text" name="client[OFirstname]"><br>
-                Last name:<br>
-                <input type="text" name="client[OMiddlename]"><br>
-                Middle name:<br>
-                <input type="text" name="client[OLastname]"><br>
-                address:<br>
-                <input type="text" name="client[OAddress]"><br>
-                Contact Number:<br>
-                <input type="text" name="client[OContactNum]"><br>
+            </div>
+
+
+              <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" class="form-control" name="client[OFirstname]">
+              </div>
+              <div class="form-group">
+                <label for="">Middle Name</label>
+                <input type="text" class="form-control" name="client[OMiddlename]">
+              </div>
+
+              <div class="form-group">
+                <label for="">Last Name</label>
+                <input type="text" class="form-control" name="client[OLastname]">
+              </div>
+
+              <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" name="client[OAddress]">
+              </div>
+
+              <div class="form-group">
+                <label for="">Contact Number</label>
+                <input type="text" class="form-control" name="client[OContactNum]">
+              </div>
+        </div>
         </div>
 
+        <div class="span6" style="float: none; margin: 0 auto;">
         <div class="p-3">
-            <h5>Occupant's Information</h5>
-            <input type="checkbox">
-            Same as Owner's Information<br><br>
-            First name:<br>
-            <input type="text" name="client[OcFirstname]"><br>
-            Middle name:<br>
-            <input type="text" name="client[OcMiddlename]"><br>
-            Last name:<br>
-            <input type="text" name="client[Oclastname]"><br>
-            address:<br>
-            <input type="text" name="client[OcAddress]"><br>
-            Contact Number:<br>
-            <input type="text" name="client[OcContactNum]"><br>
+          <h5>Occupant's Information</h5>
+            <div class="form-check mb-2">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Same as Owner's Information</label>
+            </div>
+
+            <div class="form-group">
+              <label for="">First Name</label>
+              <input type="text" class="form-control" name="client[OcFirstname]">
+            </div>
+            <div class="form-group">
+              <label for="">Middle Name</label>
+              <input type="text" class="form-control" name="client[OcMiddlename]">
+            </div>
+
+            <div class="form-group">
+              <label for="">Last Name</label>
+              <input type="text" class="form-control" name="client[OcLastname]">
+            </div>
+
+            <div class="form-group">
+              <label for="">Address</label>
+              <input type="text" class="form-control" name="client[OcAddress]">
+            </div>
+
+            <div class="form-group">
+              <label for="">Contact Number</label>
+              <input type="text" class="form-control" name="client[OcContactNum]">
+            </div>
+      </div>
       </div>
 
+
+
+      <div class="span6" style="float: none; margin: 0 auto;">
       <div class="">
-          Stall Number:<br>
-          <input type="text" name="client[Stall_Number]"><br>
-          Business Id:<br>
-          <input type="text" name="client[Buss_Id]"><br>
-          Business Name:<br>
-          <input type="text" name="client[Buss_Name]"><br>
-          <button type="submit" class="">Save</button>
-          <button type="reset" class="">Clear</button>
+        <div class="form-group">
+          <label for="">Stall Number</label>
+          <input type="text" class="form-control" name="client[Stall_Number]">
+        </div>
+
+        <div class="form-group">
+          <label for="">Business ID</label>
+          <input type="text" class="form-control" name="client[Buss_Id]">
+        </div>
+
+        <div class="form-group">
+          <label for="">Business Name</label>
+          <input type="text" class="form-control" name="client[Buss_Name]">
+        </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-secondary">Clear</button>
       </div>
     </div>
+
+    </div>
+
+
   </form>
 
 
   </div>
+</div>
+
+
+
 </div>
     <!-- Dark Overlay element -->
 

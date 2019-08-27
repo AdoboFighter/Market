@@ -1,148 +1,137 @@
 <div id="content">
 
-          <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Control Panel</span>
-                </button>
-            </div>
-        </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+            <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+            E-Market
+          </button>
+      </div>
+  </nav>
 
 
 <!-- pagecontents dito mo lagay  -->
 
+<div class="container justify-content-center">
+  <div class="card">
+    <h5 class="card-header text-center bg-primary text-white">Add Violation</h5>
 
+  <div class="card-body">
+  <form class="p-3" id="saveclient">
+    <div class="span6" style="float: none; margin: 0 auto;">
+        <div class="row">
 
-<div class="divTable">
-<div class="divTableBody">
-<div class="divTableRow">
-<div class="divTableCell">
-  <input type="text" placeholder="Search">
-  <table  border="2" cellpadding="10" class="mt-2">
-    <tr>
-      <td>No</td>
-      <td>Name</td>
-      <td>Address</td>
-      <td>Stall No.</td>
-    </tr>
+          <div class="col-6 form-group">
+            <div class="form-group">
+              <label for="">Search</label>
+              <input type="text" class="form-control" name="">
+            </div>
 
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
+            <table class="table p-2" >
+              <thead>
+               <tr>
+                 <td>No</td>
+                 <td>Name</td>
+                 <td>Address</td>
+                 <td>Stall No.</td>
+               </tr>
+             </thead>
 
-  </table>
+               <tr>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+               </tr>
+               <tr>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+               </tr>
+               <tr>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+               </tr>
+               <tr>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+               </tr>
+               <tr>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+               </tr>
+             </table>
 
+             <div class="form-group">
+               <h5>Details</h5>
+               <label for="">Stall No</label>
+               <input type="text" class="form-control" name="client[Buss_Name]">
+             </div>
 
-  <table class="mt-3" cellpadding="5">
-    <tr>
-      <td>Details</td>
-    </tr>
+             <div class="form-group">
+               <label for="">Owner </label>
+               <input type="text" class="form-control" name="client[Buss_Name]">
+             </div>
 
-    <tr>
-      <td>Stall No. :</td>
-      <td><input type="text"></td>
-    </tr>
+             <div class="form-group">
+               <label for="">Address</label>
+               <input type="text" class="form-control" name="client[Buss_Name]">
+             </div>
 
-    <tr>
-      <td>Owner :</td>
-      <td><input type="text"></td>
-    </tr>
+             <div class="form-group">
+               <label for="">Occupant</label>
+               <input type="text" class="form-control" name="client[Buss_Name]">
+             </div>
 
-    <tr>
-      <td>Address :</td>
-      <td><input type="text"></td>
-    </tr>
+           </div>
 
-    <tr>
-      <td>Occupant :</td>
-      <td><input type="text"></td>
-    </tr>
+           <div class="col-6">
+            <div class="p-3">
+              <h5>Violation Details</h5>
+              <div class="form-group">
+                <label for="">Date Occured </label>
+                <input type="Date" class="form-control" name="client[OcFirstname]">
+              </div>
 
-  </table>
+              <div class="form-group">
+                  <label for="">Violation Details</label>
+                  <textarea class="form-control" rows="3"></textarea>
+              </div>
 
-</div>
-
-<div class="divTableCell">
-
-<table cellpadding="5">
-  <tr>
-    <td><h5>Violation Details<h5></td>
-
-  </tr>
-
-  <tr>
-    <td>Date Occured</td>
-    <td><input type="date"></td>
-  </tr>
-
-  <tr>
-    <td>
-      Description:
-    </td>
-  </tr>
-
-  <tr>
-    <table>
-      <tr>
-      <td><textarea rows="5" cols="50"></textarea></td>
-      </tr>
-    </table>
-  </tr>
-
-
-  <tr>
-    <table>
-      <tr>
-        <td><button type="button">View Violation</button></td>
-        <td><button type="button">Save</button></td>
-        <td><button type="button">Clear</button></td>
-      </tr>
-    </table>
-
-  </tr>
+                <button type="submit" class="btn btn-primary">Add Violation</button>
+                <button type="submit" class="btn btn-secondary">View Violation</button>
+                <button type="reset" class="btn btn-secondary">Clear</button>
+            </div>
+            </div>
 
 
 
-</table>
+
+
+      </div>
+      </div>
+
+
+
+
+
+  </form>
+  </div>
+
+
+
 
 
 </div>
 </div>
-<div class="divTableRow">
-<div class="divTableCell"></div>
-<div class="divTableCell"></div>
-</div>
-</div>
-</div>
+
 
 
 

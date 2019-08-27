@@ -85,7 +85,6 @@ a:focus {
     box-shadow: none;
     outline: none !important;
     border: none;
-    background: #fff;
 }
 
 .line {

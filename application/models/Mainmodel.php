@@ -2,7 +2,7 @@
   class Mainmodel extends CI_model{
     function insert_data($inputData)
       {
-        $data = array(
+        $inputData = array(
         'Client_type' => $inputData['Client_type'],
         'OFirstname' => $inputData['OFirstname'],
         'OMiddlename' => $inputData['OMiddlename'],
@@ -19,7 +19,7 @@
         'Buss_Name' => $inputData['Buss_Name']
 
         );
-        return $this->db->insert('client', $data);
+        return $this->db->insert('client', $inputData);
 
       }
   }

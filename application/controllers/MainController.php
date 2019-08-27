@@ -12,8 +12,8 @@
 
   public function saveclient()
   {
-    $data = $this->input->post('client');
-    echo json_encode($this->model->insert_data($data)) ;
+    $inputData = $this->input->post('client');
+    echo json_encode($this->model->insert_data($inputData)) ;
 
   }
 
