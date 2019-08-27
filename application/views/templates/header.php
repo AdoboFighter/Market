@@ -318,7 +318,7 @@ a.article:hover {
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/addViolation') ?>">Add Violation</a>
+                    <a href="<?php echo site_url('pages/view/addViolation') ?>">Violation</a>
                 </li>
 
                 <li>
@@ -336,10 +336,7 @@ a.article:hover {
                     <a href="<?php echo site_url('pages/view/consolidation') ?>">Consolidation</a>
                 </li>
 
-                <li>
-                    <a href="<?php echo site_url('pages/view/viewViolation') ?>">View Violation</a>
-                </li>
-
+            
                 <li>
                     <a href="<?php echo site_url('pages/view/viewTransactions') ?>">View Transaction</a>
                 </li>

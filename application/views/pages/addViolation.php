@@ -14,7 +14,7 @@
 
 <div class="container justify-content-center">
   <div class="card">
-    <h5 class="card-header text-center bg-primary text-white">Add Violation</h5>
+    <h5 class="card-header text-center bg-primary text-white ">Add Violation</h5>
 
   <div class="card-body">
   <form class="p-3" id="saveclient">
@@ -30,10 +30,10 @@
             <table class="table p-2" >
               <thead>
                <tr>
-                 <td>No</td>
-                 <td>Name</td>
-                 <td>Address</td>
-                 <td>Stall No.</td>
+                 <td class="font-weight-bold">No</td>
+                 <td class="font-weight-bold">Name</td>
+                 <td class="font-weight-bold">Address</td>
+                 <td class="font-weight-bold">Stall No.</td>
                </tr>
              </thead>
 
@@ -70,7 +70,7 @@
              </table>
 
              <div class="form-group">
-               <h5>Details</h5>
+               <h5 class="font-weight-bold">Details</h5>
                <label for="">Stall No</label>
                <input type="text" class="form-control" name="client[Buss_Name]">
              </div>
@@ -94,7 +94,7 @@
 
            <div class="col-6">
             <div class="p-3">
-              <h5>Violation Details</h5>
+              <h5 class="font-weight-bold">Violation Details</h5>
               <div class="form-group">
                 <label for="">Date Occured </label>
                 <input type="Date" class="form-control" name="client[OcFirstname]">
@@ -122,6 +122,8 @@
 
 
 
+
+
   </form>
   </div>
 
@@ -130,6 +132,102 @@
 
 
 </div>
+
+<div class="card mt-5 mb-5">
+  <h5 class="card-header text-center bg-primary text-white">View Violation</h5>
+
+<div class="card-body">
+<form class="p-3" id="saveclient">
+  <div class="span6" style="float: none; margin: 0 auto;">
+      <div class="row">
+
+        <div class="col-6 form-group">
+          <div class="form-group">
+            <label for="">Search</label>
+            <input type="text" class="form-control" name="">
+          </div>
+
+          <table class="table p-2" >
+            <thead>
+             <tr>
+               <td class="font-weight-bold" >No</td>
+               <td class="font-weight-bold" >Name</td>
+               <td class="font-weight-bold" >Address</td>
+               <td class="font-weight-bold" >Stall No.</td>
+             </tr>
+           </thead>
+
+             <tr>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+             </tr>
+             <tr>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+             </tr>
+             <tr>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+             </tr>
+             <tr>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+             </tr>
+             <tr>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+               <td>-</td>
+             </tr>
+           </table>
+
+
+
+         </div>
+
+         <div class="col-6">
+          <div class="p-3">
+            <h5>Violation Details</h5>
+
+            <div class="form-group">
+                <label for="">Violation Details</label>
+                <textarea class="form-control" rows="5"></textarea>
+            </div>
+
+              <button type="submit" class="btn btn-danger">Remove Violation</button>
+          </div>
+          </div>
+
+
+
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+</form>
+</div>
+
+
+
+
+
+</div>
+
 </div>
 
 
