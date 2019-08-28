@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function index()
     {
       $this->load->view('pages/login');
+      
     }
 
 
@@ -28,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     }
 
-  
+
 
 
 

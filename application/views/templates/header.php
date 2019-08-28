@@ -336,7 +336,7 @@ a.article:hover {
                     <a href="<?php echo site_url('pages/view/consolidation') ?>">Consolidation</a>
                 </li>
 
-            
+
                 <li>
                     <a href="<?php echo site_url('pages/view/viewTransactions') ?>">View Transaction</a>
                 </li>

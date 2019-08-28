@@ -22,5 +22,21 @@
         return $this->db->insert('client', $inputData);
 
       }
+
+      function fetch_data($query){
+        $this->db->select("*");
+        $this->db->from("client");
+
+        if($query != '')
+        {
+          $this->db->like('Client_Id', $query);
+          $this->db->or_like('OFirstname', $query);
+          $this->db->or_like('OLastname', $query);
+          $this->db->or_like('Stall_Number', $query);
+        }
+        $this->db->order_by('Client_Id', 'DESC');
+        return $this->db->get();
+      }
+
   }
  ?>

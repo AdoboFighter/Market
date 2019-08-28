@@ -24,50 +24,13 @@
           <div class="col-6 form-group">
             <div class="form-group">
               <label for="">Search</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
+           
             </div>
 
-            <table class="table p-2" >
-              <thead>
-               <tr>
-                 <td class="font-weight-bold">No</td>
-                 <td class="font-weight-bold">Name</td>
-                 <td class="font-weight-bold">Address</td>
-                 <td class="font-weight-bold">Stall No.</td>
-               </tr>
-             </thead>
+            <div id="result"></div>
 
-               <tr>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-               </tr>
-               <tr>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-               </tr>
-               <tr>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-               </tr>
-               <tr>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-               </tr>
-               <tr>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-                 <td>-</td>
-               </tr>
-             </table>
+
 
              <div class="form-group">
                <h5 class="font-weight-bold">Details</h5>
