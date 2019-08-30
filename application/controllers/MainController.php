@@ -13,9 +13,12 @@
   public function saveclient()
   {
     $inputData = $this->input->post('client');
-    echo json_encode($this->model->insert_data($inputData)) ;
+    $inputdata2 = $this->input->post('stall');
+    $data = array_merge($inputData , $inputdata2 );
+    echo json_encode(   $this->model->insert_client($data)) ;
 
   }
+
 
   function fetch()
  {
@@ -28,7 +31,8 @@
   }
   $data = $this->Mainmodel->fetch_data($query);
   $output .= '
-  <div class="table-responsive">
+  <div class="table-responsive table-scroll">
+   <div id="table-scroll">
      <table id="example" class="table table-bordered table-striped">
       <tr>
        <th>Client ID#</th>
