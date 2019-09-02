@@ -24,7 +24,7 @@
           <div class="form-group">
             <h5>Owner's Information</h5>
             <label>Client Type</label>
-            <select class="form-control form-control-sm" name="client[Client_type]" onchange="clienttype();" id="clientselect">
+            <select class="form-control form-control-sm" name="client[Client_type]" onchange="clienttype();" id="clientselect" >
               <option value=""></option>
               <option value="tenant">Tenant</option>
               <option value="Ambulant">Ambulant</option>
@@ -100,7 +100,7 @@
 
               <div class="form-group" id="dateOc">
                 <label for="">Date Occupied</label>
-                <input type="Date" class="form-control" name="stall[Buss_Name]">
+                <input type="Date" class="form-control" name="stall[date_Oc]">
               </div>
 
               <div class="form-group" id="stallNum">
@@ -121,6 +121,7 @@
                <div class="form-group" id="floorlevel">
                  <label>Floor Level</label>
                  <select class="form-control form-control-sm" name="stall[Floor_level]">
+                   <option value=""></option>
                    <option value="Basement">Basement</option>
                    <option value="Ground">Ground Floor</option>
                    <option value="Second">Second Floor</option>
@@ -131,26 +132,14 @@
 
                <div class="form-group">
                  <label>Section</label>
-                 <select class="form-control form-control-sm" name="stall[Section]" >
+                 <select class="form-control form-control-sm" name="client[section]" >
+                   <option value=""></option>
                    <option value="Fish">Fish</option>
                    <option value="Meat">Meat</option>
                    <option value="Section1">Section 1</option>
                    <option value="Section2">Section 2</option>
                  </select><br>
               </div>
-
-
-                <div class="form-group" id="location">
-                  <label for="">Location</label>
-                  <input type="text" class="form-control" name="stall[Sqaure_meters]">
-                </div>
-
-                <div class="form-group" id="locationNum">
-                  <label for="">Location Number</label>
-                  <input type="text" class="form-control" name="stall[Sqaure_meters]">
-                </div>
-
-
 
               <button type="submit" class="btn btn-primary">Submit</button>
               <button type="reset" class="btn btn-secondary">Clear</button>
@@ -159,6 +148,25 @@
 
   </div>
 </form>
+
+<form name="ambulantform" id="ambulantform">
+
+  <div class="form-group" id="location">
+    <label for="">Location</label>
+    <input type="text" class="form-control" name="ambulant[Location]">
+  </div>
+
+  <div class="form-group" id="locationNum">
+    <label for="">Location Number</label>
+    <input type="text" class="form-control" name="ambulant[Location_num]">
+  </div>
+
+</form>
+
+
+
+
+
   </div>
 
     <!-- Dark Overlay element -->

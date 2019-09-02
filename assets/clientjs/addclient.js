@@ -10,7 +10,7 @@ function clienttype() {
     var floorlevel =  document.getElementById("floorlevel");
     var bussid =  document.getElementById("bussid");
     var bussname =  document.getElementById("bussname");
-
+    var ambuform = document.getElementById("ambulantform");
 
 
       if (clientselectvalue == "tenant") {
@@ -21,9 +21,12 @@ function clienttype() {
           floorlevel.style.display = "block";
           bussid.style.display = "block";
           bussname.style.display = "block";
+          ambuform.style.display = "block";
+
 
           location.style.display = "none";
           locationNum.style.display = "none";
+
 
       } else if (clientselectvalue == "Ambulant"){
         dateOc.style.display = "none";
@@ -37,7 +40,6 @@ function clienttype() {
         locationNum.style.display = "block";
 
 
-
       } else if (clientselectvalue == "delivery"){
         dateOc.style.display = "none";
         stallNum.style.display = "none";
@@ -48,6 +50,7 @@ function clienttype() {
         bussname.style.display = "none";
         location.style.display = "none";
         locationNum.style.display = "none";
+        ambuform.style.display = "block";
 
 
       } else if (clientselectvalue == "parking"){
@@ -60,44 +63,35 @@ function clienttype() {
         bussname.style.display = "none";
         location.style.display = "none";
         locationNum.style.display = "none";
+        ambuform.style.display = "block";
       }
 
 }
 
-
 $(document).ready(function(){
+var clientselect  =  document.getElementById("clientselect");
+var clientselectvalue = clientselect.options[clientselect.selectedIndex].value;
 var base_url = window.location.origin + '/Market/';
-
-
 
 console.log(base_url);
 $('#saveclient').submit(function(e){
 e.preventDefault();
 
-
-
 console.log( $('#saveclient').serializeArray() );
-// console.log( $('#saveclient').serializeArray() );
-
-    $.ajax({
-      url : base_url +'/MainController/saveclient',
-      type : 'POST',
-      data : $(this).serialize(),
-      dataType : 'json',
-      success : function(res){
-        console.log(res);
-      },
-      error : function(xhr){
-        console.log(xhr.responseText);
-      }
-    });
-
-
+$.ajax({
+     url : base_url +'/MainController/saveclient',
+     type : 'POST',
+     data : $(this).serialize(),
+     dataType : 'json',
+     success : function(res){
+       console.log(res);
+     },
+     error : function(xhr){
+       console.log(xhr.responseText);
+     }
+   });
 
 
 });
-
-
-
 
 });

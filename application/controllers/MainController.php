@@ -19,6 +19,24 @@
 
   }
 
+  public function saveambulant()
+  {
+    $inputData = $this->input->post('client');
+    $inputdata2 = $this->input->post('ambulant');
+    $data = array_merge($inputData , $inputdata2 );
+    echo json_encode(   $this->model->insert_ambulant($data)) ;
+
+  }
+
+  public function savedelivery(){
+
+  }
+
+  public function saveparking(){
+    
+  }
+
+
 
   function fetch()
  {
@@ -31,8 +49,7 @@
   }
   $data = $this->Mainmodel->fetch_data($query);
   $output .= '
-  <div class="table-responsive table-scroll">
-   <div id="table-scroll">
+  <div class="table-responsive">
      <table id="example" class="table table-bordered table-striped">
       <tr>
        <th>Client ID#</th>
