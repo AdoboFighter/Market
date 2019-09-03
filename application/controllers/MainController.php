@@ -13,27 +13,36 @@
   public function saveclient()
   {
     $inputData = $this->input->post('client');
-    $inputdata2 = $this->input->post('stall');
-    $data = array_merge($inputData , $inputdata2 );
-    echo json_encode(   $this->model->insert_client($data)) ;
-
+    echo json_encode(   $this->model->insert_client($inputData)) ;
   }
+
+  public function savetenant()
+  {
+    $inputData = $this->input->post('data');
+    echo json_encode(   $this->model->insert_stall($inputData)) ;
+  }
+
+
 
   public function saveambulant()
   {
-    $inputData = $this->input->post('client');
-    $inputdata2 = $this->input->post('ambulant');
-    $data = array_merge($inputData , $inputdata2 );
-    echo json_encode(   $this->model->insert_ambulant($data)) ;
+    $inputData = $this->input->post('data');
+
+    // $inputdata2 = $this->input->post('ambulant');
+    // $data = array_merge($inputData , $inputdata2 );
+    echo json_encode(  $this->model->insert_ambulant($inputData)  ) ;
 
   }
 
   public function savedelivery(){
+    $inputData = $this->input->post('data');
+    echo json_encode(   $this->model->insert_delivery($inputData)) ;
 
   }
 
   public function saveparking(){
-    
+    $inputData = $this->input->post('data');
+    echo json_encode(   $this->model->insert_parking($inputData)) ;
   }
 
 

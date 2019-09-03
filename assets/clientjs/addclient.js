@@ -1,69 +1,34 @@
+var base_url = window.location.origin + '/Market/';
+
 function clienttype() {
     var clientselect  =  document.getElementById("clientselect");
     var clientselectvalue = clientselect.options[clientselect.selectedIndex].value;
 
-    var location =  document.getElementById("location");
-    var dateOc =  document.getElementById("dateOc");
-    var stallNum =  document.getElementById("stallNum");
-    var dailyfee =  document.getElementById("dailyfee");
-    var squaremeter =  document.getElementById("squaremeter");
-    var floorlevel =  document.getElementById("floorlevel");
-    var bussid =  document.getElementById("bussid");
-    var bussname =  document.getElementById("bussname");
     var ambuform = document.getElementById("ambulantform");
+    var stallform = document.getElementById("stallform");
 
 
       if (clientselectvalue == "tenant") {
-          dateOc.style.display = "block";
-          stallNum.style.display = "block";
-          dailyfee.style.display = "block";
-          squaremeter.style.display = "block";
-          floorlevel.style.display = "block";
-          bussid.style.display = "block";
-          bussname.style.display = "block";
-          ambuform.style.display = "block";
-
-
-          location.style.display = "none";
-          locationNum.style.display = "none";
+          ambuform.style.display = "none";
+          stallform.style.display = "block";
 
 
       } else if (clientselectvalue == "Ambulant"){
-        dateOc.style.display = "none";
-        stallNum.style.display = "none";
-        dailyfee.style.display = "none";
-        squaremeter.style.display = "none";
-        floorlevel.style.display = "none";
-        bussid.style.display = "none";
-        bussname.style.display = "none";
-        location.style.display = "block";
-        locationNum.style.display = "block";
+        stallform.style.display = "none";
+        ambuform.style.display = "block";
 
 
       } else if (clientselectvalue == "delivery"){
-        dateOc.style.display = "none";
-        stallNum.style.display = "none";
-        dailyfee.style.display = "none";
-        squaremeter.style.display = "none";
-        floorlevel.style.display = "none";
-        bussid.style.display = "none";
-        bussname.style.display = "none";
-        location.style.display = "none";
-        locationNum.style.display = "none";
-        ambuform.style.display = "block";
+        stallform.style.display = "none";
+        ambuform.style.display = "none";
 
 
       } else if (clientselectvalue == "parking"){
-        dateOc.style.display = "none";
-        stallNum.style.display = "none";
-        dailyfee.style.display = "none";
-        squaremeter.style.display = "none";
-        floorlevel.style.display = "none";
-        bussid.style.display = "none";
-        bussname.style.display = "none";
-        location.style.display = "none";
-        locationNum.style.display = "none";
-        ambuform.style.display = "block";
+        stallform.style.display = "none";
+        ambuform.style.display = "none";
+      } else {
+        stallform.style.display = "none";
+        ambuform.style.display = "none";
       }
 
 }
@@ -71,13 +36,17 @@ function clienttype() {
 $(document).ready(function(){
 var clientselect  =  document.getElementById("clientselect");
 var clientselectvalue = clientselect.options[clientselect.selectedIndex].value;
-var base_url = window.location.origin + '/Market/';
+
 
 console.log(base_url);
 $('#saveclient').submit(function(e){
 e.preventDefault();
 
 console.log( $('#saveclient').serializeArray() );
+
+console.log( $('#ambulantform').serializeArray() );
+
+
 $.ajax({
      url : base_url +'/MainController/saveclient',
      type : 'POST',
@@ -85,8 +54,31 @@ $.ajax({
      dataType : 'json',
      success : function(res){
        console.log(res);
+switch ($('#clientselect').val()) {
+  case 'tenant':
+    savetenant(res);
+  break;
+
+  case 'Ambulant':
+    saveambulant(res);
+  break;
+
+  case 'delivery':
+    savedelivery(res);
+  break;
+
+  case 'parking':
+    saveparking(res);
+  break;
+
+  default:
+
+}
+
+
      },
      error : function(xhr){
+            console.log(    $('#clientselect').val() );
        console.log(xhr.responseText);
      }
    });
@@ -95,3 +87,108 @@ $.ajax({
 });
 
 });
+
+
+function saveambulant(id){
+
+  $.ajax({
+       url : base_url +'/MainController/saveambulant',
+       type : 'POST',
+       data :{
+            "data":{
+              "id": id,
+
+                          "location" : $('#amlocation').val(),
+                            "locationNum" : $('#amnum').val()
+            }
+       },
+       dataType : 'json',
+       success : function(res){
+console.log(res);
+       },error: function(xhr){
+
+
+         console.log(xhr.responseText);
+       }
+
+
+});
+}
+
+
+
+function savetenant(id){
+
+  $.ajax({
+       url : base_url +'/MainController/savetenant',
+       type : 'POST',
+       data :{
+            "data":{
+              "id": id,
+                          "stallNum" : $('#stallf_num').val(),
+                          "bussid" : $('#stallf_buss_id').val(),
+                          "bussname" : $('#stallf_buss_name').val(),
+                          "Floor_level" : $('#stall_flr_lvl').val(),
+                          "dailyfee" : $('#stallf_daily_fee').val(),
+                          "squaremeter" : $('#stall_sqr_m').val(),
+                          "dateOc" : $('#stallf_date_ocu').val()
+            }
+       },
+       dataType : 'json',
+       success : function(res){
+console.log(res);
+       },error: function(xhr){
+
+
+         console.log(xhr.responseText);
+       }
+
+
+});
+}
+
+function saveparking(id){
+
+  $.ajax({
+       url : base_url +'/MainController/saveparking',
+       type : 'POST',
+       data :{
+            "data":{
+              "id": id,
+            }
+       },
+       dataType : 'json',
+       success : function(res){
+console.log(res);
+       },error: function(xhr){
+
+
+         console.log(xhr.responseText);
+       }
+
+
+});
+}
+
+function savedelivery(id){
+
+  $.ajax({
+       url : base_url +'/MainController/savedelivery',
+       type : 'POST',
+       data :{
+            "data":{
+              "id": id,
+            }
+       },
+       dataType : 'json',
+       success : function(res){
+console.log(res);
+       },error: function(xhr){
+
+
+         console.log(xhr.responseText);
+       }
+
+
+});
+}
