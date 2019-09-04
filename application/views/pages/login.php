@@ -262,6 +262,11 @@
   #icon {
     width:60%;
   }
+
+  .bgrad{
+    background-image: linear-gradient(#0575E6, #021B79);
+
+  }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -271,30 +276,32 @@
 </head>
 
 <body>
-
+  <div class="bgrad">
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
 
       <!-- Icon -->
       <div class="fadeIn first">
-        <h3 class="p3">E-market</h3>
+        <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="50" height="50" class="p-1">E-market</h3>
       </div>
 
       <!-- Login Form -->
       <form>
         <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
         <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In" >
+        <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
       </form>
 
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
         <a href="<?php echo site_url('pages/view/home') ?>">To Home</a>
       </div>
 
     </div>
   </div>
+</div>
+
+
 </body>
 </html>

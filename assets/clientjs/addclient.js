@@ -44,8 +44,6 @@ e.preventDefault();
 
 console.log( $('#saveclient').serializeArray() );
 
-console.log( $('#ambulantform').serializeArray() );
-
 
 $.ajax({
      url : base_url +'/MainController/saveclient',
@@ -53,27 +51,54 @@ $.ajax({
      data : $(this).serialize(),
      dataType : 'json',
      success : function(res){
-       console.log(res);
-switch ($('#clientselect').val()) {
-  case 'tenant':
-    savetenant(res);
-  break;
+     console.log(res);
 
-  case 'Ambulant':
-    saveambulant(res);
-  break;
+    switch ($('#clientselect').val()) {
+      case 'tenant':
+        savetenant(res);
+        $('#success').modal("show");
+      break;
 
-  case 'delivery':
-    savedelivery(res);
-  break;
+      case 'Ambulant':
+        saveambulant(res);
+        $('#success').modal("show");
+      break;
 
-  case 'parking':
-    saveparking(res);
-  break;
+      case 'delivery':
+        savedelivery(res);
+        $('#success').modal("show");
+      break;
 
-  default:
+      case 'parking':
+        saveparking(res);
+        $('#success').modal("show");
+      break;
 
-}
+      default:
+
+    }
+    if(res.error)
+    {
+     if(res.fname_error != '')
+     {
+      $('#fname_error').html(res.fname_error);
+     }
+     else
+     {
+      $('#fname_error').html('');
+     }
+
+    }
+
+    if(res.success)
+    {
+     $('#success_message').html(res.success);
+     $('#fname_error').html('');
+     $('#saveclient')[0].reset();
+    }
+    $('#submit_client').attr('disabled', false);
+
+
 
 
      },
@@ -81,6 +106,7 @@ switch ($('#clientselect').val()) {
             console.log(    $('#clientselect').val() );
        console.log(xhr.responseText);
      }
+
    });
 
 
@@ -136,7 +162,8 @@ function savetenant(id){
        },
        dataType : 'json',
        success : function(res){
-console.log(res);
+
+       console.log(res);
        },error: function(xhr){
 
 
@@ -192,3 +219,27 @@ console.log(res);
 
 });
 }
+
+(function() {
+ 'use strict';
+  window.addEventListener('load', function() {
+   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+   var forms = document.getElementsByClassName('saveclient');
+   // Loop over them and prevent submission
+   var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+       if (form.checkValidity() === false) {
+         event.preventDefault();
+         event.stopPropagation();
+       }
+        else if (form.checkValidity() == true) {
+           $('#success').modal("show");
+
+           // stop form submit only for demo
+           event.preventDefault();
+        }
+       form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();

@@ -5,16 +5,25 @@
         public function __construct()
         {
           parent::__construct();
-          $this->load->helper('url');
+
           $this->load->model('Mainmodel','model');
+
+
+
         }
 
 
   public function saveclient()
   {
-    $inputData = $this->input->post('client');
-    echo json_encode(   $this->model->insert_client($inputData)) ;
+
+     $inputData = $this->input->post('client');
+     echo json_encode(   $this->model->insert_client($inputData)) ;
+
+
+
   }
+
+
 
   public function savetenant()
   {
@@ -76,7 +85,6 @@
        <td>'.$row->Client_Id.'</td>
        <td>'.$row->OFirstname.'</td>
        <td>'.$row->OLastname.'</td>
-       <td>'.$row->Stall_Number.'</td>
       </tr>
     ';
    }
@@ -89,6 +97,12 @@
   }
   $output .= '</table>';
   echo $output;
+ }
+
+
+ function validation()
+ {
+
  }
 
 

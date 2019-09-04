@@ -97,7 +97,6 @@
           $this->db->like('Client_Id', $query);
           $this->db->or_like('OFirstname', $query);
           $this->db->or_like('OLastname', $query);
-          $this->db->or_like('Stall_Number', $query);
         }
         $this->db->order_by('Client_Id', 'DESC');
         return $this->db->get();
