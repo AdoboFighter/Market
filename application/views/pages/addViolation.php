@@ -25,7 +25,7 @@
             <div class="form-group">
               <label for="">Search</label>
               <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-           
+
             </div>
 
             <div id="result"></div>

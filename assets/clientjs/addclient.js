@@ -123,14 +123,13 @@ function saveambulant(id){
        data :{
             "data":{
               "id": id,
-
                           "location" : $('#amlocation').val(),
                             "locationNum" : $('#amnum').val()
             }
        },
        dataType : 'json',
        success : function(res){
-console.log(res);
+       console.log(res);
        },error: function(xhr){
 
 

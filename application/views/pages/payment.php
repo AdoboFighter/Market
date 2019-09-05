@@ -11,213 +11,282 @@
 
 <!-- pagecontents dito mo lagay  -->
 
-<div class="row">
-  <div class="p-2">
-    <form>
-      Search By: &nbsp
-      <input type="radio" name="gender" value="">
-      Name
-      <input type="radio" name="gender" value="">
-      Unit no <br>
-      <input type="text" class="mb-2">
+<div class="card m-3">
+  <div class="">
+    <h5 class="card-header text-center bg-primary text-white">Payment</h5>
+    <div class="row p-3">
 
-    <table border="2" cellpadding="10">
-    <tbody>
-    <tr>
-    <td>No</td>
-    <td>Name</td>
-    <td>Address</td>
-    <td>Stall Number</td>
-    </tr>
-    <tr>
-    <td>1</td>
-    <td>Kenneth</td>
-    <td>SPC</td>
-    <td>F-20</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Kenneth</td>
-      <td>SPC</td>
-      <td>F-21</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Kenneth</td>
-      <td>SPC</td>
-      <td>F-22</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Kenneth</td>
-      <td>SPC</td>
-      <td>F-23</td>
-    </tr>
-    </tbody>
-    </table>
-    <br>
-    Type of payment:
-    <select name="">
-    <option value="">Daily Market Fee</option>
-    <option value="">Annual Rental Fee</option>
-    <option value="">Semi Annual Rental Fee</option>
-    <option value="">Water Services Fee</option>
-    <option value="">Electrical Services Fee</option>
-    <option value="">Monthly Rental Fee</option>
-    <option value="">Weekly Rental Fee</option>
-    <option value="">Privilage Parking Fee</option>
-    <option value="">Quarterly Fee</option>
-    <option value="">Others</option>
-    <option value="">Certification</option>
-    <option value="">Violation</option>
-    </select>
-    </form>
+      <div class="col-5">
+        <div class="row mb-2">
+          <div class="col">
+            <label>Search</label>
+            <input type="text" class="form-control" name="" id="" placeholder="">
+          </div>
+
+          <div class="col">
+            <label>Client type</label>
+            <select class="form-control form-control-sm" name="" onchange="clienttypepay();" id="clientselect" required="">
+              <option selected value="">Please Select</option>
+              <option value="tenant">Tenant</option>
+              <option value="Ambulant">Ambulant</option>
+              <option value="delivery">Delivery</option>
+              <option value="parking">Parking</option>
+            </select>
+          </div>
+
+        </div>
+
+
+
+        <table class="table table-striped table-bordered" id="tableNoStall">
+          <tr>
+            <td>no</td>
+            <td>name</td>
+            <td>address</td>
+          </tr>
+        </table>
+
+        <table class="table table-striped table-bordered" id="tableTenant">
+          <tr>
+            <td>no</td>
+            <td>name</td>
+            <td>address</td>
+            <td>Stall Number</td>
+          </tr>
+        </table>
+
+        <div class="mb-2">
+          <h5>Details</h5>
+        </div>
+
+        <div class="mb-2">
+          <label>Type of payment</label>
+          <select class="form-control form-control-sm" name="" id="" required="">
+            <option selected value="">Please Select</option>
+            <option value="">Annual Rental fee</option>
+            <option value="">Semi Annual Fee</option>
+            <option value="">Quarterly Annual Fee</option>
+            <option value="">Water Services Fee</option>
+            <option value="">Electrical Services Fee</option>
+            <option value="">Monthly Rental Fee</option>
+            <option value="">Weekly Rental Fee</option>
+            <option value="">Daily Market Fee</option>
+            <option value="">Privillage Market Fee</option>
+            <option value="">Others</option>
+            <option value="">Certification</option>
+            <option value="">Violation</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label>Specify</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Owner</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Address</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Payor</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Stall Number</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Area(sqm)</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Debt</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Last Payment Activity</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <button type="" class="btn btn-secondary">activate payment details</button>
+        </div>
+
+      </div>
+
+      <div class="col-4">
+
+        <div class="">
+          <h5>Details</h5>
+        </div>
+
+        <div class="mb-2">
+          <label>O.R</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Nature of payment</label>
+          <input type="text" class="form-control" name="" id="" >
+        </div>
+
+        <div class="mb-2">
+          <label>Amount to be paid:</label>
+          <input type="text" class="form-control" name="" id="" placeholder="0.00">
+        </div>
+
+        <div class="mb-2">
+          <label>Cash tendered</label>
+          <input type="text" class="form-control" name="" id="" placeholder="0.00">
+        </div>
+
+        <div class="form-check mb-2">
+          <input type="checkbox" class="form-check-input">
+          <label class="form-check-label">Cheque</label>
+        </div>
+
+        <div class="mb-2 mt-2">
+          <label>Cheque Amount</label>
+          <input type="text" class="form-control" name="" id="" placeholder="0.00">
+        </div>
+
+        <div class="mb-2">
+          <label>Cheque number</label
+          <input type="text" class="form-control" name="" id="" placeholder="">
+        </div>
+
+        <div class="mb-2">
+          <label>Bank/Branch</label>
+          <input type="text" class="form-control" name="" id="" placeholder="">
+        </div>
+
+        <div class="mb-2">
+          <label>Change:</label>
+          <input type="text" class="form-control" name="" id="" placeholder="0.00">
+        </div>
+
+        <div class="mb-2">
+          <label>Payment Effectivity</label>
+          <input type="date" class="form-control" name="" id="" placeholder="0.00">
+        </div>
+
+        <div class="mb-2">
+          <table class="table table-striped table-bordered p-2">
+            <tr>
+              <td>Cheque no</td>
+              <td>Cheque Amount</td>
+              <td>Bank Branch</td>
+              <td>Date</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="col-3">
+        <div class="">
+          <h5>Particulars</h5>
+        </div>
+
+        <div class="mb-2">
+          <div class="row mt-2">
+            <div class="col">
+              <label>Particulars</label>
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+
+            <div class="col">
+              <label>Price</label>
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="" id="" >
+
+              <button type="submit"  class="btn btn-primary mt-2">Submit</button>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
   </div>
 
-  <div class="p-2">
-
-    <table class="" cellpadding="10">
-      <tr>
-          <td>Specify:</td>
-          <td><input type="text" name=""></td>
-          <td>Stall no:</td>
-          <td><input type="text" name=""></td>
-      </tr>
-
-      <tr>
-        <td>Owner:</td>
-        <td><input type="text" name=""></td>
-        <td>Area (sqm):</td>
-        <td><input type="text" name=""></td>
-      </tr>
-
-      <tr>
-        <td>Address:</td>
-        <td><input type="text" name=""></td>
-        <td>Specify:</td>
-        <td><input type="text" name=""></td>
-      </tr>
-
-      <tr>
-        <td>Payor:</td>
-        <td><input type="text" name=""></td>
-        <td>Debt:</td>
-        <td><input type="text" name=""></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>Last Payment Effectivity:</td>
-        <td><input type="Text" name=""></td>
-      </tr>
 
 
-    </table>
-
-
-  </div>
-
-  <div class="p-2">
-
-    <form>
-
-      <table cellpadding="10">
-        <tr>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox"> Cheque</td>
-        </tr>
-
-        <tr>
-          <td>O.R:</td>
-          <td><input type="text" name=""></td>
-          <td>Cheque Amount:</td>
-          <td><input type="text" name=""></td>
-
-        </tr>
-
-        <tr>
-          <td>Nature of Payment:</td>
-          <td><input type="text" name=""></td>
-
-          <td>Bank/Branch:</td>
-          <td><input type="text" name=""></td>
-        </tr>
-
-        <tr>
-          <td>Amount to be paid:</td>
-          <td><input type="text" name=""></td>
-
-          <td>Change:</td>
-          <td><input type="text" name="" placeholder="0.00"></td>
-        </tr>
-
-        <tr>
-          <td>Cash Tendered:</td>
-          <td><input type="text" name=""></td>
-          <td>Payment Effectivity:</td>
-          <td><input type="date"></td>
-        </tr>
-
-
-
-      </table>
-
-    </form>
-
-
-    <form class="mt-2">
-
-
-
-      <table border="2" cellpadding="10" class="mt-2">
-      <tbody>
-      <tr>
-      <td>Cheque No</td>
-      <td>Cheque Amount</td>
-      <td>Bank Branch</td>
-      <td>Change</td>
-      <td>Date</td>
-      </tr>
-      <tr>
-      <td>98765</td>
-      <td>120.00 php</td>
-      <td>BDO</td>
-      <td>0.00</td>
-      <td>8/10/2019</td>
-      </tr>
-      <tr>
-        <td>98765</td>
-        <td>120.00 php</td>
-        <td>SPC</td>
-        <td>0.00</td>
-        <td>8/10/2019</td>
-      </tr>
-      <tr>
-        <td>98765</td>
-        <td>120.00 php</td>
-        <td>BDO</td>
-        <td>0.00</td>
-        <td>8/10/2019</td>
-      </tr>
-      <tr>
-        <td>98765</td>
-        <td>120.00 php</td>
-        <td>BDO</td>
-        <td>0.00</td>
-        <td>8/10/2019</td>
-      </tr>
-      </tbody>
-      </table>
-    </form>
 
 
 </div>
 
-
-</div>
-</div>
-
-
-    <div class="overlay"></div>
+<div class="overlay"></div>

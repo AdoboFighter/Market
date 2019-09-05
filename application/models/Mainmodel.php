@@ -35,6 +35,25 @@
 
             }
 
+      function insert_sysUser($inputData){
+
+        $data1 = array(
+        'firstname' => $inputData['firstname'],
+        'middlename' => $inputData['middlename'],
+        'lastname' => $inputData['lastname'],
+        'username' => $inputData['username'],
+        'password' => $inputData['password'],
+        'position' => $inputData['position'],
+        'user_lvl' => $inputData['user_lvl'],
+        'address' => $inputData['address'],
+        'contact_num' => $inputData['contact_num']
+        );
+
+       $this->db->insert('sysuser', $data1);
+
+      }
+
+
       function insert_ambulant($inputData)
         {
                 $data1 = array(
@@ -82,10 +101,6 @@
           return $this->db->insert('delivery', $data1);
 
         }
-
-
-
-
 
 
       function fetch_data($query){

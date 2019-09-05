@@ -13,6 +13,13 @@
         }
 
 
+
+  public function saveSysUser(){
+    $inputData = $this->input->post('sysUser');
+    echo json_encode(   $this->model->insert_sysUser($inputData)) ;
+
+  }
+
   public function saveclient()
   {
 
@@ -100,10 +107,6 @@
  }
 
 
- function validation()
- {
-
- }
 
 
 
