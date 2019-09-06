@@ -18,7 +18,7 @@
 
 
   <div class="row">
-  <div class="col-4">
+  <div class="col-6">
       <div class="span6" style="float: none; margin: 0 auto;">
         <div class="p-3">
 
@@ -62,7 +62,9 @@
         </div>
       </div>
   </div>
-  <div class="col-4">
+
+  <div class="col-6">
+
           <div class="span6" style="float: none; margin: 0 auto;">
             <div class="p-3">
               <h5>Occupant's Information</h5>
@@ -95,29 +97,93 @@
                 <input type="text" class="form-control" name="client[OcContactNum]"required="">
 
               </div>
-            </div>
-          </div>
-  </div>
-  <div class="col-4">
-          <div class="span6 p-3" style="float: none; margin: 0 auto;">
-
-               <div class="form-group">
-                 <label>Section</label>
-                 <select class="form-control form-control-sm" name="client[section]" required="">
-                   <option selected value="">Please Select</option>
-                   <option value="Fish">Fish</option>
-                   <option value="Meat">Meat</option>
-                   <option value="Section1">Section 1</option>
-                   <option value="Section2">Section 2</option>
-                 </select><br>
-                 <span id="section_error" class="text-danger"></span>
-              </div>
-
               <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
               <button type="reset" class="btn btn-secondary">Clear</button>
             </div>
+          </div>
+  </div>
+  <!-- <div class="col-4">
+          <div class="span6 p-3" style="float: none; margin: 0 auto;">
+
+            </div>
 
 
+  </div> -->
+
+</form>
+
+
+
+<form name="stallform" id="stallform" class="p-3">
+  <h5>Stall Information</h5>
+
+  <div class="row">
+
+    <div class="col-6">
+      <div class="form-group">
+        <label>Section</label>
+        <select class="form-control form-control-sm" name="stall[section]" required="">
+          <option selected value="">Please Select</option>
+          <option value="Fish">Fish</option>
+          <option value="Meat">Meat</option>
+          <option value="Section1">Section 1</option>
+          <option value="Section2">Section 2</option>
+        </select><br>
+        <span id="section_error" class="text-danger"></span>
+     </div>
+
+     <div class="form-group" id="bussid">
+       <label for="">Business ID</label>
+       <input type="text" class="form-control" id="stallf_buss_id" name="stall[Buss_Id]">
+       <span id="" class="text-danger"></span>
+     </div>
+
+     <div class="form-group" id="bussname">
+       <label for="">Business Name</label>
+       <input type="text" class="form-control" id="stallf_buss_name" name="stall[Buss_Name]">
+       <span id="" class="text-danger"></span>
+     </div>
+
+     <div class="form-group" id="dateOc">
+       <label for="">Date Occupied</label>
+       <input type="Date" class="form-control" id="stallf_date_ocu" name="stall[date_Oc]">
+       <span id="" class="text-danger"></span>
+     </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="form-group" id="stallNum">
+         <label for="">Stall Number</label>
+         <input type="text" class="form-control" id="stallf_num"name="stall[Stall_Number]">
+         <span id="" class="text-danger"></span>
+       </div>
+
+       <div class="form-group" id="dailyfee">
+         <label for="">Daily Fee</label>
+         <input type="text" class="form-control" id="stallf_daily_fee" name="stall[Daily_fee]">
+         <span id="" class="text-danger"></span>
+       </div>
+
+       <div class="form-group" id="squaremeter">
+         <label for="">Square Meters</label>
+         <input type="text" class="form-control" id="stall_sqr_m" name="stall[Sqaure_meters]">
+         <span id="" class="text-danger"></span>
+       </div>
+
+       <div class="form-group" id="floorlevel">
+         <label>Floor Level</label>
+         <select class="form-control form-control-sm" id="stall_flr_lvl" name="stall[Floor_level]">
+           <option value=""></option>
+           <option value="Basement">Basement</option>
+           <option value="Ground">Ground Floor</option>
+           <option value="Second">Second Floor</option>
+           <option value="Third">Third Floor</option>
+           <option value="Fourth">Fourth Floor</option>
+         </select><br>
+       </div>
+
+    </div>
   </div>
 
 </form>
@@ -135,58 +201,6 @@
     <input type="text" class="form-control" id="amnum" name="ambulant[Location_num]">
     <span id="" class="text-danger"></span>
   </div>
-
-</form>
-
-<form name="stallform" id="stallform" class="p-3">
-  <h5>Stall Information</h5>
-  <div class="form-group" id="bussid">
-    <label for="">Business ID</label>
-    <input type="text" class="form-control" id="stallf_buss_id" name="stall[Buss_Id]">
-    <span id="" class="text-danger"></span>
-  </div>
-
-  <div class="form-group" id="bussname">
-    <label for="">Business Name</label>
-    <input type="text" class="form-control" id="stallf_buss_name" name="stall[Buss_Name]">
-    <span id="" class="text-danger"></span>
-  </div>
-
-  <div class="form-group" id="dateOc">
-    <label for="">Date Occupied</label>
-    <input type="Date" class="form-control" id="stallf_date_ocu" name="stall[date_Oc]">
-    <span id="" class="text-danger"></span>
-  </div>
-
-  <div class="form-group" id="stallNum">
-     <label for="">Stall Number</label>
-     <input type="text" class="form-control" id="stallf_num"name="stall[Stall_Number]">
-     <span id="" class="text-danger"></span>
-   </div>
-
-   <div class="form-group" id="dailyfee">
-     <label for="">Daily Fee</label>
-     <input type="text" class="form-control" id="stallf_daily_fee" name="stall[Daily_fee]">
-     <span id="" class="text-danger"></span>
-   </div>
-
-   <div class="form-group" id="squaremeter">
-     <label for="">Square Meters</label>
-     <input type="text" class="form-control" id="stall_sqr_m" name="stall[Sqaure_meters]">
-     <span id="" class="text-danger"></span>
-   </div>
-
-   <div class="form-group" id="floorlevel">
-     <label>Floor Level</label>
-     <select class="form-control form-control-sm" id="stall_flr_lvl" name="stall[Floor_level]">
-       <option value=""></option>
-       <option value="Basement">Basement</option>
-       <option value="Ground">Ground Floor</option>
-       <option value="Second">Second Floor</option>
-       <option value="Third">Third Floor</option>
-       <option value="Fourth">Fourth Floor</option>
-     </select><br>
-   </div>
 
 </form>
 

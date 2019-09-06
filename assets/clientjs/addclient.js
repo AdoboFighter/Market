@@ -8,6 +8,7 @@ function clienttype() {
     var stallform = document.getElementById("stallform");
 
 
+
       if (clientselectvalue == "tenant") {
           ambuform.style.display = "none";
           stallform.style.display = "block";

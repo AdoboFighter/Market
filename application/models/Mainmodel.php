@@ -13,8 +13,8 @@
               'OcMiddlename' => $inputData['OcMiddlename'],
               'Oclastname' => $inputData['OcLastname'],
               'OcAddress' => $inputData['OcAddress'],
-              'OcContactNum' => $inputData['OcContactNum'],
-              'section' => $inputData['section']
+              'OcContactNum' => $inputData['OcContactNum']
+
 
               );
 
@@ -57,7 +57,6 @@
       function insert_ambulant($inputData)
         {
                 $data1 = array(
-
                 'ambu_client_id' => $inputData['id'],
                 'location' => $inputData['location'],
                 'location_num' => $inputData['locationNum']
@@ -77,7 +76,9 @@
           'Daily_Fee' => $inputData['dailyfee'],
           'Sqaure_meters' => $inputData['squaremeter'],
           'date_Oc' => $inputData['dateOc'],
+          'section' => $inputData['section'],
           'Occupied_by' => $inputData['id']
+
           );
 
           return $this->db->insert('stall', $data1);
