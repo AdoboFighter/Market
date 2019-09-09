@@ -118,5 +118,47 @@
         return $this->db->get();
       }
 
+
+
+      public function gettenanttable()
+      {
+
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $query = $this->db->query("SELECT * FROM client where Client_type = 'tenant'");
+          $data = [];
+          foreach ($query->result() as $r) {
+          $data[] = array(
+          'id' => $r->Client_Id,
+          'fullname' => $r->OFirstname.' '.$r->OMiddlename.' '.$r->OLastname,
+          'add' => $r->OAddress,
+          'btn'=>'
+          <div class="">
+          <button type="button" onclick="fetchdata('.$r->Client_Id.')" class="btn btn-sm btn-info ml-3" name="button">Select</button>
+          </div>'
+          );
+          }
+          $result = array(
+          "draw" => $draw,
+          "recordsTotal" => $query->num_rows(),
+          "recordsFiltered" => $query->num_rows(),
+          "data" => $data
+          );
+          return $result;
+
+
+
+
+      }
+
+      public function getstallinfo($id)
+      {
+        $this->db->where('Occupied_by', $id);
+        $this->db->join('client', 'stall.Occupied_by=client.client_id', 'inner');
+
+        $query = $this->db->get('stall');
+        return $query->result();
+      }
   }
  ?>

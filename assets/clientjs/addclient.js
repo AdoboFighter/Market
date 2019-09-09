@@ -1,4 +1,4 @@
-var base_url = window.location.origin + '/Market/';
+// var base_url = window.location.origin + '/Market/';
 
 function clienttype() {
     var clientselect  =  document.getElementById("clientselect");
@@ -9,9 +9,11 @@ function clienttype() {
 
 
 
+
       if (clientselectvalue == "tenant") {
           ambuform.style.display = "none";
           stallform.style.display = "block";
+
 
 
       } else if (clientselectvalue == "Ambulant"){
@@ -22,6 +24,7 @@ function clienttype() {
       } else if (clientselectvalue == "delivery"){
         stallform.style.display = "none";
         ambuform.style.display = "none";
+
 
 
       } else if (clientselectvalue == "parking"){
@@ -39,7 +42,6 @@ var clientselect  =  document.getElementById("clientselect");
 var clientselectvalue = clientselect.options[clientselect.selectedIndex].value;
 
 
-console.log(base_url);
 $('#saveclient').submit(function(e){
 e.preventDefault();
 
@@ -47,7 +49,7 @@ console.log( $('#saveclient').serializeArray() );
 
 
 $.ajax({
-     url : base_url +'/MainController/saveclient',
+     url : global.settings.url +'/MainController/saveclient',
      type : 'POST',
      data : $(this).serialize(),
      dataType : 'json',
@@ -119,7 +121,7 @@ $.ajax({
 function saveambulant(id){
 
   $.ajax({
-       url : base_url +'/MainController/saveambulant',
+       url : global.settings.url +'/MainController/saveambulant',
        type : 'POST',
        data :{
             "data":{
@@ -146,7 +148,7 @@ function saveambulant(id){
 function savetenant(id){
 
   $.ajax({
-       url : base_url +'/MainController/savetenant',
+       url : global.settings.url +'/MainController/savetenant',
        type : 'POST',
        data :{
             "data":{
@@ -177,7 +179,7 @@ function savetenant(id){
 function saveparking(id){
 
   $.ajax({
-       url : base_url +'/MainController/saveparking',
+       url : global.settings.url +'/MainController/saveparking',
        type : 'POST',
        data :{
             "data":{
@@ -200,7 +202,7 @@ console.log(res);
 function savedelivery(id){
 
   $.ajax({
-       url : base_url +'/MainController/savedelivery',
+       url : global.settings.url +'/MainController/savedelivery',
        type : 'POST',
        data :{
             "data":{

@@ -109,6 +109,19 @@
 
 
 
+public function gettenanttable()
+{
+echo json_encode($this->model->gettenanttable());
+
+
+}
+public function getstallinfo()
+{
+  $id = $this->input->post('id');
+  echo json_encode($this->model->getstallinfo($id));
+}
+
+
 
 
   }

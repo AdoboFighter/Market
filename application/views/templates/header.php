@@ -343,39 +343,39 @@ a.article:hover {
           <p>System User :</p>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/addclient') ?>">Add Client</a>
+                    <a href="<?php echo base_url().'pages/view/addclient' ?>">Add Client</a>
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/addViolation') ?>">Violation</a>
+                    <a href="<?php echo base_url().'pages/view/addViolation' ?>">Violation</a>
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/payment') ?>">Payment</a>
+                    <a href="<?php echo base_url().'pages/view/payment' ?>">Payment</a>
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/certification') ?>">Certification</a>
+                    <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('pages/view/marketFloor') ?>">Market Floor</a>
-                </li>
-
-                <li>
-                    <a href="<?php echo site_url('pages/view/consolidation') ?>">Consolidation</a>
-                </li>
-
-
-                <li>
-                    <a href="<?php echo site_url('pages/view/viewTransactions') ?>">View Transaction</a>
+                    <a href="<?php echo base_url().'pages/view/marketFloor' ?>">Market Floor</a>
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/clientInformation') ?>">Client Information</a>
+                    <a href="<?php echo base_url().'pages/view/consolidation' ?>">Consolidation</a>
+                </li>
+
+
+                <li>
+                    <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
                 </li>
 
                 <li>
-                    <a href="<?php echo site_url('pages/view/addNewSystemUser') ?>">Add System User</a>
+                    <a href="<?php echo base_url().'pages/view/clientInformation' ?>">Client Information</a>
+                </li>
+
+                <li>
+                    <a href="<?php echo base_url().'pages/view/addNewSystemUser' ?>">Add System User</a>
                 </li>
         </ul>
     </nav>

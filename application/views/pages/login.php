@@ -295,7 +295,7 @@
 
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a href="<?php echo site_url('pages/view/home') ?>">To Home</a>
+        <a href="<?php echo base_url().'pages/view/home' ?>">To Home</a>
       </div>
 
     </div>

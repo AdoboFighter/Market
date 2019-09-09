@@ -63,7 +63,7 @@
       </div>
   </div>
 
-  <div class="col-6">
+  <div class="col-6" id="occupantfield">
 
           <div class="span6" style="float: none; margin: 0 auto;">
             <div class="p-3">
