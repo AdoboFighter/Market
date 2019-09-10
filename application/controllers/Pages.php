@@ -6,13 +6,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              parent::__construct();
              $this->load->helper('url');
              $this->load->library('session');
+
+             $this->load->model('Mainmodel','login');
          }
 
 
     public function index()
     {
       $this->load->view('pages/login');
-      
+
 
     }
 
@@ -30,7 +32,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     }
 
+    public function login_acc()
+    {
+      // To get the post method configured in the ajax POST HTTP Request
+      $input = $this->input->post('login');
 
+      // returns a array result from model function login_acc converted to json response
+      echo json_encode($this->login->login_acc($input));
+    }
 
 
 

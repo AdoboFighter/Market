@@ -270,7 +270,9 @@
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/jquery/jquery.min.js"></script>
+<script src="assets/global.js"></script>
+<script src="assets/clientjs/login.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 </head>
@@ -287,9 +289,9 @@
       </div>
 
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <form id="login_account">
+        <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="login[password]" placeholder="password">
         <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
       </form>
 

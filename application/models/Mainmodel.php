@@ -1,5 +1,38 @@
 <?php
 class Mainmodel extends CI_model{
+
+      public function __construct() {
+           parent::__construct();
+
+           // To set session inside the model could be use to get session ids.
+           $this->load->library('session');
+       }
+
+  public function login_acc($input)
+  {
+    $data = array(
+      'username' => $input['username'],
+      'password' => $input['password']
+    );
+    $this->db->where($data);
+    $query = $this->db->get('sysuser');
+
+    $response = array();
+
+    if($query->num_rows() == 0){
+      $response['response'] = false;
+      $response['message'] = 'Incorrect Username or Password';
+    }else{
+      $response['response'] = true;
+      $response['message'] = 'Login Success : '.$input['username'];
+      $response['data'] = $query->result();
+    }
+
+    return $response;
+
+  }
+
+
   function insert_client($inputData)
   {
     $data1 = array(
