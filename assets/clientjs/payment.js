@@ -1,115 +1,140 @@
-// var base_url = window.location.origin + '/Market/';
-// clienttypepay();
-//
-// var clientselect  =  document.getElementById("clientselect");
-// var clientselectvalue1 = clientselect.options[clientselect.selectedIndex].value;
-//
-// var tableNoStall = document.getElementById("tableNoStall");
-// var tableTenant = document.getElementById("tableTenant");
-// tableTenant.style.display = "";
-// tableNoStall.style.display = "";
-// clienttypepay(clientselectvalue1);
 var datable;
 $(document).ready(function(){
 
   $("transact").submit(function(e){
-        e.preventDefault();
-    });
+    e.preventDefault();
+  });
 
   $('#paymentcard').hide();
+  $('#clientIdField').hide();
+  // $('#cheque').hide();
 
   $('#activatebtn').on('click', function(){
 
     $('#paymentcard').show();
   });
 
-console.log('good');
 
   $('#tableNoStall').DataTable({
-     "ajax" : {
-       "url" : global.settings.url + '/MainController/gettenanttable',
-       dataSrc : 'data'
-     },
-     "columns" : [{
-         "data" : "id"
-     },
-     {
-         "data" : "fullname"
-     },
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/gettenanttable',
+      dataSrc : 'data'
+    },
+    "columns" : [{
+      "data" : "id"
+    },
+    {
+      "data" : "fullname"
+    },
 
-     {
-         "data" : "add"
-     },
+    {
+      "data" : "add"
+    },
 
-     {
-     "data" : "btn"
-     }]
-   });
-   $('.dataTables_length').addClass('bs-select');
+    {
+      "data" : "btn"
+    }]
+  });
+  $('.dataTables_length').addClass('bs-select');
 
 
 
 });
 
 
-//
-// function clienttypepay(clientselectvalue){
-//
-//   if (clientselectvalue == "tenant") {
-//       tableNoStall.style.display = "none";
-//       tableTenant.style.display = "";
-//
-//
-//   } else if (clientselectvalue == "Ambulant"){
-//     tableNoStall.style.display = "";
-//     tableTenant.style.display = "none";
-//
-//
-//
-//   } else if (clientselectvalue == "delivery"){
-//     tableNoStall.style.display = "";
-//     tableTenant.style.display = "none";
-//
-//
-//   } else if (clientselectvalue == "parking"){
-//     tableNoStall.style.display = "";
-//     tableTenant.style.display = "none";
-//   } else {
-//     tableNoStall.style.display = "";
-//     tableTenant.style.display = "none";
-//   }
-//
-//
-// }
-
-
-
-
 function fetchdata(id){
-console.log(id);
+  console.log(id);
 
 
-$.ajax({
-  url: global.settings.url + '/MainController/getstallinfo',
-  type: 'POST',
-  data: {
-    id: id
-  },
-  dataType:'JSON',
-  success: function(res){
-    console.log(res);
-    res = res[0];
-    $('#stall_num').val(res.Stall_Number );
-    $('#ownerField').val(res.OFirstname + ' '+ res.OMiddlename +' ' + res.OLastname)
-    $('#areaField').val(res.Sqaure_meters);
-    $('#addressField').val(res.OAddress);
+  $.ajax({
+    url: global.settings.url + '/MainController/getstallinfo',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType:'JSON',
+    success: function(res){
+      console.log(res);
+      res = res[0];
+      $('#clientIdField').val(res.Client_Id );
+      $('#stall_num').val(res.Stall_Number );
+      $('#ownerField').val(res.OFirstname + ' '+ res.OMiddlename +' ' + res.OLastname);
+      $('#areaField').val(res.Sqaure_meters);
+      $('#addressField').val(res.OAddress);
 
-  },
-  error: function(xhr){
-    console.log(xhr.responseText);
-  }
+    },
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
 
-})
+  })
 
 
 }
+
+
+$(document).ready(function(){
+
+  $('#transactform').submit(function(e){
+    e.preventDefault();
+    console.log( $('#transactform').serializeArray() );
+    $.ajax({
+         url : global.settings.url +'/MainController/savePayment',
+         type : 'POST',
+         data :{
+           "data":{
+             "clientIdField": $('#clientIdField').val(),
+             "orField" : $('#orField').val(),
+             "amountToField" : $('#amountToField').val(),
+             "cashTendField" : $('#cashTendField').val(),
+             "payTypeField" : $('#payTypeField').val(),
+             "payEffectField" : $('#payEffectField').val(),
+             "payorField" : $('#payorField').val()
+
+           }
+         },
+         dataType : 'json',
+         success : function(res){
+         console.log(res);
+          $('#success').modal("show");
+
+         },
+         error : function(xhr){
+           console.log(xhr.responseText);
+         }
+
+       });
+
+  });
+});
+
+
+// function getPayVal() {
+//
+//       $.ajax({
+//         url : global.settings.url +'/MainController/savePayment',
+//         type : 'POST',
+//         data :{
+//           "data":{
+//             "clientIdField": $('#clientIdField').val(),
+//             "orField" : $('#orField').val(),
+//             "amountToField" : $('#amountToField').val(),
+//             "cashTendField" : $('#cashTendField').val(),
+//             "payTypeField" : $('#payTypeField').val(),
+//             "payEffectField" : $('#payEffectField').val()
+//
+//
+//           }
+//         },
+//         dataType : 'json',
+//         success : function(res){
+//           console.log(res);
+//         },
+//         error: function(xhr){
+//           console.log(xhr.responseText);
+//         }
+//
+//
+//       });
+//
+// }

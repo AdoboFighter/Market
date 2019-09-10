@@ -1,4 +1,3 @@
-var base_url = window.location.origin + '/Market/';
 $(document).ready(function(){
 console.log(base_url);
 $('#saveSysUser').submit(function(e){
@@ -7,7 +6,7 @@ console.log( $('#saveSysUser').serializeArray() );
 
 
 $.ajax({
-     url : base_url +'/MainController/saveSysUser',
+     url : global.settings.url +'/MainController/saveSysUser',
      type : 'POST',
      data : $(this).serialize(),
      dataType : 'json',

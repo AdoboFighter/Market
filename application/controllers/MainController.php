@@ -23,7 +23,7 @@
   public function saveclient()
   {
 
-     $inputData = $this->input->post('client');
+     $inputData = $this->input->post('transact');
      echo json_encode(   $this->model->insert_client($inputData)) ;
 
 
@@ -119,6 +119,12 @@ public function getstallinfo()
 {
   $id = $this->input->post('id');
   echo json_encode($this->model->getstallinfo($id));
+}
+
+public function savePayment()
+{
+  $inputData = $this->input->post('data');
+  echo json_encode($this->model->insert_payment($inputData)) ;
 }
 
 
