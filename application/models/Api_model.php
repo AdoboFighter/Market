@@ -13,7 +13,7 @@ class Api_model extends CI_model{
 
        public function sysUserResgiter($input)
        {
-         $data = {
+         $data = array(
             'firstname' => $input['firstname'],
             'middlename' => $input['middlename'],
             'lastname' => $input['lastname'],
@@ -23,7 +23,7 @@ class Api_model extends CI_model{
             'position' => $input['position'],
             'address' => $input['address'],
             'contact_num' => $input['contact_num']
-         }
+         );
 
          $query = $this->db->insert('sysuser',$data);
 

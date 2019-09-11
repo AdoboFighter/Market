@@ -10,6 +10,7 @@ $(document).ready(function(){
       dataType : 'json',
       success : function(res){
         console.log(res);
+
         /*
         data: Array(2)
         //this is the result array from the query check Mainmodel function login_acc

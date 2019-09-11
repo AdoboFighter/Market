@@ -355,6 +355,10 @@ a.article:hover {
                 </li>
 
                 <li>
+                    <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
+                </li>
+
+                <li>
                     <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
                 </li>
                 <li>

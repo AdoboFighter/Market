@@ -213,6 +213,23 @@ class Mainmodel extends CI_model{
 
   }
 
+  public function insert_payment_cheque($inputData)
+  {
+
+    $data1 = array(
+      'transaction_number' => $inputData['id'],
+      'cheqAmountField' => $inputData['cheqAmountField'],
+      'cheque_amount' => $inputData['cheqAmountField'],
+      'cheque_number' => $inputData['cheqNumField'],
+      'bank_branch' => $inputData['bankBranchField'],
+      'fk_stall_number' => $inputData['stall_num']
+
+    );
+
+    $this->db->insert('cheque', $data1);
+
+  }
+
 
 }
 ?>

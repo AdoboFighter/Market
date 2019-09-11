@@ -127,6 +127,12 @@ public function savePayment()
   echo json_encode($this->model->insert_payment($inputData)) ;
 }
 
+public function savePaymentCheque()
+{
+  $inputData = $this->input->post('data');
+  echo json_encode($this->model->insert_payment_cheque($inputData)) ;
+}
+
 
 
 

@@ -61,13 +61,18 @@
 
 
           <div class="mb-2">
-            <label>Stall Number</label>
+            <label>Client Type</label>
             <input type="text" class="form-control" name="" id="stall_num" disabled>
           </div>
 
           <div class="mb-2">
-            <label>Area(sqm)</label>
-            <input type="text" class="form-control" name="" id="areaField" disabled>
+            <label>location </label>
+            <input type="text" class="form-control" name="" id="" disabled>
+          </div>
+
+          <div class="mb-2">
+            <label>location Number</label>
+            <input type="text" class="form-control" name="" id="" disabled>
           </div>
 
           <div class="mb-2">
@@ -148,17 +153,17 @@
           <div id="cheque">
           <div class="mb-2 mt-2">
             <label>Cheque Amount</label>
-            <input type="text" class="form-control" name="transact[cheqAmountField]" id="cheqAmountField" placeholder="0.00" disabled>
+            <input type="text" class="form-control" name="transact[]" id="cheqAmountField" placeholder="0.00" disabled>
           </div>
 
           <div class="mb-2">
             <label>Cheque number</label>
-            <input type="text" class="form-control" name="transact[cheqNumField]" id="cheqNumField" placeholder="" disabled>
+            <input type="text" class="form-control" name="transact[]" id="cheqNumField" placeholder="" disabled>
           </div>
 
           <div class="mb-2">
             <label>Bank/Branch</label>
-            <input type="text" class="form-control" name="transact[bankBranchField]" id="bankBranchField" placeholder="" disabled>
+            <input type="text" class="form-control" name="transact[]" id="bankBranchField" placeholder="" disabled>
           </div>
         </div>
 
