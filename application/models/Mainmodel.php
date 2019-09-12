@@ -210,6 +210,7 @@ class Mainmodel extends CI_model{
     );
 
     $this->db->insert('transactions', $data1);
+    return  $last_id = $this->db->insert_id();
 
   }
 
@@ -218,7 +219,6 @@ class Mainmodel extends CI_model{
 
     $data1 = array(
       'transaction_number' => $inputData['id'],
-      'cheqAmountField' => $inputData['cheqAmountField'],
       'cheque_amount' => $inputData['cheqAmountField'],
       'cheque_number' => $inputData['cheqNumField'],
       'bank_branch' => $inputData['bankBranchField'],
@@ -226,7 +226,7 @@ class Mainmodel extends CI_model{
 
     );
 
-    $this->db->insert('cheque', $data1);
+    return $this->db->insert('cheque', $data1);
 
   }
 

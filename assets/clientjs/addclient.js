@@ -134,8 +134,6 @@ function saveambulant(id){
     success : function(res){
       console.log(res);
     },error: function(xhr){
-
-
       console.log(xhr.responseText);
     }
 

@@ -1,25 +1,30 @@
 var datable;
 $(document).ready(function(){
 
-  $('#cbCheque').on('change',function(){
-    $("#cheqAmountField").prop('disabled', !$(this).is(':checked'));
-    $("#cheqNumField").prop('disabled', !$(this).is(':checked'));
-    $("#bankBranchField").prop('disabled', !$(this).is(':checked'));
-
+  $('#cbCheque').on('checked',function(){
+    $("#cheque").slidetoggle(200);
   });
+
+
 
   $('#cbCheque').on('change',function(){
     if( $(this).is(':checked') ){
       $('#cashTendField').attr('disabled','disabled');
-      $('#cashTendField').removeAttr('value');
+      $('#cashTendField').val(null);
+       $('#cashTendField').attr("placeholder", "Cheque");
+      $('#cheque').toggle(200);
     }else{
+      $('#cashTendField').val("0.00");
       $('#cashTendField').removeAttr('disabled');
+      $("#cheque").hide();
+
     }
   });
 
   $("transact").submit(function(e){
     e.preventDefault();
   });
+  $("#cheque").hide();
 
   $('#paymentcard').hide();
   $('#clientIdField').hide();
@@ -101,18 +106,14 @@ $(document).ready(function(){
     e.preventDefault();
     console.log( $('#transactform').serializeArray() );
     $.ajax({
-      url : global.settings.url +'/MainController/savePaymentCheque',
+      url : global.settings.url +'/MainController/savePayment',
       type : 'POST',
       data :$(this).serialize(),
       dataType : 'json',
       success : function(res){
-        console.log(res);
-        if(document.getElementById('cbCheque').checked) {
-          saveCheque(res);
-        } else {
 
-        }
-        $('#success').modal("show");
+        console.log(res);
+        saveCheque(id);
 
       },
       error : function(xhr){
@@ -130,11 +131,14 @@ function saveCheque(id){
     url : global.settings.url +'/MainController/savePaymentCheque',
     type : 'POST',
     data :{
-      "id": id,
-      "cheqAmountField" : $('#cheqAmountField').val(),
-      "cheqNumField" : $('#cheqNumField').val(),
-      "bankBranchField" : $('#bankBranchField').val(),
-      "stall_num" : $('#stall_num').val()
+      "data":{
+        "id": id,
+        "cheqAmountField" : $('#cheqAmountField').val(),
+        "cheqNumField" : $('#cheqNumField').val(),
+        "bankBranchField" : $('#bankBranchField').val(),
+        "stall_num" : $('#stall_num').val()
+      }
+
     },
     dataType : 'json',
     success : function(res){
