@@ -60,9 +60,9 @@
         </div>
 
 
-        <div class="mb-2">
+        <div class="mb-2 form-group" id="stall_number">
           <label>Stall Number</label>
-          <input type="text" class="form-control" name="" id="stall_num" disabled>
+          <input type="text" class="form-control" name="" id="stall_number_field" disabled>
         </div>
 
         <div class="mb-2">
@@ -81,7 +81,7 @@
         </div>
 
         <div class="mb-2">
-          <button type="" class="btn btn-secondary" id="activatebtn">activate payment details</button>
+          <button type="" class="btn btn-secondary" id="activatebtn">Add payment</button>
         </div>
 
       </div>
@@ -245,22 +245,22 @@
 
   <div id="cheque">
     <form id="chequeform" name="chequeform">
-      <div class="mb-2 mt-2">
+      <div class="mb-2 mt-2 form-group" id="cheque_amount">
         <label>Cheque Amount</label>
         <input type="text" class="form-control" name="cheque[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
       </div>
 
-      <div class="mb-2">
+      <div class="mb-2 form-group" id="cheque_number">
         <label>Cheque number</label>
         <input type="text" class="form-control" name="cheque[cheqNumField]" id="cheqNumField" placeholder="" >
       </div>
 
-      <div class="mb-2">
+      <div class="mb-2 form-group" id="bank">
         <label>Bank/Branch</label>
         <input type="text" class="form-control" name="cheque[bankBranchField]" id="bankBranchField" placeholder="" >
       </div>
 
-      <div class="mb-2">
+      <div class="mb-2 form-group" id="">
         <table class="table table-striped table-bordered p-2">
           <thead>
             <tr>

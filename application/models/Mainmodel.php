@@ -202,7 +202,7 @@ class Mainmodel extends CI_model{
       'customer_id' => $inputData['clientIdField'],
       'or_number' => $inputData['orField'],
       'payment_nature_id' => $inputData['payTypeField'],
-      'amount_to_pay' => $inputData['amountToField'],
+
       'payment_amount' => $inputData['cashTendField'],
       'payor' => $inputData['payorField'],
       'effectivity' => $inputData['payEffectField']

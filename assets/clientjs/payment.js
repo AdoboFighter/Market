@@ -1,4 +1,5 @@
 var datable;
+
 $(document).ready(function(){
 
   $('#cbCheque').on('checked',function(){
@@ -11,7 +12,7 @@ $(document).ready(function(){
     if( $(this).is(':checked') ){
       $('#cashTendField').attr('disabled','disabled');
       $('#cashTendField').val(null);
-       $('#cashTendField').attr("placeholder", "Cheque");
+      $('#cashTendField').attr("placeholder", "Cheque");
       $('#cheque').toggle(200);
     }else{
       $('#cashTendField').val("0.00");
@@ -39,6 +40,7 @@ $(document).ready(function(){
 
 
   });
+
 
 
   $('#tableNoStall').DataTable({
@@ -112,8 +114,8 @@ $(document).ready(function(){
       dataType : 'json',
       success : function(res){
 
+        saveCheque(res);
         console.log(res);
-        saveCheque(id);
 
       },
       error : function(xhr){
@@ -131,13 +133,11 @@ function saveCheque(id){
     url : global.settings.url +'/MainController/savePaymentCheque',
     type : 'POST',
     data :{
-      "data":{
-        "id": id,
-        "cheqAmountField" : $('#cheqAmountField').val(),
-        "cheqNumField" : $('#cheqNumField').val(),
-        "bankBranchField" : $('#bankBranchField').val(),
-        "stall_num" : $('#stall_num').val()
-      }
+      "id": id,
+      "cheque_amount" : $('#cheqAmountField').val(),
+      "cheque_number" : $('#cheqNumField').val(),
+      "bank" : $('#bankBranchField').val(),
+      "stall_number" : $('#stall_number_field').val()
 
     },
     dataType : 'json',
@@ -149,6 +149,7 @@ function saveCheque(id){
 
 
   });
+
 }
 
 
