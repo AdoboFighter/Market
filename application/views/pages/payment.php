@@ -45,9 +45,9 @@
           <input type="text" class="form-control" name="" id="" >
         </div> -->
 
-        <div class="">
+        <!-- <div class="">
           <input type="text" class="form-control" name="" id="clientIdField" disabled>
-        </div>
+        </div> -->
 
         <div class="mb-2">
           <label>Client Name</label>
@@ -60,10 +60,10 @@
         </div>
 
 
-        <div class="mb-2 form-group" id="stall_number">
+        <!-- <div class="mb-2 form-group" id="stall_number">
           <label>Stall Number</label>
           <input type="text" class="form-control" name="" id="stall_number_field" disabled>
-        </div>
+        </div> -->
 
         <div class="mb-2">
           <label>Area(sqm)</label>
@@ -99,6 +99,15 @@
           <h5>Details</h5>
         </div>
 
+        <div class="mb-2 form-group" id="stall_number">
+          <!-- <label>Stall Number</label> -->
+          <input type="text" class="form-control" name="transact[stall_number_field]" id="stall_number_field" readonly>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" name="transact[clientIdField]" id="clientIdField" >
+        </div>
+
         <div class="mb-2 form-group" id="">
           <label>Type of payment</label>
           <select class="form-control form-control-sm" name="transact[payTypeField]" id="payTypeField" required="">
@@ -132,10 +141,10 @@
 
         <div class="mb-2 form-group" id="amount">
           <label>Amount to be paid:</label>
-          <input type="text" class="form-control" name="transact[amountToField]" id="amountToField" placeholder="0.00" required>
+          <input type="text" class="form-control" name="" id="amountToField" placeholder="0.00" required>
         </div>
 
-        <div class="mb-2 form-group" id="payamount">
+        <div class="mb-2 form-group">
           <label>Cash tendered</label>
           <input type="text" class="form-control" name="transact[cashTendField]" id="cashTendField" placeholder="0.00" required>
         </div>
@@ -145,7 +154,7 @@
 
         <div class="mb-2">
           <label>Change:</label>
-          <input type="text" class="form-control" name="transact[]" id="" placeholder="0.00" disabled>
+          <input type="text" class="form-control" name="transact[]" id="change" placeholder="0.00" disabled>
         </div>
 
         <div class="mb-2">
@@ -154,8 +163,43 @@
         </div>
 
         <div class="form-check mb-2" id="">
-          <input type="checkbox" class="form-check-input" id="cbCheque">
+          <input type="checkbox" class="form-check-input" name="transact[ifCheque]" id="cbCheque">
           <label class="form-check-label">Cheque</label>
+        </div>
+
+        <div id="cheque">
+
+            <div class="mb-2 mt-2 form-group"  id="cheque_amount">
+              <label>Cheque Amount</label>
+              <input type="text" class="form-control" name="transact[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
+            </div>
+
+            <div class="mb-2 form-group" id="cheque_number">
+              <label>Cheque number</label>
+              <input type="text" class="form-control" name="transact[cheqNumField]" id="cheqNumField" placeholder="" >
+            </div>
+
+            <div class="mb-2 form-group" id="bank">
+              <label>Bank/Branch</label>
+              <input type="text" class="form-control" name="transact[bankBranchField]" id="bankBranchField" placeholder="" >
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <table class="table table-striped table-bordered p-2">
+                <thead>
+                  <tr>
+                    <td>Cheque no</td>
+                    <td>Cheque Amount</td>
+                    <td>Bank Branch</td>
+                    <td>Date</td>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+
         </div>
 
 
@@ -243,40 +287,7 @@
     </div>
   </form>
 
-  <div id="cheque">
-    <form id="chequeform" name="chequeform">
-      <div class="mb-2 mt-2 form-group" id="cheque_amount">
-        <label>Cheque Amount</label>
-        <input type="text" class="form-control" name="cheque[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
-      </div>
 
-      <div class="mb-2 form-group" id="cheque_number">
-        <label>Cheque number</label>
-        <input type="text" class="form-control" name="cheque[cheqNumField]" id="cheqNumField" placeholder="" >
-      </div>
-
-      <div class="mb-2 form-group" id="bank">
-        <label>Bank/Branch</label>
-        <input type="text" class="form-control" name="cheque[bankBranchField]" id="bankBranchField" placeholder="" >
-      </div>
-
-      <div class="mb-2 form-group" id="">
-        <table class="table table-striped table-bordered p-2">
-          <thead>
-            <tr>
-              <td>Cheque no</td>
-              <td>Cheque Amount</td>
-              <td>Bank Branch</td>
-              <td>Date</td>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-    </form>
-  </div>
 
 
 </div>

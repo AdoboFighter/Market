@@ -124,11 +124,11 @@ function saveambulant(id){
     url : global.settings.url +'/MainController/saveambulant',
     type : 'POST',
     data :{
-      "data":{
+
         "id": id,
         "location" : $('#amlocation').val(),
         "locationNum" : $('#amnum').val()
-      }
+
     },
     dataType : 'json',
     success : function(res){
