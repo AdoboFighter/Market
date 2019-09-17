@@ -23,7 +23,7 @@
   public function saveclient()
   {
 
-     $inputData = $this->input->post('transact');
+     $inputData = $this->input->post('client');
      echo json_encode(   $this->model->insert_client($inputData)) ;
 
 
@@ -61,52 +61,10 @@
     echo json_encode(   $this->model->insert_parking($inputData)) ;
   }
 
-
-
-  function fetch()
- {
-  $output = '';
-  $query = '';
-  $this->load->model('Mainmodel');
-  if($this->input->post('query'))
+  public function getTransact()
   {
-   $query = $this->input->post('query');
+  echo json_encode($this->model->getTransactData());
   }
-  $data = $this->Mainmodel->fetch_data($query);
-  $output .= '
-  <div class="table-responsive">
-     <table id="example" class="table table-bordered table-striped">
-      <tr>
-       <th>Client ID#</th>
-       <th>Name</th>
-       <th>LastName</th>
-       <th>Stall Number</th>
-      </tr>
-  ';
-  if($data->num_rows() > 0)
-  {
-   foreach($data->result() as $row)
-   {
-    $output .= '
-      <tr>
-       <td>'.$row->Client_Id.'</td>
-       <td>'.$row->OFirstname.'</td>
-       <td>'.$row->OLastname.'</td>
-      </tr>
-    ';
-   }
-  }
-  else
-  {
-   $output .= '<tr>
-       <td colspan="5">No Data Found</td>
-      </tr>';
-  }
-  $output .= '</table>';
-  echo $output;
- }
-
-
 
 
 public function gettenanttable()
@@ -123,18 +81,13 @@ public function getstallinfo()
 
 public function savePayment()
 {
-  $inputData = $this->input->post('data');
-  echo json_encode($this->model->insert_payment($inputData)) ;
-}
-
-public function savePaymentCheque()
-{
-  $inputData = $this->input->post('data');
-  echo json_encode($this->model->insert_payment_cheque($inputData)) ;
+  $inputData = $this->input->post('transact');
+  echo json_encode($this->model->saveTransact($inputData)) ;
 }
 
 
 
 
   }
+
   ?>

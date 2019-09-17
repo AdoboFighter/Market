@@ -124,18 +124,16 @@ function saveambulant(id){
     url : global.settings.url +'/MainController/saveambulant',
     type : 'POST',
     data :{
-      "data":{
+
         "id": id,
         "location" : $('#amlocation').val(),
         "locationNum" : $('#amnum').val()
-      }
+
     },
     dataType : 'json',
     success : function(res){
       console.log(res);
     },error: function(xhr){
-
-
       console.log(xhr.responseText);
     }
 
@@ -222,26 +220,26 @@ function savedelivery(id){
   });
 }
 
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('saveclient');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        else if (form.checkValidity() == true) {
-          $('#success').modal("show");
-
-          // stop form submit only for demo
-          event.preventDefault();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+// (function() {
+//   'use strict';
+//   window.addEventListener('load', function() {
+//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//     var forms = document.getElementsByClassName('saveclient');
+//     // Loop over them and prevent submission
+//     var validation = Array.prototype.filter.call(forms, function(form) {
+//       form.addEventListener('submit', function(event) {
+//         if (form.checkValidity() === false) {
+//           event.preventDefault();
+//           event.stopPropagation();
+//         }
+//         else if (form.checkValidity() == true) {
+//           $('#success').modal("show");
+//
+//           // stop form submit only for demo
+//           event.preventDefault();
+//         }
+//         form.classList.add('was-validated');
+//       }, false);
+//     });
+//   }, false);
+// })();

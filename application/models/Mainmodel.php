@@ -1,12 +1,12 @@
 <?php
 class Mainmodel extends CI_model{
 
-      public function __construct() {
-           parent::__construct();
+  public function __construct() {
+    parent::__construct();
 
-           // To set session inside the model could be use to get session ids.
-           $this->load->library('session');
-       }
+    // To set session inside the model could be use to get session ids.
+    $this->load->library('session');
+  }
 
   public function login_acc($input)
   {
@@ -179,10 +179,34 @@ class Mainmodel extends CI_model{
       "data" => $data
     );
     return $result;
+  }
 
+  public function getTransactData()
+  {
 
-
-
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $query = $this->db->query("SELECT * FROM transactions");
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->Client_Id,
+        'fullname' => $r->OFirstname.' '.$r->OMiddlename.' '.$r->OLastname,
+        'add' => $r->OAddress,
+        'btn'=>'
+        <div class="">
+        <button type="button" onclick="fetchdata('.$r->Client_Id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
   }
 
   public function getstallinfo($id)
@@ -195,40 +219,47 @@ class Mainmodel extends CI_model{
   }
 
 
-  public function insert_payment($inputData)
+  public function saveTransact($inputData)
   {
+    echo 'We in this Shit Bruv  ';
+    $data_transaction = array(
 
-    $data1 = array(
-      'customer_id' => $inputData['clientIdField'],
       'or_number' => $inputData['orField'],
       'payment_nature_id' => $inputData['payTypeField'],
-      'amount_to_pay' => $inputData['amountToField'],
       'payment_amount' => $inputData['cashTendField'],
       'payor' => $inputData['payorField'],
-      'effectivity' => $inputData['payEffectField']
+      'effectivity' => $inputData['payEffectField'],
+      'customer_id' => $inputData['clientIdField']
 
     );
 
-    $this->db->insert('transactions', $data1);
-
-  }
-
-  public function insert_payment_cheque($inputData)
-  {
-
-    $data1 = array(
-      'transaction_number' => $inputData['id'],
-      'cheqAmountField' => $inputData['cheqAmountField'],
+    $this->db->trans_start();
+    $this->db->insert('Transactions', $data_transaction);
+    $last_id = $this->db->insert_id();
+    $data_cheque = array(
+      'transaction_number' => $last_id,
       'cheque_amount' => $inputData['cheqAmountField'],
       'cheque_number' => $inputData['cheqNumField'],
       'bank_branch' => $inputData['bankBranchField'],
-      'fk_stall_number' => $inputData['stall_num']
-
+      'fk_stall_number' => $inputData['stall_number_field']
     );
 
-    $this->db->insert('cheque', $data1);
+
+    if(isset($inputData['ifCheque'])){
+      $this->db->insert('Cheque', $data_cheque);
+      print_r($data_cheque);
+    }
+
+    $this->db->trans_complete();
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
+
 
   }
+
 
 
 }
