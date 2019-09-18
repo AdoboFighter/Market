@@ -1,7 +1,7 @@
 <div id="content">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
+    <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
         <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
         E-Market
@@ -13,13 +13,9 @@
 
   <div class="card m-3">
     <div class="">
-      <h5 class="card-header text-center bg-primary text-white">Payment</h5>
+      <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
       <div class="row p-3">
         <div class="col-6">
-          <div class="row mb-2">
-
-          </div>
-
           <table class="table table-striped table-bordered" id="tableNoStall">
             <thead>
               <tr>
@@ -30,11 +26,10 @@
               </tr>
             </thead>
             <tbody>
-
             </tbody>
-
           </table>
         </div>
+
         <div class="col-6">
           <div class="mb-2">
             <h5>Details</h5>
@@ -46,52 +41,52 @@
         </div> -->
 
         <!-- <div class="">
-          <input type="text" class="form-control" name="" id="clientIdField" disabled>
-        </div> -->
+        <input type="text" class="form-control" name="" id="clientIdField" disabled>
+      </div> -->
 
-        <div class="mb-2">
-          <label>Client Name</label>
-          <input type="text" class="form-control" name="" id="ownerField" disabled>
-        </div>
-
-        <div class="mb-2">
-          <label>Address</label>
-          <input type="text" class="form-control" name="" id="addressField" disabled>
-        </div>
-
-
-        <!-- <div class="mb-2 form-group" id="stall_number">
-          <label>Stall Number</label>
-          <input type="text" class="form-control" name="" id="stall_number_field" disabled>
-        </div> -->
-
-        <div class="mb-2">
-          <label>Area(sqm)</label>
-          <input type="text" class="form-control" name="" id="areaField" disabled>
-        </div>
-
-        <div class="mb-2">
-          <label>Debt</label>
-          <input type="text" class="form-control" name="" id="" disabled>
-        </div>
-
-        <div class="mb-2">
-          <label>Last Payment Activity</label>
-          <input type="text" class="form-control" name="" id="" disabled>
-        </div>
-
-        <div class="mb-2">
-          <button type="" class="btn btn-secondary" id="activatebtn">Add payment</button>
-        </div>
-
+      <div class="mb-2">
+        <label>Client Name</label>
+        <input type="text" class="form-control" name="" id="ownerField" disabled>
       </div>
+
+      <div class="mb-2">
+        <label>Address</label>
+        <input type="text" class="form-control" name="" id="addressField" disabled>
+      </div>
+
+
+      <!-- <div class="mb-2 form-group" id="stall_number">
+      <label>Stall Number</label>
+      <input type="text" class="form-control" name="" id="stall_number_field" disabled>
+    </div> -->
+
+    <div class="mb-2">
+      <label>Area(sqm)</label>
+      <input type="text" class="form-control" name="" id="areaField" disabled>
     </div>
+
+    <div class="mb-2">
+      <label>Debt</label>
+      <input type="text" class="form-control" name="" id="" disabled>
+    </div>
+
+    <div class="mb-2">
+      <label>Last Payment Activity</label>
+      <input type="text" class="form-control" name="" id="" disabled>
+    </div>
+
+    <div class="mb-2">
+      <button type="" class="btn btn-secondary" id="activatebtn">Add payment</button>
+    </div>
+
   </div>
+</div>
+</div>
 
 </div>
 
 <div class="card m-3 " id="paymentcard">
-  <h5 class="card-header text-center bg-secondary text-white">Payment Details</h5>
+  <h5 class="card-header text-center secondaryCard text-white">Payment Details</h5>
   <form id="transactform" name="transactform">
     <div class="row p-2">
       <div class="col-6">
@@ -169,36 +164,36 @@
 
         <div id="cheque">
 
-            <div class="mb-2 mt-2 form-group"  id="cheque_amount">
-              <label>Cheque Amount</label>
-              <input type="text" class="form-control" name="transact[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
-            </div>
+          <div class="mb-2 mt-2 form-group"  id="cheque_amount">
+            <label>Cheque Amount</label>
+            <input type="text" class="form-control" name="transact[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
+          </div>
 
-            <div class="mb-2 form-group" id="cheque_number">
-              <label>Cheque number</label>
-              <input type="text" class="form-control" name="transact[cheqNumField]" id="cheqNumField" placeholder="" >
-            </div>
+          <div class="mb-2 form-group" id="cheque_number">
+            <label>Cheque number</label>
+            <input type="text" class="form-control" name="transact[cheqNumField]" id="cheqNumField" placeholder="" >
+          </div>
 
-            <div class="mb-2 form-group" id="bank">
-              <label>Bank/Branch</label>
-              <input type="text" class="form-control" name="transact[bankBranchField]" id="bankBranchField" placeholder="" >
-            </div>
+          <div class="mb-2 form-group" id="bank">
+            <label>Bank/Branch</label>
+            <input type="text" class="form-control" name="transact[bankBranchField]" id="bankBranchField" placeholder="" >
+          </div>
 
-            <div class="mb-2 form-group" id="">
-              <table class="table table-striped table-bordered p-2">
-                <thead>
-                  <tr>
-                    <td>Cheque no</td>
-                    <td>Cheque Amount</td>
-                    <td>Bank Branch</td>
-                    <td>Date</td>
-                  </tr>
-                </thead>
-                <tbody>
+          <div class="mb-2 form-group" id="">
+            <table class="table table-striped table-bordered p-2">
+              <thead>
+                <tr>
+                  <td>Cheque no</td>
+                  <td>Cheque Amount</td>
+                  <td>Bank Branch</td>
+                  <td>Date</td>
+                </tr>
+              </thead>
+              <tbody>
 
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
+          </div>
 
         </div>
 
@@ -308,5 +303,5 @@
     </div>
   </div>
 </div>
-
+</div>
 <div class="overlay"></div>

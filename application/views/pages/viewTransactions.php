@@ -12,87 +12,57 @@
 
 
 <!-- pagecontents dito mo lagay  -->
-<table cellpadding="10">
-  <tr>
-    <td>type</td>
-    <td>
-      <select name="">
-      <option value="">tenant</option>
-      <option value="">Ambulant</option>
-      <option value="">Parking</option>
-      <option value="">Delivery</option>
-      </select>
-    </td>
+<h5 class="card-header text-center text-white bluegrads container justify-content-center">Transactions</h5>
 
-    <td>Date From:</td>
-    <td><input type="date"></td>
-    <td>Date To:</td>
-    <td><input type="date"></td>
-    <td><button type="button">Search</button></td>
-  </tr>
+<div class="container justify-content-center">
+  <div class="card m-3">
+    <div class="row p-3">
+      <div class="col-4">
+        <div class="mb-2 form-group font-weight-bold" id="">
+          <label>Client Type:</label>
+          <select class="form-control form-control-sm" name="" id="" required>
+            <option selected value="">Please Select</option>
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="mb-2 form-group font-weight-bold" id="">
+          <label>Date from:</label>
+          <input type="date" class="form-control" name="" id="" required>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="mb-2 form-group font-weight-bold" id="">
+          <label>Date to:</label>
+          <input type="date" class="form-control" name="" id="" required>
+        </div>
+      </div>
 
-  <tr>
+    </div>
+    <div class="row p-3">
+      <div class="col-12">
+        <table class="table table-striped table-bordered" id="tableNoStall">
+          <thead>
+            <tr>
+              <td>no</td>
+              <td>name</td>
+              <td>payor</td>
+              <td>O.R</td>
+              <td>Amount</td>
+              <td>Nature of Payment</td>
+              <td>Date & Time</td>
+              <td>Fund</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  </tr>
-
-</table>
-
-<table  border="2" cellpadding="10" class="mt-2">
-  <tr>
-    <td>No.</td>
-    <td>Payor</td>
-    <td>O.R#</td>
-    <td>Amount</td>
-    <td>Nature of Payment</td>
-    <td>Date & time</td>
-    <td>Fund</td>
-    <td>Business name</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+  </div>
+</div>
 
 </div>
 

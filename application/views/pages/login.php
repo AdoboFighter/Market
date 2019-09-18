@@ -265,8 +265,13 @@
 
   .bgrad{
     background-image: linear-gradient(#0575E6, #021B79);
-
   }
+
+  .bluegrads{
+    background-color: #045de9;
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+  }
+
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -278,7 +283,9 @@
 </head>
 
 <body>
-  <div class="bgrad">
+
+  <div class="bluegrads">
+
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
@@ -302,7 +309,8 @@
 
     </div>
   </div>
-</div>
+
+  </div>
 
 
 </body>

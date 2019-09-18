@@ -1,5 +1,5 @@
 <?php
-class Mainmodel extends CI_model{
+class market_model extends CI_model{
 
       public function __construct() {
            parent::__construct();
@@ -22,7 +22,7 @@ class Mainmodel extends CI_model{
 
        public function getAmbulantInfo($firstname)
        {
-           
+
         $inputdata = $this->db->escape($firstname);
 
         $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');
@@ -33,10 +33,10 @@ class Mainmodel extends CI_model{
          return $response;
     }
 
-    
+
     public function getTransactions($transact)
     {
-        
+
      $inputdata = $this->db->escape($transact);
 
      $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
@@ -47,10 +47,10 @@ class Mainmodel extends CI_model{
       return $response;
  }
 
-   
+
  public function RegisterAmbulant($registerambulant)
  {
-     
+
   $inputdata = $this->db->escape($registerambulant);
 
   $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['firstname'].' , '.$inputdata['middlename'].' , '.$inputdata['lastname'].' , '.$inputdata['business'].' , '.$inputdata['location'].' , '.$inputdata['locationNum'].')');
@@ -69,9 +69,5 @@ class Mainmodel extends CI_model{
 
 
 
-        
+
        }
-
-
-
-

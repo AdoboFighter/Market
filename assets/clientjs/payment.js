@@ -33,7 +33,7 @@ $(document).ready(function(){
   });
   $("#cheque").hide();
   $('#stall_number_field').hide();
-  $('#paymentcard').hide();
+  // $('#paymentcard').hide();
   $('#clientIdField').hide();
   // $('#cheque').hide();
 

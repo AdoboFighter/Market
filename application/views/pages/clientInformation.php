@@ -1,252 +1,54 @@
 <div id="content">
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container-fluid">
-          <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
-            <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
-            E-Market
-          </button>
-      </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
+    <div class="container-fluid ">
+      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+        <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+        E-Market
+      </button>
+    </div>
   </nav>
 
-
-
 <!-- pagecontents dito mo lagay  -->
-<form>
-Search By: &nbsp
-<input type="radio" name="gender" value="">
-Name
-<input type="radio" name="gender" value="">
-Unit no <br>
-<input type="text" class="mb-2">
-</form>
+<h5 class="card-header text-center text-white bluegrads container ">Client Information</h5>
 
-<table cellpadding="10" border="2">
-  <tr>
-    <td>No</td>
-    <td>Stall no.</td>
-    <td>Area(sqm)</td>
-    <td>Daily Fee</td>
-    <td>Onwer's First name</td>
-    <td>Owner's middle name</td>
-    <td>Owner's Last name</td>
-    <td>Owner's Address</td>
-    <td>Occupant's First name</td>
-    <td>Occupant's middle name</td>
-    <td>Occupant's Last name</td>
-    <td>Occupant's Address</td>
-  </tr>
+<div class="container ">
+  <div class="card m-3">
+    <div class="row p-3">
 
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
+      <div class="col-3">
+        <div class="mb-2 form-group font-weight-bold" id="">
+          <label>Search:</label>
+          <input type="text" class="form-control" name="" id="" required>
+        </div>
+      </div>
+    </div>
+    <div class="row p-3">
+      <div class="col-12">
+        <table class="table table-striped table-bordered" id="tableNoStall">
+          <thead>
+            <tr>
+              <td>no</td>
+              <td>Stall no.</td>
+              <td>Area(sqm)</td>
+              <td>Daily fee</td>
+              <td>Owner's name</td>
+              <td>Occupant's name</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
 
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
 
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
+    </div>
 
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
 
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+  </div>
 
-<table cellpadding="5" class="mt-2">
-  <tr>
-    <td><h5>Real Occupant's Information</h5></td>
-    <td></td>
-    <td><h5>Actual Occupant's Information</h5></td>
-  </td>
-  <tr>
-    <td>First Name:</td>
-    <td><input type="text"></td>
-    <td>First Name:</td>
-    <td><input type="text"></td>
-  </tr>
 
-  <tr>
-    <td>Middle Name:</td>
-    <td><input type="text"></td>
-    <td>Middle Name:</td>
-    <td><input type="text"></td>
-  </tr>
+</div>
 
-  <tr>
-    <td>Last Name:</td>
-    <td><input type="text"></td>
-    <td>Last Name:</td>
-    <td><input type="text"></td>
-  </tr>
-
-  <tr>
-    <td>Address:</td>
-    <td><input type="text"></td>
-    <td>Address:</td>
-    <td><input type="text"></td>
-  </tr>
-
-  <tr>
-    <td>Contact Number:</td>
-    <td><input type="text"></td>
-    <td>Contact Number:</td>
-    <td><input type="text"></td>
-  </tr>
-
-  <tr>
-    <td>Daily Fee:</td>
-    <td><input type="text"></td>
-  </tr>
-</table>
-
-<table cellpadding="5" class="mt-2">
-  <tr>
-    <h5>Stall Information</h5>
-  </tr>
-
-  <tr>
-    <td>Stall No:</td>
-    <td><input type="text"></td>
-    <td>Area (Sqm):</td>
-    <td><input type="text"></td>
-  </tr>
-</table>
-
-<table border="2" cellpadding="10" class="mt-2">
-  <tr>
-    <td>No.</td>
-    <td>OR number</td>
-    <td>Nature of payment</td>
-    <td>Amount</td>
-    <td>Payment Date</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-</table>
-
-<button type="button" class="mt-2">Payment History</button>
-
-<table class="mt-2" cellpadding="5">
-  <tr>
-    <td>Authorized By:</td>
-  </tr>
-
-  <tr>
-    <td><input type="text" name="" placeholder="Username"><br></td>
-    <td colspan="2"><button type="button" class="">Enable Update</button></td>
-
-  </tr>
-
-  <tr>
-    <td><input type="password" name="" placeholder="password"><br></td>
-    <td colspan="2"><button type="button" class="">Update</button></td>
-  </tr>
-
-  <tr>
-    <td colspan="2"><button type="button" class="">Compute Debt</button></td>
-  </tr>
-
-</table>
 
 
 </div>

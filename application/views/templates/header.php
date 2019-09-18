@@ -181,7 +181,7 @@ a:focus {
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #2F80ED;
+    background: #fff;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
@@ -229,16 +229,16 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #2F80ED;
+    /* background: #2F80ED; */
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+     background: #fff;
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: #000;
     padding: 10px;
 }
 
@@ -249,13 +249,13 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+  background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
+    color: #000;
     background: #6d7fcc;
 }
 
@@ -312,6 +312,22 @@ a.article:hover {
     top: 0;
     right: 0;
 }
+.bluegrads{
+  background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+}
+
+.cardbg{
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.secondaryCard{
+  background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+}
+
+.marqueeTest {
+    font-size: 5em;
+}
 
 
 </style>
@@ -331,16 +347,16 @@ a.article:hover {
     <!-- Sidebar -->
     <nav id="sidebar">
 
-        <div id="dismiss">
+        <!-- <div id="dismiss">
             <i class="fas fa-arrow-left"></i>
+        </div> -->
+
+        <div class="sidebar-header bg-white">
+            <h3 class="text-dark"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="60" height="60"> E-Market</h3>
         </div>
 
-        <div class="sidebar-header">
-            <h3>E-Market</h3>
-        </div>
-
-        <ul class="list-unstyled components">
-          <p>System User :</p>
+        <ul class="list-unstyled components text-dark">
+          <p class="">System User :</p>
 
                 <li>
                     <a href="<?php echo base_url().'pages/view/addclient' ?>">Add Client</a>
@@ -354,9 +370,9 @@ a.article:hover {
                     <a href="<?php echo base_url().'pages/view/payment' ?>">Payment</a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
