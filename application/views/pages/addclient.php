@@ -8,10 +8,12 @@
     </div>
   </nav>
 
+
   <div class="container justify-content-center">
-    <div class="card">
-      <h5 class="card-header text-center bg-primary text-white bluegrads">Client's Information</h5>
-      <div class="container">
+    <h5 class="card-header text-center bg-primary text-white bluegrads">Client's Information</h5>
+
+    <div class="card m-2">
+    <div class="container">
         <form class="p-3" id="saveclient">
           <div class="row">
             <div class="col-6">
@@ -82,7 +84,7 @@
                     <input type="text" class="form-control" name="client[OcContactNum]"required="">
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary">Clear</button>
+                  <button type="reset" class="btn btn-secondary bg-dark">Clear</button>
                 </div>
               </div>
             </div>
@@ -174,6 +176,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 

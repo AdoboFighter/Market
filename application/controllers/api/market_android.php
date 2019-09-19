@@ -8,12 +8,7 @@ class Market_android extends REST_Controller {
     public function __construct()
     {
         parent::__construct();
-<<<<<<< HEAD
         $this->load->model('market_model','model');
-=======
-
-        $this->load->model('Market_model','model');
->>>>>>> dd56c4a39da6acde921351948524313aa5d5cf07
     }
 
     public function getStallInfo_get(){
@@ -43,13 +38,8 @@ class Market_android extends REST_Controller {
         $this->response($query, REST_Controller::HTTP_OK);
     }
 
-<<<<<<< HEAD
 
-    public function RegisterAmbulant()
-=======
-    
     public function RegisterAmbulant_get()
->>>>>>> dd56c4a39da6acde921351948524313aa5d5cf07
     {
         $registerambulant = $this->input->get('info');
 
