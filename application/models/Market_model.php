@@ -21,7 +21,7 @@ class market_model extends CI_model{
   }
 
   public function getAmbulantInfo($firstname)
-  {
+  {-
 
     $inputdata = $this->db->escape($firstname);
     $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');

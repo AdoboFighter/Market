@@ -42,7 +42,7 @@ class Api_model extends CI_model{
          );
 
          $this->db->where($data);
-         $query = $this->db->get('sysuser');
+         $query = $this->db->get('user');
 
          $response = array();
 

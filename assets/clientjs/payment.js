@@ -32,9 +32,9 @@ $(document).ready(function(){
     e.preventDefault();
   });
   $("#cheque").hide();
-  $('#stall_number_field').hide();
+  // $('#stall_number_field').hide();
   // $('#paymentcard').hide();
-  $('#clientIdField').hide();
+  // $('#clientIdField').hide();
   // $('#cheque').hide();
 
   $('#activatebtn').on('click', function(){
@@ -64,6 +64,7 @@ $(document).ready(function(){
     {
       "data" : "add"
     },
+
 
     {
       "data" : "btn"
@@ -103,11 +104,11 @@ function fetchdata(id){
     success: function(res){
       console.log(res);
       res = res[0];
-      $('#clientIdField').val(res.Client_Id );
+      $('#clientIdField').val(res.customer_id );
       $('#stall_number_field').val(res.Stall_Number );
-      $('#ownerField').val(res.OFirstname + ' '+ res.OMiddlename +' ' + res.OLastname);
+      $('#ownerField').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
       $('#areaField').val(res.Sqaure_meters);
-      $('#addressField').val(res.OAddress);
+      $('#addressField').val(res.address);
 
     },
     error: function(xhr){

@@ -15,7 +15,7 @@ class Mainmodel extends CI_model{
       'password' => $input['password']
     );
     $this->db->where($data);
-    $query = $this->db->get('sysuser');
+    $query = $this->db->get('user');
 
     $response = array();
 
@@ -139,15 +139,15 @@ class Mainmodel extends CI_model{
 
   function fetch_data($query){
     $this->db->select("*");
-    $this->db->from("client");
+    $this->db->from("customer");
 
     if($query != '')
     {
-      $this->db->like('Client_Id', $query);
-      $this->db->or_like('OFirstname', $query);
-      $this->db->or_like('OLastname', $query);
+      $this->db->like('customer_id', $query);
+      $this->db->or_like('firstname', $query);
+      $this->db->or_like('lastname', $query);
     }
-    $this->db->order_by('Client_Id', 'DESC');
+    $this->db->order_by('customer_id', 'DESC');
     return $this->db->get();
   }
 
@@ -159,16 +159,16 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $query = $this->db->query("SELECT * FROM client where Client_type = 'tenant'");
+    $query = $this->db->query("SELECT * FROM customer");
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-        'id' => $r->Client_Id,
-        'fullname' => $r->OFirstname.' '.$r->OMiddlename.' '.$r->OLastname,
-        'add' => $r->OAddress,
+        'id' => $r->customer_id,
+        'fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'add' => $r->address,
         'btn'=>'
         <div class="">
-        <button type="button" onclick="fetchdata('.$r->Client_Id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
         </div>'
       );
     }
@@ -181,40 +181,14 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getTransactData()
-  {
 
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    $query = $this->db->query("SELECT * FROM transactions");
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->Client_Id,
-        'fullname' => $r->OFirstname.' '.$r->OMiddlename.' '.$r->OLastname,
-        'add' => $r->OAddress,
-        'btn'=>'
-        <div class="">
-        <button type="button" onclick="fetchdata('.$r->Client_Id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
-        </div>'
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-  }
 
   public function getstallinfo($id)
   {
-    $this->db->where('Occupied_by', $id);
-    $this->db->join('client', 'stall.Occupied_by=client.client_id', 'inner');
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
 
-    $query = $this->db->get('stall');
+    $query = $this->db->get('tenant');
     return $query->result();
   }
 

@@ -17,7 +17,7 @@ class Sysuser extends REST_Controller {
      public function sysUserResgiter_post()
      {
        //Change the post(your_post_parameter)
-       $input = $this->input->post('sysuser');
+       $input = $this->input->post('user');
 
        $query = $this->api->sysUserResgiter($input);
 
