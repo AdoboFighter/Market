@@ -32,23 +32,23 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="client[OFirstname]" id="client[OFirstname]"  required="">
+                    <input type="text" class="form-control" name="client[Owner_Firstname]" id="client[OFirstname]"  required="">
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="client[OMiddlename]" required="">
+                    <input type="text" class="form-control" name="client[Owner_Middlename]" required="">
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="client[OLastname]"required="">
+                    <input type="text" class="form-control" name="client[Owner_Lastname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="client[OAddress]"required="">
+                    <input type="text" class="form-control" name="client[Owner_Address]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="client[OContactNum]"required="">
+                    <input type="text" class="form-control" name="client[Owner_Contact_Num]"required="">
                   </div>
                 </div>
               </div>
@@ -64,24 +64,24 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="client[OcFirstname]"required="">
+                    <input type="text" class="form-control" name="client[Occu_Firstname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="client[OcMiddlename]"required="">
+                    <input type="text" class="form-control" name="client[Occu_Middlename]"required="">
 
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="client[OcLastname]"required="">
+                    <input type="text" class="form-control" name="client[Occu_Lastname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="client[OcAddress]"required="">
+                    <input type="text" class="form-control" name="client[Occu_Address]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="client[OcContactNum]"required="">
+                    <input type="text" class="form-control" name="client[Occu_Contact_Num]"required="">
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary bg-dark">Clear</button>

@@ -51,20 +51,10 @@ class Mainmodel extends CI_model{
 
     );
 
-    $this->db->insert('client', $data1);
+    $this->db->insert('customer', $data1);
     return  $last_id = $this->db->insert_id();
 
-    // $data2 = array(
-    // 'Stall_Number' => $inputData['Stall_Number'],
-    // 'Buss_Id' => $inputData['Buss_Id'],
-    // 'Buss_Name' => $inputData['Buss_Name'],
-    // 'Floor_level' => $inputData['Floor_Level'],
-    // 'Daily_Fee' => $inputData['Daily_fee'],
-    // 'Sqaure_meters' => $inputData['Sqaure_meters'],
-    // 'date_Oc' => $inputData['date_Oc'],
-    // 'Occupied_by' => $last_id
-    // );
-    //   return $this->db->insert('stall', $data2);
+
 
   }
 
@@ -87,6 +77,7 @@ class Mainmodel extends CI_model{
   }
 
 
+
   function insert_ambulant($inputData)
   {
     $data1 = array(
@@ -102,15 +93,16 @@ class Mainmodel extends CI_model{
   function insert_stall($inputData){
     $data1 = array(
 
-      'Stall_Number' => $inputData['stallNum'],
-      'Buss_Id' => $inputData['bussid'],
-      'Buss_Name' => $inputData['bussname'],
-      'Floor_level' => $inputData['Floor_level'],
-      'Daily_Fee' => $inputData['dailyfee'],
-      'Sqaure_meters' => $inputData['squaremeter'],
-      'date_Oc' => $inputData['dateOc'],
-      'section' => $inputData['section'],
-      'Occupied_by' => $inputData['id']
+
+      'floor_level' => $inputData[''],
+      'unit_no' => $inputData[''],
+      'tenant_id' => $inputData[''],
+      'date_occupied' => $inputData[''],
+      'Section' => $inputData[''],
+      'sqm' => $inputData[''],
+      'class' => $inputData['']
+      'dailyfee' => $inputData['']
+
 
     );
 
@@ -118,12 +110,27 @@ class Mainmodel extends CI_model{
 
   }
 
-  function insert_parking($inputData){
+  function insert_tenant($inputData){
     $data1 = array(
-      'park_client_id' => $inputData['id']
+
+      'fk_customer_id' => $inputData['id'],
+      'business_id' => $inputData['bussid'],
+      'business_name' => $inputData['bussname'],
+      'nature_or_business' => $inputData['']
+
     );
 
-    return $this->db->insert('parking', $data1);
+    return $this->db->insert('tenant', $data1);
+
+  }
+
+
+  function insert_parking($inputData){
+    $data1 = array(
+      'fk_customer_id' => $inputData['id']
+    );
+
+    return $this->db->insert('driver', $data1);
 
   }
 
@@ -204,7 +211,6 @@ class Mainmodel extends CI_model{
       'payor' => $inputData['payorField'],
       'effectivity' => $inputData['payEffectField'],
       'customer_id' => $inputData['clientIdField']
-
     );
 
     $this->db->trans_start();
