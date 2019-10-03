@@ -11,17 +11,29 @@ class Market_android extends REST_Controller {
         $this->load->model('market_model','model');
     }
 
-    public function getStallInfo_get(){
-        $stall_num = $this->input->get('info');
+
+    public function con_get()
+    {
+
+      $query = $this->model->checkconnection();
+
+      $this->response($query, REST_Controller::HTTP_OK);
+
+
+    }
+
+
+    public function getStallInfo_post(){
+        $stall_num = $this->input->post('info');
 
         $query = $this->model->getStallInfo($stall_num);
 
         $this->response($query, REST_Controller::HTTP_OK);
     }
 
-    public function getAmbulantInfo_get()
+    public function getAmbulantInfo_post()
     {
-        $firstname = $this->input->get('info');
+        $firstname = $this->input->post('info');
 
         $query = $this->model->getAmbulantInfo($firstname);
 
@@ -57,14 +69,5 @@ class Market_android extends REST_Controller {
 
         $this->response($query, REST_Controller::HTTP_OK);
     }
-
-
-
-
-
-
-
-
-
 
 }

@@ -8,16 +8,33 @@ class market_model extends CI_model{
     $this->load->library('session');
   }
 
+
+  public function checkconnection()
+  {
+    $query = $this->db->query('SHOW TABLES FROM market_db');
+    $dataArray = array();
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+
+
+    if($dataArray == null){
+    return "dbError";
+    }else{
+    return "ok";
+    }
+  }
+
   public function getStallInfo($stall_num)
   {
     $inputdata = $this->db->escape($stall_num);
 
     $query = $this->db->query('CALL POS_fetchStallInfo('.$inputdata.')');
-    $response = array();
-
-    $response['STALL_RES'][] = $query->result();
-
-    return $response;
+    $dataArray = array();
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+    return $dataArray;
   }
 
   public function getAmbulantInfo($firstname)
@@ -25,9 +42,17 @@ class market_model extends CI_model{
 
     $inputdata = $this->db->escape($firstname);
     $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');
-    $response = array();
-    $response['AMB_RES'][] = $query->result();
-    return $response;
+
+    $dataArray = array();
+
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+
+
+    // $response['STALL_RES'][] = $query->result();
+
+    return $dataArray;
   }
 
 
@@ -36,10 +61,16 @@ class market_model extends CI_model{
 
     $inputdata = $this->db->escape($transact);
     $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
-    $response = array();
-    $response['LIST_TRNS'][] = $query->result();
+    $dataArray = array();
 
-    return $response;
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+
+
+    // $response['STALL_RES'][] = $query->result();
+
+    return $dataArray;
   }
 
 
@@ -47,9 +78,16 @@ class market_model extends CI_model{
   {
     $inputdata = $this->db->escape($registerambulant);
     $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['firstname'].' , '.$inputdata['middlename'].' , '.$inputdata['lastname'].' , '.$inputdata['business'].' , '.$inputdata['location'].' , '.$inputdata['locationNum'].')');
-    $response = array();
-    $response['LIST_TRNS'][] = $query->result();
-    return $response;
+    $dataArray = array();
+
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+
+
+    // $response['STALL_RES'][] = $query->result();
+
+    return $dataArray;
   }
 
 

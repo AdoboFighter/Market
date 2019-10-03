@@ -23,7 +23,7 @@
                   <td>no</td>
                   <td>name</td>
                   <td>address</td>
-                
+
                   <td>Action</td>
                 </tr>
               </thead>
@@ -53,7 +53,7 @@
             </div>
             <div class="mb-2">
               <label>Last Payment Activity</label>
-              <input type="text" class="form-control" name="" id="" disabled>
+              <input type="text" class="form-control" name="" id="last_pay" disabled>
             </div>
             <div class="mb-2">
               <button type="" class="btn btn-secondary bg-dark" id="activatebtn">Add payment</button>
@@ -62,8 +62,9 @@
         </div>
       </div>
     </div>
-    <h5 class="card-header text-center bg-dark text-white ">Payment Details</h5>
+
     <div class="card m-3 " id="paymentcard">
+        <h5 class="card-header text-center bg-dark text-white ">Payment Details</h5>
       <form id="transactform" name="transactform">
         <div class="row p-2">
           <div class="col-6">
@@ -72,14 +73,14 @@
             </div>
             <div class="mb-2 form-group" id="stall_number">
               <!-- <label>Stall Number</label> -->
-              <input type="text" class="form-control" name="transact[stall_number_field]" id="stall_number_field" readonly>
+              <input type="text" class="form-control" name="transact[stall_number]" id="stall_number_field" readonly>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="transact[clientIdField]" id="clientIdField" >
+              <input type="text" class="form-control" name="transact[customer_id]" id="clientIdField" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Type of payment</label>
-              <select class="form-control form-control-sm" name="transact[payTypeField]" id="payTypeField" required="">
+              <select class="form-control form-control-sm" name="transact[payment_type]" id="payTypeField" required="">
                 <option selected value="">Please Select</option>
                 <option value="4004">Annual Rental fee</option>
                 <option value="4005">Semi Annual Fee</option>
@@ -97,11 +98,11 @@
             </div>
             <div class="mb-2 form-group" id="payor">
               <label>Payor</label>
-              <input type="text" class="form-control" name="transact[payorField]" id="payorField" required>
+              <input type="text" class="form-control" name="transact[payor]" id="payorField" required>
             </div>
             <div class="mb-2 form-group" id="or">
               <label>O.R</label>
-              <input type="text" class="form-control" name="transact[orField]" id="orField" required>
+              <input type="text" class="form-control" name="transact[OR]" id="orField" required>
             </div>
             <div class="mb-2 form-group" id="amount">
               <label>Amount to be paid:</label>
@@ -109,7 +110,7 @@
             </div>
             <div class="mb-2 form-group">
               <label>Cash tendered</label>
-              <input type="text" class="form-control" name="transact[cashTendField]" id="cashTendField" placeholder="0.00" required>
+              <input type="text" class="form-control" name="transact[cash_tendered]" id="cashTendField" placeholder="0.00" required>
             </div>
             <div class="mb-2">
               <label>Change:</label>
@@ -117,7 +118,7 @@
             </div>
             <div class="mb-2">
               <label>Payment Effectivity</label>
-              <input type="date" class="form-control" name="transact[payEffectField]" id="payEffectField" placeholder="0.00" required>
+              <input type="date" class="form-control" name="transact[payment_effect]" id="payEffectField" placeholder="0.00" required>
             </div>
             <div class="form-check mb-2" id="">
               <input type="checkbox" class="form-check-input" name="transact[ifCheque]" id="cbCheque">
@@ -127,17 +128,17 @@
             <div id="cheque">
               <div class="mb-2 mt-2 form-group"  id="cheque_amount">
                 <label>Cheque Amount</label>
-                <input type="text" class="form-control" name="transact[cheqAmountField]" id="cheqAmountField" placeholder="0.00" >
+                <input type="text" class="form-control" name="transact[cheque_amount]" id="cheqAmountField" placeholder="0.00" >
               </div>
 
               <div class="mb-2 form-group" id="cheque_number">
                 <label>Cheque number</label>
-                <input type="text" class="form-control" name="transact[cheqNumField]" id="cheqNumField" placeholder="" >
+                <input type="text" class="form-control" name="transact[cheque_number]" id="cheqNumField" placeholder="" >
               </div>
 
               <div class="mb-2 form-group" id="bank">
                 <label>Bank/Branch</label>
-                <input type="text" class="form-control" name="transact[bankBranchField]" id="bankBranchField" placeholder="" >
+                <input type="text" class="form-control" name="transact[bank_branch]" id="bankBranchField" placeholder="" >
               </div>
 
               <div class="mb-2 form-group" id="">
@@ -229,7 +230,7 @@
                 </div>
                 <div class="col">
                   <input type="text" class="form-control" name="" id="" >
-                  <button type="submit"  class="btn btn-primary mt-2">Submit</button>
+                  <button type="submit"  class="btn btn-primary mt-2" value="payment saved" id="paymentsave">Submit</button>
                 </div>
               </div>
 

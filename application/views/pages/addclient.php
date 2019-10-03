@@ -13,8 +13,8 @@
     <h5 class="card-header text-center bg-primary text-white bluegrads">Client's Information</h5>
 
     <div class="card m-2">
-    <div class="container">
-        <form class="p-3" id="saveclient">
+      <div class="container">
+        <form class="p-3" id="save_customer">
           <div class="row">
             <div class="col-6">
               <div class="span6" style="float: none; margin: 0 auto;">
@@ -22,7 +22,7 @@
                   <div class="form-group">
                     <h5>Owner's Information</h5>
                     <label>Client Type</label>
-                    <select class="form-control form-control-sm" name="client[Client_type]" onchange="clienttype();" id="clientselect" required="">
+                    <select class="form-control form-control-sm" name="add_customer_form[Client_type]" onchange="clienttype();" id="clientselect" required="">
                       <option selected value="">Please Select</option>
                       <option value="tenant">Tenant</option>
                       <option value="Ambulant">Ambulant</option>
@@ -32,23 +32,23 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="client[Owner_Firstname]" id="client[OFirstname]"  required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Firstname]" id="client[Owner_Firstname]"  required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="client[Owner_Middlename]" required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Middlename]" required="">
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="client[Owner_Lastname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Lastname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="client[Owner_Address]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Address]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="client[Owner_Contact_Num]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Contact_Num]"required="">
                   </div>
                 </div>
               </div>
@@ -64,39 +64,44 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="client[Occu_Firstname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Firstname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="client[Occu_Middlename]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Middlename]"required="">
 
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="client[Occu_Lastname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Lastname]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="client[Occu_Address]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Address]"required="">
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="client[Occu_Contact_Num]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Contact_Num]"required="">
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary bg-dark">Clear</button>
                 </div>
               </div>
             </div>
-          </form>
 
-          <form name="stallform" id="stallform" class="p-3">
-            <h5>Stall Information</h5>
+
+
+
+
             <div class="row">
+
               <div class="col-6">
+                <div id="stall_div">
+                <h5>Stall Information</h5>
+
                 <div class="form-group">
                   <label>Section</label>
-                  <select class="form-control form-control-sm" name="stall[section]" required="">
+                  <select class="form-control form-control-sm" name="add_customer_form[section]" required="">
                     <option selected value="">Please Select</option>
                     <option value="Fish">Fish</option>
                     <option value="Meat">Meat</option>
@@ -105,41 +110,59 @@
                   </select><br>
                   <span id="section_error" class="text-danger"></span>
                 </div>
-                <div class="form-group" id="bussid">
+                <div class="form-group" id="">
                   <label for="">Business ID</label>
-                  <input type="text" class="form-control" id="stallf_buss_id" name="stall[Buss_Id]">
+                  <input type="text" class="form-control" id="stallf_buss_id" name="add_customer_form[Business_Id]">
                   <span id="" class="text-danger"></span>
                 </div>
-                <div class="form-group" id="bussname">
+                <div class="form-group" id="">
                   <label for="">Business Name</label>
-                  <input type="text" class="form-control" id="stallf_buss_name" name="stall[Buss_Name]">
+                  <input type="text" class="form-control" id="stallf_buss_name" name="add_customer_form[Business_Name]">
                   <span id="" class="text-danger"></span>
                 </div>
-                <div class="form-group" id="dateOc">
+                <div class="form-group" id="">
                   <label for="">Date Occupied</label>
-                  <input type="Date" class="form-control" id="stallf_date_ocu" name="stall[date_Oc]">
+                  <input type="Date" class="form-control" id="stallf_date_ocu" name="add_customer_form[date_occupied]">
                   <span id="" class="text-danger"></span>
                 </div>
               </div>
+
+                <div id="ambulant_div">
+                <h5>Ambulant Information</h5>
+
+                <div class="form-group" id="location" name="ambulant_div">
+                  <label for="">Location</label>
+                  <input type="text" class="form-control" id="amlocation" name="add_customer_form[Location]">
+                  <span id="" class="text-danger"></span>
+                </div>
+                <div class="form-group" id="locationNum" >
+                  <label for="">Location Number</label>
+                  <input type="text" class="form-control" id="amnum" name="add_customer_form[Location_num]">
+                  <span id="" class="text-danger"></span>
+                </div>
+              </div>
+
+              </div>
+
               <div class="col-6">
-                <div class="form-group" id="stallNum">
+                <div class="form-group" id="">
                   <label for="">Stall Number</label>
-                  <input type="text" class="form-control" id="stallf_num"name="stall[Stall_Number]">
+                  <input type="text" class="form-control" id="stallf_num"name="add_customer_form[Stall_Number]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="dailyfee">
                   <label for="">Daily Fee</label>
-                  <input type="text" class="form-control" id="stallf_daily_fee" name="stall[Daily_fee]">
+                  <input type="text" class="form-control" id="stallf_daily_fee" name="add_customer_form[Daily_fee]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="squaremeter">
                   <label for="">Square Meters</label>
-                  <input type="text" class="form-control" id="stall_sqr_m" name="stall[Sqaure_meters]">
+                  <input type="text" class="form-control" id="stall_sqr_m" name="add_customer_form[Square_meters]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="floorlevel">
                   <label>Floor Level</label>
-                  <select class="form-control form-control-sm" id="stall_flr_lvl" name="stall[Floor_level]">
+                  <select class="form-control form-control-sm" id="stall_flr_lvl" name="add_customer_form[Floor_level]">
                     <option value=""></option>
                     <option value="Basement">Basement</option>
                     <option value="Ground">Ground Floor</option>
@@ -151,20 +174,14 @@
 
               </div>
             </div>
+
+
+
+
+
+
           </form>
-          <form name="ambulantform" id="ambulantform" class="p-3">
-            <h5>Ambulant Information</h5>
-            <div class="form-group" id="location">
-              <label for="">Location</label>
-              <input type="text" class="form-control" id="amlocation" name="ambulant[Location]">
-              <span id="" class="text-danger"></span>
-            </div>
-            <div class="form-group" id="locationNum">
-              <label for="">Location Number</label>
-              <input type="text" class="form-control" id="amnum" name="ambulant[Location_num]">
-              <span id="" class="text-danger"></span>
-            </div>
-          </form>
+
           <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
               <div class="modal-content p-3">

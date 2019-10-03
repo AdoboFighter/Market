@@ -56,6 +56,7 @@
                 <td>Nature of Payment</td>
                 <td>Date & Time</td>
                 <td>Fund</td>
+                <td>collector</td>
               </tr>
             </thead>
             <tbody>

@@ -47,12 +47,12 @@
             <tr>
               <td>no</td>
               <td>name</td>
-              <td>payor</td>
               <td>O.R</td>
               <td>Amount</td>
               <td>Nature of Payment</td>
               <td>Date & Time</td>
               <td>Fund</td>
+
             </tr>
           </thead>
           <tbody>

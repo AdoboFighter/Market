@@ -36,17 +36,17 @@ class Mainmodel extends CI_model{
   function insert_client($inputData)
   {
     $data1 = array(
-      'Client_type' => $inputData['Client_type'],
-      'OFirstname' => $inputData['OFirstname'],
-      'OMiddlename' => $inputData['OMiddlename'],
-      'OLastname' => $inputData['OLastname'],
-      'OAddress' => $inputData['OAddress'],
-      'OContactNum' => $inputData['OContactNum'],
-      'OcFirstname' => $inputData['OcFirstname'],
-      'OcMiddlename' => $inputData['OcMiddlename'],
-      'Oclastname' => $inputData['OcLastname'],
-      'OcAddress' => $inputData['OcAddress'],
-      'OcContactNum' => $inputData['OcContactNum']
+      'Client_type' => $inputData[''],
+      'OFirstname' => $inputData[''],
+      'OMiddlename' => $inputData[''],
+      'OLastname' => $inputData[''],
+      'OAddress' => $inputData[''],
+      'OContactNum' => $inputData[''],
+      'OcFirstname' => $inputData[''],
+      'OcMiddlename' => $inputData[''],
+      'Oclastname' => $inputData[''],
+      'OcAddress' => $inputData[''],
+      'OcContactNum' => $inputData['']
 
 
     );
@@ -61,15 +61,15 @@ class Mainmodel extends CI_model{
   function insert_sysUser($inputData){
 
     $data1 = array(
-      'firstname' => $inputData['firstname'],
-      'middlename' => $inputData['middlename'],
-      'lastname' => $inputData['lastname'],
-      'username' => $inputData['username'],
-      'password' => $inputData['password'],
-      'position' => $inputData['position'],
-      'user_lvl' => $inputData['user_lvl'],
-      'address' => $inputData['address'],
-      'contact_num' => $inputData['contact_num']
+      'firstname' => $inputData[''],
+      'middlename' => $inputData[''],
+      'lastname' => $inputData[''],
+      'username' => $inputData[''],
+      'password' => $inputData[''],
+      'position' => $inputData[''],
+      'user_lvl' => $inputData[''],
+      'address' => $inputData[''],
+      'contact_num' => $inputData['']
     );
 
     $this->db->insert('sysuser', $data1);
@@ -82,8 +82,8 @@ class Mainmodel extends CI_model{
   {
     $data1 = array(
       'ambu_client_id' => $inputData['id'],
-      'location' => $inputData['location'],
-      'location_num' => $inputData['locationNum']
+      'location' => $inputData[''],
+      'location_num' => $inputData['']
     );
 
     return $this->db->insert('ambulant', $data1);
@@ -100,7 +100,7 @@ class Mainmodel extends CI_model{
       'date_occupied' => $inputData[''],
       'Section' => $inputData[''],
       'sqm' => $inputData[''],
-      'class' => $inputData['']
+      'class' => $inputData[''],
       'dailyfee' => $inputData['']
 
 
@@ -114,14 +114,11 @@ class Mainmodel extends CI_model{
     $data1 = array(
 
       'fk_customer_id' => $inputData['id'],
-      'business_id' => $inputData['bussid'],
-      'business_name' => $inputData['bussname'],
+      'business_id' => $inputData[''],
+      'business_name' => $inputData[''],
       'nature_or_business' => $inputData['']
-
     );
-
     return $this->db->insert('tenant', $data1);
-
   }
 
 
@@ -138,9 +135,7 @@ class Mainmodel extends CI_model{
     $data1 = array(
       'delivery_client_id' => $inputData['id']
     );
-
     return $this->db->insert('delivery', $data1);
-
   }
 
 
@@ -173,8 +168,9 @@ class Mainmodel extends CI_model{
         'id' => $r->customer_id,
         'fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
         'add' => $r->address,
-        'btn'=>'
-        <div class="">
+        'btn'=>
+
+        '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
         </div>'
       );
@@ -190,43 +186,112 @@ class Mainmodel extends CI_model{
 
 
 
-  public function getstallinfo($id)
+  public function gettenantinfo($id)
   {
     $this->db->where('fk_customer_id', $id);
     $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'transaction.customer_id=customer.customer_id', 'inner');
+    $this->db->order_by('payment_datetime');
+    $this->db->limit(1);
     $query = $this->db->get('tenant');
     return $query->result();
+
+
   }
+
+  public function getconsolidationtable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $query = $this->db->query("SELECT * FROM transaction");
+
+    $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('transaction');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'pay_or' => $r->or_number,
+        'pay_amount'=> $r->payment_amount,
+        'pay_nature'=> $r->payment_nature_id,
+        'pay_date'=> $r->payment_datetime,
+        'pay_fund'=> $r->fund_name,
+        'pay_collector'=> $r->collector,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function gettransactiontable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $query = $this->db->query("SELECT * FROM transaction");
+    $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('transaction');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'trans_or' => $r->or_number,
+        'trans_amount'=> $r->payment_amount,
+        'trans_nature'=> $r->payment_nature_id,
+        'trans_date'=> $r->payment_datetime,
+        'trans_fund'=> $r->fund_name
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
 
 
   public function saveTransact($inputData)
   {
     echo 'We in this Shit Bruv  ';
     $data_transaction = array(
-
-      'or_number' => $inputData['orField'],
-      'payment_nature_id' => $inputData['payTypeField'],
-      'payment_amount' => $inputData['cashTendField'],
-      'payor' => $inputData['payorField'],
-      'effectivity' => $inputData['payEffectField'],
-      'customer_id' => $inputData['clientIdField']
+      'payment_nature_id' => $inputData['payment_type'],
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
     );
 
     $this->db->trans_start();
-    $this->db->insert('Transactions', $data_transaction);
-    $last_id = $this->db->insert_id();
+    $this->db->insert('transaction', $data_transaction);
+    // $last_id = $this->db->insert_id();
     $data_cheque = array(
-      'transaction_number' => $last_id,
-      'cheque_amount' => $inputData['cheqAmountField'],
-      'cheque_number' => $inputData['cheqNumField'],
-      'bank_branch' => $inputData['bankBranchField'],
-      'fk_stall_number' => $inputData['stall_number_field']
+      // 'transaction_number' => $last_id,
+      'cheque_amount' => $inputData['cheque_amount'],
+      'cheque_number' => $inputData['cheque_number'],
+      'bank_branch' => $inputData['bank_branch'],
+      'fk_stall_no' => $inputData['stall_number']
     );
 
 
     if(isset($inputData['ifCheque'])){
-      $this->db->insert('Cheque', $data_cheque);
+      $this->db->insert('cheque_details', $data_cheque);
       print_r($data_cheque);
     }
 
@@ -235,6 +300,67 @@ class Mainmodel extends CI_model{
     if ($this->db->trans_status() === FALSE)
     {
       echo '<script>console.log("Shit not working")</script>';
+    }
+  }
+
+
+
+  public function save_customer($inputData){
+    echo 'yeah yeah';
+    $data_customer = array(
+      'firstname' => $inputData['Owner_Firstname'],
+      'middlename' => $inputData['Owner_Middlename'],
+      'lastname' => $inputData['Owner_Lastname'],
+      'address' => $inputData['Owner_Address'],
+      'contact_number' => $inputData['Owner_Contact_Num'],
+      'customer_type' => $inputData['Client_type'],
+      'aofirstname' => $inputData['Occu_Firstname'],
+      'aomiddlename' => $inputData['Occu_Middlename'],
+      'aolastname' => $inputData['Occu_Lastname'],
+      'aoaddress' => $inputData['Occu_Address'],
+      'ao_cn' => $inputData['Occu_Contact_Num']
+    );
+
+
+
+
+
+    $this->db->trans_start();
+    $this->db->insert('customer', $data_customer);
+    $last_id = $this->db->insert_id();
+
+    $data_tenant = array(
+      'business_id' => $inputData['Owner_Firstname'],
+      'business_name' => $inputData['Owner_Middlename'],
+      'fk_customer_id' => $last_id
+    );
+
+
+
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 'tenant') {
+      echo 'we in this shit bruv';
+
+
+      $this->db->insert('tenant', $data_tenant);
+      $id_tenant = $this->db->insert_id();
+      echo $id_tenant;
+
+      $data_stall = array(
+        'floor_level' => $inputData['Floor_level'],
+        'unit_no' => $inputData['Stall_Number'],
+        'tenant_id' => $id_tenant,
+        'date_occupied' => $inputData['date_occupied'],
+        'Section' => $inputData['section'],
+        'sqm' => $inputData['Square_meters'],
+        'dailyfee' => $inputData['Daily_fee']
+      );
+      $this->db->insert('stall', $data_stall);
+    }
+
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo 'Shit not working';
     }
 
 

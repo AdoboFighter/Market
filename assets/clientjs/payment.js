@@ -15,11 +15,18 @@ $(document).ready(function(){
 
 
   $('#cbCheque').on('change',function(){
+    var payment = document.getElementById('cashTendField').value;
+    var topay = document.getElementById('amountToField').value;
+    var cheqAmountField = document.getElementById('cheqAmountField').value;
+    var changecash = parseFloat(payment) - parseFloat(topay);
+    var changecheque = parseFloat(payment) - parseFloat(topay);
+
     if( $(this).is(':checked') ){
       $('#cashTendField').attr('readonly','readonly');
       $('#cashTendField').val(0);
       $('#cashTendField').attr("placeholder", "Cheque");
       $('#cheque').toggle(200);
+
     }else{
       $('#cashTendField').val("0.00");
       $('#cashTendField').removeAttr('readonly');
@@ -32,10 +39,10 @@ $(document).ready(function(){
     e.preventDefault();
   });
   $("#cheque").hide();
-  // $('#stall_number_field').hide();
-  // $('#paymentcard').hide();
-  // $('#clientIdField').hide();
-  // $('#cheque').hide();
+  $('#stall_number_field').hide();
+  $('#paymentcard').hide();
+  $('#clientIdField').hide();
+  $('#cheque').hide();
 
   $('#activatebtn').on('click', function(){
     if ( $('#clientIdField').val().length === 0) {
@@ -79,14 +86,18 @@ $(document).ready(function(){
 function sum() {
   var payment = document.getElementById('cashTendField').value;
   var topay = document.getElementById('amountToField').value;
-  var topay = document.getElementById('amountToField').value;
+  var cheqAmountField = document.getElementById('cheqAmountField').value;
   var change = parseFloat(payment) - parseFloat(topay);
   // var chequeChange = parseFloat(payment) - parseFloat(topay);
 
   if (!isNaN(change)) {
     document.getElementById('change').value = change;
   }
+
+
 }
+
+
 
 
 
@@ -104,11 +115,13 @@ function fetchdata(id){
     success: function(res){
       console.log(res);
       res = res[0];
+
       $('#clientIdField').val(res.customer_id );
-      $('#stall_number_field').val(res.Stall_Number );
+      $('#stall_number_field').val(res.unit_no );
       $('#ownerField').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-      $('#areaField').val(res.Sqaure_meters);
+      $('#areaField').val(res.sqm);
       $('#addressField').val(res.address);
+      $('#last_pay').val(res.payment_datetime);
 
     },
     error: function(xhr){
@@ -135,6 +148,9 @@ $(document).ready(function(){
       dataType : 'json',
       success : function(res){
         console.log(res);
+        $('#paymentsave').click(function(){
+          alert($('input:Submit').val());  //display value of button
+        });
       },
       error : function(xhr){
         console.log(xhr.responseText);

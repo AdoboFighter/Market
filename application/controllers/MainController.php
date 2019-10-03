@@ -1,16 +1,14 @@
 <?php
-  defined('BASEPATH') OR exit('No direct script access allowed');
-  class MainController extends CI_Controller{
+defined('BASEPATH') OR exit('No direct script access allowed');
+class MainController extends CI_Controller{
 
-        public function __construct()
-        {
-          parent::__construct();
+  public function __construct()
+  {
+    parent::__construct();
 
-          $this->load->model('Mainmodel','model');
+    $this->load->model('Mainmodel','model');
 
-
-
-        }
+  }
 
 
 
@@ -23,8 +21,8 @@
   public function saveclient()
   {
 
-     $inputData = $this->input->post('client');
-     echo json_encode(   $this->model->insert_client($inputData)) ;
+    $inputData = $this->input->post('client');
+    echo json_encode(   $this->model->insert_client($inputData)) ;
 
 
 
@@ -32,7 +30,7 @@
 
 
 
-  public function savetenant()
+  public function save_tenant()
   {
     $inputData = $this->input->post('data');
     echo json_encode(   $this->model->insert_stall($inputData)) ;
@@ -63,31 +61,50 @@
 
   public function getTransact()
   {
-  echo json_encode($this->model->getTransactData());
+    echo json_encode($this->model->getTransactData());
   }
 
 
-public function gettenanttable()
-{
-echo json_encode($this->model->gettenanttable());
-
-
-}
-public function getstallinfo()
-{
-  $id = $this->input->post('id');
-  echo json_encode($this->model->getstallinfo($id));
-}
-
-public function savePayment()
-{
-  $inputData = $this->input->post('transact');
-  echo json_encode($this->model->saveTransact($inputData)) ;
-}
-
-
-
-
+  public function gettenanttable()
+  {
+    echo json_encode($this->model->gettenanttable());
   }
 
-  ?>
+
+  public function getconsolidationtable()
+  {
+    echo json_encode($this->model->getconsolidationtable());
+  }
+
+  public function gettransactiontable()
+  {
+    echo json_encode($this->model->gettransactiontable());
+  }
+
+
+  public function getstallinfo()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->gettenantinfo($id));
+  }
+
+
+
+  public function savePayment()
+  {
+    $inputData = $this->input->post('transact');
+    echo json_encode($this->model->saveTransact($inputData)) ;
+  }
+
+  public function save_customer_controller()
+  {
+    $inputData = $this->input->post('add_customer_form');
+    echo json_encode($this->model->save_customer($inputData)) ;
+  }
+
+
+
+
+}
+
+?>
