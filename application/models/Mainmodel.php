@@ -264,6 +264,35 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function getcustomertable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_area' => $r->sqm,
+        'c_info_daily_fee'=> $r->daily_fee,
+        'c_info_fullname_owner'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_occupant'=> $r-> $r->firstname.' '.$r->middlename.' '.$r->lastname
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
 
 
 

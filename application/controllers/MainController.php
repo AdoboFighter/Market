@@ -76,6 +76,13 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getconsolidationtable());
   }
 
+  public function getcustomertable()
+  {
+    echo json_encode($this->model->getcustomertable());
+  }
+
+
+
   public function gettransactiontable()
   {
     echo json_encode($this->model->gettransactiontable());

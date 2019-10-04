@@ -11,35 +11,46 @@ class market_model extends CI_model{
 
   public function checkconnection()
   {
-    $query = $this->db->query('SHOW TABLES FROM market_db');
-    $dataArray = array();
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
-    }
+    try {
+      $query = $this->db->query('SHOW TABLES FROM market_db');
+      $dataArray = array();
+      foreach ($query->result() as $r) {
+        array_push($dataArray,$r);
+      }
 
 
-    if($dataArray == null){
-    return "dbError";
-    }else{
-    return "ok";
+      if($dataArray == null){
+        return "dbError";
+      }else{
+        return "ok";
+      }
+    } catch (Exception $e) {
+      return "OOPS something went wrong";
     }
   }
 
   public function getStallInfo($stall_num)
   {
-    $inputdata = $this->db->escape($stall_num);
+    try {
+      $inputdata = $this->db->escape($stall_num);
 
-    $query = $this->db->query('CALL POS_fetchStallInfo('.$inputdata.')');
-    $dataArray = array();
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
+      $query = $this->db->query('CALL POS_fetchStallInfo('.$inputdata.')');
+      $dataArray = array();
+      foreach ($query->result() as $r) {
+        array_push($dataArray,$r);
+      }
+      return $dataArray;
+
+    } catch (Exception $e) {
+      return "OOPS something went wrong";
     }
-    return $dataArray;
+
   }
 
   public function getAmbulantInfo($firstname)
   {
 
+  try {
     $inputdata = $this->db->escape($firstname);
     $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');
 
@@ -53,46 +64,67 @@ class market_model extends CI_model{
     // $response['STALL_RES'][] = $query->result();
 
     return $dataArray;
+
+  } catch (\Exception $e) {
+          return "OOPS something went wrong";
+  }
+
   }
 
 
   public function getTransactions($transact)
   {
 
-    $inputdata = $this->db->escape($transact);
-    $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
-    $dataArray = array();
+try {
+  $inputdata = $this->db->escape($transact);
+  $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
+  $dataArray = array();
 
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
-    }
+  foreach ($query->result() as $r) {
+    array_push($dataArray,$r);
+  }
 
 
-    // $response['STALL_RES'][] = $query->result();
+  // $response['STALL_RES'][] = $query->result();
 
-    return $dataArray;
+  return $dataArray;
+
+} catch (\Exception $e) {
+  return "OOPS something went wrong";
+}
+
   }
 
 
   public function RegisterAmbulant($registerambulant)
   {
-    $inputdata = $this->db->escape($registerambulant);
-    $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['firstname'].' , '.$inputdata['middlename'].' , '.$inputdata['lastname'].' , '.$inputdata['business'].' , '.$inputdata['location'].' , '.$inputdata['locationNum'].')');
-    $dataArray = array();
 
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
+    try {
+      $inputdata = $this->db->escape($registerambulant);
+      $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['firstname'].' , '.$inputdata['middlename'].' , '.$inputdata['lastname'].' , '.$inputdata['business'].' , '.$inputdata['location'].' , '.$inputdata['locationNum'].')');
+      $dataArray = array();
+
+      foreach ($query->result() as $r) {
+        array_push($dataArray,$r);
+      }
+
+
+      // $response['STALL_RES'][] = $query->result();
+
+      return $dataArray;
+
+    } catch (\Exception $e) {
+        return "OOPS something went wrong";
+
     }
 
-
-    // $response['STALL_RES'][] = $query->result();
-
-    return $dataArray;
   }
 
 
   public function loginAuth($username,$password)
   {
+
+  try {
     $username = $this->db->escape($username);
     $password = $this->db->escape($password);
     // $this->db->trans_start();
@@ -111,11 +143,26 @@ class market_model extends CI_model{
     }
     // $this->db->trans_complete();
     return $response;
+
+  } catch (Exception $e) {
+    return "OOPS something went wrong";
   }
+
+
+  }
+
+
 
   private function getUserDevice($username,$password)
   {
-    $query = $this->db->query('CALL POS_GetDeviceUser('.$username.','.$password.')');
+
+  try {
+      $query = $this->db->query('CALL POS_GetDeviceUser('.$username.','.$password.')');
+  } catch (\Exception $e) {
+      return "OOPS something went wrong";
+
+  }
+
   }
 
 }
