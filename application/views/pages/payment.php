@@ -47,13 +47,19 @@
               <label>Area(sqm)</label>
               <input type="text" class="form-control" name="" id="areaField" disabled>
             </div>
+
+            <div class="mb-2">
+              <label>Daily fee</label>
+              <input type="text" class="form-control" name="" id="daily_fee_field" disabled>
+            </div>
+
             <div class="mb-2">
               <label>Debt</label>
               <input type="text" class="form-control" name="" id="" disabled>
             </div>
             <div class="mb-2">
               <label>Last Payment Activity</label>
-              <input type="text" class="form-control" name="" id="last_pay" disabled>
+              <input type="date" class="form-control" name="" id="last_pay" disabled>
             </div>
             <div class="mb-2">
               <button type="" class="btn btn-secondary bg-dark" id="activatebtn">Add payment</button>

@@ -270,9 +270,9 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
 
-    $query = $this->db->get('customer');
+    $query = $this->db->query('SELECT * FROM customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(

@@ -14,6 +14,8 @@ $(document).ready(function(){
 
 
 
+
+
   $('#cbCheque').on('change',function(){
     var payment = document.getElementById('cashTendField').value;
     var topay = document.getElementById('amountToField').value;
@@ -40,8 +42,8 @@ $(document).ready(function(){
   });
   $("#cheque").hide();
   $('#stall_number_field').hide();
-  $('#paymentcard').hide();
-  $('#clientIdField').hide();
+  // $('#paymentcard').hide();
+  // $('#clientIdField').hide();
   $('#cheque').hide();
 
   $('#activatebtn').on('click', function(){
@@ -97,6 +99,11 @@ function sum() {
 
 }
 
+function getdebt() {
+var date_occu = document.getElementById('last_pay').value;
+
+}
+
 
 
 
@@ -120,8 +127,10 @@ function fetchdata(id){
       $('#stall_number_field').val(res.unit_no );
       $('#ownerField').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
       $('#areaField').val(res.sqm);
+      $('#daily_fee_field').val(res.dailyfee);
       $('#addressField').val(res.address);
       $('#last_pay').val(res.payment_datetime);
+
 
     },
     error: function(xhr){

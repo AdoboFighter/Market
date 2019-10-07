@@ -3,7 +3,7 @@ var datable;
 
 $(document).ready(function(){
 
-  $('#tableNoStall').DataTable({
+  $('#client_table').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertable',
       dataSrc : 'data'

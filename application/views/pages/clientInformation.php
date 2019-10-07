@@ -23,7 +23,7 @@
     </div>
     <div class="row p-3">
       <div class="col-12">
-        <table class="table table-striped table-bordered" id="tableNoStall">
+        <table class="table table-striped table-bordered" id="client_table">
           <thead>
             <tr>
               <td>no</td>

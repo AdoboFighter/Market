@@ -5,7 +5,7 @@ class market_model extends CI_model{
     parent::__construct();
 
     // To set session inside the model could be use to get session ids.
-    $this->load->library('session');
+    $this->load->database();
   }
 
 
@@ -23,6 +23,12 @@ class market_model extends CI_model{
         return "dbError";
       }else{
         return "ok";
+        $data = array(
+          'response' => true,
+          'content' => $userdata,
+          'msg' => 'Login success'
+        );
+
       }
     } catch (Exception $e) {
       return "OOPS something went wrong";
@@ -50,24 +56,24 @@ class market_model extends CI_model{
   public function getAmbulantInfo($firstname)
   {
 
-  try {
-    $inputdata = $this->db->escape($firstname);
-    $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');
+    try {
+      $inputdata = $this->db->escape($firstname);
+      $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata.')');
 
-    $dataArray = array();
+      $dataArray = array();
 
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
+      foreach ($query->result() as $r) {
+        array_push($dataArray,$r);
+      }
+
+
+      // $response['STALL_RES'][] = $query->result();
+
+      return $dataArray;
+
+    } catch (\Exception $e) {
+      return "OOPS something went wrong";
     }
-
-
-    // $response['STALL_RES'][] = $query->result();
-
-    return $dataArray;
-
-  } catch (\Exception $e) {
-          return "OOPS something went wrong";
-  }
 
   }
 
@@ -75,23 +81,23 @@ class market_model extends CI_model{
   public function getTransactions($transact)
   {
 
-try {
-  $inputdata = $this->db->escape($transact);
-  $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
-  $dataArray = array();
+    try {
+      $inputdata = $this->db->escape($transact);
+      $query = $this->db->query('CALL POS_fetchAmbInfo('.$inputdata['user'].' , '.$inputdata['date'].')');
+      $dataArray = array();
 
-  foreach ($query->result() as $r) {
-    array_push($dataArray,$r);
-  }
+      foreach ($query->result() as $r) {
+        array_push($dataArray,$r);
+      }
 
 
-  // $response['STALL_RES'][] = $query->result();
+      // $response['STALL_RES'][] = $query->result();
 
-  return $dataArray;
+      return $dataArray;
 
-} catch (\Exception $e) {
-  return "OOPS something went wrong";
-}
+    } catch (\Exception $e) {
+      return "OOPS something went wrong";
+    }
 
   }
 
@@ -114,40 +120,96 @@ try {
       return $dataArray;
 
     } catch (\Exception $e) {
-        return "OOPS something went wrong";
+      return "OOPS something went wrong";
 
     }
 
   }
 
 
-  public function loginAuth($username,$password)
+  // public function loginAuth($username,$password)
+  // {
+  //
+  //   try {
+  //     $username = $this->db->escape($username);
+  //     $password = $this->db->escape($password);
+  //     // $this->db->trans_start();
+  //     $response = array();
+  //     $query = $this->db->query('CALL POS_AuthLogin('.$username.')');
+  //
+  //     if ($query) {
+  //       $credentials = $this->getUserDevice($username,$password);
+  //       $response['USER'][] = $credentials->result();
+  //     }else{
+  //       $res_error = array();
+  //       $res_error['ID'] = '';
+  //       $res_error['fullname'] = 'NoUsername';
+  //
+  //       $response['USER'][0] = $res_error;
+  //     }
+  //     // $this->db->trans_complete();
+  //     return $response;
+  //
+  //   } catch (Exception $e) {
+  //     return "OOPS something went wrong";
+  //   }
+  //
+  //
+  // }
+
+
+  public function loginnow($username,$password)
   {
 
-  try {
-    $username = $this->db->escape($username);
-    $password = $this->db->escape($password);
-    // $this->db->trans_start();
-    $response = array();
-    $query = $this->db->query('CALL POS_AuthLogin('.$username.')');
-
-    if ($query) {
-      $credentials = $this->getUserDevice($username,$password);
-      $response['USER'][] = $credentials->result();
-    }else{
-      $res_error = array();
-      $res_error['ID'] = '';
-      $res_error['fullname'] = 'NoUsername';
-
-      $response['USER'][0] = $res_error;
+    // $response = array();
+    $this->db->select('user_id');
+    $this->db->select('usr_firstname');
+    $this->db->select('usr_lastname');
+    $this->db->select('usr_middlename');
+    $this->db->where('username', $username);
+    $this->db->where('password', $password);
+    $query = $this->db->get('user');
+    //
+    // return $query->num_rows();
+    // $data = array();
+    //
+    // foreach ($query->result() as $r) {
+    //   array_push($data,$r);
+    // }
+  //
+  // $query = $this->db->select('*')->where([
+  //   'username' => $inputData['username'],
+  //   'password' => $inputData['pass']
+  // ])->get('user');
+  $data = array();
+  if($query->num_rows() == 0){
+    $data = array(
+      'response' => false,
+      'content' => null,
+          'msg' => 'Login failed bitch'
+    );
+  }else {
+    $userdata = array();
+    foreach($query->result() as $r){
+      $is = (int)$r->user_id;
+      $userdata = array(
+        'array_name' => $r->usr_firstname,
+        'usr_lastname' => $r->usr_lastname,
+        'usr_middlename' => $r->usr_middlename,
+        'user_id' => $r->user_id
+      );
     }
-    // $this->db->trans_complete();
-    return $response;
 
-  } catch (Exception $e) {
-    return "OOPS something went wrong";
+    $data = array(
+      'response' => true,
+      'content' => $userdata,
+        'msg' => 'success'
+    );
+
   }
 
+  // $this->db->insert('bonilla_test', array('name1' => json_encode($data)));
+  return $data;
 
   }
 
@@ -156,12 +218,12 @@ try {
   private function getUserDevice($username,$password)
   {
 
-  try {
+    try {
       $query = $this->db->query('CALL POS_GetDeviceUser('.$username.','.$password.')');
-  } catch (\Exception $e) {
+    } catch (\Exception $e) {
       return "OOPS something went wrong";
 
-  }
+    }
 
   }
 
