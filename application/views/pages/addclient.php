@@ -22,33 +22,33 @@
                   <div class="form-group">
                     <h5>Owner's Information</h5>
                     <label>Client Type</label>
-                    <select class="form-control form-control-sm" name="add_customer_form[Client_type]" onchange="clienttype();" id="clientselect" required="">
+                    <select class="form-control form-control-sm" name="add_customer_form[Client_type]" onchange="clienttype();" id="clientselect" required>
                       <option selected value="">Please Select</option>
-                      <option value="tenant">Tenant</option>
-                      <option value="Ambulant">Ambulant</option>
-                      <option value="delivery">Delivery</option>
-                      <option value="parking">Parking</option>
+                      <option value="0">Tenant</option>
+                      <option value="1">Ambulant</option>
+                      <option value="2">Delivery</option>
+                      <option value="3">Parking</option>
                     </select><br>
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Firstname]" id="client[Owner_Firstname]"  required>
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Firstname]"  id="fname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Middlename]" required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Middlename]" id="mname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Lastname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Lastname]" id="lname"required>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Address]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Address]" id="add" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Contact_Num]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Owner_Contact_Num]" id="cont" required>
                   </div>
                 </div>
               </div>
@@ -59,32 +59,32 @@
                 <div class="p-3">
                   <h5>Occupant's Information</h5>
                   <div class="form-check mb-2">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" id="sameas">
                     <label class="form-check-label">Same as Owner's Information</label>
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Firstname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Firstname]" id="ofname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Middlename]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Middlename]" id="omname" required>
 
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Lastname]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Lastname]" id="olname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Address]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Address]" id="oadd" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Contact_Num]"required="">
+                    <input type="text" class="form-control" name="add_customer_form[Occu_Contact_Num]" id="ocont" required>
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary bg-dark">Clear</button>
+                  <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
 
                 <div class="form-group">
                   <label>Section</label>
-                  <select class="form-control form-control-sm" name="add_customer_form[section]" required="">
+                  <select class="form-control form-control-sm" name="add_customer_form[section]" >
                     <option selected value="">Please Select</option>
                     <option value="Fish">Fish</option>
                     <option value="Meat">Meat</option>
@@ -127,24 +127,23 @@
                 </div>
               </div>
 
-                <div id="ambulant_div">
-                <h5>Ambulant Information</h5>
-
-                <div class="form-group" id="location" name="ambulant_div">
-                  <label for="">Location</label>
-                  <input type="text" class="form-control" id="amlocation" name="add_customer_form[Location]">
-                  <span id="" class="text-danger"></span>
-                </div>
-                <div class="form-group" id="locationNum" >
-                  <label for="">Location Number</label>
-                  <input type="text" class="form-control" id="amnum" name="add_customer_form[Location_num]">
-                  <span id="" class="text-danger"></span>
-                </div>
               </div>
 
+              <div class="col-12" id="ambulant_div">
+              <h5>Ambulant Information</h5>
+              <div class="form-group" id="location" name="ambulant_div">
+                <label for="">Location</label>
+                <input type="text" class="form-control" id="amlocation" name="add_customer_form[Location]">
+                <span id="" class="text-danger"></span>
               </div>
+              <div class="form-group" id="locationNum" >
+                <label for="">Location Number</label>
+                <input type="text" class="form-control" id="amnum" name="add_customer_form[Location_num]">
+                <span id="" class="text-danger"></span>
+              </div>
+            </div>
 
-              <div class="col-6">
+              <div class="col-6" id="stall_fields2">
                 <div class="form-group" id="">
                   <label for="">Stall Number</label>
                   <input type="text" class="form-control" id="stallf_num"name="add_customer_form[Stall_Number]">
@@ -171,14 +170,9 @@
                     <option value="Fourth">Fourth Floor</option>
                   </select><br>
                 </div>
-
               </div>
+
             </div>
-
-
-
-
-
 
           </form>
 
@@ -189,6 +183,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

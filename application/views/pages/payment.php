@@ -55,11 +55,11 @@
 
             <div class="mb-2">
               <label>Debt</label>
-              <input type="text" class="form-control" name="" id="" disabled>
+              <input type="text" class="form-control" name="" id="debt_field" disabled readonly>
             </div>
             <div class="mb-2">
               <label>Last Payment Activity</label>
-              <input type="date" class="form-control" name="" id="last_pay" disabled>
+              <input type="timestamp_end" class="form-control" name="" id="last_pay" disabled readonly>
             </div>
             <div class="mb-2">
               <button type="" class="btn btn-secondary bg-dark" id="activatebtn">Add payment</button>
@@ -147,14 +147,20 @@
                 <input type="text" class="form-control" name="transact[bank_branch]" id="bankBranchField" placeholder="" >
               </div>
 
-              <div class="mb-2 form-group" id="">
-                <table class="table table-striped table-bordered p-2">
+              <div class="mb-2">
+                <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" onclick="addcheque();">Add Cheque</button>
+              </div>
+
+
+
+              <div class="mb-2 form-group" >
+                <table class="table table-striped table-bordered p-2" id="table_cheque">
                   <thead>
                     <tr>
                       <td>Cheque no</td>
                       <td>Cheque Amount</td>
                       <td>Bank Branch</td>
-                      <td>Date</td>
+
                     </tr>
                   </thead>
                   <tbody>

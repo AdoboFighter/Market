@@ -171,7 +171,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.')" class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
         </div>'
       );
     }
@@ -350,10 +350,6 @@ class Mainmodel extends CI_model{
       'ao_cn' => $inputData['Occu_Contact_Num']
     );
 
-
-
-
-
     $this->db->trans_start();
     $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
@@ -392,6 +388,12 @@ class Mainmodel extends CI_model{
       echo 'Shit not working';
     }
 
+
+  }
+
+  public function isnert_table_bulk($array)
+  {
+  $this->db->insert_batch('cheque', $array);
 
   }
 

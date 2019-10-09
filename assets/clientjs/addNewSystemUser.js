@@ -1,5 +1,4 @@
 $(document).ready(function(){
-console.log(base_url);
 $('#saveSysUser').submit(function(e){
 e.preventDefault();
 console.log( $('#saveSysUser').serializeArray() );
@@ -13,7 +12,6 @@ $.ajax({
      success : function(res){
      console.log(res);
        $('#success').modal("show");
-
      },
      error : function(xhr){
        console.log(xhr.responseText);

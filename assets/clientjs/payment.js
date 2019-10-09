@@ -2,6 +2,7 @@ var datable;
 
 $(document).ready(function(){
 
+
   $('#cbCheque').on('checked',function(){
     $("#cheque").slidetoggle(200);
   });
@@ -11,8 +12,7 @@ $(document).ready(function(){
     sum();
   });
 
-
-
+  $( "#table_cheque" ).DataTable();
 
 
 
@@ -42,8 +42,8 @@ $(document).ready(function(){
   });
   $("#cheque").hide();
   $('#stall_number_field').hide();
-  // $('#paymentcard').hide();
-  // $('#clientIdField').hide();
+  $('#paymentcard').hide();
+  $('#clientIdField').hide();
   $('#cheque').hide();
 
   $('#activatebtn').on('click', function(){
@@ -85,6 +85,43 @@ $(document).ready(function(){
 
 });
 
+function addtablecheque() {
+  $.ajax({
+       url : global.settings.url +'/MainController/isnert_table_bulk',
+       type : 'POST',
+       data : $(this).serialize(),
+       dataType : 'json',
+       success : function(res){
+       console.log(res);
+         $('#success').modal("show");
+       },
+       error : function(xhr){
+         console.log(xhr.responseText);
+       }
+
+     });
+
+
+}
+
+function addcheque() {
+  var cheq_amount = document.getElementById('cheqAmountField').value;
+  var cheq_number = document.getElementById('cheqNumField').value;
+  var bank_branch = document.getElementById('bankBranchField').value;
+  var table_cheque = $('#table_cheque').DataTable();
+  $('#add_cheque').on( 'click', function () {
+    table_cheque.row.add( [
+        cheq_number,
+        cheq_amount,
+        bank_branch
+    ] ).draw( false );
+     } );
+
+      $('#addRow').click();
+
+
+}
+
 function sum() {
   var payment = document.getElementById('cashTendField').value;
   var topay = document.getElementById('amountToField').value;
@@ -99,14 +136,34 @@ function sum() {
 
 }
 
-function getdebt() {
-var date_occu = document.getElementById('last_pay').value;
+
+
+
+function diffdates() {
+  var dp1 = document.getElementById('last_pay').value;
+  var daily = document.getElementById('daily_fee_field').value;
+  // Split timestamp into [ Y, M, D, h, m, s ]
+  var t = dp1.split(/[- :]/);
+
+  // Apply each element to the Date function
+  var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+  console.log(d);
+
+  dp2 = new Date();
+  var date2 = dp2.getTime();
+  var ONE_DAY = 1000 * 60 * 60 * 24
+
+
+  // get total seconds between two dates
+  var res = Math.abs(d - date2) / 1000;
+  var days = Math.floor(res / 86400);
+  var debt = days * daily;
+  document.getElementById('debt_field').value = debt;
+
+  // console.log(days);
+  // console.log(debt);
 
 }
-
-
-
-
 
 function fetchdata(id){
   console.log(id);
@@ -130,7 +187,7 @@ function fetchdata(id){
       $('#daily_fee_field').val(res.dailyfee);
       $('#addressField').val(res.address);
       $('#last_pay').val(res.payment_datetime);
-
+  diffdates();
 
     },
     error: function(xhr){
@@ -138,8 +195,6 @@ function fetchdata(id){
     }
 
   })
-
-
 }
 
 
@@ -169,36 +224,3 @@ $(document).ready(function(){
 
   });
 });
-
-
-
-
-// function getPayVal() {
-//
-//       $.ajax({
-//         url : global.settings.url +'/MainController/savePayment',
-//         type : 'POST',
-//         data :{
-//           "data":{
-//             "clientIdField": $('#clientIdField').val(),
-//             "orField" : $('#orField').val(),
-//             "amountToField" : $('#amountToField').val(),
-//             "cashTendField" : $('#cashTendField').val(),
-//             "payTypeField" : $('#payTypeField').val(),
-//             "payEffectField" : $('#payEffectField').val()
-//
-//
-//           }
-//         },
-//         dataType : 'json',
-//         success : function(res){
-//           console.log(res);
-//         },
-//         error: function(xhr){
-//           console.log(xhr.responseText);
-//         }
-//
-//
-//       });
-//
-// }
