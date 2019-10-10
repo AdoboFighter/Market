@@ -14,63 +14,45 @@
 
 
 <!-- pagecontents dito mo lagay  -->
-<h5 class="card-header text-center  text-white bluegrads">Test Debt</h5>
+<h5 class="card-header text-center  text-white bluegrads">Test cheque</h5>
 <div class="card m-3">
-  <div class="">
-    <div class="row p-3">
-      <div class="col-6">
-        <table class="table table-striped table-bordered" id="tableNoStall">
-          <thead>
-            <tr>
-              <td>no</td>
-              <td>name</td>
-              <td>address</td>
-              <td>Action</td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-6">
-        <div class="mb-2">
-          <h5>Details</h5>
-        </div>
-        <div class="mb-2">
-          <label>Client Name</label>
-          <input type="text" class="form-control" name="" id="ownerField" disabled>
-        </div>
-        <div class="mb-2">
-          <label>Address</label>
-          <input type="text" class="form-control" name="" id="addressField" disabled>
-        </div>
-        <div class="mb-2">
-          <label>Area(sqm)</label>
-          <input type="text" class="form-control" name="" id="areaField" disabled>
-        </div>
-
-        <div class="mb-2">
-          <label>Daily fee</label>
-          <input type="text" class="form-control" name="" id="daily_fee_field" disabled>
-        </div>
-
-        <div class="mb-2">
-          <label>Debt</label>
-          <input type="text" class="form-control" name="" id="debt_field" disabled readonly>
-        </div>
-        <div class="mb-2">
-          <label>Last Payment Activity</label>
-          <input type="timestamp_end" class="form-control" name="" id="last_pay" disabled readonly>
-        </div>
-
-
-        <div class="mb-2">
-          <button type="" class="btn btn-secondary bg-dark" id="activatebtn" onclick="diffdates();">Calculate debt</button>
-        </div>
-      </div>
+  <div id="cheque">
+    <div class="mb-2 mt-2 form-group"  id="cheque_amount">
+      <label>Cheque Amount</label>
+      <input type="text" class="form-control" name="transact[cheque_amount]" id="cheqAmountField" placeholder="0.00" >
     </div>
-  </div>
-</div>
 
+    <div class="mb-2 form-group" id="cheque_number">
+      <label>Cheque number</label>
+      <input type="text" class="form-control" name="transact[cheque_number]" id="cheqNumField" placeholder="" >
+    </div>
+
+    <div class="mb-2 form-group" id="bank">
+      <label>Bank/Branch</label>
+      <input type="text" class="form-control" name="transact[bank_branch]" id="bankBranchField" placeholder="" >
+    </div>
+
+    <div class="mb-2">
+      <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" onclick="">Add Cheque</button>
+    </div>
+
+    <div class="mb-2 form-group" >
+      <table class="table table-striped table-bordered p-2" id="table_cheque">
+        <thead>
+          <tr>
+            <td> no</td>
+            <td>Cheque no</td>
+            <td>Cheque Amount</td>
+            <td>Bank Branch</td>
+
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+</div>
+</div>
 
 <div class="overlay"></div>

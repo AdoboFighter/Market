@@ -1,18 +1,54 @@
 var datable;
+$(document).ready()
 
 $(document).ready(function(){
+  $( "#table_cheque" ).DataTable({
+    "paging": false,
+    "searching": false,
+    "ordering": false
+  });
+
+
+    var counter = 1;
+  $('#add_cheque').on('click', function () {
+
+    var cheq_amount = $( "#cheqAmountField" ).val();
+    var cheq_number = document.getElementById('cheqNumField').value;
+    var bank_branch = document.getElementById('bankBranchField').value;
+    var table_cheque = $('#table_cheque').DataTable();
+
+
+
+    var row_num = table_cheque.rows().count();
+    console.log(row_num);
+
+    if (row_num >= 3) {
+            $('#chequelimit').modal("show");
+    } else {
+
+      table_cheque.row.add([
+
+          cheq_number,
+          cheq_amount,
+          bank_branch
+
+      ]).draw(false);
+
+    }
+  });
+
 
 
   $('#cbCheque').on('checked',function(){
     $("#cheque").slidetoggle(200);
   });
 
-  sum();
-  $("#cashTendField, #amountToField, #cheqAmountField").on("keydown keyup", function() {
-    sum();
-  });
+  // sum();
+  // $("#cashTendField, #amountToField, #cheqAmountField").on("keydown keyup", function() {
+  //   sum();
+  // });
 
-  $( "#table_cheque" ).DataTable();
+
 
 
 
@@ -81,61 +117,71 @@ $(document).ready(function(){
   });
   $('.dataTables_length').addClass('bs-select');
 
-
-
 });
-
-function addtablecheque() {
-  $.ajax({
-       url : global.settings.url +'/MainController/isnert_table_bulk',
-       type : 'POST',
-       data : $(this).serialize(),
-       dataType : 'json',
-       success : function(res){
-       console.log(res);
-         $('#success').modal("show");
-       },
-       error : function(xhr){
-         console.log(xhr.responseText);
-       }
-
-     });
-
-
-}
+//
+// function addtablecheque() {
+//   $('#tableNoStall').DataTable({
+//     "ajax" : {
+//       "url" : global.settings.url + '/MainController/gettenanttable',
+//       dataSrc : 'data'
+//     },
+//     "columns" : [{
+//       "data" : "id"
+//     },
+//     {
+//       "data" : "fullname"
+//     },
+//
+//     {
+//       "data" : "add"
+//     },
+//
+//
+//     {
+//       "data" : "btn"
+//     }]
+//   });
+//   $('.dataTables_length').addClass('bs-select');
+//
+//   });
+//
+// }
 
 function addcheque() {
   var cheq_amount = document.getElementById('cheqAmountField').value;
   var cheq_number = document.getElementById('cheqNumField').value;
   var bank_branch = document.getElementById('bankBranchField').value;
   var table_cheque = $('#table_cheque').DataTable();
-  $('#add_cheque').on( 'click', function () {
-    table_cheque.row.add( [
+  var counter = 1;
+  $('#add_cheque').on('click', function () {
+    table_cheque.row.add([
+        counter,
         cheq_number,
         cheq_amount,
         bank_branch
-    ] ).draw( false );
-     } );
+    ]).draw(false);
+    counter++;
+  });
 
-      $('#addRow').click();
-
-
+    // $('#table_cheque').DataTable().ajax.reload();
+    // $('#addRow').click();
 }
 
-function sum() {
-  var payment = document.getElementById('cashTendField').value;
-  var topay = document.getElementById('amountToField').value;
-  var cheqAmountField = document.getElementById('cheqAmountField').value;
-  var change = parseFloat(payment) - parseFloat(topay);
-  // var chequeChange = parseFloat(payment) - parseFloat(topay);
 
-  if (!isNaN(change)) {
-    document.getElementById('change').value = change;
-  }
-
-
-}
-
+// function sum() {
+//   var payment = document.getElementById('cashTendField').value;
+//   var topay = document.getElementById('amountToField').value;
+//   var cheqAmountField = document.getElementById('cheqAmountField').value;
+//   var change = parseFloat(payment) - parseFloat(topay);
+//   // var chequeChange = parseFloat(payment) - parseFloat(topay);
+//
+//   if (!isNaN(change)) {
+//     document.getElementById('change').value = change;
+//   }
+//
+//
+// }
+//
 
 
 
@@ -167,8 +213,6 @@ function diffdates() {
 
 function fetchdata(id){
   console.log(id);
-
-
   $.ajax({
     url: global.settings.url + '/MainController/getstallinfo',
     type: 'POST',
@@ -187,13 +231,12 @@ function fetchdata(id){
       $('#daily_fee_field').val(res.dailyfee);
       $('#addressField').val(res.address);
       $('#last_pay').val(res.payment_datetime);
-  diffdates();
+      diffdates();
 
     },
     error: function(xhr){
       console.log(xhr.responseText);
     }
-
   })
 }
 

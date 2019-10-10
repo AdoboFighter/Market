@@ -118,10 +118,10 @@
               <label>Cash tendered</label>
               <input type="text" class="form-control" name="transact[cash_tendered]" id="cashTendField" placeholder="0.00" required>
             </div>
-            <div class="mb-2">
+            <!-- <div class="mb-2">
               <label>Change:</label>
               <input type="text" class="form-control" name="transact[]" id="change" placeholder="0.00" disabled>
-            </div>
+            </div> -->
             <div class="mb-2">
               <label>Payment Effectivity</label>
               <input type="date" class="form-control" name="transact[payment_effect]" id="payEffectField" placeholder="0.00" required>
@@ -148,7 +148,7 @@
               </div>
 
               <div class="mb-2">
-                <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" onclick="addcheque();">Add Cheque</button>
+                <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" >Add Cheque</button>
               </div>
 
 
@@ -157,10 +157,10 @@
                 <table class="table table-striped table-bordered p-2" id="table_cheque">
                   <thead>
                     <tr>
+                      <td>no</td>
                       <td>Cheque no</td>
                       <td>Cheque Amount</td>
                       <td>Bank Branch</td>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -267,6 +267,14 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content p-3">
         <h5>Select a client first!</h5>
+      </div>
+    </div>
+  </div>
+
+  <div id="chequelimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content p-3">
+        <h5>Cheque is limited to only 3</h5>
       </div>
     </div>
   </div>

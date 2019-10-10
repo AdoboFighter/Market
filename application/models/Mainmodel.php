@@ -391,7 +391,7 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function isnert_table_bulk($array)
+  public function insert_table_bulk($array)
   {
   $this->db->insert_batch('cheque', $array);
 

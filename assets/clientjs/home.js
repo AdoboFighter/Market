@@ -1,85 +1,26 @@
 var datable;
 
 $(document).ready(function(){
+  $( "#table_cheque" ).DataTable();
 
-  // $('#cbCheque').on('checked',function(){
-  //   $("#cheque").slidetoggle(200);
-  // });
-  //
-  // sum();
-  // $("#cashTendField, #amountToField, #cheqAmountField").on("keydown keyup", function() {
-  //   sum();
-  // });
-  //
+  var cheq_amount = document.getElementById('cheqAmountField').value;
+  var cheq_number = document.getElementById('cheqNumField').value;
+  var bank_branch = document.getElementById('bankBranchField').value;
+  var table_cheque = $('#table_cheque').DataTable();
+  var counter = 1;
+  $('#add_cheque').on('click', function () {
+    table_cheque.row.add([
+        counter,
+        cheq_number,
+        cheq_amount,
+        bank_branch
 
-
-
-
-
-  $('#cbCheque').on('change',function(){
-    var payment = document.getElementById('cashTendField').value;
-    var topay = document.getElementById('amountToField').value;
-    var cheqAmountField = document.getElementById('cheqAmountField').value;
-    var changecash = parseFloat(payment) - parseFloat(topay);
-    var changecheque = parseFloat(payment) - parseFloat(topay);
-
-    if( $(this).is(':checked') ){
-      $('#cashTendField').attr('readonly','readonly');
-      $('#cashTendField').val(0);
-      $('#cashTendField').attr("placeholder", "Cheque");
-      $('#cheque').toggle(200);
-
-    }else{
-      $('#cashTendField').val("0.00");
-      $('#cashTendField').removeAttr('readonly');
-      $("#cheque").hide();
-
-    }
-  });
-
-  $("transact").submit(function(e){
-    e.preventDefault();
-  });
-  $("#cheque").hide();
-  $('#stall_number_field').hide();
-  // $('#paymentcard').hide();
-  // $('#clientIdField').hide();
-  $('#cheque').hide();
-
-  $('#activatebtn').on('click', function(){
-    if ( $('#clientIdField').val().length === 0) {
-      $('#failedActivation').modal("show");
-    } else {
-      $('#paymentcard').show();
-    }
-
-
+    ]).draw(false);
+    counter++;
   });
 
 
 
-  $('#tableNoStall').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/gettenanttable',
-      dataSrc : 'data'
-    },
-    "columns" : [{
-      "data" : "id"
-    },
-    {
-      "data" : "fullname"
-    },
-
-    {
-      "data" : "add"
-    },
-
-
-    {
-      "data" : "btn"
-    }]
-  });
-  $('.dataTables_length').addClass('bs-select');
 
 
 
@@ -97,6 +38,12 @@ function sum() {
   }
 }
 
+function addcheque() {
+
+
+    // $('#table_cheque').DataTable().ajax.reload();
+
+}
 
 
 function diffdates() {
