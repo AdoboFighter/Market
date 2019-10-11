@@ -6,35 +6,56 @@ $(document).ready(function(){
     "paging": false,
     "searching": false,
     "ordering": false
+    // "ajax" : {
+    //   "url" : global.settings.url + '/MainController/insert_table_bulk_controller',
+    //   dataSrc : 'data',
+    //   type : 'POST',
+    //   data :$(this).serialize(),
+    //   dataType : 'json',
+    //   success : function(res){
+    //     console.log(res);
+    //
+    //   },
+    //   error : function(xhr){
+    //     console.log(xhr.responseText);
+    //     console.log('you fucking suck lol');
+    //   }
+    // },
+    // "columns": [
+    //   { "data": "cheque_number" },
+    //   { "data": "cheque_amount" },
+    //   { "data": "bank_branch" }
+    // ]
+
   });
 
 
-    var counter = 1;
   $('#add_cheque').on('click', function () {
-
     var cheq_amount = $( "#cheqAmountField" ).val();
     var cheq_number = document.getElementById('cheqNumField').value;
     var bank_branch = document.getElementById('bankBranchField').value;
     var table_cheque = $('#table_cheque').DataTable();
-
-
-
     var row_num = table_cheque.rows().count();
     console.log(row_num);
 
     if (row_num >= 3) {
-            $('#chequelimit').modal("show");
+      $('#chequelimit').modal("show");
     } else {
-
       table_cheque.row.add([
-
-          cheq_number,
-          cheq_amount,
-          bank_branch
-
+        cheq_number,
+        cheq_amount,
+        bank_branch,
+        '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
       ]).draw(false);
-
     }
+  });
+
+  $('#table_cheque tbody').on( 'click', 'button', function () {
+    var table_cheque = $('#table_cheque').DataTable();
+    table_cheque
+    .row( $(this).parents('tr') )
+    .remove()
+    .draw();
   });
 
 
@@ -88,8 +109,6 @@ $(document).ready(function(){
     } else {
       $('#paymentcard').show();
     }
-
-
   });
 
 
@@ -116,56 +135,10 @@ $(document).ready(function(){
     }]
   });
   $('.dataTables_length').addClass('bs-select');
-
 });
-//
-// function addtablecheque() {
-//   $('#tableNoStall').DataTable({
-//     "ajax" : {
-//       "url" : global.settings.url + '/MainController/gettenanttable',
-//       dataSrc : 'data'
-//     },
-//     "columns" : [{
-//       "data" : "id"
-//     },
-//     {
-//       "data" : "fullname"
-//     },
-//
-//     {
-//       "data" : "add"
-//     },
-//
-//
-//     {
-//       "data" : "btn"
-//     }]
-//   });
-//   $('.dataTables_length').addClass('bs-select');
-//
-//   });
-//
-// }
 
-function addcheque() {
-  var cheq_amount = document.getElementById('cheqAmountField').value;
-  var cheq_number = document.getElementById('cheqNumField').value;
-  var bank_branch = document.getElementById('bankBranchField').value;
-  var table_cheque = $('#table_cheque').DataTable();
-  var counter = 1;
-  $('#add_cheque').on('click', function () {
-    table_cheque.row.add([
-        counter,
-        cheq_number,
-        cheq_amount,
-        bank_branch
-    ]).draw(false);
-    counter++;
-  });
 
-    // $('#table_cheque').DataTable().ajax.reload();
-    // $('#addRow').click();
-}
+
 
 
 // function sum() {
@@ -232,13 +205,14 @@ function fetchdata(id){
       $('#addressField').val(res.address);
       $('#last_pay').val(res.payment_datetime);
       diffdates();
-
     },
     error: function(xhr){
       console.log(xhr.responseText);
     }
   })
 }
+
+
 
 
 

@@ -176,40 +176,40 @@ class market_model extends CI_model{
     // foreach ($query->result() as $r) {
     //   array_push($data,$r);
     // }
-  //
-  // $query = $this->db->select('*')->where([
-  //   'username' => $inputData['username'],
-  //   'password' => $inputData['pass']
-  // ])->get('user');
-  $data = array();
-  if($query->num_rows() == 0){
-    $data = array(
-      'response' => false,
-      'content' => null,
-          'msg' => 'Login failed bitch'
-    );
-  }else {
-    $userdata = array();
-    foreach($query->result() as $r){
-      $is = (int)$r->user_id;
-      $userdata = array(
-        'array_name' => $r->usr_firstname,
-        'usr_lastname' => $r->usr_lastname,
-        'usr_middlename' => $r->usr_middlename,
-        'user_id' => $r->user_id
+    //
+    // $query = $this->db->select('*')->where([
+    //   'username' => $inputData['username'],
+    //   'password' => $inputData['pass']
+    // ])->get('user');
+    $data = array();
+    if($query->num_rows() == 0){
+      $data = array(
+        'response' => false,
+        'content' => null,
+        'msg' => 'Login failed bitch'
       );
+    }else {
+      $userdata = array();
+      foreach($query->result() as $r){
+        $is = (int)$r->user_id;
+        $userdata = array(
+          'array_name' => $r->usr_firstname,
+          'usr_lastname' => $r->usr_lastname,
+          'usr_middlename' => $r->usr_middlename,
+          'user_id' => $r->user_id
+        );
+      }
+
+      $data = array(
+        'response' => true,
+        'content' => $userdata,
+        'msg' => 'success'
+      );
+
     }
 
-    $data = array(
-      'response' => true,
-      'content' => $userdata,
-        'msg' => 'success'
-    );
-
-  }
-
-  // $this->db->insert('bonilla_test', array('name1' => json_encode($data)));
-  return $data;
+    // $this->db->insert('bonilla_test', array('name1' => json_encode($data)));
+    return $data;
 
   }
 
@@ -227,5 +227,7 @@ class market_model extends CI_model{
 
   }
 
-}
-?>
+
+
+  }
+  ?>

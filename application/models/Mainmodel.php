@@ -298,7 +298,7 @@ class Mainmodel extends CI_model{
 
   public function saveTransact($inputData)
   {
-    echo 'We in this Shit Bruv  ';
+    echo 'We in this Shit Bruv';
     $data_transaction = array(
       'payment_nature_id' => $inputData['payment_type'],
       'payment_amount' => $inputData['cash_tendered'],
@@ -391,13 +391,19 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function insert_table_bulk($array)
+  public function insert_table_bulk_model($array)
   {
-  $this->db->insert_batch('cheque', $array);
+    echo "yeah";
+    $array = array(
+      array( 'db' => 'cheque_amount', 'dt' => 'cheque_amount' ),
+      array( 'db' => 'cheque_number',  'dt' => 'cheque_number' ),
+      array( 'db' => 'bank_branch',   'dt' => 'bank_branch' )
+        );
+        $this->db->insert_batch('cheque_details', $array);
 
-  }
+      }
 
 
 
-}
-?>
+    }
+    ?>

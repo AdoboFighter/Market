@@ -109,6 +109,12 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->save_customer($inputData)) ;
   }
 
+  public function insert_table_bulk_controller()
+  {
+    $inputData = $this->input->post('transactform');
+    echo json_encode($this->model->save_customer($array)) ;
+  }
+
 
 
 

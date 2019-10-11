@@ -157,10 +157,11 @@
                 <table class="table table-striped table-bordered p-2" id="table_cheque">
                   <thead>
                     <tr>
-                      <td>no</td>
+
                       <td>Cheque no</td>
                       <td>Cheque Amount</td>
                       <td>Bank Branch</td>
+                      <td>delete</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -242,7 +243,7 @@
                 </div>
                 <div class="col">
                   <input type="text" class="form-control" name="" id="" >
-                  <button type="submit"  class="btn btn-primary mt-2" value="payment saved" id="paymentsave">Submit</button>
+                  <button type="submit"  class="btn btn-primary mt-2" value="payment saved" id="paymentsave" onclick="functionName();">Submit</button>
                 </div>
               </div>
 
