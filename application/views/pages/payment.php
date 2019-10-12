@@ -71,7 +71,7 @@
 
     <div class="card m-3 " id="paymentcard">
         <h5 class="card-header text-center bg-dark text-white ">Payment Details</h5>
-      <form id="transactform" name="transactform">
+      <form id="transactform">
         <div class="row p-2">
           <div class="col-6">
             <div class="">
@@ -243,7 +243,7 @@
                 </div>
                 <div class="col">
                   <input type="text" class="form-control" name="" id="" >
-                  <button type="submit"  class="btn btn-primary mt-2" value="payment saved" id="paymentsave" onclick="functionName();">Submit</button>
+                  <button type="Submit"  class="btn btn-primary mt-2"  >Submit</button>
                 </div>
               </div>
 
@@ -255,6 +255,11 @@
     </div>
   </div>
 
+
+
+<form id="newbton">
+  <button type="newbton"  class="btn btn-primary mt-2"  >Submit</button>
+</form>
 
   <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

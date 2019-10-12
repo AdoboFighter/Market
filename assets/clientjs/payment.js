@@ -1,5 +1,5 @@
 var datable;
-$(document).ready()
+
 
 $(document).ready(function(){
   $( "#table_cheque" ).DataTable({
@@ -112,6 +112,81 @@ $(document).ready(function(){
   });
 
 
+  // var table = document.getElementById("table_cheque");
+  $('#newbton').submit(function(e){
+    e.preventDefault();
+
+    var myTableArray = [];
+
+    $("table#table_cheque tr").each(function() {
+      var arrayOfThisRow = [];
+      var tableData = $(this).find('td');
+      if (tableData.length > 0) {
+        tableData.each(function() { arrayOfThisRow.push($(this).text()); });
+        myTableArray.push(arrayOfThisRow);
+      }
+    });
+
+    console.log(myTableArray);
+
+    for (var i = 1  ; i < myTableArray.length; i++) {
+      console.log(myTableArray[i])
+    }
+
+    $.ajax({
+       url: global.settings.url +'/MainController/insert_table_bulk_controller',
+       method: 'POST',
+       data: {myTableArray: myTableArray},
+       success : function(res){
+         console.log(res);
+       },
+       error : function(xhr){
+         console.log(xhr.responseText);
+       }
+   });
+
+
+
+  });
+
+  //
+  $('#transactform').submit(function(e){
+
+    e.preventDefault();
+    //   console.log( $('#transactform').serializeArray() );
+    //   $.ajax({
+    //     url : global.settings.url +'/MainController/savePayment',
+    //     type : 'POST',
+    //     data :$(this).serialize(),
+    //     dataType : 'json',
+        // success : function(res){
+        //   console.log(res);
+        //   $('#paymentsave').click(function(){
+        //     alert($('input:Submit').val());  //display value of button
+        //   });
+        // },
+        // error : function(xhr){
+        //   console.log(xhr.responseText);
+        // }
+    //
+    //   });
+
+
+
+
+    for (var i = 0; i < table_cheque.length; i++) {
+      console.log(table_cheque[i])
+    }
+
+
+    // $.ajax({
+    //
+    // });
+
+
+  });
+
+
 
   $('#tableNoStall').DataTable({
     "ajax" : {
@@ -211,33 +286,3 @@ function fetchdata(id){
     }
   })
 }
-
-
-
-
-
-$(document).ready(function(){
-
-
-  $('#transactform').submit(function(e){
-    e.preventDefault();
-    console.log( $('#transactform').serializeArray() );
-    $.ajax({
-      url : global.settings.url +'/MainController/savePayment',
-      type : 'POST',
-      data :$(this).serialize(),
-      dataType : 'json',
-      success : function(res){
-        console.log(res);
-        $('#paymentsave').click(function(){
-          alert($('input:Submit').val());  //display value of button
-        });
-      },
-      error : function(xhr){
-        console.log(xhr.responseText);
-      }
-
-    });
-
-  });
-});

@@ -391,19 +391,20 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function insert_table_bulk_model($array)
+  public function insert_table_bulk_model($data)
   {
-    echo "yeah";
-    $array = array(
-      array( 'db' => 'cheque_amount', 'dt' => 'cheque_amount' ),
-      array( 'db' => 'cheque_number',  'dt' => 'cheque_number' ),
-      array( 'db' => 'bank_branch',   'dt' => 'bank_branch' )
-        );
-        $this->db->insert_batch('cheque_details', $array);
+  
+    // $inputData = array(
+    //     'cheq_number' => 'My title',
+    //     'title' => 'My title',
+    //     'name' => 'My Name',
+    //     'date' => 'My date'
+    //   );
+    // $this->db->insert_batch('cheque_details', $inputData);
+    // // echo $inputData;
+  }
 
-      }
 
 
-
-    }
-    ?>
+}
+?>
