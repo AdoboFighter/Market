@@ -85,6 +85,7 @@
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
+                    <button type="button" class="btn btn-secondary bg-dark" onclick="testambval();">test</button>
                 </div>
               </div>
             </div>

@@ -14,8 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function index()
     {
       $this->load->view('pages/login');
-
-
     }
 
 
@@ -39,6 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       // returns a array result from model function login_acc converted to json response
       echo json_encode($this->login->login_acc($input));
+
     }
 
 

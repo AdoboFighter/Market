@@ -112,7 +112,7 @@ class MainController extends CI_Controller{
   public function insert_table_bulk_controller($data)
   {
     $inputData = $this->input->post($data);
-    print_r($inputData);
+    // print_r($inputData);
     echo json_encode($this->model->insert_table_bulk_model($inputData)) ;
   }
 

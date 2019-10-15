@@ -8,6 +8,7 @@ class Api_model extends CI_model{
 
            // To set session inside the model could be use to get session ids.
            $this->load->library('session');
+           $this->load->helper('url');
            $this->load->database();
        }
 
@@ -53,11 +54,19 @@ class Api_model extends CI_model{
            $response['response'] = true;
            $response['message'] = 'Login Success : '.$input['username'];
            $response['data'] = $query->result();
+
+
+
          }
 
          return $response;
 
+         // if ($response['response'] === true) {
+         //     $this->load->view('pages/header');
+         // }
+
        }
+
 
 
 }

@@ -1,6 +1,6 @@
 <html>
 <head>
-<style>
+  <style>
   /* BASIC */
 
   html {
@@ -137,6 +137,27 @@
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
   }
+  input[type=password] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+  }
+
 
   input[type=text]:focus {
     background-color: #fff;
@@ -256,7 +277,7 @@
   /* OTHERS */
 
   *:focus {
-      outline: none;
+    outline: none;
   }
 
   #icon {
@@ -286,31 +307,46 @@
 
   <div class="bluegrads">
 
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
 
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="50" height="50" class="p-1">E-market</h3>
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="50" height="50" class="p-1">E-market</h3>
+        </div>
+
+        <!-- Login Form -->
+        <!-- <form id="login_account">
+
+
+        <div class="form-group">
+        <input type="text" class="form-control" id="login" placeholder="username">
+
       </div>
 
-      <!-- Login Form -->
-      <form id="login_account">
-        <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login[password]" placeholder="password">
-        <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
-      </form>
-
-      <!-- Remind Passowrd -->
-      <div id="formFooter">
-        <a href="<?php echo base_url().'pages/view/home' ?>">To Home</a>
-      </div>
-
+      <div class="form-group">
+      <input type="password" class="form-control" id="password" placeholder="password">
     </div>
+    <div class="form-group">
+    <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
   </div>
+</form> -->
 
-  </div>
+<form id="login_account">
+  <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
+  <input type="text" id="password" class="fadeIn third" name="login[password]" placeholder="password">
+  <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
+</form>
+
+<div id="formFooter">
+  <a href="<?php echo base_url().'pages/view/home' ?>">To Home</a>
+</div>
+
+</div>
+</div>
+
+</div>
 
 
 </body>

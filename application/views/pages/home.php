@@ -14,7 +14,7 @@
 
 
 <!-- pagecontents dito mo lagay  -->
-<h5 class="card-header text-center  text-white bluegrads">Test cheque</h5>
+<!-- <h5 class="card-header text-center  text-white bluegrads">Test cheque</h5>
 <div class="card m-3 p-3">
   <div id="cheque">
     <div class="mb-2 mt-2 form-group"  id="cheque_amount">
@@ -65,6 +65,6 @@
       <h5>Cheque is limited to only 3</h5>
     </div>
   </div>
+</div> -->
 </div>
-
 <div class="overlay"></div>

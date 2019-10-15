@@ -11,6 +11,8 @@ $(document).ready(function(){
       success : function(res){
         console.log(res);
 
+        // window.location.href = global.settings.url + '/Pages/view/home';
+
         /*
         data: Array(2)
         //this is the result array from the query check Mainmodel function login_acc

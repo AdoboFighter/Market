@@ -1,5 +1,5 @@
 var datable;
-
+var add_line_buss = [];
 
 $(document).ready(function(){
   $( "#table_cheque" ).DataTable({
@@ -31,6 +31,8 @@ $(document).ready(function(){
 
 
   $('#add_cheque').on('click', function () {
+    var table_cheque = $('#table_cheque').DataTable();
+    var row_num = table_cheque.rows().count();
     var cheq_amount = $( "#cheqAmountField" ).val();
     var cheq_number = document.getElementById('cheqNumField').value;
     var bank_branch = document.getElementById('bankBranchField').value;
@@ -41,13 +43,38 @@ $(document).ready(function(){
     if (row_num >= 3) {
       $('#chequelimit').modal("show");
     } else {
-      table_cheque.row.add([
-        cheq_number,
-        cheq_amount,
-        bank_branch,
-        '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
-      ]).draw(false);
+      // table_cheque.row.add([
+      //   cheq_number,
+      //   cheq_amount,
+      //   bank_branch,
+      //   '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
+      // ]).draw(false);
+
+          add_line_buss.push({
+            'trancsact[cheque_number]' : $('#cheque_number').val(),
+            'trancsact[cheque_amount]' : $('#cheque_amount').val(),
+            'trancsact[bank_branch]' :  $('#bank').val()
+          });
+
+          console.log(add_line_buss);
+         "use strict";
+        	var table = document.getElementById("table_cheque");
+        	var row= document.createElement("tr");
+        	var td1 = document.createElement("td");
+        	var td2 = document.createElement("td");
+        	var td3 = document.createElement("td");
+        	var td4 = document.createElement("td");
+          td1.innerHTML = document.getElementById("cheque_number").value;
+        	td2.innerHTML  = document.getElementById("cheque_amount").value;
+        	td3.innerHTML  = document.getElementById("bank").value;
+          td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button>';
+          row.appendChild(td1);
+        	row.appendChild(td2);
+        	row.appendChild(td3);
+        	row.appendChild(td4);
+        	table.children[0].appendChild(row);
     }
+
   });
 
   $('#table_cheque tbody').on( 'click', 'button', function () {
@@ -63,6 +90,8 @@ $(document).ready(function(){
   $('#cbCheque').on('checked',function(){
     $("#cheque").slidetoggle(200);
   });
+
+
 
   // sum();
   // $("#cashTendField, #amountToField, #cheqAmountField").on("keydown keyup", function() {
@@ -81,6 +110,7 @@ $(document).ready(function(){
     var changecheque = parseFloat(payment) - parseFloat(topay);
 
     if( $(this).is(':checked') ){
+      $('#cbChequecash').prop("checked", false);
       $('#cashTendField').attr('readonly','readonly');
       $('#cashTendField').val(0);
       $('#cashTendField').attr("placeholder", "Cheque");
@@ -93,6 +123,22 @@ $(document).ready(function(){
 
     }
   });
+
+  $('#cbChequecash').on('change',function(){
+    if( $(this).is(':checked') ){
+      $('#cashTendField').removeAttr('readonly');
+      $('#cbCheque').prop("checked", false);
+      $('#cheque').toggle(200);
+    }else{
+      $('#cashTendField').val("0.00");
+      $('#cashTendField').removeAttr('readonly');
+      $("#cheque").hide();
+
+    }
+  });
+
+
+
 
   $("transact").submit(function(e){
     e.preventDefault();
@@ -120,6 +166,7 @@ $(document).ready(function(){
 
     $("table#table_cheque tr").each(function() {
       var arrayOfThisRow = [];
+
       var tableData = $(this).find('td');
       if (tableData.length > 0) {
         tableData.each(function() { arrayOfThisRow.push($(this).text()); });
@@ -129,21 +176,25 @@ $(document).ready(function(){
 
     console.log(myTableArray);
 
-    for (var i = 1  ; i < myTableArray.length; i++) {
-      console.log(myTableArray[i])
+    for (var i = 0  ; i < myTableArray.length; i++) {
+
+          console.log(myTableArray[i]);
+              //
+              // $.ajax({
+              //   url: global.settings.url +'/MainController/insert_table_bulk_controller',
+              //   method: 'POST',
+              //   data: {myTableArray: myTableArray[i]},
+              //   success : function(res){
+              //     console.log(res);
+              //   },
+              //   error : function(xhr){
+              //     console.log(xhr.responseText);
+              //   }
+              // });
+
     }
 
-    $.ajax({
-       url: global.settings.url +'/MainController/insert_table_bulk_controller',
-       method: 'POST',
-       data: {myTableArray: myTableArray},
-       success : function(res){
-         console.log(res);
-       },
-       error : function(xhr){
-         console.log(xhr.responseText);
-       }
-   });
+
 
 
 
@@ -159,29 +210,17 @@ $(document).ready(function(){
     //     type : 'POST',
     //     data :$(this).serialize(),
     //     dataType : 'json',
-        // success : function(res){
-        //   console.log(res);
-        //   $('#paymentsave').click(function(){
-        //     alert($('input:Submit').val());  //display value of button
-        //   });
-        // },
-        // error : function(xhr){
-        //   console.log(xhr.responseText);
-        // }
+    // success : function(res){
+    //   console.log(res);
+    //   $('#paymentsave').click(function(){
+    //     alert($('input:Submit').val());  //display value of button
+    //   });
+    // },
+    // error : function(xhr){
+    //   console.log(xhr.responseText);
+    // }
     //
     //   });
-
-
-
-
-    for (var i = 0; i < table_cheque.length; i++) {
-      console.log(table_cheque[i])
-    }
-
-
-    // $.ajax({
-    //
-    // });
 
 
   });
@@ -285,4 +324,56 @@ function fetchdata(id){
       console.log(xhr.responseText);
     }
   })
+}
+
+
+
+
+function addlineaddRow() {
+
+  add_line_buss.push({
+    'sec[bus_code_id]' : $('#buss_code').val(),
+    'sec[addline]' : $('#addline').val(),
+    'sec[addcode]' : result2[0],
+    'sec[addsubcat]' : $('#addsubcat').val().toUpperCase(),
+    'sec[addcap]' : $('#addcap').val().replace(/,/g, ''),
+    'sec[rank]' : 'secondary',
+    'sec[es]' : $('#es').val(),
+    'sec[nones]' : $('#nones').val()
+  });
+
+  console.log(add_line_buss);
+
+ "use strict";
+	var table = document.getElementById("addlinetable");
+
+	var row= document.createElement("tr");
+	var td1 = document.createElement("td");
+	var td2 = document.createElement("td");
+	var td3 = document.createElement("td");
+	// var td4 = document.createElement("td");
+	var td5 = document.createElement("td");
+  var td6 = document.createElement("td");
+  var td7 = document.createElement("td");
+  var td8 = document.createElement("td");
+  td1.innerHTML = document.getElementById("addline").value.toUpperCase();
+  //td2.innerHTML = result.split(':');
+	td2.innerHTML  =result2[0];
+	td3.innerHTML  = document.getElementById("addsubcat").value;
+	td5.innerHTML  = document.getElementById("addcap").value;
+  td6.innerHTML  = document.getElementById("es").value;
+  td7.innerHTML  = document.getElementById("nones").value;
+  // td4.innerHTML  =  document.getElementsByClassName("adddate")[0].value;
+  td8.innerHTML  = '<a class="btn btn-warning" onclick="addlinerowdelete(this)" >Delete</a>';
+
+  row.appendChild(td1);
+	row.appendChild(td2);
+	row.appendChild(td3);
+	// row.appendChild(td4);
+	row.appendChild(td5);
+  row.appendChild(td6);
+  row.appendChild(td7);
+  row.appendChild(td8);
+
+	table.children[0].appendChild(row);
 }

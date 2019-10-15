@@ -70,7 +70,7 @@
     </div>
 
     <div class="card m-3 " id="paymentcard">
-        <h5 class="card-header text-center bg-dark text-white ">Payment Details</h5>
+      <h5 class="card-header text-center bg-dark text-white ">Payment Details</h5>
       <form id="transactform">
         <div class="row p-2">
           <div class="col-6">
@@ -119,141 +119,151 @@
               <input type="text" class="form-control" name="transact[cash_tendered]" id="cashTendField" placeholder="0.00" required>
             </div>
             <!-- <div class="mb-2">
-              <label>Change:</label>
-              <input type="text" class="form-control" name="transact[]" id="change" placeholder="0.00" disabled>
-            </div> -->
-            <div class="mb-2">
-              <label>Payment Effectivity</label>
-              <input type="date" class="form-control" name="transact[payment_effect]" id="payEffectField" placeholder="0.00" required>
-            </div>
-            <div class="form-check mb-2" id="">
-              <input type="checkbox" class="form-check-input" name="transact[ifCheque]" id="cbCheque">
-              <label class="form-check-label">Cheque</label>
-            </div>
+            <label>Change:</label>
+            <input type="text" class="form-control" name="transact[]" id="change" placeholder="0.00" disabled>
+          </div> -->
+          <div class="mb-2">
+            <label>Payment Effectivity</label>
+            <input type="date" class="form-control" name="transact[payment_effect]" id="payEffectField" placeholder="0.00" required>
+          </div>
 
-            <div id="cheque">
-              <div class="mb-2 mt-2 form-group"  id="cheque_amount">
-                <label>Cheque Amount</label>
-                <input type="text" class="form-control" name="transact[cheque_amount]" id="cheqAmountField" placeholder="0.00" >
+          <div class="col">
+            <div class="row p-2">
+              <div class="form-check p-2 m-2">
+                <input type="checkbox" class="form-check-input " name="transact[ifCheque]" id="cbCheque">
+                <label class="form-check-label">Cheque</label>
               </div>
 
-              <div class="mb-2 form-group" id="cheque_number">
-                <label>Cheque number</label>
-                <input type="text" class="form-control" name="transact[cheque_number]" id="cheqNumField" placeholder="" >
-              </div>
-
-              <div class="mb-2 form-group" id="bank">
-                <label>Bank/Branch</label>
-                <input type="text" class="form-control" name="transact[bank_branch]" id="bankBranchField" placeholder="" >
-              </div>
-
-              <div class="mb-2">
-                <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" >Add Cheque</button>
-              </div>
-
-
-
-              <div class="mb-2 form-group" >
-                <table class="table table-striped table-bordered p-2" id="table_cheque">
-                  <thead>
-                    <tr>
-
-                      <td>Cheque no</td>
-                      <td>Cheque Amount</td>
-                      <td>Bank Branch</td>
-                      <td>delete</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
+              <div class="form-check p-2 m-2">
+                <input type="checkbox" class="form-check-input" name="transact[ifCheque]" id="cbChequecash">
+                <label class="form-check-label">Cheque and cash</label>
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="">
-              <h5>Particulars</h5>
+
+          <div id="cheque">
+            <div class="mb-2 mt-2 form-group"  id="cheque_amount">
+              <label>Cheque Amount</label>
+              <input type="text" class="form-control" name="transact[cheque_amount]" id="cheqAmountField" placeholder="0.00" >
+            </div>
+
+            <div class="mb-2 form-group" id="cheque_number">
+              <label>Cheque number</label>
+              <input type="text" class="form-control" name="transact[cheque_number]" id="cheqNumField" placeholder="" >
+            </div>
+
+            <div class="mb-2 form-group" id="bank">
+              <label>Bank/Branch</label>
+              <input type="text" class="form-control" name="transact[bank_branch]" id="bankBranchField" placeholder="" >
             </div>
 
             <div class="mb-2">
-              <div class="row mt-2">
-                <div class="col">
-                  <label>Particulars</label>
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-
-                <div class="col">
-                  <label>Price</label>
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" name="" id="" >
-                  <button type="Submit"  class="btn btn-primary mt-2"  >Submit</button>
-                </div>
-              </div>
-
+              <button type="button" class="btn btn-secondary bg-dark" id="add_cheque" >Add Cheque</button>
             </div>
 
+
+
+            <div class="mb-2 form-group" >
+              <table class="table table-striped table-bordered p-2" id="table_cheque">
+                <thead>
+                  <tr>
+                    <th>Cheque no</th>
+                    <th>Cheque Amount</th>
+                    <th>Bank Branch</th>
+                    <th>delete</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
+        <div class="col-6">
+          <div class="">
+            <h5>Particulars</h5>
+          </div>
+
+          <div class="mb-2">
+            <div class="row mt-2">
+              <div class="col">
+                <label>Particulars</label>
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+
+              <div class="col">
+                <label>Price</label>
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="" id="" >
+                <button type="Submit"  class="btn btn-primary mt-2"  >Submit and print</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 
 
 
@@ -261,28 +271,29 @@
   <button type="newbton"  class="btn btn-primary mt-2"  >Submit</button>
 </form>
 
-  <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content p-3">
-        <h5>Payment Successful</h5>
-      </div>
-    </div>
-  </div>
-
-  <div id="failedActivation" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content p-3">
-        <h5>Select a client first!</h5>
-      </div>
-    </div>
-  </div>
-
-  <div id="chequelimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content p-3">
-        <h5>Cheque is limited to only 3</h5>
-      </div>
+<div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>Payment Successful</h5>
     </div>
   </div>
 </div>
+
+<div id="failedActivation" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>Select a client first!</h5>
+    </div>
+  </div>
+</div>
+
+<div id="chequelimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>Cheque is limited to only 3</h5>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="overlay"></div>

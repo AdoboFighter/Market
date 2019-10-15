@@ -2,6 +2,7 @@
 var ambulant_div = document.getElementById("ambulant_div");
 var stall_div = document.getElementById("stall_div");
 var stall_div2 = document.getElementById("stall_fields2");
+var stall_num = document.getElementById("stallf_num").value;
 
 var firstnamef  = document.getElementById("fname").value;
 var middlenamef = document.getElementById("mname").value;
@@ -47,7 +48,9 @@ $(document).ready(function(){
 });
 
 
-
+function testambval() {
+  console.log(stall_num);
+}
 
 function clienttype() {
   var clientselect  =  document.getElementById("clientselect");
@@ -70,6 +73,9 @@ function clienttype() {
     stall_div.style.display = "none";
     stall_div2.style.display = "none";
     ambulant_div.style.display = "none";
+
+
+
 
 
 

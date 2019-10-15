@@ -31,6 +31,7 @@ class Sysuser extends REST_Controller {
        $query = $this->api->sysUserLogin($input);
 
        $this->response($query, REST_Controller::HTTP_OK);
+    
      }
 
 }

@@ -26,6 +26,8 @@ class Mainmodel extends CI_model{
       $response['response'] = true;
       $response['message'] = 'Login Success : '.$input['username'];
       $response['data'] = $query->result();
+      redirect('pages/home');
+      echo "yeah";
     }
 
     return $response;
@@ -196,8 +198,7 @@ class Mainmodel extends CI_model{
     $this->db->limit(1);
     $query = $this->db->get('tenant');
     return $query->result();
-
-
+    echo $query;
   }
 
   public function getconsolidationtable()
@@ -270,18 +271,23 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-
-    $query = $this->db->query('SELECT * FROM customer');
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'id' => $r->customer_id,
         'c_info_stall_number' => $r->unit_no,
         'c_info_area' => $r->sqm,
-        'c_info_daily_fee'=> $r->daily_fee,
-        'c_info_fullname_owner'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
-        'c_info_fullname_occupant'=> $r-> $r->firstname.' '.$r->middlename.' '.$r->lastname
+        'c_info_daily_fee'=> $r->dailyfee,
+        'c_info_fullname_occupant'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
+        </div>'
       );
     }
     $result = array(
@@ -291,6 +297,18 @@ class Mainmodel extends CI_model{
       "data" => $data
     );
     return $result;
+  }
+
+  public function getcustomerinfo($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'transaction.customer_id=customer.customer_id', 'inner');
+    $this->db->order_by('payment_datetime');
+    $query = $this->db->get('tenant');
+    return $query->result();
+    echo $query;
   }
 
 
@@ -335,7 +353,6 @@ class Mainmodel extends CI_model{
 
 
   public function save_customer($inputData){
-    echo 'yeah yeah';
     $data_customer = array(
       'firstname' => $inputData['Owner_Firstname'],
       'middlename' => $inputData['Owner_Middlename'],
@@ -391,17 +408,17 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function insert_table_bulk_model($data)
+  public function insert_table_bulk_model($inputData)
   {
-  
-    // $inputData = array(
-    //     'cheq_number' => 'My title',
-    //     'title' => 'My title',
-    //     'name' => 'My Name',
-    //     'date' => 'My date'
+
+    // $cheque = array(
+    //     [0] => $inputData['cheque_amount'],
+    //     [1] => $inputData['cheque_number'],
+    //     [2] => $inputData['bank_branch']
     //   );
-    // $this->db->insert_batch('cheque_details', $inputData);
-    // // echo $inputData;
+    print_r($inputData);
+    // $this->db->insert_batch('cheque_details', $cheque);
+
   }
 
 
