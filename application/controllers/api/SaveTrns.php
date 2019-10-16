@@ -12,6 +12,7 @@ class SaveTrns extends CI_Controller {
         $effDate = date('m/d/Y');
         $query = "CALL POS_SaveTransaction('$data->CustomerID', '$data->Payment', '$data->CollectorID', '$data->CollectorName', '$effDate')";
         $res = $this->db->query($query)->result();
+        $this->db->close();
         echo $this->generateOR($res[0]->transaction_id);
 
     }
@@ -21,7 +22,6 @@ class SaveTrns extends CI_Controller {
         $idLen = strlen($id);
         $TRNum = 9 - $idLen;
         $TrnGen = 'M';
-        $sql = 'CALL POS_SaveTransactionNumber(:TransactionNum,:ID)';
         if($idLen <= 9){
             for($x= 0; $x < $TRNum; $x++){
                 $TrnGen = $TrnGen . '0';
@@ -31,6 +31,8 @@ class SaveTrns extends CI_Controller {
             $idOR = substr(strval($id), -9);
             $ORNum = $TrnGen . $idOR;
         }
+        $this->db->query("CALL POS_SaveTransactionNumber('$ORNum','$id')");
+        $this->db->close();
         return $ORNum;
     }
 }
