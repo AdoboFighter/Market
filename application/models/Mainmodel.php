@@ -316,6 +316,7 @@ class Mainmodel extends CI_model{
         $draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
+        $this->db->where('customer_id', $id);
         $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
         $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
         $query = $this->db->get('transaction');

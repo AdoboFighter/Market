@@ -40,8 +40,6 @@ $(document).ready(function(){
 
 
 
-
-
   $('.dataTables_length').addClass('bs-select');
 
 
@@ -49,9 +47,10 @@ $(document).ready(function(){
 
 
 function fetchdata(id){
+
   console.log(id);
   $.ajax({
-    url: global.settings.url + '/MainController/getcustomerinfocon',
+    url: global.settings.url + '/MainController/getcustomerinfopaycon',
     type: 'POST',
     data: {
       id: id
@@ -75,11 +74,16 @@ function fetchdata(id){
       $('#occu_ln').val(res.aolastname);
       $('#occu_add').val(res.aoaddress);
       $('#occu_cn').val(res.ao_cn);
-      
+
+
       $('#pay_hist_tab').DataTable({
+        destroy: true,
         "ajax" : {
-          "url" : global.settings.url + '/MainController/getcustomerinfopaycon',
-          dataSrc : 'data'
+          "url" : global.settings.url + '/MainController/getcustomerinfocon',
+          dataSrc : 'data',
+          data: {id: id},
+          type: 'POST',
+          dataType:'JSON'
         },
         "columns" : [
         {

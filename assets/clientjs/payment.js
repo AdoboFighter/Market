@@ -1,5 +1,5 @@
 var datable;
-var add_line_buss = [];
+var add_line = [];
 
 $(document).ready(function(){
   $( "#table_cheque" ).DataTable({
@@ -33,46 +33,41 @@ $(document).ready(function(){
   $('#add_cheque').on('click', function () {
     var table_cheque = $('#table_cheque').DataTable();
     var row_num = table_cheque.rows().count();
-    var cheq_amount = $( "#cheqAmountField" ).val();
-    var cheq_number = document.getElementById('cheqNumField').value;
-    var bank_branch = document.getElementById('bankBranchField').value;
-    var table_cheque = $('#table_cheque').DataTable();
-    var row_num = table_cheque.rows().count();
     console.log(row_num);
 
     if (row_num >= 3) {
       $('#chequelimit').modal("show");
     } else {
-      table_cheque.row.add([
-        cheq_number,
-        cheq_amount,
-        bank_branch,
-        '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
-      ]).draw(false);
+      // table_cheque.row.add([
+      //   cheq_number,
+      //   cheq_amount,
+      //   bank_branch,
+      //   '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
+      // ]).draw(false);
 
-         //  add_line_buss.push({
-         //    'trancsact[cheque_number]' : $('#cheque_number').val(),
-         //    'trancsact[cheque_amount]' : $('#cheque_amount').val(),
-         //    'trancsact[bank_branch]' :  $('#bank').val()
-         //  });
-         //
-         //  console.log(add_line_buss);
-         // "use strict";
-        	// var table = document.getElementById("table_cheque");
-        	// var row= document.createElement("tr");
-        	// var td1 = document.createElement("td");
-        	// var td2 = document.createElement("td");
-        	// var td3 = document.createElement("td");
-        	// var td4 = document.createElement("td");
-         //  td1.innerHTML = document.getElementById("cheqAmountField").value;
-        	// td2.innerHTML  = document.getElementById("cheqNumField").value;
-        	// td3.innerHTML  = document.getElementById("bankBranchField").value;
-         //  td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete_btn">Delete</button>';
-         //  row.appendChild(td1);
-        	// row.appendChild(td2);
-        	// row.appendChild(td3);
-        	// row.appendChild(td4);
-        	// table.children[0].appendChild(row);
+          add_line.push({
+            'trancsact[cheque_number]' : $('#cheqAmountField').val(),
+            'trancsact[cheque_amount]' : $('#cheqNumField').val(),
+            'trancsact[bank_branch]' :  $('#bankBranchField').val()
+          });
+
+          console.log(add_line);
+         "use strict";
+        	var table = document.getElementById("table_cheque");
+        	var row= document.createElement("tr");
+        	var td1 = document.createElement("td");
+        	var td2 = document.createElement("td");
+        	var td3 = document.createElement("td");
+        	var td4 = document.createElement("td");
+          td1.innerHTML = document.getElementById("cheqNumField").value;
+        	td2.innerHTML  = document.getElementById("cheqAmountField").value;
+        	td3.innerHTML  = document.getElementById("bankBranchField").value;
+          td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete_btn">Delete</button>';
+          row.appendChild(td1);
+        	row.appendChild(td2);
+        	row.appendChild(td3);
+        	row.appendChild(td4);
+        	table.children[0].appendChild(row);
     }
 
   });
@@ -176,9 +171,9 @@ $(document).ready(function(){
 
     console.log(myTableArray);
 
-    for (var i = 0  ; i < myTableArray.length; i++) {
+    for (var i = 0  ; i < add_line.length; i++) {
 
-          console.log(myTableArray[i]);
+          console.log(add_line[i]);
               //
               // $.ajax({
               //   url: global.settings.url +'/MainController/insert_table_bulk_controller',
@@ -204,23 +199,23 @@ $(document).ready(function(){
   $('#transactform').submit(function(e){
 
     e.preventDefault();
-    //   console.log( $('#transactform').serializeArray() );
-    //   $.ajax({
-    //     url : global.settings.url +'/MainController/savePayment',
-    //     type : 'POST',
-    //     data :$(this).serialize(),
-    //     dataType : 'json',
-    // success : function(res){
-    //   console.log(res);
-    //   $('#paymentsave').click(function(){
-    //     alert($('input:Submit').val());  //display value of button
-    //   });
-    // },
-    // error : function(xhr){
-    //   console.log(xhr.responseText);
-    // }
-    //
-    //   });
+      console.log( $('#transactform').serializeArray() );
+      $.ajax({
+        url : global.settings.url +'/MainController/savePayment',
+        type : 'POST',
+        data :$(this).serialize(),
+        dataType : 'json',
+    success : function(res){
+      console.log(res);
+      $('#paymentsave').click(function(){
+        alert($('input:Submit').val());  //display value of button
+      });
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+
+      });
 
 
   });
