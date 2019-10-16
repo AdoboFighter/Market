@@ -286,7 +286,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
       );
     }
@@ -299,16 +299,43 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getcustomerinfo($id)
+  public function getcustomerinfomod($id)
   {
     $this->db->where('fk_customer_id', $id);
     $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $this->db->join('transaction', 'transaction.customer_id=customer.customer_id', 'inner');
-    $this->db->order_by('payment_datetime');
     $query = $this->db->get('tenant');
     return $query->result();
-    echo $query;
+
+  }
+
+
+  public function getcustomerinfopaymod($id)
+  {
+
+        $draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+        $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
+        $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
+        $query = $this->db->get('transaction');
+        $data = [];
+        foreach ($query->result() as $r) {
+          $data[] = array(
+            'c_info_OR' => $r->or_number,
+            'c_info_nature' => $r->payment_nature_name,
+            'c_info_amount'=> $r->payment_amount,
+            'c_info_date'=> $r->payment_datetime
+          );
+        }
+        $result = array(
+          "draw" => $draw,
+          "recordsTotal" => $query->num_rows(),
+          "recordsFiltered" => $query->num_rows(),
+          "data" => $data
+        );
+        return $result;
+        echo "hello";
   }
 
 
@@ -411,13 +438,7 @@ class Mainmodel extends CI_model{
   public function insert_table_bulk_model($inputData)
   {
 
-    // $cheque = array(
-    //     [0] => $inputData['cheque_amount'],
-    //     [1] => $inputData['cheque_number'],
-    //     [2] => $inputData['bank_branch']
-    //   );
-    print_r($inputData);
-    // $this->db->insert_batch('cheque_details', $cheque);
+
 
   }
 

@@ -43,36 +43,36 @@ $(document).ready(function(){
     if (row_num >= 3) {
       $('#chequelimit').modal("show");
     } else {
-      // table_cheque.row.add([
-      //   cheq_number,
-      //   cheq_amount,
-      //   bank_branch,
-      //   '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
-      // ]).draw(false);
+      table_cheque.row.add([
+        cheq_number,
+        cheq_amount,
+        bank_branch,
+        '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
+      ]).draw(false);
 
-          add_line_buss.push({
-            'trancsact[cheque_number]' : $('#cheque_number').val(),
-            'trancsact[cheque_amount]' : $('#cheque_amount').val(),
-            'trancsact[bank_branch]' :  $('#bank').val()
-          });
-
-          console.log(add_line_buss);
-         "use strict";
-        	var table = document.getElementById("table_cheque");
-        	var row= document.createElement("tr");
-        	var td1 = document.createElement("td");
-        	var td2 = document.createElement("td");
-        	var td3 = document.createElement("td");
-        	var td4 = document.createElement("td");
-          td1.innerHTML = document.getElementById("cheque_number").value;
-        	td2.innerHTML  = document.getElementById("cheque_amount").value;
-        	td3.innerHTML  = document.getElementById("bank").value;
-          td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button>';
-          row.appendChild(td1);
-        	row.appendChild(td2);
-        	row.appendChild(td3);
-        	row.appendChild(td4);
-        	table.children[0].appendChild(row);
+         //  add_line_buss.push({
+         //    'trancsact[cheque_number]' : $('#cheque_number').val(),
+         //    'trancsact[cheque_amount]' : $('#cheque_amount').val(),
+         //    'trancsact[bank_branch]' :  $('#bank').val()
+         //  });
+         //
+         //  console.log(add_line_buss);
+         // "use strict";
+        	// var table = document.getElementById("table_cheque");
+        	// var row= document.createElement("tr");
+        	// var td1 = document.createElement("td");
+        	// var td2 = document.createElement("td");
+        	// var td3 = document.createElement("td");
+        	// var td4 = document.createElement("td");
+         //  td1.innerHTML = document.getElementById("cheqAmountField").value;
+        	// td2.innerHTML  = document.getElementById("cheqNumField").value;
+        	// td3.innerHTML  = document.getElementById("bankBranchField").value;
+         //  td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete_btn">Delete</button>';
+         //  row.appendChild(td1);
+        	// row.appendChild(td2);
+        	// row.appendChild(td3);
+        	// row.appendChild(td4);
+        	// table.children[0].appendChild(row);
     }
 
   });
@@ -80,7 +80,7 @@ $(document).ready(function(){
   $('#table_cheque tbody').on( 'click', 'button', function () {
     var table_cheque = $('#table_cheque').DataTable();
     table_cheque
-    .row( $(this).parents('tr') )
+    .row( $(this).parents('tr'))
     .remove()
     .draw();
   });

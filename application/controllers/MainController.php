@@ -116,6 +116,19 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->insert_table_bulk_model($inputData)) ;
   }
 
+  public function getcustomerinfocon()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getcustomerinfomod($id));
+  }
+
+  public function getcustomerinfopaycon()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getcustomerinfopaymod($id));
+  }
+
+
 
 
 
