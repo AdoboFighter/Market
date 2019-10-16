@@ -52,3 +52,8 @@ pages/index */
 $route['default_controller'] = 'pages/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['connection-test']['GET'] = 'api/CheckConn/test';
+$route['login']['POST'] = 'api/Login/auth';
+$route['get-info/stall/(:any)'] = 'api/SearchStall/search/$1';
+$route['save-transaction']['POST'] = 'api/SaveTrns/proc';
