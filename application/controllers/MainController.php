@@ -109,12 +109,7 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->save_customer($inputData)) ;
   }
 
-  public function insert_table_bulk_controller($data)
-  {
-    $inputData = $this->input->post($data);
-    // print_r($inputData);
-    echo json_encode($this->model->insert_table_bulk_model($inputData)) ;
-  }
+
 
   public function getcustomerinfocon()
   {
@@ -128,8 +123,24 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcustomerinfopaymod($id));
   }
 
+  public function get_customer_violation_con()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->get_customertable_violation_mod($id));
+  }
 
 
+  public function get_customer_info_vio_con()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->get_customer_info_vio($id));
+  }
+
+  public function save_violation_con()
+  {
+    $inputData = $this->input->post('violation');
+    echo json_encode($this->model->save_violation_mod($inputData)) ;
+  }
 
 
 }

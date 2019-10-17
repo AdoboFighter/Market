@@ -14,7 +14,7 @@
   <!-- pagecontents dito mo lagay  -->
 
   <div class="container justify-content-center">
-      <h5 class="card-header text-center bg-primary text-white bluegrads">System User</h5>
+    <h5 class="card-header text-center bg-primary text-white bluegrads">System User</h5>
     <div class="card m-3">
 
       <form name="saveSysUser" id="saveSysUser">
@@ -22,21 +22,21 @@
           <div class="col-4">
             <div class="form-group">
               <label for="">First Name</label>
-              <input type="text" class="form-control" name="sysUser[firstname]" id="sysUser[firstname]"  required="">
+              <input type="text" class="form-control" name="sysUser[firstname]" id=""  required="">
             </div>
           </div>
 
           <div class="col-4">
             <div class="form-group">
               <label for="">Middle Name</label>
-              <input type="text" class="form-control" name="sysUser[middlename]" id="sysUser[middlename]"  required="">
+              <input type="text" class="form-control" name="sysUser[middlename]"   required="">
             </div>
           </div>
 
           <div class="col-4">
             <div class="form-group">
               <label for="">last Name</label>
-              <input type="text" class="form-control" name="sysUser[lastname]" id="sysUser[]"  required="">
+              <input type="text" class="form-control" name="sysUser[lastname]" id=""  required="">
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Username</label>
-            <input type="text" class="form-control" name="sysUser[username]" id="sysUser[]"  required="">
+            <input type="text" class="form-control" name="sysUser[username]" id=""  required="">
           </div>
 
           <div class="col">
@@ -62,7 +62,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Position/Title</label>
-            <input type="text" class="form-control" name="sysUser[position]" id="sysUser[]"  required="">
+            <input type="text" class="form-control" name="sysUser[position]" id=""  required="">
           </div>
         </div>
 
@@ -70,7 +70,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Password</label>
-            <input type="password" class="form-control" name="sysUser[password]" id="sysUser[]"  required="">
+            <input type="password" class="form-control" name="sysUser[password]" id=""  required="">
           </div>
         </div>
 
@@ -84,14 +84,14 @@
     <div class="row m-5">
       <div class="col">
         <label for="">Address</label>
-        <input type="text" class="form-control" name="sysUser[address]" id="sysUser[]"  required="">
+        <input type="text" class="form-control" name="sysUser[address]" id=""  required="">
       </div>
     </div>
 
     <div class="row m-5">
       <div class="col">
         <label for="">Contact Number</label>
-        <input type="text" class="form-control" name="sysUser[contact_num]" id="sysUser[]"  required="">
+        <input type="text" class="form-control" name="sysUser[contact_num]" id=""  required="">
       </div>
     </div>
 

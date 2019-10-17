@@ -63,18 +63,18 @@ class Mainmodel extends CI_model{
   function insert_sysUser($inputData){
 
     $data1 = array(
-      'firstname' => $inputData[''],
-      'middlename' => $inputData[''],
-      'lastname' => $inputData[''],
-      'username' => $inputData[''],
-      'password' => $inputData[''],
-      'position' => $inputData[''],
-      'user_lvl' => $inputData[''],
-      'address' => $inputData[''],
-      'contact_num' => $inputData['']
+      'usr_firstname' => $inputData['firstname'],
+      'usr_middlename' => $inputData['middlename'],
+      'usr_lastname' => $inputData['lastname'],
+      'username' => $inputData['username'],
+      'password' => $inputData['password'],
+      'position' => $inputData['position'],
+      'user_level' => $inputData['user_lvl'],
+      'usr_address' => $inputData['address'],
+      'usr_contact_number' => $inputData['contact_num']
     );
 
-    $this->db->insert('sysuser', $data1);
+    $this->db->insert('user', $data1);
 
   }
 
@@ -436,12 +436,67 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function insert_table_bulk_model($inputData)
+  public function get_customertable_violation_mod()
   {
 
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_area' => $r->sqm,
+        'vio_address'=> $r->address,
+        'c_info_fullname_occupant'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
 
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function get_customer_info_vio($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('tenant');
+    return $query->result();
 
   }
+
+  public function save_violation_mod($inputData)
+  {
+    $data_violation = array(
+      'description' => $inputData['payment_type'],
+      'date_occured' => $inputData['date'],
+      'stall_id' => $inputData['stall_id_f'],
+      'stall_stall_id' => $inputData['stall_id_f'],
+      'name' => $inputData['owner_f']
+    );
+
+
+    $this->db->insert('violation', $data_violation);
+
+  }
+
+
+
 
 
 
