@@ -22,7 +22,7 @@
                   <div class="form-group">
                     <h5>Owner's Information</h5>
                     <label>Client Type</label>
-                    <select class="form-control form-control-sm" name="add_customer_form[Client_type]" onchange="clienttype();" id="clientselect" required>
+                    <select class="form-control form-control-sm" name="customer[Client_type]" onchange="clienttype();" id="clientselect" required>
                       <option selected value="">Please Select</option>
                       <option value="0">Tenant</option>
                       <option value="1">Ambulant</option>
@@ -32,23 +32,23 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Firstname]"  id="fname" required>
+                    <input type="text" class="form-control" name="customer[Owner_Firstname]"  id="fname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Middlename]" id="mname" required>
+                    <input type="text" class="form-control" name="customer[Owner_Middlename]" id="mname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Lastname]" id="lname"required>
+                    <input type="text" class="form-control" name="customer[Owner_Lastname]" id="lname"required>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Address]" id="add" required>
+                    <input type="text" class="form-control" name="customer[Owner_Address]" id="add" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="add_customer_form[Owner_Contact_Num]" id="cont" required>
+                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]" id="cont" required>
                   </div>
                 </div>
               </div>
@@ -64,24 +64,24 @@
                   </div>
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Firstname]" id="ofname" required>
+                    <input type="text" class="form-control" name="customer[Occu_Firstname]" id="ofname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Middlename]" id="omname" required>
+                    <input type="text" class="form-control" name="customer[Occu_Middlename]" id="omname" required>
 
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Lastname]" id="olname" required>
+                    <input type="text" class="form-control" name="customer[Occu_Lastname]" id="olname" required>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Address]" id="oadd" required>
+                    <input type="text" class="form-control" name="customer[Occu_Address]" id="oadd" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="add_customer_form[Occu_Contact_Num]" id="ocont" required>
+                    <input type="text" class="form-control" name="customer[Occu_Contact_Num]" id="ocont" required>
                   </div>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
@@ -102,7 +102,7 @@
 
                 <div class="form-group">
                   <label>Section</label>
-                  <select class="form-control form-control-sm" name="add_customer_form[section]" >
+                  <select class="form-control form-control-sm" name="customer[section]" >
                     <option selected value="">Please Select</option>
                     <option value="Fish">Fish</option>
                     <option value="Meat">Meat</option>
@@ -113,17 +113,17 @@
                 </div>
                 <div class="form-group" id="">
                   <label for="">Business ID</label>
-                  <input type="text" class="form-control" id="stallf_buss_id" name="add_customer_form[Business_Id]">
+                  <input type="text" class="form-control" id="stallf_buss_id" name="customer[Business_Id]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="">
                   <label for="">Business Name</label>
-                  <input type="text" class="form-control" id="stallf_buss_name" name="add_customer_form[Business_Name]">
+                  <input type="text" class="form-control" id="stallf_buss_name" name="customer[Business_Name]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="">
                   <label for="">Date Occupied</label>
-                  <input type="Date" class="form-control" id="stallf_date_ocu" name="add_customer_form[date_occupied]">
+                  <input type="Date" class="form-control" id="stallf_date_ocu" name="customer[date_occupied]">
                   <span id="" class="text-danger"></span>
                 </div>
               </div>
@@ -134,12 +134,12 @@
               <h5>Ambulant Information</h5>
               <div class="form-group" id="location" name="ambulant_div">
                 <label for="">Location</label>
-                <input type="text" class="form-control" id="amlocation" name="add_customer_form[Location]">
+                <input type="text" class="form-control" id="amlocation" name="customer[Location]">
                 <span id="" class="text-danger"></span>
               </div>
               <div class="form-group" id="locationNum" >
                 <label for="">Location Number</label>
-                <input type="text" class="form-control" id="amnum" name="add_customer_form[Location_num]">
+                <input type="text" class="form-control" id="amnum" name="customer[Location_num]">
                 <span id="" class="text-danger"></span>
               </div>
             </div>
@@ -147,22 +147,22 @@
               <div class="col-6" id="stall_fields2">
                 <div class="form-group" id="">
                   <label for="">Stall Number</label>
-                  <input type="text" class="form-control" id="stallf_num"name="add_customer_form[Stall_Number]">
+                  <input type="text" class="form-control" id="stallf_num"name="customer[Stall_Number]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="dailyfee">
                   <label for="">Daily Fee</label>
-                  <input type="text" class="form-control" id="stallf_daily_fee" name="add_customer_form[Daily_fee]">
+                  <input type="text" class="form-control" id="stallf_daily_fee" name="customer[Daily_fee]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="squaremeter">
                   <label for="">Square Meters</label>
-                  <input type="text" class="form-control" id="stall_sqr_m" name="add_customer_form[Square_meters]">
+                  <input type="text" class="form-control" id="stall_sqr_m" name="customer[Square_meters]">
                   <span id="" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="floorlevel">
                   <label>Floor Level</label>
-                  <select class="form-control form-control-sm" id="stall_flr_lvl" name="add_customer_form[Floor_level]">
+                  <select class="form-control form-control-sm" id="stall_flr_lvl" name="customer[Floor_level]">
                     <option value=""></option>
                     <option value="Basement">Basement</option>
                     <option value="Ground">Ground Floor</option>

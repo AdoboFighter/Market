@@ -105,12 +105,11 @@ class MainController extends CI_Controller{
 
   public function save_customer_controller()
   {
-    $inputData = $this->input->post('add_customer_form');
+    $inputData = $this->input->post('customer');
     echo json_encode($this->model->save_customer($inputData)) ;
   }
 
-
-
+ 
   public function getcustomerinfocon()
   {
     $id = $this->input->post('id');

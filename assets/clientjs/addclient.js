@@ -119,14 +119,6 @@ $(document).ready(function(){
 
 
     if( $(this).is(':checked') ){
-      // $("#fname, #mname, #lname, #add, #cont").on("keydown keyup", function() {
-      //   updatefield();
-      // });
-      // $('#ofname').attr('readonly','readonly');
-      // $('#omname').attr('readonly','readonly');
-      // $('#olname').attr('readonly','readonly');
-      // $('#oadd').attr('readonly','readonly');
-      // $('#ocont').attr('readonly','readonly');
       updatefield();
     }else{
       $("#fname, #mname, #lname, #add, #cont").unbind("keydown keyup", function() {

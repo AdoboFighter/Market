@@ -35,30 +35,7 @@ class Mainmodel extends CI_model{
   }
 
 
-  function insert_client($inputData)
-  {
-    $data1 = array(
-      'Client_type' => $inputData['Client_type'],
-      'OFirstname' => $inputData['Owner_Firstname'],
-      'OMiddlename' => $inputData['Owner_Middlename'],
-      'OLastname' => $inputData['Owner_Lastname'],
-      'OAddress' => $inputData['Owner_Address'],
-      'OContactNum' => $inputData['Owner_Contact_Num'],
-      'OcFirstname' => $inputData['Occu_Firstname'],
-      'OcMiddlename' => $inputData['Occu_Middlename'],
-      'Oclastname' => $inputData['Occu_Lastname'],
-      'OcAddress' => $inputData['Occu_Address'],
-      'OcContactNum' => $inputData['Occu_Contact_Num']
 
-
-    );
-
-    $this->db->insert('customer', $data1);
-    return  $last_id = $this->db->insert_id();
-
-
-
-  }
 
   function insert_sysUser($inputData){
 
@@ -76,66 +53,6 @@ class Mainmodel extends CI_model{
 
     $this->db->insert('user', $data1);
 
-  }
-
-
-
-  function insert_ambulant($inputData)
-  {
-    $data1 = array(
-      'ambu_client_id' => $inputData['id'],
-      'location' => $inputData[''],
-      'location_num' => $inputData['']
-    );
-
-    return $this->db->insert('ambulant', $data1);
-
-  }
-
-  function insert_stall($inputData){
-    $data1 = array(
-
-
-      'floor_level' => $inputData['Floor_level'],
-      'unit_no' => $inputData['Stall_Number'],
-      'tenant_id' => $inputData['id'],
-      'date_occupied' => $inputData['date_occupied'],
-      'Section' => $inputData['section'],
-      'sqm' => $inputData['Square_meters'],
-      'dailyfee' => $inputData['Daily_fee']
-
-
-    );
-
-    return $this->db->insert('stall', $data1);
-
-  }
-
-  function insert_tenant($inputData){
-    $data1 = array(
-
-      'fk_customer_id' => $inputData['id'],
-      'business_id' => $inputData['Business_Id'],
-      'business_name' => $inputData['Business_Name']
-    );
-    return $this->db->insert('tenant', $data1);
-  }
-
-
-  function insert_parking($inputData){
-    $data1 = array(
-      'fk_customer_id' => $inputData['id']
-    );
-
-    return $this->db->insert('driver', $data1);
-
-  }
-
-  function insert_delivery($inputData){
-    $data1 = array(
-      'delivery_client_id' => $inputData['id']
-    );
-    return $this->db->insert('delivery', $data1);
   }
 
 
@@ -378,6 +295,7 @@ class Mainmodel extends CI_model{
 
 
   public function save_customer($inputData){
+
     $data_customer = array(
       'firstname' => $inputData['Owner_Firstname'],
       'middlename' => $inputData['Owner_Middlename'],
@@ -393,84 +311,70 @@ class Mainmodel extends CI_model{
     );
 
     $this->db->trans_start();
+
     $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
+    echo "hello";
 
-    $data_tenant = array(
-      'business_id' => $inputData['Owner_Firstname'],
-      'business_name' => $inputData['Owner_Middlename'],
-      'fk_customer_id' => $last_id
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 0) {
+      echo "tenant";
+      $data_tenant = array(
+        'business_id' => $inputData['Owner_Firstname'],
+        'business_name' => $inputData['Owner_Middlename'],
+        'fk_customer_id' => $last_id
+      );
+      $this->db->insert('tenant', $data_tenant);
+      $last_id_tenant = $this->db->insert_id();
 
-
-    );
-
-
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
-      $data1 = array(
-
-
+      $data_stall = array(
         'floor_level' => $inputData['Floor_level'],
         'unit_no' => $inputData['Stall_Number'],
-        'tenant_id' => $inputData['id'],
+        'tenant_id' => $last_id_tenant,
         'date_occupied' => $inputData['date_occupied'],
         'Section' => $inputData['section'],
         'sqm' => $inputData['Square_meters'],
         'dailyfee' => $inputData['Daily_fee']
-
-
       );
 
-      return $this->db->insert('stall', $data1);
-      $data1 = array(
-        'fk_customer_id' => $last_id,
-        'business_id' => $inputData['Business_Id'],
-        'business_name' => $inputData['Business_Name']
-      );
-      return $this->db->insert('tenant', $data1);
-    }
+       $this->db->insert('stall', $data_stall);
 
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
+    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
+        echo "ambulant";
       $data1 = array(
         'fk_customer_customer_id' => $last_id
       );
-
-      return $this->db->insert('ambulant', $data1);
+       $this->db->insert('ambulant', $data1);
 
       $data2 = array(
         'location' => $inputData['Location'],
         'location_no' => $inputData['Location_num']
       );
-
-      return $this->db->insert('ambulant_unit', $data2);
+       $this->db->insert('ambulant_unit', $data2);
       echo "ambulant registration success";
-    }
 
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 2) {
-      $data1 = array(
+    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 2) {
+        echo "delivery";
+      $data_delivery = array(
         'fk_customer_id' => $last_id
       );
-      return $this->db->insert('delivery', $data1);
+       $this->db->insert('delivery', $data_delivery);
       echo "delivery registration success";
-    }
-
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 3) {
-      $data1 = array(
+    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 3) {
+        echo "parking";
+      $data_park = array(
         'fk_customer_id' => $last_id
       );
-
-      return $this->db->insert('driver', $data1);
+      $this->db->insert('driver', $data_park);
       echo "parking registration success";
     }
 
 
-
     $this->db->trans_complete();
+
     if ($this->db->trans_status() === FALSE)
     {
       echo 'Shit not working';
     }
-
-
   }
 
   public function get_customertable_violation_mod()
@@ -531,6 +435,8 @@ class Mainmodel extends CI_model{
     $this->db->insert('violation', $data_violation);
 
   }
+
+
 
 
 
