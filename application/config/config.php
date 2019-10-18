@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //$config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://") .$_SERVER['HTTP_HOST'] . preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])) . '/';
 //$config['base_url'] = 'http://192.168.100.205:8080';
-$config['base_url'] = 'http://0b248767.ngrok.io';
+$config['base_url'] = 'http://d07dddab.ngrok.io/';
 
 
 /*

@@ -73,7 +73,7 @@
 
                 <div class="form-group">
                   <label for="">Violation Details</label>
-                  <textarea class="form-control" rows="3" name="violation[date]"></textarea>
+                  <textarea class="form-control" rows="3" name="violation[desc]"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Violation</button>
                 <button type="reset" class="btn btn-secondary bg-dark">Clear</button>

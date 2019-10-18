@@ -34,9 +34,9 @@ $(document).ready(function(){
 
   $('.dataTables_length').addClass('bs-select');
 
-  $('#violation').submit(function(e){
+  $('#violationform').submit(function(e){
     e.preventDefault();
-    console.log( $('#violation').serializeArray());
+    console.log( $('#violationform').serializeArray());
     $.ajax({
       url : global.settings.url +'/MainController/save_violation_con',
       type : 'POST',

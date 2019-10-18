@@ -38,17 +38,17 @@ class Mainmodel extends CI_model{
   function insert_client($inputData)
   {
     $data1 = array(
-      'Client_type' => $inputData[''],
-      'OFirstname' => $inputData[''],
-      'OMiddlename' => $inputData[''],
-      'OLastname' => $inputData[''],
-      'OAddress' => $inputData[''],
-      'OContactNum' => $inputData[''],
-      'OcFirstname' => $inputData[''],
-      'OcMiddlename' => $inputData[''],
-      'Oclastname' => $inputData[''],
-      'OcAddress' => $inputData[''],
-      'OcContactNum' => $inputData['']
+      'Client_type' => $inputData['Client_type'],
+      'OFirstname' => $inputData['Owner_Firstname'],
+      'OMiddlename' => $inputData['Owner_Middlename'],
+      'OLastname' => $inputData['Owner_Lastname'],
+      'OAddress' => $inputData['Owner_Address'],
+      'OContactNum' => $inputData['Owner_Contact_Num'],
+      'OcFirstname' => $inputData['Occu_Firstname'],
+      'OcMiddlename' => $inputData['Occu_Middlename'],
+      'Oclastname' => $inputData['Occu_Lastname'],
+      'OcAddress' => $inputData['Occu_Address'],
+      'OcContactNum' => $inputData['Occu_Contact_Num']
 
 
     );
@@ -96,14 +96,13 @@ class Mainmodel extends CI_model{
     $data1 = array(
 
 
-      'floor_level' => $inputData[''],
-      'unit_no' => $inputData[''],
-      'tenant_id' => $inputData[''],
-      'date_occupied' => $inputData[''],
-      'Section' => $inputData[''],
-      'sqm' => $inputData[''],
-      'class' => $inputData[''],
-      'dailyfee' => $inputData['']
+      'floor_level' => $inputData['Floor_level'],
+      'unit_no' => $inputData['Stall_Number'],
+      'tenant_id' => $inputData['id'],
+      'date_occupied' => $inputData['date_occupied'],
+      'Section' => $inputData['section'],
+      'sqm' => $inputData['Square_meters'],
+      'dailyfee' => $inputData['Daily_fee']
 
 
     );
@@ -116,9 +115,8 @@ class Mainmodel extends CI_model{
     $data1 = array(
 
       'fk_customer_id' => $inputData['id'],
-      'business_id' => $inputData[''],
-      'business_name' => $inputData[''],
-      'nature_or_business' => $inputData['']
+      'business_id' => $inputData['Business_Id'],
+      'business_name' => $inputData['Business_Name']
     );
     return $this->db->insert('tenant', $data1);
   }
@@ -313,30 +311,30 @@ class Mainmodel extends CI_model{
   public function getcustomerinfopaymod($id)
   {
 
-        $draw = intval($this->input->get("draw"));
-        $start = intval($this->input->get("start"));
-        $length = intval($this->input->get("length"));
-        $this->db->where('customer_id', $id);
-        $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
-        $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
-        $query = $this->db->get('transaction');
-        $data = [];
-        foreach ($query->result() as $r) {
-          $data[] = array(
-            'c_info_OR' => $r->or_number,
-            'c_info_nature' => $r->payment_nature_name,
-            'c_info_amount'=> $r->payment_amount,
-            'c_info_date'=> $r->payment_datetime
-          );
-        }
-        $result = array(
-          "draw" => $draw,
-          "recordsTotal" => $query->num_rows(),
-          "recordsFiltered" => $query->num_rows(),
-          "data" => $data
-        );
-        return $result;
-        echo "hello";
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->where('customer_id', $id);
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
+    $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('transaction');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'c_info_OR' => $r->or_number,
+        'c_info_nature' => $r->payment_nature_name,
+        'c_info_amount'=> $r->payment_amount,
+        'c_info_date'=> $r->payment_datetime
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+    echo "hello";
   }
 
 
@@ -344,7 +342,6 @@ class Mainmodel extends CI_model{
 
   public function saveTransact($inputData)
   {
-    echo 'We in this Shit Bruv';
     $data_transaction = array(
       'payment_nature_id' => $inputData['payment_type'],
       'payment_amount' => $inputData['cash_tendered'],
@@ -403,29 +400,69 @@ class Mainmodel extends CI_model{
       'business_id' => $inputData['Owner_Firstname'],
       'business_name' => $inputData['Owner_Middlename'],
       'fk_customer_id' => $last_id
+
+
     );
 
 
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
+      $data1 = array(
 
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 'tenant') {
-      echo 'we in this shit bruv';
 
-
-      $this->db->insert('tenant', $data_tenant);
-      $id_tenant = $this->db->insert_id();
-      echo $id_tenant;
-
-      $data_stall = array(
         'floor_level' => $inputData['Floor_level'],
         'unit_no' => $inputData['Stall_Number'],
-        'tenant_id' => $id_tenant,
+        'tenant_id' => $inputData['id'],
         'date_occupied' => $inputData['date_occupied'],
         'Section' => $inputData['section'],
         'sqm' => $inputData['Square_meters'],
         'dailyfee' => $inputData['Daily_fee']
+
+
       );
-      $this->db->insert('stall', $data_stall);
+
+      return $this->db->insert('stall', $data1);
+      $data1 = array(
+        'fk_customer_id' => $last_id,
+        'business_id' => $inputData['Business_Id'],
+        'business_name' => $inputData['Business_Name']
+      );
+      return $this->db->insert('tenant', $data1);
     }
+
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
+      $data1 = array(
+        'fk_customer_customer_id' => $last_id
+      );
+
+      return $this->db->insert('ambulant', $data1);
+
+      $data2 = array(
+        'location' => $inputData['Location'],
+        'location_no' => $inputData['Location_num']
+      );
+
+      return $this->db->insert('ambulant_unit', $data2);
+      echo "ambulant registration success";
+    }
+
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 2) {
+      $data1 = array(
+        'fk_customer_id' => $last_id
+      );
+      return $this->db->insert('delivery', $data1);
+      echo "delivery registration success";
+    }
+
+    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 3) {
+      $data1 = array(
+        'fk_customer_id' => $last_id
+      );
+
+      return $this->db->insert('driver', $data1);
+      echo "parking registration success";
+    }
+
+
 
     $this->db->trans_complete();
     if ($this->db->trans_status() === FALSE)
@@ -483,11 +520,11 @@ class Mainmodel extends CI_model{
   public function save_violation_mod($inputData)
   {
     $data_violation = array(
-      'description' => $inputData['payment_type'],
+      'description' => $inputData['desc'],
       'date_occured' => $inputData['date'],
       'stall_id' => $inputData['stall_id_f'],
       'stall_stall_id' => $inputData['stall_id_f'],
-      'name' => $inputData['owner_f']
+      'name' => $inputData['name']
     );
 
 
