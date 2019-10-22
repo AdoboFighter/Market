@@ -49,7 +49,7 @@ $(document).ready(function(){
 
 
 function testambval() {
-  console.log(stall_num);
+$('#success').modal('show');
 }
 
 function clienttype() {
@@ -116,8 +116,6 @@ $(document).ready(function(){
 
 
   $('#sameas').on('change',function(){
-
-
     if( $(this).is(':checked') ){
       updatefield();
     }else{
@@ -153,6 +151,7 @@ $(document).ready(function(){
       dataType : 'json',
       success : function(res){
         console.log(res);
+        $('#success').modal();
       },
       error : function(xhr){
         console.log(xhr.responseText);

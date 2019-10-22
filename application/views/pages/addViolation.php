@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content ">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
@@ -10,9 +10,9 @@
 
 
   <!-- pagecontents dito mo lagay  -->
-  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Add Violation</h5>
+  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Client List</h5>
 
-  <div class="container justify-content-center">
+  <div class="container justify-content-center ">
 
     <!-- <div class="card m-3"> -->
     <div class="card-body">
@@ -35,10 +35,8 @@
                 </tbody>
               </table>
             </div>
-
+            <h5 class="card-header text-center bg-dark text-white mb-2 container justify-content-center mb-2">Add Violation</h5>
             <div class="col-6 form-group">
-
-
               <div class="form-group">
                 <h5 class="font-weight-bold">Details</h5>
                 <label for="">Stall No</label>
@@ -79,6 +77,24 @@
                 <button type="reset" class="btn btn-secondary bg-dark">Clear</button>
               </div>
             </div>
+          <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">View Violations</h5>
+            <table class="table p-2" id="getviolationtable" >
+              <thead>
+                <tr>
+                  <td class="font-weight-bold" >description</td>
+                  <td class="font-weight-bold" >date occurred</td>
+
+                  <td class="font-weight-bold" >status</td>
+                  <td class="font-weight-bold" >name</td>
+                  <!-- <td class="font-weight-bold" >Delete</td> -->
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+
+
           </div>
         </div>
       </form>
@@ -87,39 +103,39 @@
 
   <!-- <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">View Violation</h5>
   <div class="card m-3">
-    <div class="card-body">
-      <form class="p-3" id="saveclient">
-        <div class="span6" style="float: none; margin: 0 auto;">
-          <div class="row">
+  <div class="card-body">
+  <form class="p-3" id="saveclient">
+  <div class="span6" style="float: none; margin: 0 auto;">
+  <div class="row">
 
-            <div class="col form-group">
-              <table class="table p-2"id="view_vio_tab" >
-                <thead>
-                  <tr>
+  <div class="col form-group">
+  <table class="table p-2"id="view_vio_tab" >
+  <thead>
+  <tr>
 
-                    <td class="font-weight-bold" >stall No.</td>
-                    <td class="font-weight-bold" >Name</td>
-                    <td class="font-weight-bold" >Violation</td>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-            <div class="col-6">
-            <div class="p-3">
-            <h5>Violation Details</h5>
+  <td class="font-weight-bold" >stall No.</td>
+  <td class="font-weight-bold" >Name</td>
+  <td class="font-weight-bold" >Violation</td>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div class="col-6">
+<div class="p-3">
+<h5>Violation Details</h5>
 
-            <div class="form-group">
-            <label for="">Violation Details</label>
-            <textarea class="form-control" rows="5"></textarea>
-          </div>
+<div class="form-group">
+<label for="">Violation Details</label>
+<textarea class="form-control" rows="5"></textarea>
+</div>
 
-          <button type="submit" class="btn btn-danger">Remove Violation</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<button type="submit" class="btn btn-danger">Remove Violation</button>
+</div>
+</div>
+</div>
+</div>
 
 </div>
 </div> -->

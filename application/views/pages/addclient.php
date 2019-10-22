@@ -177,19 +177,22 @@
 
           </form>
 
-          <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content p-3">
-                <h5>Client Added</h5>
-              </div>
-            </div>
-          </div>
+
 
         </div>
       </div>
     </div>
   </div>
 
+</div>
+
+
+<div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>Client Added</h5>
+    </div>
+  </div>
 </div>
 
 

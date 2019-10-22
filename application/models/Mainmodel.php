@@ -377,6 +377,48 @@ class Mainmodel extends CI_model{
     }
   }
 
+  public function insert_parking($inputData)
+  {
+
+    $data_customer = array(
+      'firstname' => $inputData['Owner_Firstname'],
+      'middlename' => $inputData['Owner_Middlename'],
+      'lastname' => $inputData['Owner_Lastname'],
+      'address' => $inputData['Owner_Address'],
+      'contact_number' => $inputData['Owner_Contact_Num'],
+      'customer_type' => 3
+    );
+    $this->db->trans_start();
+
+    $this->db->insert('customer', $data_customer);
+    $last_id = $this->db->insert_id();
+
+    $data_park = array(
+      'fk_customer_id' => $last_id
+    );
+    $this->db->insert('driver', $data_park);
+    $last_id_driver = $this->db->insert_id();
+
+    $data_parklot = array(
+      'driver_id' => $last_id_driver,
+      'lot_no' => $inputData['park_lot']
+    );
+    $this->db->insert('parking_lot', $data_parklot);
+    $this->db->trans_complete();
+
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo 'Shit not working';
+    }
+
+  }
+
+  public function insert_ambulant($inputData)
+  {
+    
+  }
+
   public function get_customertable_violation_mod()
   {
 
@@ -400,6 +442,38 @@ class Mainmodel extends CI_model{
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function get_violation_data_mod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $this->db->join('tenant', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    // $this->db->join('stall', 'violation.stall_stall_id=stall.stall_id', 'inner');
+    $query = $this->db->get('violation');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'description' => $r->description,
+        'date_occured' => $r->date_occured,
+        'status'=> $r->status,
+        'name'=> $r->name
+        // 'btn'=>
+        //
+        // '<div class="">
+        // <button type="button" onclick="fetchdata('.$r->violation_id.'); " class="btn btn-sm btn-info ml-3 btn-danger" name="button" id="loadcus"></button>
+        // </div>'
       );
     }
     $result = array(

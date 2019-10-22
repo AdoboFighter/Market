@@ -20,12 +20,8 @@ class MainController extends CI_Controller{
 
   public function saveclient()
   {
-
     $inputData = $this->input->post('client');
     echo json_encode(   $this->model->insert_client($inputData)) ;
-
-
-
   }
 
 
@@ -55,8 +51,8 @@ class MainController extends CI_Controller{
   }
 
   public function saveparking(){
-    $inputData = $this->input->post('data');
-    echo json_encode(   $this->model->insert_parking($inputData)) ;
+    $inputData = $this->input->post('customer');
+    echo json_encode($this->model->insert_parking($inputData)) ;
   }
 
   public function getTransact()
@@ -109,7 +105,7 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->save_customer($inputData)) ;
   }
 
- 
+
   public function getcustomerinfocon()
   {
     $id = $this->input->post('id');
@@ -126,6 +122,12 @@ class MainController extends CI_Controller{
   {
     $id = $this->input->post('id');
     echo json_encode($this->model->get_customertable_violation_mod($id));
+  }
+
+  public function get_violation_data_con()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->get_violation_data_mod($id));
   }
 
 

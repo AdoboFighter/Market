@@ -32,6 +32,26 @@ $(document).ready(function(){
     }]
   });
 
+  $('#getviolationtable').DataTable({
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/get_violation_data_con',
+      dataSrc : 'data'
+    },
+    "columns" : [{
+      "data" : "description"
+    },
+    {
+      "data" : "date_occured"
+    },
+
+    {
+      "data" : "status"
+    },
+    {
+      "data" : "name"
+    }]
+  });
+
   $('.dataTables_length').addClass('bs-select');
 
   $('#violationform').submit(function(e){
