@@ -10,7 +10,9 @@ class GetTransaction extends CI_Controller {
     public function getTrns() {
         $res = array();
         $data = json_decode(file_get_contents('php://input'));
-        $query = "CALL POS_getTotalDailyTransactionList('$data->user', '$data->date')";
+        $query = "SELECT or_number AS 'Receipt', payment_amount AS 'Payments' FROM `market_db`.`transaction`
+        WHERE collector = '$data->user'
+        AND DATE_FORMAT(payment_datetime, '%m/%d/%Y') = '$data->date'";
         $q = $this->db->query($query)->result();
         $res['LIST_TRNS'] = $q;
         $this->db->close();

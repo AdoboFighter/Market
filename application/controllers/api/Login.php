@@ -12,7 +12,7 @@ class Login extends CI_Controller {
         $resObj = new stdClass();
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $query = "CALL POS_AuthLogin('$username')";
+        $query = "SELECT password FROM market_db.user WHERE username = '$username' COLLATE utf8_bin";
         $res = $this->db->query($query)->result();
         $this->db->close();
         if(count($res) > 0){
