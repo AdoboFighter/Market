@@ -214,6 +214,39 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function getPayAmbulantTableMod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_ambu_location' => $r->sqm,
+        'pay_ambu_locnum'=> $r->dailyfee,
+        'pay_ambu_name'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname 
+        // 'btn'=>
+        //
+        // '<div class="">
+        // <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        // </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
   public function getcustomerinfomod($id)
   {
     $this->db->where('fk_customer_id', $id);
@@ -231,7 +264,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->where('customer_id', $id);
+    $this->db->where('customer.customer_id', $id);
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
     $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
     $query = $this->db->get('transaction');
@@ -253,6 +286,8 @@ class Mainmodel extends CI_model{
     return $result;
     echo "hello";
   }
+
+
 
 
 

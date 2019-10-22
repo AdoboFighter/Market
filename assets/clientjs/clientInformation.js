@@ -76,33 +76,33 @@ function fetchdata(id){
       $('#occu_cn').val(res.ao_cn);
 
 
-      $('#pay_hist_tab').DataTable({
-        destroy: true,
-        "ajax" : {
-          "url" : global.settings.url + '/MainController/getcustomerinfocon',
-          dataSrc : 'data',
-          data: {id: id},
-          type: 'POST',
-          dataType:'JSON'
-        },
-        "columns" : [
-        {
-          "data" : "c_info_OR"
-        },
-
-        {
-          "data" : "c_info_nature"
-        },
-
-
-        {
-          "data" : "c_info_amount"
-        },
-
-        {
-          "data" : "c_info_date"
-        }]
-      });
+      // $('#pay_hist_tab').DataTable({
+      //   destroy: true,
+      //   "ajax" : {
+      //     "url" : global.settings.url + '/MainController/getcustomerinfocon',
+      //     dataSrc : 'data',
+      //     data: {id: id},
+      //     type: 'POST',
+      //     dataType:'JSON'
+      //   },
+      //   "columns" : [
+      //   {
+      //     "data" : "c_info_OR"
+      //   },
+      //
+      //   {
+      //     "data" : "c_info_nature"
+      //   },
+      //
+      //
+      //   {
+      //     "data" : "c_info_amount"
+      //   },
+      //
+      //   {
+      //     "data" : "c_info_date"
+      //   }]
+      // });
 
 
 

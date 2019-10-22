@@ -73,6 +73,10 @@ class MainController extends CI_Controller{
   {
     echo json_encode($this->model->getcustomertable());
   }
+  public function getPayAmbulantTableCon()
+  {
+    echo json_encode($this->model->getPayAmbulantTableMod());
+  }
 
 
 

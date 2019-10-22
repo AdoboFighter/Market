@@ -335,6 +335,34 @@ CONTENT STYLE
 }
 
 
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #bee2f9;
+	background-color:transparent;
+	border:4px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#14396a;
+	font-family:Arial;
+	font-size:40px;
+	font-weight:bold;
+	padding:32px 76px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+  height: 200px;
+  width: 400px;
+}
+.myButton:hover {
+	background-color:transparent;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
 </style>
 
 <!-- Scrollbar Custom CSS -->
@@ -386,10 +414,10 @@ CONTENT STYLE
     </li>
 
     <li>
-      <a href="<?php echo base_url().'pages/view/payment' ?>">Payment</a>
+      <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
     </li>
 
-    
+
 
     <!-- <li>
     <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
