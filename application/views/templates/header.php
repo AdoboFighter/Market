@@ -389,6 +389,8 @@ CONTENT STYLE
       <a href="<?php echo base_url().'pages/view/payment' ?>">Payment</a>
     </li>
 
+    
+
     <!-- <li>
     <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
   </li> -->

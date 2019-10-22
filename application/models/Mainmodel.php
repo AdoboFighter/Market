@@ -302,7 +302,7 @@ class Mainmodel extends CI_model{
       'lastname' => $inputData['Owner_Lastname'],
       'address' => $inputData['Owner_Address'],
       'contact_number' => $inputData['Owner_Contact_Num'],
-      'customer_type' => $inputData['Client_type'],
+      'customer_type' => 0,
       'aofirstname' => $inputData['Occu_Firstname'],
       'aomiddlename' => $inputData['Occu_Middlename'],
       'aolastname' => $inputData['Occu_Lastname'],
@@ -314,10 +314,7 @@ class Mainmodel extends CI_model{
 
     $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
-    echo "hello";
 
-    if(isset($inputData['Client_type']) && $inputData['Client_type'] == 0) {
-      echo "tenant";
       $data_tenant = array(
         'business_id' => $inputData['Owner_Firstname'],
         'business_name' => $inputData['Owner_Middlename'],
@@ -337,36 +334,6 @@ class Mainmodel extends CI_model{
       );
 
       $this->db->insert('stall', $data_stall);
-
-    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
-
-      $data1 = array(
-        'fk_customer_customer_id' => $last_id
-      );
-      $this->db->insert('ambulant', $data1);
-
-      $data2 = array(
-        'location' => $inputData['Location'],
-        'location_no' => $inputData['Location_num']
-      );
-      $this->db->insert('ambulant_unit', $data2);
-      echo "ambulant registration success";
-
-    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 2) {
-      echo "delivery";
-      $data_delivery = array(
-        'fk_customer_id' => $last_id
-      );
-      $this->db->insert('delivery', $data_delivery);
-      echo "delivery registration success";
-    }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 3) {
-      echo "parking";
-      $data_park = array(
-        'fk_customer_id' => $last_id
-      );
-      $this->db->insert('driver', $data_park);
-      echo "parking registration success";
-    }
 
 
     $this->db->trans_complete();
@@ -405,8 +372,6 @@ class Mainmodel extends CI_model{
     );
     $this->db->insert('parking_lot', $data_parklot);
     $this->db->trans_complete();
-
-
     if ($this->db->trans_status() === FALSE)
     {
       echo 'Shit not working';
