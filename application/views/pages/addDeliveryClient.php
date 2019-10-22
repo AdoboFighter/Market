@@ -10,13 +10,13 @@
 
 
   <div class="container justify-content-center">
-    <h5 class="card-header text-center bg-primary text-white bluegrads">Add Ambulant Unit</h5>
+    <h5 class="card-header text-center bg-primary text-white bluegrads">Add Delivery Unit</h5>
 
     <div class="card m-2">
       <div class="container">
-        <form class="p-3" id="saveAmb" name="savePark">
+        <form class="p-3" id="saveDelivery">
           <div class="row">
-            <div class="col-6">
+            <div class="col-12">
               <div class="span6" style="float: none; margin: 0 auto;">
                 <div class="p-3">
 
@@ -47,18 +47,9 @@
               </div>
             </div>
 
-            <div class="col-6">
-              <div class="form-group">
-                <label for="">Location</label>
-                <input type="text" class="form-control" id="amlocation" name="customer[Location]">
-                <span id="" class="text-danger"></span>
-              </div>
-              <div class="form-group">
-                <label for="">Location Number</label>
-                <input type="text" class="form-control" id="amnum" name="customer[Location_num]">
-                <span id="" class="text-danger"></span>
-              </div>
-            </div>
+            <!-- <div class="col-6">
+
+            </div> -->
           </form>
 
         </div>

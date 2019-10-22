@@ -336,31 +336,31 @@ class Mainmodel extends CI_model{
         'dailyfee' => $inputData['Daily_fee']
       );
 
-       $this->db->insert('stall', $data_stall);
+      $this->db->insert('stall', $data_stall);
 
     }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 1) {
-        echo "ambulant";
+
       $data1 = array(
         'fk_customer_customer_id' => $last_id
       );
-       $this->db->insert('ambulant', $data1);
+      $this->db->insert('ambulant', $data1);
 
       $data2 = array(
         'location' => $inputData['Location'],
         'location_no' => $inputData['Location_num']
       );
-       $this->db->insert('ambulant_unit', $data2);
+      $this->db->insert('ambulant_unit', $data2);
       echo "ambulant registration success";
 
     }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 2) {
-        echo "delivery";
+      echo "delivery";
       $data_delivery = array(
         'fk_customer_id' => $last_id
       );
-       $this->db->insert('delivery', $data_delivery);
+      $this->db->insert('delivery', $data_delivery);
       echo "delivery registration success";
     }elseif (isset($inputData['Client_type']) && $inputData['Client_type'] == 3) {
-        echo "parking";
+      echo "parking";
       $data_park = array(
         'fk_customer_id' => $last_id
       );
@@ -414,9 +414,67 @@ class Mainmodel extends CI_model{
 
   }
 
+  public function insert_delivery($inputData)
+  {
+
+    $data_customer = array(
+      'firstname' => $inputData['Owner_Firstname'],
+      'middlename' => $inputData['Owner_Middlename'],
+      'lastname' => $inputData['Owner_Lastname'],
+      'address' => $inputData['Owner_Address'],
+      'contact_number' => $inputData['Owner_Contact_Num'],
+      'customer_type' => 2
+    );
+    $this->db->trans_start();
+    $this->db->insert('customer', $data_customer);
+    $last_id = $this->db->insert_id();
+
+    $data_delivery = array(
+      'fk_customer_id' => $last_id
+    );
+    $this->db->insert('delivery', $data_delivery);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo 'Shit not working';
+    }
+
+  }
+
+
   public function insert_ambulant($inputData)
   {
-    
+    $data_customer = array(
+      'firstname' => $inputData['Owner_Firstname'],
+      'middlename' => $inputData['Owner_Middlename'],
+      'lastname' => $inputData['Owner_Lastname'],
+      'address' => $inputData['Owner_Address'],
+      'contact_number' => $inputData['Owner_Contact_Num'],
+      'customer_type' => 1
+    );
+    $this->db->trans_start();
+    $this->db->insert('customer', $data_customer);
+    $last_id = $this->db->insert_id();
+    $data1 = array(
+      'fk_customer_customer_id' => $last_id
+    );
+    $this->db->insert('ambulant', $data1);
+    $ambulant_id = $this->db->insert_id();
+
+    $data2 = array(
+      'location' => $inputData['Location'],
+      'location_no' => $inputData['Location_num'],
+      'ambulant_id' => $ambulant_id
+    );
+    $this->db->insert('ambulant_unit', $data2);
+    $this->db->trans_complete();
+
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo 'Shit not working';
+    }
+
   }
 
   public function get_customertable_violation_mod()

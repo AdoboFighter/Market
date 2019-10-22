@@ -1,12 +1,12 @@
 
 $(document).ready(function(){
-  $('#saveAmb').submit(function(e){
+  $('#saveDelivery').submit(function(e){
   e.preventDefault();
-  console.log( $('#saveAmb').serializeArray() );
+  console.log( $('#saveDelivery').serializeArray() );
 
 
   $.ajax({
-       url : global.settings.url +'/MainController/saveambulant',
+       url : global.settings.url +'/MainController/savedelivery',
        type : 'POST',
        data : $(this).serialize(),
        dataType : 'json',

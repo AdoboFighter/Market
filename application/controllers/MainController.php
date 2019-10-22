@@ -10,13 +10,10 @@ class MainController extends CI_Controller{
 
   }
 
-
-
-  public function saveSysUser(){
-    $inputData = $this->input->post('sysUser');
-    echo json_encode(   $this->model->insert_sysUser($inputData)) ;
-
-  }
+// add client module
+// add client module
+// add client module
+// add client module
 
   public function saveclient()
   {
@@ -29,23 +26,13 @@ class MainController extends CI_Controller{
   public function save_tenant()
   {
     $inputData = $this->input->post('data');
-    echo json_encode(   $this->model->insert_stall($inputData)) ;
+    echo json_encode( $this->model->insert_stall($inputData)) ;
   }
 
 
-
-  public function saveambulant()
-  {
-    $inputData = $this->input->post('data');
-
-    // $inputdata2 = $this->input->post('ambulant');
-    // $data = array_merge($inputData , $inputdata2 );
-    echo json_encode(  $this->model->insert_ambulant($inputData)  ) ;
-
-  }
 
   public function savedelivery(){
-    $inputData = $this->input->post('data');
+    $inputData = $this->input->post('customer');
     echo json_encode(   $this->model->insert_delivery($inputData)) ;
 
   }
@@ -54,6 +41,16 @@ class MainController extends CI_Controller{
     $inputData = $this->input->post('customer');
     echo json_encode($this->model->insert_parking($inputData)) ;
   }
+
+  public function saveambulant(){
+    $inputData = $this->input->post('customer');
+    echo json_encode($this->model->insert_ambulant($inputData)) ;
+  }
+
+// add client module
+// add client module
+// add client module
+// add client module
 
   public function getTransact()
   {
@@ -142,6 +139,14 @@ class MainController extends CI_Controller{
     $inputData = $this->input->post('violation');
     echo json_encode($this->model->save_violation_mod($inputData)) ;
   }
+
+
+    public function saveSysUser()
+    {
+      $inputData = $this->input->post('sysUser');
+      echo json_encode(   $this->model->insert_sysUser($inputData));
+    }
+
 
 
 }
