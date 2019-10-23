@@ -10,19 +10,19 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
-  <form id="ambulantPayment">
+  <form id="parkpayment">
     <div class="container justify-content-center">
       <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
       <div class="card m-3">
         <div class="row p-3">
           <div class="col-12">
-            <table class="table table-striped table-bordered" id="AmbulantTable">
+            <table class="table table-striped table-bordered" id="ParkingTable">
               <thead>
                 <tr>
                   <td>Customer ID</td>
+                  <td>Driver_id</td>
+                  <td>Lot no</td>
                   <td>name</td>
-                  <td>Location</td>
-                  <td>Location Number</td>
                   <td>Payment</td>
                 </tr>
               </thead>
@@ -77,22 +77,17 @@
                 <label>customer ID</label>
                 <input type="text" class="form-control" name="" id="cus_id" >
               </div>
-
+              <div class="mb-2">
+                <label>Delivery ID</label>
+                <input type="text" class="form-control" name="" id="del_id"  >
+              </div>
 
               <div class="mb-2">
                 <label>Name</label>
                 <input type="text" class="form-control" name="" id="name" >
               </div>
 
-              <div class="mb-2">
-                <label>Location</label>
-                <input type="text" class="form-control" name="" id="location"  >
-              </div>
 
-              <div class="mb-2">
-                <label>Location number</label>
-                <input type="text" class="form-control" name="" id="Location_num">
-              </div>
             </div>
             <div class="col-6">
               <div class="mb-2 form-group" id="">
@@ -113,39 +108,27 @@
                   <option value="4015">Violation</option>
                 </select>
               </div>
-
               <div class="mb-2">
                 <label>O.R</label>
                 <input type="text" class="form-control" name="" id="">
               </div>
-
-
               <div class="mb-2">
                 <label>Amount to pay</label>
                 <input type="text" class="form-control" name="" id="">
               </div>
-
               <div class="mb-2">
                 <label>Cash tendered</label>
                 <input type="text" class="form-control" name="" id="">
               </div>
-
-
               <div class="mb-2">
                 <label>Payment Effectivity</label>
                 <input type="date" class="form-control" name="" id="">
               </div>
-
               <div class="mb-2">
                 <button type="Submit"  class="btn btn-primary"  >Submit and print</button>
               </div>
-
-
-
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

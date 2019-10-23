@@ -151,6 +151,35 @@ class MainController extends CI_Controller{
       echo json_encode(   $this->model->insert_sysUser($inputData));
     }
 
+    public function getambuinfopay()
+    {
+      $id = $this->input->post('id');
+      echo json_encode($this->model->getambuinfopay($id));
+    }
+
+    public function getdeliverypay()
+    {
+      $id = $this->input->post('id');
+      echo json_encode($this->model->getdeliverypay($id));
+    }
+
+    public function getdeliverypaytablecon()
+    {
+      echo json_encode($this->model->getdeliverypaytablemod());
+    }
+
+    public function getparkingpay()
+    {
+      $id = $this->input->post('id');
+      echo json_encode($this->model->getparkingpay($id));
+    }
+
+    public function getparkingpaytablecon()
+    {
+      echo json_encode($this->model->getparkingpaytablemod());
+    }
+
+
 
 
 }

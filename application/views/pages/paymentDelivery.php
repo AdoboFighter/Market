@@ -16,13 +16,12 @@
       <div class="card m-3">
         <div class="row p-3">
           <div class="col-12">
-            <table class="table table-striped table-bordered" id="AmbulantTable">
+            <table class="table table-striped table-bordered" id="DeliveryTable">
               <thead>
                 <tr>
                   <td>Customer ID</td>
+                  <td>Delivery ID</td>
                   <td>name</td>
-                  <td>Location</td>
-                  <td>Location Number</td>
                   <td>Payment</td>
                 </tr>
               </thead>
@@ -77,22 +76,17 @@
                 <label>customer ID</label>
                 <input type="text" class="form-control" name="" id="cus_id" >
               </div>
-
+              <div class="mb-2">
+                <label>Delivery ID</label>
+                <input type="text" class="form-control" name="" id="del_id"  >
+              </div>
 
               <div class="mb-2">
                 <label>Name</label>
                 <input type="text" class="form-control" name="" id="name" >
               </div>
 
-              <div class="mb-2">
-                <label>Location</label>
-                <input type="text" class="form-control" name="" id="location"  >
-              </div>
 
-              <div class="mb-2">
-                <label>Location number</label>
-                <input type="text" class="form-control" name="" id="Location_num">
-              </div>
             </div>
             <div class="col-6">
               <div class="mb-2 form-group" id="">
