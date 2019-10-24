@@ -23,7 +23,6 @@
                   <td>no</td>
                   <td>name</td>
                   <td>address</td>
-
                   <td>Action</td>
                 </tr>
               </thead>
@@ -99,7 +98,6 @@
                 <option value="4012">Privillage Market Fee</option>
                 <option value="4013">Others</option>
                 <option value="4014">Certification</option>
-                <option value="4015">Violation</option>
               </select>
             </div>
             <div class="mb-2 form-group" id="payor">
