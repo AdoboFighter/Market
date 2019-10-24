@@ -622,7 +622,8 @@ class Mainmodel extends CI_model{
   public function getparkingpay($id)
   {
     $this->db->where('fk_customer_id', $id);
-    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
     $query = $this->db->get('customer');
     return $query->result();
     echo $query;
@@ -636,7 +637,7 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
 
     $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
-  $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {

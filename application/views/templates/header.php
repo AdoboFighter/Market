@@ -17,7 +17,7 @@
   DEMO STYLE
   */
 
-  
+
 
   @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
@@ -450,7 +450,7 @@ CONTENT STYLE
   </li>
 
   <li>
-    <a href="<?php echo base_url().'pages/view/clientInformation' ?>">Client Information</a>
+    <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
   </li>
 
   <li>

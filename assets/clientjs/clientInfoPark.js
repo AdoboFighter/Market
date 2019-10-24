@@ -3,7 +3,7 @@ var datable;
 $(document).ready(function(){
 
 
-  $('#ParkingTable').DataTable({
+  $('#parkTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getparkingpaytablecon',
       dataSrc : 'data'
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
 
   function fetchdata(id){
-    $('#AmbuPay').modal("show");
+
     console.log(id);
     $.ajax({
       url: global.settings.url + '/MainController/getparkingpay',
@@ -47,10 +47,15 @@ $(document).ready(function(){
         console.log(res);
         res = res[0];
 
-        $('#cus_id').val(res.customer_id );
-        $('#name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+        $('#park_fn').val(res.firstname );
+        $('#park_mn').val(res.middlename);
+        $('#park_ln').val(res.lastname);
+        $('#park_add').val(res.address);
+        $('#park_cn').val(res.contact_number);
         $('#driver_id').val(res.driver_id);
         $('#park_lot').val(res.lot_no);
+        // $('#last_pay').val(res.payment_datetime);
+        // diffdates();
       },
       error: function(xhr){
         console.log(xhr.responseText);

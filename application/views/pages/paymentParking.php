@@ -78,8 +78,13 @@
                 <input type="text" class="form-control" name="" id="cus_id" >
               </div>
               <div class="mb-2">
-                <label>Delivery ID</label>
-                <input type="text" class="form-control" name="" id="del_id"  >
+                <label>Driver ID</label>
+                <input type="text" class="form-control" name="" id="driver_id"  >
+              </div>
+
+              <div class="mb-2">
+                <label>Parking lot</label>
+                <input type="text" class="form-control" name="" id="park_lot"  >
               </div>
 
               <div class="mb-2">

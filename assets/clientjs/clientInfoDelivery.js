@@ -3,9 +3,9 @@ var datable;
 $(document).ready(function(){
 
 
-  $('#ParkingTable').DataTable({
+  $('#DeliveryTable').DataTable({
     "ajax" : {
-      "url" : global.settings.url + '/MainController/getparkingpaytablecon',
+      "url" : global.settings.url + '/MainController/getdeliverypaytablecon',
       dataSrc : 'data'
     },
     "columns" : [
@@ -13,15 +13,10 @@ $(document).ready(function(){
         "data" : "id"
       },
       {
-        "data" : "pay_driver_id"
+        "data" : "pay_delivery_id"
       },
-
       {
-        "data" : "pay_parking_lot"
-      },
-
-      {
-        "data" : "pay_parking_name"
+        "data" : "pay_delivery_name"
       },
 
       {
@@ -37,7 +32,7 @@ $(document).ready(function(){
     $('#AmbuPay').modal("show");
     console.log(id);
     $.ajax({
-      url: global.settings.url + '/MainController/getparkingpay',
+      url: global.settings.url + '/MainController/getdeliverypay',
       type: 'POST',
       data: {
         id: id
@@ -47,10 +42,13 @@ $(document).ready(function(){
         console.log(res);
         res = res[0];
 
-        $('#cus_id').val(res.customer_id );
-        $('#name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-        $('#driver_id').val(res.driver_id);
-        $('#park_lot').val(res.lot_no);
+        $('#del_fn').val(res.firstname );
+        $('#del_mn').val(res.middlename);
+        $('#del_ln').val(res.lastname);
+        $('#del_add').val(res.address);
+        $('#del_cn').val(res.contact_number);
+        $('#del_id').val(res.delivery_id);
+
       },
       error: function(xhr){
         console.log(xhr.responseText);
