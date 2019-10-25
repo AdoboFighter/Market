@@ -498,7 +498,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add Violation</button>
         </div>'
       );
     }
@@ -517,21 +517,22 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    // $this->db->join('tenant', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    // $this->db->join('stall', 'violation.stall_stall_id=stall.stall_id', 'inner');
-    $query = $this->db->get('violation');
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'description' => $r->description,
         'date_occured' => $r->date_occured,
         'status'=> $r->status,
-        'name'=> $r->name
-        // 'btn'=>
-        //
-        // '<div class="">
-        // <button type="button" onclick="fetchdata('.$r->violation_id.'); " class="btn btn-sm btn-info ml-3 btn-danger" name="button" id="loadcus"></button>
-        // </div>'
+        'name'=> $r->name,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->violation_id.'); " class="btn btn-sm btn-info ml-3 btn-danger" name="button" id="loadcus">Resolve</button>
+        </div>'
       );
     }
     $result = array(

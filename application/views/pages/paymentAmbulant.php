@@ -67,28 +67,20 @@
       <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
         <div class="modal-content p-2">
           <h5>Ambulant Payment</h5>
-
           <div class="row">
             <div class="col-6">
-
-
-
               <div class="mb-2">
                 <label>customer ID</label>
                 <input type="text" class="form-control" name="" id="cus_id" >
               </div>
-
-
               <div class="mb-2">
                 <label>Name</label>
                 <input type="text" class="form-control" name="" id="name" >
               </div>
-
               <div class="mb-2">
                 <label>Location</label>
                 <input type="text" class="form-control" name="" id="location"  >
               </div>
-
               <div class="mb-2">
                 <label>Location number</label>
                 <input type="text" class="form-control" name="" id="Location_num">
@@ -110,10 +102,8 @@
                   <option value="4012">Privillage Market Fee</option>
                   <option value="4013">Others</option>
                   <option value="4014">Certification</option>
-      
                 </select>
               </div>
-
               <div class="mb-2">
                 <label>O.R</label>
                 <input type="text" class="form-control" name="" id="">

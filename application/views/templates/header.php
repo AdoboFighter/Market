@@ -420,7 +420,11 @@ CONTENT STYLE
     </li>
 
     <li>
-      <a href="<?php echo base_url().'pages/view/addViolation' ?>">Violation</a>
+      <a href="<?php echo base_url().'pages/view/addViolation' ?>">Add Violation</a>
+    </li>
+
+    <li>
+      <a href="<?php echo base_url().'pages/view/removeViolation' ?>">Violations</a>
     </li>
 
     <li>
