@@ -546,10 +546,11 @@ class Mainmodel extends CI_model{
 
   public function get_customer_info_vio($id)
   {
-    $this->db->where('fk_customer_id', $id);
-    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->where('violation_id', $id);
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $query = $this->db->get('tenant');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
     return $query->result();
 
   }
@@ -662,6 +663,41 @@ class Mainmodel extends CI_model{
     );
     return $result;
   }
+
+
+    public function resolveViolationMod($inputData)
+    {
+      $data_transaction = array(
+        'payment_nature_id' => '4016',
+        'payment_amount' => $inputData['cash_tendered'],
+        'customer_id' => $inputData['customer_id'],
+        'or_number' => $inputData['OR'],
+        'effectivity' => $inputData['payment_effect']
+      );
+
+      $violation_id = array(
+        'violation_id' => $inputData['violation_id_f']
+      );
+
+
+      $this->db->trans_start();
+
+      // $this->db->insert('transaction', $data_transaction);
+
+      $paid = array(
+        'status' => "PAID"
+      );
+
+      $this->db->where($violation_id);
+      $this->db->update('violation', $paid);
+
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE)
+      {
+        echo '<script>console.log("Shit not working")</script>';
+      }
+     }
 
 
 

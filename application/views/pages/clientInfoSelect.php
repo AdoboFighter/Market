@@ -17,7 +17,7 @@
         <form class="p-3">
           <div class="row">
             <div class="col-6 p-3 mt-2">
-              <a href="<?php echo base_url().'pages/view/clientInformation.php' ?>" class="myButton">Tenant</a>
+              <a href="<?php echo base_url().'pages/view/clientInformation' ?>" class="myButton">Tenant</a>
             </div>
             <div class="col-6 p-3 mt-2">
               <a href="<?php echo base_url().'pages/view/clientInfoAmbu' ?>" class="myButton">Ambulant</a>

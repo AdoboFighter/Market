@@ -179,6 +179,12 @@ class MainController extends CI_Controller{
       echo json_encode($this->model->getparkingpaytablemod());
     }
 
+    public function resolveViolationCon()
+    {
+      $inputData = $this->input->post('violation');
+      echo json_encode( $this->model->resolveViolationMod($inputData));
+    }
+
 
 
 

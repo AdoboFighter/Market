@@ -10,7 +10,7 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
-            <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">Violation List</h5>
+  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">Violation List</h5>
   <div class="container justify-content-center ">
     <div class="card-body">
       <form id="violationform">
@@ -38,13 +38,18 @@
         <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
           <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
             <div class="modal-content p-2">
-              <h5>Resolve Violation</h5>
+              <h5 class="font-weight-bold">Resolve Violation</h5>
               <div class="row">
                 <div class="col-6">
-                  <h5 class="font-weight-bold">Details</h5>
+                  <h5 >Details</h5>
+                  <div class="form-group">
+                    <label for="">Violation ID</label>
+                    <input type="text" class="form-control" name="violation[violation_id_f]" id="vio">
+                  </div>
+
                   <div class="form-group">
                     <label for="">customer ID</label>
-                    <input type="text" class="form-control" name="" id="cust">
+                    <input type="text" class="form-control" name="violation[customer_id]" id="cust">
                   </div>
                   <div class="form-group">
                     <label for="">Stall No</label>
@@ -69,10 +74,9 @@
                 </div>
                 <div class="col-6">
                   <br>
-
                   <div class="mb-2 form-group" id="or">
                     <label>O.R</label>
-                    <input type="text" class="form-control" name="transact[OR]" id="orField" required>
+                    <input type="text" class="form-control" name="violation[OR]" id="orField" required>
                   </div>
                   <div class="mb-2 form-group" id="amount">
                     <label>Amount to be paid:</label>
@@ -80,12 +84,15 @@
                   </div>
                   <div class="mb-2 form-group">
                     <label>Cash tendered</label>
-                    <input type="text" class="form-control" name="transact[cash_tendered]" id="cashTendField" placeholder="0.00" required>
+                    <input type="text" class="form-control" name="violation[cash_tendered]" id="cashTendField" placeholder="0.00" required>
                   </div>
-                <div class="mb-2">
-                  <label>Payment Effectivity</label>
-                  <input type="date" class="form-control" name="transact[payment_effect]" id="payEffectField" placeholder="0.00" required>
-                </div>
+                  <div class="mb-2">
+                    <label>Payment Effectivity</label>
+                    <input type="date" class="form-control" name="violation[payment_effect]" id="payEffectField" placeholder="0.00" required>
+                  </div>
+                  <div class="mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
                 </div>
               </div>
             </div>

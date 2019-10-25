@@ -27,7 +27,28 @@ $(document).ready(function(){
 
   $('.dataTables_length').addClass('bs-select');
 
+  $('#violationform').submit(function(e){
+    e.preventDefault();
+    console.log( $('#violationform').serializeArray());
+    $.ajax({
+      url : global.settings.url +'/MainController/resolveViolationCon',
+      type : 'POST',
+      data :$(this).serialize(),
+      dataType : 'json',
+      success : function(res){
+      console.log('oh SHit oh fuck ima gonna cooom');
+      console.log(res);
+
+      $('#getviolationtable').DataTable().ajax.reload();
+      },
+      error : function(xhr){
+        console.log(xhr.responseText);
+      }
+    });
+  });
+
 });
+
 
 
 function fetchdata(id){
@@ -43,6 +64,7 @@ function fetchdata(id){
     success: function(res){
       console.log(res);
       res = res[0];
+      $('#vio').val(res.violation_id );
       $('#cust').val(res.customer_id );
       $('#stall_id_f').val(res.stall_id );
       $('#stall_num_f').val(res.unit_no );

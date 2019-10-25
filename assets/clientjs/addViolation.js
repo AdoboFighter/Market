@@ -55,7 +55,6 @@ $(document).ready(function(){
   $('.dataTables_length').addClass('bs-select');
 
   $('#violationform').submit(function(e){
-
     e.preventDefault();
     console.log( $('#violationform').serializeArray());
     $.ajax({
