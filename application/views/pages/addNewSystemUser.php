@@ -51,9 +51,9 @@
             <label>User Level</label>
             <select class="form-control form-control-sm" name="sysUser[user_lvl]"  id="clientselect" required="">
               <option selected value="">Please Select</option>
-              <option value="1">Admin</option>
-              <option value="2">Collecting Officer</option>
-              <option value="3">Consolidating Officer</option>
+              <option value="0">Admin</option>
+              <option value="1">Collecting Officer</option>
+              <option value="2">Consolidating Officer</option>
             </select>
           </div>
 
@@ -62,7 +62,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Position/Title</label>
-            <input type="text" class="form-control" name="sysUser[position]" id=""  required="">
+            <input type="text" class="form-control" name="sysUser[position]" required="">
           </div>
         </div>
 
@@ -70,50 +70,65 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Password</label>
-            <input type="password" class="form-control" name="sysUser[password]" id=""  required="">
+            <input type="password" class="form-control" name="sysUser[password]" id="pass1" required="">
           </div>
         </div>
 
-        <!-- <div class="row m-5">
-        <div class="col">
-        <label for="">Confirm Password</label>
-        <input type="text" class="form-control" name="sysUser[]" id="sysUser[]"  required="">
-      </div>
-    </div> -->
+        <div class="row m-5">
+          <div class="col">
+            <label for="">Confirm Password</label>
+            <input type="password" class="form-control" name="sysUser[password2]" id="pass2" required="">
+          </div>
+        </div>
 
-    <div class="row m-5">
-      <div class="col">
-        <label for="">Address</label>
-        <input type="text" class="form-control" name="sysUser[address]" id=""  required="">
+        <div class="row m-5">
+          <div class="col">
+            <label for="">Address</label>
+            <input type="text" class="form-control" name="sysUser[address]" required="">
+          </div>
+        </div>
+
+        <div class="row m-5">
+          <div class="col">
+            <label for="">Contact Number</label>
+            <input type="text" class="form-control" name="sysUser[contact_num]" required="">
+          </div>
+        </div>
+
+        <div class="row m-5">
+          <div class="col">
+            <button type="submit" name="submit_sysuser" id="submit_sysuser" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Clear</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content p-3">
+            <h5>System user Added</h5>
+          </div>
+        </div>
       </div>
+
+      <div id="passerror" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content p-3">
+            <h5>Password Doesn't Match</h5>
+          </div>
+        </div>
+      </div>
+
+      <div id="usererror" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content p-3">
+            <h5>username already taken</h5>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="row m-5">
-      <div class="col">
-        <label for="">Contact Number</label>
-        <input type="text" class="form-control" name="sysUser[contact_num]" id=""  required="">
-      </div>
-    </div>
-
-    <div class="row m-5">
-      <div class="col">
-        <button type="submit" name="submit_sysuser" id="submit_sysuser" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary">Clear</button>
-      </div>
-    </div>
-
-  </form>
-
-  <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content p-3">
-        <h5>System user Added</h5>
-      </div>
-    </div>
   </div>
-
-</div>
-
-</div>
 </div>
 <div class="overlay"></div>

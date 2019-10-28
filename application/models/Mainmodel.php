@@ -6,6 +6,7 @@ class Mainmodel extends CI_model{
 
     // To set session inside the model could be use to get session ids.
     $this->load->library('session');
+    $this->load->library('form_validation');
   }
 
   public function login_acc($input)
@@ -52,6 +53,7 @@ class Mainmodel extends CI_model{
     );
 
     $this->db->insert('user', $data1);
+
 
   }
 
@@ -350,25 +352,25 @@ class Mainmodel extends CI_model{
     $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
 
-      $data_tenant = array(
-        'business_id' => $inputData['Owner_Firstname'],
-        'business_name' => $inputData['Owner_Middlename'],
-        'fk_customer_id' => $last_id
-      );
-      $this->db->insert('tenant', $data_tenant);
-      $last_id_tenant = $this->db->insert_id();
+    $data_tenant = array(
+      'business_id' => $inputData['Owner_Firstname'],
+      'business_name' => $inputData['Owner_Middlename'],
+      'fk_customer_id' => $last_id
+    );
+    $this->db->insert('tenant', $data_tenant);
+    $last_id_tenant = $this->db->insert_id();
 
-      $data_stall = array(
-        'floor_level' => $inputData['Floor_level'],
-        'unit_no' => $inputData['Stall_Number'],
-        'tenant_id' => $last_id_tenant,
-        'date_occupied' => $inputData['date_occupied'],
-        'Section' => $inputData['section'],
-        'sqm' => $inputData['Square_meters'],
-        'dailyfee' => $inputData['Daily_fee']
-      );
+    $data_stall = array(
+      'floor_level' => $inputData['Floor_level'],
+      'unit_no' => $inputData['Stall_Number'],
+      'tenant_id' => $last_id_tenant,
+      'date_occupied' => $inputData['date_occupied'],
+      'Section' => $inputData['section'],
+      'sqm' => $inputData['Square_meters'],
+      'dailyfee' => $inputData['Daily_fee']
+    );
 
-      $this->db->insert('stall', $data_stall);
+    $this->db->insert('stall', $data_stall);
 
 
     $this->db->trans_complete();
@@ -576,7 +578,7 @@ class Mainmodel extends CI_model{
   {
     $this->db->where('fk_customer_customer_id', $id);
     $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
-      $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
     $query = $this->db->get('customer');
     return $query->result();
     echo $query;
@@ -666,62 +668,130 @@ class Mainmodel extends CI_model{
   }
 
 
-    public function resolveViolationMod($inputData)
+  public function resolveViolationMod($inputData)
+  {
+    $data_transaction = array(
+      'payment_nature_id' => '4016',
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
+
+    $violation_id = array(
+      'violation_id' => $inputData['violation_id_f']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
     {
-      $data_transaction = array(
-        'payment_nature_id' => '4016',
-        'payment_amount' => $inputData['cash_tendered'],
-        'customer_id' => $inputData['customer_id'],
-        'or_number' => $inputData['OR'],
-        'effectivity' => $inputData['payment_effect']
+      echo '<script>console.log("Shit not working")</script>';
+    }
+  }
+
+  public function get_resviolation_data_mod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->where('status', "PAID");
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'description' => $r->description,
+        'date_occured' => $r->date_occured,
+        'status'=> $r->status,
+        'name'=> $r->name
       );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
 
-      $violation_id = array(
-        'violation_id' => $inputData['violation_id_f']
+  public function getsystemusertablemod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
+    $query = $this->db->get('user');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'usr_id' => $r->user_id,
+        'usr_name' => $r->usr_firstname.' '.$r->usr_middlename.' '.$r->usr_lastname,
+        'usr_level' => $r->user_type,
+        'usr_address'=>$r->usr_address,
+        'usr_position'=>$r->position,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
       );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
 
-      $this->db->trans_start();
-      $this->db->insert('transaction', $data_transaction);
-      $paid = array(
-        'status' => "PAID"
-      );
-      $this->db->where($violation_id);
-      $this->db->update('violation', $paid);
-      $this->db->trans_complete();
-      if ($this->db->trans_status() === FALSE)
-      {
-        echo '<script>console.log("Shit not working")</script>';
-      }
-     }
+  public function getusermod($id)
+  {
+    $this->db->where('user_id', $id);
+    $query = $this->db->get('user');
+    return $query->result();
+    echo $query;
+  }
 
-     public function get_resviolation_data_mod()
-     {
+  public function updateSystemUserMod($inputData)
+  {
+    $data_transaction = array(
+      'payment_nature_id' => '4016',
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
 
-       $draw = intval($this->input->get("draw"));
-       $start = intval($this->input->get("start"));
-       $length = intval($this->input->get("length"));
-       $this->db->where('status', "PAID");
-       $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
-       $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-       $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
-       $query = $this->db->get('customer');
-       $data = [];
-       foreach ($query->result() as $r) {
-         $data[] = array(
-           'description' => $r->description,
-           'date_occured' => $r->date_occured,
-           'status'=> $r->status,
-           'name'=> $r->name
-         );
-       }
-       $result = array(
-         "draw" => $draw,
-         "recordsTotal" => $query->num_rows(),
-         "recordsFiltered" => $query->num_rows(),
-         "data" => $data
-       );
-       return $result;
-     }
+    $violation_id = array(
+      'violation_id' => $inputData['violation_id_f']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
+  }
 
 }
 ?>

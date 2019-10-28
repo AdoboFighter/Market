@@ -7,6 +7,7 @@ class MainController extends CI_Controller{
     parent::__construct();
 
     $this->load->model('Mainmodel','model');
+    $this->load->library('form_validation');
 
   }
 
@@ -154,8 +155,10 @@ class MainController extends CI_Controller{
 
     public function saveSysUser()
     {
+
       $inputData = $this->input->post('sysUser');
       echo json_encode(   $this->model->insert_sysUser($inputData));
+
     }
 
     public function getambuinfopay()
@@ -191,6 +194,24 @@ class MainController extends CI_Controller{
       $inputData = $this->input->post('violation');
       echo json_encode( $this->model->resolveViolationMod($inputData));
     }
+
+    public function updateSystemUserCon()
+    {
+      $inputData = $this->input->post('upsys');
+      echo json_encode( $this->model->updateSystemUserMod($inputData));
+    }
+
+    public function getsystemusertablecon()
+    {
+      echo json_encode($this->model->getsystemusertablemod());
+    }
+
+    public function getusercon()
+    {
+      $id = $this->input->post('id');
+      echo json_encode($this->model->getusermod($id));
+    }
+
 
 
 

@@ -454,7 +454,7 @@ CONTENT STYLE
   </li>
 
   <li>
-    <a href="<?php echo base_url().'pages/view/addNewSystemUser' ?>">Add System User</a>
+    <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">System User</a>
   </li>
 </ul>
 </nav>
