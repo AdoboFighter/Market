@@ -1,4 +1,5 @@
 var datable;
+var violationfrm = document.getElementsByName('violationform')[0];
 
 
 $(document).ready(function(){
@@ -25,6 +26,8 @@ $(document).ready(function(){
     }]
   });
 
+  
+
   $('.dataTables_length').addClass('bs-select');
 
   $('#violationform').submit(function(e){
@@ -36,9 +39,10 @@ $(document).ready(function(){
       data :$(this).serialize(),
       dataType : 'json',
       success : function(res){
-      console.log('oh SHit oh fuck ima gonna cooom');
+      $('#success').modal("show");
+      $('#violationmodal').modal('toggle');
+      violationfrm.reset();
       console.log(res);
-
       $('#getviolationtable').DataTable().ajax.reload();
       },
       error : function(xhr){

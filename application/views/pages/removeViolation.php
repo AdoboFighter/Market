@@ -13,7 +13,7 @@
   <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">Violation List</h5>
   <div class="container justify-content-center ">
     <div class="card-body">
-      <form id="violationform">
+      <form id="violationform" name="violationform">
         <div class="span6" style="float: none; margin: 0 auto;">
           <div class="row">
 
@@ -99,6 +99,15 @@
           </div>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+
+<div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>Violation Paid</h5>
     </div>
   </div>
 </div>

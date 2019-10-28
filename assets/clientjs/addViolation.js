@@ -87,7 +87,6 @@ function fetchdata(id){
     success: function(res){
       console.log(res);
       res = res[0];
-
       $('#stall_id_f').val(res.stall_id );
       $('#stall_num_f').val(res.unit_no );
       $('#owner_f').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);

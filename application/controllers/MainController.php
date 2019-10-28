@@ -131,6 +131,13 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->get_violation_data_mod($id));
   }
 
+  public function get_resviolation_data_con()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->get_resviolation_data_mod($id));
+  }
+
+
 
   public function get_customer_info_vio_con()
   {

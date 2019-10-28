@@ -517,6 +517,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
+    $this->db->where('status', "NOT PAID");
     $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
@@ -679,27 +680,48 @@ class Mainmodel extends CI_model{
         'violation_id' => $inputData['violation_id_f']
       );
 
-
       $this->db->trans_start();
-
-      // $this->db->insert('transaction', $data_transaction);
-
+      $this->db->insert('transaction', $data_transaction);
       $paid = array(
         'status' => "PAID"
       );
-
       $this->db->where($violation_id);
       $this->db->update('violation', $paid);
-
       $this->db->trans_complete();
-
       if ($this->db->trans_status() === FALSE)
       {
         echo '<script>console.log("Shit not working")</script>';
       }
      }
 
+     public function get_resviolation_data_mod()
+     {
 
+       $draw = intval($this->input->get("draw"));
+       $start = intval($this->input->get("start"));
+       $length = intval($this->input->get("length"));
+       $this->db->where('status', "PAID");
+       $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+       $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+       $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+       $query = $this->db->get('customer');
+       $data = [];
+       foreach ($query->result() as $r) {
+         $data[] = array(
+           'description' => $r->description,
+           'date_occured' => $r->date_occured,
+           'status'=> $r->status,
+           'name'=> $r->name
+         );
+       }
+       $result = array(
+         "draw" => $draw,
+         "recordsTotal" => $query->num_rows(),
+         "recordsFiltered" => $query->num_rows(),
+         "data" => $data
+       );
+       return $result;
+     }
 
 }
 ?>
