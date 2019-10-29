@@ -33,17 +33,19 @@ $(document).ready(function(){
     });
     $('.dataTables_length').addClass('bs-select');
 
-    $('#save_customer').submit(function(e){
+    $('#updateuser').submit(function(e){
       e.preventDefault();
-      console.log( $('#save_customer').serializeArray() );
+      console.log( $('#updateuser').serializeArray() );
       $.ajax({
-        url : global.settings.url +'/MainController/save_customer_controller',
+        url : global.settings.url +'/MainController/updateSystemUserCon',
         type : 'POST',
         data :$(this).serialize(),
         dataType : 'json',
         success : function(res){
           console.log(res);
+          $('#sys_table').DataTable().ajax.reload();
           $('#success').modal();
+          $('#updateuser').trigger("reset");
         },
         error : function(xhr){
           console.log(xhr.responseText);

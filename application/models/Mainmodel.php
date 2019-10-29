@@ -52,7 +52,40 @@ class Mainmodel extends CI_model{
       'usr_contact_number' => $inputData['contact_num']
     );
 
-    $this->db->insert('user', $data1);
+    $username = array(
+      'username' => $inputData['username']
+    );
+
+    $this->db->trans_start();
+    $this->db->where($username);
+    $this->db->limit(1);
+    $query = $this->db->get('user');
+    if ($query->num_rows() == 1) {
+
+      echo "<script>
+      $(document).ready(function(){
+        $('#usererror').modal('show');
+      });
+      </script>";
+
+      echo "working";
+
+      echo '<div class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+</div>';
+    }else {
+      // $this->db->insert('user', $data1);
+      echo "yeah";
+      echo "<script>$('#usererror').modal('show')</script>";
+    }
+
+    $this->db->trans_complete();
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
+
 
 
   }
@@ -767,30 +800,27 @@ class Mainmodel extends CI_model{
 
   public function updateSystemUserMod($inputData)
   {
-    $data_transaction = array(
-      'payment_nature_id' => '4016',
-      'payment_amount' => $inputData['cash_tendered'],
-      'customer_id' => $inputData['customer_id'],
-      'or_number' => $inputData['OR'],
-      'effectivity' => $inputData['payment_effect']
+    $data_user = array(
+      'usr_firstname' => $inputData['usr_fn'],
+      'usr_middlename' => $inputData['usr_mn'],
+      'usr_lastname' => $inputData['usr_ln'],
+      'usr_address' => $inputData['usr_add'],
+      'usr_contact_number' => $inputData['usr_cn'],
+      'username' => $inputData['usr_un'],
+      'password' => $inputData['usr_pass'],
+      'position' => $inputData['usr_position'],
+      'user_level' => $inputData['user_lvl']
     );
 
-    $violation_id = array(
-      'violation_id' => $inputData['violation_id_f']
+    $user_id = array(
+      'user_id' => $inputData['usr_id']
     );
 
-    $this->db->trans_start();
-    $this->db->insert('transaction', $data_transaction);
-    $paid = array(
-      'status' => "PAID"
-    );
-    $this->db->where($violation_id);
-    $this->db->update('violation', $paid);
-    $this->db->trans_complete();
-    if ($this->db->trans_status() === FALSE)
-    {
-      echo '<script>console.log("Shit not working")</script>';
-    }
+
+    $this->db->where($user_id);
+    $this->db->update('user', $data_user);
+
+
   }
 
 }

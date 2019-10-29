@@ -8,7 +8,7 @@
     </div>
   </nav>
 
-
+<form id="updateuser" name="updateuser">
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">User List</h5>
   <div class="container justify-content-center">
     <div class="card m-1">
@@ -41,28 +41,28 @@
         <div class="card col p-3 ">
           <div class="mb-2 form-group" id="">
             <label>user ID:</label>
-            <input type="input" class="form-control" name="u" id="usr_id" required>
+            <input type="input" class="form-control" name="upsys[usr_id]" id="usr_id" readonly>
           </div>
 
           <div class="mb-2 form-group" id="">
             <label>First name:</label>
-            <input type="input" class="form-control" name="upsys[]" id="usr_fn" required>
+            <input type="input" class="form-control" name="upsys[usr_fn]" id="usr_fn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Middile name:</label>
-            <input type="input" class="form-control" name="upsys[]" id="usr_mn" required>
+            <input type="input" class="form-control" name="upsys[usr_mn]" id="usr_mn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Last name:</label>
-            <input type="input" class="form-control" name="upsys[]" id="usr_ln" required>
+            <input type="input" class="form-control" name="upsys[usr_ln]" id="usr_ln" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Address:</label>
-            <input type="input" class="form-control" name="upsys[]" id="usr_add" required>
+            <input type="input" class="form-control" name="upsys[usr_add]" id="usr_add" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
-            <input type="input" class="form-control" name="upsys[]" id="usr_cn" required>
+            <input type="input" class="form-control" name="upsys[usr_cn]" id="usr_cn" required>
           </div>
         </div>
       </div>
@@ -70,17 +70,17 @@
         <div class="card col p-3">
           <div class="mb-2">
             <label>Username</label>
-            <input type="text" class="form-control" name="upsys[]" id="usr_un"  >
+            <input type="text" class="form-control" name="upsys[usr_un]" id="usr_un"  >
           </div>
 
           <div class="mb-2">
             <label>Password</label>
-            <input type="text" class="form-control" name="upsys[]" id="usr_pass"  >
+            <input type="text" class="form-control" name="upsys[usr_pass]" id="usr_pass"  >
           </div>
 
           <div class="mb-2">
             <label>position</label>
-            <input type="text" class="form-control" name="upsys[]" id="usr_position"  >
+            <input type="text" class="form-control" name="upsys[usr_position]" id="usr_position"  >
           </div>
 
           <div class="mb-2">
@@ -92,20 +92,25 @@
               <option value="2">Consolidating Officer</option>
             </select>
           </div>
-
-          <div class="col">
+          
+          <div class="">
             <button type="Submit"  class="btn btn-primary mt-2">Update</button>
           </div>
 
-
         </div>
-
-
       </div>
     </div>
   </div>
-
-
 </div>
+</form>
+
+<div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content p-3">
+      <h5>System user information updated </h5>
+    </div>
+  </div>
+</div>
+
 
 <div class="overlay"></div>
