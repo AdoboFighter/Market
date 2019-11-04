@@ -210,6 +210,17 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getusermod($id));
   }
 
+  function pdf()
+{
+    $this->load->helper('pdf_helper');
+    /*
+        ---- ---- ---- ----
+        your code here
+        ---- ---- ---- ----
+    */
+    $this->load->view('pdfreport', $data);
+}
+
 
 
 
