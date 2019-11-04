@@ -11,10 +11,10 @@ class MainController extends CI_Controller{
 
   }
 
-// add client module
-// add client module
-// add client module
-// add client module
+  // add client module
+  // add client module
+  // add client module
+  // add client module
 
   public function saveclient()
   {
@@ -48,10 +48,10 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->insert_ambulant($inputData)) ;
   }
 
-// add client module
-// add client module
-// add client module
-// add client module
+  // add client module
+  // add client module
+  // add client module
+  // add client module
 
   public function getTransact()
   {
@@ -153,64 +153,62 @@ class MainController extends CI_Controller{
   }
 
 
-    public function saveSysUser()
-    {
+  public function saveSysUser()
+  {
+    $inputData = $this->input->post('sysUser');
+    echo json_encode($this->model->insert_sysUser($inputData));
+  }
 
-      $inputData = $this->input->post('sysUser');
-      echo json_encode(   $this->model->insert_sysUser($inputData));
+  public function getambuinfopay()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getambuinfopay($id));
+  }
 
-    }
+  public function getdeliverypay()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getdeliverypay($id));
+  }
 
-    public function getambuinfopay()
-    {
-      $id = $this->input->post('id');
-      echo json_encode($this->model->getambuinfopay($id));
-    }
+  public function getdeliverypaytablecon()
+  {
+    echo json_encode($this->model->getdeliverypaytablemod());
+  }
 
-    public function getdeliverypay()
-    {
-      $id = $this->input->post('id');
-      echo json_encode($this->model->getdeliverypay($id));
-    }
+  public function getparkingpay()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getparkingpay($id));
+  }
 
-    public function getdeliverypaytablecon()
-    {
-      echo json_encode($this->model->getdeliverypaytablemod());
-    }
+  public function getparkingpaytablecon()
+  {
+    echo json_encode($this->model->getparkingpaytablemod());
+  }
 
-    public function getparkingpay()
-    {
-      $id = $this->input->post('id');
-      echo json_encode($this->model->getparkingpay($id));
-    }
+  public function resolveViolationCon()
+  {
+    $inputData = $this->input->post('violation');
+    echo json_encode( $this->model->resolveViolationMod($inputData));
+  }
 
-    public function getparkingpaytablecon()
-    {
-      echo json_encode($this->model->getparkingpaytablemod());
-    }
+  public function updateSystemUserCon()
+  {
+    $inputData = $this->input->post('upsys');
+    echo json_encode( $this->model->updateSystemUserMod($inputData));
+  }
 
-    public function resolveViolationCon()
-    {
-      $inputData = $this->input->post('violation');
-      echo json_encode( $this->model->resolveViolationMod($inputData));
-    }
+  public function getsystemusertablecon()
+  {
+    echo json_encode($this->model->getsystemusertablemod());
+  }
 
-    public function updateSystemUserCon()
-    {
-      $inputData = $this->input->post('upsys');
-      echo json_encode( $this->model->updateSystemUserMod($inputData));
-    }
-
-    public function getsystemusertablecon()
-    {
-      echo json_encode($this->model->getsystemusertablemod());
-    }
-
-    public function getusercon()
-    {
-      $id = $this->input->post('id');
-      echo json_encode($this->model->getusermod($id));
-    }
+  public function getusercon()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getusermod($id));
+  }
 
 
 

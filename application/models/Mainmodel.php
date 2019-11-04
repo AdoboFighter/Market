@@ -56,38 +56,22 @@ class Mainmodel extends CI_model{
       'username' => $inputData['username']
     );
 
-    $this->db->trans_start();
+
     $this->db->where($username);
     $this->db->limit(1);
-    $query = $this->db->get('user');
-    if ($query->num_rows() == 1) {
+    $user = $this->db->get('user');
 
-      echo "<script>
-      $(document).ready(function(){
-        $('#usererror').modal('show');
-      });
-      </script>";
-
-      echo "working";
-
-      echo '<div class="alert alert-danger" role="alert">
-  This is a danger alert—check it out!
-</div>';
+    if($user->num_rows() == 1) {
+      return 'taken';
     }else {
-      // $this->db->insert('user', $data1);
-      echo "yeah";
-      echo "<script>$('#usererror').modal('show')</script>";
+
+
+       $query = $this->db->insert('user', $data1);
+if ($query) {
+  return 'okay';
+}
+
     }
-
-    $this->db->trans_complete();
-
-    if ($this->db->trans_status() === FALSE)
-    {
-      echo '<script>console.log("Shit not working")</script>';
-    }
-
-
-
   }
 
 
