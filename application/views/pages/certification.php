@@ -8,10 +8,35 @@
     </div>
   </nav>
 
+  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Stall Owner List</h5>
+  <div class="container justify-content-center ">
+    <div class="card-body">
+      <form id="violationform">
+        <div class="span6" style="float: none; margin: 0 auto;">
+          <div class="row">
+            <div class="col-12 form-group">
+              <table class="table p-2"id="cert_table" >
+                <thead>
+                  <tr>
+                    <td class="font-weight-bold" >No</td>
+                    <td class="font-weight-bold" >Name</td>
+                    <td class="font-weight-bold" >Stall No.</td>
+                    <td class="font-weight-bold" >Address</td>
+                    <td class="font-weight-bold" >Print</td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
 
-
-
+      </form>
+    </div>
+  </div>
+  </div>
 
 </div>
 <div class="overlay"></div>
