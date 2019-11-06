@@ -8,20 +8,20 @@
     </div>
   </nav>
 
-  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Stall Owner List</h5>
+  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Certification</h5>
   <div class="container justify-content-center ">
     <div class="card-body">
-      <form id="violationform">
+      <form id="certform">
         <div class="span6" style="float: none; margin: 0 auto;">
           <div class="row">
             <div class="col-12 form-group">
               <table class="table p-2"id="cert_table" >
                 <thead>
                   <tr>
-                    <td class="font-weight-bold" >No</td>
+                    <td class="font-weight-bold" >transaction ID</td>
                     <td class="font-weight-bold" >Name</td>
-                    <td class="font-weight-bold" >Stall No.</td>
                     <td class="font-weight-bold" >Address</td>
+                    <td class="font-weight-bold" >Stall No.</td>
                     <td class="font-weight-bold" >Print</td>
                   </tr>
                 </thead>
@@ -32,6 +32,22 @@
           </div>
         </div>
 
+        <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+          <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
+            <div class="modal-content p-2">
+              <h5>Certification</h5>
+
+                <iframe src="<?php echo base_url().'pages/view/PDFgenformreciept' ?>" height="600"></iframe>
+                
+              <br>
+              <div>
+                  <button type="button" class="btn btn-primary" width="50" >Print & Save</button>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
 
       </form>
     </div>

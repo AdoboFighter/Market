@@ -221,6 +221,12 @@ class MainController extends CI_Controller{
     $this->load->view('pdfreport', $data);
 }
 
+public function getcerttable()
+{
+  echo json_encode($this->model->getcerttable());
+}
+
+
 
 
 
