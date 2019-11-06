@@ -58,7 +58,7 @@ $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'colo
 // Set some content to print
 $html = <<<EOD
 
-<h1>CERTIFICATION EXAMPLE 001</h1>
+<h1>CERTIFICATION for no ownership and operation</h1>
 
 EOD;
 

@@ -48,7 +48,19 @@ $(document).ready(function(){
     });
   });
 
+
+
+
 });
+
+function setIframeSource() {
+   var theSelect = document.getElementById('location');
+   var theIframe = document.getElementById('myIframe');
+   var theUrl;
+
+   theUrl = theSelect.options[theSelect.selectedIndex].value;
+   theIframe.src = theUrl;
+}
 
 
 function fetchdata(id){
