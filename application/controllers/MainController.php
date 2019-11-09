@@ -225,6 +225,29 @@ public function getcerttable()
 {
   echo json_encode($this->model->getcerttable());
 }
+public function get_cert_info_con()
+{
+  $id = $this->input->post('id');
+  echo json_encode($this->model->get_cert_info_mod($id));
+}
+
+public function pdf2fcert()
+   {
+
+     $inputData = $this->input->post('cert');
+     $data = array(
+       'fname' => $inputData['fname'],
+       'mname' => $inputData['mname'],
+       'lname' => $inputData['lname'],
+       'address' => $inputData['address']
+     );
+
+     print_r($data);
+
+      return $this->load->view('pages/PDF2fcertification',$data);
+   }
+
+
 
 
 

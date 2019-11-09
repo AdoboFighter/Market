@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+        <div id="certmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
           <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
             <div class="modal-content p-2">
               <h5>Certification</h5>
@@ -46,14 +46,18 @@
                 </select>
               </div>
 
+               <input type="hidden" id="fname" name="cert[fname]" >
+               <input type="hidden" id="mname" name="cert[mname]" >
+               <input type="hidden" id="lname" name="cert[lname]" >
+               <input type="hidden" id="address" name="cert[address]">
 
-              <iframe id="myIframe" src="<?php echo base_url().'pages/view/PDF2fcertification' ?>" frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
+              <iframe id="iframe_preview_formgen"  frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
 
 
 
               <br>
               <div>
-                <button type="button" class="btn btn-primary" width="50" >Print & Save</button>
+                <button type="submit" class="btn btn-primary" width="50" >Print & Save</button>
               </div>
 
 
@@ -65,6 +69,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 </div>
 <div class="overlay"></div>

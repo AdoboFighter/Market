@@ -843,5 +843,21 @@ if ($query) {
     return $result;
   }
 
+  public function get_salesinfo()
+  {
+    $query = $this->db->get('user');
+    return $query->result();
+    echo $query;
+  }
+
+  public function get_cert_info_mod($id)
+  {
+    $this->db->where('customer_id', $id);
+    $query = $this->db->get('customer');
+    return $query->result();
+
+  }
+
+
 }
 ?>

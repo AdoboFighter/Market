@@ -56,14 +56,22 @@ $pdf->AddPage();
 $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
 
 // Set some content to print
-$html = <<<EOD
 
-<h1>2F CERTIFICATION EXAMPLE 001</h1>
+// $html = <<<EOD
+//
+// <h1>2F CERTIFICATION EXAMPLE 001</h1>
+// <h3 id="test1"></h3>
+//
+// EOD;
+//
+//
+//
+//
+//
+// // Print text using writeHTMLCell()
+// $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+$pdf->Text(44,100, $fname);
 
-EOD;
-
-// Print text using writeHTMLCell()
-$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
 // ---------------------------------------------------------
 
