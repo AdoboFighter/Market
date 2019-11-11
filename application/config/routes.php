@@ -57,5 +57,3 @@ $route['connection-test']['GET'] = 'api/CheckConn/test';
 $route['login']['POST'] = 'api/Login/auth';
 $route['get-info/stall/(:any)'] = 'api/SearchStall/search/$1';
 $route['save-transaction']['POST'] = 'api/SaveTrns/proc';
-$route['get-transaction']['POST'] = 'api/GetTransaction/getTrns';
-$route['get-info/ambulant/(:any)'] = 'api/SearchAmbulant/search/$1';

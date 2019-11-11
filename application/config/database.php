@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.100.205',
-	'username' => 'it_admin_pylon',
-	'password' => '2014adamistrative2015',
-	'database' => 'market_db',
+	'hostname' => '127.0.0.1',
+	'username' => 'root',
+	'password' => '1234',
+	'database' => 'market',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

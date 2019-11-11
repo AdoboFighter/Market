@@ -20,22 +20,25 @@
       <div class="col-4">
         <div class="mb-2 form-group font-weight-bold" id="">
           <label>Client Type:</label>
-          <select class="form-control form-control-sm" name="" id="" required>
+          <select class="form-control form-control-sm sort" name="client_type" id="client_type" required>
             <option selected value="">Please Select</option>
-            <option value=""></option>
+            <option value="ambulant">ambulant</option>
+              <option value="delivery">delivery</option>
+              <option value="tenant">tenant</option>
+              <option value="parking">parking</option>
           </select>
         </div>
       </div>
       <div class="col-4">
-        <div class="mb-2 form-group font-weight-bold" id="">
+        <div class="mb-2 form-group font-weight-bold sort" id="">
           <label>Date from:</label>
-          <input type="date" class="form-control" name="" id="" required>
+          <input type="date" class="form-control" name="date_from" id="date_from" required>
         </div>
       </div>
       <div class="col-4">
-        <div class="mb-2 form-group font-weight-bold" id="">
+        <div class="mb-2 form-group font-weight-bold sort" id="">
           <label>Date to:</label>
-          <input type="date" class="form-control" name="" id="" required>
+          <input type="date" class="form-control" name="date_to" id="date_to" required>
         </div>
       </div>
 

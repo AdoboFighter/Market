@@ -1,7 +1,37 @@
 var datable;
 var add_line = [];
+var row_num = 1;
+var row_id = 0;
+
+var total = 0;
+var num1;
+var num2;
+var num3;
+var num4;
+var num5; 
+var num6;
+var num7;
+var num8;
+
+var particulars = [];
+var customer_id;
+var tenant_id;
+var type_of_payment;
+var or_number;
+var amount_to_pay;
+var cash_tendered;
+var payment_effectivity;
+var stall_no;
+
+var transaction_id;
+
+
+
 
 $(document).ready(function(){
+
+  
+
   $( "#table_cheque" ).DataTable({
     "paging": false,
     "searching": false,
@@ -29,14 +59,16 @@ $(document).ready(function(){
 
   });
 
+   
+
 
   $('#add_cheque').on('click', function () {
     var table_cheque = $('#table_cheque').DataTable();
-    var row_num = table_cheque.rows().count();
-    console.log(row_num);
+    
+   
 
-    if (row_num >= 3) {
-      $('#chequelimit').modal("show");
+    if (row_num >= 4) {
+      
     } else {
       // table_cheque.row.add([
       //   cheq_number,
@@ -46,110 +78,52 @@ $(document).ready(function(){
       // ]).draw(false);
 
           add_line.push({
-            'trancsact[cheque_number]' : $('#cheqAmountField').val(),
-            'trancsact[cheque_amount]' : $('#cheqNumField').val(),
-            'trancsact[bank_branch]' :  $('#bankBranchField').val()
+            'ch[cheque_number]' : $('#payment_cheque_number').val(),
+            'ch[cheque_amount]' : $('#payment_cheque_amount').val(),
+            'ch[bank_branch]' :  $('#payment_bank_branch').val(),
+            'ch[fk_stall_no]' :  stall_no
           });
 
-          console.log(add_line);
+ 
          "use strict";
         	var table = document.getElementById("table_cheque");
-        	var row= document.createElement("tr");
+          var row= document.createElement("tr");
+          row.setAttribute('id','row'+row_id);
+          row.setAttribute('class','rowrow');
         	var td1 = document.createElement("td");
         	var td2 = document.createElement("td");
         	var td3 = document.createElement("td");
         	var td4 = document.createElement("td");
-          td1.innerHTML = document.getElementById("cheqNumField").value;
-        	td2.innerHTML  = document.getElementById("cheqAmountField").value;
-        	td3.innerHTML  = document.getElementById("bankBranchField").value;
-          td4.innerHTML  = '<button type="button" class="btn btn-danger" id="Delete_btn">Delete</button>';
+          td1.innerHTML = document.getElementById("payment_cheque_number").value;
+        	td2.innerHTML  = document.getElementById("payment_cheque_amount").value;
+        	td3.innerHTML  = document.getElementById("payment_bank_branch").value;
+          td4.innerHTML  = '<button type="button" class="btn_delete btn btn-danger " id="'+row_id+'">Delete</button>';
           row.appendChild(td1);
         	row.appendChild(td2);
         	row.appendChild(td3);
         	row.appendChild(td4);
-        	table.children[0].appendChild(row);
+          table.children[0].appendChild(row);
+          row_id++;
+          row_num++;
+   
     }
 
   });
 
-  $('#table_cheque tbody').on( 'click', 'button', function () {
-    var table_cheque = $('#table_cheque').DataTable();
-    table_cheque
-    .row( $(this).parents('tr'))
-    .remove()
-    .draw();
-  });
-
-
-
-  $('#cbCheque').on('checked',function(){
-    $("#cheque").slidetoggle(200);
-  });
-
-
-
-  // sum();
-  // $("#cashTendField, #amountToField, #cheqAmountField").on("keydown keyup", function() {
-  //   sum();
-  // });
 
 
 
 
+  $(document).on('click', '.btn_delete', function(){
 
-  $('#cbCheque').on('change',function(){
-    var payment = document.getElementById('cashTendField').value;
-    var topay = document.getElementById('amountToField').value;
-    var cheqAmountField = document.getElementById('cheqAmountField').value;
-    var changecash = parseFloat(payment) - parseFloat(topay);
-    var changecheque = parseFloat(payment) - parseFloat(topay);
-
-    if( $(this).is(':checked') ){
-      $('#cbChequecash').prop("checked", false);
-      $('#cashTendField').attr('readonly','readonly');
-      $('#cashTendField').val(0);
-      $('#cashTendField').attr("placeholder", "Cheque");
-      $('#cheque').toggle(200);
-
-    }else{
-      $('#cashTendField').val("0.00");
-      $('#cashTendField').removeAttr('readonly');
-      $("#cheque").hide();
-
-    }
-  });
-
-  $('#cbChequecash').on('change',function(){
-    if( $(this).is(':checked') ){
-      $('#cashTendField').removeAttr('readonly');
-      $('#cbCheque').prop("checked", false);
-      $('#cheque').toggle(200);
-    }else{
-      $('#cashTendField').val("0.00");
-      $('#cashTendField').removeAttr('readonly');
-      $("#cheque").hide();
-
-    }
-  });
+    var a = $(this).attr("id");
+ 
+    row_num--;
+    delete add_line[a];
+    $('#row'+a+'').remove();  
 
 
 
-
-  $("transact").submit(function(e){
-    e.preventDefault();
-  });
-  $("#cheque").hide();
-  $('#stall_number_field').hide();
-  $('#paymentcard').hide();
-  $('#clientIdField').hide();
-  $('#cheque').hide();
-
-  $('#activatebtn').on('click', function(){
-    if ( $('#clientIdField').val().length === 0) {
-      $('#failedActivation').modal("show");
-    } else {
-      $('#paymentcard').show();
-    }
   });
 
 
@@ -169,11 +143,11 @@ $(document).ready(function(){
       }
     });
 
-    console.log(myTableArray);
+  
 
     for (var i = 0  ; i < add_line.length; i++) {
 
-          console.log(add_line[i]);
+     
               //
               // $.ajax({
               //   url: global.settings.url +'/MainController/insert_table_bulk_controller',
@@ -196,29 +170,7 @@ $(document).ready(function(){
   });
 
   //
-  $('#transactform').submit(function(e){
-
-    e.preventDefault();
-      console.log( $('#transactform').serializeArray() );
-      $.ajax({
-        url : global.settings.url +'/MainController/savePayment',
-        type : 'POST',
-        data :$(this).serialize(),
-        dataType : 'json',
-    success : function(res){
-      console.log(res);
-      $('#paymentsave').click(function(){
-        alert($('input:Submit').val());  //display value of button
-      });
-    },
-    error : function(xhr){
-      console.log(xhr.responseText);
-    }
-
-      });
-
-
-  });
+ 
 
 
 
@@ -247,23 +199,13 @@ $(document).ready(function(){
 });
 
 
+//
 
 
 
-// function sum() {
-//   var payment = document.getElementById('cashTendField').value;
-//   var topay = document.getElementById('amountToField').value;
-//   var cheqAmountField = document.getElementById('cheqAmountField').value;
-//   var change = parseFloat(payment) - parseFloat(topay);
-//   // var chequeChange = parseFloat(payment) - parseFloat(topay);
-//
-//   if (!isNaN(change)) {
-//     document.getElementById('change').value = change;
-//   }
-//
-//
-// }
-//
+
+
+
 
 
 
@@ -293,82 +235,321 @@ function diffdates() {
 
 }
 
+
+// FOR NEW PAGES IN PAYMENT
+
+
 function fetchdata(id){
-  console.log(id);
+  $('#TenantPay').modal("show");
+ 
   $.ajax({
-    url: global.settings.url + '/MainController/getstallinfo',
+    url: global.settings.url + '/MainController/gettenantpay',
     type: 'POST',
     data: {
       id: id
     },
     dataType:'JSON',
     success: function(res){
-      console.log(res);
+ 
       res = res[0];
+      $('#paymentDet').hide();
+      $('#chequeDetails').hide();
+      $('#payment_type').val(null);
 
-      $('#clientIdField').val(res.customer_id );
-      $('#stall_number_field').val(res.unit_no );
-      $('#ownerField').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-      $('#areaField').val(res.sqm);
-      $('#daily_fee_field').val(res.dailyfee);
-      $('#addressField').val(res.address);
-      $('#last_pay').val(res.payment_datetime);
-      diffdates();
+      $('.payment_details').val('');
+      $('.rowrow').remove();  
+      $('#payment_cheque_number').val("");
+      $('#payment_cheque_amount').val("");
+      $('#payment_bank_branch').val("");
+      stall_no = res.unit_no;
+  
+
+      $('#payment_customer_id').val(res.customer_id);
+      $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+      $('#payment_tenant_id').val(res.tenant_id);
     },
     error: function(xhr){
       console.log(xhr.responseText);
     }
-  })
+})
+
 }
 
 
+function particular(){
+
+ 
+
+  if($('#part1num').val() == ""){
+    num1 = 0;
+  }
+  else{
+    num1 = $('#part1num').val();
+  }
+
+  if($('#part2num').val() == ""){
+    num2 = 0;
+  }
+  else{
+    num2 = $('#part2num').val();
+  }
+
+  if($('#part3num').val() == ""){
+    num3 = 0;
+  }
+  else{
+    num3 = $('#part3num').val();
+  }
+
+  if($('#part4num').val() == ""){
+    num4 = 0;
+  }
+  else{
+    num4 = $('#part4num').val();
+  }
+
+  if($('#part5num').val() == ""){
+    num5 = 0;
+  }
+  else{
+    num5 = $('#part5num').val();
+  }
+
+  if($('#part6num').val() == ""){
+    num6 = 0;
+  }
+  else{
+    num6 = $('#part6num').val();
+  }
+
+  if($('#part7num').val() == ""){
+    num7 = 0;
+  }
+  else{
+    num7 = $('#part7num').val();
+  }
+
+  
 
 
-function addlineaddRow() {
+ 
+ 
+  
 
-  add_line_buss.push({
-    'sec[bus_code_id]' : $('#buss_code').val(),
-    'sec[addline]' : $('#addline').val(),
-    'sec[addcode]' : result2[0],
-    'sec[addsubcat]' : $('#addsubcat').val().toUpperCase(),
-    'sec[addcap]' : $('#addcap').val().replace(/,/g, ''),
-    'sec[rank]' : 'secondary',
-    'sec[es]' : $('#es').val(),
-    'sec[nones]' : $('#nones').val()
-  });
-
-  console.log(add_line_buss);
-
- "use strict";
-	var table = document.getElementById("addlinetable");
-
-	var row= document.createElement("tr");
-	var td1 = document.createElement("td");
-	var td2 = document.createElement("td");
-	var td3 = document.createElement("td");
-	// var td4 = document.createElement("td");
-	var td5 = document.createElement("td");
-  var td6 = document.createElement("td");
-  var td7 = document.createElement("td");
-  var td8 = document.createElement("td");
-  td1.innerHTML = document.getElementById("addline").value.toUpperCase();
-  //td2.innerHTML = result.split(':');
-	td2.innerHTML  =result2[0];
-	td3.innerHTML  = document.getElementById("addsubcat").value;
-	td5.innerHTML  = document.getElementById("addcap").value;
-  td6.innerHTML  = document.getElementById("es").value;
-  td7.innerHTML  = document.getElementById("nones").value;
-  // td4.innerHTML  =  document.getElementsByClassName("adddate")[0].value;
-  td8.innerHTML  = '<a class="btn btn-warning" onclick="addlinerowdelete(this)" >Delete</a>';
-
-  row.appendChild(td1);
-	row.appendChild(td2);
-	row.appendChild(td3);
-	// row.appendChild(td4);
-	row.appendChild(td5);
-  row.appendChild(td6);
-  row.appendChild(td7);
-  row.appendChild(td8);
-
-	table.children[0].appendChild(row);
+  total = parseInt(num1) + parseInt(num2) + parseInt(num3) + parseInt(num4) + parseInt(num5) + parseInt(num6) + parseInt(num7);
+ 
+ 
 }
+
+$('#sub_total').click(function(){
+  if($(this).is(":checked")){
+    particular();
+    $('#total').val(total);
+}
+else if($(this).is(":not(:checked)")){
+    $('#total').val($('#payment_cash_tendered').val()); 
+}
+});
+
+$('#payment_cash_tendered').change(function(){
+  if($('#sub_total').is(":not(:checked)")){
+    $('#total').val($('#payment_cash_tendered').val()); 
+  }
+  if($('#sub_total').is(":checked")){
+    particular();
+    $('#total').val(total);
+  }
+});
+
+$('.partnum').change(function(){
+  if($('#sub_total').is(":checked"))
+  {
+    particular();
+    $('#total').val(total);
+  }
+});
+
+
+$('#payment_type').change(function(){
+
+  if($('#payment_type').val() == 'cash')
+  {
+    $('#paymentDet').show();
+    $('#chequeDetails').hide();
+    $('#payment_cash_tendered').prop('disabled',false);
+  }
+  else if($('#payment_type').val() == 'cheque'){
+    $('#paymentDet').show();
+    $('#chequeDetails').show();
+    $('#payment_cash_tendered').prop('disabled',true);
+  }
+  else if($('#payment_type').val() == 'cashandcheque')
+  {
+    $('#paymentDet').show();
+    $('#chequeDetails').show();
+    $('#payment_cash_tendered').prop('disabled',false);
+  }
+  else{
+    $('#paymentDet').hide();
+    $('#chequeDetails').hide();
+    $('#payment_cash_tendered').prop('disabled',true);
+  }
+
+});
+
+
+$('#payment_submit').click(function(){
+
+
+
+
+
+   customer_id = $('#payment_customer_id').val();
+   tenant_id = $('#payment_tenant_id').val();
+   type_of_payment = $('#payment_type_of_payment').val();
+   or_number =$('#payment_or_number').val();
+   amount_to_pay = $('#payment_amount_to_pay').val();
+   cash_tendered = $('#payment_cash_tendered').val();
+   payment_effectivity = $('#payment_effectivity').val();
+  var fund_id = 1;
+   var payment_type = $('#payment_type').val();
+
+  
+
+   add_line = add_line.filter(function(el){
+    return el != null;
+  });  
+
+ 
+
+
+  switch(payment_type)
+  {
+    case "cash":
+        $.ajax({
+          type: "POST",
+          data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+          url: global.settings.url +'/MainController/savetransaction',
+          success: function(res){
+            $('#TenantPay').modal("hide");
+            $('#ortenant').modal('show');
+          },
+          error: function(res){
+           
+          }
+       });  
+
+
+    break;
+    case "cheque":
+
+        $.ajax({
+          type: "POST",
+          data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+          url: global.settings.url +'/MainController/savetransaction',
+          success: function(res){
+
+           res= jQuery.parseJSON(res);
+      
+            transaction_id = res[0].transaction_id;
+  
+
+            for(var i = 0; i< add_line.length;i++)
+            {
+              
+              add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+        
+                $.ajax({
+                  type: "POST",
+                  data: add_line[i],
+                  url: global.settings.url +'/MainController/savecheque',
+                  
+                  success: function(res){
+                    $('#TenantPay').modal("hide");
+                  },
+                  error: function(res){
+                   
+                  }
+              });
+            }
+          },
+          error: function(res){
+         
+          }
+       });  
+
+       
+
+      
+
+    break;
+
+    case "cashandcheque":
+
+
+      $.ajax({
+        type: "POST",
+        data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+        url: global.settings.url +'/MainController/savetransaction',
+        success: function(res){
+
+          res= jQuery.parseJSON(res);
+       
+             transaction_id = res[0].transaction_id;
+          for(var i = 0; i< add_line.length;i++)
+          {
+
+            add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+              $.ajax({
+                type: "POST",
+                data: add_line[i],
+                url: global.settings.url +'/MainController/savecheque',
+                
+                success: function(res){
+                  $('#TenantPay').modal("hide");
+                },
+                error: function(res){
+                 
+                }
+            });
+          }
+  
+  
+        },
+        error: function(res){
+       
+        }
+     });  
+       
+      
+
+    break;
+    default:
+      alert("");
+    break;
+
+
+    customer_id = "";
+    tenant_id = "";
+    type_of_payment = "";
+    or_number = "";
+    amount_to_pay = "";
+    cash_tendered = "";
+    payment_effectivity = "";
+    fund_id = 1;
+    payment_type = "";
+   
+ 
+
+
+  }
+});
+
+$('#test').click(function(){
+
+  $('#ortenant').modal('show');
+});
+
+
+
+

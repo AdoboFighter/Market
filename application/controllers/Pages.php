@@ -14,30 +14,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function index()
     {
       $this->load->view('pages/login');
+
+
+
     }
 
 
     public function view($pages = '')
     {
 
+      if($this->session->userdata('flag')== 1){
 
-    $this->load->view('templates/header');
-    $this->load->view('pages/'.$pages);
-    $dataPage = array(
-      'js_file' => $pages. '.js'
-    );
-    $this->load->view('templates/footer',$dataPage);
+        $this->load->view('templates/header');
+        $this->load->view('pages/'.$pages);
+        $dataPage = array(
+          'js_file' => $pages. '.js'
+        );
+        $this->load->view('templates/footer',$dataPage);
+      }
+      else{
+        $this->load->view('pages/login');
+      }
+         
 
+        
+   
+        
+             
     }
+    
 
     public function login_acc()
     {
       // To get the post method configured in the ajax POST HTTP Request
+      
       $input = $this->input->post('login');
 
-      // returns a array result from model function login_acc converted to json response
-      echo json_encode($this->login->login_acc($input));
+      $userdata = $this->login->login_acc($input);
 
+      echo json_encode($userdata);
+
+    }
+
+    public function logout_acc(){
+    
+      session_destroy();
+      $this->load->view('pages/login');
     }
 
 
