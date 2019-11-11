@@ -278,12 +278,6 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->get_violation_data_mod($id));
   }
 
-  public function get_resviolation_data_con()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->get_resviolation_data_mod($id));
-  }
-
 
 
   public function get_customer_info_vio_con()
@@ -299,7 +293,6 @@ class MainController extends CI_Controller{
   }
 
 
-<<<<<<< HEAD
     public function saveSysUser()
     {
       $inputData = $this->input->post('sysUser');
@@ -344,106 +337,6 @@ class MainController extends CI_Controller{
     {
       echo json_encode($this->model->getsystemusertablemod());
     }
-=======
-  public function saveSysUser()
-  {
-    $inputData = $this->input->post('sysUser');
-    echo json_encode($this->model->insert_sysUser($inputData));
-  }
-
-  public function getambuinfopay()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->getambuinfopay($id));
-  }
-
-  public function getdeliverypay()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->getdeliverypay($id));
-  }
-
-  public function getdeliverypaytablecon()
-  {
-    echo json_encode($this->model->getdeliverypaytablemod());
-  }
-
-  public function getparkingpay()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->getparkingpay($id));
-  }
-
-  public function getparkingpaytablecon()
-  {
-    echo json_encode($this->model->getparkingpaytablemod());
-  }
-
-  public function resolveViolationCon()
-  {
-    $inputData = $this->input->post('violation');
-    echo json_encode( $this->model->resolveViolationMod($inputData));
-  }
-
-  public function updateSystemUserCon()
-  {
-    $inputData = $this->input->post('upsys');
-    echo json_encode( $this->model->updateSystemUserMod($inputData));
-  }
-
-  public function getsystemusertablecon()
-  {
-    echo json_encode($this->model->getsystemusertablemod());
-  }
-
-  public function getusercon()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->getusermod($id));
-  }
-
-  function pdf()
-{
-    $this->load->helper('pdf_helper');
-    /*
-        ---- ---- ---- ----
-        your code here
-        ---- ---- ---- ----
-    */
-    $this->load->view('pdfreport', $data);
-}
-
-public function getcerttable()
-{
-  echo json_encode($this->model->getcerttable());
-}
-public function get_cert_info_con()
-{
-  $id = $this->input->post('id');
-  echo json_encode($this->model->get_cert_info_mod($id));
-}
-
-public function pdf2fcert()
-   {
-
-     $inputData = $this->input->post('cert');
-     $data = array(
-       'fname' => $inputData['fname'],
-       'mname' => $inputData['mname'],
-       'lname' => $inputData['lname'],
-       'address' => $inputData['address']
-     );
-
-     print_r($data);
-
-      return $this->load->view('pages/PDF2fcertification',$data);
-   }
-
-
-
-
-
->>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
 
     public function getusercon()
     {
