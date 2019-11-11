@@ -6,6 +6,7 @@ class Mainmodel extends CI_model{
 
     // To set session inside the model could be use to get session ids.
     $this->load->library('session');
+    $this->load->library('form_validation');
   }
 
   public function login_acc($input)
@@ -189,6 +190,7 @@ class Mainmodel extends CI_model{
       'username' => $inputData['username']
     );
 
+<<<<<<< HEAD
     $this->db->trans_start();
     $this->db->where($username);
     $this->db->limit(1);
@@ -219,6 +221,25 @@ class Mainmodel extends CI_model{
       echo '<script>console.log("Shit not working")</script>';
     }
 
+=======
+
+    $this->db->where($username);
+    $this->db->limit(1);
+    $user = $this->db->get('user');
+
+    if($user->num_rows() == 1) {
+      return 'taken';
+    }else {
+
+
+       $query = $this->db->insert('user', $data1);
+if ($query) {
+  return 'okay';
+}
+
+    }
+  }
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
 
 
   }
@@ -868,25 +889,25 @@ class Mainmodel extends CI_model{
     $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
 
-      $data_tenant = array(
-        'business_id' => $inputData['Owner_Firstname'],
-        'business_name' => $inputData['Owner_Middlename'],
-        'fk_customer_id' => $last_id
-      );
-      $this->db->insert('tenant', $data_tenant);
-      $last_id_tenant = $this->db->insert_id();
+    $data_tenant = array(
+      'business_id' => $inputData['Owner_Firstname'],
+      'business_name' => $inputData['Owner_Middlename'],
+      'fk_customer_id' => $last_id
+    );
+    $this->db->insert('tenant', $data_tenant);
+    $last_id_tenant = $this->db->insert_id();
 
-      $data_stall = array(
-        'floor_level' => $inputData['Floor_level'],
-        'unit_no' => $inputData['Stall_Number'],
-        'tenant_id' => $last_id_tenant,
-        'date_occupied' => $inputData['date_occupied'],
-        'Section' => $inputData['section'],
-        'sqm' => $inputData['Square_meters'],
-        'dailyfee' => $inputData['Daily_fee']
-      );
+    $data_stall = array(
+      'floor_level' => $inputData['Floor_level'],
+      'unit_no' => $inputData['Stall_Number'],
+      'tenant_id' => $last_id_tenant,
+      'date_occupied' => $inputData['date_occupied'],
+      'Section' => $inputData['section'],
+      'sqm' => $inputData['Square_meters'],
+      'dailyfee' => $inputData['Daily_fee']
+    );
 
-      $this->db->insert('stall', $data_stall);
+    $this->db->insert('stall', $data_stall);
 
 
     $this->db->trans_complete();
@@ -1016,7 +1037,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add Violation</button>
         </div>'
       );
     }
@@ -1040,6 +1061,7 @@ class Mainmodel extends CI_model{
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
     $query = $this->db->get('customer');
+<<<<<<< HEAD
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -1074,13 +1096,24 @@ class Mainmodel extends CI_model{
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
     $query = $this->db->get('customer');
+=======
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'description' => $r->description,
         'date_occured' => $r->date_occured,
         'status'=> $r->status,
+<<<<<<< HEAD
         'name'=> $r->name
+=======
+        'name'=> $r->name,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->violation_id.'); " class="btn btn-sm btn-info ml-3 btn-danger" name="button" id="loadcus">Resolve</button>
+        </div>'
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
       );
     }
     $result = array(
@@ -1136,10 +1169,11 @@ class Mainmodel extends CI_model{
 
   public function get_customer_info_vio($id)
   {
-    $this->db->where('fk_customer_id', $id);
-    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->where('violation_id', $id);
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $query = $this->db->get('tenant');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
     return $query->result();
 
   }
@@ -1160,6 +1194,7 @@ class Mainmodel extends CI_model{
   }
 
 
+<<<<<<< HEAD
   public function savepayment($table,$data)
   {
       $this->db->insert($table,$data);
@@ -1211,6 +1246,210 @@ class Mainmodel extends CI_model{
 
 
   public function getsystemusertablemod()
+=======
+  public function getambuinfopay($id)
+  {
+    $this->db->where('fk_customer_customer_id', $id);
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function getdeliverypay($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function getdeliverypaytablemod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_delivery_id' => $r->delivery_id,
+        'pay_delivery_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getparkingpay($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function getparkingpaytablemod()
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+<<<<<<< HEAD
+    $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
+    $query = $this->db->get('user');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'usr_id' => $r->user_id,
+        'usr_name' => $r->usr_firstname.' '.$r->usr_middlename.' '.$r->usr_lastname,
+        'usr_level' => $r->user_type,
+        'usr_address'=>$r->usr_address,
+        'usr_position'=>$r->position,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+=======
+
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_driver_id' => $r->driver_id,
+        'pay_parking_lot' => $r->lot_no,
+        'pay_parking_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+<<<<<<< HEAD
+
+  public function getusermod($id)
+  {
+    $this->db->where('user_id', $id);
+    $query = $this->db->get('user');
+    return $query->result();
+    echo $query;
+  }
+=======
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
+
+  public function getcerttable()
+  {
+
+<<<<<<< HEAD
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->where('payment_nature_id', "4015");
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_address' => $r->address,
+
+        'btn'=>
+=======
+  public function resolveViolationMod($inputData)
+  {
+    $data_transaction = array(
+      'payment_nature_id' => '4016',
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
+
+    $violation_id = array(
+      'violation_id' => $inputData['violation_id_f']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
+  }
+
+  public function get_resviolation_data_mod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->where('status', "PAID");
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'description' => $r->description,
+        'date_occured' => $r->date_occured,
+        'status'=> $r->status,
+        'name'=> $r->name
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getsystemusertablemod()
   {
 
     $draw = intval($this->input->get("draw"));
@@ -1250,6 +1489,31 @@ class Mainmodel extends CI_model{
     echo $query;
   }
 
+  public function updateSystemUserMod($inputData)
+  {
+    $data_user = array(
+      'usr_firstname' => $inputData['usr_fn'],
+      'usr_middlename' => $inputData['usr_mn'],
+      'usr_lastname' => $inputData['usr_ln'],
+      'usr_address' => $inputData['usr_add'],
+      'usr_contact_number' => $inputData['usr_cn'],
+      'username' => $inputData['usr_un'],
+      'password' => $inputData['usr_pass'],
+      'position' => $inputData['usr_position'],
+      'user_level' => $inputData['user_lvl']
+    );
+
+    $user_id = array(
+      'user_id' => $inputData['usr_id']
+    );
+
+
+    $this->db->where($user_id);
+    $this->db->update('user', $data_user);
+
+
+  }
+
   public function getcerttable()
   {
 
@@ -1271,6 +1535,36 @@ class Mainmodel extends CI_model{
         'c_info_address' => $r->address,
 
         'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function get_salesinfo()
+  {
+    $query = $this->db->get('user');
+    return $query->result();
+    echo $query;
+  }
+
+  public function get_cert_info_mod($id)
+  {
+    $this->db->where('customer_id', $id);
+    $query = $this->db->get('customer');
+    return $query->result();
+
+  }
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>

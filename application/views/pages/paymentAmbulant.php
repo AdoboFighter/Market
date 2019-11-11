@@ -10,6 +10,30 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
+  <form id="ambulantPayment">
+    <div class="container justify-content-center">
+      <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
+      <div class="card m-3">
+        <div class="row p-3">
+          <div class="col-12">
+            <table class="table table-striped table-bordered" id="AmbulantTable">
+              <thead>
+                <tr>
+                  <td>Customer ID</td>
+                  <td>name</td>
+                  <td>Location</td>
+                  <td>Location Number</td>
+                  <td>Payment</td>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
 
@@ -36,6 +60,13 @@
       </div>
     </div>
 
+    <div id="failedActivation" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content p-3">
+          <h5>Select a client first!</h5>
+        </div>
+      </div>
+    </div>
 
 
     <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

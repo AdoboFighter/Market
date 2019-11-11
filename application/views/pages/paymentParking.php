@@ -10,7 +10,6 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
-
     <div class="container justify-content-center">
       <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
       <div class="card m-3">

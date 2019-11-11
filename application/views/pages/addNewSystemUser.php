@@ -22,7 +22,7 @@
           <div class="col-4">
             <div class="form-group">
               <label for="">First Name</label>
-              <input type="text" class="form-control" name="sysUser[firstname]" id=""  required="">
+              <input type="text" class="form-control" name="sysUser[firstname]"  required="">
             </div>
           </div>
 
@@ -36,7 +36,7 @@
           <div class="col-4">
             <div class="form-group">
               <label for="">last Name</label>
-              <input type="text" class="form-control" name="sysUser[lastname]" id=""  required="">
+              <input type="text" class="form-control" name="sysUser[lastname]"   required="">
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Username</label>
-            <input type="text" class="form-control" name="sysUser[username]" id=""  required="">
+            <input type="text" class="form-control" name="sysUser[username]"  required="">
           </div>
 
           <div class="col">
@@ -77,7 +77,11 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Confirm Password</label>
+<<<<<<< HEAD
             <input type="password" class="form-control" name="sysUser[password2]" id="pass2" required="">
+=======
+            <input type="password" class="form-control"  id="pass2" required="">
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
           </div>
         </div>
 

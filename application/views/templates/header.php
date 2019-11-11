@@ -19,6 +19,8 @@
   DEMO STYLE
   */
 
+
+
   @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
   #locationfields {
@@ -360,6 +362,14 @@ CONTENT STYLE
 	position:relative;
 	top:1px;
 }
+
+/* @media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}
+ */
 
 
 

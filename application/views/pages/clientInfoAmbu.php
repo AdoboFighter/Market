@@ -38,6 +38,7 @@
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
+<<<<<<< HEAD
         <form id = "updatecustomerinfo">
         <input type="hidden" id = "customer_id" name = "update[customer_id]">
         <input type="hidden" id = "ambulant_id" name = "update[ambulant_id]">
@@ -60,6 +61,27 @@
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
             <input type="input" class="form-control" name="update[ambulant_cn]" id="ambulant_cn" required>
+=======
+          <div class="mb-2 form-group" id="">
+            <label>First name:</label>
+            <input type="input" class="form-control" name="" id="ambulant_fn" required>
+          </div>
+          <div class="mb-2 form-group" id="">
+            <label>Middile name:</label>
+            <input type="input" class="form-control" name="" id="ambulant_mn" required>
+          </div>
+          <div class="mb-2 form-group" id="">
+            <label>Last name:</label>
+            <input type="input" class="form-control" name="" id="ambulant_ln" required>
+          </div>
+          <div class="mb-2 form-group" id="">
+            <label>Address:</label>
+            <input type="input" class="form-control" name="" id="ambulant_add" required>
+          </div>
+          <div class="mb-2 form-group" id="">
+            <label>Contact Number:</label>
+            <input type="input" class="form-control" name="" id="ambulant_cn" required>
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
           </div>
         </div>
       </div>
@@ -67,15 +89,26 @@
         <div class="card col p-3">
           <div class="mb-2">
             <label>Location</label>
+<<<<<<< HEAD
             <input type="text" class="form-control" name="update[location]" id="location"  >
+=======
+            <input type="text" class="form-control" name="" id="location"  >
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
           </div>
 
           <div class="mb-2">
             <label>Location number</label>
+<<<<<<< HEAD
             <input type="text" class="form-control" name="update[location_num]" id="Location_num">
           </div>
         </div><br>
     <button class ="btn btn-primary" type = "submit">Update</button>
+=======
+            <input type="text" class="form-control" name="" id="Location_num">
+          </div>
+        </div>
+
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
         <div class="card col p-3 mt-2">
           <h5 class="font-weight-bold">Payment History</h5>
           <table class="table table-striped table-bordered" id="pay_hist_tab">

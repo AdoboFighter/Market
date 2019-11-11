@@ -32,7 +32,11 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+=======
+        <div id="certmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
           <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
             <div class="modal-content p-2">
               <h5>Certification</h5>
@@ -46,8 +50,35 @@
                 </select>
               </div>
 
+<<<<<<< HEAD
 
               <iframe id="myIframe" src="<?php echo base_url().'pages/view/PDF2fcertification' ?>" frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
+=======
+               <input type="hidden" id="fname" name="cert[fname]" >
+               <input type="hidden" id="mname" name="cert[mname]" >
+               <input type="hidden" id="lname" name="cert[lname]" >
+               <input type="hidden" id="address" name="cert[address]">
+
+              <iframe id="iframe_preview_formgen"  frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
+
+
+
+              <br>
+              <div>
+                <button type="submit" class="btn btn-primary" width="50" >Print & Save</button>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+>>>>>>> 7a693d65ce9352b2d7a3ce634a3f4a3afa421b98
 
 
 
