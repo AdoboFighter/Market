@@ -335,7 +335,7 @@
 
 <form id="login_account">
   <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-  <input type="text" id="password" class="fadeIn third" name="login[password]" placeholder="password">
+  <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
   <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
 </form>
 

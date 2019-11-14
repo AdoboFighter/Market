@@ -16,7 +16,7 @@ class Mainmodel extends CI_model{
     $data = array(
       'username' => $input['username'],
       'password' => $input['password']
-    );  
+    );
 
     $query = $this->db->select('*')
                   ->from('user')
@@ -32,29 +32,29 @@ class Mainmodel extends CI_model{
            $userdata['user_id'] = $r->user_id;
            $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
            $userdata['position'] = $r->position;
-           
+
          } $userdata['flag'] = 1;
-        
+
             $this->session->set_userdata($userdata);
-           
-           
+
+
          return $userdata;
-        
+
 
       }
       else{
         return $userdata['res'] = 'passwordError';
       }
-     
+
     }
     else{
-        
+
         return $userdata['res'] = 'usernameError';
     }
-  
-    
 
-    
+
+
+
 
   }
 
@@ -98,12 +98,12 @@ class Mainmodel extends CI_model{
       'lastname' =>$data['park_ln'],
       'address' =>$data['park_add'],
       'contact_number' =>$data['park_cn'],
-     
+
 
     );
     $data2 = array(
       'lot_no' =>$data['park_lot'],
-      
+
     );
 
 
@@ -125,13 +125,13 @@ class Mainmodel extends CI_model{
       'lastname' =>$data['ambulant_ln'],
       'address' =>$data['ambulant_add'],
       'contact_number' =>$data['ambulant_cn'],
-     
+
 
     );
     $data2 = array(
       'location' =>$data['location'],
       'location_no' =>$data['location_num'],
-      
+
     );
 
 
@@ -153,16 +153,16 @@ class Mainmodel extends CI_model{
       'lastname' =>$data['delivery_ln'],
       'address' =>$data['delivery_add'],
       'contact_number' =>$data['delivery_cn'],
-     
+
 
     );
-   
+
 
 
     $this->db->where('customer_id',$data['customer_id'])
                      ->update('customer',$data1);
 
-   
+
 
 
     return true;
@@ -300,11 +300,11 @@ class Mainmodel extends CI_model{
                       ->from('transaction');
                       // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
                       // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-                      
+
 
           if($sort != null)
           {
-            
+
 
             switch($sort['conClientType']){
 
@@ -384,17 +384,17 @@ class Mainmodel extends CI_model{
 
 
   public function consexcel($sort){
-   
+
 
     $this->db->select('*')
                       ->from('transaction');
                       // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
                       // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-                      
+
 
           if($sort != null)
           {
-            
+
 
             switch($sort['conClientType']){
 
@@ -463,13 +463,13 @@ class Mainmodel extends CI_model{
             'pay_collector' =>$r->collector,
           );
         }
-      
+
         return $data;
   }
 
 
   public function collector()
-  { 
+  {
     $query = $this->db->select('usr_firstname, usr_middlename, usr_lastname, user_id')
                       ->from('user')
                       ->where('user_level=', '3')
@@ -498,16 +498,16 @@ class Mainmodel extends CI_model{
     // $query = $this->db->query("SELECT * FROM transaction");
     // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
     // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
- 
+
     // $query = $this->db->get('transaction');
         $this->db->select('*')
                 ->from('transaction');
-               
+
 
     //QUERY with SORT
     if($sort['clientType']){
 
-    
+
         switch($sort['clientType']){
           case 'ambulant':
           $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
@@ -538,8 +538,8 @@ class Mainmodel extends CI_model{
           $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
           $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
           break;
-        }  
-    } 
+        }
+    }
     else{
       $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
       $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -555,7 +555,7 @@ class Mainmodel extends CI_model{
     }
 
         $query = $this->db->get();
-    
+
 
 
     $data = [];
@@ -600,7 +600,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus"><a href="#sect2">Load Data</button>
         </div>'
       );
     }
@@ -735,7 +735,7 @@ class Mainmodel extends CI_model{
                     ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
                     ->join('stall', 'tenant.tenant_id = stall.tenant_id', 'inner')
                     ->where('customer.customer_id', $id)
-                    
+
                     ->get();
 
         // $this->db->where('customer.customer_id', $id);
@@ -764,9 +764,9 @@ class Mainmodel extends CI_model{
 
           );
         }
-   
+
         return $data;
-       
+
   }
 
   public function transactionhistory($id)
@@ -781,7 +781,7 @@ class Mainmodel extends CI_model{
                       ->where('customer.customer_id',$id)
                       ->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner')
                       ->join('customer','customer.customer_id = transaction.customer_id','inner')
-             
+
                       ->get();
 
       $data =[];
@@ -790,7 +790,7 @@ class Mainmodel extends CI_model{
         $data[] = array(
           'or_no' => $k->or_number,
           'nature_of_payment' => $k->payment_nature_name,
-          'amount' => $k->payment_amount, 
+          'amount' => $k->payment_amount,
           'date' =>$k->payment_datetime
         );
       }
@@ -803,7 +803,7 @@ class Mainmodel extends CI_model{
       );
       return $result;
 
-      
+
   }
 
 
@@ -1093,7 +1093,7 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  
+
 
   public function getambuinfopay($id)
   {
@@ -1173,7 +1173,7 @@ class Mainmodel extends CI_model{
        array_push($dataArray,$r);
      }
      return $dataArray;
-    
+
   }
 
   public function savepayment2($table,$data)
@@ -1182,8 +1182,8 @@ class Mainmodel extends CI_model{
 
     $query =  $this->db->insert($table,$data);
 
-    
-    
+
+
   }
 
   public function updateSystemUserMod($inputData)

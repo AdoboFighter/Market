@@ -4,8 +4,9 @@ var id;
 $(document).ready(function(){
 
 
-  
+
   $('#client_table').DataTable({
+    "pagingType": "full_numbers",
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertable',
       dataSrc : 'data'
@@ -47,7 +48,7 @@ $(document).ready(function(){
   $('#updatecustomerinfo').submit(function(e){
     e.preventDefault();
 
-      
+
           $.ajax({
               url: global.settings.url + '/MainController/updatecustomerinfo',
               type: 'POST',
@@ -61,13 +62,13 @@ $(document).ready(function(){
               $('#owner_ln').val(null);
               $('#owner_add').val(null);
               $('#owner_cn').val(null);
-      
+
               $('#occu_fn').val(null);
               $('#occu_mn').val(null);
               $('#occu_ln').val(null);
               $('#occu_add').val(null);
               $('#occu_cn').val(null);
-      
+
               $('#stall_id').val(null);
               $('#stall_number').val(null);
               $('#area').val(null);
@@ -77,11 +78,33 @@ $(document).ready(function(){
 
             }
         });
- 
+
       });
+
+      // $("a").on('click', function(event) {
+      //
+      //   // Make sure this.hash has a value before overriding default behavior
+      //   if (this.hash !== "") {
+      //     // Prevent default anchor click behavior
+      //     event.preventDefault();
+      //
+      //     // Store hash
+      //     var hash = this.hash;
+      //
+      //     // Using jQuery's animate() method to add smooth page scroll
+      //     // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      //     $('html, body').animate({
+      //       scrollTop: $(hash).offset().top
+      //     }, 800, function(){
+      //
+      //       // Add hash (#) to URL when done scrolling (default click behavior)
+      //       window.location.hash = hash;
+      //     });
+      //   } // End if
+      // });
 });
 
- 
+
 
 
 function fetchdata(id){
@@ -134,9 +157,9 @@ function customerinfo(id){
   function transactionhistory(id)
   {
     $('#pay_hist_tab').DataTable().destroy();
-    
-    
-   
+
+
+
   $('#pay_hist_tab').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertransactionhistory/' + id,
@@ -159,12 +182,10 @@ function customerinfo(id){
     {
       "data" : "date"
     }]
-    
+
   });
 
 
- 
+
   $('.dataTables_length').addClass('bs-select');
 }
-
-

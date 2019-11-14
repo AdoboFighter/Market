@@ -308,7 +308,7 @@
 
   <div class="bluegrads">
 
-    <div class="wrapper fadeInDown">
+    <div class="wrapper ">
       <div id="formContent">
 
         <div class="fadeIn first">
@@ -316,8 +316,8 @@
         </div>
         <form id="login_account">
 
-          <h3>The E-market is still under development,</h3>
-          <h3>We're vewy sowwy ( ´•̥̥̥ω•̥̥̥` )</h3>
+          <h3>The E-market is still under development</h3>
+          <!-- <h3>We're vewy sowwy ( ´•̥̥̥ω•̥̥̥` )</h3> -->
 
         </form>
 
