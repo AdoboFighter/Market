@@ -409,15 +409,17 @@ class MainController extends CI_Controller{
       return $this->load->view('pages/PDF2fcertification',$data);
    }
 
-
-}
-
-
-public function get_cert_info_con()
+   public function get_cert_info_con()
 {
   $id = $this->input->post('id');
   echo json_encode($this->model->get_cert_info_mod($id));
 }
+
+
+}
+
+
+
 
 
 
