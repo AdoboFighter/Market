@@ -11,29 +11,163 @@ class Mainmodel extends CI_model{
 
   public function login_acc($input)
   {
+    $testpassword = "";
+    $userdata = array();
     $data = array(
       'username' => $input['username'],
       'password' => $input['password']
-    );
-    $this->db->where($data);
-    $query = $this->db->get('user');
+    );  
 
-    $response = array();
+    $query = $this->db->select('*')
+                  ->from('user')
+                  ->where('username',$data['username'])
+                  ->get();
 
-    if($query->num_rows() == 0){
-      $response['response'] = false;
-      $response['message'] = 'Incorrect Username or Password';
-    }else{
-      $response['response'] = true;
-      $response['message'] = 'Login Success : '.$input['username'];
-      $response['data'] = $query->result();
-      redirect('pages/home');
-      echo "yeah";
+    if($query->num_rows() > 0){
+      foreach($query->result() as $k){
+        $testpassword = $k->password;
+      }
+      if($data['password'] == $testpassword){
+         foreach($query->result() as $r){
+           $userdata['user_id'] = $r->user_id;
+           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
+           $userdata['position'] = $r->position;
+           
+         } $userdata['flag'] = 1;
+        
+            $this->session->set_userdata($userdata);
+           
+           
+         return $userdata;
+        
+
+      }
+      else{
+        return $userdata['res'] = 'passwordError';
+      }
+     
     }
+    else{
+        
+        return $userdata['res'] = 'usernameError';
+    }
+  
+    
 
-    return $response;
+    
 
   }
+
+  public function updatecustomerinfo($data){
+
+    $data1 = array(
+      'firstname' =>$data['owner_fn'],
+      'middlename' =>$data['owner_mn'],
+      'lastname' =>$data['owner_ln'],
+      'address' =>$data['owner_add'],
+      'contact_number' =>$data['owner_cn'],
+      'aofirstname' =>$data['occu_fn'],
+      'aomiddlename' =>$data['occu_mn'],
+      'aolastname' =>$data['occu_ln'],
+      'aoaddress' =>$data['occu_add'],
+      'ao_cn' =>$data['occu_cn'],
+    );
+    $data2 = array(
+      'unit_no' =>$data['stall_number'],
+      'sqm' =>$data['area'],
+      'dailyfee' =>$data['daily_fee'],
+    );
+
+
+    $this->db->where('customer_id',$data['customer_id'])
+                     ->update('customer',$data1);
+
+    $this->db->where('stall_id',$data['stall_id'])
+                     ->update('stall',$data2);
+
+
+    return true;
+  }
+
+
+  public function updateparkinginfo($data){
+
+    $data1 = array(
+      'firstname' =>$data['park_fn'],
+      'middlename' =>$data['park_mn'],
+      'lastname' =>$data['park_ln'],
+      'address' =>$data['park_add'],
+      'contact_number' =>$data['park_cn'],
+     
+
+    );
+    $data2 = array(
+      'lot_no' =>$data['park_lot'],
+      
+    );
+
+
+    $this->db->where('customer_id',$data['customer_id'])
+                     ->update('customer',$data1);
+
+    $this->db->where('driver_id',$data['park_id'])
+                     ->update('parking_lot',$data2);
+
+
+    return true;
+  }
+
+  public function updateambulantinfo($data){
+
+    $data1 = array(
+      'firstname' =>$data['ambulant_fn'],
+      'middlename' =>$data['ambulant_mn'],
+      'lastname' =>$data['ambulant_ln'],
+      'address' =>$data['ambulant_add'],
+      'contact_number' =>$data['ambulant_cn'],
+     
+
+    );
+    $data2 = array(
+      'location' =>$data['location'],
+      'location_no' =>$data['location_num'],
+      
+    );
+
+
+    $this->db->where('customer_id',$data['customer_id'])
+                     ->update('customer',$data1);
+
+    $this->db->where('ambulant_unit_id',$data['ambulant_id'])
+                     ->update('ambulant_unit',$data2);
+
+
+    return true;
+  }
+
+  public function updatedeliveryinfo($data){
+
+    $data1 = array(
+      'firstname' =>$data['delivery_fn'],
+      'middlename' =>$data['delivery_mn'],
+      'lastname' =>$data['delivery_ln'],
+      'address' =>$data['delivery_add'],
+      'contact_number' =>$data['delivery_cn'],
+     
+
+    );
+   
+
+
+    $this->db->where('customer_id',$data['customer_id'])
+                     ->update('customer',$data1);
+
+   
+
+
+    return true;
+  }
+
 
 
 
@@ -56,24 +190,39 @@ class Mainmodel extends CI_model{
       'username' => $inputData['username']
     );
 
-
+    $this->db->trans_start();
     $this->db->where($username);
     $this->db->limit(1);
-    $user = $this->db->get('user');
+    $query = $this->db->get('user');
+    if ($query->num_rows() == 1) {
 
-    if($user->num_rows() == 1) {
-      return 'taken';
+      echo "<script>
+      $(document).ready(function(){
+        $('#usererror').modal('show');
+      });
+      </script>";
+
+      echo "working";
+
+      echo '<div class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+</div>';
     }else {
-
-
-       $query = $this->db->insert('user', $data1);
-if ($query) {
-  return 'okay';
-}
-
+      // $this->db->insert('user', $data1);
+      echo "yeah";
+      echo "<script>$('#usererror').modal('show')</script>";
     }
-  }
 
+    $this->db->trans_complete();
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
+
+
+
+  }
 
   function fetch_data($query){
     $this->db->select("*");
@@ -97,7 +246,14 @@ if ($query) {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $query = $this->db->query("SELECT * FROM customer");
+
+
+
+
+    $query = $this->db->select('*')
+                      ->from('customer')
+                      ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
+                      ->get();
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -135,49 +291,275 @@ if ($query) {
     echo $query;
   }
 
-  public function getconsolidationtable()
-  {
-
+  public function consolidationtablesort($sort){
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    // $query = $this->db->query("SELECT * FROM transaction");
 
-    $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    $query = $this->db->get('transaction');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->transaction_id,
-        'pay_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'pay_or' => $r->or_number,
-        'pay_amount'=> $r->payment_amount,
-        'pay_nature'=> $r->payment_nature_id,
-        'pay_date'=> $r->payment_datetime,
-        'pay_fund'=> $r->fund_name,
-        'pay_collector'=> $r->collector,
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
+    $this->db->select('*')
+                      ->from('transaction');
+                      // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+                      // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+                      
+
+          if($sort != null)
+          {
+            
+
+            switch($sort['conClientType']){
+
+              case 'ambulant':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+              break;
+
+              case 'tenant':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+              break;
+
+
+              case 'parking':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+              $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+              break;
+
+              case 'delivery':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+              break;
+
+              default:
+              $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              break;
+            }
+          }
+          else {
+            $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+            $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          }
+          if($sort['conDateFrom'])
+            {
+              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+            }
+            if($sort['conDateTo'])
+            {
+              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+            }
+          if($sort['conCollectorName'])
+          {
+            $this->db->where('user_id',$sort['conCollectorName']);
+          }
+
+
+
+        $query = $this->db->get();
+        $data = [];
+        foreach ($query->result() as $r) {
+          $data[] = array(
+            'id' => $r->transaction_id,
+            'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+            'pay_or' => $r->or_number,
+            'pay_amount' =>$r->payment_amount,
+            'pay_nature' =>$r->payment_nature_id,
+            'pay_date' => $r->payment_datetime,
+            'pay_fund' =>$r->fund_name,
+            'pay_collector' =>$r->collector,
+          );
+        }
+        $result = array(
+          "draw" => $draw,
+          "recordsTotal" => $query->num_rows(),
+          "recordsFiltered" => $query->num_rows(),
+          "data" => $data
+        );
+        return $result;
   }
 
-  public function gettransactiontable()
+
+  public function consexcel($sort){
+   
+
+    $this->db->select('*')
+                      ->from('transaction');
+                      // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+                      // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+                      
+
+          if($sort != null)
+          {
+            
+
+            switch($sort['conClientType']){
+
+              case 'ambulant':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+              break;
+
+              case 'tenant':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+              break;
+
+
+              case 'parking':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+              $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+              break;
+
+              case 'delivery':
+              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+              break;
+
+              default:
+              $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+              break;
+            }
+          }
+          else {
+            $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+            $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          }
+          if($sort['conDateFrom'])
+            {
+              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+            }
+            if($sort['conDateTo'])
+            {
+              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<', $sort['conDateTo'] );
+            }
+          if($sort['conCollectorName'])
+          {
+            $this->db->where('user_id',$sort['conCollectorName']);
+          }
+
+
+
+        $query = $this->db->get();
+        $data = [];
+        foreach ($query->result() as $r) {
+          $data[] = array(
+            'id' => $r->transaction_id,
+            'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+            'pay_or' => $r->or_number,
+            'pay_amount' =>$r->payment_amount,
+            'pay_nature' =>$r->payment_nature_id,
+            'pay_date' => $r->payment_datetime,
+            'pay_fund' =>$r->fund_name,
+            'pay_collector' =>$r->collector,
+          );
+        }
+      
+        return $data;
+  }
+
+
+  public function collector()
+  { 
+    $query = $this->db->select('usr_firstname, usr_middlename, usr_lastname, user_id')
+                      ->from('user')
+                      ->where('user_level=', '3')
+                      ->get();
+    $collector = [];
+
+    foreach($query->result()as $k)
+    {
+      $collector[] = array(
+        'fullname' => $k->usr_firstname ." ". $k->usr_middlename." ".$k->usr_lastname,
+        'user_id' => $k->user_id
+      );
+    }
+
+
+      return $collector;
+  }
+
+
+  public function gettransactiontable($sort)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     // $query = $this->db->query("SELECT * FROM transaction");
-    $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    $query = $this->db->get('transaction');
+    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+ 
+    // $query = $this->db->get('transaction');
+        $this->db->select('*')
+                ->from('transaction');
+               
+
+    //QUERY with SORT
+    if($sort['clientType']){
+
+    
+        switch($sort['clientType']){
+          case 'ambulant':
+          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+          break;
+
+          case 'parking':
+          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+          $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+          break;
+
+          case 'tenant':
+          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+          break;
+
+          case 'delivery':
+          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+           break;
+
+          default:
+          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+          break;
+        }  
+    } 
+    else{
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+
+    if($sort['dateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['dateFrom'] );
+    }
+    if($sort['dateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
+    }
+      $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+
+
+        $query = $this->db->get();
+    
+
+
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -185,7 +567,7 @@ if ($query) {
         'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
         'trans_or' => $r->or_number,
         'trans_amount'=> $r->payment_amount,
-        'trans_nature'=> $r->payment_nature_id,
+        'trans_nature'=> $r->payment_nature_name,
         'trans_date'=> $r->payment_datetime,
         'trans_fund'=> $r->fund_name
       );
@@ -265,6 +647,72 @@ if ($query) {
     return $result;
   }
 
+  public function getdeliverypaytablemod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_delivery_id' => $r->delivery_id,
+        'pay_delivery_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getparkingpaytablemod()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_driver_id' => $r->driver_id,
+        'pay_parking_lot' => $r->lot_no,
+        'pay_parking_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+
 
   public function getcustomerinfomod($id)
   {
@@ -280,30 +728,84 @@ if ($query) {
   public function getcustomerinfopaymod($id)
   {
 
+        $draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+
+        $query = $this->db->select('*')
+                    ->from('customer')
+                    ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
+                    ->join('stall', 'tenant.tenant_id = stall.tenant_id', 'inner')
+                    ->where('customer.customer_id', $id)
+                    
+                    ->get();
+
+        // $this->db->where('customer.customer_id', $id);
+        //           ->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
+        //           ->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
+        // $query = $this->db->get('transaction');
+        $data = [];
+        foreach ($query->result() as $r) {
+          $data[] = array(
+            'customer_id'=> $r->customer_id,
+            'firstname' => $r->firstname,
+            'middlename' => $r->middlename,
+            'lastname' => $r ->lastname,
+            'address' =>$r->address,
+            'contact_no' =>$r->contact_number,
+            'oafirstname' => $r->firstname,
+            'oamiddlename' => $r->middlename,
+            'oalastname' => $r ->lastname,
+            'oaaddress' =>$r->address,
+            'oacontact_no' =>$r->contact_number,
+
+            'stall_id' =>$r->stall_id,
+            'stall_number' =>$r->unit_no,
+            'area' => $r->sqm,
+            'daily_fee' => $r->dailyfee
+
+          );
+        }
+   
+        return $data;
+       
+  }
+
+  public function transactionhistory($id)
+  {
+
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->where('customer.customer_id', $id);
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
-    $this->db->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
-    $query = $this->db->get('transaction');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'c_info_OR' => $r->or_number,
-        'c_info_nature' => $r->payment_nature_name,
-        'c_info_amount'=> $r->payment_amount,
-        'c_info_date'=> $r->payment_datetime
+
+      $query = $this->db->select('*')
+                      ->from('transaction')
+                      ->where('customer.customer_id',$id)
+                      ->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner')
+                      ->join('customer','customer.customer_id = transaction.customer_id','inner')
+             
+                      ->get();
+
+      $data =[];
+      foreach($query->result() as $k)
+      {
+        $data[] = array(
+          'or_no' => $k->or_number,
+          'nature_of_payment' => $k->payment_nature_name,
+          'amount' => $k->payment_amount, 
+          'date' =>$k->payment_datetime
+        );
+      }
+
+      $result = array(
+        "draw" => $draw,
+        "recordsTotal" => $query->num_rows(),
+        "recordsFiltered" => $query->num_rows(),
+        "data" => $data
       );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-    echo "hello";
+      return $result;
+
+      
   }
 
 
@@ -564,155 +1066,6 @@ if ($query) {
     return $result;
   }
 
-  public function get_customer_info_vio($id)
-  {
-    $this->db->where('violation_id', $id);
-    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
-    $query = $this->db->get('customer');
-    return $query->result();
-
-  }
-
-  public function save_violation_mod($inputData)
-  {
-    $data_violation = array(
-      'description' => $inputData['desc'],
-      'date_occured' => $inputData['date'],
-      'stall_id' => $inputData['stall_id_f'],
-      'stall_stall_id' => $inputData['stall_id_f'],
-      'name' => $inputData['name']
-    );
-
-
-    $this->db->insert('violation', $data_violation);
-
-  }
-
-
-  public function getambuinfopay($id)
-  {
-    $this->db->where('fk_customer_customer_id', $id);
-    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
-    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
-    $query = $this->db->get('customer');
-    return $query->result();
-    echo $query;
-  }
-
-  public function getdeliverypay($id)
-  {
-    $this->db->where('fk_customer_id', $id);
-    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
-    $query = $this->db->get('customer');
-    return $query->result();
-    echo $query;
-  }
-
-  public function getdeliverypaytablemod()
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-
-    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
-    $query = $this->db->get('customer');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->customer_id,
-        'pay_delivery_id' => $r->delivery_id,
-        'pay_delivery_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
-        'btn'=>
-
-        '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
-        </div>'
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-  }
-
-  public function getparkingpay($id)
-  {
-    $this->db->where('fk_customer_id', $id);
-    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
-    $query = $this->db->get('customer');
-    return $query->result();
-    echo $query;
-  }
-
-  public function getparkingpaytablemod()
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-
-    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
-    $query = $this->db->get('customer');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->customer_id,
-        'pay_driver_id' => $r->driver_id,
-        'pay_parking_lot' => $r->lot_no,
-        'pay_parking_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
-        'btn'=>
-
-        '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
-        </div>'
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-  }
-
-
-  public function resolveViolationMod($inputData)
-  {
-    $data_transaction = array(
-      'payment_nature_id' => '4016',
-      'payment_amount' => $inputData['cash_tendered'],
-      'customer_id' => $inputData['customer_id'],
-      'or_number' => $inputData['OR'],
-      'effectivity' => $inputData['payment_effect']
-    );
-
-    $violation_id = array(
-      'violation_id' => $inputData['violation_id_f']
-    );
-
-    $this->db->trans_start();
-    $this->db->insert('transaction', $data_transaction);
-    $paid = array(
-      'status' => "PAID"
-    );
-    $this->db->where($violation_id);
-    $this->db->update('violation', $paid);
-    $this->db->trans_complete();
-    if ($this->db->trans_status() === FALSE)
-    {
-      echo '<script>console.log("Shit not working")</script>';
-    }
-  }
-
   public function get_resviolation_data_mod()
   {
 
@@ -741,6 +1094,125 @@ if ($query) {
     );
     return $result;
   }
+
+  
+
+  public function getambuinfopay($id)
+  {
+    $this->db->where('fk_customer_customer_id', $id);
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+      $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function gettenantpay($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+
+  public function getdeliverypay($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function getparkingpay($id)
+  {
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+    echo $query;
+  }
+
+  public function get_customer_info_vio($id)
+  {
+    $this->db->where('violation_id', $id);
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+
+  }
+
+  public function save_violation_mod($inputData)
+  {
+    $data_violation = array(
+      'description' => $inputData['desc'],
+      'date_occured' => $inputData['date'],
+      'stall_id' => $inputData['stall_id_f'],
+      'stall_stall_id' => $inputData['stall_id_f'],
+      'name' => $inputData['name']
+    );
+
+
+    $this->db->insert('violation', $data_violation);
+
+  }
+
+
+  public function savepayment($table,$data)
+  {
+      $this->db->insert($table,$data);
+
+     $this->db->where($data);
+     $query = $this->db->get($table);
+     $dataArray = array();
+     foreach ($query->result() as $r) {
+       array_push($dataArray,$r);
+     }
+     return $dataArray;
+    
+  }
+
+  public function savepayment2($table,$data)
+  {
+
+
+    $query =  $this->db->insert($table,$data);
+
+    
+    
+  }
+
+  public function updateSystemUserMod($inputData)
+  {
+    $data_user = array(
+      'usr_firstname' => $inputData['usr_fn'],
+      'usr_middlename' => $inputData['usr_mn'],
+      'usr_lastname' => $inputData['usr_ln'],
+      'usr_address' => $inputData['usr_add'],
+      'usr_contact_number' => $inputData['usr_cn'],
+      'username' => $inputData['usr_un'],
+      'password' => $inputData['usr_pass'],
+      'position' => $inputData['usr_position'],
+      'user_level' => $inputData['user_lvl']
+    );
+
+    $user_id = array(
+      'user_id' => $inputData['usr_id']
+    );
+
+
+    $this->db->where($user_id);
+    $this->db->update('user', $data_user);
+
+
+  }
+
 
   public function getsystemusertablemod()
   {
@@ -782,31 +1254,6 @@ if ($query) {
     echo $query;
   }
 
-  public function updateSystemUserMod($inputData)
-  {
-    $data_user = array(
-      'usr_firstname' => $inputData['usr_fn'],
-      'usr_middlename' => $inputData['usr_mn'],
-      'usr_lastname' => $inputData['usr_ln'],
-      'usr_address' => $inputData['usr_add'],
-      'usr_contact_number' => $inputData['usr_cn'],
-      'username' => $inputData['usr_un'],
-      'password' => $inputData['usr_pass'],
-      'position' => $inputData['usr_position'],
-      'user_level' => $inputData['user_lvl']
-    );
-
-    $user_id = array(
-      'user_id' => $inputData['usr_id']
-    );
-
-
-    $this->db->where($user_id);
-    $this->db->update('user', $data_user);
-
-
-  }
-
   public function getcerttable()
   {
 
@@ -842,22 +1289,6 @@ if ($query) {
     );
     return $result;
   }
-
-  public function get_salesinfo()
-  {
-    $query = $this->db->get('user');
-    return $query->result();
-    echo $query;
-  }
-
-  public function get_cert_info_mod($id)
-  {
-    $this->db->where('customer_id', $id);
-    $query = $this->db->get('customer');
-    return $query->result();
-
-  }
-
 
 }
 ?>

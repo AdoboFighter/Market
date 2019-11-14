@@ -77,7 +77,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Confirm Password</label>
-            <input type="password" class="form-control"  id="pass2" required="">
+            <input type="password" class="form-control" name="sysUser[password2]" id="pass2" required="">
           </div>
         </div>
 

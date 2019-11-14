@@ -38,25 +38,28 @@
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
+
+        <form id = "updatecustomerinfo">
+        <input type="hidden" id = "customer_id" name = "update[customer_id]">
           <div class="mb-2 form-group" id="">
             <label>First name:</label>
-            <input type="input" class="form-control" name="" id="park_fn" required>
+            <input type="input" class="form-control" name="update[park_fn]" id="park_fn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Middile name:</label>
-            <input type="input" class="form-control" name="" id="park_mn" required>
+            <input type="input" class="form-control" name="update[park_mn]" id="park_mn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Last name:</label>
-            <input type="input" class="form-control" name="" id="park_ln" required>
+            <input type="input" class="form-control" name="update[park_ln]" id="park_ln" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Address:</label>
-            <input type="input" class="form-control" name="" id="park_add" required>
+            <input type="input" class="form-control" name="update[park_add]" id="park_add" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
-            <input type="input" class="form-control" name="" id="park_cn" required>
+            <input type="input" class="form-control" name="update[park_cn]" id="park_cn" required>
           </div>
         </div>
       </div>
@@ -65,15 +68,18 @@
         <div class="card col p-3">
           <div class="mb-2">
             <label>Driver ID</label>
-            <input type="text" class="form-control" name="" id="driver_id"  >
+            <input type="text" class="form-control" name="update[park_id]" id="driver_id" readonly >
           </div>
 
           <div class="mb-2">
             <label>Parking lot</label>
-            <input type="text" class="form-control" name="" id="park_lot"  >
+            <input type="text" class="form-control" name="update[park_lot]" id="park_lot">
           </div>
+        </div>
+        <br>
+        <button class = "btn btn-primary" type = "submit">Update</button>
 
-
+        </form>
         <div class="card col p-3 mt-2">
           <h5 class="font-weight-bold">Payment History</h5>
           <table class="table table-striped table-bordered" id="pay_hist_tab">

@@ -37,37 +37,43 @@
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
+        <form id = "updatecustomerinfo">
+        <input type="hidden" id = "customer_id" name = "update[customer_id]">
+
           <div class="mb-2 form-group" id="">
             <label>First name:</label>
-            <input type="input" class="form-control" name="" id="del_fn" required>
+            <input type="input" class="form-control" name="update[delivery_fn]" id="del_fn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Middile name:</label>
-            <input type="input" class="form-control" name="" id="del_mn" required>
+            <input type="input" class="form-control" name="update[delivery_mn]" id="del_mn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Last name:</label>
-            <input type="input" class="form-control" name="" id="del_ln" required>
+            <input type="input" class="form-control" name="update[delivery_ln]" id="del_ln" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Address:</label>
-            <input type="input" class="form-control" name="" id="del_add" required>
+            <input type="input" class="form-control" name="update[delivery_add]" id="del_add" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
-            <input type="input" class="form-control" name="" id="del_cn" required>
+            <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" required>
           </div>
         </div>
       </div>
+
       <div class="col-6 ">
 
         <div class="card col p-3">
           <div class="mb-2">
             <label>Delivery ID</label>
-            <input type="text" class="form-control" name="" id="del_id"  >
+            <input type="text" class="form-control" name="update[delivery_id]" id="del_id"  readonly>
           </div>
         </div>
 
+        <button class = "btn btn-primary" type = "submit">Update</button>
+  </form>
 
         <div class="card col p-3 mt-2">
           <h5 class="font-weight-bold">Payment History</h5>
@@ -90,5 +96,7 @@
 
 
 </div>
+
+
 
 <div class="overlay"></div>

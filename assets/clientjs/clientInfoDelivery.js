@@ -3,7 +3,7 @@ var datable;
 $(document).ready(function(){
 
 
-  $('#DeliveryTable').DataTable({
+  datable = $('#DeliveryTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getdeliverypaytablecon',
       dataSrc : 'data'
@@ -26,6 +26,37 @@ $(document).ready(function(){
     $('.dataTables_length').addClass('bs-select');
   });
 
+  $('#updatecustomerinfo').submit(function(e){
+    e.preventDefault();
+
+      
+          $.ajax({
+              url: global.settings.url + '/MainController/updatedeliveryinfo',
+              type: 'POST',
+              data: $(this).serialize(),
+              dataType:'JSON',
+            success: function(res){
+              alert('update successful');
+              $('#customer_id').val(null);
+              $('#del_fn').val(null);
+              $('#del_mn').val(null);
+              $('#del_ln').val(null);
+              $('#del_add').val(null);
+              $('#del_cn').val(null);
+              $('#del_id').val(null);
+              
+      
+            
+              datable.ajax.reload();
+             
+            },
+            error:function(res){
+console.log('sala');
+            }
+        });
+ 
+      });
+
 
 
   function fetchdata(id){
@@ -41,7 +72,7 @@ $(document).ready(function(){
       success: function(res){
         console.log(res);
         res = res[0];
-
+        $('#customer_id').val(id);
         $('#del_fn').val(res.firstname );
         $('#del_mn').val(res.middlename);
         $('#del_ln').val(res.lastname);

@@ -41,40 +41,44 @@
       <div class="col-6">
         <div class="card col p-3 ">
           <h5 class="font-weight-bold">Owner's Information</h5>
+          <form id = "updatecustomerinfo">
+
+          <input type="hidden" id = "customer_id" name = "update[customer_id]">
+          <input type="hidden" id = "stall_id" name = "update[stall_id]">
           <div class="mb-2 form-group" id="">
             <label>First name:</label>
-            <input type="input" class="form-control" name="" id="owner_fn" required>
+            <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Middile name:</label>
-            <input type="input" class="form-control" name="" id="owner_mn" required>
+            <input type="input" class="form-control" name="update[owner_mn]" id="owner_mn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Last name:</label>
-            <input type="input" class="form-control" name="" id="owner_ln" required>
+            <input type="input" class="form-control" name="update[owner_ln]" id="owner_ln" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Address:</label>
-            <input type="input" class="form-control" name="" id="owner_add" required>
+            <input type="input" class="form-control" name="update[owner_add]" id="owner_add" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
-            <input type="input" class="form-control" name="" id="owner_cn" required>
+            <input type="input" class="form-control" name="update[owner_cn]" id="owner_cn" required>
           </div>
         </div>
         <div class="card col p-3 mt-2">
           <h5 class="font-weight-bold">Stall Information</h5>
           <div class="mb-2 form-group" id="">
             <label>Stall No:</label>
-            <input type="input" class="form-control" name="" id="stall_number" required>
+            <input type="input" class="form-control" name="update[stall_number]" id="stall_number" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Area(sqm):</label>
-            <input type="input" class="form-control" name="" id="area" required>
+            <input type="input" class="form-control" name="update[area]" id="area" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Daily Fee:</label>
-            <input type="input" class="form-control" name="" id="daily_fee" required>
+            <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" required>
           </div>
         </div>
       </div>
@@ -83,25 +87,33 @@
           <h5 class="font-weight-bold">Occupant's Information</h5>
           <div class="mb-2 form-group" id="">
             <label>First name:</label>
-            <input type="input" class="form-control" name="" id="occu_fn" required>
+            <input type="input" class="form-control" name="update[occu_fn]" id="occu_fn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Middile name:</label>
-            <input type="input" class="form-control" name="" id="occu_mn" required>
+            <input type="input" class="form-control" name="update[occu_mn]" id="occu_mn" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Last name:</label>
-            <input type="input" class="form-control" name="" id="occu_ln" required>
+            <input type="input" class="form-control" name="update[occu_ln]" id="occu_ln" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Address:</label>
-            <input type="input" class="form-control" name="" id="occu_add" required>
+            <input type="input" class="form-control" name="update[occu_add]" id="occu_add" required>
           </div>
           <div class="mb-2 form-group" id="">
             <label>Contact Number:</label>
-            <input type="input" class="form-control" name="" id="occu_cn" required>
+            <input type="input" class="form-control" name="update[occu_cn]" id="occu_cn" required>
           </div>
         </div>
+        <br>
+        <div class = "row">
+        <button class = "btn btn-primary" type = "submit">Update</button>
+        </div>
+       
+ 
+    
+        </form>
         <div class="card col p-3 mt-2">
           <h5 class="font-weight-bold">Payment History</h5>
           <table class="table table-striped table-bordered" id="pay_hist_tab">

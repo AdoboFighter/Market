@@ -11,7 +11,7 @@ $(document).ready(function(){
        data : $(this).serialize(),
        dataType : 'json',
        success : function(res){
-       console.log(res);
+    
          $('#success').modal("show");
        },
        error : function(xhr){

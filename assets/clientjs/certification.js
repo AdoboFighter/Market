@@ -33,26 +33,20 @@ $(document).ready(function(){
 
   $('#certform').submit(function(e){
     e.preventDefault();
+    console.log( $('#violationform').serializeArray());
     $.ajax({
-      url : global.settings.url + '/MainController/pdf2fcert',
+      url : global.settings.url +'/MainController/save_violation_con',
       type : 'POST',
-      data : $('#certform').serialize(),
-      xhrFields: {
-            responseType: 'blob'
-        },
+      data :$(this).serialize(),
+      dataType : 'json',
       success : function(res){
-            //   $('#modalBirthday').modal('show');
-        var a = document.createElement('a');
-        var url = window.URL.createObjectURL(res);
-        a.href = url;
-     $('#iframe_preview_formgen').attr('src',url);
+      console.log(res);
       },
       error : function(xhr){
         console.log(xhr.responseText);
       }
     });
   });
-
 
 
 
@@ -67,6 +61,9 @@ function setIframeSource() {
    theUrl = theSelect.options[theSelect.selectedIndex].value;
    theIframe.src = theUrl;
 }
+
+
+
 
 
 function fetchdata(id){
@@ -90,4 +87,35 @@ function fetchdata(id){
       console.log(xhr.responseText);
     }
   })
+}
+
+$('#certform').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url : global.settings.url + '/MainController/pdf2fcert',
+    type : 'POST',
+    data : $('#certform').serialize(),
+    xhrFields: {
+          responseType: 'blob'
+      },
+    success : function(res){
+          //   $('#modalBirthday').modal('show');
+      var a = document.createElement('a');
+      var url = window.URL.createObjectURL(res);
+      a.href = url;
+   $('#iframe_preview_formgen').attr('src',url);
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+});
+
+function setIframeSource() {
+  var theSelect = document.getElementById('location');
+  var theIframe = document.getElementById('myIframe');
+  var theUrl;
+
+  theUrl = theSelect.options[theSelect.selectedIndex].value;
+  theIframe.src = theUrl;
 }

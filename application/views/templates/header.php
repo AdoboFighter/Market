@@ -10,6 +10,8 @@
 
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- bootstrap cdn js -->
+  
   <!-- Our Custom CSS -->
   <style>
 
@@ -399,7 +401,7 @@ CONTENT STYLE
     </div>
 
     <ul class="list-unstyled components text-dark">
-      <p class="">System User :</p>
+      <p class="">System User: <?php echo $this->session->userdata('user_fullname');?></p>
 
     <li class="">
       <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
@@ -454,7 +456,11 @@ CONTENT STYLE
   </li>
 
   <li>
-    <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">System User</a>
+    <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">Add System User</a>
+  </li>
+  <!-- change design -->
+  <li>
+    <a href="<?php echo base_url().'pages/logout_acc' ?>">Log out</a>
   </li>
 </ul>
 </nav>

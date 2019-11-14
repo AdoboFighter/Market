@@ -7,9 +7,10 @@
   <script src="/assets/js/jquery-3.2.1.min.js"></script>  <!-- Popper.JS -->
   <script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <!-- Bootstrap JS -->
-  <script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!-- jQuery Custom Scroller CDN -->
-  <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  
   <!--  Data Table -->
   <script src="/assets/js/jquery.dataTables.min.js"></script>
   <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
@@ -35,7 +36,7 @@
    </script>
    <script src="<?php echo base_url().'assets/global.js' ?> "></script>
    <script src="<?php echo base_url().'assets/clientjs/'.$js_file?>"></script>
-
+   <script src="<?php echo base_url().'assets/clientjs/allpayment.js' ?> "></script>
 </body>
 
 </html>
