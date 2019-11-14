@@ -1,8 +1,8 @@
 var global  = {
   settings : {
-   url : 'http://localhost:8080'
-  //  url : 'http://192.168.100.205:8080'
-  
+   url : 'http://localhost'
+   //url : 'http://192.168.3.154:80'
+
   },
 
 }

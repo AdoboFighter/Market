@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function index()
     {
-      $this->load->view('pages/login');
+      $this->load->view('pages/undercons');
 
 
 
@@ -35,19 +35,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else{
         $this->load->view('pages/login');
       }
-         
 
-        
-   
-        
-             
+
+
+
+
+
     }
-    
+
 
     public function login_acc()
     {
       // To get the post method configured in the ajax POST HTTP Request
-      
+
       $input = $this->input->post('login');
 
       $userdata = $this->login->login_acc($input);
@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function logout_acc(){
-    
+
       session_destroy();
       $this->load->view('pages/login');
     }
