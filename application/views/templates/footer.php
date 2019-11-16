@@ -10,10 +10,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!-- jQuery Custom Scroller CDN -->
   <script src="<?php echo base_url();?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-  
+
   <!--  Data Table -->
   <script src="/assets/js/jquery.dataTables.min.js"></script>
   <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/assets/js/sweetalert2@9.js"></script>
 
   <script type="text/javascript">
        $(document).ready(function () {

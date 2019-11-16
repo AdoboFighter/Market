@@ -3,7 +3,7 @@ var datable;
 $(document).ready(function(){
 
   $( "#payhistbtn" ).click(function() {
-      $('#violationmodal').modal('show');
+    $('#violationmodal').modal('show');
 
   });
 
@@ -31,10 +31,7 @@ $(document).ready(function(){
       {
         "data" : "btn"
       }]
-        'stall_id' =>$r->stall_id,
-        'stall_number' =>$r->unit_no,
-        'area' => $r->sqm,
-        'daily_fee' => $r->dailyfee
+
     });
 
     $('.dataTables_length').addClass('bs-select');
@@ -46,7 +43,11 @@ $(document).ready(function(){
         data: $(this).serialize(),
         dataType:'JSON',
         success: function(res){
-          alert('update successful');
+          Swal.fire(
+            'Success',
+            'User Information Updated',
+            'success'
+          );
           $('#customer_id').val(null);
           $('#ambulant_fn').val(null);
           $('#ambulant_mn').val(null);
@@ -54,7 +55,8 @@ $(document).ready(function(){
           $('#ambulant_add').val(null);
           $('#ambulant_cn').val(null);
           $('#location').val(null);
-          $('#location_num').val(null);
+          $('#Location_num').val(null);
+          $('#nature_of_business').val(null);
 
 
           datable.ajax.reload();
@@ -66,10 +68,6 @@ $(document).ready(function(){
       });
 
     });
-
-
-
-
 
   });
 
@@ -83,7 +81,7 @@ $(document).ready(function(){
 
     console.log(id);
     $.ajax({
-      url: global.settings.url + '/MainController/getcustomerinfopaymcon',
+      url: global.settings.url + '/MainController/getcustomerinfoAMBUpaycon',
       type: 'POST',
       data: {
         id: id
@@ -91,16 +89,16 @@ $(document).ready(function(){
       dataType:'JSON',
       success: function(res){
         console.log(res);
-          $('#customer_id').val(res[0].customer_id)
-          $('#ambulant_id').val(res[0].ambulant_id);
-          $('#ambulant_fn').val(res[0].firstname);
-          $('#ambulant_mn').val(res[0].middlename);
-          $('#ambulant_ln').val(res[0].lastname);
-          $('#ambulant_add').val(res[0].address);
-          $('#ambulant_cn').val(res[0].contact_number);
-          $('#location').val(res[0].location);
-          $('#Location_num').val(res[0].Location_no);
-          $('#nature_of_business').val(res[0].nature_of_business);
+        $('#customer_id').val(res[0].customer_id)
+        $('#ambulant_id').val(res[0].ambulant_id);
+        $('#ambulant_fn').val(res[0].firstname);
+        $('#ambulant_mn').val(res[0].middlename);
+        $('#ambulant_ln').val(res[0].lastname);
+        $('#ambulant_add').val(res[0].address);
+        $('#ambulant_cn').val(res[0].contact_no);
+        $('#location').val(res[0].location);
+        $('#Location_num').val(res[0].Location_num);
+        $('#nature_of_business').val(res[0].nature_of_business);
       },
       error: function(xhr){
         console.log(xhr.responseText);
@@ -110,12 +108,9 @@ $(document).ready(function(){
 
 
 
-    function transactionhistory(id)
-    {
-      $('#pay_hist_tab').DataTable().destroy();
-
-
-
+  function transactionhistory(id)
+  {
+    $('#pay_hist_tab').DataTable().destroy();
     $('#pay_hist_tab').DataTable({
       "ajax" : {
         "url" : global.settings.url + '/MainController/getcustomertransactionhistory/' + id,

@@ -124,26 +124,26 @@ class Mainmodel extends CI_model{
       'middlename' =>$data['ambulant_mn'],
       'lastname' =>$data['ambulant_ln'],
       'address' =>$data['ambulant_add'],
-      'contact_number' =>$data['ambulant_cn'],
-
+      'contact_number' =>$data['ambulant_cn']
 
     );
+
     $data2 = array(
       'location' =>$data['location'],
       'location_no' =>$data['location_num'],
-
+      'nature_of_business' =>$data['nature_of_business']
     );
 
 
     $this->db->where('customer_id',$data['customer_id'])
     ->update('customer',$data1);
 
-    $this->db->where('ambulant_unit_id',$data['ambulant_id'])
+    $this->db->where('ambulant_id',$data['ambulant_id'])
     ->update('ambulant_unit',$data2);
-
 
     return true;
   }
+
 
   public function updatedeliveryinfo($data){
 
@@ -632,7 +632,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus"><a href="#sect2">Load Data</button>
         </div>'
       );
     }
@@ -785,13 +785,14 @@ class Mainmodel extends CI_model{
     foreach ($query->result() as $r) {
       $data[] = array(
         'customer_id'=> $r->customer_id,
+        'ambulant_id'=> $r->ambulant_id,
         'firstname' => $r->firstname,
         'middlename' => $r->middlename,
         'lastname' => $r ->lastname,
         'address' =>$r->address,
         'contact_no' =>$r->contact_number,
         'location' => $r->location,
-        'Location_num' => $r->Location_no,
+        'Location_num' => $r->location_no,
         'nature_of_business' => $r ->nature_of_business
       );
     }

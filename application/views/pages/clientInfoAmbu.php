@@ -34,14 +34,14 @@
     </div>
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client Information</h5>
-  <div class="container justify-content-center">
+  <div class="container justify-content-center" id="sect2">
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
 
           <form id = "updatecustomerinfo">
-            <input type="text" id = "customer_id" name = "update[customer_id]">
-            <input type="text" id = "ambulant_id" name = "update[ambulant_id]">
+            <input type="hidden" id = "customer_id" name = "update[customer_id]">
+            <input type="hidden" id = "ambulant_id" name = "update[ambulant_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[ambulant_fn]" id="ambulant_fn" required>
@@ -61,6 +61,10 @@
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
               <input type="input" class="form-control" name="update[ambulant_cn]" id="ambulant_cn" required>
+            </div>
+            <div class="mb-2 form-group" id="">
+              <label>Nature of Business:</label>
+              <input type="input" class="form-control" name="update[nature_of_business]" id="nature_of_business" required>
             </div>
           </div>
         </div>
