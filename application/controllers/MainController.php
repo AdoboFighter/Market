@@ -83,7 +83,7 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getdeliverypaytablemod());
   }
 
-  
+
   public function getparkingpaytablecon()
     {
       echo json_encode($this->model->getparkingpaytablemod());
@@ -94,7 +94,7 @@ class MainController extends CI_Controller{
 
 
   public function gettransactiontable()
-  { 
+  {
     $sort['clientType'] = $this->input->post('clientType');
     $sort['dateFrom'] = $this->input->post('dateFrom');
     $sort['dateTo'] = $this->input->post('dateTo');
@@ -106,34 +106,34 @@ class MainController extends CI_Controller{
 
   public function getcons()
   {
-    
+
     $sort = array(
       'conClientType' => $this->input->post('conClientType'),
       'conDateFrom'=> $this->input->post('conDateFrom'),
       'conDateTo'=> $this->input->post('conDateTo'),
       'conCollectorName'=> $this->input->post('conCollectorName')
     );
-    
-    
+
+
     $query = $this->model->consolidationtablesort($sort);
     echo json_encode($query);
   }
 
   public function getconsexcel()
   {
-    
+
     $sort = array(
       'excelClient' => $this->input->post('exClientType'),
       'excelDateFrom'=> $this->input->post('exDateFrom'),
       'excelDateTo'=> $this->input->post('exDateTo'),
       'excelCollector'=> $this->input->post('exCollector')
     );
-    
+
 
     $this->session->set_userdata($sort);
 
     echo json_encode($sort);
-    
+
   }
 
   public function printconsexcel()
@@ -144,7 +144,7 @@ class MainController extends CI_Controller{
       'conDateTo' => $this->session->userdata('excelDateTo'),
       'conCollectorName' => $this->session->userdata('excelCollector'),
     );
-     
+
     $query = $this->model->consexcel($sort);
 
     $result = array(
@@ -159,7 +159,7 @@ class MainController extends CI_Controller{
       $this->session->unset_userdata('excelCollector');
 
   }
-  
+
 
   public function getCollector()
   {
@@ -203,6 +203,12 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcustomerinfopaymod($id));
   }
 
+  public function getcustomerinfoAMBUpaycon()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getcustomerinfoAMBUpaymod($id));
+  }
+
   public function getambuinfopay()
     {
       $id = $this->input->post('id');
@@ -232,9 +238,9 @@ class MainController extends CI_Controller{
   {
     $id = $this->uri->segment(3);
     $query = $this->model->transactionhistory($id);
-    
+
     echo json_encode($query);
-    
+
   }
 
   public function updatecustomerinfo()
@@ -298,7 +304,7 @@ class MainController extends CI_Controller{
       $inputData = $this->input->post('sysUser');
       echo json_encode(   $this->model->insert_sysUser($inputData));
     }
-    
+
 
     public function savetransaction()
   {
@@ -314,10 +320,10 @@ class MainController extends CI_Controller{
       'collector'=> $this->session->userdata('user_fullname'),
     );
     echo json_encode( $this->model->savepayment('transaction',$transactionData));
- 
+
 
   }
-  
+
 
   public function savecheque()
   {
