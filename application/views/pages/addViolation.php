@@ -44,23 +44,23 @@
                   <div class="form-group">
                     <h5 class="font-weight-bold">Details</h5>
                     <label for="">Stall No</label>
-                    <input type="text" class="form-control" name="" id="stall_num_f">
+                    <input type="text" class="form-control" name="" id="stall_num_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Stall ID</label>
-                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f">
+                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Owner </label>
-                    <input type="text" class="form-control" name="violation[name]" id="owner_f">
+                    <input type="text" class="form-control" name="violation[name]" id="owner_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="" id="address_f">
+                    <input type="text" class="form-control" name="" id="address_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Occupant</label>
-                    <input type="text" class="form-control" name="" id="occu_f">
+                    <input type="text" class="form-control" name="" id="occu_f" readonly>
                   </div>
                 </div>
                 <div class="col-6">

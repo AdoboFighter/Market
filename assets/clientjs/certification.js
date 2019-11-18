@@ -33,14 +33,19 @@ $(document).ready(function(){
 
   $('#certform').submit(function(e){
     e.preventDefault();
-    console.log( $('#violationform').serializeArray());
     $.ajax({
-      url : global.settings.url +'/MainController/save_violation_con',
+      url : global.settings.url + '/MainController/pdf2fcert',
       type : 'POST',
-      data :$(this).serialize(),
-      dataType : 'json',
+      data : $('#certform').serialize(),
+      xhrFields: {
+            responseType: 'blob'
+        },
       success : function(res){
-      console.log(res);
+            //   $('#modalBirthday').modal('show');
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(res);
+        a.href = url;
+     $('#iframe_preview_formgen').attr('src',url);
       },
       error : function(xhr){
         console.log(xhr.responseText);
@@ -51,41 +56,40 @@ $(document).ready(function(){
 
 
 
+
 });
 
 function setIframeSource() {
    var theSelect = document.getElementById('location');
-   var theIframe = document.getElementById('myIframe');
+   var theIframe = document.getElementById('iframe_preview_formgen');
    var theUrl;
 
    theUrl = theSelect.options[theSelect.selectedIndex].value;
    theIframe.src = theUrl;
+
+   
 }
 
 
 function fetchdata(id){
-  $('#violationmodal').modal("show");
-  // console.log(id);
-  // $.ajax({
-  //   url: global.settings.url + '/MainController/get_customer_info_vio_con',
-  //   type: 'POST',
-  //   data: {
-  //     id: id
-  //   },
-  //   dataType:'JSON',
-  //   success: function(res){
-  //     console.log(res);
-  //     res = res[0];
-  //     $('#stall_id_f').val(res.stall_id );
-  //     $('#stall_num_f').val(res.unit_no );
-  //     $('#owner_f').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-  //     $('#address_f').val(res.address);
-  //     $('#occu_f').val(res.aofirstname + ' '+ res.aomiddlename +' ' + res.aolastname);
-  //
-  //
-  //   },
-  //   error: function(xhr){
-  //     console.log(xhr.responseText);
-  //   }
-  // })
+  $('#certmodal').modal("show");
+  console.log(id);
+  $.ajax({
+    url: global.settings.url + '/MainController/get_cert_info_con',
+    type: 'POST',
+    data: {id: id},
+    dataType:'JSON',
+    success: function(res){
+      console.log(res);
+      res = res[0];
+      $('#fname').val(res.firstname );
+      $('#mname').val(res.middlename );
+      $('#lname').val(res.lastname);
+      $('#address').val(res.address);
+
+    },
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  })
 }

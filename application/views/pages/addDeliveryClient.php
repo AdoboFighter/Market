@@ -21,19 +21,12 @@
                 <div class="p-3">
 
                   <div class="form-group">
-                    <label for="">First Name</label>
+                    <label for="">Company/Driver's Name</label>
                     <input type="text" class="form-control" name="customer[Owner_Firstname]"   required>
                   </div>
+
                   <div class="form-group">
-                    <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Middlename]"  required>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Lastname]" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Address</label>
+                    <label for="">Plate Number</label>
                     <input type="text" class="form-control" name="customer[Owner_Address]"  required>
                   </div>
                   <div class="form-group">

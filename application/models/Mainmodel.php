@@ -1320,5 +1320,41 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function resolveViolationMod($inputData)
+{
+  $data_transaction = array(
+    'payment_nature_id' => '4016',
+    'payment_amount' => $inputData['cash_tendered'],
+    'customer_id' => $inputData['customer_id'],
+    'or_number' => $inputData['OR'],
+    'effectivity' => $inputData['payment_effect']
+  );
+
+  $violation_id = array(
+    'violation_id' => $inputData['violation_id_f']
+  );
+
+  $this->db->trans_start();
+  $this->db->insert('transaction', $data_transaction);
+  $paid = array(
+    'status' => "PAID"
+  );
+  $this->db->where($violation_id);
+  $this->db->update('violation', $paid);
+  $this->db->trans_complete();
+  if ($this->db->trans_status() === FALSE)
+  {
+    echo '<script>console.log("Shit not working")</script>';
+  }
+}
+
+public function get_cert_info_mod($id)
+{
+  $this->db->where('customer_id', $id);
+  $query = $this->db->get('customer');
+  return $query->result();
+
+}
+
 }
 ?>

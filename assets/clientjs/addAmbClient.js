@@ -12,7 +12,10 @@ $(document).ready(function(){
        dataType : 'json',
        success : function(res){
        console.log(res);
-         $('#success').modal("show");
+       Swal.fire({
+         icon: 'success',
+         title: 'Ambulant Added'
+       });
        },
        error : function(xhr){
          console.log(xhr.responseText);

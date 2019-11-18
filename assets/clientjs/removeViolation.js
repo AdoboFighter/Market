@@ -26,7 +26,7 @@ $(document).ready(function(){
     }]
   });
 
-  
+
 
   $('.dataTables_length').addClass('bs-select');
 
@@ -39,7 +39,10 @@ $(document).ready(function(){
       data :$(this).serialize(),
       dataType : 'json',
       success : function(res){
-      $('#success').modal("show");
+        Swal.fire({
+          icon: 'success',
+          title: 'Violation Resolved',
+        });
       $('#violationmodal').modal('toggle');
       violationfrm.reset();
       console.log(res);

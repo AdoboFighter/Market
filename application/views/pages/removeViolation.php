@@ -44,32 +44,32 @@
                   <h5 >Details</h5>
                   <div class="form-group">
                     <label for="">Violation ID</label>
-                    <input type="text" class="form-control" name="violation[violation_id_f]" id="vio">
+                    <input type="text" class="form-control" name="violation[violation_id_f]" id="vio" readonly>
                   </div>
 
                   <div class="form-group">
                     <label for="">customer ID</label>
-                    <input type="text" class="form-control" name="violation[customer_id]" id="cust">
+                    <input type="text" class="form-control" name="violation[customer_id]" id="cust" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Stall No</label>
-                    <input type="text" class="form-control" name="" id="stall_num_f">
+                    <input type="text" class="form-control" name="" id="stall_num_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Stall ID</label>
-                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f">
+                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Owner </label>
-                    <input type="text" class="form-control" name="violation[name]" id="owner_f">
+                    <input type="text" class="form-control" name="violation[name]" id="owner_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="" id="address_f">
+                    <input type="text" class="form-control" name="" id="address_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Occupant</label>
-                    <input type="text" class="form-control" name="" id="occu_f">
+                    <input type="text" class="form-control" name="" id="occu_f" readonly>
                   </div>
                 </div>
                 <div class="col-6">
@@ -102,17 +102,6 @@
     </div>
   </div>
 </div>
-
-
-<div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content p-3">
-      <h5>Violation Paid</h5>
-    </div>
-  </div>
-</div>
-
-
 
 
 

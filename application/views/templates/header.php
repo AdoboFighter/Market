@@ -420,7 +420,7 @@ CONTENT STYLE
           <a href="<?php echo base_url().'pages/view/addDeliveryClient' ?>">delivery</a>
         </li>
         <li>
-          <a href="<?php echo base_url().'pages/view/addparkingclient' ?>">parking</a>
+          <a href="<?php echo base_url().'pages/view/addParkingclient' ?>">parking</a>
         </li>
       </ul>
     </li>

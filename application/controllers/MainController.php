@@ -32,6 +32,7 @@ class MainController extends CI_Controller{
 
 
 
+
   public function savedelivery(){
     $inputData = $this->input->post('customer');
     echo json_encode(   $this->model->insert_delivery($inputData)) ;
@@ -356,10 +357,42 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->get_resviolation_data_mod($id));
   }
 
+  public function resolveViolationCon()
+{
+  $inputData = $this->input->post('violation');
+  echo json_encode( $this->model->resolveViolationMod($inputData));
+}
+
   public function getcerttable()
   {
     echo json_encode($this->model->getcerttable());
   }
+
+  public function get_cert_info_con()
+{
+  $id = $this->input->post('id');
+  echo json_encode($this->model->get_cert_info_mod($id));
+}
+
+
+  public function pdf2fcert()
+   {
+
+     $inputData = $this->input->post('cert');
+     $data = array(
+       'fname' => $inputData['fname'],
+       'mname' => $inputData['mname'],
+       'lname' => $inputData['lname'],
+       'address' => $inputData['address']
+     );
+
+      return $this->load->view('pages/PDF2fcertification',$data);
+   }
+
+
+
+
+
 
 
 }

@@ -56,7 +56,10 @@ $(document).ready(function(){
               data: $(this).serialize(),
               dataType:'JSON',
             success: function(res){
-              alert('update successful');
+              Swal.fire({
+                icon: 'success',
+                title: 'Updated',
+              });
               $('#customer_id').val(null);
               $('#owner_fn').val(null);
               $('#owner_mn').val(null);
