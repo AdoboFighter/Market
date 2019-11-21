@@ -49,7 +49,7 @@
                <input type="hidden" id="fname" name="cert[fname]" >
                <input type="hidden" id="mname" name="cert[mname]" >
                <input type="hidden" id="lname" name="cert[lname]" >
-               <input type="hidden" id="address" name="cert[address]">
+               <input type="text" id="address" name="cert[address]">
                <input type="hidden" id="natbus" name="cert[natbus]">
                <input type="hidden" id="stall" name="cert[stall]">
                <input type="hidden" id="flrlvl" name="cert[flrlvl]">
@@ -60,6 +60,8 @@
                <input type="hidden" id="year" name="cert[year]">
                <input type="hidden" id="OR" name="cert[OR]">
                <input type="hidden" id="today" name="cert[today]">
+               <input type="hidden" id="or_number" name="cert[or_number]">
+               <input type="hidden" id="payment_amount" name="cert[payment_amount]">
                <iframe id="iframe_preview_formgen"  frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
 
 

@@ -393,10 +393,14 @@ class MainController extends CI_Controller{
        'days' => $inputData['days'],
        'month' => $inputData['month'],
        'year' => $inputData['year'],
+       'or_number' => $inputData['or_number'],
+       'payment_amount' => $inputData['payment_amount'],
+       'today' => $inputData['today'],
+       'address' => $inputData['address']
 
      );
 
-      return $this->load->view('pages/PDF2fcertification',$data);
+      return $this->load->view('pages/PDFnoonwership',$data);
    }
 
 

@@ -26,7 +26,7 @@ $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 // $pdf->text(33, 130, "This is to certify that $fname $mname $lname BY: $sysuser is a <Business>,");
 // $pdf->text(23, 135, "whose nature of business is $natbus , With Map#<Number> at the <address>");
 //
-// $pdf->text(33, 150, "Issued this day of <month>, <year> for whatever legal purpose it may serve");
+
 //
 
 
@@ -39,6 +39,10 @@ $txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever l
 // $txt2 = 'With Map#<Number> at the <address> ';
 $pdf->MultiCell(150, 100, $txt2, 100, 'J', 100, 100, 33, 150, true);
 // $pdf->MultiCell(160, 100, $txt2, 100, 'L', 0, 0, 33, 143, true);
+
+ $pdf->text(40, 214, $or_number);
+ $pdf->text(40, 219, $today);
+ $pdf->text(40, 224, $payment_amount);
 
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

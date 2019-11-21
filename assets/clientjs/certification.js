@@ -82,7 +82,9 @@ $.ajax({
   dataType:'JSON',
   success: function(res){
     console.log(res);
-
+    var fullDate = new Date();
+    var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+    var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
     const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
     const m = new Date();
@@ -99,6 +101,10 @@ $.ajax({
     $('#flrlvl').val(res.address);
     $('#stall').val(res.unit_no);
     $('#floor_level').val(res.floor_level);
+    $('#or_number').val(res.or_number);
+    $('#payment_amount').val(res.payment_amount);
+    $('#address').val(res.address);
+    $('#today').val(currentDate);
     $('#days').val(n);
     $('#month').val(month);
     $('#year').val(year);
