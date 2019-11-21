@@ -50,8 +50,17 @@
                <input type="hidden" id="mname" name="cert[mname]" >
                <input type="hidden" id="lname" name="cert[lname]" >
                <input type="hidden" id="address" name="cert[address]">
-
-              <iframe id="iframe_preview_formgen"  frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
+               <input type="hidden" id="natbus" name="cert[natbus]">
+               <input type="hidden" id="stall" name="cert[stall]">
+               <input type="hidden" id="flrlvl" name="cert[flrlvl]">
+               <input type="hidden" id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname');?>">
+               <input type="hidden" id="floor_level" name="cert[floor_level]">
+               <input type="hidden" id="days" name="cert[days]">
+               <input type="hidden" id="month" name="cert[month]">
+               <input type="hidden" id="year" name="cert[year]">
+               <input type="hidden" id="OR" name="cert[OR]">
+               <input type="hidden" id="today" name="cert[today]">
+               <iframe id="iframe_preview_formgen"  frameborder="0" marginwidth="0" marginheight="0"  height="600"></iframe>
 
 
 

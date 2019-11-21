@@ -383,7 +383,17 @@ class MainController extends CI_Controller{
        'fname' => $inputData['fname'],
        'mname' => $inputData['mname'],
        'lname' => $inputData['lname'],
-       'address' => $inputData['address']
+       'address' => $inputData['address'],
+       'sysuser' => $inputData['sysuser'],
+       'natbus' => $inputData['natbus'],
+       'flrlvl' => $inputData['natbus'],
+       'sysuser' => $inputData['sysuser'],
+       'stall' => $inputData['stall'],
+       'floor_level' => $inputData['floor_level'],
+       'days' => $inputData['days'],
+       'month' => $inputData['month'],
+       'year' => $inputData['year'],
+
      );
 
       return $this->load->view('pages/PDF2fcertification',$data);

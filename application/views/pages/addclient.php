@@ -146,10 +146,10 @@
                  <select class="form-control form-control-sm" id="stall_flr_lvl" name="customer[Floor_level]">
                    <option value=""></option>
                    <option value="Basement">Basement</option>
-                   <option value="Ground">Ground Floor</option>
-                   <option value="Second">Second Floor</option>
-                   <option value="Third">Third Floor</option>
-                   <option value="Fourth">Fourth Floor</option>
+                   <option value="Ground Floor">Ground Floor</option>
+                   <option value="Second Floor">Second Floor</option>
+                   <option value="Third Floor">Third Floor</option>
+                   <option value="Fourth Floor">Fourth Floor</option>
                  </select><br>
                </div>
                <div class="form-group" id="floorlevel">

@@ -67,6 +67,45 @@
           </div>
           <div class="card col p-3 mt-2">
             <h5 class="font-weight-bold">Stall Information</h5>
+            <div class="form-group">
+              <label>Section</label>
+              <select class="form-control form-control-sm" name="update[section]" id="Section">
+                <option selected value="">Please Select</option>
+                <option value="Fish">Fish</option>
+                <option value="Meat">Meat</option>
+                <option value="Section1">Section 1</option>
+                <option value="Section2">Section 2</option>
+              </select><br>
+            </div>
+
+            <div class="form-group" id="floorlevel">
+              <label>Floor Level</label>
+              <select class="form-control form-control-sm" id="stall_flr_lvl" name="update[floor_level]">
+                <option value=""></option>
+                <option value="Basement">Basement</option>
+                <option value="Ground">Ground Floor</option>
+                <option value="Second">Second Floor</option>
+                <option value="Third">Third Floor</option>
+                <option value="Fourth">Fourth Floor</option>
+              </select><br>
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <label>Business name:</label>
+              <input type="input" class="form-control" name="update[business_name]" id="business_name" required>
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <label>Business ID:</label>
+              <input type="input" class="form-control" name="update[business_id]" id="business_id" required>
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <label>Nature of Business:</label>
+              <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" required>
+            </div>
+
+
             <div class="mb-2 form-group" id="">
               <label>Stall No:</label>
               <input type="input" class="form-control" name="update[stall_number]" id="stall_number" required>
@@ -79,6 +118,8 @@
               <label>Daily Fee:</label>
               <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" required>
             </div>
+
+
           </div>
           <br>
         </div>
@@ -138,20 +179,7 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
         </form>
-
-
-
-
-
-
-
       </div>
     </div>
   </div>

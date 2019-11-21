@@ -70,13 +70,23 @@ class Mainmodel extends CI_model{
       'aomiddlename' =>$data['occu_mn'],
       'aolastname' =>$data['occu_ln'],
       'aoaddress' =>$data['occu_add'],
-      'ao_cn' =>$data['occu_cn'],
+      'ao_cn' =>$data['occu_cn']
+
     );
     $data2 = array(
       'unit_no' =>$data['stall_number'],
       'sqm' =>$data['area'],
       'dailyfee' =>$data['daily_fee'],
+      'floor_level' =>$data['floor_level']
     );
+
+    $data3 = array(
+      'business_name' =>$data['business_name'],
+      'business_id' =>$data['business_id'],
+      'nature_or_business' =>$data['nature_or_business']
+    );
+
+
 
 
     $this->db->where('customer_id',$data['customer_id'])
@@ -84,6 +94,9 @@ class Mainmodel extends CI_model{
 
     $this->db->where('stall_id',$data['stall_id'])
     ->update('stall',$data2);
+
+    $this->db->where('fk_customer_id',$data['customer_id'])
+    ->update('tenant',$data3);
 
 
     return true;
@@ -134,12 +147,22 @@ class Mainmodel extends CI_model{
       'nature_of_business' =>$data['nature_of_business']
     );
 
+    $data3 = array(
+      'location' =>$data['location'],
+      'location_no' =>$data['location_num'],
+      'nature_of_business' =>$data['nature_of_business']
+    );
+
+
 
     $this->db->where('customer_id',$data['customer_id'])
     ->update('customer',$data1);
 
     $this->db->where('ambulant_id',$data['ambulant_id'])
     ->update('ambulant_unit',$data2);
+
+    $this->db->where('ambulant_id',$data['ambulant_id'])
+    ->update('tenant',$data2);
 
     return true;
   }
@@ -725,11 +748,9 @@ class Mainmodel extends CI_model{
 
   public function getcustomerinfopaymod($id)
   {
-
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-
     $query = $this->db->select('*')
     ->from('customer')
     ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
@@ -755,11 +776,17 @@ class Mainmodel extends CI_model{
         'oalastname' => $r ->lastname,
         'oaaddress' =>$r->address,
         'oacontact_no' =>$r->contact_number,
-
         'stall_id' =>$r->stall_id,
         'stall_number' =>$r->unit_no,
         'area' => $r->sqm,
-        'daily_fee' => $r->dailyfee
+        'daily_fee' => $r->dailyfee,
+        'floor_level' => $r->floor_level,
+        'nature_or_business' => $r->nature_or_business,
+        'business_name' => $r->business_name,
+        'business_id' => $r->business_id,
+        'Section' => $r->Section,
+
+
 
       );
     }
@@ -1294,7 +1321,6 @@ class Mainmodel extends CI_model{
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
-
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
@@ -1307,7 +1333,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
         </div>'
       );
     }
@@ -1350,7 +1376,10 @@ class Mainmodel extends CI_model{
 
 public function get_cert_info_mod($id)
 {
-  $this->db->where('customer_id', $id);
+  $this->db->where('transaction_id', $id);
+  $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
   $query = $this->db->get('customer');
   return $query->result();
 

@@ -7,7 +7,7 @@ $date = date('Y/m/d');
 // create new PDF document
 
 $pdf= new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->setSourceFile(APPPATH.'/..//assets/pdf/MarketDivisionCert.pdf');
+$pdf->setSourceFile(APPPATH.'/..//assets/pdf/market-division-copy.pdf');
 $pdf->SetDisplayMode(100);
 $tpl = $pdf->importPage(1);
 $size = $pdf->getTemplateSize($tpl);
@@ -21,31 +21,30 @@ $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
 
 
-// Set some content to print
 
-$pdf->text(33, 130, "This is to certify that $fname $mname $lname BY: <System User> is a <Business>,");
-$pdf->text(23, 135, "whose nature of business is <Business Name>, With Map#<Number> at the <address>");
+//
+// $pdf->text(33, 130, "This is to certify that $fname $mname $lname BY: $sysuser is a <Business>,");
+// $pdf->text(23, 135, "whose nature of business is $natbus , With Map#<Number> at the <address>");
+//
+// $pdf->text(33, 150, "Issued this day of <month>, <year> for whatever legal purpose it may serve");
+//
 
-$pdf->text(33, 150, "Issued this day of <month>, <year> for whatever legal purpose it may serve");
+
+$txt = '    This is to certify that '.$fname.' '.$mname.' '.$lname.' BY: ' .$sysuser.' is a Market Stall Holder, whose nature of business is '.$natbus.', With Map# '.$stall.' at the '.$floor_level.'                                                                                             ';
+// $txt2 = 'With Map#<Number> at the <address> ';
+$pdf->MultiCell(150, 100, $txt, 100, 'J', 100, 100, 33, 130, true);
+// $pdf->MultiCell(160, 100, $txt2, 100, 'L', 0, 0, 33, 143, true);
+
+$txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose it may serve.                                                                                             ';
+// $txt2 = 'With Map#<Number> at the <address> ';
+$pdf->MultiCell(150, 100, $txt2, 100, 'J', 100, 100, 33, 150, true);
+// $pdf->MultiCell(160, 100, $txt2, 100, 'L', 0, 0, 33, 143, true);
 
 
-
-
-// Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-// $pdf->Text(44,100, $fname);
-// $pdf->Text(44,80, $mname);
-
-// ---------------------------------------------------------
-
-// Close and output PDF document
-// This method has several options, check the source code documentation for more information.
 ob_end_clean();
 $pdf->Output('example_001.pdf', 'I');
 
-//============================================================+
-// END OF FILE
-//============================================================+
 
 exit;

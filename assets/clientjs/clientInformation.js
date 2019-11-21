@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 
   $( "#payhistbtn" ).click(function() {
-      $('#violationmodal').modal('show');
+    $('#violationmodal').modal('show');
 
   });
 
@@ -50,40 +50,25 @@ $(document).ready(function(){
 
   $('#updatecustomerinfo').submit(function(e){
     e.preventDefault();
-          $.ajax({
-              url: global.settings.url + '/MainController/updatecustomerinfo',
-              type: 'POST',
-              data: $(this).serialize(),
-              dataType:'JSON',
-            success: function(res){
-              Swal.fire({
-                icon: 'success',
-                title: 'Updated',
-              });
-              $('#customer_id').val(null);
-              $('#owner_fn').val(null);
-              $('#owner_mn').val(null);
-              $('#owner_ln').val(null);
-              $('#owner_add').val(null);
-              $('#owner_cn').val(null);
-
-              $('#occu_fn').val(null);
-              $('#occu_mn').val(null);
-              $('#occu_ln').val(null);
-              $('#occu_add').val(null);
-              $('#occu_cn').val(null);
-
-              $('#stall_id').val(null);
-              $('#stall_number').val(null);
-              $('#area').val(null);
-              $('#daily_fee').val(null);
-            },
-            error:function(res){
-
-            }
+    $.ajax({
+      url: global.settings.url + '/MainController/updatecustomerinfo',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
         });
+        $('#updatecustomerinfo')[0].reset();
 
-      });
+      },
+      error:function(res){
+
+      }
+    });
+
+  });
 });
 
 
@@ -107,25 +92,28 @@ function customerinfo(id){
     dataType:'JSON',
     success: function(res){
       console.log(res);
-        $('#customer_id').val(res[0].customer_id)
-        $('#owner_fn').val(res[0].firstname);
-        $('#owner_mn').val(res[0].middlename);
-        $('#owner_ln').val(res[0].lastname);
-        $('#owner_add').val(res[0].address);
-        $('#owner_cn').val(res[0].contact_no);
+      $('#customer_id').val(res[0].customer_id)
+      $('#owner_fn').val(res[0].firstname);
+      $('#owner_mn').val(res[0].middlename);
+      $('#owner_ln').val(res[0].lastname);
+      $('#owner_add').val(res[0].address);
+      $('#owner_cn').val(res[0].contact_no);
 
-        $('#occu_fn').val(res[0].oafirstname);
-        $('#occu_mn').val(res[0].oamiddlename);
-        $('#occu_ln').val(res[0].oalastname);
-        $('#occu_add').val(res[0].oaaddress);
-        $('#occu_cn').val(res[0].contact_no);
+      $('#occu_fn').val(res[0].oafirstname);
+      $('#occu_mn').val(res[0].oamiddlename);
+      $('#occu_ln').val(res[0].oalastname);
+      $('#occu_add').val(res[0].oaaddress);
+      $('#occu_cn').val(res[0].contact_no);
 
-        $('#stall_id').val(res[0].stall_id)
-        $('#stall_number').val(res[0].stall_number);
-        $('#area').val(res[0].area);
-        $('#daily_fee').val(res[0].daily_fee);
-
-
+      $('#stall_id').val(res[0].stall_id)
+      $('#stall_number').val(res[0].stall_number);
+      $('#area').val(res[0].area);
+      $('#daily_fee').val(res[0].daily_fee);
+      $('#stall_flr_lvl').val(res[0].floor_level);
+      $('#nature_or_business').val(res[0].nature_or_business);
+      $('#business_id').val(res[0].business_id);
+      $('#business_name').val(res[0].business_name);
+      $('#Section').val(res[0].Section);
 
     },
     error: function(xhr){
@@ -136,11 +124,9 @@ function customerinfo(id){
 
 
 
-  function transactionhistory(id)
-  {
-    $('#pay_hist_tab').DataTable().destroy();
-
-
+function transactionhistory(id)
+{
+  $('#pay_hist_tab').DataTable().destroy();
 
   $('#pay_hist_tab').DataTable({
     "ajax" : {
