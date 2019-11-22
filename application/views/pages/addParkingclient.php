@@ -8,7 +8,6 @@
     </div>
   </nav>
 
-
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">Add parking client</h5>
 
@@ -16,49 +15,64 @@
       <div class="container">
         <form class="p-3" id="savePark" name="savePark">
           <div class="row">
-            <div class="col-6">
+            <div class="col">
               <div class="span6" style="float: none; margin: 0 auto;">
-                <div class="p-3">
-
-                  <div class="form-group">
-                    <label for="">First Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Firstname]"   required>
+                <div class="span6" style="float: none; margin: 0 auto;">
+                  <div class="row">
+                    <div class="col-12 form-group">
+                      <table class="table p-2"id="add_vio_tab" >
+                        <thead>
+                          <tr>
+                            <td class="font-weight-bold" >No</td>
+                            <td class="font-weight-bold" >Name</td>
+                            <td class="font-weight-bold" >Stall No.</td>
+                            <td class="font-weight-bold" >Address</td>
+                            <td class="font-weight-bold" >Occupant</td>
+                            <td class="font-weight-bold" >load data</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Middlename]"  required>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Lastname]" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Address</label>
-                    <input type="text" class="form-control" name="customer[Owner_Address]"  required>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]"  required>
-                  </div>
-
-                  <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
                 </div>
               </div>
             </div>
 
-            <div class="col-6">
-              <div class="form-group">
-                <label for="">Lot No.</label>
-                <input type="text" class="form-control" name="customer[park_lot]"  required>
+
+
+
+            <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+              <div class="modal-dialog modal-xl modal-dialog-centered ">
+                <div class="modal-content p-2">
+                  <div class="row">
+                    <div class="col">
+                        <input type="hidden" class="form-control" name="customer[tenant_id]" id="tenant_id">
+                        <input type="hidden" class="form-control" name="customer[customer_id]" id="customer_id">
+                      <div class="form-group">
+                        <h5 class="font-weight-bold">Details</h5>
+                        <label for="">Lot No</label>
+                        <input type="text" class="form-control" name="customer[lot_no]" id="lot_no">
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+
           </form>
 
         </div>
       </div>
     </div>
   </div>
+
+
 
 </div>
 

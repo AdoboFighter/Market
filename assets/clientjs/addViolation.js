@@ -32,6 +32,8 @@ $(document).ready(function(){
     }]
   });
 
+
+
   $('#getviolationtable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/get_violation_data_con',

@@ -23,7 +23,7 @@ $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
 $txt = '    This is to certify that '.$fname.' '.$mname.' '.$lname.' , of legal age and presently residing at '.$address.' has no existing ownership and/or operating business based on the records within the jurisdiction of this office.                                                                                     ';
 $pdf->MultiCell(150, 100, $txt, 100, 'J', 100, 100, 33, 128, true);
-$txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legaol purpose this may serve.                                                                                     ';
+$txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose this may serve.                                                                                     ';
 $pdf->MultiCell(150, 100, $txt2, 100, 'J', 100, 100, 33, 158, true);
 $pdf->text(40, 214, $or_number);
 $pdf->text(40, 219, $today);

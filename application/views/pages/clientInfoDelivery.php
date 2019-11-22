@@ -17,10 +17,10 @@
           <table class="table table-striped table-bordered" id="DeliveryTable">
             <thead>
               <tr>
-                <td>Customer ID</td>
                 <td>Delivery ID</td>
-                <td>name</td>
-                <td>Payment</td>
+                <td>Company/Driver's Name</td>
+                <td>Plate Number</td>
+                <td>Load Data</td>
               </tr>
             </thead>
             <tbody>
@@ -37,59 +37,65 @@
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
-        <form id = "updatecustomerinfo">
-        <input type="hidden" id = "customer_id" name = "update[customer_id]">
+          <form id = "updatecustomerinfo">
+            <input type="hidden" id = "customer_id" name = "update[customer_id]">
 
-          <div class="mb-2 form-group" id="">
-            <label>First name:</label>
-            <input type="input" class="form-control" name="update[delivery_fn]" id="del_fn" required>
-          </div>
-          <div class="mb-2 form-group" id="">
-            <label>Middile name:</label>
-            <input type="input" class="form-control" name="update[delivery_mn]" id="del_mn" required>
-          </div>
-          <div class="mb-2 form-group" id="">
-            <label>Last name:</label>
-            <input type="input" class="form-control" name="update[delivery_ln]" id="del_ln" required>
-          </div>
-          <div class="mb-2 form-group" id="">
-            <label>Address:</label>
-            <input type="input" class="form-control" name="update[delivery_add]" id="del_add" required>
-          </div>
-          <div class="mb-2 form-group" id="">
-            <label>Contact Number:</label>
-            <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" required>
+            <div class="mb-2 form-group" id="">
+              <label>Company/Driver's name:</label>
+              <input type="input" class="form-control" name="update[delivery_fn]" id="del_fn" required>
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <label>Plate Number:</label>
+              <input type="input" class="form-control" name="update[delivery_mn]" id="del_mn" required>
+            </div>
+
+            <div class="mb-2 form-group" id="">
+              <label>Contact Number:</label>
+              <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" required>
+            </div>
           </div>
         </div>
+
+        <div class="col-6 ">
+          <div class="card col p-3">
+            <div class="mb-2">
+              <label>Delivery ID</label>
+              <input type="text" class="form-control" name="update[delivery_id]" id="del_id"  readonly>
+            </div>
+
+            <div class="p-2">
+              <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
+            </div>
+
+            <div class="p-2">
+              <button class = "btn btn-primary" type="submit">Update</button>
+            </div>
+
+          </div>
+
+        </form>
       </div>
+    </div>
+  </div>
 
-      <div class="col-6 ">
 
-        <div class="card col p-3">
-          <div class="mb-2">
-            <label>Delivery ID</label>
-            <input type="text" class="form-control" name="update[delivery_id]" id="del_id"  readonly>
-          </div>
-        </div>
-
-        <button class = "btn btn-primary" type = "submit">Update</button>
-  </form>
-
-        <div class="card col p-3 mt-2">
-          <h5 class="font-weight-bold">Payment History</h5>
-          <table class="table table-striped table-bordered" id="pay_hist_tab">
-            <thead>
-              <tr>
-                <td>OR#</td>
-                <td>Nature or payment</td>
-                <td>Amount</td>
-                <td>Date</td>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
+  <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
+      <div class="modal-content p-2">
+        <h5>Payment History</h5>
+        <table class="table table-striped table-bordered " id="pay_hist_tab" style="width:100%">
+        <thead>
+          <tr>
+            <td>OR#</td>
+            <td>Nature or payment</td>
+            <td>Amount</td>
+            <td>Date</td>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
       </div>
     </div>
   </div>

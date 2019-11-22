@@ -184,10 +184,6 @@ class Mainmodel extends CI_model{
 
     $this->db->where('customer_id',$data['customer_id'])
     ->update('customer',$data1);
-
-
-
-
     return true;
   }
 
@@ -680,7 +676,7 @@ class Mainmodel extends CI_model{
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-        'id' => $r->customer_id,
+        'id' => $r->delivery_id,
         'pay_delivery_id' => $r->delivery_id,
         'pay_delivery_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
@@ -758,10 +754,6 @@ class Mainmodel extends CI_model{
     ->where('customer.customer_id', $id)
     ->get();
 
-    // $this->db->where('customer.customer_id', $id);
-    //           ->join('payment_nature', 'payment_nature.payment_nature_id=transaction.payment_nature_id', 'inner');
-    //           ->join('customer', 'transaction.customer_id=customer.customer_id', 'inner');
-    // $query = $this->db->get('transaction');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -960,28 +952,18 @@ class Mainmodel extends CI_model{
   public function insert_parking($inputData)
   {
 
-    $data_customer = array(
-      'firstname' => $inputData['Owner_Firstname'],
-      'middlename' => $inputData['Owner_Middlename'],
-      'lastname' => $inputData['Owner_Lastname'],
-      'address' => $inputData['Owner_Address'],
-      'contact_number' => $inputData['Owner_Contact_Num'],
-      'customer_type' => 3
-    );
     $this->db->trans_start();
-
-    $this->db->insert('customer', $data_customer);
     $last_id = $this->db->insert_id();
-
     $data_park = array(
-      'fk_customer_id' => $last_id
+      'fk_customer_id' => $inputData['customer_id']
     );
     $this->db->insert('driver', $data_park);
     $last_id_driver = $this->db->insert_id();
 
     $data_parklot = array(
       'driver_id' => $last_id_driver,
-      'lot_no' => $inputData['park_lot']
+      'lot_no' => $inputData['lot_no'],
+      'tenant_id' => $inputData['tenant_id']
     );
     $this->db->insert('parking_lot', $data_parklot);
     $this->db->trans_complete();
@@ -992,14 +974,13 @@ class Mainmodel extends CI_model{
 
   }
 
+
   public function insert_delivery($inputData)
   {
 
     $data_customer = array(
       'firstname' => $inputData['Owner_Firstname'],
-      'middlename' => $inputData['Owner_Middlename'],
-      'lastname' => $inputData['Owner_Lastname'],
-      'address' => $inputData['Owner_Address'],
+      'middlename' => $inputData['plate_no'],
       'contact_number' => $inputData['Owner_Contact_Num'],
       'customer_type' => 2
     );
@@ -1077,6 +1058,40 @@ class Mainmodel extends CI_model{
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add Violation</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function add_park_get_stall()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_area' => $r->sqm,
+        'vio_address'=> $r->address,
+        'c_info_fullname_occupant'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add Parking</button>
         </div>'
       );
     }
@@ -1317,7 +1332,10 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->where('payment_nature_id', "4015");
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'TO_PRINT');
+
+    $this->db->where($array);
+
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -1384,6 +1402,27 @@ public function get_cert_info_mod($id)
   return $query->result();
 
 }
+
+public function getcustomerinfopark($id)
+{
+  $this->db->where('fk_customer_id', $id);
+  $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  $query = $this->db->get('tenant');
+  return $query->result();
+
+}
+
+public function updatecert($data){
+
+  $data1 = array(
+    'print_status' => 'PRINTED'
+  );
+  $this->db->where('transaction_id',$data['transaction_id'])
+  ->update('transaction',$data1);
+  return true;
+}
+
 
 }
 ?>

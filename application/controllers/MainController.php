@@ -279,6 +279,12 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->get_customertable_violation_mod($id));
   }
 
+  public function add_park_get_stall()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->add_park_get_stall($id));
+  }
+
   public function get_violation_data_con()
   {
     $id = $this->input->post('id');
@@ -400,7 +406,20 @@ class MainController extends CI_Controller{
 
      );
 
-      return $this->load->view('pages/PDFnoonwership',$data);
+      return $this->load->view('pages/'.$inputData['cert'],$data);
+   }
+
+   public function getcustomerinfopark()
+   {
+     $id = $this->input->post('id');
+     echo json_encode($this->model->getcustomerinfopark($id));
+   }
+
+   public function updatecert()
+   {
+     $data = $this->input->post('cert');
+     $query = $this->model->updatecert($data);
+     echo json_encode($query);
    }
 
 

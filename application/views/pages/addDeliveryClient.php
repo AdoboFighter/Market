@@ -27,7 +27,7 @@
 
                   <div class="form-group">
                     <label for="">Plate Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Address]"  required>
+                    <input type="text" class="form-control" name="customer[plate_no]"  required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
