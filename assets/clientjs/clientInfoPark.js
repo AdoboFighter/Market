@@ -3,7 +3,7 @@ var datable;
 $(document).ready(function(){
 
 
-   datable = $('#parkTable').DataTable({
+  datable = $('#parkTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getparkingpaytablecon',
       dataSrc : 'data'
@@ -11,9 +11,6 @@ $(document).ready(function(){
     "columns" : [
       {
         "data" : "id"
-      },
-      {
-        "data" : "pay_driver_id"
       },
 
       {
@@ -31,41 +28,32 @@ $(document).ready(function(){
     $('.dataTables_length').addClass('bs-select');
 
 
-    
+
   });
 
 
   $('#updatecustomerinfo').submit(function(e){
     e.preventDefault();
 
-      
-          $.ajax({
-              url: global.settings.url + '/MainController/updateparkinginfo',
-              type: 'POST',
-              data: $(this).serialize(),
-              dataType:'JSON',
-            success: function(res){
-              alert('update successful');
-              $('#customer_id').val(null);
-              $('#park_fn').val(null);
-              $('#park_mn').val(null);
-              $('#park_ln').val(null);
-              $('#park_cn').val(null);
-              $('#park_lot').val(null);
-              $('#park_add').val(null);
-      
-              $('#driver_id').val(null);
-              datable.ajax.reload();
-             
-            },
-            error:function(res){
 
-            }
-        });
- 
-      });
+    $.ajax({
+      url: global.settings.url + '/MainController/updateparkinginfo',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
 
-      
+        datable.ajax.reload();
+
+      },
+      error:function(res){
+
+      }
+    });
+
+  });
+
+
 
 
   function fetchdata(id){
@@ -90,8 +78,7 @@ $(document).ready(function(){
         $('#driver_id').val(res.driver_id);
         $('#driver_id').prop('readonly');
         $('#park_lot').val(res.lot_no);
-        // $('#last_pay').val(res.payment_datetime);
-        // diffdates();
+
       },
       error: function(xhr){
         console.log(xhr.responseText);

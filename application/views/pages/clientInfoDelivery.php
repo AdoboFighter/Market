@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client Information</h5>
+  <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
@@ -55,6 +55,7 @@
               <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" required>
             </div>
           </div>
+          <br>
         </div>
 
         <div class="col-6 ">
@@ -63,17 +64,15 @@
               <label>Delivery ID</label>
               <input type="text" class="form-control" name="update[delivery_id]" id="del_id"  readonly>
             </div>
-
-            <div class="p-2">
-              <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
+            <div class="row p-2">
+              <div class="p-2">
+                <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
+              </div>
+              <div class="p-2">
+                <button class = "btn btn-primary" type="submit">Update</button>
+              </div>
             </div>
-
-            <div class="p-2">
-              <button class = "btn btn-primary" type="submit">Update</button>
-            </div>
-
           </div>
-
         </form>
       </div>
     </div>
@@ -85,22 +84,20 @@
       <div class="modal-content p-2">
         <h5>Payment History</h5>
         <table class="table table-striped table-bordered " id="pay_hist_tab" style="width:100%">
-        <thead>
-          <tr>
-            <td>OR#</td>
-            <td>Nature or payment</td>
-            <td>Amount</td>
-            <td>Date</td>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+          <thead>
+            <tr>
+              <td>OR#</td>
+              <td>Nature or payment</td>
+              <td>Amount</td>
+              <td>Date</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
-
 </div>
 
 
