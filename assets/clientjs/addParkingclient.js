@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 
 function fetchdata(id){
-  $('#violationmodal').modal("show");
+       $('#savePark')[0].reset();
   console.log(id);
   $.ajax({
     url: global.settings.url + '/MainController/getcustomerinfopark',
@@ -75,9 +75,23 @@ function fetchdata(id){
     dataType:'JSON',
     success: function(res){
       console.log(res);
-      res = res[0];
-      $('#customer_id').val(res.customer_id );
-      $('#tenant_id').val(res.tenant_id );
+
+
+      if (res == 'withpark') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Tenant Has a existing Parking client',
+        });
+      }else {
+        res = res[0];
+        $('#customer_id').val(res.customer_id );
+        $('#tenant_id').val(res.tenant_id );
+        $('#violationmodal').modal("show");
+      }
+
+
+
+
 
 
     },

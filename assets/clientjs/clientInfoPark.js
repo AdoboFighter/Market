@@ -42,6 +42,10 @@ $(document).ready(function(){
       data: $(this).serialize(),
       dataType:'JSON',
       success: function(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
+        });
 
         datable.ajax.reload();
 
@@ -70,14 +74,13 @@ $(document).ready(function(){
         console.log(res);
         res = res[0];
         $('#customer_id').val(id);
-        $('#park_fn').val(res.firstname );
-        $('#park_mn').val(res.middlename);
+        $('#name').val(res.firstname );
+        $('#stall').val(res.unit_no);
         $('#park_ln').val(res.lastname);
         $('#park_add').val(res.address);
         $('#park_cn').val(res.contact_number);
         $('#driver_id').val(res.driver_id);
-        $('#driver_id').prop('readonly');
-        $('#park_lot').val(res.lot_no);
+
 
       },
       error: function(xhr){

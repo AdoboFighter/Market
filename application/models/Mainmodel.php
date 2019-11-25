@@ -104,24 +104,9 @@ class Mainmodel extends CI_model{
 
 
   public function updateparkinginfo($data){
-
-    $data1 = array(
-      'firstname' =>$data['park_fn'],
-      'middlename' =>$data['park_mn'],
-      'lastname' =>$data['park_ln'],
-      'address' =>$data['park_add'],
-      'contact_number' =>$data['park_cn'],
-
-
-    );
     $data2 = array(
-      'lot_no' =>$data['park_lot'],
-
+      'park_lot' =>$data['park_lot'],
     );
-
-
-    $this->db->where('customer_id',$data['customer_id'])
-    ->update('customer',$data1);
 
     $this->db->where('driver_id',$data['park_id'])
     ->update('parking_lot',$data2);
@@ -205,38 +190,22 @@ class Mainmodel extends CI_model{
       'username' => $inputData['username']
     );
 
-    $this->db->trans_start();
+
     $this->db->where($username);
     $this->db->limit(1);
-    $query = $this->db->get('user');
-    if ($query->num_rows() == 1) {
+    $user = $this->db->get('user');
 
-      echo "<script>
-      $(document).ready(function(){
-        $('#usererror').modal('show');
-      });
-      </script>";
-
-      echo "working";
-
-      echo '<div class="alert alert-danger" role="alert">
-      This is a danger alert—check it out!
-      </div>';
+    if($user->num_rows() == 1) {
+      return 'taken';
     }else {
-      // $this->db->insert('user', $data1);
-      echo "yeah";
-      echo "<script>$('#usererror').modal('show')</script>";
+
+
+      $query = $this->db->insert('user', $data1);
+      if ($query) {
+        return 'okay';
+      }
+
     }
-
-    $this->db->trans_complete();
-
-    if ($this->db->trans_status() === FALSE)
-    {
-      echo '<script>console.log("Shit not working")</script>';
-    }
-
-
-
   }
 
   function fetch_data($query){
@@ -1195,9 +1164,11 @@ class Mainmodel extends CI_model{
 
   public function getparkingpay($id)
   {
-    $this->db->where('fk_customer_id', $id);
+    $this->db->where('customer_id', $id);
     $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $query = $this->db->get('customer');
     return $query->result();
     echo $query;
@@ -1299,7 +1270,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus"><a href="#sect2">Load Data</button>
         </div>'
       );
     }
@@ -1359,63 +1330,78 @@ class Mainmodel extends CI_model{
   }
 
   public function resolveViolationMod($inputData)
-{
-  $data_transaction = array(
-    'payment_nature_id' => '4016',
-    'payment_amount' => $inputData['cash_tendered'],
-    'customer_id' => $inputData['customer_id'],
-    'or_number' => $inputData['OR'],
-    'effectivity' => $inputData['payment_effect']
-  );
-
-  $violation_id = array(
-    'violation_id' => $inputData['violation_id_f']
-  );
-
-  $this->db->trans_start();
-  $this->db->insert('transaction', $data_transaction);
-  $paid = array(
-    'status' => "PAID"
-  );
-  $this->db->where($violation_id);
-  $this->db->update('violation', $paid);
-  $this->db->trans_complete();
-  if ($this->db->trans_status() === FALSE)
   {
-    echo '<script>console.log("Shit not working")</script>';
+    $data_transaction = array(
+      'payment_nature_id' => '4016',
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
+
+    $violation_id = array(
+      'violation_id' => $inputData['violation_id_f']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      echo '<script>console.log("Shit not working")</script>';
+    }
   }
-}
 
-public function get_cert_info_mod($id)
-{
-  $this->db->where('transaction_id', $id);
-  $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-  $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
-  $query = $this->db->get('customer');
-  return $query->result();
+  public function get_cert_info_mod($id)
+  {
+    $this->db->where('transaction_id', $id);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
 
-}
+  }
 
-public function getcustomerinfopark($id)
-{
-  $this->db->where('fk_customer_id', $id);
-  $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-  $query = $this->db->get('tenant');
-  return $query->result();
+  public function getcustomerinfopark($id)
+  {
+    $this->db->where('customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('driver', 'customer.customer_id=driver.fk_customer_id', 'inner');
+    $query = $this->db->get('tenant');
 
-}
+    if($query->num_rows() >= 1) {
+      return 'withpark';
+    }else {
+      $this->db->trans_start();
+      $this->db->where('fk_customer_id', $id);
+      $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+      $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+      $query2 = $this->db->get('tenant');
+      return $query2->result();
 
-public function updatecert($data){
 
-  $data1 = array(
-    'print_status' => 'PRINTED'
-  );
-  $this->db->where('transaction_id',$data['transaction_id'])
-  ->update('transaction',$data1);
-  return true;
-}
+    }
+
+  }
+
+
+
+  public function updatecert($data){
+
+    $data1 = array(
+      'print_status' => 'PRINTED'
+    );
+    $this->db->where('transaction_id',$data['transaction_id'])
+    ->update('transaction',$data1);
+    return true;
+  }
 
 
 }

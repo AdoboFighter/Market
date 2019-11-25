@@ -39,6 +39,7 @@
         <div class="card col p-3 ">
           <form id = "updatecustomerinfo">
             <input type="hidden" id = "customer_id" name = "update[customer_id]">
+            <input type="text" id = "driver_id" name = "update[driver_id]">
             <div class="mb-2 form-group" id="">
               <label>Tenant's name:</label>
               <input type="input" class="form-control"  id="name">
@@ -54,7 +55,7 @@
           <div class="card col p-3">
             <div class="mb-2">
               <label>Parking lot</label>
-              <input type="text" class="form-control" name="update[park_lot]" id="park_lot">
+              <input type="number" class="form-control" name="update[park_lot]" id="park_lot">
             </div>
             <div class="row mb-2">
               <div class="p-2">

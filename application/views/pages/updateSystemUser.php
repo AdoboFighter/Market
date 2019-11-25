@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <h5 class="card-header text-center text-white bluegrads container justify-content-center">User Information</h5>
+  <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">User Information</h5>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
@@ -92,7 +92,7 @@
               <option value="2">Consolidating Officer</option>
             </select>
           </div>
-          
+
           <div class="">
             <button type="Submit"  class="btn btn-primary mt-2">Update</button>
           </div>

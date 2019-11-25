@@ -44,8 +44,12 @@ $(document).ready(function(){
         success : function(res){
           console.log(res);
           $('#sys_table').DataTable().ajax.reload();
-          $('#success').modal();
           $('#updateuser').trigger("reset");
+          Swal.fire({
+            icon: 'success',
+            title: 'System user updated',
+          });
+
         },
         error : function(xhr){
           console.log(xhr.responseText);
@@ -79,16 +83,11 @@ $(document).ready(function(){
         $('#usr_ln').val(res.usr_lastname);
         $('#usr_add').val(res.usr_address);
         $('#usr_cn').val(res.usr_contact_number);
-
         $('#usr_un').val(res.username);
         $('#usr_pass').val(res.password);
-
         $('#usr_position').val(res.position);
         $('#user_lvl').val(res.user_level);
 
-
-        // $('#last_pay').val(res.payment_datetime);
-        // diffdates();
       },
       error: function(xhr){
         console.log(xhr.responseText);
