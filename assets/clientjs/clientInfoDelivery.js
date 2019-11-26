@@ -3,6 +3,11 @@ var datable;
 $(document).ready(function(){
 
 
+    $( "#payhistbtn" ).click(function() {
+      $('#violationmodal').modal('show');
+
+    });
+
   datable = $('#DeliveryTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getdeliverypaytablecon',
@@ -24,6 +29,29 @@ $(document).ready(function(){
       }]
     });
     $('.dataTables_length').addClass('bs-select');
+
+    $('#updatecustomerinfo').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: global.settings.url + '/MainController/updatedeliveryinfo',
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType:'JSON',
+        success: function(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+          });
+          $('#updatecustomerinfo')[0].reset();
+          datable.ajax.reload();
+        },
+        error:function(res){
+          console.log('sala');
+        }
+      });
+
+    });
+
   });
 
   $('#updatecustomerinfo').submit(function(e){
@@ -50,7 +78,7 @@ $(document).ready(function(){
 
 
 
-  function fetchdata(id){
+  function fetchdata1(id){
     $('#AmbuPay').modal("show");
     console.log(id);
     $.ajax({
@@ -74,4 +102,49 @@ $(document).ready(function(){
         console.log(xhr.responseText);
       }
     })
+  }
+
+
+  function fetchdata(id){
+    fetchdata1(id);
+    transactionhistory(id);
+
+  }
+
+
+
+
+
+  function transactionhistory(id)
+  {
+    $('#pay_hist_tab').DataTable().destroy();
+
+    $('#pay_hist_tab').DataTable({
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getcustomertransactionhistory/' + id,
+        type: 'GET',
+        dataSrc : "data",
+      },
+      "columns" : [{
+        "data" : "or_no"
+      },
+
+      {
+        "data" : "nature_of_payment"
+      },
+
+      {
+        "data" : "amount"
+      },
+
+
+      {
+        "data" : "date"
+      }]
+
+    });
+
+
+
+    $('.dataTables_length').addClass('bs-select');
   }
