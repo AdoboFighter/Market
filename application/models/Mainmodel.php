@@ -105,13 +105,11 @@ class Mainmodel extends CI_model{
 
   public function updateparkinginfo($data){
     $data2 = array(
-      'park_lot' =>$data['park_lot'],
+      'lot_no' =>$data['park_lot'],
     );
 
-    $this->db->where('driver_id',$data['park_id'])
+    $this->db->where('driver_id',$data['driver_id'])
     ->update('parking_lot',$data2);
-
-
     return true;
   }
 
@@ -816,8 +814,44 @@ class Mainmodel extends CI_model{
       "data" => $data
     );
     return $result;
+  }
 
 
+  public function transactionhistorypark($id)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $query = $this->db->select('*')
+
+    ->from('transaction')
+    ->where('transaction.payment_nature_id', '4012')
+    ->where('customer.customer_id',$id)
+    ->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner')
+    ->join('customer','customer.customer_id = transaction.customer_id','inner')
+
+    ->get();
+
+    $data =[];
+    foreach($query->result() as $k)
+    {
+      $data[] = array(
+        'or_no' => $k->or_number,
+        'nature_of_payment' => $k->payment_nature_name,
+        'amount' => $k->payment_amount,
+        'date' =>$k->payment_datetime
+      );
+    }
+
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
   }
 
 

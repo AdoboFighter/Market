@@ -241,8 +241,16 @@ class MainController extends CI_Controller{
     $query = $this->model->transactionhistory($id);
 
     echo json_encode($query);
-
   }
+
+  public function getcustomertransactionhistorypark()
+  {
+    $id = $this->uri->segment(3);
+    $query = $this->model->transactionhistorypark($id);
+
+    echo json_encode($query);
+  }
+
 
   public function updatecustomerinfo()
   {
