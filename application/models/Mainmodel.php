@@ -130,11 +130,7 @@ class Mainmodel extends CI_model{
       'nature_of_business' =>$data['nature_of_business']
     );
 
-    $data3 = array(
-      'location' =>$data['location'],
-      'location_no' =>$data['location_num'],
-      'nature_of_business' =>$data['nature_of_business']
-    );
+
 
 
 
@@ -144,8 +140,7 @@ class Mainmodel extends CI_model{
     $this->db->where('ambulant_id',$data['ambulant_id'])
     ->update('ambulant_unit',$data2);
 
-    $this->db->where('ambulant_id',$data['ambulant_id'])
-    ->update('tenant',$data2);
+
 
     return true;
   }

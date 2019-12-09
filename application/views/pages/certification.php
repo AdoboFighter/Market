@@ -9,13 +9,14 @@
   </nav>
 
   <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center">Certification</h5>
+  <br>
   <div class="container justify-content-center ">
     <div class="card-body">
       <form id="certform">
-        <div class="span6" style="float: none; margin: 0 auto;">
-          <div class="row">
-            <div class="col-12 form-group">
-              <table class="table p-2"id="cert_table" >
+        <div class="card shadow">
+          <div class="row p-3">
+            <div class="col-12">
+              <table class="table table-striped table-bordered"id="cert_table" >
                 <thead>
                   <tr>
                     <td class="font-weight-bold" >transaction ID</td>

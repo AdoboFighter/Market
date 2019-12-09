@@ -15,8 +15,8 @@
 
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">System User</h5>
-    <div class="card m-3">
-
+    <br>
+    <div class="card m-3 shadow">
       <form name="saveSysUser" id="saveSysUser">
         <div class="row p-3">
           <div class="col-4">
@@ -105,6 +105,8 @@
 
 
     </div>
+    <br>
+    <br>
 
   </div>
 </div>

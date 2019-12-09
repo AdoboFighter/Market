@@ -22,19 +22,19 @@
 
 
   @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-  
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
-      /* display: none; <- Crashes Chrome on hover */
-      -webkit-appearance: none;
-      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
   }
   #locationfields {
     display:none;
   }
   html {
-  scroll-behavior: smooth;
-}
+    scroll-behavior: smooth;
+  }
 
   #table-wrapper {
     position:relative;
@@ -97,6 +97,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: #fafafa;
+
 }
 
 p {
@@ -325,6 +326,9 @@ CONTENT STYLE
   position: absolute;
   top: 0;
   right: 0;
+  background-color: #d9d9d9;
+  background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+
 }
 .bluegrads{
   background-color: #045de9;
@@ -348,38 +352,49 @@ CONTENT STYLE
   background-image: linear-gradient(315deg, #f6f6f6 0%, #e9e9e9 74%);
 }
 
+.zucc{
+  background-color: #d9d9d9;
+  background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+}
+
 
 .myButton {
-	box-shadow:inset 0px 1px 0px 0px #bee2f9;
-	background-color:transparent;
-	border:4px solid #3866a3;
-	display:inline-block;
-	cursor:pointer;
-	color:#14396a;
-	font-family:Arial;
-	font-size:40px;
-	font-weight:bold;
-	padding:32px 76px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #7cacde;
+  box-shadow:inset 0px 1px 0px 0px #bee2f9;
+  background-color:transparent;
+  border:4px solid #3866a3;
+  display:inline-block;
+  cursor:pointer;
+  color:#14396a;
+  font-family:Arial;
+  font-size:40px;
+  font-weight:bold;
+  padding:32px 76px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #7cacde;
   height: 200px;
   width: 400px;
 }
 .myButton:hover {
-	background-color:transparent;
+  background-color:transparent;
 }
 .myButton:active {
-	position:relative;
-	top:1px;
+  position:relative;
+  top:1px;
 }
 
-/* @media (min-width: 768px) {
-  .modal-xl {
-    width: 90%;
-   max-width:1200px;
-  }
+.blackgrad{
+  background-color: #29539b;
+  background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
 }
- */
+#my_centered_buttons { display: flex; justify-content: center; }
+
+/* @media (min-width: 768px) {
+.modal-xl {
+width: 90%;
+max-width:1200px;
+}
+}
+*/
 
 
 
@@ -413,64 +428,64 @@ CONTENT STYLE
     <ul class="list-unstyled components text-dark">
       <p class="">System User: <?php echo $this->session->userdata('user_fullname');?></p>
 
-    <li class="">
-      <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
-      <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li>
-          <a href="<?php echo base_url().'pages/view/addclient' ?>">Tenant</a>
-        </li>
-        <li>
-          <a href="<?php echo base_url().'pages/view/addAmbClient' ?>">Ambulant</a>
-        </li>
-        <li>
-          <a href="<?php echo base_url().'pages/view/addDeliveryClient' ?>">delivery</a>
-        </li>
-        <li>
-          <a href="<?php echo base_url().'pages/view/addParkingclient' ?>">parking</a>
-        </li>
-      </ul>
+      <li class="">
+        <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <a href="<?php echo base_url().'pages/view/addclient' ?>">Tenant</a>
+          </li>
+          <li>
+            <a href="<?php echo base_url().'pages/view/addAmbClient' ?>">Ambulant</a>
+          </li>
+          <li>
+            <a href="<?php echo base_url().'pages/view/addDeliveryClient' ?>">delivery</a>
+          </li>
+          <li>
+            <a href="<?php echo base_url().'pages/view/addParkingclient' ?>">parking</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="<?php echo base_url().'pages/view/violationSelect' ?>">Violation</a>
+      </li>
+
+      <li>
+        <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
+      </li>
+
+
+
+      <!-- <li>
+      <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
+    </li> -->
+
+    <li>
+      <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
+    </li>
+    <li>
+      <a href="<?php echo base_url().'pages/view/marketFloor' ?>">Market Floor</a>
     </li>
 
     <li>
-      <a href="<?php echo base_url().'pages/view/violationSelect' ?>">Violation</a>
+      <a href="<?php echo base_url().'pages/view/consolidation' ?>">Consolidation</a>
+    </li>
+
+
+    <li>
+      <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
     </li>
 
     <li>
-      <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
+      <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
     </li>
 
-
-
-    <!-- <li>
-    <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
-  </li> -->
-
-  <li>
-    <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
-  </li>
-  <li>
-    <a href="<?php echo base_url().'pages/view/marketFloor' ?>">Market Floor</a>
-  </li>
-
-  <li>
-    <a href="<?php echo base_url().'pages/view/consolidation' ?>">Consolidation</a>
-  </li>
-
-
-  <li>
-    <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
-  </li>
-
-  <li>
-    <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
-  </li>
-
-  <li>
-    <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">Add System User</a>
-  </li>
-  <!-- change design -->
-  <li>
-    <a href="<?php echo base_url().'pages/logout_acc' ?>">Log out</a>
-  </li>
-</ul>
+    <li>
+      <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">Add System User</a>
+    </li>
+    <!-- change design -->
+    <li>
+      <a href="<?php echo base_url().'pages/logout_acc' ?>">Log out</a>
+    </li>
+  </ul>
 </nav>

@@ -10,8 +10,9 @@
 
 
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
+  <br>
   <div class="container justify-content-center">
-    <div class="card m-1">
+    <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
           <table class="table table-striped table-bordered" id="parkTable">
@@ -28,15 +29,15 @@
           </table>
         </div>
       </div>
-      <div class="row p-3">
-      </div>
     </div>
+    <br>
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
+  <br>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
-        <div class="card col p-3 ">
+        <div class="card col p-3 shadow">
           <form id = "updatecustomerinfo">
             <input type="hidden" id = "customer_id" name = "update[customer_id]">
             <input type="hidden" id = "driver_id" name = "update[driver_id]">
@@ -49,10 +50,12 @@
               <input type="input" class="form-control"  id="stall">
             </div>
           </div>
+          <br>
+          <br>
         </div>
 
         <div class="col-6 ">
-          <div class="card col p-3">
+          <div class="card col p-3 shadow">
             <div class="mb-2">
               <label>Parking lot</label>
               <input type="text" class="form-control" name="update[park_lot]" id="park_lot">

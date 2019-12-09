@@ -14,11 +14,10 @@
   <div class="container justify-content-center ">
     <div class="card-body">
       <form id="violationform" name="violationform">
-        <div class="span6" style="float: none; margin: 0 auto;">
-          <div class="row">
-
+        <div class="card shadow">
+          <div class="row p-3">
             <div class="col-12">
-              <table class="table p-2" id="getviolationtable" >
+              <table class="table table-striped table-bordered" id="getviolationtable" >
                 <thead>
                   <tr>
                     <td class="font-weight-bold" >description</td>
@@ -35,6 +34,7 @@
           </div>
         </div>
 
+
         <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
           <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
             <div class="modal-content p-2">
@@ -45,19 +45,13 @@
                   <div class="form-group">
                     <label for="">Violation ID</label>
                     <input type="text" class="form-control" name="violation[violation_id_f]" id="vio" readonly>
+                    <input type="text" class="form-control" name="violation[customer_id]" id="cust" hidden>
+                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" hidden>
                   </div>
 
                   <div class="form-group">
-                    <label for="">customer ID</label>
-                    <input type="text" class="form-control" name="violation[customer_id]" id="cust" readonly>
-                  </div>
-                  <div class="form-group">
                     <label for="">Stall No</label>
                     <input type="text" class="form-control" name="" id="stall_num_f" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Stall ID</label>
-                    <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" readonly>
                   </div>
                   <div class="form-group">
                     <label for="">Owner </label>

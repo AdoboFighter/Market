@@ -10,8 +10,8 @@
 
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">Add parking client</h5>
-
-    <div class="card m-2">
+    <br>
+    <div class="card m-2 shadow">
       <div class="container">
         <form class="p-3" id="savePark" name="savePark">
           <div class="row">
@@ -20,7 +20,7 @@
                 <div class="span6" style="float: none; margin: 0 auto;">
                   <div class="row">
                     <div class="col-12 form-group">
-                      <table class="table p-2"id="add_vio_tab" >
+                      <table class="table table-striped table-bordered"id="add_vio_tab" >
                         <thead>
                           <tr>
                             <td class="font-weight-bold" >No</td>
@@ -70,6 +70,9 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
+
   </div>
 
 

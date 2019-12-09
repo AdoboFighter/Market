@@ -14,18 +14,16 @@
   <div class="container justify-content-center ">
     <div class="card-body">
       <form id="violationform" name="violationform">
-        <div class="span6" style="float: none; margin: 0 auto;">
-          <div class="row">
-
+        <div class="card shadow">
+          <div class="row p-3">
             <div class="col-12">
-              <table class="table p-2" id="getviolationtable" >
+              <table class="table table-striped table-bordered" id="getviolationtable" >
                 <thead>
                   <tr>
                     <td class="font-weight-bold" >description</td>
                     <td class="font-weight-bold" >date occurred</td>
                     <td class="font-weight-bold" >status</td>
                     <td class="font-weight-bold" >name</td>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -34,6 +32,8 @@
             </div>
           </div>
         </div>
+        <br>
+        <br>
 
 
       </form>

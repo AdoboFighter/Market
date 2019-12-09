@@ -10,8 +10,9 @@
 
 
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
+  <br>
   <div class="container justify-content-center">
-    <div class="card m-1">
+    <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
           <table class="table table-striped table-bordered" id="AmbulantTable">
@@ -32,13 +33,17 @@
       <div class="row p-3">
       </div>
     </div>
+    <br>
+    <br>
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client Information</h5>
+  <br>
+  <br>
   <div class="container justify-content-center" id="sect2">
     <div class="row mt-2">
       <div class="col-6">
-        <div class="card col p-3 ">
-
+        <div class="card col p-3 shadow">
+          <h5 class="font-weight-bold">Ambulant's Information</h5>
           <form id = "updatecustomerinfo">
             <input type="hidden" id = "customer_id" name = "update[customer_id]">
             <input type="hidden" id = "ambulant_id" name = "update[ambulant_id]">
@@ -67,28 +72,26 @@
               <input type="input" class="form-control" name="update[nature_of_business]" id="nature_of_business" required>
             </div>
           </div>
+          <br>
+          <br>
         </div>
 
-        <div class="col-6 ">
-          <div class="card col p-3">
+        <div class="col-6">
+          <div class="card col p-3 shadow">
+            <h5 class="font-weight-bold">Ambulant unit Information</h5>
             <div class="mb-2">
               <label>Location</label>
               <input type="text" class="form-control" name="update[location]" id="location">
             </div>
-
             <div class="mb-2">
               <label>Location number</label>
               <input type="text" class="form-control" name="update[location_num]" id="Location_num">
             </div>
-
-
             <div class="p-2">
               <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
               <button class = "btn btn-primary" type="submit">Update</button>
             </div>
           </div>
-
-
         </div>
 
         <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >

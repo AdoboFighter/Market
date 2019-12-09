@@ -1,6 +1,6 @@
 
    <!-- Page Content  -->
-   <div id="content">
+   <div id="content ">
 
      <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
          <div class="container-fluid bluegrads">
