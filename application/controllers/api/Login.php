@@ -18,6 +18,7 @@ class Login extends CI_Controller {
         if(count($res) > 0){
             if($res[0]->password == $password) {
                 $xhrResponse['USER'][0] = $this->getFullName($username, $password);
+                // $xhrResponse['USER'][0] = 'Bonbon';
             } else {
                 $resObj->ID = '';
                 $resObj->fullname = 'PassInc';
@@ -32,7 +33,7 @@ class Login extends CI_Controller {
     }
 
     private function getFullName($username, $password) {
-        $res = $this->db->query("CALL POS_GetDeviceUser('$username', '$password')")->result();
+        $res = $this->db->query("SELECT user_id as 'ID', UPPER(CONCAT(usr_firstname,' ',usr_middlename,' ',usr_lastname)) AS 'fullname' FROM market_db.user WHERE username = '$username' AND password = '$password' COLLATE utf8_bin")->result();
         $this->db->close();
         return $res[0];
     }

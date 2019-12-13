@@ -14,7 +14,7 @@ $(document).ready(function(){
             data :$(this).serialize(),
             dataType : 'json',
             success : function(data){
-            console.log(data.sort);
+            console.log(data);
 
     
 

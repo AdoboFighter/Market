@@ -10,7 +10,7 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
-  <form id="ambulantPayment">
+
     <div class="container justify-content-center">
       <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
       <div class="card m-3">
@@ -130,7 +130,7 @@
               </div>
               <h5>Particulars</h5>
                     <div class="col-6">
-                      <input type="checkbox" name="sub_total" id = "sub_total" value=""> &nbsp;<strong>Sub Total</strong> <br>
+                      <input type="checkbox" class = "ntw" name="sub_total" id = "sub_total" value=""> &nbsp;<strong>Sub Total</strong> <br>
                     </div>
                     <div class="row mt-2">
                       <div class="col">
@@ -140,7 +140,7 @@
 
                       <div class="col">
                         <label>Price</label>
-                        <input type="number" class="form-control partnum payment_details" name="part1num" id="part1num" value = "0" >
+                        <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0" >
                       </div>
                     </div>
 
@@ -149,7 +149,7 @@
                       <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part2num" id="part2num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0">
                     </div>
                   </div>
 
@@ -158,7 +158,7 @@
                       <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part3num" id="part3num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0">
                     </div>
                   </div>
 
@@ -167,7 +167,7 @@
                       <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part4num" id="part4num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0">
                     </div>
                   </div>
 
@@ -176,7 +176,7 @@
                       <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part5num" id="part5num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0">
                     </div>
                   </div>
 
@@ -185,7 +185,7 @@
                       <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part6num" id="part6num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0">
                     </div>
                   </div>
 
@@ -194,13 +194,14 @@
                       <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details" name="part7num" id="part7num" value = "0">
+                      <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="total" id="total">
+                    <div class="col" id = "demo">
+                      <input type="text" class="form-control payment_details ntw" name="total" id="total">
+                      <div></div>
                     </div>
                   </div>
 
@@ -233,7 +234,7 @@
 
               <div class="mb-2">
                 <label>Amount to pay</label>
-                <input type="text" class="form-control payment_details" name="payment_amount_to_pay" id="payment_amount_to_pay">
+                <input type="text" class="form-control payment_details ntw" name="payment_amount_to_pay" id="payment_amount_to_pay">
               </div>
 
               <div class="mb-2">
@@ -248,8 +249,10 @@
               </div>
 
               <div class="mb-2">
+              <input type="hidden" id = "ntwntw">
                 <button type="Submit"  class="btn btn-primary allPaymentButton" id = "payment_submit_button">Submit and print</button>
               </div>
+
 
 
 
@@ -278,8 +281,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <iframe src = 'www.google.com'>
-        </iframe>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -288,6 +290,20 @@
     </div>
   </div>
 </div>
+
+<div id="rec" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
+          <div class="modal-content p-2">
+            <iframe src = "" id="frameasdas" height ="1000" width = "">
+                                  
+            asdasdasdasd
+            </iframe>
+            
+
+            <button class = "btn btn-success">Print Receipt</button>
+          </div>
+        </div>
+      </div>
 
 
 <div class="overlay"></div>

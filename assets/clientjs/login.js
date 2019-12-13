@@ -22,10 +22,18 @@ $(document).ready(function(){
           location.href = global.settings.url + '/pages/view/home';
         }
         else if(res == 'usernameError'){
-          alert('Username Incorrect');
+          Swal.fire({
+            title: 'Incorrect Username!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         }
         else if(res == 'passwordError'){
-          alert('password Incorrect');
+          Swal.fire({
+            title: 'Password Incorrect!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         }
 
      

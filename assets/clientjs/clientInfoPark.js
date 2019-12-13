@@ -2,8 +2,31 @@ var datable;
 
 $(document).ready(function(){
 
+  $( "#payhistbtn" ).click(function() {
+    $('#violationmodal').modal('show');
 
-   datable = $('#parkTable').DataTable({
+  });
+
+  $.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+
+  $( "#payhistbtn" ).click(function() {
+    $('#violationmodal').modal('show');
+  });
+
+  datable = $('#parkTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getparkingpaytablecon',
       dataSrc : 'data'
@@ -11,9 +34,6 @@ $(document).ready(function(){
     "columns" : [
       {
         "data" : "id"
-      },
-      {
-        "data" : "pay_driver_id"
       },
 
       {
@@ -30,71 +50,105 @@ $(document).ready(function(){
     });
     $('.dataTables_length').addClass('bs-select');
 
+    $("#park_lot").inputFilter(function(value) {
+      return /^-?\d*$/.test(value); });
 
-    
-  });
+      $('#updatecustomerinfo').submit(function(e){
+        e.preventDefault();
 
 
-  $('#updatecustomerinfo').submit(function(e){
-    e.preventDefault();
+        $.ajax({
+          url: global.settings.url + '/MainController/updateparkinginfo',
+          type: 'POST',
+          data: $(this).serialize(),
+          dataType:'JSON',
+          success: function(res){
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated',
+            });
 
-      
-          $.ajax({
-              url: global.settings.url + '/MainController/updateparkinginfo',
-              type: 'POST',
-              data: $(this).serialize(),
-              dataType:'JSON',
-            success: function(res){
-              alert('update successful');
-              $('#customer_id').val(null);
-              $('#park_fn').val(null);
-              $('#park_mn').val(null);
-              $('#park_ln').val(null);
-              $('#park_cn').val(null);
-              $('#park_lot').val(null);
-              $('#park_add').val(null);
-      
-              $('#driver_id').val(null);
-              datable.ajax.reload();
-             
-            },
-            error:function(res){
+            datable.ajax.reload();
 
-            }
+          },
+          error:function(res){
+
+          }
         });
- 
+
       });
 
-      
+
+    });
 
 
-  function fetchdata(id){
 
-    console.log(id);
-    $.ajax({
-      url: global.settings.url + '/MainController/getparkingpay',
-      type: 'POST',
-      data: {
-        id: id
-      },
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        res = res[0];
-        $('#customer_id').val(id);
-        $('#park_fn').val(res.firstname );
-        $('#park_mn').val(res.middlename);
-        $('#park_ln').val(res.lastname);
-        $('#park_add').val(res.address);
-        $('#park_cn').val(res.contact_number);
-        $('#driver_id').val(res.driver_id);
-        $('#driver_id').prop('readonly');
-        $('#park_lot').val(res.lot_no);
-        // $('#last_pay').val(res.payment_datetime);
-        // diffdates();
-      },
-      error: function(xhr){
-        console.log(xhr.responseText);
-      }
-    })
-  }
+
+
+    function fetchdata(id){
+      fetchdata2(id);
+      transactionhistory(id);
+
+    }
+
+    function fetchdata2(id){
+
+      console.log(id);
+      $.ajax({
+        url: global.settings.url + '/MainController/getparkingpay',
+        type: 'POST',
+        data: {
+          id: id
+        },
+        dataType:'JSON',
+        success: function(res){
+          console.log(res);
+          res = res[0];
+          $('#customer_id').val(id);
+          $('#name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#stall').val(res.unit_no);
+          $('#park_lot').val(res.lot_no);
+          $('#driver_id').val(res.driver_id);
+
+
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      })
+    }
+
+
+    function transactionhistory(id)
+    {
+      $('#pay_hist_tab').DataTable().destroy();
+
+      $('#pay_hist_tab').DataTable({
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getcustomertransactionhistorypark/' + id,
+          type: 'GET',
+          dataSrc : "data",
+        },
+        "columns" : [{
+          "data" : "or_no"
+        },
+
+        {
+          "data" : "nature_of_payment"
+        },
+
+        {
+          "data" : "amount"
+        },
+
+
+        {
+          "data" : "date"
+        }]
+
+      });
+
+
+
+      $('.dataTables_length').addClass('bs-select');
+    }

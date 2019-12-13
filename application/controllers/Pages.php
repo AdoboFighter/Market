@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       echo json_encode($userdata);
 
+
     }
 
     public function logout_acc(){
@@ -61,6 +62,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       session_destroy();
       $this->load->view('pages/login');
     }
+
+
 
 
 

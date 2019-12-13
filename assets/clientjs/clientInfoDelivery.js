@@ -3,6 +3,11 @@ var datable;
 $(document).ready(function(){
 
 
+    $( "#payhistbtn" ).click(function() {
+      $('#violationmodal').modal('show');
+
+    });
+
   datable = $('#DeliveryTable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getdeliverypaytablecon',
@@ -24,42 +29,56 @@ $(document).ready(function(){
       }]
     });
     $('.dataTables_length').addClass('bs-select');
+
+    $('#updatecustomerinfo').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: global.settings.url + '/MainController/updatedeliveryinfo',
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType:'JSON',
+        success: function(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+          });
+          $('#updatecustomerinfo')[0].reset();
+          datable.ajax.reload();
+        },
+        error:function(res){
+          console.log('sala');
+        }
+      });
+
+    });
+
   });
 
   $('#updatecustomerinfo').submit(function(e){
     e.preventDefault();
-
-      
-          $.ajax({
-              url: global.settings.url + '/MainController/updatedeliveryinfo',
-              type: 'POST',
-              data: $(this).serialize(),
-              dataType:'JSON',
-            success: function(res){
-              alert('update successful');
-              $('#customer_id').val(null);
-              $('#del_fn').val(null);
-              $('#del_mn').val(null);
-              $('#del_ln').val(null);
-              $('#del_add').val(null);
-              $('#del_cn').val(null);
-              $('#del_id').val(null);
-              
-      
-            
-              datable.ajax.reload();
-             
-            },
-            error:function(res){
-console.log('sala');
-            }
+    $.ajax({
+      url: global.settings.url + '/MainController/updatedeliveryinfo',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
         });
- 
-      });
+        $('#updatecustomerinfo')[0].reset();
+        datable.ajax.reload();
+      },
+      error:function(res){
+        console.log('sala');
+      }
+    });
+
+  });
 
 
 
-  function fetchdata(id){
+  function fetchdata1(id){
     $('#AmbuPay').modal("show");
     console.log(id);
     $.ajax({
@@ -75,8 +94,6 @@ console.log('sala');
         $('#customer_id').val(id);
         $('#del_fn').val(res.firstname );
         $('#del_mn').val(res.middlename);
-        $('#del_ln').val(res.lastname);
-        $('#del_add').val(res.address);
         $('#del_cn').val(res.contact_number);
         $('#del_id').val(res.delivery_id);
 
@@ -85,4 +102,49 @@ console.log('sala');
         console.log(xhr.responseText);
       }
     })
+  }
+
+
+  function fetchdata(id){
+    fetchdata1(id);
+    transactionhistory(id);
+
+  }
+
+
+
+
+
+  function transactionhistory(id)
+  {
+    $('#pay_hist_tab').DataTable().destroy();
+
+    $('#pay_hist_tab').DataTable({
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getcustomertransactionhistory/' + id,
+        type: 'GET',
+        dataSrc : "data",
+      },
+      "columns" : [{
+        "data" : "or_no"
+      },
+
+      {
+        "data" : "nature_of_payment"
+      },
+
+      {
+        "data" : "amount"
+      },
+
+
+      {
+        "data" : "date"
+      }]
+
+    });
+
+
+
+    $('.dataTables_length').addClass('bs-select');
   }

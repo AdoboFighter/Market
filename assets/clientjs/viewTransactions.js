@@ -86,21 +86,29 @@ $(document).ready(function(){
 
 $('#genrep').click(function(){
 
-  exCollector = $('#client_type').val();
+  exClientType = $('#client_type').val();
   exDateFrom = $('#date_from').val();
   exDateTo = $('#date_to').val();
 
 
+
+
   if(exDateFrom == "" || exDateTo == "")
   {
-      alert("");
+    Swal.fire({
+      title: 'Error!',
+      text: 'Pick a Date',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
   }
-  else
-  {
+
+  else{
+
     $.ajax({
       url : global.settings.url +'/MainController/gettransexcel',
       type : 'POST',
-      data :{exCollector:exCollector, exDateFrom:exDateFrom, exDateTo:exDateTo},
+      data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
       dataType : 'json',
       success : function(data){
        
@@ -116,7 +124,11 @@ $('#genrep').click(function(){
   
     });
   
+    
   }
+ 
+   
+  
 
  
 

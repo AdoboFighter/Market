@@ -129,7 +129,12 @@ $('#genrep').click(function(){
 
   if(exDateFrom == "" || exDateTo == "")
   {
-      alert("");
+    Swal.fire({
+      title: 'Error!',
+      text: 'Pick a Date',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
   }
   else
   {

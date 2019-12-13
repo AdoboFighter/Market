@@ -293,6 +293,7 @@
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
   }
 
+
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -300,8 +301,6 @@
 <script src="assets/global.js"></script>
 <script src="assets/clientjs/login.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </head>
 
@@ -311,59 +310,38 @@
 
     <div class="wrapper fadeInDown">
       <div id="formContent">
-        <!-- Tabs Titles -->
 
-        <!-- Icon -->
         <div class="fadeIn first">
-          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="50" height="50" class="p-1">E-market</h3>
+          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/excla.png" width="50" height="50" class="p-1"></h3>
         </div>
+        <form id="login_account">
 
-        <!-- Login Form -->
-        <!-- <form id="login_account">
+          <h3>The E-market is still under development</h3>
+          <!-- <h3>We're vewy sowwy ( ´•̥̥̥ω•̥̥̥` )</h3> -->
+
+        </form>
 
 
-        <div class="form-group">
-        <input type="text" class="form-control" id="login" placeholder="username">
 
       </div>
-
-      <div class="form-group">
-      <input type="password" class="form-control" id="password" placeholder="password">
     </div>
-    <div class="form-group">
-    <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
+
   </div>
-</form> -->
-
-<form id="login_account">
-  <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-  <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
-  <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
-</form>
-
-<div id="formFooter">
-  <a href="<?php echo base_url().'pages/view/home' ?>">To Home</a>
-</div>
-
-</div>
-</div>
-
-</div>
 
 
 </body>
 
 
 <script src="/assets/js/jquery-3.2.1.min.js"></script>  <!-- Popper.JS -->
-  <script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <!-- Bootstrap JS -->
-  <script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <!-- jQuery Custom Scroller CDN -->
-  <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <!--  Data Table -->
-  <script src="/assets/js/jquery.dataTables.min.js"></script>
-  <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url().'assets/global.js' ?> "></script>
+<script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!--  Data Table -->
+<script src="/assets/js/jquery.dataTables.min.js"></script>
+<script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url().'assets/global.js' ?> "></script>
 
 <script src="/assets/clientjs/login.js"></script>
 

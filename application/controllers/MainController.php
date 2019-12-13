@@ -138,23 +138,6 @@ class MainController extends CI_Controller{
     
   }
 
-  public function gettransexcel()
-  {
-    
-    $sort = array(
-      'excelClient' => $this->input->post('exClientType'),
-      'excelDateFrom'=> $this->input->post('exDateFrom'),
-      'excelDateTo'=> $this->input->post('exDateTo'),
-      'excelCollector'=> $this->input->post('exCollector')
-    );
-    
-
-    $this->session->set_userdata($sort);
-
-    echo json_encode($sort);
-    
-  }
-
   public function printconsexcel()
   {
     $sort = array(
@@ -178,6 +161,52 @@ class MainController extends CI_Controller{
       $this->session->unset_userdata('excelCollector');
 
   }
+
+  public function gettransexcel()
+  {
+    
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+    );
+    
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+    
+  }
+
+  public function printtransact()
+  {
+    $sort = array(
+      'conClientType' => $this->session->userdata('excelClient'),
+      'conDateFrom' => $this->session->userdata('excelDateFrom'),
+      'conDateTo' => $this->session->userdata('excelDateTo'),
+     
+    );
+     
+    $query = $this->model->transactexcel($sort);
+
+    $result = array(
+      "query" => $query,
+      "sort" => $sort,
+      // "user" => $this->session->userdata('user_fullname'),
+    );
+
+    echo json_encode($result);
+
+    $this->session->unset_userdata('excelClient');
+    $this->session->unset_userdata('excelDateFrom');
+    $this->session->unset_userdata('excelDateTo');
+    $this->session->unset_userdata('excelCollector');
+  }
+
+
+ 
+
+  
   
 
   public function getCollector()
@@ -186,6 +215,7 @@ class MainController extends CI_Controller{
 
     echo json_encode($collector);
   }
+
 
 
 
@@ -374,24 +404,7 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcerttable());
   }
 
-  public function printtransact()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-      'conCollectorName' => $this->session->userdata('excelCollector'),
-    );
-     
-    $query = $this->model->consexcel($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-  }
-
+ 
 
   public function pdf2fcert()
    {
@@ -415,12 +428,69 @@ class MainController extends CI_Controller{
   echo json_encode($this->model->get_cert_info_mod($id));
 }
 
+public function paymentreceipt()
+{
 
+ 
+  $type_of_payment = $this->input->post('type_of_payment');
+
+  $query = $this->model->getnature($type_of_payment);
+
+
+    
+
+ $data = array(
+   'fullname' => $this->input->post('payment_name'),
+   'payment_type' => $this->input->post('payment_type'),
+   'text1' => $this->input->post('text1'),
+   'text2' => $this->input->post('text2'),
+   'text3' => $this->input->post('text3'),
+   'text4' => $this->input->post('text4'),
+   'text5' => $this->input->post('text5'),
+   'text6' => $this->input->post('text6'),
+   'text7' => $this->input->post('text7'),
+    'num1' =>  $this->input->post('num1'),
+    'num2' =>  $this->input->post('num2'),
+    'num3' =>  $this->input->post('num3'),
+    'num4' =>  $this->input->post('num4'),
+    'num5' =>  $this->input->post('num5'),
+    'num6' =>  $this->input->post('num6'),
+    'num7' =>  $this->input->post('num7'),
+    'total' => $this->input->post('total'),
+    'checkNum1' => $this->input->post('check_number[0]'),
+    'checkNum2' => $this->input->post('check_number[1]'),
+    'checkNum3' => $this->input->post('check_number[2]'),
+    'checkDate1' => $this->input->post('check_date[0]'),
+    'checkDate2' => $this->input->post('check_date[1]'),
+    'checkDate3' => $this->input->post('check_date[2]'),
+    'bank1' => $this->input->post('bank[0]'),
+    'bank2' => $this->input->post('bank[1]'),
+    'bank3' => $this->input->post('bank[2]'),
+    'ntw' => $this->input->post('ntw'),
+    'type_of_payment' => $query,
+    'amount_to_pay' => $this->input->post('amount_to_pay')
+ );
+
+
+
+
+  return $this->load->view('pages/receipt',$data);
+ 
+  
 }
 
 
 
 
+public function checkOr(){
+
+  $or_number = $this->input->post('or_number');
+  $query =$this->model->checkOr($or_number);
+  echo json_encode($query);
+}
+
+
+}
 
 
 
