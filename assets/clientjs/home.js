@@ -1,5 +1,3 @@
-var datable;
-
 
 $(document).ready(function(){
 

@@ -15,6 +15,9 @@
   <script src="/assets/js/jquery.dataTables.min.js"></script>
   <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
   <script src="/assets/js/sweetalert2@9.js"></script>
+  <!--  Material Design -->
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
 
   <script type="text/javascript">
        $(document).ready(function () {

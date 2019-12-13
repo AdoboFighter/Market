@@ -12,7 +12,7 @@
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">Add Ambulant Unit</h5>
     <br>
-    <div class="card m-2 shadow">
+    <div class="card m-2 shadow border border-light">
       <div class="container">
         <form class="p-3" id="saveAmb" name="savePark">
           <div class="row">
