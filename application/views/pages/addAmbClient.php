@@ -11,15 +11,14 @@
 
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">Add Ambulant Unit</h5>
-
-    <div class="card m-2">
+    <br>
+    <div class="card m-2 shadow">
       <div class="container">
         <form class="p-3" id="saveAmb" name="savePark">
           <div class="row">
             <div class="col-6">
               <div class="span6" style="float: none; margin: 0 auto;">
                 <div class="p-3">
-
                   <div class="form-group">
                     <label for="">First Name</label>
                     <input type="text" class="form-control" name="customer[Owner_Firstname]"   required>
@@ -46,7 +45,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-6">
               <div class="form-group">
                 <label for="">Location</label>
@@ -60,10 +58,11 @@
               </div>
             </div>
           </form>
-
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </div>
 
 </div>

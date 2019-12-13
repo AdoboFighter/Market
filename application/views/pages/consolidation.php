@@ -9,16 +9,15 @@
   </nav>
   <!-- pagecontents dito mo lagay  -->
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Consolidation</h5>
-
+  <br>
   <div class="container justify-content-center">
-    <div class="card m-3">
+    <div class="card m-3 shadow">
       <div class="row p-3">
         <div class="col-3">
           <div class="mb-2 form-group" id="">
             <label class="font-weight-bold">Collector:</label>
             <select class="form-control form-control-sm" name="" id="collector_name" required>
               <option selected value="" id = "collector">Please Select</option>
-             
             </select>
           </div>
         </div>
@@ -73,9 +72,10 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </div>
 
 
 </div>
-
 <div class="overlay"></div>

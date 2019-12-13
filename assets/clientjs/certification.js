@@ -1,4 +1,14 @@
 var datable;
+var fullDate = new Date();
+var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+const m = new Date();
+var month = monthNames[m.getMonth()];
+var d = new Date();
+var n = d.getDate();
+var year = new Date().getFullYear();
 
 
 $(document).ready(function(){
@@ -27,123 +37,89 @@ $(document).ready(function(){
     }]
   });
 
-
-
-  $('.dataTables_length').addClass('bs-select');
-
-  $('#certform').submit(function(e){
+  $('#location').on('change', function(e) {
+    $('#cert').val(this.value);
     e.preventDefault();
-    console.log( $('#violationform').serializeArray());
     $.ajax({
-      url : global.settings.url +'/MainController/save_violation_con',
+      url : global.settings.url + '/MainController/pdf2fcert',
       type : 'POST',
-      data :$(this).serialize(),
-      dataType : 'json',
+      data : $('#certform').serialize(),
+      xhrFields: {
+        responseType: 'blob'
+      },
       success : function(res){
-      console.log(res);
+        //   $('#modalBirthday').modal('show');
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(res);
+        a.href = url;
+        $('#iframe_preview_formgen').attr('src',url);
       },
       error : function(xhr){
         console.log(xhr.responseText);
       }
     });
+
   });
 
+  $('.dataTables_length').addClass('bs-select');
 
+  $('#certform').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: global.settings.url + '/MainController/updatecert',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        $('#certmodal').modal("toggle");
+        Swal.fire({
+          icon: 'success',
+          title: 'Certification Effectivity Removed',
+        });
+        $('#cert_table').DataTable().ajax.reload();
 
-
-});
-
-function setIframeSource() {
-   var theSelect = document.getElementById('location');
-   var theIframe = document.getElementById('myIframe');
-   var theUrl;
-
-   theUrl = theSelect.options[theSelect.selectedIndex].value;
-   theIframe.src = theUrl;
-}
-
-
-
-
-
-// function fetchdata(id){
-//   $('#violationmodal').modal("show");
-//   // console.log(id);
-//   // $.ajax({
-//   //   url: global.settings.url + '/MainController/get_customer_info_vio_con',
-//   //   type: 'POST',
-//   //   data: {
-//   //     id: id
-//   //   },
-//   //   dataType:'JSON',
-//   //   success: function(res){
-//   //     console.log(res);
-//   //     res = res[0];
-//   //     $('#stall_id_f').val(res.stall_id );
-//   //     $('#stall_num_f').val(res.unit_no );
-//   //     $('#owner_f').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-//   //     $('#address_f').val(res.address);
-//   //     $('#occu_f').val(res.aofirstname + ' '+ res.aomiddlename +' ' + res.aolastname);
-//   //
-//   //
-//   //   },
-//   //   error: function(xhr){
-//   //     console.log(xhr.responseText);
-//   //   }
-//   // })
-// }
-
-
-function fetchdata(id){
-  $('#certmodal').modal("show");
-  console.log(id);
-  $.ajax({
-    url: global.settings.url + '/MainController/get_cert_info_con',
-    type: 'POST',
-    data: {id: id},
-    dataType:'JSON',
-    success: function(res){
-      console.log(res);
-      res = res[0];
-      $('#fname').val(res.firstname );
-      $('#mname').val(res.middlename );
-      $('#lname').val(res.lastname);
-      $('#address').val(res.address);
-
-    },
-    error: function(xhr){
-      console.log(xhr.responseText);
-    }
-  })
-}
-
-$('#certform').submit(function(e){
-  e.preventDefault();
-  $.ajax({
-    url : global.settings.url + '/MainController/pdf2fcert',
-    type : 'POST',
-    data : $('#certform').serialize(),
-    xhrFields: {
-          responseType: 'blob'
       },
-    success : function(res){
-          //   $('#modalBirthday').modal('show');
-      var a = document.createElement('a');
-      var url = window.URL.createObjectURL(res);
-      a.href = url;
-   $('#iframe_preview_formgen').attr('src',url);
-    },
-    error : function(xhr){
-      console.log(xhr.responseText);
-    }
+      error:function(res){
+        console.log('sala');
+      }
+    });
   });
-});
 
-function setIframeSource() {
-  var theSelect = document.getElementById('location');
-  var theIframe = document.getElementById('myIframe');
-  var theUrl;
+    });
 
-  theUrl = theSelect.options[theSelect.selectedIndex].value;
-  theIframe.src = theUrl;
-}
+
+  function fetchdata(id){
+    $('#certmodal').modal("show");
+    console.log(id);
+    $.ajax({
+      url: global.settings.url + '/MainController/get_cert_info_con',
+      type: 'POST',
+      data: {id: id},
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        res = res[0];
+        $('#transaction_id').val(res.transaction_id );
+        $('#fname').val(res.firstname );
+        $('#mname').val(res.middlename );
+        $('#lname').val(res.lastname);
+        $('#address').val(res.address);
+        $('#natbus').val(res.nature_or_business);
+        $('#flrlvl').val(res.address);
+        $('#stall').val(res.unit_no);
+        $('#floor_level').val(res.floor_level);
+        $('#or_number').val(res.or_number);
+        $('#payment_amount').val(res.payment_amount);
+        $('#address').val(res.address);
+        $('#today').val(currentDate);
+        $('#days').val(n);
+        $('#month').val(month);
+        $('#year').val(year);
+
+
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    })
+  }

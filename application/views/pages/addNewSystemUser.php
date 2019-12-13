@@ -15,28 +15,28 @@
 
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">System User</h5>
-    <div class="card m-3">
-
+    <br>
+    <div class="card m-3 shadow">
       <form name="saveSysUser" id="saveSysUser">
         <div class="row p-3">
           <div class="col-4">
             <div class="form-group">
               <label for="">First Name</label>
-              <input type="text" class="form-control" name="sysUser[firstname]"  required="">
+              <input type="text" class="form-control" name="sysUser[firstname]"  required>
             </div>
           </div>
 
           <div class="col-4">
             <div class="form-group">
               <label for="">Middle Name</label>
-              <input type="text" class="form-control" name="sysUser[middlename]"   required="">
+              <input type="text" class="form-control" name="sysUser[middlename]"   required>
             </div>
           </div>
 
           <div class="col-4">
             <div class="form-group">
               <label for="">last Name</label>
-              <input type="text" class="form-control" name="sysUser[lastname]"   required="">
+              <input type="text" class="form-control" name="sysUser[lastname]"   required>
             </div>
           </div>
         </div>
@@ -44,12 +44,12 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Username</label>
-            <input type="text" class="form-control" name="sysUser[username]"  required="">
+            <input type="text" class="form-control" name="sysUser[username]"  required>
           </div>
 
           <div class="col">
             <label>User Level</label>
-            <select class="form-control form-control-sm" name="sysUser[user_lvl]"  id="clientselect" required="">
+            <select class="form-control form-control-sm" name="sysUser[user_lvl]"  id="clientselect" required>
               <option selected value="">Please Select</option>
               <option value="0">Admin</option>
               <option value="1">Collecting Officer</option>
@@ -62,7 +62,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Position/Title</label>
-            <input type="text" class="form-control" name="sysUser[position]" required="">
+            <input type="text" class="form-control" name="sysUser[position]" required>
           </div>
         </div>
 
@@ -70,7 +70,7 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Password</label>
-            <input type="password" class="form-control" name="sysUser[password]" id="pass1" required="">
+            <input type="password" class="form-control" name="sysUser[password]" id="pass1" required>
           </div>
         </div>
 
@@ -86,14 +86,14 @@
         <div class="row m-5">
           <div class="col">
             <label for="">Address</label>
-            <input type="text" class="form-control" name="sysUser[address]" required="">
+            <input type="text" class="form-control" name="sysUser[address]" required>
           </div>
         </div>
 
         <div class="row m-5">
           <div class="col">
             <label for="">Contact Number</label>
-            <input type="text" class="form-control" name="sysUser[contact_num]" required="">
+            <input type="text" class="form-control" name="sysUser[contact_num]" required>
           </div>
         </div>
 
@@ -105,31 +105,10 @@
         </div>
       </form>
 
-      <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content p-3">
-            <h5>System user Added</h5>
-          </div>
-        </div>
-      </div>
-
-      <div id="passerror" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content p-3">
-            <h5>Password Doesn't Match</h5>
-          </div>
-        </div>
-      </div>
-
-      <div id="usererror" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content p-3">
-            <h5>username already taken</h5>
-          </div>
-        </div>
-      </div>
 
     </div>
+    <br>
+    <br>
 
   </div>
 </div>

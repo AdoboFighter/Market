@@ -10,8 +10,9 @@
 
 
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
+  <br>
   <div class="container justify-content-center">
-    <div class="card m-1">
+    <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
           <table class="table table-striped table-bordered" id="client_table">
@@ -30,8 +31,6 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="row p-3">
       </div>
     </div>
   </div>
@@ -182,7 +181,8 @@
         </form>
       </div>
     </div>
-  </div>
+
+  </form>
 
 
 </div>

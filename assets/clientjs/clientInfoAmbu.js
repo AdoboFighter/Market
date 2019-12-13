@@ -48,19 +48,8 @@ $(document).ready(function(){
             'User Information Updated',
             'success'
           );
-          $('#customer_id').val(null);
-          $('#ambulant_fn').val(null);
-          $('#ambulant_mn').val(null);
-          $('#ambulant_ln').val(null);
-          $('#ambulant_add').val(null);
-          $('#ambulant_cn').val(null);
-          $('#location').val(null);
-          $('#Location_num').val(null);
-          $('#nature_of_business').val(null);
-
-
+          $('#updatecustomerinfo')[0].reset();
           datable.ajax.reload();
-
         },
         error:function(res){
 

@@ -5,6 +5,7 @@ class Login extends CI_Controller {
     {
         parent::__construct();
         $this->load->database();
+
     }
 
     public function auth() {
@@ -31,6 +32,26 @@ class Login extends CI_Controller {
         }
         echo json_encode($xhrResponse);
     }
+
+
+
+    public function savedata()
+    {
+      $xhrResponse = array();
+      $resObj = new stdClass();
+      $username = $this->input->post('username');
+      $password = $this->input->post('password');
+
+      $array = array(
+        'username' => $username,
+        'password' => $password
+      );
+      $query =  $this->db->insert('user' , $array);
+      echo json_encode($query);
+
+    }
+
+
 
     private function getFullName($username, $password) {
         $res = $this->db->query("SELECT user_id as 'ID', UPPER(CONCAT(usr_firstname,' ',usr_middlename,' ',usr_lastname)) AS 'fullname' FROM market_db.user WHERE username = '$username' AND password = '$password' COLLATE utf8_bin")->result();

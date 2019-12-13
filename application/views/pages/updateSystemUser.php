@@ -10,8 +10,9 @@
 
 <form id="updateuser" name="updateuser">
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">User List</h5>
+  <br>
   <div class="container justify-content-center">
-    <div class="card m-1">
+    <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
           <table class="table table-striped table-bordered" id="sys_table">
@@ -30,15 +31,16 @@
           </table>
         </div>
       </div>
-      <div class="row p-3">
-      </div>
+
     </div>
+    <br>
   </div>
-  <h5 class="card-header text-center text-white bluegrads container justify-content-center">User Information</h5>
+  <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">User Information</h5>
+  <br>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
-        <div class="card col p-3 ">
+        <div class="card col p-3 shadow">
           <div class="mb-2 form-group" id="">
             <label>user ID:</label>
             <input type="input" class="form-control" name="upsys[usr_id]" id="usr_id" readonly>
@@ -65,9 +67,11 @@
             <input type="input" class="form-control" name="upsys[usr_cn]" id="usr_cn" required>
           </div>
         </div>
+        <br>
+        <br>
       </div>
       <div class="col-6 ">
-        <div class="card col p-3">
+        <div class="card col p-3 shadow">
           <div class="mb-2">
             <label>Username</label>
             <input type="text" class="form-control" name="upsys[usr_un]" id="usr_un"  >
@@ -92,7 +96,7 @@
               <option value="2">Consolidating Officer</option>
             </select>
           </div>
-          
+
           <div class="">
             <button type="Submit"  class="btn btn-primary mt-2">Update</button>
           </div>

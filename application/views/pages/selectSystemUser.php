@@ -13,9 +13,9 @@
   <!-- pagecontents dito mo lagay  -->
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">System Users</h5>
-    <div class="card m-2">
+    <br>
+    <div class="card m-2 shadow ">
       <div class="container">
-        <form class="p-3">
           <div class="row">
             <div class="col-6 p-3 mt-2">
               <a href="<?php echo base_url().'pages/view/addNewSystemUser' ?>" class="myButton">Add Users</a>
@@ -24,10 +24,8 @@
               <a href="<?php echo base_url().'pages/view/updateSystemUser' ?>" class="myButton">Update Users</a>
             </div>
           </div>
-
         </div>
       </div>
-    </form>
   </div>
 </div>
 </div>

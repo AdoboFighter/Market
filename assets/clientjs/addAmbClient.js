@@ -11,8 +11,11 @@ $(document).ready(function(){
        data : $(this).serialize(),
        dataType : 'json',
        success : function(res){
-
-         $('#success').modal("show");
+       console.log(res);
+       Swal.fire({
+         icon: 'success',
+         title: 'Ambulant Added'
+       });
        },
        error : function(xhr){
          console.log(xhr.responseText);

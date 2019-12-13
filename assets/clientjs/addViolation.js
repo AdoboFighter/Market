@@ -32,6 +32,8 @@ $(document).ready(function(){
     }]
   });
 
+
+
   $('#getviolationtable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/get_violation_data_con',
@@ -63,6 +65,12 @@ $(document).ready(function(){
       data :$(this).serialize(),
       dataType : 'json',
       success : function(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Violation Added',
+          text: 'This tenant must pay the fee before doing any transactions',
+        });
+          $('#violationmodal').modal("toggle");
       console.log(res);
       },
       error : function(xhr){
@@ -78,7 +86,7 @@ function fetchdata(id){
   $('#violationmodal').modal("show");
   console.log(id);
   $.ajax({
-    url: global.settings.url + '/MainController/get_customer_info_vio_con',
+    url: global.settings.url + '/MainController/gettenantpay',
     type: 'POST',
     data: {
       id: id

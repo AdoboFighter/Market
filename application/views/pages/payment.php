@@ -30,12 +30,12 @@
               </tbody>
             </table>
           </div>
-       
+
         </div>
       </div>
     </div>
 
-    
+
     <div id="TenantPay" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
       <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
         <div class="modal-content p-2">
@@ -53,7 +53,7 @@
 
           <div class = "row" id = "paymentDet">
           <!-- paymentDet ID -->
-         
+
               <!-- customer details -->
               <div class ="col-6">
 
@@ -72,7 +72,7 @@
 
                 <!-- particulars -->
 
-            
+
                   <h5>Particulars</h5>
                     <div class="col-6">
                       <input type="checkbox" name="sub_total" id = "sub_total" class = "ntw" value=""> &nbsp;<strong>Sub Total</strong> <br>
@@ -154,11 +154,11 @@
 
 
                 <!-- particulars end -->
-                
+
               </div>
               <!-- customer details -->
               <div class ="col-6">
-                
+
                   <label>Type of payment</label>
                   <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
                     <option selected value="">Please Select</option>
@@ -171,10 +171,10 @@
                     <option value="4010">Weekly Rental Fee</option>
                     <option value="4011">Daily Market Fee</option>
                     <option value="4012">Privillage Market Fee</option>
-                    <option value="4013">Others</option>
-                    <option value="4014">Certification</option>
+                    <option value="4014">Others</option>
+                    <option value="4015">Certification</option>
                   </select>
-                
+
                   <div class="mb-2">
                 <label>O.R</label>
                 <input type="text" class="form-control payment_details" name="" id="payment_or_number">
@@ -198,7 +198,7 @@
               </div>
 
               <div class="row" id = "chequeDetails">
-            
+
               <div class="col-12">
                 <h5> Cheque Details</h5>
                   <div class="col">
@@ -222,7 +222,7 @@
                   </div>
                   <br>
                   <button class ="float-right btn btn-danger" id = "add_cheque">Add</button>
-                </div>    
+                </div>
 
                 <div class="mb-2 form-group" >
                   <table class="table table-striped table-bordered p-2" id="table_cheque">
@@ -239,10 +239,10 @@
                     <tbody>
                     </tbody>
                   </table>
-                  
-              
+
+
                 </div>
-               
+
 
              </div>
         <!-- end of row for details -->
@@ -254,12 +254,12 @@
               </div>
 
               </div>
-            
+
 
           </div>
           <!-- end row -->
           <br>
-         
+
           </div>
         </div>
       </div>
@@ -303,10 +303,9 @@
         </div>
       </div>
 
-        
-         
-    </div>
 
+
+    </div>
 
 
 <div class="overlay"></div>

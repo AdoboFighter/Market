@@ -11,8 +11,12 @@ $(document).ready(function(){
        data : $(this).serialize(),
        dataType : 'json',
        success : function(res){
-    
-         $('#success').modal("show");
+       console.log(res);
+       Swal.fire({
+         icon: 'success',
+         title: 'Delivery Client Added',
+       });
+       $('#saveDelivery')[0].reset();
        },
        error : function(xhr){
          console.log(xhr.responseText);

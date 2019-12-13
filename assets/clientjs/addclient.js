@@ -26,8 +26,6 @@ function updatefield() {
 $(document).ready(function(){
 
   $('#sameas').on('change',function(){
-
-
     if( $(this).is(':checked') ){
       updatefield();
     }else{
@@ -62,8 +60,11 @@ $(document).ready(function(){
       data :$(this).serialize(),
       dataType : 'json',
       success : function(res){
-    
-        $('#success').modal();
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Tenant Added'
+        });
       },
       error : function(xhr){
         console.log(xhr.responseText);
