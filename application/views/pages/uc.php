@@ -292,8 +292,9 @@
     background-color: #045de9;
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
   }
-</style>
 
+
+</style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="assets/jquery/jquery.min.js"></script>
@@ -301,81 +302,47 @@
 <script src="assets/clientjs/login.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<<<<<<< HEAD
-<!-- MDB -->
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
-
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
-=======
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
->>>>>>> d61635d41ee67e63c9be9428b4fc4bc27b2fb508
-
 </head>
 
 <body>
 
   <div class="bluegrads">
+
     <div class="wrapper fadeInDown">
       <div id="formContent">
 
         <div class="fadeIn first">
-          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="50" height="50" class="p-1">E-market</h3>
+          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/excla.png" width="50" height="50" class="p-1"></h3>
         </div>
         <form id="login_account">
-          <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-          <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
-          <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
-    </form>
+
+          <h3>The E-market is still under development</h3>
+          <!-- <h3>We're vewy sowwy ( ´•̥̥̥ω•̥̥̥` )</h3> -->
+
+        </form>
+
+
+
+      </div>
+    </div>
+
   </div>
-<<<<<<< HEAD
-</div>
-</div>
-=======
-<<<<<<< HEAD
-</form> -->
-
-<form id="login_account">
-  <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-  <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
-  <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
-</form>
-
-<div id="formFooter">
-  <a href="<?php echo base_url().'pages/view/home' ?>">To Home</a>
-</div>
-
-</div>
-</div>
-
-</div>
-=======
->>>>>>> 79bedf130fc0d8a3ed8b7fe5698c95a49b93fa9b
->>>>>>> d61635d41ee67e63c9be9428b4fc4bc27b2fb508
 
 
 </body>
 
+
 <script src="/assets/js/jquery-3.2.1.min.js"></script>  <!-- Popper.JS -->
 <script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
 <script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!--  Data Table -->
 <script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url().'assets/global.js' ?> "></script>
-<script src="/assets/js/sweetalert2@9.js"></script>
+
 <script src="/assets/clientjs/login.js"></script>
 
 

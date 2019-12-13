@@ -87,11 +87,15 @@
               <label>Location number</label>
               <input type="text" class="form-control" name="update[location_num]" id="Location_num">
             </div>
+
+
             <div class="p-2">
               <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
               <button class = "btn btn-primary" type="submit">Update</button>
             </div>
           </div>
+
+
         </div>
 
         <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >

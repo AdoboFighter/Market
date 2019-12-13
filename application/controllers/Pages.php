@@ -3,10 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
   class Pages extends CI_Controller{
     public function __construct() {
+      
              parent::__construct();
              $this->load->helper('url');
              $this->load->library('session');
-
              $this->load->model('Mainmodel','login');
          }
 
@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       echo json_encode($userdata);
 
+
     }
 
     public function logout_acc(){
@@ -61,6 +62,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       session_destroy();
       $this->load->view('pages/login');
     }
+
+
 
 
 

@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function(){
 
 
@@ -8,13 +5,14 @@ $(document).ready(function(){
 
     function get()
     {
+
+      console.log('asd');
         $.ajax({
-            url : global.settings.url +'/MainController/printconsexcel',
+            url : global.settings.url +'/MainController/printtransact',
             type : 'POST',
-            data :$(this).serialize(),
             dataType : 'json',
             success : function(data){
-            console.log(data);
+    
 
     
 
@@ -25,10 +23,10 @@ $(document).ready(function(){
                 num = 1 + i;
                 html_print += "<tr>";
                 html_print += "<td>"+num+"</td>";
-                html_print += "<td>"+data.query[i].pay_fullname+"</td>";
-                html_print += "<td>"+data.query[i].pay_or+"</td>";
-                html_print += "<td>"+data.query[i].pay_amount+"</td>";
-                html_print += "<td>"+data.query[i].pay_date+"</td>";
+                html_print += "<td>"+data.query[i].trans_fullname+"</td>";
+                html_print += "<td>"+data.query[i].trans_or+"</td>";
+                html_print += "<td>"+data.query[i].trans_amount+"</td>";
+                html_print += "<td>"+data.query[i].trans_date+"</td>";
                 html_print +="</tr>";
             }
 
@@ -47,7 +45,7 @@ $(document).ready(function(){
             }
         
           });
-    }
+     }
    get();
 
   

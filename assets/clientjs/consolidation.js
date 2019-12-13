@@ -129,7 +129,12 @@ $('#genrep').click(function(){
 
   if(exDateFrom == "" || exDateTo == "")
   {
-      alert("");
+    Swal.fire({
+      title: 'Error!',
+      text: 'Pick a Date',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
   }
   else
   {
@@ -169,7 +174,7 @@ function getCollector()
     data :$(this).serialize(),
     dataType : 'json',
     success : function(data){
-    console.log(data);
+  
       html_option = "";
       $.each(data, function(i, collector){
         

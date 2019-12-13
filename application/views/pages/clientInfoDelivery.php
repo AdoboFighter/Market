@@ -36,11 +36,10 @@
 
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
-  <br>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
-        <div class="card col p-3 shadow">
+        <div class="card col p-3 ">
           <form id = "updatecustomerinfo">
             <input type="hidden" id = "customer_id" name = "update[customer_id]">
 
@@ -60,11 +59,10 @@
             </div>
           </div>
           <br>
-          <br>
         </div>
 
         <div class="col-6 ">
-          <div class="card col p-3 shadow">
+          <div class="card col p-3">
             <div class="mb-2">
               <label>Delivery ID</label>
               <input type="text" class="form-control" name="update[delivery_id]" id="del_id"  readonly>

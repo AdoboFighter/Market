@@ -61,7 +61,11 @@
         </table>
       </div>
     </div>
-
+    <div class="row p-3">
+        <div class="mb-2 p-3">
+          <button type="button" class="btn btn-secondary bg-dark btn-lg" id = "genrep">Generate Transaction report</button>
+        </div>
+      </div>
   </div>
 </div>
 

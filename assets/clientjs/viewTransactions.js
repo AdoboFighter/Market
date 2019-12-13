@@ -82,7 +82,57 @@ $(document).ready(function(){
 
 
 })
+
+
+$('#genrep').click(function(){
+
+  exClientType = $('#client_type').val();
+  exDateFrom = $('#date_from').val();
+  exDateTo = $('#date_to').val();
+
+
+
+
+  if(exDateFrom == "" || exDateTo == "")
+  {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Pick a Date',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
+  }
+
+  else{
+
+    $.ajax({
+      url : global.settings.url +'/MainController/gettransexcel',
+      type : 'POST',
+      data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
+      dataType : 'json',
+      success : function(data){
+       
+         
+  
+          window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+        
+  
+      },
+      error : function(xhr){
+       
+      }
+  
+    });
+  
+    
+  }
  
+   
+  
+
+ 
+
+});
 
 
   

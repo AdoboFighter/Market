@@ -16,6 +16,11 @@ $(document).ready(function(){
 
   });
 
+  $( "#payhistbtn" ).click(function() {
+    $('#violationmodal').modal('show');
+
+  });
+
   $('#client_table').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertable',

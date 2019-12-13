@@ -1,8 +1,11 @@
 var global  = {
   settings : {
-   url : 'http://localhost'
-   //url : 'http://192.168.3.154:80'
+   url : 'http://192.168.3.127:8080/'
+   //url : 'https://05637e4d.ngrok.io'
+    //url : 'https://4502482d.ngrok.io'
 
+
+    
   },
 
 }

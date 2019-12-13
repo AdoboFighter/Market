@@ -53,7 +53,7 @@ $(document).ready(function(){
 
   $('#save_customer').submit(function(e){
     e.preventDefault();
-    console.log( $('#save_customer').serializeArray() );
+   
     $.ajax({
       url : global.settings.url +'/MainController/save_customer_controller',
       type : 'POST',
