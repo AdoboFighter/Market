@@ -292,14 +292,32 @@
     background-color: #045de9;
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
   }
-
 </style>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/global.js"></script>
 <script src="assets/clientjs/login.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+<!-- MDB -->
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
 
 </head>
 
@@ -316,13 +334,14 @@
           <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
           <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
           <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
-        </form>
-      </div>
-    </div>
+    </form>
   </div>
+</div>
+</div>
 
 
 </body>
+
 <script src="/assets/js/jquery-3.2.1.min.js"></script>  <!-- Popper.JS -->
 <script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -332,4 +351,6 @@
 <script src="<?php echo base_url().'assets/global.js' ?> "></script>
 <script src="/assets/js/sweetalert2@9.js"></script>
 <script src="/assets/clientjs/login.js"></script>
+
+
 </html>
