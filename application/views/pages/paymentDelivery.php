@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
@@ -78,7 +78,7 @@
 
           <div class = "row" id = "paymentDet">
           <!-- paymentDet ID -->
-         
+
               <!-- customer details -->
               <div class ="col-6">
 
@@ -97,7 +97,7 @@
 
                 <!-- particulars -->
 
-            
+
                   <h5>Particulars</h5>
                     <div class="col-6">
                       <input type="checkbox" name="sub_total" id = "sub_total" value=""> &nbsp;<strong>Sub Total</strong> <br>
@@ -176,14 +176,14 @@
                   </div>
 
 
-           
+
 
                 <!-- particulars end -->
-                
+
               </div>
               <!-- customer details -->
               <div class ="col-6">
-                
+
                   <label>Type of payment</label>
                   <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
                     <option selected value="">Please Select</option>
@@ -199,7 +199,7 @@
                     <option value="4013">Others</option>
                     <option value="4014">Certification</option>
                   </select>
-                
+
                   <div class="mb-2">
                 <label>O.R</label>
                 <input type="text" class="form-control payment_details" name="" id="payment_or_number">
@@ -223,7 +223,7 @@
               </div>
 
               <div class="row" id = "chequeDetails">
-            
+
               <div class="col-12">
                 <h5> Cheque Details</h5>
                   <div class="col">
@@ -247,7 +247,7 @@
                   </div>
                   <br>
                   <button class ="float-right btn btn-danger" id = "add_cheque">Add</button>
-                </div>    
+                </div>
 
                 <div class="mb-2 form-group" >
                   <table class="table table-striped table-bordered p-2" id="table_cheque">
@@ -264,26 +264,26 @@
                     <tbody>
                     </tbody>
                   </table>
-                  
-              
+
+
                 </div>
-               
+
 
              </div>
         <!-- end of row for details -->
-            
+
         <input type="hidden" id = "ntwntw">
         <div class="mb-2">
                 <button type="Submit"  class="btn btn-primary float-left allPaymentButton" id = "payment_submit_button">Submit and print</button>
               </div>
 
               </div>
-            
+
 
           </div>
           <!-- end row -->
           <br>
-         
+
           </div>
         </div>
       </div>
@@ -293,10 +293,10 @@
         <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
           <div class="modal-content p-2">
             <iframe src = "" id="frameasdas" height ="1000" width = "">
-                                  
-            
+
+
             </iframe>
-            
+
 
             <button class = "btn btn-success">Print Receipt</button>
           </div>

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
@@ -103,7 +103,7 @@
 
           <div class="row">
             <div class="col-6">
-     
+
 
 
 
@@ -222,7 +222,7 @@
                   <option value="4012">Privillage Market Fee</option>
                   <option value="4013">Others</option>
                   <option value="4014">Certification</option>
-      
+
                 </select>
               </div>
 
@@ -281,7 +281,7 @@
         </button>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -295,10 +295,10 @@
         <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
           <div class="modal-content p-2">
             <iframe src = "" id="frameasdas" height ="1000" width = "">
-                                  
+
             asdasdasdasd
             </iframe>
-            
+
 
             <button class = "btn btn-success">Print Receipt</button>
           </div>

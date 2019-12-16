@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
@@ -12,8 +12,9 @@
   <!-- pagecontents dito mo lagay  -->
 
   <div class="container justify-content-center">
-    <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
-    <div class="card m-3">
+    <h5 class="card-header text-center text-white bluegrads">Payment</h5>
+    <br>
+    <div class="card m-3 shadow">
       <div class="">
         <div class="row p-3">
           <div class="col-12">
@@ -23,7 +24,7 @@
                   <td>no</td>
                   <td>name</td>
                   <td>address</td>
-                  <td>payment</td>
+                  <td>To pay</td>
                 </tr>
               </thead>
               <tbody>
@@ -34,6 +35,8 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
 
 
     <div id="TenantPay" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
@@ -58,16 +61,16 @@
               <div class ="col-6">
 
                 <div class="mb-2">
-                  <label>customer ID</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_customer_id" >
+
+                  <input type="text" class="form-control payment_details" name="" id="payment_customer_id" hidden>
                 </div>
                 <div class="mb-2">
-                  <label>Tenant ID</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_tenant_id"  >
+
+                  <input type="text" class="form-control payment_details" name="" id="payment_tenant_id" hidden>
                 </div>
                 <div class="mb-2">
                   <label>Name</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_name" >
+                  <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
                 </div>
 
                 <!-- particulars -->
@@ -246,9 +249,9 @@
 
              </div>
         <!-- end of row for details -->
-            
+
         <input type="hidden" id = "ntwntw">
-       
+
         <div class="mb-2">
                 <button type="Submit"  class="btn btn-primary float-left allPaymentButton" id = "payment_submit">Submit and print</button>
               </div>
@@ -279,11 +282,11 @@
             <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
             <button class = "btn btn-danger" type ="submit" value = "no">Close</button>
           </div>
-           
-           </form>
-            
 
-            
+           </form>
+
+
+
           </div>
         </div>
       </div>
@@ -293,10 +296,10 @@
         <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
           <div class="modal-content p-2">
             <iframe src = "" id="frameasdas" height ="1000" width = "">
-                                  
+
             asdasdasdasd
             </iframe>
-            
+
 
             <button class = "btn btn-success">Print Receipt</button>
           </div>
@@ -307,5 +310,5 @@
 
     </div>
 
-
-<div class="overlay"></div>
+  </div>
+  <div class="overlay"></div>

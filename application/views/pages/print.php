@@ -8,22 +8,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  
+
   </head>
   <body>
 
   <div class="wrapper">
     <div class="container">
-    
+
 
     <img src = "<?php echo base_url()."assets/images/LOGOSANPABLO.jpg";?>" style = "height: 125px; float: left;">
         <h4 class= "text-center"><strong>Mobile Transaction</strong></h4>
         <h4 class = "text-center" id = "dft"></h4>
         <h4 class = "text-center" id = "user"></h4>
-    
-        
-    
-      
+
+
+
+
 
 
       <br><br><br>
@@ -39,16 +39,16 @@
             </tr>
           </thead>
            <tbody id = "thebody">
-           
+
            </tbody>
 
           </table>
         </div>
     </div>
   </div>
-    
 
-    
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

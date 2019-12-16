@@ -36,11 +36,7 @@ class Mainmodel extends CI_model{
         } $userdata['flag'] = 1;
 
         $this->session->set_userdata($userdata);
-
-
         return $userdata;
-
-
       }
       else{
         return $userdata['res'] = 'passwordError';
@@ -51,10 +47,6 @@ class Mainmodel extends CI_model{
 
       return $userdata['res'] = 'usernameError';
     }
-
-
-
-
 
   }
 
@@ -274,89 +266,89 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
 
     $this->db->select('*')
-                      ->from('transaction');
-                      // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-                      // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-                      
-
-          if($sort != null)
-          {
-            
-
-            switch($sort['conClientType']){
-
-              case 'ambulant':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-              break;
-
-              case 'tenant':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-              break;
+    ->from('transaction');
+    // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
 
 
-              case 'parking':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-              $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-              break;
-
-              case 'delivery':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-              break;
-
-              default:
-              $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              break;
-            }
-          }
-          else {
-            $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-            $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          }
-          if($sort['conDateFrom'])
-            {
-              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-            }
-            if($sort['conDateTo'])
-            {
-              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-            }
-          if($sort['conCollectorName'])
-          {
-            $this->db->where('user_id',$sort['conCollectorName']);
-          }
+    if($sort != null)
+    {
 
 
+      switch($sort['conClientType']){
 
-        $query = $this->db->get();
-        $data = [];
-        foreach ($query->result() as $r) {
-          $data[] = array(
-            'id' => $r->transaction_id,
-            'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
-            'pay_or' => $r->or_number,
-            'pay_amount' =>$r->payment_amount,
-            'pay_nature' =>$r->payment_nature_id,
-            'pay_date' => $r->payment_datetime,
-            'pay_fund' =>$r->fund_name,
-            'pay_collector' =>$r->collector,
-          );
-        }
-        $result = array(
-          "draw" => $draw,
-          "recordsTotal" => $query->num_rows(),
-          "recordsFiltered" => $query->num_rows(),
-          "data" => $data
-        );
-        return $result;
+        case 'ambulant':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+
+        case 'parking':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else {
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+    if($sort['conDateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+    }
+    if($sort['conDateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+    }
+    if($sort['conCollectorName'])
+    {
+      $this->db->where('user_id',$sort['conCollectorName']);
+    }
+
+
+
+    $query = $this->db->get();
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'pay_or' => $r->or_number,
+        'pay_amount' =>$r->payment_amount,
+        'pay_nature' =>$r->payment_nature_id,
+        'pay_date' => $r->payment_datetime,
+        'pay_fund' =>$r->fund_name,
+        'pay_collector' =>$r->collector,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
   }
 
 
@@ -364,84 +356,84 @@ class Mainmodel extends CI_model{
 
 
     $this->db->select('*')
-                      ->from('transaction');
-                      // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-                      // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-                      
-
-          if($sort != null)
-          {
-            
-
-            switch($sort['conClientType']){
-
-              case 'ambulant':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-              break;
-
-              case 'tenant':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-              break;
+    ->from('transaction');
+    // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
 
 
-              case 'parking':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-              $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-              break;
-
-              case 'delivery':
-              $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-              break;
-
-              default:
-              $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-              $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-              break;
-            }
-          }
-          else {
-            $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-            $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          }
-          if($sort['conDateFrom'])
-            {
-              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-            }
-            if($sort['conDateTo'])
-            {
-              $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-            }
-          if($sort['conCollectorName'])
-          {
-            $this->db->where('user_id',$sort['conCollectorName']);
-          }
+    if($sort != null)
+    {
 
 
+      switch($sort['conClientType']){
 
-        $query = $this->db->get();
-        $data = [];
-        foreach ($query->result() as $r) {
-          $data[] = array(
-            'id' => $r->transaction_id,
-            'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
-            'pay_or' => $r->or_number,
-            'pay_amount' =>$r->payment_amount,
-            'pay_nature' =>$r->payment_nature_id,
-            'pay_date' => $r->payment_datetime,
-            'pay_fund' =>$r->fund_name,
-            'pay_collector' =>$r->collector,
-          );
-        }
-      
-        return $data;
+        case 'ambulant':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+
+        case 'parking':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else {
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+    if($sort['conDateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+    }
+    if($sort['conDateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+    }
+    if($sort['conCollectorName'])
+    {
+      $this->db->where('user_id',$sort['conCollectorName']);
+    }
+
+
+
+    $query = $this->db->get();
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'pay_or' => $r->or_number,
+        'pay_amount' =>$r->payment_amount,
+        'pay_nature' =>$r->payment_nature_id,
+        'pay_date' => $r->payment_datetime,
+        'pay_fund' =>$r->fund_name,
+        'pay_collector' =>$r->collector,
+      );
+    }
+
+    return $data;
   }
 
 
@@ -530,7 +522,7 @@ class Mainmodel extends CI_model{
     {
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
     }
-      $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
 
 
     $query = $this->db->get();
@@ -567,48 +559,48 @@ class Mainmodel extends CI_model{
     // $query = $this->db->query("SELECT * FROM transaction");
     // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
     // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
- 
+
     // $query = $this->db->get('transaction');
-        $this->db->select('*')
-                ->from('transaction');
-               
+    $this->db->select('*')
+    ->from('transaction');
+
 
     //QUERY with SORT
     if($sort['conClientType']){
 
-    
-        switch($sort['conClientType']){
-          case 'ambulant':
-          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-          break;
 
-          case 'parking':
-          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-          $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-          break;
+      switch($sort['conClientType']){
+        case 'ambulant':
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
 
-          case 'tenant':
-          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-          break;
+        case 'parking':
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
 
-          case 'delivery':
-          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-           break;
+        case 'tenant':
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
 
-          default:
-          $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-          $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-          break;
-        }  
-    } 
+        case 'delivery':
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
     else{
       $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
       $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -622,11 +614,11 @@ class Mainmodel extends CI_model{
     {
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
     }
-      $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
 
 
-        $query = $this->db->get();
-    
+    $query = $this->db->get();
+
 
 
     $data = [];
@@ -641,7 +633,7 @@ class Mainmodel extends CI_model{
         'trans_fund'=> $r->fund_name
       );
     }
-   
+
     return $data;
   }
 
@@ -1339,7 +1331,7 @@ class Mainmodel extends CI_model{
 
     $query =  $this->db->insert($table,$data);
 
-    
+
   }
 
   public function updateSystemUserMod($inputData)
@@ -1449,17 +1441,19 @@ class Mainmodel extends CI_model{
 
   public function get_cert_info_mod($id)
   {
-    $this->db->where('customer_id', $id);
+    $this->db->where('transaction_id', $id);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
     $query = $this->db->get('customer');
     return $query->result();
-
   }
 
   public function checkOr($or_number){
     $query = $this->db->select('or_number')
-                      ->from('transaction')
-                      ->where('or_number =', $or_number)
-                      ->get();
+    ->from('transaction')
+    ->where('or_number =', $or_number)
+    ->get();
 
     if($query->num_rows()>=1){
       return $data = "meron";
@@ -1472,9 +1466,9 @@ class Mainmodel extends CI_model{
   public function getnature($type_of_payment)
   {
     $query = $this->db->select('payment_nature_name')
-                      ->from('payment_nature')
-                      ->where('payment_nature_id =', $type_of_payment)
-                      ->get();
+    ->from('payment_nature')
+    ->where('payment_nature_id =', $type_of_payment)
+    ->get();
     $get = "";
 
     foreach($query->result() as $k)

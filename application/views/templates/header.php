@@ -423,7 +423,7 @@ max-width:1200px;
     </div> -->
 
     <div class="sidebar-header bg-white">
-      <h3 class="text-dark"><img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="60" height="60"> E-Market</h3>
+      <h3 class="text-dark"><img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="60" height="60" ><a href="<?php echo base_url().'pages/view/home' ?>"> E-Market</h3>
     </div>
 
     <ul class="list-unstyled components text-dark">
@@ -455,11 +455,6 @@ max-width:1200px;
         <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
       </li>
 
-
-
-      <!-- <li>
-      <a href="<?php echo base_url().'pages/view/nonStallPayment' ?>">non stall Payment</a>
-    </li> -->
 
     <li>
       <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
