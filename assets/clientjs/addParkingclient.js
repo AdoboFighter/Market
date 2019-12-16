@@ -89,11 +89,6 @@ function fetchdata(id){
         $('#violationmodal').modal("show");
       }
 
-
-
-
-
-
     },
     error: function(xhr){
       console.log(xhr.responseText);

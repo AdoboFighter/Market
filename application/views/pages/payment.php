@@ -23,7 +23,9 @@
                 <tr>
                   <td>no</td>
                   <td>name</td>
-                  <td>address</td>
+                  <td>Stall Number</td>
+                  <td>Floor</td>
+                  <td>Section</td>
                   <td>To pay</td>
                 </tr>
               </thead>
@@ -43,142 +45,142 @@
       <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
         <div class="modal-content p-2">
           <h5>Tenant Payment</h5>
-            <div class ="row">
-              <div class = "col-12">
-                <select name="payment_type" id="payment_type" class = "form-control">
-                  <option value="">Select Payment Type</option>
-                  <option value="cash">Cash</option>
-                  <option value="cheque">Cheque</option>
-                  <option value="cashandcheque">Cash and cheque</option>
-                </select>
-              </div>
-            </div><br>
+          <div class ="row">
+            <div class = "col-12">
+              <select name="payment_type" id="payment_type" class = "form-control">
+                <option value="">Select Payment Type</option>
+                <option value="cash">Cash</option>
+                <option value="cheque">Cheque</option>
+                <option value="cashandcheque">Cash and cheque</option>
+              </select>
+            </div>
+          </div><br>
 
           <div class = "row" id = "paymentDet">
-          <!-- paymentDet ID -->
+            <!-- paymentDet ID -->
 
-              <!-- customer details -->
-              <div class ="col-6">
+            <!-- customer details -->
+            <div class ="col-6">
 
-                <div class="mb-2">
+              <div class="mb-2">
 
-                  <input type="text" class="form-control payment_details" name="" id="payment_customer_id" hidden>
-                </div>
-                <div class="mb-2">
-
-                  <input type="text" class="form-control payment_details" name="" id="payment_tenant_id" hidden>
-                </div>
-                <div class="mb-2">
-                  <label>Name</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
-                </div>
-
-                <!-- particulars -->
-
-
-                  <h5>Particulars</h5>
-                    <div class="col-6">
-                      <input type="checkbox" name="sub_total" id = "sub_total" class = "ntw" value=""> &nbsp;<strong>Sub Total</strong> <br>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col">
-                        <label>Particulars</label>
-                        <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
-                      </div>
-
-                      <div class="col">
-                        <label>Price</label>
-                        <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0" >
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col">
-                      <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
-                    </div>
-                    <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col" id = "demo">
-                      <input type="text" class="form-control payment_details ntw" name="total" id="total">
-                      <div></div>
-                    </div>
-                  </div>
-
-
-
-
-                <!-- particulars end -->
-
+                <input type="text" class="form-control payment_details" name="" id="payment_customer_id" hidden>
               </div>
-              <!-- customer details -->
-              <div class ="col-6">
+              <div class="mb-2">
 
-                  <label>Type of payment</label>
-                  <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
-                    <option selected value="">Please Select</option>
-                    <option value="4004">Annual Rental fee</option>
-                    <option value="4005">Semi Annual Fee</option>
-                    <option value="4006">Quarterly Annual Fee</option>
-                    <option value="4007">Water Services Fee</option>
-                    <option value="4008">Electrical Services Fee</option>
-                    <option value="4009">Monthly Rental Fee</option>
-                    <option value="4010">Weekly Rental Fee</option>
-                    <option value="4011">Daily Market Fee</option>
-                    <option value="4012">Privillage Market Fee</option>
-                    <option value="4014">Others</option>
-                    <option value="4015">Certification</option>
-                  </select>
+                <input type="text" class="form-control payment_details" name="" id="payment_tenant_id" hidden>
+              </div>
+              <div class="mb-2">
+                <label>Name</label>
+                <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
+              </div>
 
-                  <div class="mb-2">
+              <!-- particulars -->
+
+
+              <h5>Particulars</h5>
+              <div class="col-6">
+                <input type="checkbox" name="sub_total" id = "sub_total" class = "ntw" value=""> &nbsp;<strong>Sub Total</strong> <br>
+              </div>
+              <div class="row mt-2">
+                <div class="col">
+                  <label>Particulars</label>
+                  <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
+                </div>
+
+                <div class="col">
+                  <label>Price</label>
+                  <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0" >
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col" id = "demo">
+                  <input type="text" class="form-control payment_details ntw" name="total" id="total">
+                  <div></div>
+                </div>
+              </div>
+
+
+
+
+              <!-- particulars end -->
+
+            </div>
+            <!-- customer details -->
+            <div class ="col-6">
+
+              <label>Type of payment</label>
+              <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
+                <option selected value="">Please Select</option>
+                <option value="4004">Annual Rental fee</option>
+                <option value="4005">Semi Annual Fee</option>
+                <option value="4006">Quarterly Annual Fee</option>
+                <option value="4007">Water Services Fee</option>
+                <option value="4008">Electrical Services Fee</option>
+                <option value="4009">Monthly Rental Fee</option>
+                <option value="4010">Weekly Rental Fee</option>
+                <option value="4011">Daily Market Fee</option>
+                <option value="4012">Privillage Market Fee</option>
+                <option value="4014">Others</option>
+                <option value="4015">Certification</option>
+              </select>
+
+              <div class="mb-2">
                 <label>O.R</label>
                 <input type="text" class="form-control payment_details" name="" id="payment_or_number">
               </div>
@@ -202,8 +204,8 @@
 
               <div class="row" id = "chequeDetails">
 
-              <div class="col-12">
-                <h5> Cheque Details</h5>
+                <div class="col-12">
+                  <h5> Cheque Details</h5>
                   <div class="col">
                     <label>Cheque Number</label>
                     <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
@@ -247,68 +249,68 @@
                 </div>
 
 
-             </div>
-        <!-- end of row for details -->
+              </div>
+              <!-- end of row for details -->
 
-        <input type="hidden" id = "ntwntw">
+              <input type="hidden" id = "ntwntw">
 
-        <div class="mb-2">
+              <div class="mb-2">
                 <button type="Submit"  class="btn btn-primary float-left allPaymentButton" id = "payment_submit">Submit and print</button>
               </div>
 
-              </div>
+            </div>
 
 
           </div>
           <!-- end row -->
           <br>
 
-          </div>
         </div>
       </div>
-      <!-- END OF MODAL -->
+    </div>
+    <!-- END OF MODAL -->
 
 
-      <div id="print" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-xl modal-dialog-centered mw-50 w-25">
-          <div class="modal-content p-2">
-           <form id ="printrec">
+    <div id="print" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl modal-dialog-centered mw-50 w-25">
+        <div class="modal-content p-2">
+          <form id ="printrec">
 
-           <h3 class = "text-center">Do you want to Print Receipt?</h3>
+            <h3 class = "text-center">Do you want to Print Receipt?</h3>
             <input type="text" id = "payer">
             <input type="text" id = "totalprint">
             <input type="text" id = "cashcheck">
-          <div class = "text-center">
-            <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
-            <button class = "btn btn-danger" type ="submit" value = "no">Close</button>
-          </div>
+            <div class = "text-center">
+              <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
+              <button class = "btn btn-danger" type ="submit" value = "no">Close</button>
+            </div>
 
-           </form>
+          </form>
 
 
 
-          </div>
         </div>
       </div>
-
-
-      <div id="rec" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
-          <div class="modal-content p-2">
-            <iframe src = "" id="frameasdas" height ="1000" width = "">
-
-            asdasdasdasd
-            </iframe>
-
-
-            <button class = "btn btn-success">Print Receipt</button>
-          </div>
-        </div>
-      </div>
-
-
-
     </div>
 
+
+    <div id="rec" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
+        <div class="modal-content p-2">
+          <iframe src = "" id="frameasdas" height ="1000" width = "">
+
+            asdasdasdasd
+          </iframe>
+
+
+          <button class = "btn btn-success">Print Receipt</button>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
-  <div class="overlay"></div>
+
+</div>
+<div class="overlay"></div>

@@ -211,24 +211,22 @@ class Mainmodel extends CI_model{
 
   public function gettenanttable()
   {
-
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-
-
-
-
     $query = $this->db->select('*')
     ->from('customer')
     ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
+    ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner')
     ->get();
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'id' => $r->customer_id,
         'fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'add' => $r->address,
+        'unit_no' => $r->unit_no,
+        'floor_level' => $r->floor_level,
+        'section' => $r->Section,
         'btn'=>
 
         '<div class="">
@@ -1478,6 +1476,25 @@ class Mainmodel extends CI_model{
 
     return $get;
   }
+
+  public function getcustomerinfopark($id)
+{
+  $this->db->where('customer_id', $id);
+  $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  $this->db->join('driver', 'customer.customer_id=driver.fk_customer_id', 'inner');
+  $query = $this->db->get('tenant');
+  if($query->num_rows() >= 1) {
+    return 'withpark';
+  }else {
+    $this->db->trans_start();
+    $this->db->where('fk_customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query2 = $this->db->get('tenant');
+    return $query2->result();
+  }
+}
 
 
 

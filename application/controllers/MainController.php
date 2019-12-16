@@ -519,6 +519,12 @@ class MainController extends CI_Controller{
     echo json_encode($query);
   }
 
+  public function getcustomerinfopark()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getcustomerinfopark($id));
+  }
+
 
 }
 

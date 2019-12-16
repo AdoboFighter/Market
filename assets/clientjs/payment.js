@@ -8,7 +8,7 @@ var num1;
 var num2;
 var num3;
 var num4;
-var num5; 
+var num5;
 var num6;
 var num7;
 var num8;
@@ -48,7 +48,7 @@ var bank = [];
 
 $(document).ready(function(){
 
- 
+
   $( "#table_cheque" ).DataTable({
     "paging": false,
     "searching": false,
@@ -76,16 +76,16 @@ $(document).ready(function(){
 
   });
 
-   
+
 
 
   $('#add_cheque').on('click', function () {
     var table_cheque = $('#table_cheque').DataTable();
-    
-   
+
+
 
     if (row_num >= 4) {
-      
+
     } else {
       // table_cheque.row.add([
       //   cheq_number,
@@ -102,7 +102,7 @@ $(document).ready(function(){
             'ch[fk_stall_no]' :  stall_no
           });
 
- 
+
          "use strict";
         	var table = document.getElementById("table_cheque");
           var row= document.createElement("tr");
@@ -126,14 +126,14 @@ $(document).ready(function(){
           table.children[0].appendChild(row);
           row_id++;
           row_num++;
-   
+
     }
 
   });
 
   $('#payment_amount_to_payment').change();
   $('#demo').num2words();
-  
+
 
 
 
@@ -142,10 +142,10 @@ $(document).ready(function(){
   $(document).on('click', '.btn_delete', function(){
 
     var a = $(this).attr("id");
- 
+
     row_num--;
     delete add_line[a];
-    $('#row'+a+'').remove();  
+    $('#row'+a+'').remove();
 
 
 
@@ -168,11 +168,11 @@ $(document).ready(function(){
       }
     });
 
-  
+
 
     for (var i = 0  ; i < add_line.length; i++) {
 
-     
+
               //
               // $.ajax({
               //   url: global.settings.url +'/MainController/insert_table_bulk_controller',
@@ -194,7 +194,7 @@ $(document).ready(function(){
   });
 
   //
- 
+
 
 
 
@@ -211,8 +211,18 @@ $(document).ready(function(){
     },
 
     {
-      "data" : "add"
+      "data" : "unit_no"
     },
+
+    {
+      "data" : "floor_level"
+    },
+
+
+    {
+      "data" : "section"
+    },
+
 
 
     {
@@ -265,7 +275,7 @@ function diffdates() {
 
 function fetchdata(id){
   $('#TenantPay').modal("show");
- 
+
   $.ajax({
     url: global.settings.url + '/MainController/gettenantpay',
     type: 'POST',
@@ -274,20 +284,20 @@ function fetchdata(id){
     },
     dataType:'JSON',
     success: function(res){
- 
+
       res = res[0];
       $('#paymentDet').hide();
       $('#chequeDetails').hide();
       $('#payment_type').val(null);
 
       $('.payment_details').val('');
-      $('.rowrow').remove();  
+      $('.rowrow').remove();
       $('#payment_cheque_number').val("");
       $('#payment_cheque_amount').val("");
       $('#payment_cheque_date').val("");
       $('#payment_bank_branch').val("");
       stall_no = res.unit_no;
-  
+
 
       $('#payment_customer_id').val(res.customer_id);
       $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
@@ -303,7 +313,7 @@ function fetchdata(id){
 
 function particular(){
 
- 
+
 
   if($('#part1num').val() == ""){
     num1 = 0;
@@ -354,18 +364,18 @@ function particular(){
     num7 = $('#part7num').val();
   }
 
-  
-
-  
 
 
- 
- 
-  
+
+
+
+
+
+
 
   total = parseFloat(num1) + parseFloat(num2) + parseFloat(num3) + parseFloat(num4) + parseFloat(num5) + parseFloat(num6) + parseFloat(num7);
- 
- 
+
+
 }
 
 $('#sub_total').click(function(){
@@ -374,29 +384,29 @@ $('#sub_total').click(function(){
     if($('#payment_amount_to_pay').val() == ""){
       amount_to_pay = 0;
     }
-    else 
+    else
     {
       amount_to_pay = $('#payment_amount_to_pay').val();
     }
     total = parseFloat(total) + parseFloat(amount_to_pay);
     $('#total').val(total);
-    
+
 }
 else if($(this).is(":not(:checked)")){
-    $('#total').val($('#payment_amount_to_pay').val()); 
+    $('#total').val($('#payment_amount_to_pay').val());
 }
 });
 
 $('#payment_amount_to_pay').change(function(){
   if($('#sub_total').is(":not(:checked)")){
-    $('#total').val($('#payment_amount_to_pay').val()); 
+    $('#total').val($('#payment_amount_to_pay').val());
   }
   if($('#sub_total').is(":checked")){
     particular();
     if($('#payment_amount_to_pay').val() == ""){
       amount_to_pay = 0;
     }
-    else 
+    else
     {
       amount_to_pay = $('#payment_amount_to_pay').val();
     }
@@ -411,7 +421,7 @@ $('.partnum').change(function(){
     if($('#payment_amount_to_pay').val() == ""){
       amount_to_pay = 0;
     }
-    else 
+    else
     {
       amount_to_pay = $('#payment_amount_to_pay').val();
     }
@@ -453,7 +463,7 @@ $('#payment_type').change(function(){
 $('#payment_submit').click(function(){
 
 
-  
+
 
 
     text1 = $('#part1text').val();
@@ -487,16 +497,16 @@ $('#payment_submit').click(function(){
     var fund_id = 1;
     var payment_type = $('#payment_type').val();
 
-    
 
-    
- 
+
+
+
 
    add_line = add_line.filter(function(el){
     return el != null;
-  });  
+  });
 
- 
+
 
 
   switch(payment_type)
@@ -520,15 +530,15 @@ $('#payment_submit').click(function(){
               success:function(data)
               {
 
-            
+
                 // document.getElementById('frameasdas').contentWindow.location.reload();
 
                 var url = window.URL.createObjectURL(data);
                 $('#frameasdas').attr('src',url);
                 $('#rec').modal('show');
-                
+
               //  $('#frameasdas').attr('src',data);
-            
+
               },
               error:function()
               {
@@ -543,9 +553,9 @@ $('#payment_submit').click(function(){
             // $('#print').modal('show');
           },
           error: function(res){
-           
+
           }
-       });  
+       });
 
 
     break;
@@ -558,25 +568,25 @@ $('#payment_submit').click(function(){
           success: function(res){
 
            res= jQuery.parseJSON(res);
-      
+
             transaction_id = res[0].transaction_id;
-  
+
 
             for(var i = 0; i< add_line.length;i++)
             {
-              
+
               add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-              
+
                 $.ajax({
                   type: "POST",
                   data: add_line[i],
                   url: global.settings.url +'/MainController/savecheque',
-                  
+
                   success: function(res){
                     $('#TenantPay').modal("hide");
                   },
                   error: function(res){
-                   
+
                   }
               });
              check_amount[i] =  add_line[i]['ch[cheque_amount]'];
@@ -601,10 +611,10 @@ $('#payment_submit').click(function(){
               var url = window.URL.createObjectURL(data);
               $('#frameasdas').attr('src',url);
               $('#rec').modal('show');
-              
+
             //  $('#frameasdas').attr('src',data);
-           
-                    
+
+
               },
               error:function()
               {
@@ -614,13 +624,13 @@ $('#payment_submit').click(function(){
             });
           },
           error: function(res){
-         
+
           }
-       });  
+       });
 
-       
 
-      
+
+
 
     break;
 
@@ -634,7 +644,7 @@ $('#payment_submit').click(function(){
         success: function(res){
 
           res= jQuery.parseJSON(res);
-       
+
              transaction_id = res[0].transaction_id;
           for(var i = 0; i< add_line.length;i++)
           {
@@ -644,12 +654,12 @@ $('#payment_submit').click(function(){
                 type: "POST",
                 data: add_line[i],
                 url: global.settings.url +'/MainController/savecheque',
-                
+
                 success: function(res){
                   $('#TenantPay').modal("hide");
                 },
                 error: function(res){
-                 
+
                 }
             });
 
@@ -676,10 +686,10 @@ $('#payment_submit').click(function(){
             var url = window.URL.createObjectURL(data);
             $('#frameasdas').attr('src',url);
             $('#rec').modal('show');
-            
+
           //  $('#frameasdas').attr('src',data);
-         
-                  
+
+
             },
             error:function()
             {
@@ -687,15 +697,15 @@ $('#payment_submit').click(function(){
             }
 
           });
-  
-  
+
+
         },
         error: function(res){
-       
+
         }
-     });  
-       
-      
+     });
+
+
 
     break;
     default:
@@ -712,8 +722,8 @@ $('#payment_submit').click(function(){
     payment_effectivity = "";
     fund_id = 1;
     payment_type = "";
-   
- 
+
+
 
 
   }
@@ -730,7 +740,7 @@ $('#payment_or_number').change(function(){
     },
     dataType:'JSON',
     success: function(res){
-   
+
       if(res=="meron"){
         Swal.fire({
           title: 'O.R number already exist!',
@@ -739,17 +749,10 @@ $('#payment_or_number').change(function(){
         })
         $('#payment_or_number').val("");
       }
-    
+
     },
     error: function(xhr){
       console.log(xhr.responseText);
     }
 })
 });
-
-
-
-
-
-
-
