@@ -117,7 +117,7 @@ $(document).ready(function(){
         	td2.innerHTML  = document.getElementById("payment_cheque_amount").value;
           td3.innerHTML  = document.getElementById("payment_cheque_date").value;
           td4.innerHTML  = document.getElementById("payment_bank_branch").value;
-          td5.innerHTML  = '<button type="button" class="btn_delete btn btn-danger " id="'+row_id+'">Delete</button>';
+          td5.innerHTML  = '<button type="button" class="btn_delete btn btn-danger btn-sm " id="'+row_id+'">Delete</button>';
           row.appendChild(td1);
         	row.appendChild(td2);
         	row.appendChild(td3);

@@ -1,7 +1,7 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
         <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
@@ -31,8 +31,11 @@
                     <label for="">Contact Number</label>
                     <input type="text" class="form-control" name="customer[Owner_Contact_Num]"  required>
                   </div>
-                  <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
+                  <div class="text-right">
+                    <button type="reset" class="btn stylish-color-dark text-white btn-center" onclick="clear();">Clear</button>
+                    <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
+
+                </div>
                 </div>
               </div>
             </div>

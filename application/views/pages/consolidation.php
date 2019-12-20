@@ -1,16 +1,18 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
         <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
   </nav>
+
   <!-- pagecontents dito mo lagay  -->
-  <h5 class="card-header text-center text-white bluegrads container justify-content-center">Consolidation</h5>
-  <br>
+
   <div class="container justify-content-center">
+      <h5 class="card-header text-center text-white bluegrads container justify-content-center">Consolidation</h5>
+      <br>
     <div class="card m-3 shadow">
       <div class="row p-3">
         <div class="col-3">

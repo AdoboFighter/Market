@@ -1,10 +1,8 @@
-
 <div id="content">
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/LOGOSANPABLO.jpg" width="40" height="40">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
+        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
@@ -13,7 +11,8 @@
   <!-- pagecontents dito mo lagay  -->
   <div class="container justify-content-center">
     <h5 class="card-header text-center bg-primary text-white bluegrads">select client type</h5>
-    <div class="card m-2">
+    <br>
+    <div class="card m-2 shadow">
       <div class="container">
         <form class="p-3">
           <div class="row">
@@ -31,6 +30,8 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
     </form>
   </div>
 </div>

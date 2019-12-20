@@ -1,16 +1,15 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
         <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
   </nav>
 
-
   <div class="container justify-content-center">
-    <h5 class="card-header text-center bg-primary text-white bluegrads">Tenant's Information</h5>
+    <h5 class="card-header text-center bg-primary text-white bluegrads shadow">Tenant's Information</h5>
     <br>
     <div class="card m-2 shadow">
       <div class="container">
@@ -132,9 +131,10 @@
                     <option value="Fourth Floor">Fourth Floor</option>
                   </select><br>
                 </div>
-                <div class="form-group" id="floorlevel">
+                <div class="form-group text-right">
+                  <button type="reset" class="btn stylish-color-dark text-white" onclick="clear();">Clear</button>
                   <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary bg-dark" onclick="clear();">Clear</button>
+
                 </div>
               </div>
             </div>

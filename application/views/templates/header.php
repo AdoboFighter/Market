@@ -8,16 +8,18 @@
 
   <title>E-Market</title>
 
-  <!-- Bootstrap CSS CDN -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <!-- bootstrap cdn js -->
 
-  <!-- Our Custom CSS -->
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Material Design Bootstrap -->
+  <link href="/assets/css/mdb.min.css" rel="stylesheet">
+
+
   <style>
-
-  /*
-  DEMO STYLE
-  */
 
 
 
@@ -386,30 +388,13 @@ CONTENT STYLE
   background-color: #29539b;
   background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
 }
-#my_centered_buttons { display: flex; justify-content: center; }
-
-/* @media (min-width: 768px) {
-.modal-xl {
-width: 90%;
-max-width:1200px;
-}
-}
-*/
-
-
 
 
 
 </style>
-
-<!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<!-- Font Awesome JS -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+<link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+<link href="/assets/css/addons/datatables.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="">
 </head>
 
 <body>
@@ -418,70 +403,69 @@ max-width:1200px;
     <!-- Sidebar -->
     <nav id="sidebar">
 
-      <!-- <div id="dismiss">
-      <i class="fas fa-arrow-left"></i>
-    </div> -->
+      <div class="sidebar-header bg-white">
+        <a href="<?php echo base_url().'pages/view/home' ?>"><h3 class="text-dark"><img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="60" height="60" > E-Market</h3></a>
+      </div>
 
-    <div class="sidebar-header bg-white">
-      <h3 class="text-dark"><img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="60" height="60" ><a href="<?php echo base_url().'pages/view/home' ?>"> E-Market</h3>
-    </div>
+      <ul class="list-unstyled components text-dark">
+        <p class="">System User: <?php echo $this->session->userdata('user_fullname');?></p>
 
-    <ul class="list-unstyled components text-dark">
-      <p class="">System User: <?php echo $this->session->userdata('user_fullname');?></p>
-
-      <li class="">
-        <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="<?php echo base_url().'pages/view/addclient' ?>">Tenant</a>
-          </li>
-          <li>
-            <a href="<?php echo base_url().'pages/view/addAmbClient' ?>">Ambulant</a>
-          </li>
-          <li>
-            <a href="<?php echo base_url().'pages/view/addDeliveryClient' ?>">delivery</a>
-          </li>
-          <li>
-            <a href="<?php echo base_url().'pages/view/addParkingclient' ?>">parking</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="<?php echo base_url().'pages/view/violationSelect' ?>">Violation</a>
-      </li>
-
-      <li>
-        <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
-      </li>
+        <li class="">
+          <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+              <a href="<?php echo base_url().'pages/view/addclient' ?>">Tenant</a>
+            </li>
+            <li>
+              <a href="<?php echo base_url().'pages/view/addAmbClient' ?>">Ambulant</a>
+            </li>
+            <li>
+              <a href="<?php echo base_url().'pages/view/addDeliveryClient' ?>">delivery</a>
+            </li>
+            <li>
+              <a href="<?php echo base_url().'pages/view/addParkingclient' ?>">parking</a>
+            </li>
+          </ul>
+        </li>
 
 
-    <li>
-      <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
-    </li>
-    <li>
-      <a href="<?php echo base_url().'pages/view/marketFloor' ?>">Market Floor</a>
-    </li>
 
-    <li>
-      <a href="<?php echo base_url().'pages/view/consolidation' ?>">Consolidation</a>
-    </li>
+        <li>
+          <a href="<?php echo base_url().'pages/view/violationSelect' ?>">Violation</a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url().'pages/view/paymentSelect' ?>">Payment</a>
+        </li>
 
 
-    <li>
-      <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
-    </li>
+        <li>
+          <a href="<?php echo base_url().'pages/view/certification' ?>">Certification</a>
+        </li>
+        <li>
+          <a href="<?php echo base_url().'pages/view/marketFloor' ?>">Market Floor</a>
+        </li>
 
-    <li>
-      <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
-    </li>
+        <li>
+          <a href="<?php echo base_url().'pages/view/consolidation' ?>">Consolidation</a>
+        </li>
 
-    <li>
-      <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">Add System User</a>
-    </li>
-    <!-- change design -->
-    <li>
-      <a href="<?php echo base_url().'pages/logout_acc' ?>">Log out</a>
-    </li>
-  </ul>
-</nav>
+
+        <li>
+          <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url().'pages/view/selectSystemUser' ?>">Add System User</a>
+        </li>
+        <!-- change design -->
+        <li>
+          <a href="<?php echo base_url().'pages/logout_acc' ?>">Log out</a>
+        </li>
+      </ul>
+
+    </nav>

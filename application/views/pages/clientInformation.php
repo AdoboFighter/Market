@@ -1,13 +1,12 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
         <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
   </nav>
-
 
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
   <br>

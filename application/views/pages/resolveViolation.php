@@ -1,8 +1,7 @@
 <div id="content">
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm ">
+      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
         <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
@@ -17,13 +16,13 @@
         <div class="card shadow">
           <div class="row p-3">
             <div class="col-12">
-              <table class="table table-striped table-bordered" id="getviolationtable" >
+              <table class="table table-striped table-bordered shadow" id="getviolationtable" >
                 <thead>
                   <tr>
-                    <td class="font-weight-bold" >description</td>
-                    <td class="font-weight-bold" >date occurred</td>
-                    <td class="font-weight-bold" >status</td>
-                    <td class="font-weight-bold" >name</td>
+                    <td class="border border-dark" >description</td>
+                    <td class="border border-dark" >date occurred</td>
+                    <td class="border border-dark" >status</td>
+                    <td class="border border-dark" >name</td>
                   </tr>
                 </thead>
                 <tbody>

@@ -1496,6 +1496,15 @@ class Mainmodel extends CI_model{
   }
 }
 
+public function updatecert($data){
+  $data1 = array(
+    'print_status' => 'PRINTED'
+  );
+  $this->db->where('transaction_id',$data['transaction_id'])
+  ->update('transaction',$data1);
+  return true;
+}
+
 
 
 }

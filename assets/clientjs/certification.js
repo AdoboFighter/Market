@@ -13,6 +13,7 @@ var year = new Date().getFullYear();
 
 $(document).ready(function(){
 
+
   $('#cert_table').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcerttable',
@@ -89,7 +90,13 @@ $(document).ready(function(){
 
 
   function fetchdata(id){
+
+
     $('#certmodal').modal("show");
+
+
+
+
     console.log(id);
     $.ajax({
       url: global.settings.url + '/MainController/get_cert_info_con',
