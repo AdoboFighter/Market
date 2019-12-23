@@ -67,7 +67,7 @@ $(document).ready(function(){
               icon: 'success',
               title: 'Updated',
             });
-
+            $('#updatecustomerinfo')[0].reset();
             datable.ajax.reload();
 
           },

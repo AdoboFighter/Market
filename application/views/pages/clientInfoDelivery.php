@@ -15,13 +15,13 @@
     <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered" id="DeliveryTable">
+          <table class="table table-striped table-bordered shadow" id="DeliveryTable">
             <thead>
               <tr>
-                <td>Delivery ID</td>
-                <td>Company/Driver's Name</td>
-                <td>Plate Number</td>
-                <td>Load Data</td>
+                <td class="border border-dark">Delivery ID</td>
+                <td class="border border-dark">Company/Driver's Name</td>
+                <td class="border border-dark">Plate Number</td>
+                <td class="border border-dark">Load Data</td>
               </tr>
             </thead>
             <tbody>
@@ -29,13 +29,13 @@
           </table>
         </div>
       </div>
-      <div class="row p-3">
-      </div>
+
     </div>
     <br>
 
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
+  <br>
   <div class="container justify-content-center">
     <div class="row mt-2">
       <div class="col-6">
@@ -69,7 +69,7 @@
             </div>
             <div class="row p-2">
               <div class="p-2">
-                <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
+                <button class ="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
               </div>
               <div class="p-2">
                 <button class = "btn btn-primary" type="submit">Update</button>
@@ -82,25 +82,36 @@
   </div>
 
 
-  <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
-      <div class="modal-content p-2">
-        <h5>Payment History</h5>
-        <table class="table table-striped table-bordered " id="pay_hist_tab" style="width:100%">
+
+  <div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
           <thead>
             <tr>
-              <td>OR#</td>
-              <td>Nature or payment</td>
-              <td>Amount</td>
-              <td>Date</td>
+              <td class="border border-dark">OR#</td>
+              <td class="border border-dark">Nature or payment</td>
+              <td class="border border-dark">Amount</td>
+              <td class="border border-dark">Date</td>
             </tr>
           </thead>
           <tbody>
           </tbody>
         </table>
       </div>
+
     </div>
   </div>
+</div>
+<!-- END OF MODAL -->
+
 </div>
 
 

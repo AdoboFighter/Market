@@ -16,11 +16,6 @@ $(document).ready(function(){
 
   });
 
-  $( "#payhistbtn" ).click(function() {
-    $('#violationmodal').modal('show');
-
-  });
-
   $('#client_table').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertable',
@@ -72,7 +67,9 @@ $(document).ready(function(){
           icon: 'success',
           title: 'Updated',
         });
+        $('#client_table').DataTable().ajax.reload();
         $('#updatecustomerinfo')[0].reset();
+
 
       },
       error:function(res){
@@ -87,8 +84,10 @@ $(document).ready(function(){
 
 
 function fetchdata(id){
+
   customerinfo(id);
   transactionhistory(id);
+
 
 }
 

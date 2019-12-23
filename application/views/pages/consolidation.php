@@ -50,17 +50,17 @@
       </div>
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered" id="tablecon">
-            <thead>
+          <table class="table table-striped table-bordered shadow" id="tablecon">
+            <thead class="">
               <tr>
-                <td>no</td>
-                <td>name</td>
-                <td>O.R</td>
-                <td>Amount</td>
-                <td>Nature of Payment</td>
-                <td>Date & Time</td>
-                <td>Fund</td>
-                <td>collector</td>
+                <td class="border border-dark">no</td>
+                <td class="border border-dark">name</td>
+                <td class="border border-dark">O.R</td>
+                <td class="border border-dark">Amount</td>
+                <td class="border border-dark">Nature of Payment</td>
+                <td class="border border-dark">Date & Time</td>
+                <td class="border border-dark">Fund</td>
+                <td class="border border-dark">collector</td>
               </tr>
             </thead>
             <tbody>
@@ -70,7 +70,7 @@
       </div>
       <div class="row p-3">
         <div class="mb-2 p-3">
-          <button type="button" class="btn btn-secondary bg-dark btn-lg" id = "genrep">Generate POS report</button>
+          <button type="button" class="btn stylish-color-dark text-white" id = "genrep">Generate POS report</button>
         </div>
       </div>
     </div>

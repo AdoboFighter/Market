@@ -16,6 +16,7 @@
 
         <div class="row p-2 m-5">
           <div class="col-6">
+            
             <a href="<?php echo base_url().'pages/view/clientInformation' ?>" class="myButton">Tenant</a>
           </div>
           <div class="col-6">

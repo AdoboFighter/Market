@@ -15,14 +15,14 @@
     <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered" id="AmbulantTable">
+          <table class="table table-striped table-bordered shadow" id="AmbulantTable">
             <thead>
               <tr>
-                <td>Customer ID</td>
-                <td>name</td>
-                <td>Location</td>
-                <td>Location Number</td>
-                <td>Payment</td>
+                <td class="border border-dark">Customer ID</td>
+                <td class="border border-dark">name</td>
+                <td class="border border-dark">Location</td>
+                <td class="border border-dark">Location Number</td>
+                <td class="border border-dark">Payment</td>
               </tr>
             </thead>
             <tbody>
@@ -33,7 +33,6 @@
       <div class="row p-3">
       </div>
     </div>
-    <br>
     <br>
   </div>
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client Information</h5>
@@ -73,7 +72,7 @@
             </div>
           </div>
           <br>
-          <br>
+
         </div>
 
         <div class="col-6">
@@ -87,36 +86,44 @@
               <label>Location number</label>
               <input type="text" class="form-control" name="update[location_num]" id="Location_num">
             </div>
-
-
             <div class="p-2">
-              <button class ="btn btn-secondary" type="button" id="payhistbtn">Payment History</button>
+              <button class ="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
               <button class = "btn btn-primary" type="submit">Update</button>
             </div>
           </div>
-
-
         </div>
 
-        <div id="violationmodal" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-          <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
-            <div class="modal-content p-2">
-              <h5>Payment History</h5>
-              <table class="table table-striped table-bordered " id="pay_hist_tab" style="width:100%">
-                <thead>
-                  <tr>
-                    <td>OR#</td>
-                    <td>Nature or payment</td>
-                    <td>Amount</td>
-                    <td>Date</td>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
+
+
+        <div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalPreviewLabel">Payment History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
+                  <thead>
+                    <tr>
+                      <td class="border border-dark">OR#</td>
+                      <td class="border border-dark">Nature or payment</td>
+                      <td class="border border-dark">Amount</td>
+                      <td class="border border-dark">Date</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
           </div>
         </div>
+        <!-- END OF MODAL -->
+
 
       </div>
     </div>

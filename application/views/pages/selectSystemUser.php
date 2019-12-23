@@ -20,8 +20,10 @@
             </div>
             <div class="col-6 p-3 mt-2">
               <a href="<?php echo base_url().'pages/view/updateSystemUser' ?>" class="myButton">Update Users</a>
-              <i class="far fa-id-card"></i>
+              <a type="button" class="btn-floating btn-lg blue-gradient"><i class="fab fa-google-wallet" aria-hidden="true"></i></a>
             </div>
+
+
           </div>
         </div>
       </div>
