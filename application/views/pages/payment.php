@@ -207,68 +207,67 @@
                   <input type="date" class="form-control payment_details" name="" id="payment_effectivity">
                 </div>
 
-                <div class="row" id = "chequeDetails">
 
-                  <div class="col-12">
-                    <h5> Cheque Details</h5>
-                    <div class="col">
-                      <label>Cheque Number</label>
-                      <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
-                    </div>
-
-                    <div class="col">
-                      <label>Cheque Amount </label>
-                      <input type="number" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount">
-                    </div>
-
-                    <div class="col">
-                      <label>Cheque Date </label>
-                      <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
-                    </div>
-
-                    <div class="col">
-                      <label>Bank/Branch</label>
-                      <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
-                    </div>
-                    <br>
-                    <button class ="float-right btn btn-danger" id = "add_cheque">Add</button>
-                  </div>
-
-                  <div class="mb-2 form-group" >
-                    <table class="table table-striped table-bordered p-2" id="table_cheque">
-                      <thead>
-                        <tr>
-                          <th>Cheque no</th>
-                          <th>Cheque Amount</th>
-                          <th>Cheque Date</th>
-                          <th>Bank Branch</th>
-                          <th>delete</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                      </tbody>
-                    </table>
-
-
-                  </div>
-
-
-                </div>
                 <!-- end of row for details -->
-
                 <input type="hidden" id = "ntwntw">
-
                 <div class="mb-2">
                   <button type="Submit"  class="btn btn-primary float-left allPaymentButton" id = "payment_submit">Submit and print</button>
                 </div>
-
               </div>
-
-
             </div>
             <!-- end row -->
             <br>
+
+            <div id = "chequeDetails">
+              <div class="row">
+                <div class="col-6">
+                  <div class="col">
+                    <label>Cheque Number</label>
+                    <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
+                  </div>
+
+                  <div class="col">
+                    <label>Cheque Amount </label>
+                    <input type="number" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount">
+                  </div>
+                </div>
+                <div class="col-6">
+
+                  <div class="col">
+                    <label>Cheque Date </label>
+                    <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
+                  </div>
+
+                  <div class="col">
+                    <label>Bank/Branch</label>
+                    <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
+                  </div>
+                  <br>
+                  <button class ="float-right btn btn-danger" id = "add_cheque">Add</button>
+                </div>
+              </div>
+              <br>
+
+
+            <div class="mb-2 form-group" >
+              <table class="table table-striped table-bordered p-2" id="table_cheque">
+                <thead>
+                  <tr>
+                    <th>Cheque no</th>
+                    <th>Cheque Amount</th>
+                    <th>Cheque Date</th>
+                    <th>Bank Branch</th>
+                    <th>delete</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
           </div>
 
         </div>
