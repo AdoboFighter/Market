@@ -273,26 +273,47 @@
   </div>
   <!-- END OF MODAL -->
 
-  <div id="" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
-      <div class="modal-content p-2">
+  <div id="recModal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id ="printrec">
 
+            <h3 class = "text-center">Do you want to Print Receipt?</h3>
+            <!-- <input type="text" id ="payer">
+            <input type="text" id ="totalprint">
+            <input type="text" id ="cashcheck"> -->
+            <div class = "text-center">
+              <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
+              <button class = "btn btn-danger" type ="button" value = "no" id="printbtnclose">Close</button>
+            </div>
+
+          </form>
+        </div>
 
       </div>
     </div>
   </div>
   <!-- END OF MODAL -->
 
-  <div id="rec" class="modal fade modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-xl modal-dialog-centered mw-100 w-75">
-      <div class="modal-content p-2">
-        <iframe src = "" id="frameasdas" height ="1000" width = "">
-
-
-        </iframe>
-
-
-        <button class = "btn btn-success">Print Receipt</button>
+  <div id="rec" class="modal fade right shadow"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe src = "" id="frameasdas" height ="800" width = "100%">
+          </iframe>
+          <button class = "btn btn-success" id="printbtnrec">Print Receipt</button>
+        </div>
       </div>
     </div>
   </div>

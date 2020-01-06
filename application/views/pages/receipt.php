@@ -89,7 +89,8 @@ $orientation = $size['h'] > $size['w'] ? 'P' : 'L';
  $pdf->setPrintFooter(false);
  $pdf->addPage($orientation);
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
-
+// $pdf->addpage();
+// $pdf->deletePage(1);
 
 
 // Print text using writeHTMLCell()
@@ -149,7 +150,7 @@ if($payment_type == "cash"){
 
 }
 if($payment_type == "cheque"){
-    
+
 }
 
 
@@ -159,6 +160,7 @@ if($payment_type == "cheque"){
 
 
 ob_end_clean();
+// $pdf->IncludeJS("print();");
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
 $pdf->Output('example_001.pdf', 'I');

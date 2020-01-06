@@ -9,10 +9,72 @@
   </nav>
 
 
+<div class="container justify-content-center">
+  <br>
+  <br>
+  <br>
+
+  <div class="col-6 text-center">
+
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+    <a href="" class="btn-floating btn-lg white shadow p-2">
+      <i class="fas fa-store fa-5x"></i>
+      <br>
+      <label>FT-XX-</label>
+    </a>
+  </div>
+
+
+
 
 </div>
 
-
 <!-- Dark Overlay element -->
-
+</div>
 <div class="overlay"></div>

@@ -1,6 +1,55 @@
 var datable;
 
+var check_number = [];
+var check_amount = [];
+var check_date = [];
+var bank = [];
+var payment_type;
+
 $(document).ready(function(){
+
+    $( "#printbtnrec" ).click(function() {
+      $('#rec').modal("hide");
+      $('#recModal').modal("show");
+
+    });
+
+    $( "#printbtnclose" ).click(function() {
+      $('#recModal').modal("hide");
+    });
+
+  $('#printrec').submit(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+      url: global.settings.url +'/MainController/paymentreceiptprint',
+      xhrFields: {
+        responseType: 'blob'
+      },
+
+      success:function(data)
+      {
+        // document.getElementById('frameasdas').contentWindow.location.reload();
+        console.log("hmm");
+         var url = window.URL.createObjectURL(data);
+        $('#frameasdas').attr('src',url);
+        $('#rec').modal('show');
+        $('#recModal').modal('hide');
+
+        //  $('#frameasdas').attr('src',data);
+      },
+      error:function()
+      {
+
+      }
+
+    });
+
+
+  });
+
 
 
   $('#AmbulantTable').DataTable({
@@ -34,10 +83,10 @@ $(document).ready(function(){
 
 
   });
-  
+
   $('#demo').num2words();
-  
- 
+
+
 
   function fetchdata(id){
     $('.payment_details').val("");
@@ -59,7 +108,7 @@ $(document).ready(function(){
         $('#payment_type').val(null);
 
         $('.payment_details').val('');
-        $('.rowrow').remove();  
+        $('.rowrow').remove();
         $('#payment_cheque_number').val("");
         $('#payment_cheque_amount').val("");
         $('#payment_bank_branch').val("");
@@ -80,7 +129,7 @@ $(document).ready(function(){
 
   function particular(){
 
- 
+
 
     if($('#part1num').val() == ""){
       num1 = 0;
@@ -88,82 +137,82 @@ $(document).ready(function(){
     else{
       num1 = $('#part1num').val();
     }
-  
+
     if($('#part2num').val() == ""){
       num2 = 0;
     }
     else{
       num2 = $('#part2num').val();
     }
-  
+
     if($('#part3num').val() == ""){
       num3 = 0;
     }
     else{
       num3 = $('#part3num').val();
     }
-  
+
     if($('#part4num').val() == ""){
       num4 = 0;
     }
     else{
       num4 = $('#part4num').val();
     }
-  
+
     if($('#part5num').val() == ""){
       num5 = 0;
     }
     else{
       num5 = $('#part5num').val();
     }
-  
+
     if($('#part6num').val() == ""){
       num6 = 0;
     }
     else{
       num6 = $('#part6num').val();
     }
-  
+
     if($('#part7num').val() == ""){
       num7 = 0;
     }
     else{
       num7 = $('#part7num').val();
     }
-  
-  
+
+
     total = parseInt(num1) + parseInt(num2) + parseInt(num3) + parseInt(num4) + parseInt(num5) + parseInt(num6) + parseInt(num7);
   }
-  
+
   $('#sub_total').click(function(){
     if($(this).is(":checked")){
       particular();
       if($('#payment_amount_to_pay').val() == ""){
         amount_to_pay = 0;
       }
-      else 
+      else
       {
         amount_to_pay = $('#payment_amount_to_pay').val();
       }
       total = parseFloat(total) + parseFloat(amount_to_pay);
       $('#total').val(total);
-      
-  }
-  else if($(this).is(":not(:checked)")){
-      $('#total').val($('#payment_amount_to_pay').val()); 
-  }
+
+    }
+    else if($(this).is(":not(:checked)")){
+      $('#total').val($('#payment_amount_to_pay').val());
+    }
   });
-  
+
   $('#payment_amount_to_pay').change(function(){
     if($('#sub_total').is(":not(:checked)")){
-      $('#total').val($('#payment_amount_to_pay').val()); 
+      $('#total').val($('#payment_amount_to_pay').val());
     }
     if($('#sub_total').is(":checked")){
       particular();
       if($('#payment_amount_to_pay').val() == ""){
         amount_to_pay = 0;
       }
-      else 
+      else
       {
         amount_to_pay = $('#payment_amount_to_pay').val();
       }
@@ -171,14 +220,14 @@ $(document).ready(function(){
       $('#total').val(total);
     }
   });
-  
+
   $('.partnum').change(function(){
     if($('#sub_total').is(":checked")){
       particular();
       if($('#payment_amount_to_pay').val() == ""){
         amount_to_pay = 0;
       }
-      else 
+      else
       {
         amount_to_pay = $('#payment_amount_to_pay').val();
       }
@@ -186,12 +235,12 @@ $(document).ready(function(){
       $('#total').val(total);
     }
   });
-  
+
 
 
   $('#payment_submit_button').click(function(){
-    
-    
+
+
     text1 = $('#part1text').val();
     text2 = $('#part2text').val();
     text3 = $('#part3text').val();
@@ -220,7 +269,7 @@ $(document).ready(function(){
     total = $('#total').val();
     var fund_id = 1;
     var payment_type = $('#payment_type').val();
-    
+
     $.ajax({
       type: "POST",
       data:{fund_id:fund_id,customer_id:customer_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
@@ -234,19 +283,16 @@ $(document).ready(function(){
           url: global.settings.url +'/MainController/paymentreceipt',
           xhrFields: {
             responseType: 'blob'
-        },
+          },
 
           success:function(data)
           {
 
-            
-    // document.getElementById('frame').contentWindow.location.reload();
-
-    var url = window.URL.createObjectURL(data);
-    $('#frameasdas').attr('src',url);
+            // document.getElementById('frame').contentWindow.location.reload();
+            var url = window.URL.createObjectURL(data);
+            $('#frameasdas').attr('src',url);
             $('#rec').modal('show');
-            
-          //  $('#frameasdas').attr('src',data);
+            //  $('#frameasdas').attr('src',data);
             console.log(data);
           },
           error:function()
@@ -255,14 +301,14 @@ $(document).ready(function(){
           }
 
         });
-      
+
 
       },
       error: function(res){
-       
+
       }
-   });  
- 
+    });
+
   });
 
   $('#payment_or_number').change(function(){
@@ -275,7 +321,7 @@ $(document).ready(function(){
       },
       dataType:'JSON',
       success: function(res){
-     
+
         if(res=="meron"){
           Swal.fire({
             title: 'O.R number already exist!',
@@ -284,13 +330,10 @@ $(document).ready(function(){
           })
           $('#payment_or_number').val("");
         }
-      
+
       },
       error: function(xhr){
         console.log(xhr.responseText);
       }
-  })
+    })
   });
-  
-
-

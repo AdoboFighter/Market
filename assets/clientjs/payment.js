@@ -48,43 +48,32 @@ var bank = [];
 
 $(document).ready(function(){
 
-  $( "#table_cheque" ).DataTable({
-    "paging": false,
-    "searching": false,
-    "ordering": false,
-
-    // "ajax" : {
-    //   "url" : global.settings.url + '/MainController/insert_table_bulk_controller',
-    //   dataSrc : 'data',
-    //   type : 'POST',
-    //   data :$(this).serialize(),
-    //   dataType : 'json',
-    //   success : function(res){
-    //     console.log(res);
-    //
-    //   },
-    //   error : function(xhr){
-    //     console.log(xhr.responseText);
-    //     console.log('you fucking suck lol');
-    //   }
-    // },
-    // "columns": [
-    //   { "data": "cheque_number" },
-    //   { "data": "cheque_amount" },
-    //   { "data": "bank_branch" }
-    // ]
-
-  });
+  // $( "#table_cheque" ).DataTable({
+  //   "paging": false,
+  //   "searching": false,
+  //   "ordering": false,
+  // });
 
 
 
 
   $('#add_cheque').on('click', function () {
-    var table_cheque = $('#table_cheque').DataTable();
+
 
     if (row_num >= 4) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cheque Limit',
+        text: 'Maximum of 3'
+      });
+    }else{
 
-    } else {
+      var table_cheque = $('#table_cheque').DataTable({
+        "paging": false,
+        "searching": false,
+        "ordering": false,
+      });
+
       add_line.push({
         'ch[cheque_number]' : $('#payment_cheque_number').val(),
         'ch[cheque_amount]' : $('#payment_cheque_amount').val(),
@@ -185,6 +174,42 @@ $(document).ready(function(){
 
   });
 
+
+  $('#printrec').submit(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+      url: global.settings.url +'/MainController/paymentreceiptprint',
+      xhrFields: {
+        responseType: 'blob'
+      },
+
+      success:function(data)
+      {
+        console.log("hmmm");
+        // document.getElementById('frameasdas').contentWindow.location.reload();
+
+         var url = window.URL.createObjectURL(data);
+        $('#frameasdas').attr('src',url);
+        $('#rec').modal('show');
+        $('#rec').modal('hide');
+
+        //  $('#frameasdas').attr('src',data);
+
+
+      },
+      error:function()
+      {
+
+      }
+
+    });
+
+
+  });
+
   //
 
 
@@ -221,7 +246,19 @@ $(document).ready(function(){
       "data" : "btn"
     }]
   });
+
   $('.dataTables_length').addClass('bs-select');
+
+  $( "#printbtn" ).click(function() {
+    $('#rec').modal("hide");
+    $('#print').modal("show");
+  });
+
+  $( "#pintmodalclose" ).click(function() {
+    $('#print').modal("hide");
+  });
+
+
 });
 
 

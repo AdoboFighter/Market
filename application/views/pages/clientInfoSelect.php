@@ -15,7 +15,7 @@
     <div class="card shadow">
       <div class="row p-5">
         <div class="col-6 text-center">
-          <a href="<?php echo base_url().'pages/view/clientInformation' ?>" class="btn-floating btn-lg purple-gradient">
+          <a href="" class="btn-floating btn-lg purple-gradient">
             <i class="fas fa-store fa-10x"></i>
             <br>
             <label>Tenant</label>

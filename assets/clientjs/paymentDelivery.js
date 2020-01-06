@@ -1,5 +1,4 @@
 var datable;
-
 var add_line = [];
 var row_num = 1;
 var row_id = 0;
@@ -15,6 +14,15 @@ var num7;
 var num8;
 var ntw;
 
+var text1;
+var text2;
+var text3;
+var text4;
+var text5;
+var text6;
+var text7;
+
+
 var particulars = [];
 var customer_id;
 var deliver_id;
@@ -24,6 +32,9 @@ var amount_to_pay;
 var cash_tendered;
 var payment_effectivity;
 var stall_no;
+var payment_name;
+var payment_type;
+
 
 var check_amount= [];
 var check_number= [];
@@ -33,6 +44,50 @@ var bank= [];
 var transaction_id;
 
 $(document).ready(function(){
+
+  $( "#printbtnrec" ).click(function() {
+    $('#rec').modal("hide");
+    $('#recModal').modal("show");
+
+  });
+
+  $( "#printbtnclose" ).click(function() {
+    $('#recModal').modal("hide");
+  });
+
+  $('#printrec').submit(function(e){
+    e.preventDefault();
+
+
+
+
+    $.ajax({
+      type: "POST",
+      data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+      url: global.settings.url +'/MainController/paymentreceiptprint',
+      xhrFields: {
+        responseType: 'blob'
+      },
+
+      success:function(data)
+      {
+        console.log("hmm");
+        var url = window.URL.createObjectURL(data);
+        $('#frameasdas').attr('src',url);
+        $('#rec').modal('show');
+        $('#recModal').modal('hide');
+
+
+      },
+      error:function()
+      {
+
+      }
+
+    });
+
+
+  });
 
 
   $('#DeliveryTable').DataTable({
@@ -75,15 +130,15 @@ $(document).ready(function(){
 
         res = res[0];
 
-          $('#paymentDet').hide();
-          $('#chequeDetails').hide();
-          $('#payment_type').val(null);
+        $('#paymentDet').hide();
+        $('#chequeDetails').hide();
+        $('#payment_type').val(null);
 
-          $('.payment_details').val('');
-          $('.rowrow').remove();
-          $('#payment_cheque_number').val("");
-          $('#payment_cheque_amount').val("");
-          $('#payment_bank_branch').val("");
+        $('.payment_details').val('');
+        $('.rowrow').remove();
+        $('#payment_cheque_number').val("");
+        $('#payment_cheque_amount').val("");
+        $('#payment_bank_branch').val("");
 
 
         $('#payment_customer_id').val(res.customer_id );
@@ -113,37 +168,37 @@ $(document).ready(function(){
       //   '<button type="button" class="btn btn-danger" id="Delete-btn">Delete</button> '
       // ]).draw(false);
 
-          add_line.push({
-            'ch[cheque_number]' : $('#payment_cheque_number').val(),
-            'ch[cheque_amount]' : $('#payment_cheque_amount').val(),
-            'ch[cheque_date]' : $('#payment_cheque_date').val(),
-            'ch[bank_branch]' :  $('#payment_bank_branch').val(),
-            'ch[fk_stall_no]' :  stall_no
-          });
+      add_line.push({
+        'ch[cheque_number]' : $('#payment_cheque_number').val(),
+        'ch[cheque_amount]' : $('#payment_cheque_amount').val(),
+        'ch[cheque_date]' : $('#payment_cheque_date').val(),
+        'ch[bank_branch]' :  $('#payment_bank_branch').val(),
+        'ch[fk_stall_no]' :  stall_no
+      });
 
 
-         "use strict";
-        	var table = document.getElementById("table_cheque");
-          var row= document.createElement("tr");
-          row.setAttribute('id','row'+row_id);
-          row.setAttribute('class','rowrow');
-        	var td1 = document.createElement("td");
-        	var td2 = document.createElement("td");
-          var td3 = document.createElement("td");
-          var td4 = document.createElement("td");
-        	var td5 = document.createElement("td");
-          td1.innerHTML = document.getElementById("payment_cheque_number").value;
-        	td2.innerHTML  = document.getElementById("payment_cheque_amount").value;
-        	td3.innerHTML  = document.getElementById("payment_bank_branch").value;
-          td4.innerHTML  = '<button type="button" class="btn_delete btn btn-danger " id="'+row_id+'">Delete</button>';
-          row.appendChild(td1);
-        	row.appendChild(td2);
-          row.appendChild(td3);
-          row.appendChild(td4);
-        	row.appendChild(td5);
-          table.children[0].appendChild(row);
-          row_id++;
-          row_num++;
+      "use strict";
+      var table = document.getElementById("table_cheque");
+      var row= document.createElement("tr");
+      row.setAttribute('id','row'+row_id);
+      row.setAttribute('class','rowrow');
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      var td3 = document.createElement("td");
+      var td4 = document.createElement("td");
+      var td5 = document.createElement("td");
+      td1.innerHTML = document.getElementById("payment_cheque_number").value;
+      td2.innerHTML  = document.getElementById("payment_cheque_amount").value;
+      td3.innerHTML  = document.getElementById("payment_bank_branch").value;
+      td4.innerHTML  = '<button type="button" class="btn_delete btn btn-danger " id="'+row_id+'">Delete</button>';
+      row.appendChild(td1);
+      row.appendChild(td2);
+      row.appendChild(td3);
+      row.appendChild(td4);
+      row.appendChild(td5);
+      table.children[0].appendChild(row);
+      row_id++;
+      row_num++;
 
     }
 
@@ -244,10 +299,10 @@ $(document).ready(function(){
       }
       total = parseFloat(total) + parseFloat(amount_to_pay);
       $('#total').val(total);
-  }
-  else if($(this).is(":not(:checked)")){
+    }
+    else if($(this).is(":not(:checked)")){
       $('#total').val($('#payment_cash_tendered').val());
-  }
+    }
   });
 
   $('#payment_amount_to_pay').change(function(){
@@ -343,110 +398,110 @@ $(document).ready(function(){
     payment_effectivity = $('#payment_effectivity').val();
     payment_name = $('#payment_name').val();
     total = $('#total').val();
-   var fund_id = 1;
+    var fund_id = 1;
     var payment_type = $('#payment_type').val();
 
 
 
     add_line = add_line.filter(function(el){
-     return el != null;
-   });
+      return el != null;
+    });
 
 
 
 
-   switch(payment_type)
-   {
-     case "cash":
-         $.ajax({
-           type: "POST",
-           data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-           url: global.settings.url +'/MainController/savetransaction',
-           success: function(res){
-             $('#deliveryPay').modal("hide");
+    switch(payment_type)
+    {
+      case "cash":
+      $.ajax({
+        type: "POST",
+        data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+        url: global.settings.url +'/MainController/savetransaction',
+        success: function(res){
+          $('#deliveryPay').modal("hide");
 
-            $.ajax({
-              type: "POST",
-              data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-              url: global.settings.url +'/MainController/paymentreceipt',
-              xhrFields: {
-                responseType: 'blob'
+          $.ajax({
+            type: "POST",
+            data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+            url: global.settings.url +'/MainController/paymentreceipt',
+            xhrFields: {
+              responseType: 'blob'
             },
 
-              success:function(data)
-              {
-
-
-        // document.getElementById('frame').contentWindow.location.reload();
-
-        var url = window.URL.createObjectURL(data);
-        $('#frameasdas').attr('src',url);
-                $('#rec').modal('show');
-
-              //  $('#frameasdas').attr('src',data);
-                console.log(data);
-              },
-              error:function()
-              {
-
-              }
-
-            });
-
-           },
-           error: function(res){
-
-           }
-        });
-
-
-     break;
-     case "cheque":
-
-         $.ajax({
-           type: "POST",
-           data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-           url: global.settings.url +'/MainController/savetransaction',
-           success: function(res){
-
-            res= jQuery.parseJSON(res);
-
-             transaction_id = res[0].transaction_id;
-
-
-             for(var i = 0; i< add_line.length;i++)
+            success:function(data)
             {
 
-              add_line[i]['ch[fk_transaction_id]'] = transaction_id;
 
-                $.ajax({
-                  type: "POST",
-                  data: add_line[i],
-                  url: global.settings.url +'/MainController/savecheque',
+              // document.getElementById('frame').contentWindow.location.reload();
 
-                  success: function(res){
-                    $('#deliveryPay').modal("hide");
-                  },
-                  error: function(res){
+              var url = window.URL.createObjectURL(data);
+              $('#frameasdas').attr('src',url);
+              $('#rec').modal('show');
 
-                  }
-              });
-             check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-             check_number[i] =  add_line[i]['ch[cheque_number]'];
-             check_date[i] =    add_line[i]['ch[cheque_date]'];
-             bank[i] =          add_line[i]['ch[bank_branch]'];
+              //  $('#frameasdas').attr('src',data);
+              console.log(data);
+            },
+            error:function()
+            {
+
             }
+
+          });
+
+        },
+        error: function(res){
+
+        }
+      });
+
+
+      break;
+      case "cheque":
+
+      $.ajax({
+        type: "POST",
+        data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+        url: global.settings.url +'/MainController/savetransaction',
+        success: function(res){
+
+          res= jQuery.parseJSON(res);
+
+          transaction_id = res[0].transaction_id;
+
+
+          for(var i = 0; i< add_line.length;i++)
+          {
+
+            add_line[i]['ch[fk_transaction_id]'] = transaction_id;
 
             $.ajax({
               type: "POST",
-              data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-              url: global.settings.url +'/MainController/paymentreceipt',
-              xhrFields: {
-                responseType: 'blob'
+              data: add_line[i],
+              url: global.settings.url +'/MainController/savecheque',
+
+              success: function(res){
+                $('#deliveryPay').modal("hide");
+              },
+              error: function(res){
+
+              }
+            });
+            check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+            check_number[i] =  add_line[i]['ch[cheque_number]'];
+            check_date[i] =    add_line[i]['ch[cheque_date]'];
+            bank[i] =          add_line[i]['ch[bank_branch]'];
+          }
+
+          $.ajax({
+            type: "POST",
+            data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+            url: global.settings.url +'/MainController/paymentreceipt',
+            xhrFields: {
+              responseType: 'blob'
             },
 
-              success:function(data)
-              {
+            success:function(data)
+            {
 
               // document.getElementById('frameasdas').contentWindow.location.reload();
 
@@ -454,72 +509,72 @@ $(document).ready(function(){
               $('#frameasdas').attr('src',url);
               $('#rec').modal('show');
 
-            //  $('#frameasdas').attr('src',data);
+              //  $('#frameasdas').attr('src',data);
               console.log(data);
 
-              },
-              error:function()
-              {
+            },
+            error:function()
+            {
 
-              }
+            }
 
-            });
-          },
-          error: function(res){
+          });
+        },
+        error: function(res){
 
-          }
-       });
-
-
+        }
+      });
 
 
 
-     break;
-
-     case "cashandcheque":
 
 
-       $.ajax({
-         type: "POST",
-         data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-         url: global.settings.url +'/MainController/savetransaction',
-         success: function(res){
+      break;
+
+      case "cashandcheque":
+
+
+      $.ajax({
+        type: "POST",
+        data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,delivery_id:delivery_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+        url: global.settings.url +'/MainController/savetransaction',
+        success: function(res){
           res= jQuery.parseJSON(res);
 
           transaction_id = res[0].transaction_id;
           for(var i = 0; i< add_line.length;i++)
-            {
+          {
 
-              add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-
-                $.ajax({
-                  type: "POST",
-                  data: add_line[i],
-                  url: global.settings.url +'/MainController/savecheque',
-
-                  success: function(res){
-                    $('#deliveryPay').modal("hide");
-                  },
-                  error: function(res){
-
-                  }
-              });
-             check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-             check_number[i] =  add_line[i]['ch[cheque_number]'];
-             check_date[i] =    add_line[i]['ch[cheque_date]'];
-             bank[i] =          add_line[i]['ch[bank_branch]'];
-            }
+            add_line[i]['ch[fk_transaction_id]'] = transaction_id;
 
             $.ajax({
               type: "POST",
-              data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-              url: global.settings.url +'/MainController/paymentreceipt',
-              xhrFields: {
-                responseType: 'blob'
+              data: add_line[i],
+              url: global.settings.url +'/MainController/savecheque',
+
+              success: function(res){
+                $('#deliveryPay').modal("hide");
+              },
+              error: function(res){
+
+              }
+            });
+            check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+            check_number[i] =  add_line[i]['ch[cheque_number]'];
+            check_date[i] =    add_line[i]['ch[cheque_date]'];
+            bank[i] =          add_line[i]['ch[bank_branch]'];
+          }
+
+          $.ajax({
+            type: "POST",
+            data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+            url: global.settings.url +'/MainController/paymentreceipt',
+            xhrFields: {
+              responseType: 'blob'
             },
 
-              success:function(data)
-              {
+            success:function(data)
+            {
 
               // document.getElementById('frameasdas').contentWindow.location.reload();
 
@@ -527,71 +582,71 @@ $(document).ready(function(){
               $('#frameasdas').attr('src',url);
               $('#rec').modal('show');
 
-            //  $('#frameasdas').attr('src',data);
+              //  $('#frameasdas').attr('src',data);
               console.log(data);
 
-              },
-              error:function()
-              {
+            },
+            error:function()
+            {
 
-              }
+            }
 
-            });
-          },
-          error: function(res){
+          });
+        },
+        error: function(res){
 
-          }
-       });
-
-
-
-     break;
-     default:
-
-     break;
-
-
-     customer_id = "";
-     tenant_id = "";
-     type_of_payment = "";
-     or_number = "";
-     amount_to_pay = "";
-     cash_tendered = "";
-     payment_effectivity = "";
-     fund_id = 1;
-     payment_type = "";
+        }
+      });
 
 
 
+      break;
+      default:
 
-   }
-
- });
+      break;
 
 
- $('#payment_or_number').change(function(){
-  var or_number = $('#payment_or_number').val();
-  $.ajax({
-    url: global.settings.url + '/MainController/checkOr',
-    type: 'POST',
-    data: {
-      or_number: or_number
-    },
-    dataType:'JSON',
-    success: function(res){
+      customer_id = "";
+      tenant_id = "";
+      type_of_payment = "";
+      or_number = "";
+      amount_to_pay = "";
+      cash_tendered = "";
+      payment_effectivity = "";
+      fund_id = 1;
+      payment_type = "";
 
-      if(res=="meron"){
-        Swal.fire({
-          title: 'O.R number already exist!',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        })
-        $('#payment_or_number').val("");
-      }
 
-    },
-    error: function(xhr){
-      console.log(xhr.responseText);
+
+
     }
-})
-});
+
+  });
+
+
+  $('#payment_or_number').change(function(){
+    var or_number = $('#payment_or_number').val();
+    $.ajax({
+      url: global.settings.url + '/MainController/checkOr',
+      type: 'POST',
+      data: {
+        or_number: or_number
+      },
+      dataType:'JSON',
+      success: function(res){
+
+        if(res=="meron"){
+          Swal.fire({
+            title: 'O.R number already exist!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+          $('#payment_or_number').val("");
+        }
+
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    })
+  });
