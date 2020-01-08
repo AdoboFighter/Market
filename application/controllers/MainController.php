@@ -92,6 +92,12 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getparkingpaytablemod());
   }
 
+  public function getparkingpaytablepay()
+  {
+    echo json_encode($this->model->getparkingpaytablepay());
+  }
+
+
 
 
 

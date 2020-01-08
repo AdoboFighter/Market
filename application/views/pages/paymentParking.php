@@ -157,7 +157,8 @@
 
               <div class="row mt-2">
                 <div class="col" id = "demo">
-                  <input type="text" class="form-control payment_details ntw" name="total" id="total">
+                  <label>Total</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
                 </div>
               </div>
 
@@ -194,68 +195,21 @@
 
               <div class="mb-2">
                 <label>Amount to pay</label>
-                <input type="text" class="form-control payment_details ntw" name="amount_to_pay" id="payment_amount_to_pay">
+                <input type="text" class="form-control payment_details ntw" name="amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
               </div>
 
               <div class="mb-2">
                 <label>Cash tendered</label>
-                <input type="text" class="form-control payment_details ntw" name="cash_tendered" id="payment_cash_tendered">
+                <input type="text" class="form-control payment_details ntw" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
               </div>
 
 
               <div class="mb-2">
                 <label>Payment Effectivity</label>
-                <input type="date" class="form-control payment_details" name="" id="payment_effectivity">
+                <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
               </div>
 
-              <div class="row" id = "chequeDetails">
 
-                <div class="col-12">
-                  <h5> Cheque Details</h5>
-                  <div class="col">
-                    <label>Cheque Number</label>
-                    <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
-                  </div>
-
-                  <div class="col">
-                    <label>Cheque Amount </label>
-                    <input type="number" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount">
-                  </div>
-
-
-                  <div class="col">
-                    <label>Cheque Amount </label>
-                    <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
-                  </div>
-
-                  <div class="col">
-                    <label>Bank/Branch</label>
-                    <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
-                  </div>
-                  <br>
-                  <button class ="float-right btn btn-danger" id = "add_cheque">Add</button>
-                </div>
-
-                <div class="mb-2 form-group" >
-                  <table class="table table-striped table-bordered p-2" id="table_cheque">
-                    <thead>
-                      <tr>
-                        <th>Cheque no</th>
-                        <th>Cheque Amount</th>
-                        <th>Bank Branch</th>
-                        <th>delete</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                    </tbody>
-                  </table>
-
-
-                </div>
-
-
-              </div>
               <!-- end of row for details -->
 
               <input type="hidden" id = "ntwntw">
@@ -265,6 +219,57 @@
 
             </div>
 
+
+          </div>
+          <br>
+          <div id = "chequeDetails">
+
+            <div class="row">
+              <div class="col-6">
+                <div class="col">
+                  <label>Cheque Number</label>
+                  <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
+                </div>
+
+                <div class="col">
+                  <label>Cheque Amount </label>
+                  <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                </div>
+              </div>
+              <div class="col-6">
+
+                <div class="col">
+                  <label>Cheque Date </label>
+                  <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
+                </div>
+
+                <div class="col">
+                  <label>Bank/Branch</label>
+                  <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
+                </div>
+                <br>
+                <button class ="float-right stylish-color-dark btn text-white" id = "add_cheque">Add</button>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="mb-2 form-group" >
+              <table class="table table-striped table-bordered p-2 shadow" id="table_cheque">
+                <thead>
+                  <tr>
+                    <th class="border border-dark">Cheque no</th>
+                    <th class="border border-dark">Cheque Amount</th>
+                    <th class="border border-dark">Cheque Date</th>
+                    <th class="border border-dark">Bank Branch</th>
+                    <th class="border border-dark">delete</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+              </table>
+            </div>
 
           </div>
           <!-- end row -->
@@ -289,7 +294,6 @@
         </div>
         <div class="modal-body">
           <form id ="printrec">
-
             <h3 class = "text-center">Do you want to Print Receipt?</h3>
             <!-- <input type="text" id ="payer">
             <input type="text" id ="totalprint">
@@ -298,7 +302,6 @@
               <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
               <button class = "btn btn-danger" type ="button" value = "no" id="printbtnclose">Close</button>
             </div>
-
           </form>
         </div>
 

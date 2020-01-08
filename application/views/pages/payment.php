@@ -155,7 +155,8 @@
 
                 <div class="row mt-2">
                   <div class="col" id = "demo">
-                    <input type="text" class="form-control payment_details ntw" name="total" id="total">
+                    <label>Total</label>
+                    <input type="text" class="form-control payment_details ntw" name="total" id="total" readonly>
                     <div></div>
                   </div>
                 </div>
@@ -193,12 +194,12 @@
 
                 <div class="mb-2">
                   <label>Amount to pay</label>
-                  <input type="text" class="form-control payment_details ntw" name="amount_to_pay" id="payment_amount_to_pay">
+                  <input type="text" class="form-control payment_details ntw" name="amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                 </div>
 
                 <div class="mb-2">
                   <label>Cash tendered</label>
-                  <input type="text" class="form-control payment_details" name="cash_tendered" id="payment_cash_tendered">
+                  <input type="text" class="form-control payment_details" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                 </div>
 
 
@@ -228,7 +229,7 @@
 
                   <div class="col">
                     <label>Cheque Amount </label>
-                    <input type="number" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount">
+                    <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                   </div>
                 </div>
                 <div class="col-6">

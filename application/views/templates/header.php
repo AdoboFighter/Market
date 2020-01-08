@@ -10,7 +10,7 @@
 
 
   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
   <!-- Bootstrap core CSS -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -338,7 +338,7 @@ CONTENT STYLE
 </style>
 <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">
-<link rel="shortcut icon" href="">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
 <body>

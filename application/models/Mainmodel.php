@@ -689,7 +689,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button></a>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button>
         </div>'
       );
     }
@@ -720,7 +720,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
       );
     }
@@ -753,6 +753,38 @@ class Mainmodel extends CI_model{
         'btn'=>
         '<div class="">
         <a href="#sect2"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getparkingpaytablepay()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_driver_id' => $r->driver_id,
+        'pay_parking_lot' => $r->lot_no,
+        'pay_parking_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
       );
     }
