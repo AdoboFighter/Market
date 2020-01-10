@@ -100,7 +100,7 @@
         <div class="row m-5">
           <div class="col">
             <button type="submit" name="submit_sysuser" id="submit_sysuser" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-secondary">Clear</button>
+            <button type="reset" class="btn  stylish-color-dark text-white">Clear</button>
           </div>
         </div>
       </form>
@@ -111,5 +111,6 @@
     <br>
 
   </div>
+
 </div>
 <div class="overlay"></div>

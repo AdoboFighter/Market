@@ -670,9 +670,73 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function getcustomertablepay()
+  {
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_area' => $r->sqm,
+        'c_info_daily_fee'=> $r->dailyfee,
+        'c_info_fullname_occupant'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
   public function getPayAmbulantTableMod()
   {
 
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->customer_id,
+        'pay_ambu_location' => $r->location,
+        'pay_ambu_locnum'=> $r->location_no,
+        'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'btn'=>
+
+        '<div class="">
+        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button></a>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getPayAmbulantTablepay()
+  {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -733,13 +797,41 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function getdeliverypaytablepay()
+  {
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->delivery_id,
+        'pay_delivery_id' => $r->firstname,
+        'pay_delivery_name'=> $r->middlename,
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
   public function getparkingpaytablemod()
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-
     $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
     $query = $this->db->get('customer');
@@ -1536,6 +1628,27 @@ public function updatecert($data){
   $this->db->where('transaction_id',$data['transaction_id'])
   ->update('transaction',$data1);
   return true;
+}
+
+public function checkviolationpay($id)
+{
+$this->db->where('customer_id', $id);
+$this->db->where('status', 'NOT PAID');
+$this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+$this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+$this->db->join('violation', 'violation.stall_id=stall.stall_id', 'inner');
+$query = $this->db->get('tenant');
+if($query->num_rows() >= 1) {
+  return 'withviolation';
+}else {
+  $this->db->trans_start();
+  $this->db->where('fk_customer_id', $id);
+  $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  $query = $this->db->get('customer');
+  return $query->result();
+  echo $query;
+}
 }
 
 

@@ -35,7 +35,7 @@
 
 
 
-        <div id="violationmodal" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div id="violationmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -80,11 +80,11 @@
                     </div>
                     <div class="mb-2 form-group" id="amount">
                       <label>Amount to be paid:</label>
-                      <input type="text" class="form-control" name="" id="amountToField" placeholder="0.00" required>
+                      <input type="text" class="form-control" name="" id="amountToField" placeholder="0.00" required onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                     <div class="mb-2 form-group">
                       <label>Cash tendered</label>
-                      <input type="text" class="form-control" name="violation[cash_tendered]" id="cashTendField" placeholder="0.00" required>
+                      <input type="text" class="form-control" name="violation[cash_tendered]" id="cashTendField" placeholder="0.00" required onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                     <div class="mb-2">
                       <label>Payment Effectivity</label>

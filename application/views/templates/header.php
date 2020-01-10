@@ -335,6 +335,32 @@ CONTENT STYLE
   background-color: #29539b;
   background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
 }
+
+.iconhovs:hover{
+  background-color: #4285F4;
+}
+
+.iconhovsICON:hover{
+  color: white;
+  background-color: #4285F4;
+
+}
+
+.noshad{
+  box-shadow: none !important;
+  background-color: transparent;
+}
+
+.hoverable:hover {
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+.iconhovsCARD:hover{
+    background-color: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+
 </style>
 <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">
@@ -427,8 +453,27 @@ CONTENT STYLE
           <a href="<?php echo base_url().'pages/view/viewTransactions' ?>">View Transaction</a>
         </li>
 
-        <li>
-          <a href="<?php echo base_url().'pages/view/clientInfoSelect' ?>">Client Information</a>
+
+        <li class="">
+          <a href="#homeSubmenu4" data-toggle="collapse" class="dropdown-toggle">Client Information</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu4">
+
+            <li>
+              <a href="<?php echo base_url().'pages/view/clientInformation'?>">Tenant</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url().'pages/view/clientInfoAmbu'?>">Ambulant</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url().'pages/view/clientInfoDelivery'?>">Delivery</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url().'pages/view/clientInfoPark'?>">Parking</a>
+            </li>
+          </ul>
         </li>
 
         <li class="">

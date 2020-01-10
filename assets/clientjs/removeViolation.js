@@ -3,6 +3,37 @@ var violationfrm = document.getElementsByName('violationform')[0];
 
 
 $(document).ready(function(){
+
+  $('#orField').change(function(){
+    var or_number = $('#orField').val();
+    $.ajax({
+      url: global.settings.url + '/MainController/checkOr',
+      type: 'POST',
+      data: {
+        or_number: or_number
+      },
+      dataType:'JSON',
+      success: function(res){
+
+        if(res=="meron"){
+          $('#orField').val("");
+          Swal.fire({
+            title: 'O.R number already exist!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+
+        }
+
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    })
+  });
+
+
+
   $('#getviolationtable').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/get_violation_data_con',
@@ -43,10 +74,10 @@ $(document).ready(function(){
           icon: 'success',
           title: 'Violation Resolved',
         });
-      $('#violationmodal').modal('toggle');
-      violationfrm.reset();
-      console.log(res);
-      $('#getviolationtable').DataTable().ajax.reload();
+        $('#violationmodal').modal('toggle');
+        violationfrm.reset();
+        console.log(res);
+        $('#getviolationtable').DataTable().ajax.reload();
       },
       error : function(xhr){
         console.log(xhr.responseText);
@@ -86,3 +117,21 @@ function fetchdata(id){
     }
   })
 }
+
+
+function isNumberKey(txt, evt) {
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode == 46) {
+    //Check if the text already contains the . character
+    if (txt.value.indexOf('.') === -1) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    if (charCode > 31 &&
+      (charCode < 48 || charCode > 57))
+      return false;
+    }
+    return true;
+  }

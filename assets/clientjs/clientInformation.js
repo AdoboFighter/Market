@@ -3,12 +3,7 @@ var id;
 
 $(document).ready(function(){
 
-  $('a').click(function(){
-    $('html, body').animate({
-        scrollTop: $( $(this).attr('href') ).offset().top
-    }, 500);
-    return false;
-});
+
 
 
   $( "#payhistbtn" ).click(function() {
@@ -76,23 +71,19 @@ $(document).ready(function(){
 
       }
     });
-
   });
+
 });
 
-
+//end of doc ready
 
 
 function fetchdata(id){
-
   customerinfo(id);
   transactionhistory(id);
-
-
 }
 
 function customerinfo(id){
-
   console.log(id);
   $.ajax({
     url: global.settings.url + '/MainController/getcustomerinfopaycon',
@@ -135,10 +126,8 @@ function customerinfo(id){
 
 
 
-function transactionhistory(id)
-{
+function transactionhistory(id){
   $('#pay_hist_tab').DataTable().destroy();
-
   $('#pay_hist_tab').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcustomertransactionhistory/' + id,
@@ -163,8 +152,6 @@ function transactionhistory(id)
     }]
 
   });
-
-
 
   $('.dataTables_length').addClass('bs-select');
 }

@@ -40,7 +40,7 @@
     <br>
 
 
-    <div id="TenantPay" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div id="TenantPay" data-backdrop="static" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content">
           <div class="modal-header">
@@ -278,7 +278,7 @@
 
 
 
-    <div id="print" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div id="print" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -307,7 +307,7 @@
     <!-- END OF MODAL -->
 
 
-    <div id="rec" class="modal fade right shadow"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+    <div id="rec" class="modal fade right shadow" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
       <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
           <div class="modal-header">

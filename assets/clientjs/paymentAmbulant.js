@@ -139,7 +139,6 @@ $(document).ready(function(){
 
     $('#payment_submit_button').click(function(){
 
-
       text1 = $('#part1text').val();
       text2 = $('#part2text').val();
       text3 = $('#part3text').val();
@@ -147,7 +146,6 @@ $(document).ready(function(){
       text5 = $('#part5text').val();
       text6 = $('#part6text').val();
       text7 = $('#part7text').val();
-
       num1 = $('#part1num').val();
       num2 = $('#part2num').val();
       num3 = $('#part3num').val();
@@ -156,7 +154,6 @@ $(document).ready(function(){
       num6 = $('#part6num').val();
       num7 = $('#part7num').val();
       ntw = $('#ntwntw').val();
-
       customer_id = $('#payment_customer_id').val();
       tenant_id = $('#payment_tenant_id').val();
       type_of_payment = $('#payment_type_of_payment').val();
@@ -345,18 +342,18 @@ $(document).ready(function(){
   }
 
   function isNumberKey(txt, evt) {
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode == 46) {
-          //Check if the text already contains the . character
-          if (txt.value.indexOf('.') === -1) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          if (charCode > 31 &&
-            (charCode < 48 || charCode > 57))
-            return false;
-        }
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode == 46) {
+      //Check if the text already contains the . character
+      if (txt.value.indexOf('.') === -1) {
         return true;
+      } else {
+        return false;
       }
+    } else {
+      if (charCode > 31 &&
+        (charCode < 48 || charCode > 57))
+        return false;
+      }
+      return true;
+    }

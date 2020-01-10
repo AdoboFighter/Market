@@ -9,72 +9,360 @@
   </nav>
 
 
-<div class="container justify-content-center">
-  <br>
-  <br>
-  <br>
+  <div class="container justify-content-center">
+    <br>
+    <h5 class="card-header text-center text-white bluegrads rounded-top rounded-bottom">Market Floor</h5>
+    <br>
+    <br>
 
-  <div class="col-6 text-center">
+    <div class="row text-center ">
 
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
+      <!-- <i class="fas fa-store fa-5x align-text-bottom p-2 iconhovsCARD z-depth-1" data-toggle="tooltip"><h5 class="align-text-bottom text-black">F-XX-</h5></i>
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
-      <br>
-      <label>FT-XX-</label>
-    </a>
+      <br> -->
 
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
-      <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
-      <br>
-      <label>FT-XX-</label>
-    </a>
+      <div class="card w-20 noshad ">
+        <!-- Card content -->
 
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
+
+        <mdb-card-footer class="p-2">
+
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom"></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+
+
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
+    </div>
+    <br>
+    <div class="row text-center ">
+
+      <!-- <i class="fas fa-store fa-5x align-text-bottom p-2 iconhovsCARD z-depth-1" data-toggle="tooltip"><h5 class="align-text-bottom text-black">F-XX-</h5></i>
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
+      <br> -->
+
+      <div class="card w-20 rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom"></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom"></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+
+
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
       <br>
-      <label>FT-XX-</label>
-    </a>
-    <a href="" class="btn-floating btn-lg white shadow p-2">
-      <i class="fas fa-store fa-5x"></i>
+    </div>
+    <br>
+    <div class="row text-center ">
+
+      <!-- <i class="fas fa-store fa-5x align-text-bottom p-2 iconhovsCARD z-depth-1" data-toggle="tooltip"><h5 class="align-text-bottom text-black">F-XX-</h5></i>
       <br>
-      <label>FT-XX-</label>
-    </a>
+      <br> -->
+
+      <div class="card w-20 noshad ">
+        <!-- Card content -->
+
+
+        <mdb-card-footer class="p-2">
+
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom"></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+      <div class="card w-20  rounded-top iconhovsCARD">
+        <!-- Card content -->
+        <div class="card-body waves-effect mdbWavesEffect iconhovsICON rounded-top">
+          <i class="fas fa-store fa-5x align-text-bottom" ></i>
+        </div>
+
+        <mdb-card-footer class="p-2 rounded-bottom">
+          <h5>F-XX-</h5>
+        </mdb-card-footer>
+      </div>
+      &nbsp
+      &nbsp
+      &nbsp
+
+
+
+
+      <br>
+      <br>
+    </div>
+    <br>
+    <br>
+
   </div>
 
-
-
-
-</div>
-
-<!-- Dark Overlay element -->
+  <!-- Dark Overlay element -->
 </div>
 <div class="overlay"></div>
