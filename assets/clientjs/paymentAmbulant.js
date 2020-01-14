@@ -58,7 +58,7 @@ $(document).ready(function(){
 
   $('#AmbulantTable').DataTable({
     "ajax" : {
-      "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
+      "url" : global.settings.url + '/MainController/getPayAmbulantTablepay',
       dataSrc : 'data'
     },
     "columns" : [

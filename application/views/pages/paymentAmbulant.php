@@ -141,7 +141,7 @@
               <div class="row mt-2">
                 <div class="col" id = "demo">
                   <label>Total</label>
-                  <input type="text" class="form-control payment_details ntw" name="total" id="total" readonly>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
                   <div></div>
                 </div>
               </div>
