@@ -12,7 +12,9 @@
 <!--  Data Table -->
 <script type="text/javascript" src="/assets/js/addons/datatables.min.js"></script>
 <script src="/assets/js/sweetalert2@9.js"></script>
-
+<!-- maps -->
+<script src="/assets/jmaps/jquery-jvectormap-2.0.3.min.js"></script>
+<script src="/assets/jmaps/jquery-jvectormap-world-mill-en.js"></script>
 
 
 <script type="text/javascript">

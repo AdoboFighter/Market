@@ -50,7 +50,7 @@
             <div class="col-6">
 
               <div class="mb-2">
-                <input type="text" class="form-control payment_details" name="payment_customer_id" id="payment_customer_id" readonly>
+                <input type="text" class="form-control payment_details" name="payment_customer_id" id="payment_customer_id" readonly hidden>
               </div>
 
 

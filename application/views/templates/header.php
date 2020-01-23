@@ -152,6 +152,8 @@ a:focus {
   margin-bottom: 40px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+
 .navbar-btn {
   box-shadow: none;
   outline: none !important;
@@ -336,6 +338,15 @@ CONTENT STYLE
   background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
 }
 
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+
+/*
 .iconhovs:hover{
   background-color: #4285F4;
 }
@@ -343,7 +354,6 @@ CONTENT STYLE
 .iconhovsICON:hover{
   color: white;
   background-color: #4285F4;
-
 }
 
 .noshad{
@@ -356,15 +366,94 @@ CONTENT STYLE
 }
 
 .iconhovsCARD:hover{
-    background-color: white;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+} */
+
+path:hover {
+  fill: gray;
+  stroke: black;
 }
+
+.tooltip span {
+  display:none;
+}
+.tooltip:hover span {
+  display:block;
+  position:fixed;
+  overflow:hidden;
+}
+
+path{
+  fill: white;
+}
+
+
+.tooltip span {
+  display:none;
+}
+.tooltip:hover span {
+  display:block;
+  position:fixed;
+  overflow:hidden;
+}
+
+.transparentnav{
+  background-color: transparent;
+}
+
+.gradblue{
+  color: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+}
+
+.navbarmf {
+  padding: 15px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+
+}
+
+/* .mapdiv{
+  top: -330px;
+  z-index: 1;
+  position: relative;
+}
+
+.maplegend{
+  z-index: 50;
+  position: relative;
+} */
+
+.noshadnav{
+  box-shadow: none;
+}
+
+
+
+
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+/* CSS MARKET MAP */
+
+
 
 
 </style>
 <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="/assets/jmaps/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+
+
+
+
+
 </head>
 
 <body>
@@ -487,9 +576,6 @@ CONTENT STYLE
             <li>
               <a href="<?php echo base_url().'pages/view/updateSystemUser' ?>">Update Users</a>
             </li>
-
-
-
           </ul>
         </li>
 

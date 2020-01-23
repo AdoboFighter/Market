@@ -1,5 +1,6 @@
 <html>
 <head>
+  <title>E-market</title>
   <style>
   /* BASIC */
 

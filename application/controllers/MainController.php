@@ -598,6 +598,30 @@ class MainController extends CI_Controller{
   }
 
 
+  public function floorchange()
+  {
+    $inputData = $this->input->post('floorf');
+    return $this->load->view('pages/'.$inputData['floortext']);
+  }
+
+  public function numberofstalls()
+  {
+    echo json_encode($this->model->numberofstalls());
+  }
+
+  public function numberofambu()
+  {
+    echo json_encode($this->model->numberofambu());
+  }
+
+  public function numberofcurtrans()
+  {
+    echo json_encode($this->model->numberofcurtrans());
+  }
+
+
+
+
 }
 
 

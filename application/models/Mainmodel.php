@@ -7,6 +7,7 @@ class Mainmodel extends CI_model{
     // To set session inside the model could be use to get session ids.
     $this->load->library('session');
     $this->load->library('form_validation');
+
   }
 
   public function login_acc($input)
@@ -1603,53 +1604,82 @@ class Mainmodel extends CI_model{
   }
 
   public function getcustomerinfopark($id)
-{
-  $this->db->where('customer_id', $id);
-  $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-  $this->db->join('driver', 'customer.customer_id=driver.fk_customer_id', 'inner');
-  $query = $this->db->get('tenant');
-  if($query->num_rows() >= 1) {
-    return 'withpark';
-  }else {
-    $this->db->trans_start();
-    $this->db->where('fk_customer_id', $id);
+  {
+    $this->db->where('customer_id', $id);
     $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $query2 = $this->db->get('tenant');
-    return $query2->result();
+    $this->db->join('driver', 'customer.customer_id=driver.fk_customer_id', 'inner');
+    $query = $this->db->get('tenant');
+    if($query->num_rows() >= 1) {
+      return 'withpark';
+    }else {
+      $this->db->trans_start();
+      $this->db->where('fk_customer_id', $id);
+      $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+      $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+      $query2 = $this->db->get('tenant');
+      return $query2->result();
+    }
   }
-}
 
-public function updatecert($data){
-  $data1 = array(
-    'print_status' => 'PRINTED'
-  );
-  $this->db->where('transaction_id',$data['transaction_id'])
-  ->update('transaction',$data1);
-  return true;
-}
+  public function updatecert($data){
+    $data1 = array(
+      'print_status' => 'PRINTED'
+    );
+    $this->db->where('transaction_id',$data['transaction_id'])
+    ->update('transaction',$data1);
+    return true;
+  }
 
-public function checkviolationpay($id)
-{
-$this->db->where('customer_id', $id);
-$this->db->where('status', 'NOT PAID');
-$this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-$this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-$this->db->join('violation', 'violation.stall_id=stall.stall_id', 'inner');
-$query = $this->db->get('tenant');
-if($query->num_rows() >= 1) {
-  return 'withviolation';
-}else {
-  $this->db->trans_start();
-  $this->db->where('fk_customer_id', $id);
-  $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-  $query = $this->db->get('customer');
-  return $query->result();
-  echo $query;
-}
-}
+  public function checkviolationpay($id)
+  {
+    $this->db->where('customer_id', $id);
+    $this->db->where('status', 'NOT PAID');
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'violation.stall_id=stall.stall_id', 'inner');
+    $query = $this->db->get('tenant');
+    if($query->num_rows() >= 1) {
+      return 'withviolation';
+    }else {
+      $this->db->trans_start();
+      $this->db->where('fk_customer_id', $id);
+      $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+      $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+      $query = $this->db->get('customer');
+      return $query->result();
+      echo $query;
+    }
+  }
+
+  public function numberofstalls()
+  {
+
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->num_rows();
+  }
+
+  public function numberofambu()
+  {
+
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->num_rows();
+  }
+
+  public function numberofcurtrans()
+  {
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+    $this->db->like('payment_datetime', $now);
+
+    $query = $this->db->get('transaction');
+    return $query->num_rows();
+  }
+
 
 
 
