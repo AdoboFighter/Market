@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-9">
-          <div id="world-map" style=" height: 500px;" class="shadow">
+          <div id="map" style=" height: 500px;" class="shadow">
           </div>
         </div>
       </div>

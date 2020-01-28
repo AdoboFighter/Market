@@ -15,8 +15,8 @@
 <!-- maps -->
 <script src="/assets/jmaps/jquery-jvectormap-2.0.3.min.js"></script>
 <script src="/assets/jmaps/jquery-jvectormap-world-mill-en.js"></script>
-
-
+<script src="/assets/jmaps/jquery-jvectormap-us-merc-en.js"></script>
+<script src="/assets/jmaps/ground-floor.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
   $("#sidebar").mCustomScrollbar({

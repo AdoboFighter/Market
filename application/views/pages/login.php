@@ -308,15 +308,15 @@
 <body>
 
   <div class="bluegrads">
-    <div class="wrapper fadeInDown">
+    <div class="wrapper ">
       <div id="formContent">
-        <div class="fadeIn first">
+        <div class="">
           <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="50" height="50" class="p-1">E-market</h3>
         </div>
         <form id="login_account">
-          <input type="text" id="login" class="fadeIn second" name="login[username]" placeholder="login">
-          <input type="password" id="password" class="fadeIn third" name="login[password]" placeholder="password">
-          <input type="submit" class="fadeIn fourth bgrad" value="Log In" >
+          <input type="text" id="login" class=" " name="login[username]" placeholder="login">
+          <input type="password" id="password" class=" " name="login[password]" placeholder="password">
+          <input type="submit" class="  bgrad" value="Log In" >
         </form>
       </div>
     </form>

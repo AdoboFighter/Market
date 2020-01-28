@@ -7,6 +7,7 @@ class Mainmodel extends CI_model{
     // To set session inside the model could be use to get session ids.
     $this->load->library('session');
     $this->load->library('form_validation');
+    date_default_timezone_set('Asia/Manila');
 
   }
 
@@ -1672,12 +1673,14 @@ class Mainmodel extends CI_model{
 
   public function numberofcurtrans()
   {
+
     $now = date('Y-m-d');
     $this->load->helper('date');
     $this->db->like('payment_datetime', $now);
 
     $query = $this->db->get('transaction');
     return $query->num_rows();
+
   }
 
 

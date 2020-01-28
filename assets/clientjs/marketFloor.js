@@ -69,12 +69,22 @@ $(document).ready(function(){
 
 
 
-$('#world-map').vectorMap({
+// $('#world-map').vectorMap({
+//   backgroundColor: '#22313F',
+//   onRegionClick: function (event, code) {
+//     $('#basicExampleModal').modal('show');
+//   }
+// });
+
+$('#map').vectorMap({
+  map: 'ground_floor',
   backgroundColor: '#22313F',
   onRegionClick: function (event, code) {
     $('#basicExampleModal').modal('show');
-  },
+  }
 });
+
+
 
 
 
