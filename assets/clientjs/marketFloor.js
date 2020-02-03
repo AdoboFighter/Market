@@ -22,8 +22,8 @@ $(document).ready(function(){
       data: $(this).serialize(),
       dataType:'JSON',
       success: function(res){
-      console.log(res);
-      $('#numstall').text(res);
+        console.log(res);
+        $('#numstall').text(res);
       },
       error:function(res){
         console.log('sala');
@@ -38,8 +38,8 @@ $(document).ready(function(){
       data: $(this).serialize(),
       dataType:'JSON',
       success: function(res){
-      console.log(res);
-      $('#numambu').text(res);
+        console.log(res);
+        $('#numambu').text(res);
       },
       error:function(res){
         console.log('sala');
@@ -49,70 +49,88 @@ $(document).ready(function(){
 
 
 
-    $('#numAllTrans').text(function() {
-      $.ajax({
-        url: global.settings.url + '/MainController/numberofcurtrans',
-        type: 'POST',
-        data: $(this).serialize(),
-        dataType:'JSON',
-        success: function(res){
+  $('#numAllTrans').text(function() {
+    $.ajax({
+      url: global.settings.url + '/MainController/numberofcurtrans',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
         console.log(res);
         $('#numAllTrans').text(res);
-        },
-        error:function(res){
-          console.log('sala');
-        }
-      });
+      },
+      error:function(res){
+        console.log('sala');
+      }
     });
+  });
 
 
 
 
 
-// $('#world-map').vectorMap({
-//   backgroundColor: '#22313F',
-//   onRegionClick: function (event, code) {
-//     $('#basicExampleModal').modal('show');
-//   }
-// });
+  var map = new jvm.Map({
+    container: $('#map'),
+    map: 'ground_floor',
+    backgroundColor: '#22313F',
+    onRegionClick: function (event, code) {
+      $('#basicExampleModal').modal('show');
+      $("#stallhead").text(map.getRegionName(code));
+      $("#stallhead_pay").text(map.getRegionName(code));
+      $("#stallinput").val(map.getRegionName(code));
 
-$('#map').vectorMap({
-  map: 'ground_floor',
-  backgroundColor: '#22313F',
-  onRegionClick: function (event, code) {
-    $('#basicExampleModal').modal('show');
-  }
+
+      var stall_list_table =  $('#stall_floor_info').DataTable({
+
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false,
+        searching: false,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getstallFLOOR/' + code,
+          "type": 'POST',
+          "dataType":'JSON',
+
+          dataSrc : 'data'
+        },
+        "columns" : [{
+          "data" : "unit_no"
+        },
+
+        {
+          "data" : "name"
+        },
+
+
+        {
+          "data" : "payment"
+        },
+
+
+        {
+          "data" : "client_info"
+        }]
+      });
+
+      $('#basicExampleModal').on('hidden.bs.modal', function () {
+        stall_list_table.destroy();
+
+      });
+    }
+  });
+
+  $('.dataTables_length').addClass('bs-select');
+
+
 });
 
 
+function launch_pay() {
 
+}
 
-
-// $('#location').on('change', function(e) {
-//   $('#floortext').val(this.value);
-//   e.preventDefault();
-//   $.ajax({
-//     url : global.settings.url + '/MainController/floorchange',
-//     type : 'POST',
-//     data : $('#floorform').serialize(),
-//     xhrFields: {
-//       responseType: 'blob'
-//     },
-//     success : function(res){
-//       console.log(res);
-//       //   $('#modalBirthday').modal('show');
-//       var a = document.createElement('a');
-//       var url = window.URL.createObjectURL(res);
-//       a.href = url;
-//       $('#iframe_preview_formgen').attr('src',url);
-//     },
-//     error : function(xhr){
-//       console.log(xhr.responseText);
-//     }
-//   });
-//
-// });
-
-
-
-});
+function fetch_info() {
+  $('#client_info_modal').modal('show');
+}

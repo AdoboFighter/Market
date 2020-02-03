@@ -619,6 +619,13 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->numberofcurtrans());
   }
 
+  public function getstallFLOOR()
+  {
+    $code =  $this->uri->segment(3);
+    echo json_encode($this->model->getstallFLOOR(urldecode($code)));
+  }
+
+
 
 
 

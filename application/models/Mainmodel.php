@@ -1673,15 +1673,70 @@ class Mainmodel extends CI_model{
 
   public function numberofcurtrans()
   {
-
     $now = date('Y-m-d');
     $this->load->helper('date');
     $this->db->like('payment_datetime', $now);
-
     $query = $this->db->get('transaction');
     return $query->num_rows();
+  }
+
+
+  // public function stall_number_submit($inputData)
+  // {
+  //
+  //   $stall_num_global = array('unit_no' => $inputData['stall']);
+  //   return $inputData;
+  //
+  // }
+
+
+
+
+
+
+
+
+  public function getstallFLOOR($inputData)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->like('unit_no',  $inputData);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'unit_no' => $r->unit_no,
+        'name' => $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'payment'=>
+
+        '<div class="">
+        <button type="button" onclick="launch_pay();" class="btn btn-sm btn-info ml-3" name="button" >Payment</button>
+        </div>',
+
+        'client_info'=>
+
+        '<div class="">
+        <button type="button" onclick="fetch_info();" class="btn btn-sm btn-info ml-3" name="button" >View</button></a>
+        </div>'
+
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+
 
   }
+
+
 
 
 
