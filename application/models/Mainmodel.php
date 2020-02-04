@@ -1702,7 +1702,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like('unit_no',  $inputData);
+    $this->db->like('unit_no',  $inputData.'-');
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $query = $this->db->get('customer');
@@ -1714,13 +1714,13 @@ class Mainmodel extends CI_model{
         'payment'=>
 
         '<div class="">
-        <button type="button" onclick="launch_pay();" class="btn btn-sm btn-info ml-3" name="button" >Payment</button>
+        <button type="button" onclick="launch_pay('.$r->customer_id.');" class="btn btn-sm btn-info ml-3" name="button" >Payment</button>
         </div>',
 
         'client_info'=>
 
         '<div class="">
-        <button type="button" onclick="fetch_info();" class="btn btn-sm btn-info ml-3" name="button" >View</button></a>
+        <button type="button" onclick="fetchdata('.$r->customer_id.');" class="btn btn-sm btn-info ml-3" name="button" >View</button></a>
         </div>'
 
       );

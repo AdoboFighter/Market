@@ -8,7 +8,6 @@ $(document).ready(function(){
 
   $( "#payhistbtn" ).click(function() {
     $('#violationmodal').modal('show');
-
   });
 
   $('#client_table').DataTable({
@@ -64,8 +63,6 @@ $(document).ready(function(){
         });
         $('#client_table').DataTable().ajax.reload();
         $('#updatecustomerinfo')[0].reset();
-
-
       },
       error:function(res){
 
