@@ -1698,19 +1698,26 @@ class Mainmodel extends CI_model{
 
   public function getstallFLOOR($inputData)
   {
-
+    $test = "yeah hahah";
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     $this->db->like('unit_no',  $inputData.'-');
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->or_where('unit_no',  $inputData);
+    // $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    $this->db->group_by("customer.customer_id");
+    // $this->db->order_by('effectivity', 'DESC');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'unit_no' => $r->unit_no,
         'name' => $r->firstname.' '.$r->middlename.' '.$r->lastname,
+
+        'effectivity' => $r->customer_id,
+
         'payment'=>
 
         '<div class="">
@@ -1732,8 +1739,7 @@ class Mainmodel extends CI_model{
       "data" => $data
     );
     return $result;
-
-
+    echo $query;
   }
 
 

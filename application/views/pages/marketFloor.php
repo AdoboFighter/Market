@@ -81,6 +81,7 @@
               <tr>
                 <td class="border border-dark" >Registered Stall #</td>
                 <td class="border border-dark" >Name</td>
+                <td class="border border-dark" >Today's fee</td>
                 <td class="border border-dark" >Payment</td>
                 <td class="border border-dark" >Client Info</td>
               </tr>
@@ -478,7 +479,7 @@
 </div>
 <!-- END OF MODAL -->
 
-<div id="print" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+<div id="print" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -506,7 +507,7 @@
 </div>
 <!-- END OF MODAL -->
 
-<div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+<div id="violationmodal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">

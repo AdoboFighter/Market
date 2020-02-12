@@ -633,8 +633,10 @@ $(document).ready(function(){
           icon: 'success',
           title: 'Updated',
         });
+        $('#client_info_modal').modal('hide');
         $('#client_table').DataTable().ajax.reload();
         $('#updatecustomerinfo')[0].reset();
+
       },
       error:function(res){
 
@@ -643,8 +645,11 @@ $(document).ready(function(){
   });
 
   $( "#payhistbtn" ).click(function() {
+    $('#client_info_modal').modal('hide');
     $('#violationmodal').modal('show');
   });
+
+
 
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
@@ -681,6 +686,11 @@ $(document).ready(function(){
           "data" : "name"
         },
 
+        {
+          "data" : "effectivity"
+        },
+
+
 
         {
           "data" : "payment"
@@ -694,13 +704,17 @@ $(document).ready(function(){
 
       $('#basicExampleModal').on('hidden.bs.modal', function () {
         stall_list_table.destroy();
-
       });
     }
   });
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
 
+  $('.modal').on("hidden.bs.modal", function (e) { //fire on closing modal box
+       if ($('.modal:visible').length) { // check whether parent modal is opend after child modal close
+           $('body').addClass('modal-open'); // if open mean length is 1 then add a bootstrap css class to body of the page
+       }
+   });
 });
 
 //end of doc ready end of doc ready end of doc ready end of doc ready
@@ -708,7 +722,6 @@ $(document).ready(function(){
 //end of doc ready end of doc ready end of doc ready end of doc ready
 
 function launch_pay(id){
-  $('#TenantPay').modal('show');
   $.ajax({
     url: global.settings.url + '/MainController/checkviolationpay',
     type: 'POST',
@@ -722,6 +735,7 @@ function launch_pay(id){
           icon: 'error',
           title: 'Pay the violation first',
         });
+
       }else {
         res = res[0];
         $('#TenantPay').modal("show");
@@ -746,46 +760,7 @@ function launch_pay(id){
   })
 }
 
-// function fetch_info(id) {
-//   $('#client_info_modal').modal('show');
-//   $.ajax({
-//     url: global.settings.url + '/MainController/getcustomerinfopaycon',
-//     type: 'POST',
-//     data: {
-//       id: id
-//     },
-//     dataType:'JSON',
-//     success: function(res){
-//       console.log(res);
-//       $('#customer_id').val(res[0].customer_id)
-//       $('#owner_fn').val(res[0].firstname);
-//       $('#owner_mn').val(res[0].middlename);
-//       $('#owner_ln').val(res[0].lastname);
-//       $('#owner_add').val(res[0].address);
-//       $('#owner_cn').val(res[0].contact_no);
-//
-//       $('#occu_fn').val(res[0].oafirstname);
-//       $('#occu_mn').val(res[0].oamiddlename);
-//       $('#occu_ln').val(res[0].oalastname);
-//       $('#occu_add').val(res[0].oaaddress);
-//       $('#occu_cn').val(res[0].contact_no);
-//
-//       $('#stall_id').val(res[0].stall_id)
-//       $('#stall_number').val(res[0].stall_number);
-//       $('#area').val(res[0].area);
-//       $('#daily_fee').val(res[0].daily_fee);
-//       $('#stall_flr_lvl').val(res[0].floor_level);
-//       $('#nature_or_business').val(res[0].nature_or_business);
-//       $('#business_id').val(res[0].business_id);
-//       $('#business_name').val(res[0].business_name);
-//       $('#Section').val(res[0].Section);
-//
-//     },
-//     error: function(xhr){
-//       console.log(xhr.responseText);
-//     }
-//   })
-// }
+
 
 function fetchdata(id){
   $('#client_info_modal').modal('show');
