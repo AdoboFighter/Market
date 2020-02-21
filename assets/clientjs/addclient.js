@@ -24,6 +24,24 @@ function updatefield() {
 
 
 $(document).ready(function(){
+  //DYNAMIC SELECT SECTIONS
+  //DYNAMIC SELECT SECTIONS
+  // $.ajax({
+  //   url: global.settings.url +'/MainController/fetch_section',
+  //   type:'POST',
+  //   success:function(data)
+  //   {
+  //     console.log(data);
+  //     data = JSON.parse(data);
+  //
+  //     data.forEach(function(e, i){
+  //       // $('#user_select').append($('<option><option/>').val(e.user_id).text(e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname));
+  //       $('#section_dyna').append(new Option((e.Section), (e.Section)));
+  //     });
+  //   }
+  // });
+  //DYNAMIC SELECT SECTIONS
+  //DYNAMIC SELECT SECTIONS
 
   $('#sameas').on('change',function(){
     if( $(this).is(':checked') ){
@@ -53,7 +71,7 @@ $(document).ready(function(){
 
   $('#save_customer').submit(function(e){
     e.preventDefault();
-   
+
     $.ajax({
       url : global.settings.url +'/MainController/save_customer_controller',
       type : 'POST',

@@ -10,9 +10,10 @@
 
 
   <div class="container justify-content-center">
-
-  
-
+    <div class="form-group">
+      <select name="user_select" id="user_select" class="form-control input-lg">
+      </select>
+    </div>
   </div>
 
   <!-- Dark Overlay element -->

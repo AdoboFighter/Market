@@ -50,9 +50,17 @@
               <select class="form-control form-control-sm" name="update[section]" id="Section">
                 <option selected value="">Please Select</option>
                 <option value="Fish">Fish</option>
-                <option value="Meat">Meat</option>
-                <option value="Section1">Section 1</option>
-                <option value="Section2">Section 2</option>
+                <option value="Flores - Pat">Flores - Pat</option>
+                <option value="Meat/Chicken">Meat/Chicken</option>
+                <option value="Regidor A">Regidor A</option>
+                <option value="Regidor B">Regidor B</option>
+                <option value="Paterno">Paterno</option>
+                <option value="PAT-VEG">PAT-VEG</option>
+                <option value="2nd FLOOR">2nd FLOOR</option>
+                <option value="Grd. Flr.">Grd. Flr.</option>
+                <option value="Fruit">Fruit</option>
+                <option value="NIGHT MARKET">NIGHT MARKET</option>
+                <option value="Service Road">Service Road</option>
               </select><br>
             </div>
             <div class="form-group" id="floorlevel">

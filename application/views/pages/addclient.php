@@ -71,7 +71,7 @@
             </div>
           </div>
 
-        </form>
+
       </div>
     </div>
     <br>
@@ -84,12 +84,20 @@
             <h5>Stall Information</h5>
             <div class="form-group">
               <label>Section</label>
-              <select class="form-control form-control-sm" name="customer[section]" >
+              <select class="form-control form-control-sm" name="customer[section]" id="section_dyna">
                 <option selected value="">Please Select</option>
                 <option value="Fish">Fish</option>
-                <option value="Meat">Meat</option>
-                <option value="Section1">Section 1</option>
-                <option value="Section2">Section 2</option>
+                <option value="Flores - Pat">Flores - Pat</option>
+                <option value="Meat/Chicken">Meat/Chicken</option>
+                <option value="Regidor A">Regidor A</option>
+                <option value="Regidor B">Regidor B</option>
+                <option value="Paterno">Paterno</option>
+                <option value="PAT-VEG">PAT-VEG</option>
+                <option value="2nd FLOOR">2nd FLOOR</option>
+                <option value="Grd. Flr.">Grd. Flr.</option>
+                <option value="Fruit">Fruit</option>
+                <option value="NIGHT MARKET">NIGHT MARKET</option>
+                <option value="Service Road">Service Road</option>
               </select><br>
               <span id="section_error" class="text-danger"></span>
             </div>
@@ -153,7 +161,7 @@
   </div>
 </div>
 
-
+  </form>
 
 <!-- Dark Overlay element -->
 

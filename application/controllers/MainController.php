@@ -103,10 +103,10 @@ class MainController extends CI_Controller{
   }
 
 
-    public function getdeliverypaytablepay()
-    {
-      echo json_encode($this->model->getdeliverypaytablepay());
-    }
+  public function getdeliverypaytablepay()
+  {
+    echo json_encode($this->model->getdeliverypaytablepay());
+  }
 
 
   public function getparkingpaytablecon()
@@ -497,7 +497,7 @@ class MainController extends CI_Controller{
     $data = $this->input->post('cert');
     $query = $this->model->updatecert($data);
     echo json_encode($query);
-   }
+  }
 
   public function paymentreceipt()
   {
@@ -625,9 +625,16 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getstallFLOOR(urldecode($code)));
   }
 
+  function fetch_user()
+  {
+    echo json_encode($this->model->fetch_user());
+  }
 
 
-
+  function fetch_section()
+  {
+    echo json_encode($this->model->fetch_section());
+  }
 
 }
 

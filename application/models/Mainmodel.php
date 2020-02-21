@@ -1,6 +1,7 @@
 <?php
 class Mainmodel extends CI_model{
 
+
   public function __construct() {
     parent::__construct();
 
@@ -1743,32 +1744,58 @@ class Mainmodel extends CI_model{
   }
 
   public function resolveViolationMod($inputData)
+  {
+    $data_transaction = array(
+      'payment_nature_id' => '4016',
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
+
+    $violation_id = array(
+      'violation_id' => $inputData['violation_id_f']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
     {
-      $data_transaction = array(
-        'payment_nature_id' => '4016',
-        'payment_amount' => $inputData['cash_tendered'],
-        'customer_id' => $inputData['customer_id'],
-        'or_number' => $inputData['OR'],
-        'effectivity' => $inputData['payment_effect']
-      );
+      echo '<script>console.log("Shit not working")</script>';
+    }
+  }
 
-      $violation_id = array(
-        'violation_id' => $inputData['violation_id_f']
-      );
+  function fetch_user()
+  {
+    $result =  array();
+    $query = $this->db->get('user');
 
-      $this->db->trans_start();
-      $this->db->insert('transaction', $data_transaction);
-      $paid = array(
-        'status' => "PAID"
-      );
-      $this->db->where($violation_id);
-      $this->db->update('violation', $paid);
-      $this->db->trans_complete();
-      if ($this->db->trans_status() === FALSE)
-      {
-        echo '<script>console.log("Shit not working")</script>';
-      }
-     }
+    foreach($query->result() as $row)
+    {
+      array_push($result,$row);
+    }
+    return $result;
+  }
+
+  function fetch_section()
+  {
+    $result =  array();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    $this->db->group_by("stall.Section");
+    $query = $this->db->get('customer');
+    foreach($query->result() as $row)
+    {
+      array_push($result,$row);
+    }
+    return $result;
+  }
 
 
 
