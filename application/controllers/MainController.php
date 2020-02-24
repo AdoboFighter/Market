@@ -451,6 +451,7 @@ class MainController extends CI_Controller{
   public function resolveViolationCon()
   {
     $inputData = $this->input->post('violation');
+
     echo json_encode( $this->model->resolveViolationMod($inputData));
   }
 

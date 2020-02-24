@@ -787,7 +787,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
         </div>'
       );
     }
@@ -1750,7 +1750,8 @@ class Mainmodel extends CI_model{
       'payment_amount' => $inputData['cash_tendered'],
       'customer_id' => $inputData['customer_id'],
       'or_number' => $inputData['OR'],
-      'effectivity' => $inputData['payment_effect']
+      'effectivity' => $inputData['payment_effect'],
+      'collector' => $inputData['sysuser'],
     );
 
     $violation_id = array(

@@ -50,6 +50,7 @@
                     <h5 class="font-weight-bold">Payment Details</h5>
                     <div class="form-group">
                       <label for="">Violation ID</label>
+                      <input type="hidden" id="sysuser" name="violation[sysuser]" value="<?php echo $this->session->userdata('user_fullname');?>">
                       <input type="text" class="form-control" name="violation[violation_id_f]" id="vio" readonly>
                       <input type="text" class="form-control" name="violation[customer_id]" id="cust" hidden>
                       <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" hidden>

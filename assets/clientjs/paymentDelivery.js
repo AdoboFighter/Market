@@ -105,7 +105,7 @@ $(document).ready(function(){
 
   $('#DeliveryTable').DataTable({
     "ajax" : {
-      "url" : global.settings.url + '/MainController/getdeliverypaytablecon',
+      "url" : global.settings.url + '/MainController/getdeliverypaytablepay',
       dataSrc : 'data'
     },
     "columns" : [

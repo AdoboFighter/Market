@@ -90,13 +90,7 @@ $(document).ready(function(){
 
 
   function fetchdata(id){
-
-
     $('#certmodal').modal("show");
-
-
-
-
     console.log(id);
     $.ajax({
       url: global.settings.url + '/MainController/get_cert_info_con',
@@ -122,8 +116,6 @@ $(document).ready(function(){
         $('#days').val(n);
         $('#month').val(month);
         $('#year').val(year);
-
-
       },
       error: function(xhr){
         console.log(xhr.responseText);
