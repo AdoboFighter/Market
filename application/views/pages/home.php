@@ -102,7 +102,7 @@
               <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-right p-3">
                 <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
-                <h4 class="font-weight-bold mb-0">0</h4>
+                <h4 class="font-weight-bold mb-0" id="numvio"></h4>
               </div>
             </div>
 
@@ -153,7 +153,7 @@
               <i class="fas fa-cash-register fa-lg blue z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-right p-3">
                 <p class="text-uppercase text-muted mb-1"><small>Transactions Today</small></p>
-                <h4 class="font-weight-bold mb-0">0</h4>
+                <h4 class="font-weight-bold mb-0" id="numoftrans"></h4>
               </div>
             </div>
 

@@ -26,6 +26,48 @@ $(document).ready(function(){
       }
     });
   });
+
+  $('#numvio').text(function() {
+    $.ajax({
+      url: global.settings.url + '/MainController/numberofviolation',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        if (res == null) {
+          $('#numvio').text("0");
+        } else {
+          $('#numvio').text(res);
+        }
+
+      },
+      error:function(res){
+        console.log('sala');
+      }
+    });
+  });
+
+  $('#numoftrans').text(function() {
+    $.ajax({
+      url: global.settings.url + '/MainController/numberofcurtrans',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        if (res == null) {
+          $('#numoftrans').text("0");
+        } else {
+          $('#numoftrans').text(res);
+        }
+      },
+      error:function(res){
+        console.log('sala');
+      }
+    });
+  });
+
   $('#dateToday').text(month +","+" "+ n +" "+ year);
 
   $.ajax({

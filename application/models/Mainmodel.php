@@ -941,9 +941,6 @@ class Mainmodel extends CI_model{
         'business_name' => $r->business_name,
         'business_id' => $r->business_id,
         'Section' => $r->Section,
-
-
-
       );
     }
 
@@ -1796,6 +1793,25 @@ class Mainmodel extends CI_model{
       array_push($result,$row);
     }
     return $result;
+  }
+
+  public function numberofviolation()
+  {
+    $this->db->where('status', "NOT PAID");
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('violation', 'stall.stall_id=violation.stall_stall_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->num_rows();
+  }
+
+  public function numberoftranstoday()
+  {
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+    $this->db->like('payment_datetime', $now);
+    $query = $this->db->get('transaction');
+    return $query->num_rows();
   }
 
 

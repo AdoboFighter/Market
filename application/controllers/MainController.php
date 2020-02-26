@@ -10,7 +10,7 @@ class MainController extends CI_Controller{
 
     $this->load->model('Mainmodel','model');
     $this->load->library('form_validation');
-
+    date_default_timezone_set('Asia/Manila');
   }
 
   // add client module
@@ -400,9 +400,10 @@ class MainController extends CI_Controller{
 
   public function savetransaction()
   {
-
+    $now = date('Y-m-d H:i:s');
     $transactionData = array(
       'fund_id' => $this->input->post('fund_id'),
+      'payment_datetime'=>$now,
       'payment_nature_id'=> $this->input->post('type_of_payment'),
       'payment_amount'=> $this->input->post('cash_tendered'),
       'customer_id'=> $this->input->post('customer_id'),
@@ -635,6 +636,16 @@ class MainController extends CI_Controller{
   function fetch_section()
   {
     echo json_encode($this->model->fetch_section());
+  }
+
+  public function numberofviolation()
+  {
+    echo json_encode($this->model->numberofviolation());
+  }
+
+  public function numberoftranstoday()
+  {
+    echo json_encode($this->model->numberofviolation());
   }
 
 }

@@ -8,10 +8,12 @@ class SaveTrns extends CI_Controller {
     }
 
     public function proc() {
+        $now = date('Y-m-d H:i:s');
         $data = json_decode(file_get_contents('php://input'));
         $effDate = date('m/d/Y');
         $query = "INSERT INTO market_db.transaction(
             fund_id,
+            payment_datetime,
             payment_nature_id,
             payment_amount,
             user_id,
@@ -21,6 +23,7 @@ class SaveTrns extends CI_Controller {
             )
             VALUES(
             1,
+            '$now'
             4011,
             '$data->Payment',
             '$data->CollectorID',
