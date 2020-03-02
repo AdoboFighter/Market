@@ -7,7 +7,6 @@ class MainController extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-
     $this->load->model('Mainmodel','model');
     $this->load->library('form_validation');
     date_default_timezone_set('Asia/Manila');
@@ -64,7 +63,8 @@ class MainController extends CI_Controller{
 
   public function gettenanttable()
   {
-    echo json_encode($this->model->gettenanttable());
+    $search = $this->input->post('search');
+    echo json_encode($this->model->gettenanttable($search));
   }
 
 

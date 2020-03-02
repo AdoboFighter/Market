@@ -18,6 +18,7 @@
             <div class="col-6">
               <div class="p-3">
                 <h5>Owner's Information</h5>
+            
                 <div class="form-group">
                   <label for="">First Name</label>
                   <input type="text" class="form-control" name="customer[Owner_Firstname]"  id="fname" required>
