@@ -501,11 +501,25 @@ CONTENT STYLE
     /* CSS MARKET MAP */
     /* CSS MARKET MAP */
     /* CSS MARKET MAP */
+
+    /* css for system user para magkadikit */
+    .systemuser {
+      margin-bottom: -25px;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+
+    .SystemUserCont {
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+    }
   </style>
   <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
   <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="/assets/jmaps/jquery-jvectormap-2.0.3.css" type="text/css" media="screen" />
+
 
 
 
@@ -526,7 +540,38 @@ CONTENT STYLE
       </div>
 
       <ul class="list-unstyled components text-dark">
-        <p class="">System User: <?php echo $this->session->userdata('user_fullname'); ?></p>
+        <div class="SystemUserCont mb-3">
+          <div class="card">
+            <p class="systemuser">System User</p>
+            <p><?php echo $this->session->userdata('user_fullname'); ?></p>
+          </div>
+        </div>
+        <li>
+          <a href="<?php echo base_url() . 'pages/view/marketFloor' ?>">Market Floor</a>
+        </li>
+
+        <li class="">
+          <a href="#homeSubmenu2" data-toggle="collapse" class="dropdown-toggle">Payment</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu2">
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/payment' ?>">Tenant</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/paymentAmbulant' ?>">Ambulant</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/paymentDelivery' ?>">delivery</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/paymentParking' ?>">parking</a>
+            </li>
+
+          </ul>
+        </li>
 
         <li class="">
           <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Add Client</a>
@@ -561,46 +606,9 @@ CONTENT STYLE
           </ul>
         </li>
 
-        <li class="">
-          <a href="#homeSubmenu2" data-toggle="collapse" class="dropdown-toggle">Payment</a>
-          <ul class="collapse list-unstyled" id="homeSubmenu2">
-
-            <li>
-              <a href="<?php echo base_url() . 'pages/view/payment' ?>">Tenant</a>
-            </li>
-
-            <li>
-              <a href="<?php echo base_url() . 'pages/view/paymentAmbulant' ?>">Ambulant</a>
-            </li>
-
-            <li>
-              <a href="<?php echo base_url() . 'pages/view/paymentDelivery' ?>">delivery</a>
-            </li>
-
-            <li>
-              <a href="<?php echo base_url() . 'pages/view/paymentParking' ?>">parking</a>
-            </li>
-
-          </ul>
-        </li>
-
-
         <li>
           <a href="<?php echo base_url() . 'pages/view/certification' ?>">Certification</a>
         </li>
-        <li>
-          <a href="<?php echo base_url() . 'pages/view/marketFloor' ?>">Market Floor</a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'pages/view/consolidation' ?>">Consolidation</a>
-        </li>
-
-
-        <li>
-          <a href="<?php echo base_url() . 'pages/view/viewTransactions' ?>">View Transaction</a>
-        </li>
-
 
         <li class="">
           <a href="#homeSubmenu4" data-toggle="collapse" class="dropdown-toggle">Client Information</a>
@@ -621,6 +629,42 @@ CONTENT STYLE
             <li>
               <a href="<?php echo base_url() . 'pages/view/clientInfoPark' ?>">Parking</a>
             </li>
+          </ul>
+        </li>
+
+        <!-- <li>
+          <a href="<?php echo base_url() . 'pages/view/viewTransactions' ?>">View Transaction</a>
+        </li> -->
+        <li class="">
+          <a href="#homeSubmenu5" data-toggle="collapse" class="dropdown-toggle">View Transaction</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu5">
+
+            <li>
+              <a href="#">EMT - Electronic Mobile Ticketing</a>
+            </li>
+
+            <li>
+              <a href="#">OTC - Over the Counter</a>
+            </li>
+
+          </ul>
+        </li>
+
+        <!-- <li>
+          <a href="<?php echo base_url() . 'pages/view/consolidation' ?>">Consolidation</a>
+        </li> -->
+        <li class="">
+          <a href="#homeSubmenu6" data-toggle="collapse" class="dropdown-toggle">Consolidation</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu6">
+
+            <li>
+              <a href="#">Cashiers Report</a>
+            </li>
+
+            <li>
+              <a href="#">Consolidated Report</a>
+            </li>
+
           </ul>
         </li>
 
