@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -43,9 +42,9 @@
       <div class="col-6">
         <div class="card col p-3 shadow">
           <h5 class="font-weight-bold">Ambulant's Information</h5>
-          <form id = "updatecustomerinfo">
-            <input type="hidden" id = "customer_id" name = "update[customer_id]">
-            <input type="hidden" id = "ambulant_id" name = "update[ambulant_id]">
+          <form id="updatecustomerinfo">
+            <input type="hidden" id="customer_id" name="update[customer_id]">
+            <input type="hidden" id="ambulant_id" name="update[ambulant_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[ambulant_fn]" id="ambulant_fn" required>
@@ -70,64 +69,64 @@
               <label>Nature of Business:</label>
               <input type="input" class="form-control" name="update[nature_of_business]" id="nature_of_business" required>
             </div>
-          </div>
-          <br>
-
         </div>
-
-        <div class="col-6">
-          <div class="card col p-3 shadow">
-            <h5 class="font-weight-bold">Ambulant unit Information</h5>
-            <div class="mb-2">
-              <label>Location</label>
-              <input type="text" class="form-control" name="update[location]" id="location">
-            </div>
-            <div class="mb-2">
-              <label>Location number</label>
-              <input type="text" class="form-control" name="update[location_num]" id="Location_num">
-            </div>
-            <div class="p-2">
-              <button class ="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
-              <button class = "btn btn-primary" type="submit">Update</button>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalPreviewLabel">Payment History</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
-                  <thead>
-                    <tr>
-                      <td class="border border-dark">OR#</td>
-                      <td class="border border-dark">Nature or payment</td>
-                      <td class="border border-dark">Amount</td>
-                      <td class="border border-dark">Date</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <!-- END OF MODAL -->
-
+        <br>
 
       </div>
+
+      <div class="col-6">
+        <div class="card col p-3 shadow">
+          <h5 class="font-weight-bold">Ambulant unit Information</h5>
+          <div class="mb-2">
+            <label>Location</label>
+            <input type="text" class="form-control" name="update[location]" id="location">
+          </div>
+          <div class="mb-2">
+            <label>Location number</label>
+            <input type="text" class="form-control" name="update[location_num]" id="Location_num">
+          </div>
+          <div class="p-2">
+            <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
+            <button class="btn btn-primary" type="submit">Update</button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="violationmodal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPreviewLabel">Payment History</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
+                <thead>
+                  <tr>
+                    <td class="border border-dark">OR#</td>
+                    <td class="border border-dark">Nature or payment</td>
+                    <td class="border border-dark">Amount</td>
+                    <td class="border border-dark">Date</td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- END OF MODAL -->
+
+
     </div>
   </div>
+</div>
 
 
 </div>

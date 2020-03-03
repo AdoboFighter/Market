@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -15,12 +14,12 @@
       <div class="container">
         <form id="save_customer">
           <div class="row">
-            <div class="col-6">
+            <div class="col-6" style="border-right: 1px solid #bdc4c6;">
               <div class="p-3">
-                <h5>Owner's Information</h5>
+                <h5 class="font-weight-bold" style="margin-bottom: 40px">Owner's Information</h5>
                 <div class="form-group">
                   <label for="">First Name</label>
-                  <input type="text" class="form-control" name="customer[Owner_Firstname]"  id="fname" required>
+                  <input type="text" class="form-control" name="customer[Owner_Firstname]" id="fname" required>
                 </div>
                 <div class="form-group">
                   <label for="">Middle Name</label>
@@ -28,7 +27,7 @@
                 </div>
                 <div class="form-group">
                   <label for="">Last Name</label>
-                  <input type="text" class="form-control" name="customer[Owner_Lastname]" id="lname"required>
+                  <input type="text" class="form-control" name="customer[Owner_Lastname]" id="lname" required>
                 </div>
                 <div class="form-group">
                   <label for="">Address</label>
@@ -42,7 +41,7 @@
             </div>
             <div class="col-6" id="occupantfield">
               <div class="p-3">
-                <h5>Occupant's Information</h5>
+                <h5 class="font-weight-bold">Occupant's Information</h5>
                 <div class="form-check mb-2">
                   <input type="checkbox" class="form-check-input" id="sameas">
                   <label class="form-check-label">Same as Owner's Information</label>
@@ -79,9 +78,9 @@
 
     <div class="card m-2 shadow">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6" style="border-right: 1px solid #bdc4c6;">
           <div class="p-3">
-            <h5>Stall Information</h5>
+            <h5 class="font-weight-bold">Stall Information</h5>
             <div class="form-group">
               <label>Section</label>
               <select class="form-control form-control-sm" name="customer[section]" id="section_dyna">
@@ -118,16 +117,16 @@
             </div>
           </div>
         </div>
-        <div class="col-6" id="stall_fields2">
+        <div class="col-6" id="stall_fields2" style="margin-top: 15px;">
           <br>
           <div class="p-3">
             <div class="form-group" id="">
               <label for="">Stall Number</label>
-              <input type="text" class="form-control" id="stallf_num"name="customer[Stall_Number]">
+              <input type="text" class="form-control" id="stallf_num" name="customer[Stall_Number]">
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="dailyfee">
-              <label for="">Daily Fee</label>
+              <label for="" style="margin-top: 18px;">Daily Fee</label>
               <input type="text" class="form-control" id="stallf_daily_fee" name="customer[Daily_fee]">
               <span id="" class="text-danger"></span>
             </div>
@@ -161,7 +160,7 @@
   </div>
 </div>
 
-  </form>
+</form>
 
 <!-- Dark Overlay element -->
 

@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -16,15 +15,15 @@
         <div class="card shadow">
           <div class="row p-3">
             <div class="col-12">
-              <table class="table table-striped table-bordered"id="add_vio_tab" >
+              <table class="table table-striped table-bordered" id="add_vio_tab">
                 <thead>
                   <tr>
-                    <td class="border border-dark" >No</td>
-                    <td class="border border-dark" >Name</td>
-                    <td class="border border-dark" >Stall No.</td>
-                    <td class="border border-dark" >Address</td>
-                    <td class="border border-dark" >Occupant</td>
-                    <td class="border border-dark" >load data</td>
+                    <td class="border border-dark">No</td>
+                    <td class="border border-dark">Name</td>
+                    <td class="border border-dark">Stall No.</td>
+                    <td class="border border-dark">Address</td>
+                    <td class="border border-dark">Occupant</td>
+                    <td class="border border-dark">load data</td>
                   </tr>
                 </thead>
                 <tbody>

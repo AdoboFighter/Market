@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -21,29 +20,29 @@
                 <div class="p-3">
                   <div class="form-group">
                     <label for="">Company/Driver's Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Firstname]"   required>
+                    <input type="text" class="form-control" name="customer[Owner_Firstname]" required>
                   </div>
                   <div class="form-group">
                     <label for="">Plate Number</label>
-                    <input type="text" class="form-control" name="customer[plate_no]"  required>
+                    <input type="text" class="form-control" name="customer[plate_no]" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]"  required>
+                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]" required>
                   </div>
                   <div class="text-right">
                     <button type="reset" class="btn stylish-color-dark text-white btn-center" onclick="clear();">Clear</button>
                     <button type="submit" name="submit_client" id="submit_client" class="btn btn-primary">Submit</button>
 
-                </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
 </div>
 

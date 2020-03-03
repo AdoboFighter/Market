@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -21,11 +20,11 @@
                 <div class="p-3">
                   <div class="form-group">
                     <label for="">First Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Firstname]"   required>
+                    <input type="text" class="form-control" name="customer[Owner_Firstname]" required>
                   </div>
                   <div class="form-group">
                     <label for="">Middle Name</label>
-                    <input type="text" class="form-control" name="customer[Owner_Middlename]"  required>
+                    <input type="text" class="form-control" name="customer[Owner_Middlename]" required>
                   </div>
                   <div class="form-group">
                     <label for="">Last Name</label>
@@ -33,18 +32,18 @@
                   </div>
                   <div class="form-group">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" name="customer[Owner_Address]"  required>
+                    <input type="text" class="form-control" name="customer[Owner_Address]" required>
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]"  required>
+                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]" required>
                   </div>
 
 
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6" style="margin-top: 15px;">
               <div class="form-group">
                 <label for="">Location</label>
                 <input type="text" class="form-control" id="amlocation" name="customer[Location]">
@@ -62,13 +61,13 @@
 
               </div>
             </div>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
-    <br>
-    <br>
   </div>
+  <br>
+  <br>
+</div>
 
 </div>
 

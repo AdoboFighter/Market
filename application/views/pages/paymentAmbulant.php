@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -35,7 +34,7 @@
 
 
 
-  <div id="AmbuPay" class="modal fade right" data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div id="AmbuPay" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -61,7 +60,7 @@
 
               <div class="mb-2">
                 <label>Location</label>
-                <input type="text" class="form-control payment_details" name="payment_location" id="payment_location"  readonly>
+                <input type="text" class="form-control payment_details" name="payment_location" id="payment_location" readonly>
               </div>
 
               <div class="mb-2">
@@ -70,76 +69,76 @@
               </div>
               <h5>Particulars</h5>
               <div class="col-6">
-                <input type="checkbox" class = "ntw" name="sub_total" id = "sub_total" value=""> &nbsp;<strong>Sub Total</strong> <br>
+                <input type="checkbox" class="ntw" name="sub_total" id="sub_total" value=""> &nbsp;<strong>Sub Total</strong> <br>
               </div>
               <div class="row mt-2">
                 <div class="col">
                   <label>Particulars</label>
-                  <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
+                  <input type="text" class="form-control payment_details" name="part1text" id="part1text">
                 </div>
 
                 <div class="col">
                   <label>Price</label>
-                  <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0" >
+                  <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
+                  <input type="text" class="form-control payment_details" name="part2text" id="part2text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
+                  <input type="text" class="form-control payment_details" name="part3text" id="part3text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
+                  <input type="text" class="form-control payment_details" name="part4text" id="part4text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
+                  <input type="text" class="form-control payment_details" name="part5text" id="part5text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
+                  <input type="text" class="form-control payment_details" name="part6text" id="part6text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
+                  <input type="text" class="form-control payment_details" name="part7text" id="part7text">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0">
+                  <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value="0">
                 </div>
               </div>
 
               <div class="row mt-2">
-                <div class="col" id = "demo">
+                <div class="col" id="demo">
                   <label>Total</label>
                   <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
                   <div></div>
@@ -190,8 +189,8 @@
               </div>
 
               <div class="mb-2">
-                <input type="hidden" id ="ntwntw">
-                <button type="Submit"  class="btn btn-primary allPaymentButton" id = "payment_submit_button">Submit and print</button>
+                <input type="hidden" id="ntwntw">
+                <button type="Submit" class="btn btn-primary allPaymentButton" id="payment_submit_button">Submit and print</button>
               </div>
 
             </div>
@@ -214,7 +213,7 @@
 
 
 
-<div id="recModal" data-backdrop="static" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+<div id="recModal" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -223,15 +222,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id ="printrec">
+        <form id="printrec">
 
-          <h3 class = "text-center">Do you want to Print Receipt?</h3>
+          <h3 class="text-center">Do you want to Print Receipt?</h3>
           <!-- <input type="text" id ="payer">
           <input type="text" id ="totalprint">
           <input type="text" id ="cashcheck"> -->
-          <div class = "text-center">
-            <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
-            <button class = "btn btn-danger" type ="button" value = "no" id="printbtnclose">Close</button>
+          <div class="text-center">
+            <button class="btn btn-success" type="submit" value="yes"> Print Receipt</button>
+            <button class="btn btn-danger" type="button" value="no" id="printbtnclose">Close</button>
           </div>
 
         </form>
@@ -244,7 +243,7 @@
 
 
 
-<div id="rec" data-backdrop="static" class="modal fade right shadow"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+<div id="rec" data-backdrop="static" class="modal fade right shadow" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto">
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -253,9 +252,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <iframe src = "" id="frameasdas" height ="800" width = "100%">
+        <iframe src="" id="frameasdas" height="800" width="100%">
         </iframe>
-        <button class = "btn btn-success" id="printbtnrec">Print Receipt</button>
+        <button class="btn btn-success" id="printbtnrec">Print Receipt</button>
       </div>
     </div>
   </div>

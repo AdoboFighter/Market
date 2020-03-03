@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -37,45 +36,45 @@
     <div class="row mt-2">
       <div class="col-6">
         <div class="card col p-3 ">
-          <form id = "updatecustomerinfo">
-            <input type="hidden" id = "customer_id" name = "update[customer_id]">
-            <input type="hidden" id = "driver_id" name = "update[driver_id]">
+          <form id="updatecustomerinfo">
+            <input type="hidden" id="customer_id" name="update[customer_id]">
+            <input type="hidden" id="driver_id" name="update[driver_id]">
             <div class="mb-2 form-group" id="">
               <label>Tenant's name:</label>
-              <input type="input" class="form-control"  id="name">
+              <input type="input" class="form-control" id="name">
             </div>
             <div class="mb-2 form-group" id="">
               <label>Stall Number:</label>
-              <input type="input" class="form-control"  id="stall">
+              <input type="input" class="form-control" id="stall">
             </div>
-          </div>
-          <br>
-          <br>
         </div>
+        <br>
+        <br>
+      </div>
 
-        <div class="col-6 ">
-          <div class="card col p-3 shadow">
-            <div class="mb-2">
-              <label>Parking lot</label>
-              <input type="text" class="form-control" name="update[park_lot]" id="park_lot">
+      <div class="col-6 ">
+        <div class="card col p-3 shadow">
+          <div class="mb-2">
+            <label>Parking lot</label>
+            <input type="text" class="form-control" name="update[park_lot]" id="park_lot">
+          </div>
+          <div class="row mb-2">
+            <div class="p-2">
+              <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
             </div>
-            <div class="row mb-2">
-              <div class="p-2">
-                <button class = "btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
-              </div>
-              <div class="p-2">
-                <button class = "btn btn-primary" type="submit" >Update</button>
-              </div>
+            <div class="p-2">
+              <button class="btn btn-primary" type="submit">Update</button>
             </div>
           </div>
-          <br>
+        </div>
+        <br>
         </form>
 
 
 
 
 
-        <div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div id="violationmodal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">

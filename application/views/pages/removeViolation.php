@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -15,14 +14,14 @@
         <div class="card shadow">
           <div class="row p-3">
             <div class="col-12">
-              <table class="table table-striped table-bordered" id="getviolationtable" >
+              <table class="table table-striped table-bordered" id="getviolationtable">
                 <thead>
                   <tr>
-                    <td class="border border-dark" >description</td>
-                    <td class="border border-dark" >date occurred</td>
-                    <td class="border border-dark" >status</td>
-                    <td class="border border-dark" >name</td>
-                    <td class="border border-dark" >Resolve</td>
+                    <td class="border border-dark">description</td>
+                    <td class="border border-dark">date occurred</td>
+                    <td class="border border-dark">status</td>
+                    <td class="border border-dark">name</td>
+                    <td class="border border-dark">Resolve</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,7 +49,7 @@
                     <h5 class="font-weight-bold">Payment Details</h5>
                     <div class="form-group">
                       <label for="">Violation ID</label>
-                      <input type="hidden" id="sysuser" name="violation[sysuser]" value="<?php echo $this->session->userdata('user_fullname');?>">
+                      <input type="hidden" id="sysuser" name="violation[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
                       <input type="text" class="form-control" name="violation[violation_id_f]" id="vio" readonly>
                       <input type="text" class="form-control" name="violation[customer_id]" id="cust" hidden>
                       <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" hidden>

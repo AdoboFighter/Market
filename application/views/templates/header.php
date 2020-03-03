@@ -563,11 +563,11 @@ CONTENT STYLE
             </li>
 
             <li>
-              <a href="<?php echo base_url() . 'pages/view/paymentDelivery' ?>">delivery</a>
+              <a href="<?php echo base_url() . 'pages/view/paymentDelivery' ?>">Delivery</a>
             </li>
 
             <li>
-              <a href="<?php echo base_url() . 'pages/view/paymentParking' ?>">parking</a>
+              <a href="<?php echo base_url() . 'pages/view/paymentParking' ?>">Parking</a>
             </li>
 
           </ul>
@@ -583,10 +583,10 @@ CONTENT STYLE
               <a href="<?php echo base_url() . 'pages/view/addAmbClient' ?>">Ambulant</a>
             </li>
             <li>
-              <a href="<?php echo base_url() . 'pages/view/addDeliveryClient' ?>">delivery</a>
+              <a href="<?php echo base_url() . 'pages/view/addDeliveryClient' ?>">Delivery</a>
             </li>
             <li>
-              <a href="<?php echo base_url() . 'pages/view/addParkingclient' ?>">parking</a>
+              <a href="<?php echo base_url() . 'pages/view/addParkingclient' ?>">Parking</a>
             </li>
           </ul>
         </li>

@@ -1,16 +1,14 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
 
 
   <div class="container my-1 py-1">
-
 
     <!-- Section: Block Content -->
     <section class="">
@@ -27,7 +25,7 @@
               <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-left text-left p-3">
                 <p class="text-uppercase text-muted mb-1"><small>User:</small></p>
-                <h4 class="font-weight-bold mb-0"><?php echo $this->session->userdata('user_fullname');?></h4>
+                <h4 class="font-weight-bold mb-0"><?php echo $this->session->userdata('user_fullname'); ?></h4>
               </div>
             </div>
 
@@ -79,7 +77,7 @@
               <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-right p-3">
                 <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
-                <h4 class="font-weight-bold mb-0" id="numambu" ></h4>
+                <h4 class="font-weight-bold mb-0" id="numambu"></h4>
               </div>
             </div>
 
