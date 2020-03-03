@@ -212,7 +212,7 @@ class Mainmodel extends CI_model{
 
 
 
-  public function gettenanttable()
+  public function gettenanttable($search)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
@@ -221,6 +221,7 @@ class Mainmodel extends CI_model{
     ->from('customer')
     ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
     ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner')
+    ->like("concat(firstname,' ',middlename,' ',lastname,' ',section,' ',Floor_level)",$search)
     ->get();
     $data = [];
     foreach ($query->result() as $r) {
@@ -231,7 +232,6 @@ class Mainmodel extends CI_model{
         'floor_level' => $r->floor_level,
         'section' => $r->Section,
         'btn'=>
-
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
         </div>'

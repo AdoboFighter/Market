@@ -56,9 +56,22 @@ $(document).ready(function(){
 
   $('#TenantPay').on('hidden.bs.modal', function () {
 
+    // var a = $(this).attr("id");
+    // row_num = 1;
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
 
+    testcheqdel();
+  });
+
+  function testcheqdel() {
     var a = $(this).attr("id");
-
     row_num = 1;
     delete add_line[a];
     $('#row'+a+'').remove();
@@ -68,7 +81,7 @@ $(document).ready(function(){
 
     delete add_line[a];
     $('#row'+a+'').remove();
-  });
+  }
 
 
 
@@ -154,8 +167,6 @@ $(document).ready(function(){
 
 
     for (var i = 0  ; i < add_line.length; i++) {
-
-      //
       // $.ajax({
       //   url: global.settings.url +'/MainController/insert_table_bulk_controller',
       //   method: 'POST',
@@ -204,46 +215,71 @@ $(document).ready(function(){
 
     });
 
+
   });
 
+  $( "#click_search" ).click(function() {
+    var search = $("#search_cl_f").val();
+    search_client(search);
+    $('#tableNoStall').DataTable().destroy();
+  });
+
+  $('#search_cl_f').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      var search = $("#search_cl_f").val();
+
+      $('#tableNoStall').DataTable().clear().destroy();
+      search_client(search);
+
+    }
+  });
 
 
   //end of doc ready
 
 
 
+  function search_client(search) {
+    $('#tableNoStall').DataTable({
+      "paging": true,
+      "searching": false,
+      "ordering": true,
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/gettenanttable',
+        "data": {search:search},
+        "dataType": "json",
+        "type": "POST"
+      },
+      "columns" : [{
+        "data" : "id"
+      },
+      {
+        "data" : "fullname"
+      },
 
-  $('#tableNoStall').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/gettenanttable',
-      dataSrc : 'data'
-    },
-    "columns" : [{
-      "data" : "id"
-    },
-    {
-      "data" : "fullname"
-    },
+      {
+        "data" : "unit_no"
+      },
 
-    {
-      "data" : "unit_no"
-    },
-
-    {
-      "data" : "floor_level"
-    },
+      {
+        "data" : "floor_level"
+      },
 
 
-    {
-      "data" : "section"
-    },
+      {
+        "data" : "section"
+      },
 
 
 
-    {
-      "data" : "btn"
-    }]
-  });
+      {
+        "data" : "btn"
+      }]
+    });
+      $('.dataTables_length').addClass('bs-select');
+  }
+
 
   $('.dataTables_length').addClass('bs-select');
 
@@ -337,22 +373,62 @@ $(document).ready(function(){
 
 
   $('#payment_type').change(function(){
+    testcheqdel();
+    console.log("tang ina");
+    var a = $(this).attr("id");
+
+    row_num = 1;
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    delete add_line[a];
+    $('#row'+a+'').remove();
+
+    // var table_cheque = $('#table_cheque').DataTable({
+    //   "paging": false,
+    //   "searching": false,
+    //   "ordering": false,
+    // });
 
     payment_type = $('#payment_type').val();
     if($('#payment_type').val() == 'cash')
     {
-
+      $("#payment_cash_tendered").prop('required',true);
       $('#paymentDet').show();
       $('#chequeDetails').hide();
       $('#payment_cash_tendered').prop('disabled',false);
     }
     else if($('#payment_type').val() == 'cheque'){
+      $("#payment_cash_tendered").prop('required',false);
+      $("#payment_cash_tendered").val(null);
       $('#paymentDet').show();
       $('#chequeDetails').show();
       $('#payment_cash_tendered').prop('disabled',true);
     }
     else if($('#payment_type').val() == 'cashandcheque')
     {
+      $("#payment_cash_tendered").prop('required',true);
       $('#paymentDet').show();
       $('#chequeDetails').show();
       $('#payment_cash_tendered').prop('disabled',false);
@@ -366,9 +442,8 @@ $(document).ready(function(){
   });
 
 
-  $('#payment_submit').click(function(){
-
-
+  $('#payment_submit').submit(function(e){
+    e.preventDefault();
     text1 = $('#part1text').val();
     text2 = $('#part2text').val();
     text3 = $('#part3text').val();
@@ -402,9 +477,6 @@ $(document).ready(function(){
 
 
 
-
-
-
     add_line = add_line.filter(function(el){
       return el != null;
     });
@@ -415,6 +487,7 @@ $(document).ready(function(){
     switch(payment_type)
     {
       case "cash":
+      e.preventDefault();
       $.ajax({
         type: "POST",
         data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},

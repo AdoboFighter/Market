@@ -5,6 +5,7 @@ class SaveTrns extends CI_Controller {
     {
         parent::__construct();
         $this->load->database();
+        date_default_timezone_set('Asia/Manila');
     }
 
     public function proc() {
