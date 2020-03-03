@@ -1,332 +1,270 @@
 <html>
+
 <head>
   <title>E-market</title>
   <style>
-  /* BASIC */
+    /* BASIC */
 
-  html {
-    background-color: #56baed;
-  }
+    body {
+      font-family: "Poppins", sans-serif;
+      z-index: 1;
+      overflow-x: hidden;
+    }
 
-  body {
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
-  }
+    body::after {
+      content: "";
+      background: url("/assets/images/Telegram.jpg");
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
 
-  a {
-    color: #92badd;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-  }
+    .headlogin {
+      align-items: center;
+      text-align: center;
+    }
 
-  h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-  }
+    .login {
+      font-size: large;
+    }
 
+    .emarket {
+      font-size: 35px;
+      text-align: left;
+      font-weight: 500;
+    }
 
+    .vl {
+      border-left: 3px solid #428bca;
+      height: 500px;
+    }
 
-  /* STRUCTURE */
+    .spc {
+      width: 100%;
+      height: auto;
+    }
 
-  .wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-  }
+    #main {
+      position: relative;
+      z-index: 0;
+    }
 
-  #formContent {
-    -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
-    background: #fff;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    text-align: center;
-  }
+    #drop {
+      position: absolute;
+    }
 
-  #formFooter {
-    background-color: #f6f6f6;
-    border-top: 1px solid #dce8f1;
-    padding: 25px;
-    text-align: center;
-    -webkit-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
-  }
+    /* STRUCTURE */
+    .title {
+      position: absolute;
+      align-items: center;
+    }
 
+    .wrapper {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 70%;
+    }
 
+    #formContent {
+      -webkit-border-radius: 5px 5px 5px 5px;
+      background-color: white;
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      padding: 0px;
+      -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.8);
+      box-shadow: 0 40px 60px 0 rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 2;
+    }
 
-  /* TABS */
+    .fadeInLeft {
+      animation-delay: 1.5s;
+      -webkit-animation-name: fadeInLeft;
+      animation-name: fadeInLeft;
+      -webkit-animation-duration: 1.5s;
+      animation-duration: 1.5s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
 
-  h2.inactive {
-    color: #cccccc;
-  }
+    @keyframes fadeInLeft {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+      }
 
-  h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
-  }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
+    @-webkit-keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
 
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
 
-  /* FORM TYPOGRAPHY*/
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
 
-  input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
-    border: none;
-    color: white;
-    padding: 15px 80px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
 
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
-  }
+    /* Simple CSS3 Fade-in Animation */
 
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    transform: scale(0.95);
-  }
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-  input[type=text] {
-    background-color: #f6f6f6;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
-    border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-  }
-  input[type=password] {
-    background-color: #f6f6f6;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
-    border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-  }
+      to {
+        opacity: 1;
+      }
+    }
 
+    @-moz-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-  input[type=text]:focus {
-    background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
-  }
+      to {
+        opacity: 1;
+      }
+    }
 
-  input[type=text]:placeholder {
-    color: #cccccc;
-  }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
+      to {
+        opacity: 1;
+      }
+    }
 
-
-  /* ANIMATIONS */
-
-  /* Simple CSS3 Fade-in-down Animation */
-  .fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-
-  @-webkit-keyframes fadeInDown {
-    0% {
+    .fadeIn {
       opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
+      -webkit-animation: fadeIn ease-in 1;
+      -moz-animation: fadeIn ease-in 1;
+      animation: fadeIn ease-in 1;
+      -webkit-animation-fill-mode: forwards;
+      -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      -webkit-animation-duration: 0.5s;
+      -moz-animation-duration: 0.5s;
+      animation-duration: 0.5s;
     }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
+
+    .fadeIn.first {
+      -webkit-animation-delay: 1s;
+      -moz-animation-delay: 1s;
+      animation-delay: 1s;
     }
-  }
+  </style>
 
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
-  }
-
-  /* Simple CSS3 Fade-in Animation */
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-  .fadeIn {
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
-
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
-
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
-  }
-
-  .fadeIn.first {
-    -webkit-animation-delay: 0.4s;
-    -moz-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-  }
-
-  .fadeIn.second {
-    -webkit-animation-delay: 0.6s;
-    -moz-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-  }
-
-  .fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-  }
-
-  .fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-  }
-
-  /* Simple CSS3 Fade-in Animation */
-  .underlineHover:after {
-    display: block;
-    left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 2px;
-    background-color: #56baed;
-    content: "";
-    transition: width 0.2s;
-  }
-
-  .underlineHover:hover {
-    color: #0d0d0d;
-  }
-
-  .underlineHover:hover:after{
-    width: 100%;
-  }
-
-
-
-  /* OTHERS */
-
-  *:focus {
-    outline: none;
-  }
-
-  #icon {
-    width:60%;
-  }
-
-  .bgrad{
-    background-image: linear-gradient(#0575E6, #021B79);
-  }
-
-  .bluegrads{
-    background-color: #045de9;
-    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-  }
-</style>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="assets/jquery/jquery.min.js"></script>
-<script src="assets/global.js"></script>
-<script src="assets/clientjs/login.js"></script>
-<script src="/assets/js/sweetalert2@9.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="assets/jquery/jquery.min.js"></script>
+  <script src="assets/global.js"></script>
+  <script src="assets/clientjs/login.js"></script>
+  <script src="/assets/js/sweetalert2@9.js"></script>
 
 
 </head>
 
 <body>
+  <div id="main" class="container">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-lg-6 spcdiv">
+          <img class="fadeIn first pl-0 p-5 spc" src="/assets/images/spclogo.png" alt="">
+        </div>
 
-  <div class="bluegrads">
+        <div class="col-lg-6 mt-4">
+          <div class="vl mt-3">
+            <div id="drop" class="wrapper fadeInLeft mt-5">
+              <div id="formContent">
+                <form id="login_account">
+                  <div class="bg-primary z-depth-1 rounded-top px-5 py-2 headlogin">
+                    <div class="row">
+                      <div class="col-lg-5"><img class=" fadeIn second" src="<?php echo base_url() . 'assets/images/electronicmarketsystem.png' ?>" height="85px" alt="">
+                        </<img>
+                      </div>
+                      <div class="col-lg-7">
+                        <p class="text-white mt-3 emarket">E-MARKET</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container col-lg-10 mb-4 py-3">
+                    <div class="md-form mt-4 mb-4">
+                      <input required type="text" id="login" name="login[username]" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="md-form mb-3">
+                      <input required type="password" id="password" name="login[password]" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="">
+                      <button class="btn btn-rounded btn-primary " style=" border-radius: 25px; width: 200px; height:3rem">
+                        <p class="text-light login">Login</p>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="bluegrads">
     <div class="wrapper ">
       <div id="formContent">
         <div class="">
-          <h3 class="p-3"><img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="50" height="50" class="p-1">E-market</h3>
+          <h3 class="p-3"><img src="<?php echo base_url(); ?>assets/images/electronicmarketsystem.png" width="50" height="50" class="p-1">E-market</h3>
         </div>
         <form id="login_account">
           <input type="text" id="login" class=" " name="login[username]" placeholder="login">
           <input type="password" id="password" class=" " name="login[password]" placeholder="password">
-          <input type="submit" class="  bgrad" value="Log In" >
+          <input type="submit" class="  bgrad" value="Log In">
         </form>
       </div>
-    </form>
+      </form> -->
 
   </div>
-</div>
+  </div>
 
-</div>
+  </div>
 </body>
-<script src="/assets/js/jquery-3.2.1.min.js"></script>  <!-- Popper.JS -->
+<script src="/assets/js/jquery-3.2.1.min.js"></script> <!-- Popper.JS -->
 <script src="/assets/js/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
 <script src="/assets/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -335,7 +273,7 @@
 <!--  Data Table -->
 <script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?php echo base_url().'assets/global.js' ?> "></script>
+<script src="<?php echo base_url() . 'assets/global.js' ?> "></script>
 <script src="/assets/js/sweetalert2@9.js"></script>
 <script src="/assets/clientjs/login.js"></script>
 
