@@ -1,15 +1,14 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
 
   <div class="container justify-content-center">
-    <h5 class="card-header text-center bg-primary text-white bluegrads">Add parking client</h5>
+    <h5 class="card-header text-center bg-primary text-white bluegrads">Add Parking Client</h5>
     <br>
     <div class="card m-2 shadow">
       <div class="container">
@@ -20,15 +19,15 @@
                 <div class="span6" style="float: none; margin: 0 auto;">
                   <div class="row">
                     <div class="col-12 form-group">
-                      <table class="table p-2 table-hover table-bordered shadow border border-dark" id="add_vio_tab" >
+                      <table class="table p-2 table-hover table-bordered shadow border border-dark" id="add_vio_tab">
                         <thead>
                           <tr>
-                            <td class="border border-dark" >No</td>
-                            <td class="border border-dark" >Name</td>
-                            <td class="border border-dark" >Stall No.</td>
-                            <td class="border border-dark" >Address</td>
-                            <td class="border border-dark" >Occupant</td>
-                            <td class="border border-dark" >load data</td>
+                            <td class="border border-dark">No</td>
+                            <td class="border border-dark">Name</td>
+                            <td class="border border-dark">Stall No.</td>
+                            <td class="border border-dark">Address</td>
+                            <td class="border border-dark">Occupant</td>
+                            <td class="border border-dark">load data</td>
                           </tr>
                         </thead>
                         <tbody>

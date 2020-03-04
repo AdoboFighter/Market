@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
       <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
+        <img src="<?php echo base_url(); ?>assets/images/electronicmarketsystem.png" width="40" height="40">
         E-Market
       </button>
     </div>
@@ -14,19 +14,19 @@
     <br>
     <div class="card m-2 shadow ">
       <div class="container">
-          <div class="row">
-            <div class="col-6 p-3 mt-2">
-              <a href="<?php echo base_url().'pages/view/addNewSystemUser' ?>" class="myButton">Add Users</a>
-            </div>
-            <div class="col-6 p-3 mt-2">
-              <a href="<?php echo base_url().'pages/view/updateSystemUser' ?>" class="myButton">Update Users</a>
-              <a type="button" class="btn-floating btn-lg blue-gradient"><i class="fab fa-google-wallet" aria-hidden="true"></i></a>
-            </div>
-
-
+        <div class="row">
+          <div class="col-6 p-3 mt-2">
+            <a href="<?php echo base_url() . 'pages/view/addNewSystemUser' ?>" class="myButton">Add Users</a>
           </div>
+          <div class="col-6 p-3 mt-2">
+            <a href="<?php echo base_url() . 'pages/view/updateSystemUser' ?>" class="myButton">Update Users</a>
+            <a type="button" class="btn-floating btn-lg blue-gradient"><i class="fab fa-google-wallet" aria-hidden="true"></i></a>
+          </div>
+
+
         </div>
       </div>
+    </div>
   </div>
 </div>
 </div>

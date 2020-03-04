@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -36,7 +35,7 @@
   </div>
   <br>
   <br>
-  <form id = "updatecustomerinfo">
+  <form id="updatecustomerinfo">
     <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
     <br>
     <div class="container justify-content-center">
@@ -89,11 +88,11 @@
               <label>Nature of Business:</label>
               <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" required>
             </div>
-            <div class=" form-group">
+            <div class=" form-group" style="margin-top: 30px;">
               <label>Stall No:</label>
               <input type="input" class="form-control" name="update[stall_number]" id="stall_number" required>
             </div>
-            <div class=" form-group">
+            <div class=" form-group" style="margin-top: 36px;">
               <label>Area(sqm):</label>
               <input type="input" class="form-control" name="update[area]" id="area" required>
             </div>
@@ -109,8 +108,8 @@
         <div class="col-6">
           <div class="card col p-3 shadow">
             <h5 class="font-weight-bold">Owner's Information</h5>
-            <input type="hidden" id = "customer_id" name = "update[customer_id]">
-            <input type="hidden" id = "stall_id" name = "update[stall_id]">
+            <input type="hidden" id="customer_id" name="update[customer_id]">
+            <input type="hidden" id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" required>
@@ -159,10 +158,10 @@
             </div>
             <div class="row p-2">
               <div class="p-2">
-                <button class ="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
+                <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
               </div>
               <div class="p-2">
-                <button class = "btn btn-primary" type="submit">Update</button>
+                <button class="btn btn-primary" type="submit">Update</button>
               </div>
             </div>
           </div>
@@ -171,7 +170,7 @@
 
 
 
-          <div id="violationmodal" class="modal fade right"  tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+          <div id="violationmodal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
