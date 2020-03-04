@@ -14,6 +14,18 @@
     <h5 class="card-header text-center  text-white bluegrads">Payment</h5>
     <div class="card m-3 shadow">
       <div class="row p-3">
+        
+        <div class="row p-3">
+          <div class="col">
+            <div class="form-inline">
+              <!-- <input type="text" class="form-control" id="search_cl_f" placeholder="search"> -->
+              <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
+              aria-label="Search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
         <div class="col-12">
           <table class="table table-striped table-bordered shadow" id="DeliveryTable">
             <thead>
