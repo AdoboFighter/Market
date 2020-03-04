@@ -738,14 +738,22 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getPayAmbulantTablepay()
+  public function getPayAmbulantTablepay($search)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
-    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
-    $query = $this->db->get('customer');
+
+    $query = $this->db->select('*')
+    ->from('customer')
+    ->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner')
+    ->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner')
+    ->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search)
+    ->get();
+
+    // $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search);
+    // $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+    // $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -800,13 +808,21 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getdeliverypaytablepay()
+  public function getdeliverypaytablepay($search)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
-    $query = $this->db->get('customer');
+
+    $query = $this->db->select('*')
+    ->from('customer')
+    ->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner')
+    ->like("concat(firstname,' ',middlename,' ',delivery_id)",$search)
+    ->get();
+
+    // $this->db->like("concat(firstname,' ',middlename,' ',deliver_id,')",$search);
+    // $this->db->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner');
+    // $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -860,15 +876,26 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getparkingpaytablepay()
+  public function getparkingpaytablepay($search)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
+    // $query = $this->db->select('*')
+    // ->from('customer')
+    //
+    // ->join('driver', 'driver.fk_customer_id=customer.customer_id')
+    // ->join('parking_lot', 'driver.driver_id=parking_lot.driver_id')
+    // ->like("concat(firstname,' ',middlename,' ',lastname,' ',driver_id,' ',lot_no)",$search)
+    // ->group_by('driver_id')
+    // ->get();
 
+
+    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',lot_no)",$search);
     $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
+    // $this->db->group_by("driver.driver_id");
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {

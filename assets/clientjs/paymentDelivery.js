@@ -103,13 +103,52 @@ $(document).ready(function(){
   });
 
 
+  // $('#DeliveryTable').DataTable({
+  //   "ajax" : {
+  //     "url" : global.settings.url + '/MainController/getdeliverypaytablepay',
+  //     dataSrc : 'data'
+  //   },
+  //   "columns" : [
+  //     {
+  //       "data" : "id"
+  //     },
+  //     {
+  //       "data" : "pay_delivery_id"
+  //     },
+  //     {
+  //       "data" : "pay_delivery_name"
+  //     },
+  //
+  //     {
+  //       "data" : "btn"
+  //     }]
+  //   });
+
+    $('#search_cl_f').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+    var search = $("#search_cl_f").val();
+
+    $('#DeliveryTable').DataTable().clear().destroy();
+    search_client(search);
+
+  }
+});
+
+
+
+function search_client(search) {
   $('#DeliveryTable').DataTable({
+    "paging": true,
+    "searching": false,
+    "ordering": true,
     "ajax" : {
       "url" : global.settings.url + '/MainController/getdeliverypaytablepay',
-      dataSrc : 'data'
+      "data": {search:search},
+      "dataType": "json",
+      "type": "POST"
     },
-    "columns" : [
-      {
+    "columns" : [  {
         "data" : "id"
       },
       {
@@ -122,7 +161,14 @@ $(document).ready(function(){
       {
         "data" : "btn"
       }]
-    });
+  });
+    $('.dataTables_length').addClass('bs-select');
+}
+
+
+
+
+
     $('.dataTables_length').addClass('bs-select');
     $('#sub_total').click(function(){
       if($(this).is(":checked")){
