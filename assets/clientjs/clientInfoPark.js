@@ -26,12 +26,32 @@ $(document).ready(function(){
     $('#violationmodal').modal('show');
   });
 
-  datable = $('#parkTable').DataTable({
+  $('#search_cl_f').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+    var search = $("#search_cl_f").val();
+
+    $('#parkTable').DataTable().clear().destroy();
+    search_client(search);
+
+  }
+});
+
+
+
+function search_client(search) {
+  $('#parkTable').DataTable({
+    "paging": true,
+    "searching": false,
+    "ordering": true,
     "ajax" : {
       "url" : global.settings.url + '/MainController/getparkingpaytablecon',
-      dataSrc : 'data'
+      "data": {search:search},
+      "dataType": "json",
+      "type": "POST"
     },
     "columns" : [
+
       {
         "data" : "id"
       },
@@ -46,8 +66,38 @@ $(document).ready(function(){
 
       {
         "data" : "btn"
-      }]
-    });
+      }
+
+  ]
+  });
+    $('.dataTables_length').addClass('bs-select');
+}
+
+
+
+
+  // datable = $('#parkTable').DataTable({
+  //   "ajax" : {
+  //     "url" : global.settings.url + '/MainController/getparkingpaytablecon',
+  //     dataSrc : 'data'
+  //   },
+  //   "columns" : [
+  //     {
+  //       "data" : "id"
+  //     },
+  //
+  //     {
+  //       "data" : "pay_parking_lot"
+  //     },
+  //
+  //     {
+  //       "data" : "pay_parking_name"
+  //     },
+  //
+  //     {
+  //       "data" : "btn"
+  //     }]
+  //   });
     $('.dataTables_length').addClass('bs-select');
 
     $("#park_lot").inputFilter(function(value) {

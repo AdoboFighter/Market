@@ -77,7 +77,8 @@ class MainController extends CI_Controller{
 
   public function getcustomertable()
   {
-    echo json_encode($this->model->getcustomertable());
+    $search = $this->input->post('search');
+    echo json_encode($this->model->getcustomertable($search));
   }
 
   public function getcustomertablepay()
@@ -87,7 +88,8 @@ class MainController extends CI_Controller{
 
   public function getPayAmbulantTableCon()
   {
-    echo json_encode($this->model->getPayAmbulantTableMod());
+    $search = $this->input->post('search');
+    echo json_encode($this->model->getPayAmbulantTableMod($search));
   }
 
   public function getPayAmbulantTablepay()
@@ -100,7 +102,8 @@ class MainController extends CI_Controller{
 
   public function getdeliverypaytablecon()
   {
-    echo json_encode($this->model->getdeliverypaytablemod());
+    $search = $this->input->post('search');
+    echo json_encode($this->model->getdeliverypaytablemod($search));
   }
 
 
@@ -113,7 +116,8 @@ class MainController extends CI_Controller{
 
   public function getparkingpaytablecon()
   {
-    echo json_encode($this->model->getparkingpaytablemod());
+    $search = $this->input->post('search');
+    echo json_encode($this->model->getparkingpaytablemod($search));
   }
 
   public function getparkingpaytablepay()

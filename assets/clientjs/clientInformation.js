@@ -10,65 +10,125 @@ $(document).ready(function(){
     $('#violationmodal').modal('show');
   });
 
-  $('#client_table').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/getcustomertable',
-      dataSrc : 'data'
-    },
-    "columns" : [{
-      "data" : "id"
-    },
+  $('#search_cl_f').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      var search = $("#search_cl_f").val();
 
-    {
-      "data" : "c_info_stall_number"
-    },
+      $('#client_table').DataTable().clear().destroy();
+      search_client(search);
 
-    {
-      "data" : "c_info_area"
-    },
-
-
-    {
-      "data" : "c_info_daily_fee"
-    },
-
-
-    {
-      "data" : "c_info_fullname_owner"
-    },
-
-    {
-      "data" : "c_info_fullname_occupant"
-    },
-    {
-      "data" : "btn"
-    }]
+    }
   });
 
 
 
-  $('.dataTables_length').addClass('bs-select');
-
-  $('#updatecustomerinfo').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-      url: global.settings.url + '/MainController/updatecustomerinfo',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        Swal.fire({
-          icon: 'success',
-          title: 'Updated',
-        });
-        $('#client_table').DataTable().ajax.reload();
-        $('#updatecustomerinfo')[0].reset();
+  function search_client(search) {
+    $('#client_table').DataTable({
+      "paging": true,
+      "searching": false,
+      "ordering": true,
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getcustomertable',
+        "data": {search:search},
+        "dataType": "json",
+        "type": "POST"
       },
-      error:function(res){
+      "columns" : [{
+        "data" : "id"
+      },
 
+      {
+        "data" : "c_info_stall_number"
+      },
+
+      {
+        "data" : "c_info_area"
+      },
+
+
+      {
+        "data" : "c_info_daily_fee"
+      },
+
+
+      {
+        "data" : "c_info_fullname_owner"
+      },
+
+      {
+        "data" : "c_info_fullname_occupant"
+      },
+      {
+        "data" : "btn"
       }
-    });
+
+    ]
   });
+  $('.dataTables_length').addClass('bs-select');
+}
+
+
+
+// $('#client_table').DataTable({
+//   "ajax" : {
+//     "url" : global.settings.url + '/MainController/getcustomertable',
+//     dataSrc : 'data'
+//   },
+//   "columns" : [{
+//     "data" : "id"
+//   },
+//
+//   {
+//     "data" : "c_info_stall_number"
+//   },
+//
+//   {
+//     "data" : "c_info_area"
+//   },
+//
+//
+//   {
+//     "data" : "c_info_daily_fee"
+//   },
+//
+//
+//   {
+//     "data" : "c_info_fullname_owner"
+//   },
+//
+//   {
+//     "data" : "c_info_fullname_occupant"
+//   },
+//   {
+//     "data" : "btn"
+//   }]
+// });
+
+
+
+$('.dataTables_length').addClass('bs-select');
+
+$('#updatecustomerinfo').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: global.settings.url + '/MainController/updatecustomerinfo',
+    type: 'POST',
+    data: $(this).serialize(),
+    dataType:'JSON',
+    success: function(res){
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated',
+      });
+      $('#client_table').DataTable().ajax.reload();
+      $('#updatecustomerinfo')[0].reset();
+    },
+    error:function(res){
+
+    }
+  });
+});
 
 });
 
