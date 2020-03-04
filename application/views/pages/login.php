@@ -203,7 +203,7 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-lg-6 spcdiv">
-          <img class="fadeIn first pl-0 p-5 spc" src="/assets/images/spclogo.png" alt="">
+          <img class="fadeIn first pl-0 p-5 spc" src="/assets/images/SPCLOGO2.png" alt="">
         </div>
 
         <div class="col-lg-6 mt-4">
