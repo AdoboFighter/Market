@@ -640,11 +640,11 @@ CONTENT STYLE
           <ul class="collapse list-unstyled" id="homeSubmenu5">
 
             <li>
-              <a href="#">EMT - Electronic Mobile Ticketing</a>
+              <a href="<?php echo base_url() . 'pages/view/emt' ?>">EMT - Electronic Mobile Ticketing</a>
             </li>
 
             <li>
-              <a href="#">OTC - Over the Counter</a>
+              <a href="<?php echo base_url() . 'pages/view/otc' ?>">OTC - Over the Counter</a>
             </li>
 
           </ul>
@@ -658,11 +658,11 @@ CONTENT STYLE
           <ul class="collapse list-unstyled" id="homeSubmenu6">
 
             <li>
-              <a href="#">Cashiers Report</a>
+              <a href="<?php echo base_url() . 'pages/view/cashrep' ?>">Cashiers Report</a>
             </li>
 
             <li>
-              <a href="#">Consolidated Report</a>
+              <a href="<?php echo base_url() . 'pages/view/consolirep' ?>">Consolidated Report</a>
             </li>
 
           </ul>
