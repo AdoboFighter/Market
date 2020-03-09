@@ -61,7 +61,7 @@
                         <div class="form-group">
                           <h5 class="font-weight-bold">Details</h5>
                           <label for="">Lot No</label>
-                          <input type="text" class="form-control" name="customer[lot_no]" id="lot_no">
+                          <input type="text" class="form-control" name="customer[lot_no]" id="lot_no" required>
                         </div>
                         <div class="form-group text-right">
                           <button type="submit" class="btn btn-primary">Submit</button>

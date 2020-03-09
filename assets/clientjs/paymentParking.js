@@ -1,4 +1,5 @@
-var datable;
+
+      $("#payment_cash_tendered").prop('required',true);var datable;
 
 var add_line = [];
 var row_num = 1;
@@ -301,17 +302,21 @@ $(document).ready(function(){
 
     if($('#payment_type').val() == 'cash')
     {
+      $("#payment_cash_tendered").prop('required',true);
       $('#paymentDet').show();
       $('#chequeDetails').hide();
       $('#payment_cash_tendered').prop('disabled',false);
     }
     else if($('#payment_type').val() == 'cheque'){
+      $("#payment_cash_tendered").prop('required',false);
+      $("#payment_cash_tendered").val(null);
       $('#paymentDet').show();
       $('#chequeDetails').show();
       $('#payment_cash_tendered').prop('disabled',true);
     }
     else if($('#payment_type').val() == 'cashandcheque')
     {
+      $("#payment_cash_tendered").prop('required',true);
       $('#paymentDet').show();
       $('#chequeDetails').show();
       $('#payment_cash_tendered').prop('disabled',false);
@@ -325,8 +330,6 @@ $(document).ready(function(){
   });
 
   $('#payment_submit_button').click(function(){
-
-
     text1 = $('#part1text').val();
     text2 = $('#part2text').val();
     text3 = $('#part3text').val();
@@ -334,7 +337,6 @@ $(document).ready(function(){
     text5 = $('#part5text').val();
     text6 = $('#part6text').val();
     text7 = $('#part7text').val();
-
     num1 = $('#part1num').val();
     num2 = $('#part2num').val();
     num3 = $('#part3num').val();

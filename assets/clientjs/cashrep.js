@@ -57,7 +57,7 @@ $(document).ready(function(){
   function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
 
   $.ajax({
-    url: global.settings.url + '/MainController/getcons',
+    url: global.settings.url + '/MainController/cashrepbackend',
     type: 'POST',
     data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
     dataType:'JSON',
@@ -85,7 +85,7 @@ $(document).ready(function(){
       "ajax" : {
         type: "POST",
          data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
-        "url" : global.settings.url + '/MainController/getcons',
+        "url" : global.settings.url + '/MainController/cashrepbackend',
         dataSrc : 'data'
       },
       "columns" : [{

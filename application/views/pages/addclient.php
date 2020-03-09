@@ -83,7 +83,7 @@
             <h5 class="font-weight-bold">Stall Information</h5>
             <div class="form-group">
               <label>Section</label>
-              <select class="form-control form-control-sm" name="customer[section]" id="section_dyna">
+              <select class="form-control form-control-sm" name="customer[section]" id="section_dyna"required>
                 <option selected value="">Please Select</option>
                 <option value="Fish">Fish</option>
                 <option value="Flores - Pat">Flores - Pat</option>
@@ -102,17 +102,17 @@
             </div>
             <div class="form-group" id="">
               <label for="">Business ID</label>
-              <input type="text" class="form-control" id="stallf_buss_id" name="customer[Business_Id]">
+              <input type="text" class="form-control" id="stallf_buss_id" name="customer[Business_Id]" required>
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="">
               <label for="">Business Name</label>
-              <input type="text" class="form-control" id="stallf_buss_name" name="customer[Business_Name]">
+              <input type="text" class="form-control" id="stallf_buss_name" name="customer[Business_Name]" required>
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="">
               <label for="">Date Occupied</label>
-              <input type="Date" class="form-control" id="stallf_date_ocu" name="customer[date_occupied]">
+              <input type="Date" class="form-control" id="stallf_date_ocu" name="customer[date_occupied]" required>
               <span id="" class="text-danger"></span>
             </div>
           </div>
@@ -122,22 +122,22 @@
           <div class="p-3">
             <div class="form-group" id="">
               <label for="">Stall Number</label>
-              <input type="text" class="form-control" id="stallf_num" name="customer[Stall_Number]">
+              <input type="text" class="form-control" id="stallf_num" name="customer[Stall_Number]"required>
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="dailyfee">
               <label for="" style="margin-top: 18px;">Daily Fee</label>
-              <input type="text" class="form-control" id="stallf_daily_fee" name="customer[Daily_fee]">
+              <input type="text" class="form-control" id="stallf_daily_fee" name="customer[Daily_fee]"required>
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="squaremeter">
               <label for="">Square Meters</label>
-              <input type="text" class="form-control" id="stall_sqr_m" name="customer[Square_meters]">
+              <input type="text" class="form-control" id="stall_sqr_m" name="customer[Square_meters]"required>
               <span id="" class="text-danger"></span>
             </div>
             <div class="form-group" id="floorlevel">
               <label>Floor Level</label>
-              <select class="form-control form-control-sm" id="stall_flr_lvl" name="customer[Floor_level]">
+              <select class="form-control form-control-sm" id="stall_flr_lvl" name="customer[Floor_level]"required>
                 <option value=""></option>
                 <option value="Basement">Basement</option>
                 <option value="Ground Floor">Ground Floor</option>

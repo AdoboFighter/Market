@@ -2,6 +2,72 @@
 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+class UnsafeCrypto
+{
+    const METHOD = 'aes-256-ctr';
+
+    /**
+     * Encrypts (but does not authenticate) a message
+     *
+     * @param string $message - plaintext message
+     * @param string $key - encryption key (raw binary expected)
+     * @param boolean $encode - set to TRUE to return a base64-encoded
+     * @return string (raw binary)
+     */
+    public static function encrypt($message, $key, $encode = false)
+    {
+        $nonceSize = openssl_cipher_iv_length(self::METHOD);
+        $nonce = openssl_random_pseudo_bytes($nonceSize);
+
+        $ciphertext = openssl_encrypt(
+            $message,
+            self::METHOD,
+            $key,
+            OPENSSL_RAW_DATA,
+            $nonce
+        );
+
+        // Now let's pack the IV and the ciphertext together
+        // Naively, we can just concatenate
+        if ($encode) {
+            return base64_encode($nonce.$ciphertext);
+        }
+        return $nonce.$ciphertext;
+    }
+
+    /**
+     * Decrypts (but does not verify) a message
+     *
+     * @param string $message - ciphertext message
+     * @param string $key - encryption key (raw binary expected)
+     * @param boolean $encoded - are we expecting an encoded string?
+     * @return string
+     */
+    public static function decrypt($message, $key, $encoded = false)
+    {
+        if ($encoded) {
+            $message = base64_decode($message, true);
+            if ($message === false) {
+                throw new Exception('Encryption failure');
+            }
+        }
+
+        $nonceSize = openssl_cipher_iv_length(self::METHOD);
+        $nonce = mb_substr($message, 0, $nonceSize, '8bit');
+        $ciphertext = mb_substr($message, $nonceSize, null, '8bit');
+
+        $plaintext = openssl_decrypt(
+            $ciphertext,
+            self::METHOD,
+            $key,
+            OPENSSL_RAW_DATA,
+            $nonce
+        );
+
+        return $plaintext;
+    }
+}
+
 class MainController extends CI_Controller{
 
   public function __construct()
@@ -228,7 +294,7 @@ class MainController extends CI_Controller{
     $result = array(
       "query" => $query,
       "sort" => $sort,
-      // "user" => $this->session->userdata('user_fullname'),
+      "user" => $this->session->userdata('user_fullname'),
     );
 
     echo json_encode($result);
@@ -654,6 +720,59 @@ class MainController extends CI_Controller{
   {
     echo json_encode($this->model->numberofviolation());
   }
+
+  public function emtbackend()
+  {
+    $sort['clientType'] = $this->input->post('clientType');
+    $sort['dateFrom'] = $this->input->post('dateFrom');
+    $sort['dateTo'] = $this->input->post('dateTo');
+
+    $query = $this->model->emtbackend($sort);
+
+    echo json_encode($query);
+  }
+
+  public function otcbackend()
+  {
+    $sort['clientType'] = $this->input->post('clientType');
+    $sort['dateFrom'] = $this->input->post('dateFrom');
+    $sort['dateTo'] = $this->input->post('dateTo');
+
+    $query = $this->model->otcbackend($sort);
+
+    echo json_encode($query);
+  }
+
+  public function cashrepbackend()
+  {
+
+    $sort = array(
+      'conClientType' => $this->input->post('conClientType'),
+      'conDateFrom'=> $this->input->post('conDateFrom'),
+      'conDateTo'=> $this->input->post('conDateTo'),
+      'conCollectorName'=> $this->input->post('conCollectorName')
+    );
+
+
+    $query = $this->model->cashrepbackend($sort);
+    echo json_encode($query);
+  }
+
+  public function consolirepbackend()
+  {
+
+    $sort = array(
+      'conClientType' => $this->input->post('conClientType'),
+      'conDateFrom'=> $this->input->post('conDateFrom'),
+      'conDateTo'=> $this->input->post('conDateTo'),
+      'conCollectorName'=> $this->input->post('conCollectorName')
+    );
+
+
+    $query = $this->model->consolirepbackend($sort);
+    echo json_encode($query);
+  }
+
 
 }
 

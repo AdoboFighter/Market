@@ -373,37 +373,37 @@ $(document).ready(function(){
 
 
   $('#payment_type').change(function(){
-    testcheqdel();
-    console.log("tang ina");
-    var a = $(this).attr("id");
-
-    row_num = 1;
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
-
-    delete add_line[a];
-    $('#row'+a+'').remove();
+    // testcheqdel();
+    // console.log("tang ina");
+    // var a = $(this).attr("id");
+    //
+    // row_num = 1;
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
+    //
+    // delete add_line[a];
+    // $('#row'+a+'').remove();
 
     // var table_cheque = $('#table_cheque').DataTable({
     //   "paging": false,

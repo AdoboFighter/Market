@@ -1,4 +1,72 @@
 <?php
+
+
+class SaferCrypto
+{
+    const METHOD = 'aes-256-ctr';
+
+    /**
+     * Encrypts (but does not authenticate) a message
+     *
+     * @param string $message - plaintext message
+     * @param string $key - encryption key (raw binary expected)
+     * @param boolean $encode - set to TRUE to return a base64-encoded
+     * @return string (raw binary)
+     */
+    public static function encrypt($message, $key, $encode = false)
+    {
+        $nonceSize = openssl_cipher_iv_length(self::METHOD);
+        $nonce = openssl_random_pseudo_bytes($nonceSize);
+
+        $ciphertext = openssl_encrypt(
+            $message,
+            self::METHOD,
+            $key,
+            OPENSSL_RAW_DATA,
+            $nonce
+        );
+
+        // Now let's pack the IV and the ciphertext together
+        // Naively, we can just concatenate
+        if ($encode) {
+            return base64_encode($nonce.$ciphertext);
+        }
+        return $nonce.$ciphertext;
+    }
+
+    /**
+     * Decrypts (but does not verify) a message
+     *
+     * @param string $message - ciphertext message
+     * @param string $key - encryption key (raw binary expected)
+     * @param boolean $encoded - are we expecting an encoded string?
+     * @return string
+     */
+    public static function decrypt($message, $key, $encoded = false)
+    {
+        if ($encoded) {
+            $message = base64_decode($message, true);
+            if ($message === false) {
+                throw new Exception('Encryption failure');
+            }
+        }
+
+        $nonceSize = openssl_cipher_iv_length(self::METHOD);
+        $nonce = mb_substr($message, 0, $nonceSize, '8bit');
+        $ciphertext = mb_substr($message, $nonceSize, null, '8bit');
+
+        $plaintext = openssl_decrypt(
+            $ciphertext,
+            self::METHOD,
+            $key,
+            OPENSSL_RAW_DATA,
+            $nonce
+        );
+
+        return $plaintext;
+    }
+}
+
 class Mainmodel extends CI_model{
 
 
@@ -162,12 +230,14 @@ class Mainmodel extends CI_model{
 
   function insert_sysUser($inputData){
 
+
+    $encrypted = SaferCrypto::encrypt($inputData['password'],'ching');
     $data1 = array(
       'usr_firstname' => $inputData['firstname'],
       'usr_middlename' => $inputData['middlename'],
       'usr_lastname' => $inputData['lastname'],
       'username' => $inputData['username'],
-      'password' => $inputData['password'],
+      'password' => $encrypted ,
       'position' => $inputData['position'],
       'user_level' => $inputData['user_lvl'],
       'usr_address' => $inputData['address'],
@@ -856,7 +926,7 @@ class Mainmodel extends CI_model{
 
   public function getparkingpaytablemod($search)
   {
-    
+
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -1850,6 +1920,399 @@ class Mainmodel extends CI_model{
     $query = $this->db->get('transaction');
     return $query->num_rows();
   }
+
+  public function emtbackend($sort)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $query = $this->db->query("SELECT * FROM transaction");
+    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    // $query = $this->db->get('transaction');
+    $this->db->select('*')
+    ->from('transaction');
+
+
+    //QUERY with SORT
+    if($sort['clientType']){
+
+
+      switch($sort['clientType']){
+        case 'ambulant':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'parking':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else{
+      $this->db->like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+
+    if($sort['dateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['dateFrom'] );
+    }
+    if($sort['dateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
+    }
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+
+
+    $query = $this->db->get();
+
+
+
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'trans_or' => $r->or_number,
+        'trans_amount'=> $r->payment_amount,
+        'trans_nature'=> $r->payment_nature_name,
+        'trans_date'=> $r->payment_datetime,
+        'trans_fund'=> $r->fund_name
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function otcbackend($sort)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $query = $this->db->query("SELECT * FROM transaction");
+    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    // $query = $this->db->get('transaction');
+    $this->db->select('*')
+    ->from('transaction');
+
+
+    //QUERY with SORT
+    if($sort['clientType']){
+
+
+      switch($sort['clientType']){
+        case 'ambulant':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'parking':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else{
+      $this->db->not_like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+
+    if($sort['dateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['dateFrom'] );
+    }
+    if($sort['dateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
+    }
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+
+
+    $query = $this->db->get();
+
+
+
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'trans_or' => $r->or_number,
+        'trans_amount'=> $r->payment_amount,
+        'trans_nature'=> $r->payment_nature_name,
+        'trans_date'=> $r->payment_datetime,
+        'trans_fund'=> $r->fund_name
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function cashrepbackend($sort){
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->select('*')
+    ->from('transaction');
+    // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+
+    if($sort != null)
+    {
+
+
+      switch($sort['conClientType']){
+
+        case 'ambulant':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+
+        case 'parking':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->not_like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else {
+      $this->db->not_like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+    if($sort['conDateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+    }
+    if($sort['conDateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+    }
+    if($sort['conCollectorName'])
+    {
+      $this->db->where('user_id',$sort['conCollectorName']);
+    }
+
+
+
+    $query = $this->db->get();
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'pay_or' => $r->or_number,
+        'pay_amount' =>$r->payment_amount,
+        'pay_nature' =>$r->payment_nature_id,
+        'pay_date' => $r->payment_datetime,
+        'pay_fund' =>$r->fund_name,
+        'pay_collector' =>$r->collector,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+  public function consolirepbackend($sort){
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->select('*')
+    ->from('transaction');
+    // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+
+    if($sort != null)
+    {
+
+
+      switch($sort['conClientType']){
+
+        case 'ambulant':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+        break;
+
+        case 'tenant':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+
+        case 'parking':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
+        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
+        break;
+
+        case 'delivery':
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
+        break;
+
+        default:
+        $this->db->like('or_number', "M");
+        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+        break;
+      }
+    }
+    else {
+      $this->db->like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+    if($sort['conDateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+    }
+    if($sort['conDateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+    }
+    if($sort['conCollectorName'])
+    {
+      $this->db->where('user_id',$sort['conCollectorName']);
+    }
+
+
+
+    $query = $this->db->get();
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'pay_or' => $r->or_number,
+        'pay_amount' =>$r->payment_amount,
+        'pay_nature' =>$r->payment_nature_id,
+        'pay_date' => $r->payment_datetime,
+        'pay_fund' =>$r->fund_name,
+        'pay_collector' =>$r->collector,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
 
 
 

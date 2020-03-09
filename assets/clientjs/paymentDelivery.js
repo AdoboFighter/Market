@@ -226,17 +226,21 @@ function search_client(search) {
 
       if($('#payment_type').val() == 'cash')
       {
+        $("#payment_cash_tendered").prop('required',true);
         $('#paymentDet').show();
         $('#chequeDetails').hide();
         $('#payment_cash_tendered').prop('disabled',false);
       }
       else if($('#payment_type').val() == 'cheque'){
+        $("#payment_cash_tendered").prop('required',false);
+        $("#payment_cash_tendered").val(null);
         $('#paymentDet').show();
         $('#chequeDetails').show();
         $('#payment_cash_tendered').prop('disabled',true);
       }
       else if($('#payment_type').val() == 'cashandcheque')
       {
+        $("#payment_cash_tendered").prop('required',true);
         $('#paymentDet').show();
         $('#chequeDetails').show();
         $('#payment_cash_tendered').prop('disabled',false);

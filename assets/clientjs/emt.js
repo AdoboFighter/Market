@@ -44,7 +44,7 @@ $(document).ready(function(){
       "ajax" : {
         type: "POST",
         data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
-        "url" : global.settings.url + '/MainController/gettransactiontable',
+        "url" : global.settings.url + '/MainController/emtbackend',
         dataSrc : 'data'
       },
       "columns" : [{
