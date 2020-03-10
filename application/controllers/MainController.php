@@ -507,7 +507,8 @@ class MainController extends CI_Controller{
 
   public function getsystemusertablecon()
   {
-    echo json_encode($this->model->getsystemusertablemod());
+      $search = $this->input->post('search');
+    echo json_encode($this->model->getsystemusertablemod($search));
   }
 
   public function getusercon()

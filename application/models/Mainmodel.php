@@ -1598,12 +1598,13 @@ class Mainmodel extends CI_model{
   }
 
 
-  public function getsystemusertablemod()
+  public function getsystemusertablemod($search)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
+    $this->db->like("concat(usr_firstname,' ',usr_middlename,' ',usr_lastname,' ',usr_address,' ',position)",$search);
     $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
     $query = $this->db->get('user');
     $data = [];

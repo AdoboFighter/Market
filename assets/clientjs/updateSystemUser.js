@@ -2,35 +2,35 @@ var datable;
 
 $(document).ready(function(){
 
-
-  $('#sys_table').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/getsystemusertablecon',
-      dataSrc : 'data'
-    },
-    "columns" : [
-      {
-        "data" : "usr_id"
-      },
-      {
-        "data" : "usr_name"
-      },
-
-      {
-        "data" : "usr_level"
-      },
-
-      {
-        "data" : "usr_address"
-      },
-      {
-        "data" : "usr_position"
-      },
-
-      {
-        "data" : "btn"
-      }]
-    });
+  // 
+  // $('#sys_table').DataTable({
+  //   "ajax" : {
+  //     "url" : global.settings.url + '/MainController/getsystemusertablecon',
+  //     dataSrc : 'data'
+  //   },
+  //   "columns" : [
+  //     {
+  //       "data" : "usr_id"
+  //     },
+  //     {
+  //       "data" : "usr_name"
+  //     },
+  //
+  //     {
+  //       "data" : "usr_level"
+  //     },
+  //
+  //     {
+  //       "data" : "usr_address"
+  //     },
+  //     {
+  //       "data" : "usr_position"
+  //     },
+  //
+  //     {
+  //       "data" : "btn"
+  //     }]
+  //   });
     $('.dataTables_length').addClass('bs-select');
 
     $('#updateuser').submit(function(e){
@@ -59,9 +59,56 @@ $(document).ready(function(){
 
     });
 
+    $('#search_cl_f').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+        var search = $("#search_cl_f").val();
+
+        $('#sys_table').DataTable().clear().destroy();
+        search_client(search);
+
+      }
+    });
+
 
   });
 
+
+  function search_client(search) {
+    $('#sys_table').DataTable({
+      "paging": true,
+      "searching": false,
+      "ordering": true,
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getsystemusertablecon',
+        "data": {search:search},
+        "dataType": "json",
+        "type": "POST"
+      },
+      "columns" : [{
+          "data" : "usr_id"
+        },
+        {
+          "data" : "usr_name"
+        },
+
+        {
+          "data" : "usr_level"
+        },
+
+        {
+          "data" : "usr_address"
+        },
+        {
+          "data" : "usr_position"
+        },
+
+        {
+          "data" : "btn"
+        }]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  }
 
 
   function fetchdata(id){
