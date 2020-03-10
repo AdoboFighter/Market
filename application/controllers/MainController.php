@@ -773,6 +773,13 @@ class MainController extends CI_Controller{
     echo json_encode($query);
   }
 
+  public function gettenantaddpark()
+  {
+    $search = $this->input->post('search');
+    echo json_encode($this->model->add_park_get_stall($search));
+  }
+
+
 
 }
 

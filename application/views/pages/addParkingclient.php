@@ -18,6 +18,17 @@
               <div class="span6" style="float: none; margin: 0 auto;">
                 <div class="span6" style="float: none; margin: 0 auto;">
                   <div class="row">
+                    <div class="row p-3">
+                      <div class="col">
+                        <div class="form-inline">
+                          <!-- <input type="text" class="form-control" id="search_cl_f" placeholder="search"> -->
+                          <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
+                          aria-label="Search">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="col-12 form-group">
                       <table class="table p-2 table-hover table-bordered shadow border border-dark" id="add_vio_tab">
                         <thead>
@@ -60,7 +71,7 @@
                         <input type="hidden" class="form-control" name="customer[customer_id]" id="customer_id">
                         <div class="form-group">
                           <h5 class="font-weight-bold">Details</h5>
-                          <label for="">Lot No</label>
+                          <label for="">Parking Lot No</label>
                           <input type="text" class="form-control" name="customer[lot_no]" id="lot_no" required>
                         </div>
                         <div class="form-group text-right">

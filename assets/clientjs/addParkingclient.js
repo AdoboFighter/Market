@@ -2,34 +2,34 @@
 
 $(document).ready(function(){
 
-  $('#add_vio_tab').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/add_park_get_stall',
-      dataSrc : 'data'
-    },
-    "columns" : [{
-      "data" : "id"
-    },
-    {
-      "data" : "c_info_fullname_owner"
-    },
-
-    {
-      "data" : "c_info_stall_number"
-    },
-
-    {
-      "data" : "vio_address"
-    },
-
-
-    {
-      "data" : "c_info_fullname_occupant"
-    },
-    {
-      "data" : "btn"
-    }]
-  });
+  // $('#add_vio_tab').DataTable({
+  //   "ajax" : {
+  //     "url" : global.settings.url + '/MainController/add_park_get_stall',
+  //     dataSrc : 'data'
+  //   },
+  //   "columns" : [{
+  //     "data" : "id"
+  //   },
+  //   {
+  //     "data" : "c_info_fullname_owner"
+  //   },
+  //
+  //   {
+  //     "data" : "c_info_stall_number"
+  //   },
+  //
+  //   {
+  //     "data" : "vio_address"
+  //   },
+  //
+  //
+  //   {
+  //     "data" : "c_info_fullname_occupant"
+  //   },
+  //   {
+  //     "data" : "btn"
+  //   }]
+  // });
 
 
 
@@ -60,11 +60,63 @@ $(document).ready(function(){
 
 
   });
+
+  $('#search_cl_f').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      var search = $("#search_cl_f").val();
+
+      $('#add_vio_tab').DataTable().clear().destroy();
+      search_client(search);
+
+    }
+  });
+
+
 });
+
+function search_client(search) {
+  $('#add_vio_tab').DataTable({
+    "paging": true,
+    "searching": false,
+    "ordering": true,
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/gettenantaddpark',
+      "data": {search:search},
+      "dataType": "json",
+      "type": "POST"
+    },
+    "columns" : [
+      {
+        "data" : "id"
+      },
+      {
+        "data" : "c_info_fullname_owner"
+      },
+
+      {
+        "data" : "c_info_stall_number"
+      },
+
+      {
+        "data" : "vio_address"
+      },
+
+
+      {
+        "data" : "c_info_fullname_occupant"
+      },
+      {
+        "data" : "btn"
+      }
+  ]
+  });
+    $('.dataTables_length').addClass('bs-select');
+}
 
 
 function fetchdata(id){
-       $('#savePark')[0].reset();
+  $('#savePark')[0].reset();
   console.log(id);
   $.ajax({
     url: global.settings.url + '/MainController/getcustomerinfopark',

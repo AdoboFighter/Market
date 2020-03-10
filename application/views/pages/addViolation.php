@@ -58,7 +58,7 @@
                       <input type="text" class="form-control" name="violation[stall_id_f]" id="stall_id_f" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="">Owner </label>
+                      <label for="">Tenant </label>
                       <input type="text" class="form-control" name="violation[name]" id="owner_f" readonly>
                     </div>
                     <div class="form-group">

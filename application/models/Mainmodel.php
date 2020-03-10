@@ -1373,15 +1373,23 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function add_park_get_stall()
+  public function add_park_get_stall($search)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $query = $this->db->get('customer');
+    $query = $this->db->select('*')
+    ->from('customer')
+    ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
+    ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner')
+    ->like("concat(firstname,' ',middlename,' ',lastname,' ',section,' ',Floor_level)",$search)
+    ->get();
+
+    // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    // $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    // $this->db->where('NOT EXISTS (select * FROM customer AS c LEFT JOIN tenant AS t ON t.fk_customer_id=c.customer_id LEFT JOIN parking_lot AS p ON t.tenant_id=p.tenant_id)', '', FALSE);
+    // $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(

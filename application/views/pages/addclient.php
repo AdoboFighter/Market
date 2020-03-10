@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-6" style="border-right: 1px solid #bdc4c6;">
               <div class="p-3">
-                <h5 class="font-weight-bold" style="margin-bottom: 40px">Owner's Information</h5>
+                <h5 class="font-weight-bold" style="margin-bottom: 40px">Tenant's Information</h5>
                 <div class="form-group">
                   <label for="">First Name</label>
                   <input type="text" class="form-control" name="customer[Owner_Firstname]" id="fname" required>
@@ -44,7 +44,7 @@
                 <h5 class="font-weight-bold">Occupant's Information</h5>
                 <div class="form-check mb-2">
                   <input type="checkbox" class="form-check-input" id="sameas">
-                  <label class="form-check-label">Same as Owner's Information</label>
+                  <label class="form-check-label">Same as Tenant's Information</label>
                 </div>
                 <div class="form-group">
                   <label for="">First Name</label>
