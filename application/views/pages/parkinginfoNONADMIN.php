@@ -67,14 +67,14 @@
         <div class="card col p-3 shadow">
           <div class="mb-2">
             <label>Parking lot</label>
-            <input type="text" class="form-control" name="update[park_lot]" id="park_lot" required>
+            <input type="text" class="form-control" name="update[park_lot]" id="park_lot" readonly>
           </div>
           <div class="row mb-2">
             <div class="p-2">
               <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
             </div>
             <div class="p-2">
-              <button class="btn btn-primary" type="submit">Update</button>
+              <!-- <button class="btn btn-primary" type="submit">Update</button> -->
             </div>
           </div>
         </div>
