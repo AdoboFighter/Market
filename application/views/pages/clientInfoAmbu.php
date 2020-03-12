@@ -87,7 +87,7 @@
 
       <div class="col-6">
         <div class="card col p-3 shadow">
-          <h5 class="font-weight-bold">Ambulant unit Information</h5>
+          <h5 class="font-weight-bold">Ambulant Vendor Information</h5>
           <div class="mb-2">
             <label>Location</label>
             <input type="text" class="form-control" name="update[location]" id="location">

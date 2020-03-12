@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="row p-3">
         <div class="col-12">
           <table class="table table-striped table-bordered" id="client_table">
@@ -32,7 +32,7 @@
                 <td class="border border-dark">Stall no.</td>
                 <td class="border border-dark">Area(sqm)</td>
                 <td class="border border-dark">Daily fee</td>
-                <td class="border border-dark">Owner's name</td>
+                <td class="border border-dark">Tenant's name</td>
                 <td class="border border-dark">Occupant's name</td>
                 <td class="border border-dark">load data</td>
               </tr>
@@ -118,7 +118,7 @@
       <div class="row mt-2">
         <div class="col-6">
           <div class="card col p-3 shadow">
-            <h5 class="font-weight-bold">Owner's Information</h5>
+            <h5 class="font-weight-bold">Tenant's Information</h5>
             <input type="hidden" id="customer_id" name="update[customer_id]">
             <input type="hidden" id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">

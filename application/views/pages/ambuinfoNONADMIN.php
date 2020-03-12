@@ -8,7 +8,7 @@
   </nav>
 
 
-  <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
+  <h5 class="card-header text-center text-white bluegrads container justify-content-center">Ambulant Vendor List</h5>
   <br>
   <div class="container justify-content-center">
     <div class="card m-1 shadow">

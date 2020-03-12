@@ -9,7 +9,7 @@
 
 
   <div class="container justify-content-center">
-    <h5 class="card-header text-center bg-primary text-white bluegrads">Add Ambulant Unit</h5>
+    <h5 class="card-header text-center bg-primary text-white bluegrads">Add Ambulant Vendor</h5>
     <br>
     <div class="card m-2 shadow border border-light">
       <div class="container">

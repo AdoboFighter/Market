@@ -27,12 +27,12 @@
             <table class="table table-striped table-bordered" id="sys_table">
               <thead>
                 <tr>
-                  <td>User ID</td>
-                  <td>name</td>
-                  <td>User Level</td>
-                  <td>address</td>
-                  <td>Position</td>
-                  <td>Load</td>
+                  <td class="border border-dark" scope="col">User ID</td>
+                  <td class="border border-dark" scope="col">name</td>
+                  <td class="border border-dark" scope="col">User Level</td>
+                  <td class="border border-dark" scope="col">address</td>
+                  <td class="border border-dark" scope="col">Position</td>
+                  <td class="border border-dark" scope="col">Load</td>
                 </tr>
               </thead>
               <tbody>

@@ -668,7 +668,7 @@ CONTENT STYLE
           </ul>
         </li>
 
-        <li class="">
+        <!-- <li class="">
           <a href="#homeSubmenu3" data-toggle="collapse" class="dropdown-toggle">System User</a>
           <ul class="collapse list-unstyled" id="homeSubmenu3">
 
@@ -680,7 +680,7 @@ CONTENT STYLE
               <a href="<?php echo base_url() . 'pages/view/updateSystemUser' ?>">Update Users</a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
 
 
