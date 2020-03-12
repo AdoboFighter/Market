@@ -431,10 +431,10 @@ class MainController extends CI_Controller{
   }
 
 
-  public function get_customer_violation_con()
+  public function get_tenant_violation_con()
   {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->get_customertable_violation_mod($id));
+          $search = $this->input->post('search');
+    echo json_encode($this->model->get_customertable_violation_mod($search));
   }
 
   public function add_park_get_stall()

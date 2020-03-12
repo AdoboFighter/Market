@@ -1339,12 +1339,13 @@ class Mainmodel extends CI_model{
     }
   }
 
-  public function get_customertable_violation_mod()
+  public function get_customertable_violation_mod($search)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
+    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',address,' ',aofirstname,' ',aomiddlename,' ',aolastname)",$search);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $query = $this->db->get('customer');
