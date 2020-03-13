@@ -55,6 +55,7 @@
         <div class="row p-3">
 
           <div class="col-6">
+
             <div class="form-group">
               <label>Section</label>
               <select class="form-control form-control-sm" name="update[section]" id="Section">
@@ -84,15 +85,26 @@
                 <option value="Fourth">Fourth Floor</option>
               </select><br>
             </div>
-            <div class=" form-group" id="">
+            <div class=" form-group">
               <label>Business name:</label>
               <input type="input" class="form-control" name="update[business_name]" id="business_name" required>
             </div>
-            <div class=" form-group" id="">
+            <div class=" form-group">
               <label>Business ID:</label>
               <input type="input" class="form-control" name="update[business_id]" id="business_id" required>
             </div>
+
+            <div class=" form-group" id="">
+              <label>Date Occupied:</label>
+              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" required>
+            </div>
+
+            <div class=" form-group" id="">
+              <label>last payment:</label>
+              <input type="timestamp_end" class="form-control"  id="last_pay" readonly>
+            </div>
           </div>
+
 
           <div class="col-6">
             <div class=" form-group">
@@ -111,6 +123,13 @@
               <label>Daily Fee:</label>
               <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" required>
             </div>
+
+            <div class=" form-group">
+              <label>Debt:</label>
+              <input type="input" class="form-control text-danger" id="debt_field" readonly>
+            </div>
+
+
           </div>
         </div>
       </div>

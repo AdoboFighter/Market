@@ -1004,11 +1004,15 @@ class Mainmodel extends CI_model{
 
   public function getcustomerinfomod($id)
   {
-    $this->db->where('fk_customer_id', $id);
-    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $query = $this->db->get('tenant');
-    return $query->result();
+       $this->db->where('fk_customer_id', $id);
+       $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+       $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+       $this->db->join('transaction', 'transaction.customer_id=customer.customer_id');
+       $this->db->or_where('payment_nature_id', '4011');
+       $this->db->order_by('payment_datetime');
+       $this->db->limit(1);
+       $query = $this->db->get('customer');
+       return $query->result();
 
   }
 
@@ -1022,9 +1026,7 @@ class Mainmodel extends CI_model{
     ->from('customer')
     ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
     ->join('stall', 'tenant.tenant_id = stall.tenant_id', 'inner')
-    ->where('customer.customer_id', $id)
     ->get();
-
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
