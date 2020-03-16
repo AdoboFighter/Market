@@ -3,68 +3,68 @@
 
 class SaferCrypto
 {
-    const METHOD = 'aes-256-ctr';
+  const METHOD = 'aes-256-ctr';
 
-    /**
-     * Encrypts (but does not authenticate) a message
-     *
-     * @param string $message - plaintext message
-     * @param string $key - encryption key (raw binary expected)
-     * @param boolean $encode - set to TRUE to return a base64-encoded
-     * @return string (raw binary)
-     */
-    public static function encrypt($message, $key, $encode = false)
-    {
-        $nonceSize = openssl_cipher_iv_length(self::METHOD);
-        $nonce = openssl_random_pseudo_bytes($nonceSize);
+  /**
+  * Encrypts (but does not authenticate) a message
+  *
+  * @param string $message - plaintext message
+  * @param string $key - encryption key (raw binary expected)
+  * @param boolean $encode - set to TRUE to return a base64-encoded
+  * @return string (raw binary)
+  */
+  public static function encrypt($message, $key, $encode = false)
+  {
+    $nonceSize = openssl_cipher_iv_length(self::METHOD);
+    $nonce = openssl_random_pseudo_bytes($nonceSize);
 
-        $ciphertext = openssl_encrypt(
-            $message,
-            self::METHOD,
-            $key,
-            OPENSSL_RAW_DATA,
-            $nonce
-        );
+    $ciphertext = openssl_encrypt(
+      $message,
+      self::METHOD,
+      $key,
+      OPENSSL_RAW_DATA,
+      $nonce
+    );
 
-        // Now let's pack the IV and the ciphertext together
-        // Naively, we can just concatenate
-        if ($encode) {
-            return base64_encode($nonce.$ciphertext);
-        }
-        return $nonce.$ciphertext;
+    // Now let's pack the IV and the ciphertext together
+    // Naively, we can just concatenate
+    if ($encode) {
+      return base64_encode($nonce.$ciphertext);
+    }
+    return $nonce.$ciphertext;
+  }
+
+  /**
+  * Decrypts (but does not verify) a message
+  *
+  * @param string $message - ciphertext message
+  * @param string $key - encryption key (raw binary expected)
+  * @param boolean $encoded - are we expecting an encoded string?
+  * @return string
+  */
+  public static function decrypt($message, $key, $encoded = false)
+  {
+    if ($encoded) {
+      $message = base64_decode($message, true);
+      if ($message === false) {
+        throw new Exception('Encryption failure');
+      }
     }
 
-    /**
-     * Decrypts (but does not verify) a message
-     *
-     * @param string $message - ciphertext message
-     * @param string $key - encryption key (raw binary expected)
-     * @param boolean $encoded - are we expecting an encoded string?
-     * @return string
-     */
-    public static function decrypt($message, $key, $encoded = false)
-    {
-        if ($encoded) {
-            $message = base64_decode($message, true);
-            if ($message === false) {
-                throw new Exception('Encryption failure');
-            }
-        }
+    $nonceSize = openssl_cipher_iv_length(self::METHOD);
+    $nonce = mb_substr($message, 0, $nonceSize, '8bit');
+    $ciphertext = mb_substr($message, $nonceSize, null, '8bit');
 
-        $nonceSize = openssl_cipher_iv_length(self::METHOD);
-        $nonce = mb_substr($message, 0, $nonceSize, '8bit');
-        $ciphertext = mb_substr($message, $nonceSize, null, '8bit');
+    $plaintext = openssl_decrypt(
+      $ciphertext,
+      self::METHOD,
+      $key,
+      OPENSSL_RAW_DATA,
+      $nonce
+    );
 
-        $plaintext = openssl_decrypt(
-            $ciphertext,
-            self::METHOD,
-            $key,
-            OPENSSL_RAW_DATA,
-            $nonce
-        );
-
-        return $plaintext;
-    }
+    return $plaintext;
+  }
 }
 
 class Mainmodel extends CI_model{
@@ -708,6 +708,33 @@ class Mainmodel extends CI_model{
     return $data;
   }
 
+  public function getcustomerinfomod($id)
+  {
+    // echo $id;
+    $this->db->select('c.customer_id, c.firstname, c.middlename, c.lastname,
+    c.aofirstname, c.aomiddlename, c.aolastname, c.contact_number, c.aoaddress,
+    c.ao_cn, st.stall_id, st.unit_no, st.date_occupied, st.section, st.section, st.dailyfee,
+    st.class, st.floor_level, tn.tenant_id, tn.business_id, tn.business_name, tn.fk_customer_id,
+    tn.owner, tn.mode_of_payment, tn.nature_or_business, tr.transaction_id, tr.fund_id, tr.payment_nature_id');
+    $this->db->from('customer as c');
+    $this->db->join('tenant as tn', 'tn.fk_customer_id=c.customer_id');
+    $this->db->join('stall as st', 'st.tenant_id=tn.tenant_id');
+    $this->db->join('transaction as tr', 'tr.customer_id=c.customer_id', 'left');
+    $this->db->where('c.customer_id', $id);
+    $this->db->or_like('tr.payment_nature_id', '4009');
+    $this->db->or_like('tr.payment_nature_id', '4010');
+    $this->db->or_like('tr.payment_nature_id', '4011');
+    $this->db->or_like('tr.payment_nature_id', '4004');
+    $this->db->or_like('tr.payment_nature_id', '4005');
+    $this->db->or_like('tr.payment_nature_id', '4006');
+    $this->db->order_by('tr.payment_datetime');
+    // $this->db->group_by('tr.customer_id');
+    $this->db->limit(1);
+    $query = $this->db->get('customer');
+    return $query->result();
+  }
+
+
 
   public function getcustomertable($search)
   {
@@ -1002,19 +1029,6 @@ class Mainmodel extends CI_model{
 
 
 
-  public function getcustomerinfomod($id)
-  {
-       $this->db->where('fk_customer_id', $id);
-       $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
-       $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
-       $this->db->join('transaction', 'transaction.customer_id=customer.customer_id');
-       $this->db->or_where('payment_nature_id', '4011');
-       $this->db->order_by('payment_datetime');
-       $this->db->limit(1);
-       $query = $this->db->get('customer');
-       return $query->result();
-
-  }
 
 
   public function getcustomerinfopaymod($id)

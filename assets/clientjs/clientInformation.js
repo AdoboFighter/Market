@@ -165,7 +165,6 @@ function diffdates() {
 function fetchdata(id){
   customerinfo(id);
   transactionhistory(id);
-
 }
 
 function customerinfo(id){
@@ -179,6 +178,7 @@ function customerinfo(id){
     dataType:'JSON',
     success: function(res){
       console.log(res);
+      $('#last_pay').val();
       $('#customer_id').val(res[0].customer_id)
       $('#owner_fn').val(res[0].firstname);
       $('#owner_mn').val(res[0].middlename);
