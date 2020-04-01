@@ -14,7 +14,6 @@ $(document).ready(function(){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
-
       $('#client_table').DataTable().clear().destroy();
       search_client(search);
 
@@ -29,7 +28,7 @@ $(document).ready(function(){
       "searching": false,
       "ordering": true,
       "ajax" : {
-        "url" : global.settings.url + '/MainController/getcustomertable',
+        "url" : global.settings.url + '/MainController/getcustomerinfotable',
         "data": {search:search},
         "dataType": "json",
         "type": "POST"
@@ -40,6 +39,14 @@ $(document).ready(function(){
 
       {
         "data" : "c_info_stall_number"
+      },
+
+      {
+        "data" : "c_info_section"
+      },
+
+      {
+        "data" : "c_info_natbus"
       },
 
       {
@@ -163,8 +170,39 @@ function diffdates() {
 }
 
 function fetchdata(id){
+  document.getElementById("updatecustomerinfo").reset();
   customerinfo(id);
   transactionhistory(id);
+  getdebt(id);
+}
+
+function getdebt(id) {
+  console.log(id);
+  $.ajax({
+    url: global.settings.url + '/MainController/getdebtcon',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType:'JSON',
+    success: function(res){
+      console.log(res);
+      if (res == "stillnopay") {
+        $('#last_pay').val("No history of past transactions");
+        $('#debt_field').val("");
+      }else {
+        $('#last_pay_type').val(res[0].payment_nature_name);
+        $('#last_pay').val(res[0].payment_datetime);
+        diffdates();
+      }
+
+    },
+    error: function(xhr){
+      console.log(xhr.responseText);
+
+    }
+  });
+
 }
 
 function customerinfo(id){
@@ -178,7 +216,6 @@ function customerinfo(id){
     dataType:'JSON',
     success: function(res){
       console.log(res);
-      $('#last_pay').val();
       $('#customer_id').val(res[0].customer_id)
       $('#owner_fn').val(res[0].firstname);
       $('#owner_mn').val(res[0].middlename);
@@ -200,18 +237,11 @@ function customerinfo(id){
       $('#business_name').val(res[0].business_name);
       $('#Section').val(res[0].Section);
       $('#date_occupied').val(res[0].date_occupied);
-      $('#last_pay').val(res[0].payment_datetime);
-
-      diffdates();
-      if (res[0].payment_datetime == null) {
-        console.log("yepo");
-      }else {
-        console.log('nahhh');
-      }
 
     },
     error: function(xhr){
       console.log(xhr.responseText);
+      console.log('yow');
     }
   })
 }

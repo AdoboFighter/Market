@@ -141,10 +141,10 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getconsolidationtable());
   }
 
-  public function getcustomertable()
+  public function getcustomerinfotable()
   {
     $search = $this->input->post('search');
-    echo json_encode($this->model->getcustomertable($search));
+    echo json_encode($this->model->getcustomerinfotablemod($search));
   }
 
   public function getcustomertablepay()
@@ -348,6 +348,11 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcustomerinfomod($id));
   }
 
+  public function getdebtcon()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getdebtmod($id));
+  }
   public function getcustomerinfopaycon()
   {
     $id = $this->input->post('id');

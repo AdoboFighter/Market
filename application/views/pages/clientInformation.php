@@ -30,6 +30,8 @@
               <tr>
                 <td class="border border-dark">no</td>
                 <td class="border border-dark">Stall no.</td>
+                <td class="border border-dark">Section</td>
+                <td class="border border-dark">Nature of business</td>
                 <td class="border border-dark">Area(sqm)</td>
                 <td class="border border-dark">Daily fee</td>
                 <td class="border border-dark">Tenant's name</td>
@@ -95,12 +97,12 @@
             </div>
 
             <div class=" form-group" id="">
-              <label>Date Occupied:</label>
-              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" required>
+              <label>Last payment type:</label>
+              <input type="text" class="form-control" name="update[date_occupied]" id="last_pay_type" readonly>
             </div>
 
             <div class=" form-group" id="">
-              <label>last payment:</label>
+              <label>last payment date:</label>
               <input type="timestamp_end" class="form-control"  id="last_pay" readonly>
             </div>
           </div>
@@ -124,6 +126,11 @@
               <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" required>
             </div>
 
+            <div class=" form-group" id="">
+              <label>Date Occupied:</label>
+              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" required>
+            </div>
+
             <div class=" form-group">
               <label>Debt:</label>
               <input type="input" class="form-control text-danger" id="debt_field" readonly>
@@ -138,8 +145,8 @@
         <div class="col-6">
           <div class="card col p-3 shadow">
             <h5 class="font-weight-bold">Tenant's Information</h5>
-            <input type="hidden" id="customer_id" name="update[customer_id]">
-            <input type="hidden" id="stall_id" name="update[stall_id]">
+            <input type="text" id="customer_id" name="update[customer_id]">
+            <input type="text" id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" required>

@@ -710,51 +710,68 @@ class Mainmodel extends CI_model{
 
   public function getcustomerinfomod($id)
   {
-    // echo $id;
-    $this->db->select('c.customer_id, c.firstname, c.middlename, c.lastname,
-    c.aofirstname, c.aomiddlename, c.aolastname, c.contact_number, c.aoaddress,
-    c.ao_cn, st.stall_id, st.unit_no, st.date_occupied, st.section, st.section, st.dailyfee,
-    st.class, st.floor_level, tn.tenant_id, tn.business_id, tn.business_name, tn.fk_customer_id,
-    tn.owner, tn.mode_of_payment, tn.nature_or_business, tr.transaction_id, tr.fund_id, tr.payment_nature_id');
-    $this->db->from('customer as c');
-    $this->db->join('tenant as tn', 'tn.fk_customer_id=c.customer_id');
-    $this->db->join('stall as st', 'st.tenant_id=tn.tenant_id');
-    $this->db->join('transaction as tr', 'tr.customer_id=c.customer_id', 'left');
-    $this->db->where('c.customer_id', $id);
-    $this->db->or_like('tr.payment_nature_id', '4009');
-    $this->db->or_like('tr.payment_nature_id', '4010');
-    $this->db->or_like('tr.payment_nature_id', '4011');
-    $this->db->or_like('tr.payment_nature_id', '4004');
-    $this->db->or_like('tr.payment_nature_id', '4005');
-    $this->db->or_like('tr.payment_nature_id', '4006');
-    $this->db->order_by('tr.payment_datetime');
-    // $this->db->group_by('tr.customer_id');
-    $this->db->limit(1);
+    $this->db->where('customer_id', $id);
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $query = $this->db->get('customer');
     return $query->result();
+    echo $query;
+  }
+
+  public function getdebtmod($id)
+  {
+    $this->db->where('tr.customer_id', $id);
+    // $this->db->select('tr.customer_id');
+    // $this->db->from('tr.transaction');
+    $this->db->join('payment_nature as pn', 'pn.payment_nature_id = tr.payment_nature_id');
+    // $this->db->or_where('tr.payment_nature_id', '4009');
+    // $this->db->or_where('tr.payment_nature_id', '4010');
+    // $this->db->or_where('tr.payment_nature_id', '4011');
+    // $this->db->or_where('tr.payment_nature_id', '4004');
+    // $this->db->or_where('tr.payment_nature_id', '4005');
+    // $this->db->or_where('tr.payment_nature_id', '4006');
+    $this->db->where('tr.payment_nature_id != ', '4016');
+    $this->db->where('tr.payment_nature_id != ', '4007');
+    $this->db->where('tr.payment_nature_id != ', '4008');
+    $this->db->where('tr.payment_nature_id != ', '4012');
+    $this->db->where('tr.payment_nature_id != ', '4014');
+    $this->db->where('tr.payment_nature_id != ', '4015');
+    $this->db->where('tr.payment_nature_id != ', '4016');
+    $this->db->where('tr.payment_nature_id != ', '4017');
+    $this->db->order_by('payment_datetime');
+    $this->db->limit(1);
+    $query = $this->db->get('transaction as tr');
+    if($query->num_rows() > 0){
+      return $query->result();
+    } else {
+      return "stillnopay";
+    }
+
+    echo $query;
   }
 
 
 
-  public function getcustomertable($search)
+  public function getcustomerinfotablemod($search)
   {
-
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',section,' ',Floor_level)",$search);
+    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id)",$search);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'id' => $r->customer_id,
         'c_info_stall_number' => $r->unit_no,
+        'c_info_section' => $r->Section,
+        'c_info_natbus' => $r->nature_or_business,
         'c_info_area' => $r->sqm,
         'c_info_daily_fee'=> $r->dailyfee,
-        'c_info_fullname_occupant'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
-        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'c_info_fullname_owner'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_occupant'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
 
         '<div class="">
