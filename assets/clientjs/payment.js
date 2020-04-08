@@ -254,25 +254,36 @@ $(document).ready(function(){
       "columns" : [{
         "data" : "id"
       },
+
       {
-        "data" : "fullname"
+        "data" : "c_info_stall_number"
       },
 
       {
-        "data" : "unit_no"
+        "data" : "c_info_section"
       },
 
       {
-        "data" : "floor_level"
+        "data" : "c_info_natbus"
+      },
+
+      {
+        "data" : "c_info_area"
       },
 
 
       {
-        "data" : "section"
+        "data" : "c_info_daily_fee"
       },
 
 
+      {
+        "data" : "c_info_fullname_owner"
+      },
 
+      {
+        "data" : "c_info_fullname_occupant"
+      },
       {
         "data" : "btn"
       }]

@@ -3,25 +3,31 @@ var id;
 
 $(document).ready(function(){
 
-
-
-
   $( "#payhistbtn" ).click(function() {
     $('#violationmodal').modal('show');
   });
+
+  function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+  }
 
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
-      $('#client_table').DataTable().clear().destroy();
-      search_client(search);
+      if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Search Bar Empty',
+        });
+      }else {
 
+        $('#client_table').DataTable().clear().destroy();
+        search_client(search);
+      }
     }
   });
-
-
-
+  
   function search_client(search) {
     $('#client_table').DataTable({
       "paging": true,
@@ -143,37 +149,80 @@ $('#updatecustomerinfo').submit(function(e){
 
 //end of doc ready
 
-function diffdates() {
+// function diffdates() {
+//   var dp1 = document.getElementById('last_pay').value;
+//   var daily = document.getElementById('daily_fee').value;
+//   // Split timestamp into [ Y, M, D, h, m, s ]
+//   var t = dp1.split(/[- :]/);
+//
+//   // Apply each element to the Date function
+//   var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+//   console.log(d);
+//
+//   dp2 = new Date();
+//   var date2 = dp2.getTime();
+//   var ONE_DAY = 1000 * 60 * 60 * 24
+//
+//
+//   // get total seconds between two dates
+//   var res = Math.abs(d - date2) / 1000;
+//   var days = Math.floor(res / 86400);
+//   var debt = days * daily;
+//   document.getElementById('debt_field').value = debt;
+//
+//   // console.log(days);
+//   // console.log(debt);
+//
+// }
+
+
+function diffdates2() {
   var dp1 = document.getElementById('last_pay').value;
   var daily = document.getElementById('daily_fee').value;
-  // Split timestamp into [ Y, M, D, h, m, s ]
-  var t = dp1.split(/[- :]/);
-
-  // Apply each element to the Date function
-  var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-  console.log(d);
-
-  dp2 = new Date();
-  var date2 = dp2.getTime();
-  var ONE_DAY = 1000 * 60 * 60 * 24
 
 
-  // get total seconds between two dates
-  var res = Math.abs(d - date2) / 1000;
-  var days = Math.floor(res / 86400);
-  var debt = days * daily;
-  document.getElementById('debt_field').value = debt;
 
+  if(new Date() <= new Date(dp1))
+  {//compare end <=, not >=
+    //your code here
+    document.getElementById('debt_field').value = "STILL PAID";
+
+  }else {
+    // Split timestamp into [ Y, M, D, h, m, s ]
+    var t = dp1.split(/[- :]/);
+
+    // Apply each element to the Date function
+    var d = new Date(Date.UTC(t[0], t[1]-1, t[2]));
+    console.log(d);
+
+    dp2 = new Date();
+    var date2 = dp2.getTime();
+    var ONE_DAY = 1000 * 60 * 60 * 24
+
+
+    // get total seconds between two dates
+    var res = Math.abs(d - date2) / 1000;
+    var days = Math.floor(res / 86400);
+    var debt = days * daily;
+
+
+
+
+    document.getElementById('debt_field').value = debt;
+
+    console.log(days);
+    console.log(debt);
+
+    var start = new Date("2010-04-01");
+  }
+
+  // var end   = new Date(),
+  // diff  = new Date(end - dp1),
+  // days  = diff/1000/60/60/24;
+  // days;
+  // var debt = days * daily;
+  // document.getElementById('debt_field').value = debt;
   // console.log(days);
-  // console.log(debt);
-
-}
-
-function fetchdata(id){
-  document.getElementById("updatecustomerinfo").reset();
-  customerinfo(id);
-  transactionhistory(id);
-  getdebt(id);
 }
 
 function getdebt(id) {
@@ -187,13 +236,15 @@ function getdebt(id) {
     dataType:'JSON',
     success: function(res){
       console.log(res);
+
+
       if (res == "stillnopay") {
         $('#last_pay').val("No history of past transactions");
         $('#debt_field').val("");
       }else {
         $('#last_pay_type').val(res[0].payment_nature_name);
-        $('#last_pay').val(res[0].payment_datetime);
-        diffdates();
+        $('#last_pay').val(res[0].effectivity);
+        diffdates2();
       }
 
     },
@@ -203,6 +254,13 @@ function getdebt(id) {
     }
   });
 
+}
+
+function fetchdata(id){
+  document.getElementById("updatecustomerinfo").reset();
+  customerinfo(id);
+  transactionhistory(id);
+  getdebt(id);
 }
 
 function customerinfo(id){
@@ -216,6 +274,8 @@ function customerinfo(id){
     dataType:'JSON',
     success: function(res){
       console.log(res);
+      $('#last_pay').val();
+      console.log(res[0].customer_id);
       $('#customer_id').val(res[0].customer_id)
       $('#owner_fn').val(res[0].firstname);
       $('#owner_mn').val(res[0].middlename);
@@ -237,6 +297,13 @@ function customerinfo(id){
       $('#business_name').val(res[0].business_name);
       $('#Section').val(res[0].Section);
       $('#date_occupied').val(res[0].date_occupied);
+      $('#last_pay').val(res[0].payment_datetime);
+      // diffdates();
+      // if (res[0].customer_id == null) {
+      //   console.log("yepo");
+      // }else {
+      //   console.log('nahhh');
+      // }
 
     },
     error: function(xhr){

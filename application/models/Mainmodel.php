@@ -289,18 +289,21 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
     $query = $this->db->select('*')
     ->from('customer')
-    ->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner')
-    ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner')
-    ->like("concat(firstname,' ',middlename,' ',lastname,' ',section,' ',Floor_level)",$search)
+    ->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id)",$search)
+    ->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner')
+    ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left')
     ->get();
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
         'id' => $r->customer_id,
-        'fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'unit_no' => $r->unit_no,
-        'floor_level' => $r->floor_level,
-        'section' => $r->Section,
+        'c_info_stall_number' => $r->unit_no,
+        'c_info_section' => $r->Section,
+        'c_info_natbus' => $r->nature_or_business,
+        'c_info_area' => $r->sqm,
+        'c_info_daily_fee'=> $r->dailyfee,
+        'c_info_fullname_owner'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+        'c_info_fullname_occupant'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button">Load Data</button>
@@ -738,7 +741,7 @@ class Mainmodel extends CI_model{
     $this->db->where('tr.payment_nature_id != ', '4015');
     $this->db->where('tr.payment_nature_id != ', '4016');
     $this->db->where('tr.payment_nature_id != ', '4017');
-    $this->db->order_by('payment_datetime');
+    $this->db->order_by('effectivity', 'DESC ');
     $this->db->limit(1);
     $query = $this->db->get('transaction as tr');
     if($query->num_rows() > 0){
@@ -746,6 +749,7 @@ class Mainmodel extends CI_model{
     } else {
       return "stillnopay";
     }
+
 
     echo $query;
   }

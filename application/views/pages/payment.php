@@ -35,11 +35,14 @@
             <table class="table table-striped table-bordered shadow" id="tableNoStall">
               <thead>
                 <tr>
-                  <td class="border border-dark" scope="col">no</td>
-                  <td class="border border-dark" scope="col">name</td>
-                  <td class="border border-dark" scope="col">Stall Number</td>
-                  <td class="border border-dark" scope="col">Floor</td>
-                  <td class="border border-dark" scope="col">Section</td>
+                  <td class="border border-dark">Customer ID</td>
+                  <td class="border border-dark">Stall no.</td>
+                  <td class="border border-dark">Section</td>
+                  <td class="border border-dark">Nature of business</td>
+                  <td class="border border-dark">Area(sqm)</td>
+                  <td class="border border-dark">Daily fee</td>
+                  <td class="border border-dark">Tenant's name</td>
+                  <td class="border border-dark">Occupant's name</td>
                   <td class="border border-dark" scope="col">To pay</td>
                 </tr>
               </thead>

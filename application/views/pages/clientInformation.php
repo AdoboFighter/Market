@@ -28,7 +28,7 @@
           <table class="table table-striped table-bordered" id="client_table">
             <thead>
               <tr>
-                <td class="border border-dark">no</td>
+                <td class="border border-dark">Customer ID</td>
                 <td class="border border-dark">Stall no.</td>
                 <td class="border border-dark">Section</td>
                 <td class="border border-dark">Nature of business</td>
