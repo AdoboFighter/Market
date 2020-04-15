@@ -761,7 +761,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id)",$search);
+    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id,'',sqm)",$search);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left');
     $query = $this->db->get('customer');
@@ -825,26 +825,31 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getPayAmbulantTableMod($search)
+  public function getPayAmbulantTableMod($search, $searchcat)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $query = $this->db->select('*')
-    ->from('customer')
-    ->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner')
-    ->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner')
-    ->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search)
-    ->get();
-
+    // $query = $this->db->select('*')
+    // ->from('customer')
+    // ->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search)
+    // ->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id')
+    // ->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id')
+    // ->get();
+    // $this->db->like("concat(customer_id,' ',firstname,' ',middlename,' ',lastname,' ',nature_of_business,' ',location_no)",$search);
+    $this->db->like("concat($searchcat)",$search);
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id');
+    $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-        'id' => $r->customer_id,
-        'pay_ambu_location' => $r->location,
-        'pay_ambu_locnum'=> $r->location_no,
-        'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+       'id' => $r->customer_id,
+       'pay_ambu_location' => $r->location,
+       'pay_ambu_locnum'=> $r->location_no,
+       'nature_of_business'=> $r->nature_of_business,
+       'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
 
         '<div class="">

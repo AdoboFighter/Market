@@ -7,27 +7,47 @@ $(document).ready(function(){
 
   });
 
+
+
+  function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+  }
+
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
+      // var searchcat = $("#search_cl_s").find(":selected").text().val();
 
-      $('#AmbulantTable').DataTable().clear().destroy();
-      search_client(search);
+      $("#search_cl_s").change(function() {
+        // var selectedVal = $("#myselect option:selected").text();
+        var searchcat = $("#search_cl_s option:selected").val();
+      });
+      var searchcat = $("#search_cl_s option:selected").val();
+      if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Search Bar Empty',
+        });
+      }
 
+      else {
+        $('#AmbulantTable').DataTable().clear().destroy();
+        search_client(search, searchcat);
+      }
     }
   });
 
 
 
-  function search_client(search) {
+  function search_client(search, searchcat) {
     $('#AmbulantTable').DataTable({
       "paging": true,
       "searching": false,
       "ordering": true,
       "ajax" : {
         "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
-        "data": {search:search},
+        "data": {search:search, searchcat:searchcat},
         "dataType": "json",
         "type": "POST"
       },
@@ -45,6 +65,10 @@ $(document).ready(function(){
 
         {
           "data" : "pay_ambu_locnum"
+        },
+
+        {
+          "data" : "nature_of_business"
         },
 
         {

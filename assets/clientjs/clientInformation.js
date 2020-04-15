@@ -21,13 +21,12 @@ $(document).ready(function(){
           title: 'Search Bar Empty',
         });
       }else {
-
         $('#client_table').DataTable().clear().destroy();
         search_client(search);
       }
     }
   });
-  
+
   function search_client(search) {
     $('#client_table').DataTable({
       "paging": true,
