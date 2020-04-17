@@ -11,30 +11,61 @@ $(document).ready(function(){
     return str === null || str.match(/^ *$/) !== null;
   }
 
+  // $('#search_cl_f').keypress(function(event){
+  //   var keycode = (event.keyCode ? event.keyCode : event.which);
+  //   if(keycode == '13'){
+  //     var search = $("#search_cl_f").val();
+  //     if (isEmptyOrSpaces(search)) {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Search Bar Empty',
+  //       });
+  //     }else {
+  //       $('#client_table').DataTable().clear().destroy();
+  //       search_client(search);
+  //     }
+  //   }
+  // });
+
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
-      if (isEmptyOrSpaces(search)) {
+
+      var searchcat = $("#search_cl_s option:selected").val();
+
+      if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
         Swal.fire({
           icon: 'error',
-          title: 'Search Bar Empty',
+          title: 'Please input your Search and Select a category',
         });
-      }else {
+      }else if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search',
+        });
+      }else if (!$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Select a category',
+        });
+      }
+
+      else {
         $('#client_table').DataTable().clear().destroy();
-        search_client(search);
+        search_client(search, searchcat);
       }
     }
   });
 
-  function search_client(search) {
+  function search_client(search, searchcat) {
     $('#client_table').DataTable({
       "paging": true,
       "searching": false,
       "ordering": true,
       "ajax" : {
         "url" : global.settings.url + '/MainController/getcustomerinfotable',
-        "data": {search:search},
+        "data": {search:search, searchcat:searchcat},
         "dataType": "json",
         "type": "POST"
       },

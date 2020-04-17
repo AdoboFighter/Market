@@ -13,21 +13,28 @@ $(document).ready(function(){
     return str === null || str.match(/^ *$/) !== null;
   }
 
+
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
-      // var searchcat = $("#search_cl_s").find(":selected").text().val();
 
-      $("#search_cl_s").change(function() {
-        // var selectedVal = $("#myselect option:selected").text();
-        var searchcat = $("#search_cl_s option:selected").val();
-      });
       var searchcat = $("#search_cl_s option:selected").val();
-      if (isEmptyOrSpaces(search)) {
+
+      if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
         Swal.fire({
           icon: 'error',
-          title: 'Search Bar Empty',
+          title: 'Please input your Search and Select a category',
+        });
+      }else if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search',
+        });
+      }else if (!$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Select a category',
         });
       }
 

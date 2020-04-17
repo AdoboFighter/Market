@@ -144,7 +144,8 @@ class MainController extends CI_Controller{
   public function getcustomerinfotable()
   {
     $search = $this->input->post('search');
-    echo json_encode($this->model->getcustomerinfotablemod($search));
+    $searchcat = $this->input->post('searchcat');;
+    echo json_encode($this->model->getcustomerinfotablemod($search, $searchcat));
   }
 
   public function getcustomertablepay()

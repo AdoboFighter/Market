@@ -756,14 +756,15 @@ class Mainmodel extends CI_model{
 
 
 
-  public function getcustomerinfotablemod($search)
+  public function getcustomerinfotablemod($search, $searchcat)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id,'',sqm)",$search);
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left');
+    // $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id,'',sqm)",$search);
+    $this->db->like("concat($searchcat)",$search);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
