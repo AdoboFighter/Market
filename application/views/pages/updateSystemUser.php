@@ -14,11 +14,26 @@
       <div class="card m-1 shadow">
         <div class="row p-3">
           <div class="col">
-            <div class="form-inline">
-              <!-- <input type="text" class="form-control" id="search_cl_f" placeholder="search"> -->
+            <div class="form-group">
+              <label>Search</label>
               <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
               aria-label="Search">
-                    <i class="fas fa-search" aria-hidden="true"></i>
+              <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="form-group">
+              <label>Category</label>
+              <select class="form-control form-control-sm" id="search_cl_s">
+                <option selected value="">Please Select</option>
+                <option value="user_id">User ID</option>
+                <option value="usr_firstname,' ',usr_middlename,' ',usr_lastname">Name</option>
+                <option value="user_type">User Type</option>
+                <option value="usr_address">address</option>
+                <option value="position">position</option>
+              </select>
             </div>
           </div>
         </div>

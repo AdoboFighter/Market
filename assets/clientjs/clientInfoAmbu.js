@@ -13,6 +13,17 @@ $(document).ready(function(){
     return str === null || str.match(/^ *$/) !== null;
   }
 
+  $('#search_cl_s').on('change', function() {
+    var search = $("#search_cl_f").val();
+    var searchcat = $(this).children("option:selected").val();
+    if (isEmptyOrSpaces(search)) {
+      console.log("do nothing");
+    }else {
+      $('#AmbulantTable').DataTable().clear().destroy();
+      search_client(search, searchcat);
+    }
+  });
+
 
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);

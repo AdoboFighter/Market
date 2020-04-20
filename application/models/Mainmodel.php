@@ -906,7 +906,7 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getdeliverypaytablemod($search)
+  public function getdeliverypaytablemod($search, $searchcat)
   {
 
     $draw = intval($this->input->get("draw"));
@@ -916,13 +916,13 @@ class Mainmodel extends CI_model{
     $query = $this->db->select('*')
     ->from('customer')
     ->join('delivery', 'delivery.fk_customer_id=customer.customer_id', 'inner')
-    ->like("concat(firstname,' ',middlename,' ',delivery_id)",$search)
+    ->like("concat($searchcat)",$search)
     ->get();
 
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-        'id' => $r->delivery_id,
+        'id' => $r->customer_id,
         'pay_delivery_id' => $r->firstname,
         'pay_delivery_name'=> $r->middlename,
         'btn'=>
@@ -978,13 +978,13 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getparkingpaytablemod($search)
+  public function getparkingpaytablemod($search, $searchcat)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',lot_no)",$search);
+    $this->db->like("concat($searchcat)",$search);
     $this->db->join('driver', 'driver.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('parking_lot', 'driver.driver_id=parking_lot.driver_id', 'inner');
     $query = $this->db->get('customer');
@@ -992,7 +992,6 @@ class Mainmodel extends CI_model{
     foreach ($query->result() as $r) {
       $data[] = array(
         'id' => $r->customer_id,
-        'pay_driver_id' => $r->driver_id,
         'pay_parking_lot' => $r->lot_no,
         'pay_parking_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
@@ -1642,13 +1641,13 @@ class Mainmodel extends CI_model{
   }
 
 
-  public function getsystemusertablemod($search)
+  public function getsystemusertablemod($search, $searchcat)
   {
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(usr_firstname,' ',usr_middlename,' ',usr_lastname,' ',usr_address,' ',position)",$search);
+    $this->db->like("concat($searchcat)",$search);
     $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
     $query = $this->db->get('user');
     $data = [];
