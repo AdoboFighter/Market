@@ -47,7 +47,7 @@
                 <td class="border border-dark">Location</td>
                 <td class="border border-dark">Location Number</td>
                 <td class="border border-dark">Nature of business</td>
-                <td class="border border-dark">Payment</td>
+                <td class="border border-dark">Load Info</td>
               </tr>
             </thead>
             <tbody>

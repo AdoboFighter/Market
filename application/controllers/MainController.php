@@ -163,7 +163,8 @@ class MainController extends CI_Controller{
   public function getPayAmbulantTablepay()
   {
     $search = $this->input->post('search');
-    echo json_encode($this->model->getPayAmbulantTablepay($search));
+    $searchcat = $this->input->post('searchcat');
+    echo json_encode($this->model->getPayAmbulantTablepay($search, $searchcat));
   }
 
 

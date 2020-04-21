@@ -867,44 +867,44 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getPayAmbulantTablepay($search)
-  {
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-
-    $query = $this->db->select('*')
-    ->from('customer')
-    ->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner')
-    ->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner')
-    ->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search)
-    ->get();
-
-    // $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search);
-    // $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
-    // $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->customer_id,
-        'pay_ambu_location' => $r->location,
-        'pay_ambu_locnum'=> $r->location_no,
-        'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
-        'btn'=>
-
-        '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button>
-        </div>'
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-  }
+  // public function getPayAmbulantTablepay($search, $searchcat)
+  // {
+  //   $draw = intval($this->input->get("draw"));
+  //   $start = intval($this->input->get("start"));
+  //   $length = intval($this->input->get("length"));
+  //
+  //   $query = $this->db->select('*')
+  //   ->from('customer')
+  //   ->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner')
+  //   ->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner')
+  //   ->like("concat($searchcat)",$search)
+  //   ->get();
+  //
+  //   // $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',location,' ',location_no)",$search);
+  //   // $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id', 'inner');
+  //   // $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id', 'inner');
+  //   $data = [];
+  //   foreach ($query->result() as $r) {
+  //     $data[] = array(
+  //       'id' => $r->customer_id,
+  //       'pay_ambu_location' => $r->location,
+  //       'pay_ambu_locnum'=> $r->location_no,
+  //       'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+  //       'btn'=>
+  //
+  //       '<div class="">
+  //       <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button>
+  //       </div>'
+  //     );
+  //   }
+  //   $result = array(
+  //     "draw" => $draw,
+  //     "recordsTotal" => $query->num_rows(),
+  //     "recordsFiltered" => $query->num_rows(),
+  //     "data" => $data
+  //   );
+  //   return $result;
+  // }
 
   public function getdeliverypaytablemod($search, $searchcat)
   {

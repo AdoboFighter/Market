@@ -16,7 +16,7 @@
     <div class="card m-3 shadow">
       <div class="">
         <div class="row p-3">
-          <div class="row p-3">
+
             <div class="col">
               <div class="form-group">
                 <label>Search</label>
@@ -64,6 +64,7 @@
               <tbody>
               </tbody>
             </table>
+            <br>
           </div>
 
         </div>

@@ -235,6 +235,10 @@ $(document).ready(function(){
   //   }
   // });
 
+  function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+  }
+
 
   $('#search_cl_s').on('change', function() {
     var search = $("#search_cl_f").val();
@@ -287,7 +291,7 @@ $(document).ready(function(){
       "ordering": true,
       "ajax" : {
         "url" : global.settings.url + '/MainController/gettenanttable',
-        "data": {search:search, searchcat:searchcat}},
+        "data": {search:search, searchcat:searchcat},
         "dataType": "json",
         "type": "POST"
       },

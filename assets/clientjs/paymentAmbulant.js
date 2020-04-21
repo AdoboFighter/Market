@@ -82,50 +82,129 @@ $(document).ready(function(){
   //     }]
   //   });
 
-  $('#search_cl_f').keypress(function(event){
-  var keycode = (event.keyCode ? event.keyCode : event.which);
-  if(keycode == '13'){
-    var search = $("#search_cl_f").val();
 
-    $('#tableNoStall').DataTable().clear().destroy();
-    search_client(search);
+    function isEmptyOrSpaces(str){
+      return str === null || str.match(/^ *$/) !== null;
+    }
 
-  }
-});
-
-  function search_client(search) {
-    $('#AmbulantTable').DataTable({
-      "paging": true,
-      "searching": false,
-      "ordering": true,
-      "ajax" : {
-        "url" : global.settings.url + '/MainController/getPayAmbulantTablepay',
-        "data": {search:search},
-        "dataType": "json",
-        "type": "POST"
-      },
-      "columns" : [
-        {
-          "data" : "id"
-        },
-        {
-          "data" : "pay_ambu_name"
-        },
-
-        {
-          "data" : "pay_ambu_location"
-        },
-
-        {
-          "data" : "pay_ambu_locnum"
-        },
-
-        {
-          "data" : "btn"
-        }]
+    $('#search_cl_s').on('change', function() {
+      var search = $("#search_cl_f").val();
+      var searchcat = $(this).children("option:selected").val();
+      if (isEmptyOrSpaces(search)) {
+        console.log("do nothing");
+      }else {
+        $('#AmbulantTable').DataTable().clear().destroy();
+        search_client(search, searchcat);
+      }
     });
 
-  }
+
+    $('#search_cl_f').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+        var search = $("#search_cl_f").val();
+
+        var searchcat = $("#search_cl_s option:selected").val();
+
+        if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input your Search and Select a category',
+          });
+        }else if (isEmptyOrSpaces(search)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input your Search',
+          });
+        }else if (!$('#search_cl_s').val()) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please Select a category',
+          });
+        }
+
+        else {
+          $('#AmbulantTable').DataTable().clear().destroy();
+          search_client(search, searchcat);
+        }
+      }
+    });
+
+    function search_client(search, searchcat) {
+      $('#AmbulantTable').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": true,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
+          "data": {search:search, searchcat:searchcat},
+          "dataType": "json",
+          "type": "POST"
+        },
+        "columns" : [
+          {
+            "data" : "id"
+          },
+          {
+            "data" : "pay_ambu_name"
+          },
+
+          {
+            "data" : "pay_ambu_location"
+          },
+
+          {
+            "data" : "pay_ambu_locnum"
+          },
+
+          {
+            "data" : "nature_of_business"
+          },
+
+          {
+            "data" : "btn"
+          }
+        ]
+      });
+      $('.dataTables_length').addClass('bs-select');
+    }
+
+
+  // function search_client(search) {
+  //   $('#AmbulantTable').DataTable({
+  //     "paging": true,
+  //     "searching": false,
+  //     "ordering": true,
+  //     "ajax" : {
+  //       "url" : global.settings.url + '/MainController/getPayAmbulantTablepay',
+  //       "data": {search:search},
+  //       "dataType": "json",
+  //       "type": "POST"
+  //     },
+  //     "columns" : [
+  //       {
+  //         "data" : "id"
+  //       },
+  //       {
+  //         "data" : "pay_ambu_name"
+  //       },
+  //
+  //       {
+  //         "data" : "pay_ambu_location"
+  //       },
+  //
+  //       {
+  //         "data" : "pay_ambu_locnum"
+  //       },
+  //
+  //       {
+  //         "data" : "btn"
+  //       }]
+  //   });
+  //
+  // }
+
+
 
   $('.dataTables_length').addClass('bs-select');
   $('#demo').num2words();

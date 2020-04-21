@@ -129,36 +129,69 @@ $(document).ready(function(){
   //     }]
   //   });
 
+  function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+  }
+
+  $('#search_cl_s').on('change', function() {
+    var search = $("#search_cl_f").val();
+    var searchcat = $(this).children("option:selected").val();
+    if (isEmptyOrSpaces(search)) {
+      console.log("do nothing");
+    }else {
+      $('#ParkingTable').DataTable().clear().destroy();
+      search_client(search, searchcat);
+    }
+  });
+
+
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
 
-      $('#ParkingTable').DataTable().clear().destroy();
-      search_client(search);
+      var searchcat = $("#search_cl_s option:selected").val();
 
+      if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search and Select a category',
+        });
+      }else if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search',
+        });
+      }else if (!$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Select a category',
+        });
+      }
+
+      else {
+        $('#ParkingTable').DataTable().clear().destroy();
+        search_client(search, searchcat);
+      }
     }
   });
 
 
 
-  function search_client(search) {
+  function search_client(search, searchcat) {
     $('#ParkingTable').DataTable({
       "paging": true,
       "searching": false,
       "ordering": true,
       "ajax" : {
-        "url" : global.settings.url + '/MainController/getparkingpaytablepay',
-        "data": {search:search},
+        "url" : global.settings.url + '/MainController/getparkingpaytablecon',
+        "data": {search:search, searchcat:searchcat},
         "dataType": "json",
         "type": "POST"
       },
       "columns" : [
         {
           "data" : "id"
-        },
-        {
-          "data" : "pay_driver_id"
         },
 
         {
