@@ -14,13 +14,32 @@
     <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col">
-          <div class="form-inline">
-            <!-- <input type="text" class="form-control" id="search_cl_f" placeholder="search"> -->
+          <div class="form-group">
+            <label>Search</label>
             <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
             aria-label="Search">
-                  <i class="fas fa-search" aria-hidden="true"></i>
+            <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
           </div>
         </div>
+
+
+        <div class="col">
+          <div class="form-group">
+            <label>Category</label>
+            <select class="form-control form-control-sm" id="search_cl_s">
+              <option selected value="">Please Select</option>
+              <option value="customer_id">Customer ID</option>
+              <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
+              <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
+              <option value="unit_no">Stall number</option>
+              <option value="Section">Section</option>
+              <option value="nature_or_business">Nature of business</option>
+              <option value="sqm">Area(sqm)</option>
+              <option value="dailyfee">Daily fee</option>
+            </select>
+          </div>
+        </div>
+
       </div>
 
       <div class="row p-3">
@@ -28,11 +47,13 @@
           <table class="table table-striped table-bordered" id="client_table">
             <thead>
               <tr>
-                <td class="border border-dark">no</td>
+                <td class="border border-dark">Customer ID</td>
                 <td class="border border-dark">Stall no.</td>
+                <td class="border border-dark">Section</td>
+                <td class="border border-dark">Nature of business</td>
                 <td class="border border-dark">Area(sqm)</td>
                 <td class="border border-dark">Daily fee</td>
-                <td class="border border-dark">Owner's name</td>
+                <td class="border border-dark">Tenant's name</td>
                 <td class="border border-dark">Occupant's name</td>
                 <td class="border border-dark">load data</td>
               </tr>

@@ -14,11 +14,25 @@
     <div class="card m-1 shadow">
       <div class="row p-3">
         <div class="col">
-          <div class="form-inline">
-            <!-- <input type="text" class="form-control" id="search_cl_f" placeholder="search"> -->
+          <div class="form-group">
+            <label>Search</label>
             <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
             aria-label="Search">
-                  <i class="fas fa-search" aria-hidden="true"></i>
+            <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label>Category</label>
+            <select class="form-control form-control-sm" id="search_cl_s">
+              <option selected value="">Please Select</option>
+              <option value="customer_id">Customer ID</option>
+              <option value="firstname,' ',middlename,' ',lastname">Full name</option>
+              <option value="location">Location</option>
+              <option value="location_no">Location Number</option>
+              <option value="nature_of_business">Nature of business</option>
+            </select>
           </div>
         </div>
       </div>
@@ -29,10 +43,11 @@
             <thead>
               <tr>
                 <td class="border border-dark">Customer ID</td>
-                <td class="border border-dark">name</td>
+                <td class="border border-dark">Full Name</td>
                 <td class="border border-dark">Location</td>
                 <td class="border border-dark">Location Number</td>
-                <td class="border border-dark">Payment</td>
+                <td class="border border-dark">Nature of business</td>
+                <td class="border border-dark">Load Info</td>
               </tr>
             </thead>
             <tbody>

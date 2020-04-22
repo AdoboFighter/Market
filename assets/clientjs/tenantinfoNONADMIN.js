@@ -10,64 +10,105 @@ $(document).ready(function(){
     $('#violationmodal').modal('show');
   });
 
-  $('#search_cl_f').keypress(function(event){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-      var search = $("#search_cl_f").val();
 
-      $('#client_table').DataTable().clear().destroy();
-      search_client(search);
-
+    function isEmptyOrSpaces(str){
+      return str === null || str.match(/^ *$/) !== null;
     }
-  });
 
-
-
-  function search_client(search) {
-    $('#client_table').DataTable({
-      "paging": true,
-      "searching": false,
-      "ordering": true,
-      "ajax" : {
-        "url" : global.settings.url + '/MainController/getcustomertable',
-        "data": {search:search},
-        "dataType": "json",
-        "type": "POST"
-      },
-      "columns" : [{
-        "data" : "id"
-      },
-
-      {
-        "data" : "c_info_stall_number"
-      },
-
-      {
-        "data" : "c_info_area"
-      },
-
-
-      {
-        "data" : "c_info_daily_fee"
-      },
-
-
-      {
-        "data" : "c_info_fullname_owner"
-      },
-
-      {
-        "data" : "c_info_fullname_occupant"
-      },
-      {
-        "data" : "btn"
+    $('#search_cl_s').on('change', function() {
+      var search = $("#search_cl_f").val();
+      var searchcat = $(this).children("option:selected").val();
+      if (isEmptyOrSpaces(search)) {
+        console.log("do nothing");
+      }else {
+        $('#client_table').DataTable().clear().destroy();
+        search_client(search, searchcat);
       }
+    });
 
-    ]
-  });
-  $('.dataTables_length').addClass('bs-select');
-}
+    $('#search_cl_f').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+        var search = $("#search_cl_f").val();
 
+        var searchcat = $("#search_cl_s option:selected").val();
+
+        if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input your Search and Select a category',
+          });
+        }else if (isEmptyOrSpaces(search)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input your Search',
+          });
+        }else if (!$('#search_cl_s').val()) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please Select a category',
+          });
+        }
+
+        else {
+          $('#client_table').DataTable().clear().destroy();
+          search_client(search, searchcat);
+        }
+      }
+    });
+
+    function search_client(search, searchcat) {
+      $('#client_table').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": true,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getcustomerinfotable',
+          "data": {search:search, searchcat:searchcat},
+          "dataType": "json",
+          "type": "POST"
+        },
+        "columns" : [{
+          "data" : "id"
+        },
+
+        {
+          "data" : "c_info_stall_number"
+        },
+
+        {
+          "data" : "c_info_section"
+        },
+
+        {
+          "data" : "c_info_natbus"
+        },
+
+        {
+          "data" : "c_info_area"
+        },
+
+
+        {
+          "data" : "c_info_daily_fee"
+        },
+
+
+        {
+          "data" : "c_info_fullname_owner"
+        },
+
+        {
+          "data" : "c_info_fullname_occupant"
+        },
+        {
+          "data" : "btn"
+        }
+
+      ]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  }
 
 
 // $('#client_table').DataTable({

@@ -52,6 +52,7 @@
                   <option value="PDF2fcertification">2f certification</option>
                   <option value="PDFnoonwership">Certification for water district</option>
                   <option value="map1">Certification for no ownership and operation</option>
+                  <option value="PDFqrtest">Certification for no ownership and operation</option>
                 </select>
               </div>
               <input type="hidden" id="transaction_id" name="cert[transaction_id]">
