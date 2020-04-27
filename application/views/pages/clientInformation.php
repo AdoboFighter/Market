@@ -27,7 +27,7 @@
           <div class="form-group">
             <label>Category</label>
             <select class="form-control form-control-sm" id="search_cl_s">
-              <option selected value="">Please Select</option>
+              <option value="">Please Select</option>
               <option value="customer_id">Customer ID</option>
               <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
               <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>

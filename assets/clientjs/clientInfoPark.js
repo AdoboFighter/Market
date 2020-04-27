@@ -46,6 +46,8 @@ $('#search_cl_s').on('change', function() {
   var searchcat = $(this).children("option:selected").val();
   if (isEmptyOrSpaces(search)) {
     console.log("do nothing");
+  }else if ($(this).children("option:selected").text() == "Please Select") {
+    console.log("do nothing");
   }else {
     $('#parkTable').DataTable().clear().destroy();
     search_client(search, searchcat);

@@ -50,29 +50,34 @@
                 <select class="form-control form-control-sm" name="transact[payment_type]" id="location">
                   <option selected value="">Please Select</option>
                   <option value="PDF2fcertification">2f certification</option>
-                  <option value="PDFnoonwership">Certification for water district</option>
-                  <option value="map1">Certification for no ownership and operation</option>
-                  <option value="PDFqrtest">Certification for no ownership and operation</option>
+                  <option value="PDFwaterdistrict">Certification for water district</option>
+                  <option value="PDFnoownership">Certification for no ownership and operation</option>
+                  <option value="PDFqrtest">Test</option>
                 </select>
               </div>
-              <input type="hidden" id="transaction_id" name="cert[transaction_id]">
-              <input type="hidden" id="cert" name="cert[cert]">
-              <input type="hidden" id="fname" name="cert[fname]">
-              <input type="hidden" id="mname" name="cert[mname]">
-              <input type="hidden" id="lname" name="cert[lname]">
-              <input type="hidden" id="address" name="cert[address]">
-              <input type="hidden" id="natbus" name="cert[natbus]">
-              <input type="hidden" id="stall" name="cert[stall]">
-              <input type="hidden" id="flrlvl" name="cert[flrlvl]">
-              <input type="hidden" id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
-              <input type="hidden" id="floor_level" name="cert[floor_level]">
-              <input type="hidden" id="days" name="cert[days]">
-              <input type="hidden" id="month" name="cert[month]">
-              <input type="hidden" id="year" name="cert[year]">
-              <input type="hidden" id="OR" name="cert[OR]">
-              <input type="hidden" id="today" name="cert[today]">
-              <input type="hidden" id="or_number" name="cert[or_number]">
-              <input type="hidden" id="payment_amount" name="cert[payment_amount]">
+              <input type="text" id="transaction_id" name="cert[transaction_id]">
+              <input type="text" id="todaynosl" name="cert[todaynosl]">
+              <input type="text" id="ornumber" name="cert[ornumber]">
+              <input type="text" id="refnum" name="cert[refnum]">
+              <input type="text" id="cert" name="cert[cert]">
+              <input type="text" id="fname" name="cert[fname]">
+              <input type="text" id="mname" name="cert[mname]">
+              <input type="text" id="lname" name="cert[lname]">
+              <input type="text" id="address" name="cert[address]">
+              <input type="text" id="natbus" name="cert[natbus]">
+              <input type="text" id="stall" name="cert[stall]">
+              <input type="text" id="flrlvl" name="cert[flrlvl]">
+              <input type="text" id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
+              <input type="text" id="floor_level" name="cert[floor_level]">
+              <input type="text" id="days" name="cert[days]">
+              <input type="text" id="month" name="cert[month]">
+              <input type="text" id="year" name="cert[year]">
+              <input type="text" id="OR" name="cert[OR]">
+              <input type="text" id="today" name="cert[today]">
+              <input type="text" id="or_number" name="cert[or_number]">
+              <input type="text" id="refdate" name="cert[refdate]">
+              <input type="text" id="payment_amount" name="cert[payment_amount]">
+              <input type="text" id="cert_type" name="cert[cert_type]">
               <iframe id="iframe_preview_formgen" frameborder="0" marginwidth="0" marginheight="0" height="600" width="100%"></iframe>
 
 

@@ -23,6 +23,15 @@ $txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever l
 
 $pdf->MultiCell(150, 100, $txt2, 100, 'J', 100, 100, 33, 150, true);
 
+$style = array(
+    'border' => 2,
+    'padding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => array(255,255,255)
+);
+$pdf->write2DBarcode($refnum, 'QRCODE,H', 145, 215, 30, 30, $style, 'N');
+
+
 $pdf->text(40, 214, $or_number);
 $pdf->text(40, 219, $today);
 $pdf->text(40, 224, $payment_amount);

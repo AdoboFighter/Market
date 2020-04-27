@@ -551,6 +551,7 @@ class MainController extends CI_Controller{
   public function pdf2fcert()
   {
     $inputData = $this->input->post('cert');
+
     $data = array(
       'fname' => $inputData['fname'],
       'mname' => $inputData['mname'],
@@ -568,7 +569,8 @@ class MainController extends CI_Controller{
       'or_number' => $inputData['or_number'],
       'payment_amount' => $inputData['payment_amount'],
       'today' => $inputData['today'],
-      'address' => $inputData['address']
+      'address' => $inputData['address'],
+      'refnum' => $inputData['refnum']
     );
     return $this->load->view('pages/'.$inputData['cert'],$data);
   }

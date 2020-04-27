@@ -29,6 +29,15 @@ $pdf->text(40, 214, $or_number);
 $pdf->text(40, 219, $today);
 $pdf->text(40, 224, $payment_amount);
 
+$style = array(
+    'border' => 2,
+    'padding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => array(255,255,255)
+);
+$pdf->write2DBarcode($refnum, 'QRCODE,H', 145, 215, 30, 30, $style, 'N');
+
+
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 

@@ -40,6 +40,8 @@ $(document).ready(function(){
 
   $('#location').on('change', function(e) {
     $('#cert').val(this.value);
+    var typecert = $('#location option:selected').text();
+    $('#cert_type').val(typecert);
     e.preventDefault();
     $.ajax({
       url : global.settings.url + '/MainController/pdf2fcert',
@@ -100,6 +102,7 @@ $(document).ready(function(){
       success: function(res){
         console.log(res);
         res = res[0];
+
         $('#transaction_id').val(res.transaction_id );
         $('#fname').val(res.firstname );
         $('#mname').val(res.middlename );
@@ -116,6 +119,18 @@ $(document).ready(function(){
         $('#days').val(n);
         $('#month').val(month);
         $('#year').val(year);
+        $('#ornumber').val(res.or_number );
+
+        var lastfourOR = $('#ornumber').val();
+        var tranIDVVAR = $('#transaction_id').val();
+        var datenosl = $('#today').val().replace(/\//g, '');
+        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+
+        $('#todaynosl').val(datenosl);
+        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+
+
+
       },
       error: function(xhr){
         console.log(xhr.responseText);
