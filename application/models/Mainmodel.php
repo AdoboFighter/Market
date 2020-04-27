@@ -2284,8 +2284,6 @@ class Mainmodel extends CI_model{
 
     if($sort != null)
     {
-
-
       switch($sort['conClientType']){
 
         case 'ambulant':
@@ -2357,6 +2355,40 @@ class Mainmodel extends CI_model{
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
         'pay_collector' =>$r->collector,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+  public function getcertprinttable($search, $searchcat)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
+    $this->db->like("concat($searchcat)",$search);
+    $this->db->where($array);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'cert_trans_id' => $r->transaction_id,
+        'cert_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'cert_dop' => $r->payment_datetime,
+        'cert_type' => $r->cert_type,
+        'cert_ref_num' => $r->reference_num,
       );
     }
     $result = array(

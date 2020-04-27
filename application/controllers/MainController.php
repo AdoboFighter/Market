@@ -546,6 +546,13 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcerttable());
   }
 
+  public function getcertprinttable()
+  {
+    $search = $this->input->post('search');
+    $searchcat = $this->input->post('searchcat');
+    echo json_encode($this->model->getcertprinttable($search, $searchcat));
+  }
+
 
 
   public function pdf2fcert()
