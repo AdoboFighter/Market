@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -80,13 +79,13 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" aria-label="Close" id = "close_modal_payment">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class ="row">
-                <div class = "col-12">
+                <div class = "col-12" id ="payment_type_hide">
                   <select name="payment_type" id="payment_type" class = "form-control">
                     <option value="">Select Payment Type</option>
                     <option value="cash">Cash</option>
@@ -104,16 +103,23 @@
 
                   <div class="mb-2">
 
-                    <input type="text" class="form-control payment_details" name="" id="payment_customer_id" hidden>
                   </div>
-                  <div class="mb-2">
 
-                    <input type="text" class="form-control payment_details" name="" id="payment_tenant_id" hidden>
+                  <div class="mb-2">
+                    <label>Customer ID</label>
+                    <input type="text" class="form-control payment_details" name="" id="payment_customer_id" readonly>
                   </div>
+
+                  <div class="mb-2">
+                    <label>Stall number</label>
+                    <input type="text" class="form-control payment_details" name="" id="payment_stall" readonly>
+                  </div>
+
                   <div class="mb-2">
                     <label>Name</label>
                     <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
                   </div>
+                  <br>
 
                   <!-- particulars -->
 
@@ -130,7 +136,7 @@
 
                     <div class="col">
                       <label>Price</label>
-                      <input type="number" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0" >
+                      <input type="text" class="form-control partnum payment_details ntw" name="part1num" id="part1num" value = "0"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -139,7 +145,7 @@
                       <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part2num" id="part2num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -148,7 +154,7 @@
                       <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part3num" id="part3num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -157,7 +163,7 @@
                       <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part4num" id="part4num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -166,7 +172,7 @@
                       <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part5num" id="part5num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -175,7 +181,7 @@
                       <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part6num" id="part6num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
@@ -184,17 +190,11 @@
                       <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
                     </div>
                     <div class="col">
-                      <input type="number" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0">
+                      <input type="text" class="form-control partnum payment_details ntw" name="part7num" id="part7num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
                     </div>
                   </div>
 
-                  <div class="row mt-2">
-                    <div class="col" id = "demo">
-                      <label>Total</label>
-                      <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
-                      <div></div>
-                    </div>
-                  </div>
+
 
 
 
@@ -234,7 +234,7 @@
 
                   <div class="mb-2">
                     <label>Cash tendered</label>
-                    <input type="text" class="form-control payment_details" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                    <input type="text" class="form-control payment_details" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required>
                   </div>
 
 
@@ -243,11 +243,33 @@
                     <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
                   </div>
 
+                  <div class="row mt-2">
+                    <div class="col">
+                      <label>Total amount given</label>
+                      <input type="text" class="form-control payment_details ntw text-danger" name="total_amount_given" id="total_amount_given" readonly>
+                      <div></div>
+                    </div>
+
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col" id = "demo">
+                      <label>Total</label>
+                      <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
+                      <div></div>
+                    </div>
+
+                    <div class="col">
+                      <label>Change</label>
+                      <input type="text" class="form-control payment_details ntw text-danger" name="change" id="change" readonly>
+                    </div>
+                  </div>
+                  <br>
 
                   <!-- end of row for details -->
                   <input type="hidden" id = "ntwntw">
-                  <div class="mb-2">
-                    <button type="submit"  class="btn btn-primary float-left allPaymentButton" id = "payment_submit_btn">Submit and print</button>
+                  <div class="">
+                    <button type="submit"  class="btn btn-primary float-right allPaymentButton" id = "payment_submit_btn">Submit and print</button>
                   </div>
                 </div>
               </div>
@@ -255,7 +277,7 @@
               <br>
 
               <div id = "chequeDetails">
-                <div class="row">
+                <div class="row mt-2">
                   <div class="col-6">
                     <div class="col">
                       <label>Cheque Number</label>
@@ -265,6 +287,12 @@
                     <div class="col">
                       <label>Cheque Amount </label>
                       <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                    </div>
+
+                    <div class="col">
+                      <br>
+                      <label>Total cheque amount</label>
+                      <p class="text-success p-2" id="payment_cheque_total"></p>
                     </div>
                   </div>
                   <div class="col-6">
@@ -296,7 +324,6 @@
                         <th class="border border-dark">delete</th>
                       </tr>
                     </thead>
-
                     <tbody>
                     </tbody>
                   </table>
@@ -316,7 +343,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close"  aria-label="Close" id="close_modal_receipt">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -344,7 +371,7 @@
       <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close"  aria-label="Close" id="close_modal_receipt2">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

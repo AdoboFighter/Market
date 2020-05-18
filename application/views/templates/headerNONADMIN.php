@@ -606,8 +606,18 @@ CONTENT STYLE
           </ul>
         </li>
 
-        <li>
-          <a href="<?php echo base_url() . 'pages/view/certification' ?>">Certification</a>
+        <li class="">
+          <a href="#homeSubmenu7" data-toggle="collapse" class="dropdown-toggle">Certification</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu7">
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/certification' ?>">For printing</a>
+            </li>
+
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/certprintlist' ?>">Printed</a>
+            </li>
+          </ul>
         </li>
 
         <li class="">

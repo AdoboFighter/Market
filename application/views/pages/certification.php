@@ -55,29 +55,29 @@
                   <option value="PDFqrtest">Test</option>
                 </select>
               </div>
-              <input type="text" id="transaction_id" name="cert[transaction_id]">
-              <input type="text" id="todaynosl" name="cert[todaynosl]">
-              <input type="text" id="ornumber" name="cert[ornumber]">
-              <input type="text" id="refnum" name="cert[refnum]">
-              <input type="text" id="cert" name="cert[cert]">
-              <input type="text" id="fname" name="cert[fname]">
-              <input type="text" id="mname" name="cert[mname]">
-              <input type="text" id="lname" name="cert[lname]">
-              <input type="text" id="address" name="cert[address]">
-              <input type="text" id="natbus" name="cert[natbus]">
-              <input type="text" id="stall" name="cert[stall]">
-              <input type="text" id="flrlvl" name="cert[flrlvl]">
-              <input type="text" id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
-              <input type="text" id="floor_level" name="cert[floor_level]">
-              <input type="text" id="days" name="cert[days]">
-              <input type="text" id="month" name="cert[month]">
-              <input type="text" id="year" name="cert[year]">
-              <input type="text" id="OR" name="cert[OR]">
-              <input type="text" id="today" name="cert[today]">
-              <input type="text" id="or_number" name="cert[or_number]">
-              <input type="text" id="refdate" name="cert[refdate]">
-              <input type="text" id="payment_amount" name="cert[payment_amount]">
-              <input type="text" id="cert_type" name="cert[cert_type]">
+              <input type="text" hidden id="transaction_id" name="cert[transaction_id]">
+              <input type="text" hidden id="todaynosl" name="cert[todaynosl]">
+              <input type="text" hidden id="ornumber" name="cert[ornumber]">
+              <input type="text" hidden id="refnum" name="cert[refnum]">
+              <input type="text" hidden id="cert" name="cert[cert]">
+              <input type="text" hidden id="fname" name="cert[fname]">
+              <input type="text" hidden id="mname" name="cert[mname]">
+              <input type="text" hidden id="lname" name="cert[lname]">
+              <input type="text" hidden id="address" name="cert[address]">
+              <input type="text" hidden id="natbus" name="cert[natbus]">
+              <input type="text" hidden id="stall" name="cert[stall]">
+              <input type="text" hidden id="flrlvl" name="cert[flrlvl]">
+              <input type="text" hidden id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
+              <input type="text" hidden id="floor_level" name="cert[floor_level]">
+              <input type="text" hidden id="days" name="cert[days]">
+              <input type="text" hidden id="month" name="cert[month]">
+              <input type="text" hidden id="year" name="cert[year]">
+              <input type="text" hidden id="OR" name="cert[OR]">
+              <input type="text" hidden id="today" name="cert[today]">
+              <input type="text" hidden id="or_number" name="cert[or_number]">
+              <input type="text" hidden id="refdate" name="cert[refdate]">
+              <input type="text" hidden id="payment_amount" name="cert[payment_amount]">
+              <input type="text" hidden id="cert_type" name="cert[cert_type]">
               <iframe id="iframe_preview_formgen" frameborder="0" marginwidth="0" marginheight="0" height="600" width="100%"></iframe>
 
 

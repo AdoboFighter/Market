@@ -35,41 +35,42 @@
             </select>
           </div>
         </div>
-        </div>
+      </div>
 
-        <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="DeliveryTable">
-            <thead>
-              <tr>
-                <td class="border border-dark">Customer ID</td>
-                <td class="border border-dark">Company's/Driver's name</td>
-                <td class="border border-dark">Plate number</td>
-                <td class="border border-dark">Payment</td>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
+      <div class="col-12">
+        <table class="table table-striped table-bordered shadow" id="DeliveryTable">
+          <thead>
+            <tr>
+              <td class="border border-dark">Customer ID</td>
+              <td class="border border-dark">Company's/Driver's name</td>
+              <td class="border border-dark">Plate number</td>
+              <td class="border border-dark">Payment</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
-    <br>
-    <br>
   </div>
+  <br>
+  <br>
+</div>
 
 
-  <div id="deliveryPay" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+<div id="deliveryPay" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <form id="payment_submit">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalPreviewLabel">Delivery Payment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" id = "close_modal_payment">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" id ="payment_type_hide">
               <select name="payment_type" id="payment_type" class="form-control">
                 <option value="">Select Payment Type</option>
                 <option value="cash">Cash</option>
@@ -85,12 +86,16 @@
             <!-- customer details -->
             <div class="col-6">
 
-              <div class="mb-2">
-                <input type="text" class="form-control payment_details" name="" id="payment_customer_id" hidden>
-              </div>
+
               <div class="mb-2">
                 <input type="text" class="form-control payment_details" name="" id="payment_delivery_id" hidden>
               </div>
+
+              <div class="mb-2">
+                <label>Customer ID</label>
+                <input type="text" class="form-control payment_details" name="" id="payment_customer_id" readonly>
+              </div>
+
               <div class="mb-2">
                 <label>Company's/Driver's Name</label>
                 <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
@@ -173,14 +178,6 @@
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col" id="demo">
-                  <label>Total</label>
-                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
-                  <div></div>
-                </div>
-              </div>
-
 
 
 
@@ -225,123 +222,155 @@
 
               <div class="mb-2">
                 <label>Payment Effectivity</label>
-                <input type="date" class="form-control payment_details" name="" id="payment_effectivity">
+                <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
               </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <label>Total amount given</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total_amount_given" id="total_amount_given" readonly>
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col" id = "demo">
+                  <label>Total</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
+                  <div></div>
+                </div>
+
+                <div class="col">
+                  <label>Change</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="change" id="change" readonly>
+                  <div></div>
+                </div>
+              </div>
+              <br>
 
               <!-- end of row for details -->
 
               <input type="hidden" id="ntwntw">
               <div class="mb-2">
-                <button type="Submit" class="btn btn-primary float-left allPaymentButton" id="payment_submit_button">Submit and print</button>
+                <button type="Submit" class="btn btn-primary float-right allPaymentButton" id="payment_submit_button">Submit and print</button>
               </div>
 
-            </div>
-
-
-          </div>
-
-          <div id="chequeDetails">
-            <div class="row">
-              <div class="col-6">
-                <div class="col">
-                  <label>Cheque Number</label>
-                  <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
-                </div>
-
-                <div class="col">
-                  <label>Cheque Amount </label>
-                  <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                </div>
-              </div>
-              <div class="col-6">
-
-                <div class="col">
-                  <label>Cheque Date </label>
-                  <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
-                </div>
-
-                <div class="col">
-                  <label>Bank/Branch</label>
-                  <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
-                </div>
-                <br>
-                <button class="float-right stylish-color-dark btn text-white" id="add_cheque">Add</button>
-              </div>
-            </div>
-            <br>
-
-
-            <div class="mb-2 form-group">
-              <table class="table table-striped table-bordered p-2 shadow" id="table_cheque">
-                <thead>
-                  <tr>
-                    <th class="border border-dark">Cheque no</th>
-                    <th class="border border-dark">Cheque Amount</th>
-                    <th class="border border-dark">Cheque Date</th>
-                    <th class="border border-dark">Bank Branch</th>
-                    <th class="border border-dark">delete</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-          <!-- end row -->
-          <br>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- END OF MODAL -->
-
-  <div id="recModal" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="printrec">
-
-            <h3 class="text-center">Do you want to Print Receipt?</h3>
-            <!-- <input type="text" id ="payer">
-            <input type="text" id ="totalprint">
-            <input type="text" id ="cashcheck"> -->
-            <div class="text-center">
-              <button class="btn btn-success" type="submit" value="yes"> Print Receipt</button>
-              <button class="btn btn-danger" type="button" value="no" id="printbtnclose">Close</button>
             </div>
 
           </form>
         </div>
 
-      </div>
-    </div>
-  </div>
-  <!-- END OF MODAL -->
+        <div id="chequeDetails">
+          <div class="row">
+            <div class="col-6">
+              <div class="col">
+                <label>Cheque Number</label>
+                <input type="text" class="form-control payment_details" name="transact[cheque_number]" id="payment_cheque_number">
+              </div>
 
-  <div id="rec" data-backdrop="static" class="modal fade right shadow" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+              <div class="col">
+                <label>Cheque Amount </label>
+                <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+              </div>
+
+              <div class="col">
+                <br>
+                <label>Total cheque amount</label>
+                <p class="text-success p-2" id="payment_cheque_total"></p>
+              </div>
+
+            </div>
+            <div class="col-6">
+
+              <div class="col">
+                <label>Cheque Date </label>
+                <input type="date" class="form-control payment_details" name="transact[cheque_date]" id="payment_cheque_date">
+              </div>
+
+              <div class="col">
+                <label>Bank/Branch</label>
+                <input type="text" class="form-control payment_details" name="transact[bank_branch]" id="payment_bank_branch">
+              </div>
+              <br>
+              <button class="float-right stylish-color-dark btn text-white" id="add_cheque">Add</button>
+            </div>
+          </div>
+          <br>
+
+
+          <div class="mb-2 form-group">
+            <table class="table table-striped table-bordered p-2 shadow" id="table_cheque">
+              <thead>
+                <tr>
+                  <th class="border border-dark">Cheque no</th>
+                  <th class="border border-dark">Cheque Amount</th>
+                  <th class="border border-dark">Cheque Date</th>
+                  <th class="border border-dark">Bank Branch</th>
+                  <th class="border border-dark">delete</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
         </div>
-        <div class="modal-body">
-          <iframe src="" id="frameasdas" height="800" width="100%">
-          </iframe>
-          <button class="btn btn-success" id="printbtnrec">Print Receipt</button>
-        </div>
+        <!-- end row -->
+        <br>
+      </div>
+
+    </div>
+  </div>
+</form>
+</div>
+<!-- END OF MODAL -->
+
+
+<div id="recModal" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  aria-label="Close" id="close_modal_receipt">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="printrec">
+
+          <h3 class="text-center">Do you want to Print Receipt?</h3>
+          <!-- <input type="text" id ="payer">
+          <input type="text" id ="totalprint">
+          <input type="text" id ="cashcheck"> -->
+          <div class="text-center">
+            <button class="btn btn-success" type="submit" value="yes"> Print Receipt</button>
+            <button class="btn btn-danger" type="button" value="no" id="printbtnclose">Close</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END OF MODAL -->
+
+<div id="rec" data-backdrop="static" class="modal fade right shadow" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  aria-label="Close" id="close_modal_receipt2">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe src="" id="frameasdas" height="800" width="100%">
+        </iframe>
+        <button class="btn btn-success" id="printbtnrec">Print Receipt</button>
       </div>
     </div>
   </div>
+</div>
 
 
 

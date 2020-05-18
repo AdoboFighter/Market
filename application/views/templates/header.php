@@ -658,6 +658,10 @@ CONTENT STYLE
               <a href="<?php echo base_url() . 'pages/view/otc' ?>">OTC - Over the Counter</a>
             </li>
 
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/cheque' ?>">Cheque list</a>
+            </li>
+
           </ul>
         </li>
 

@@ -81,93 +81,142 @@ $(document).ready(function(){
   //       "data" : "btn"
   //     }]
   //   });
+  $( "#close_modal_payment" ).click(function() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to close the payment window?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Close',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        $('#AmbuPay').modal("hide");
+      }
+    })
+  });
 
+  $( "#close_modal_receipt" ).click(function() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to close the receipt window?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Close',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        $('#print').modal("hide");
+      }
+    })
+  });
 
-    function isEmptyOrSpaces(str){
-      return str === null || str.match(/^ *$/) !== null;
+  $( "#close_modal_receipt2" ).click(function() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to close the printing window?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Close',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        $('#rec').modal("hide");
+      }
+    })
+  });
+
+  function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+  }
+
+  $('#search_cl_s').on('change', function() {
+    var search = $("#search_cl_f").val();
+    var searchcat = $(this).children("option:selected").val();
+    if (isEmptyOrSpaces(search)) {
+      console.log("do nothing");
+    }else {
+      $('#AmbulantTable').DataTable().clear().destroy();
+      search_client(search, searchcat);
     }
+  });
 
-    $('#search_cl_s').on('change', function() {
+
+  $('#search_cl_f').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
       var search = $("#search_cl_f").val();
-      var searchcat = $(this).children("option:selected").val();
-      if (isEmptyOrSpaces(search)) {
-        console.log("do nothing");
-      }else {
+
+      var searchcat = $("#search_cl_s option:selected").val();
+
+      if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search and Select a category',
+        });
+      }else if (isEmptyOrSpaces(search)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please input your Search',
+        });
+      }else if (!$('#search_cl_s').val()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Select a category',
+        });
+      }
+
+      else {
         $('#AmbulantTable').DataTable().clear().destroy();
         search_client(search, searchcat);
       }
-    });
-
-
-    $('#search_cl_f').keypress(function(event){
-      var keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13'){
-        var search = $("#search_cl_f").val();
-
-        var searchcat = $("#search_cl_s option:selected").val();
-
-        if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Please input your Search and Select a category',
-          });
-        }else if (isEmptyOrSpaces(search)) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Please input your Search',
-          });
-        }else if (!$('#search_cl_s').val()) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Please Select a category',
-          });
-        }
-
-        else {
-          $('#AmbulantTable').DataTable().clear().destroy();
-          search_client(search, searchcat);
-        }
-      }
-    });
-
-    function search_client(search, searchcat) {
-      $('#AmbulantTable').DataTable({
-        "paging": true,
-        "searching": false,
-        "ordering": true,
-        "ajax" : {
-          "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
-          "data": {search:search, searchcat:searchcat},
-          "dataType": "json",
-          "type": "POST"
-        },
-        "columns" : [
-          {
-            "data" : "id"
-          },
-          {
-            "data" : "pay_ambu_name"
-          },
-
-          {
-            "data" : "pay_ambu_location"
-          },
-
-          {
-            "data" : "pay_ambu_locnum"
-          },
-
-          {
-            "data" : "nature_of_business"
-          },
-
-          {
-            "data" : "btn"
-          }
-        ]
-      });
-      $('.dataTables_length').addClass('bs-select');
     }
+  });
+
+  function search_client(search, searchcat) {
+    $('#AmbulantTable').DataTable({
+      "paging": true,
+      "searching": false,
+      "ordering": true,
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
+        "data": {search:search, searchcat:searchcat},
+        "dataType": "json",
+        "type": "POST"
+      },
+      "columns" : [
+        {
+          "data" : "id"
+        },
+        {
+          "data" : "pay_ambu_name"
+        },
+
+        {
+          "data" : "pay_ambu_location"
+        },
+
+        {
+          "data" : "pay_ambu_locnum"
+        },
+
+        {
+          "data" : "nature_of_business"
+        },
+
+        {
+          "data" : "btn"
+        }
+      ]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  }
 
 
   // function search_client(search) {
@@ -208,6 +257,30 @@ $(document).ready(function(){
 
   $('.dataTables_length').addClass('bs-select');
   $('#demo').num2words();
+
+  function changeboth() {
+    var am_topay = $("#payment_amount_to_pay").text();
+    cash_tendered = $('#payment_cash_tendered').val();
+    total = $('#total').val();
+
+    if ($("#payment_amount_to_pay").val() == '') {
+      console.log("do nothing");
+      $('#change').val(null);
+    } else if ($('#payment_cash_tendered').val() == '') {
+      console.log("do nothing");
+      $('#change').val(null);
+    }else {
+      change = parseFloat(cash_tendered) - parseFloat(total);
+      $('#change').val(change);
+    }
+  }
+
+  $('#payment_cash_tendered').change(function(){
+    changeboth();
+    $('#total_amount_given').val($('#payment_cash_tendered').val());
+  });
+
+
   $('#sub_total').click(function(){
     if($(this).is(":checked")){
       particular();
@@ -220,21 +293,26 @@ $(document).ready(function(){
       }
       total = parseFloat(total) + parseFloat(amount_to_pay);
       $('#total').val(total);
+      $('#total_amount_given').val($('#payment_cash_tendered').val());
 
     }
     else if($(this).is(":not(:checked)")){
       $('#total').val($('#payment_amount_to_pay').val());
+      changeboth();
+      $('#total_amount_given').val($('#payment_cash_tendered').val());
     }
   });
 
   $('#payment_amount_to_pay').change(function(){
     if($('#sub_total').is(":not(:checked)")){
       $('#total').val($('#payment_amount_to_pay').val());
+      changeboth();
     }
     if($('#sub_total').is(":checked")){
       particular();
       if($('#payment_amount_to_pay').val() == ""){
         amount_to_pay = 0;
+
       }
       else
       {
@@ -242,6 +320,7 @@ $(document).ready(function(){
       }
       total = parseFloat(total) + parseFloat(amount_to_pay);
       $('#total').val(total);
+      changeboth();
     }
   });
 
@@ -262,8 +341,8 @@ $(document).ready(function(){
 
 
 
-  $('#payment_submit_button').click(function(){
-
+  $('#payment_submit').submit(function(e){
+    e.preventDefault();
     text1 = $('#part1text').val();
     text2 = $('#part2text').val();
     text3 = $('#part3text').val();
@@ -291,44 +370,58 @@ $(document).ready(function(){
     var fund_id = 1;
     var payment_type = $('#payment_type').val();
 
-    $.ajax({
-      type: "POST",
-      data:{fund_id:fund_id,customer_id:customer_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-      url: global.settings.url +'/MainController/savetransaction',
-      success: function(res){
-        $('.payment_details').val("");
-        $('#AmbuPay').modal('hide');
-        $.ajax({
-          type: "POST",
-          data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-          url: global.settings.url +'/MainController/paymentreceipt',
-          xhrFields: {
-            responseType: 'blob'
-          },
+    if ($('#change').val() == "" || $('#change').val() == null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Complete the transaction first.',
+      });
+    }else if ($('#change').val() < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Insufficient amount.',
+      });
+    }else {
+      $.ajax({
+        type: "POST",
+        data:{fund_id:fund_id,customer_id:customer_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+        url: global.settings.url +'/MainController/savetransaction',
+        success: function(res){
+          $('.payment_details').val("");
+          $('#AmbuPay').modal('hide');
+          $.ajax({
+            type: "POST",
+            data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+            url: global.settings.url +'/MainController/paymentreceipt',
+            xhrFields: {
+              responseType: 'blob'
+            },
 
-          success:function(data)
-          {
+            success:function(data)
+            {
 
-            // document.getElementById('frame').contentWindow.location.reload();
-            var url = window.URL.createObjectURL(data);
-            $('#frameasdas').attr('src',url);
-            $('#rec').modal('show');
-            //  $('#frameasdas').attr('src',data);
-            console.log(data);
-          },
-          error:function()
-          {
+              // document.getElementById('frame').contentWindow.location.reload();
+              var url = window.URL.createObjectURL(data);
+              $('#frameasdas').attr('src',url);
+              $('#rec').modal('show');
+              //  $('#frameasdas').attr('src',data);
+              console.log(data);
+            },
+            error:function()
+            {
 
-          }
+            }
 
-        });
+          });
 
 
-      },
-      error: function(res){
+        },
+        error: function(res){
 
-      }
-    });
+        }
+      });
+    }
+
+
 
   });
 

@@ -165,8 +165,8 @@
         <div class="col-6">
           <div class="card col p-3 shadow">
             <h5 class="font-weight-bold">Tenant's Information</h5>
-            <input type="text" id="customer_id" name="update[customer_id]">
-            <input type="text" id="stall_id" name="update[stall_id]">
+            <input type="text" hidden id="customer_id" name="update[customer_id]">
+            <input type="text" hidden id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" required>
@@ -231,7 +231,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
+                  <h5 class="modal-title" id="exampleModalPreviewLabel">Transaction history</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

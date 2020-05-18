@@ -38,37 +38,37 @@
 
 
 
-        </div>
+      </div>
 
-        <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="AmbulantTable">
-            <thead>
-              <tr>
-                <td class="border border-dark">Customer ID</td>
-                <td class="border border-dark">Full Name</td>
-                <td class="border border-dark">Location</td>
-                <td class="border border-dark">Location Number</td>
-                <td class="border border-dark">Nature of business</td>
-                <td class="border border-dark">Payment</td>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <br>
-        </div>
+      <div class="col-12">
+        <table class="table table-striped table-bordered shadow" id="AmbulantTable">
+          <thead>
+            <tr>
+              <td class="border border-dark">Customer ID</td>
+              <td class="border border-dark">Full Name</td>
+              <td class="border border-dark">Location</td>
+              <td class="border border-dark">Location Number</td>
+              <td class="border border-dark">Nature of business</td>
+              <td class="border border-dark">Payment</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <br>
       </div>
     </div>
   </div>
+</div>
 
 
-
+<form id="payment_submit">
   <div id="AmbuPay" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalPreviewLabel">Ambulant Payment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" id = "close_modal_payment">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -166,14 +166,6 @@
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col" id="demo">
-                  <label>Total</label>
-                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
-                  <div></div>
-                </div>
-              </div>
-
             </div>
             <div class="col-6">
               <div class="mb-2 form-group" id="">
@@ -197,29 +189,53 @@
 
               <div class="mb-2">
                 <label>O.R</label>
-                <input type="text" class="form-control payment_details" name="payment_or_number" id="payment_or_number">
+                <input type="text" class="form-control payment_details" name="payment_or_number" id="payment_or_number" required>
               </div>
 
 
               <div class="mb-2">
                 <label>Amount to pay</label>
-                <input type="text" class="form-control payment_details ntw" name="payment_amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);">
+                <input type="text" class="form-control payment_details ntw" name="payment_amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" required>
               </div>
 
               <div class="mb-2">
                 <label>Cash tendered</label>
-                <input type="text" class="form-control payment_details" name="payment_cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);">
+                <input type="text" class="form-control payment_details" name="payment_cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" required>
               </div>
 
 
               <div class="mb-2">
                 <label>Payment Effectivity</label>
-                <input type="date" class="form-control payment_details" name="payment_effectivity" id="payment_effectivity">
+                <input type="date" class="form-control payment_details" name="payment_effectivity" id="payment_effectivity" required>
               </div>
 
+              <div class="row mt-2">
+                <div class="col">
+                  <label>Total amount given</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total_amount_given" id="total_amount_given" readonly>
+                  <div></div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+                <div class="col" id = "demo">
+                  <label>Total</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
+                  <div></div>
+                </div>
+
+                <div class="col">
+                  <label>Change</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="change" id="change" readonly>
+                  <div></div>
+                </div>
+
+              </div>
+              <br>
               <div class="mb-2">
                 <input type="hidden" id="ntwntw">
-                <button type="Submit" class="btn btn-primary allPaymentButton" id="payment_submit_button">Submit and print</button>
+                <button type="Submit" class="btn btn-primary float-right allPaymentButton" id="payment_submit_button">Submit and print</button>
               </div>
 
             </div>
@@ -230,6 +246,8 @@
     </div>
   </div>
   <!-- END OF MODAL -->
+</form>
+
 
 
 
@@ -246,7 +264,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  aria-label="Close" id="close_modal_receipt">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -276,7 +294,7 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  aria-label="Close" id="close_modal_receipt2">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

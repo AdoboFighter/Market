@@ -231,11 +231,12 @@ function diffdates2() {
     var res = Math.abs(d - date2) / 1000;
     var days = Math.floor(res / 86400);
     var debt = days * daily;
-
-
-
-
-    document.getElementById('debt_field').value = debt;
+    if (debt == 0) {
+      document.getElementById('debt_field').value = "PAID";
+    } else {
+      document.getElementById('debt_field').value = debt;
+    }
+    // document.getElementById('debt_field').value = debt;
 
     console.log(days);
     console.log(debt);

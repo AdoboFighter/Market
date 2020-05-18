@@ -59,18 +59,19 @@
 
 
   <div id="parkingPay" data-backdrop="static" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+          <form id="payment_submit">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalPreviewLabel">Pakring Payment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" id = "close_modal_payment">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
 
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" id ="payment_type_hide">
               <select name="payment_type" id="payment_type" class="form-control">
                 <option value="">Select Payment Type</option>
                 <option value="cash">Cash</option>
@@ -177,12 +178,7 @@
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col" id="demo">
-                  <label>Total</label>
-                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
-                </div>
-              </div>
+
 
 
 
@@ -231,12 +227,34 @@
                 <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
               </div>
 
+              <div class="row mt-2">
+                <div class="col">
+                  <label>Total amount given</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total_amount_given" id="total_amount_given" readonly>
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col" id = "demo">
+                  <label>Total</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="total" id="total" readonly>
+                  <div></div>
+                </div>
+
+                <div class="col">
+                  <label>Change</label>
+                  <input type="text" class="form-control payment_details ntw text-danger" name="change" id="change" readonly>
+                  <div></div>
+                </div>
+              </div>
+              <br>
 
               <!-- end of row for details -->
 
               <input type="hidden" id="ntwntw">
               <div class="mb-2">
-                <button type="Submit" class="btn btn-primary float-left allPaymentButton" id="payment_submit_button">Submit and print</button>
+                <button type="Submit" class="btn btn-primary float-right allPaymentButton" id="payment_submit_button">Submit and print</button>
               </div>
 
             </div>
@@ -256,6 +274,12 @@
                 <div class="col">
                   <label>Cheque Amount </label>
                   <input type="text" class="form-control payment_details" name="transact[cheque_amount]" id="payment_cheque_amount" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                </div>
+
+                <div class="col">
+                  <br>
+                  <label>Total cheque amount</label>
+                  <p class="text-success p-2" id="payment_cheque_total"></p>
                 </div>
               </div>
               <div class="col-6">
@@ -300,6 +324,7 @@
 
       </div>
     </div>
+  </form>
   </div>
   <!-- END OF MODAL -->
 
@@ -310,7 +335,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close"  aria-label="Close" id="close_modal_receipt">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -336,7 +361,7 @@
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close"  aria-label="Close" id="close_modal_receipt2">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

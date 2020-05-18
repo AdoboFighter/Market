@@ -282,17 +282,15 @@ class Mainmodel extends CI_model{
 
 
 
-  public function gettenanttable($search)
+  public function gettenanttable($search, $searchcat)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $query = $this->db->select('*')
-    ->from('customer')
-    ->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id)",$search)
-    ->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner')
-    ->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left')
-    ->get();
+    $this->db->like("concat($searchcat)",$search);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -1521,6 +1519,33 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
+  public function get_cheque_list()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $query = $this->db->get('cheque_details');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'cheque_id' => $r->cheque_id,
+        'cheque_amount' => $r->cheque_amount,
+        'cheque_number'=> $r->cheque_number,
+        'bank_branch'=> $r->bank_branch,
+        'fk_stall_no'=> $r->fk_stall_no,
+        'fk_transaction_id'=> $r->fk_transaction_id
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
 
 
   public function getambuinfopay($id)
@@ -1608,11 +1633,7 @@ class Mainmodel extends CI_model{
 
   public function savepayment2($table,$data)
   {
-
-
-    $query =  $this->db->insert($table,$data);
-
-
+    $query =  $this->db->set($table,$data);
   }
 
   public function updateSystemUserMod($inputData)

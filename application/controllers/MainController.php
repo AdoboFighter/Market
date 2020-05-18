@@ -130,7 +130,8 @@ class MainController extends CI_Controller{
   public function gettenanttable()
   {
     $search = $this->input->post('search');
-    echo json_encode($this->model->gettenanttable($search));
+    $searchcat = $this->input->post('searchcat');;
+    echo json_encode($this->model->gettenanttable($search, $searchcat));
   }
 
 
@@ -504,15 +505,15 @@ class MainController extends CI_Controller{
   public function savecheque()
   {
     $data = $this->input->post('ch');
-
     $query = $this->model->savepayment2('cheque_details',$data);
     echo json_encode($data);
+
   }
 
   public function updateSystemUserCon()
   {
     $inputData = $this->input->post('upsys');
-    echo json_encode( $this->model->updateSystemUserMod($inputData));
+    echo json_encode($this->model->updateSystemUserMod($inputData));
   }
 
   public function getsystemusertablecon()
@@ -530,8 +531,13 @@ class MainController extends CI_Controller{
 
   public function get_resviolation_data_con()
   {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->get_resviolation_data_mod($id));
+    echo json_encode($this->model->get_resviolation_data_mod());
+  }
+
+  public function get_cheque_list()
+  {
+
+    echo json_encode($this->model->get_cheque_list());
   }
 
   public function resolveViolationCon()
