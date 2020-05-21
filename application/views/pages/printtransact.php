@@ -14,16 +14,19 @@
 
   <div class="wrapper">
     <div class="container">
+        <div class="d-flex justify-content-center">
+          <img src = "<?php echo base_url()."assets/images/LOGOSANPABLO.jpg";?>"class="" style = "height: 110px;">
+          
+          <div class="p-3">
+            <h6 class= "text-center">Republic of the Philippines</h6>
+            <h6 class= "text-center">CITY OF SAN PABLO</h6>
+            <h4 class= "text-center"><strong>PUBLIC MARKET TRANSACTION</strong></h4>
+          </div>
+        </div>
 
-
-    <img src = "<?php echo base_url()."assets/images/LOGOSANPABLO.jpg";?>" style = "height: 125px; float: left;">
-        <h4 class= "text-center"><strong>Transaction</strong></h4>
-        <h4 class = "text-center" id = "dft"></h4>
-        <h4 class = "text-center" id = "user"></h4>
-
-
-
-
+        <br>
+          <h4 class="text-center" id = "user"></h4>
+          <h4 class="text-center" id = "dft"></h4>
 
 
       <br><br><br>
@@ -43,7 +46,27 @@
            </tbody>
 
           </table>
+
+
         </div>
+
+        <br>
+        <table style='width:300px;'>
+          <tr><td class="h5 text-center">Attested By:</td></tr>
+          <tr><td><hr class="mt-5"></td></tr>
+          <tr><td class="h5 text-center">Signature over Printed Name</td></tr>
+        </table>
+        <br>
+
+        <div class="float-right">
+          <table style='width:300px; '>
+            <tr><td class="h5 text-center">Collection Received By:</td></tr>
+            <tr><td><hr class="mt-5"></td></tr>
+            <tr><td class="h5 text-center">Signature over Printed Name</td></tr>
+          </table>
+        </div>
+
+
     </div>
   </div>
 
