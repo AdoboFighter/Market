@@ -514,6 +514,15 @@ CONTENT STYLE
       justify-content: center;
       text-align: center;
     }
+
+    .inputmoney{
+      text-align:right;
+    }
+
+    .modal{
+   overflow:auto !important;
+   }
+
   </style>
   <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
   <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">

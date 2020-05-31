@@ -85,21 +85,24 @@ $pdf->SetDisplayMode(100);
 $tpl = $pdf->importPage(1);
 $size = $pdf->getTemplateSize($tpl);
 $orientation = $size['h'] > $size['w'] ? 'P' : 'L';
- $pdf->setPrintHeader(false);
- $pdf->setPrintFooter(false);
- $pdf->addPage($orientation);
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+$pdf->addPage($orientation);
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 // $pdf->addpage();
 // $pdf->deletePage(1);
 
-
-// Print text using writeHTMLCell()
-// $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-
+ // int MultiCell (float $w, float $h, string $txt, [mixed $border = 0], [string $align = 'J'], [int $fill = 0], [int $ln = 1], [int $x = ''], [int $y = ''], [boolean $reseth = true], [int $stretch = 0])
+// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
+$pdf->setCellPaddings(0, 0, 0, 0);
+// $txt = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+// $pdf->MultiCell(93, 5, '                        :'.$txt, 1, '', 0, 1, '8', '132', true);
 
 
 $date = date("d/m/Y");
 $pdf->Text(50 , 50 , $date);
+$pdf->Text(8, 57 , "City Government of San Pablo City");
+$pdf->Text(77 , 57 , "GF-MKT");
 $pdf->Text(16 , 66 , $fullname);
 
 $pdf->Text(7 , 82 , $type_of_payment);
@@ -128,7 +131,8 @@ $pdf->Text(74 , 119 , $num7);
 
 
 $pdf->Text(74 , 125 , $total);
-$pdf->Text(7,138 ,$ntw);
+// $pdf->Text(7,138 ,$ntw);
+$pdf->MultiCell(93, 5, '                        :'.$ntw, 1, '', 0, 1, '8', '132', true);
 
 $pdf->Text(33, 150, $bank1);
 $pdf->Text(53, 150, $checkNum1);

@@ -1257,6 +1257,7 @@ class Mainmodel extends CI_model{
       'aolastname' => $inputData['Occu_Lastname'],
       'aoaddress' => $inputData['Occu_Address'],
       'ao_cn' => $inputData['Occu_Contact_Num']
+
     );
 
     $this->db->trans_start();
@@ -1267,7 +1268,9 @@ class Mainmodel extends CI_model{
     $data_tenant = array(
       'business_id' => $inputData['Owner_Firstname'],
       'business_name' => $inputData['Owner_Middlename'],
-      'fk_customer_id' => $last_id
+      'fk_customer_id' => $last_id,
+      'date_registered' => $inputData['Date_Registered'],
+      'date_renewed' => $inputData['Date_Renewed']
     );
     $this->db->insert('tenant', $data_tenant);
     $last_id_tenant = $this->db->insert_id();
@@ -1633,7 +1636,7 @@ class Mainmodel extends CI_model{
 
   public function savepayment2($table,$data)
   {
-    $query =  $this->db->set($table,$data);
+    $query =  $this->db->insert($table,$data);
   }
 
   public function updateSystemUserMod($inputData)

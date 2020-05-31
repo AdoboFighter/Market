@@ -43,6 +43,142 @@ $(document).ready(function(){
   //DYNAMIC SELECT SECTIONS
   //DYNAMIC SELECT SECTIONS
 
+  $('#stallf_buss_id').keyup(function(){
+
+    var datereg = $('#stallf_date_reg').val();
+    var daterenew = $('#stallf_date_renew').val();
+    var bussID = $('#stallf_buss_id').val();
+    var bussname = $('#stallf_buss_name').val();
+
+    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+      console.log("not white space");
+      $('#stallf_date_ocu').prop("disabled", false);
+      $('#stall_flr_lvl').prop("disabled", false);
+      $('#section_dyna').prop("disabled", false);
+      $('#stallf_num').prop("disabled", false);
+      $('#stall_sqr_m').prop("disabled", false);
+      $('#stallf_daily_fee').prop("disabled", false);
+    }else {
+      $('#stallf_date_ocu').prop("disabled", true);
+      $('#stall_flr_lvl').prop("disabled", true);
+      $('#section_dyna').prop("disabled", true);
+      $('#stallf_num').prop("disabled", true);
+      $('#stall_sqr_m').prop("disabled", true);
+      $('#stallf_daily_fee').prop("disabled", true);
+
+      $('#stallf_date_ocu').val("");
+      $('#stall_flr_lvl').val("");
+      $('#section_dyna').val("");
+      $('#stallf_num').val("");
+      $('#stall_sqr_m').val("");
+      $('#stallf_daily_fee').val("");
+
+    }
+
+  });
+
+  $('#stallf_date_reg').change(function() {
+    var datereg = $('#stallf_date_reg').val();
+    var daterenew = $('#stallf_date_renew').val();
+    var bussID = $('#stallf_buss_id').val();
+    var bussname = $('#stallf_buss_name').val();
+
+    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+      console.log("not white space");
+      $('#stallf_date_ocu').prop("disabled", false);
+      $('#stall_flr_lvl').prop("disabled", false);
+      $('#section_dyna').prop("disabled", false);
+      $('#stallf_num').prop("disabled", false);
+      $('#stall_sqr_m').prop("disabled", false);
+      $('#stallf_daily_fee').prop("disabled", false);
+    }else {
+      $('#stallf_date_ocu').prop("disabled", true);
+      $('#stall_flr_lvl').prop("disabled", true);
+      $('#section_dyna').prop("disabled", true);
+      $('#stallf_num').prop("disabled", true);
+      $('#stall_sqr_m').prop("disabled", true);
+      $('#stallf_daily_fee').prop("disabled", true);
+
+      $('#stallf_date_ocu').val("");
+      $('#stall_flr_lvl').val("");
+      $('#section_dyna').val("");
+      $('#stallf_num').val("");
+      $('#stall_sqr_m').val("");
+      $('#stallf_daily_fee').val("");
+    }
+  });
+
+  $('#stallf_date_renew').change(function() {
+    var datereg = $('#stallf_date_reg').val();
+    var daterenew = $('#stallf_date_renew').val();
+    var bussID = $('#stallf_buss_id').val();
+    var bussname = $('#stallf_buss_name').val();
+
+    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+      console.log("not white space");
+      $('#stallf_date_ocu').prop("disabled", false);
+      $('#stall_flr_lvl').prop("disabled", false);
+      $('#section_dyna').prop("disabled", false);
+      $('#stallf_num').prop("disabled", false);
+      $('#stall_sqr_m').prop("disabled", false);
+      $('#stallf_daily_fee').prop("disabled", false);
+    }else {
+      $('#stallf_date_ocu').prop("disabled", true);
+      $('#stall_flr_lvl').prop("disabled", true);
+      $('#section_dyna').prop("disabled", true);
+      $('#stallf_num').prop("disabled", true);
+      $('#stall_sqr_m').prop("disabled", true);
+      $('#stallf_daily_fee').prop("disabled", true);
+
+      $('#stallf_date_ocu').val("");
+      $('#stall_flr_lvl').val("");
+      $('#section_dyna').val("");
+      $('#stallf_num').val("");
+      $('#stall_sqr_m').val("");
+      $('#stallf_daily_fee').val("");
+    }
+
+  });
+
+
+
+
+  $('#stallf_buss_name').keyup(function(){
+    var datereg = $('#stallf_date_reg').val();
+    var daterenew = $('#stallf_date_renew').val();
+    var bussID = $('#stallf_buss_id').val();
+    var bussname = $('#stallf_buss_name').val();
+
+    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+      console.log("not white space");
+      $('#stallf_date_ocu').prop("disabled", false);
+      $('#stall_flr_lvl').prop("disabled", false);
+      $('#section_dyna').prop("disabled", false);
+      $('#stallf_num').prop("disabled", false);
+      $('#stall_sqr_m').prop("disabled", false);
+      $('#stallf_daily_fee').prop("disabled", false);
+    }else {
+      $('#stallf_date_ocu').prop("disabled", true);
+      $('#stall_flr_lvl').prop("disabled", true);
+      $('#section_dyna').prop("disabled", true);
+      $('#stallf_num').prop("disabled", true);
+      $('#stall_sqr_m').prop("disabled", true);
+      $('#stallf_daily_fee').prop("disabled", true);
+
+      $('#stallf_date_ocu').val("");
+      $('#stall_flr_lvl').val("");
+      $('#section_dyna').val("");
+      $('#stallf_num').val("");
+      $('#stall_sqr_m').val("");
+      $('#stallf_daily_fee').val("");
+    }
+  });
+
+
+
+
+
+
   $('#sameas').on('change',function(){
     if( $(this).is(':checked') ){
       updatefield();

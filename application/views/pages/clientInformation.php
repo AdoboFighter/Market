@@ -77,10 +77,49 @@
         <div class="row p-3">
 
           <div class="col-6">
+            <div class=" form-group">
+              <label>Business name:</label>
+              <input type="input" class="form-control" name="update[business_name]" id="business_name" required>
+            </div>
 
+            <div class=" form-group">
+              <label>Business ID:</label>
+              <input type="input" class="form-control" name="update[business_id]" id="business_id" required>
+            </div>
+
+            <div class="form-group" id="">
+              <label for="">Date Registered</label>
+              <input type="date" class="form-control" id="stallf_date_reg" name="customer[Date_Registered]" required>
+              <span id="" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="">
+              <label for="">Date Renewed</label>
+              <input type="date" class="form-control" id="stallf_date_renew" name="customer[Date_Renewed]" required>
+              <span id="" class="text-danger"></span>
+            </div>
+
+            <div class=" form-group" id="">
+              <label>Last payment type:</label>
+              <input type="text" class="form-control" name="update[date_occupied]" id="last_pay_type" readonly>
+            </div>
+
+            <div class=" form-group" id="">
+              <label>last payment date:</label>
+              <input type="timestamp_end" class="form-control"  id="last_pay" readonly>
+            </div>
+
+            <div class=" form-group">
+              <label>Debt:</label>
+              <input type="input" class="form-control text-danger" id="debt_field" readonly>
+            </div>
+          </div>
+
+
+          <div class="col-6">
             <div class="form-group">
               <label>Section</label>
-              <select class="form-control form-control-sm" name="update[section]" id="Section">
+              <select class="form-control form-control" name="update[section]" id="Section">
                 <option selected value="">Please Select</option>
                 <option value="Fish">Fish</option>
                 <option value="Flores - Pat">Flores - Pat</option>
@@ -94,50 +133,31 @@
                 <option value="Fruit">Fruit</option>
                 <option value="NIGHT MARKET">NIGHT MARKET</option>
                 <option value="Service Road">Service Road</option>
-              </select><br>
+              </select>
             </div>
+
             <div class="form-group" id="floorlevel">
               <label>Floor Level</label>
-              <select class="form-control form-control-sm" id="stall_flr_lvl" name="update[floor_level]">
+              <select class="form-control " id="stall_flr_lvl" name="update[floor_level]">
                 <option value=""></option>
                 <option value="Basement">Basement</option>
                 <option value="Ground">Ground Floor</option>
                 <option value="Second">Second Floor</option>
                 <option value="Third">Third Floor</option>
                 <option value="Fourth">Fourth Floor</option>
-              </select><br>
-            </div>
-            <div class=" form-group">
-              <label>Business name:</label>
-              <input type="input" class="form-control" name="update[business_name]" id="business_name" required>
-            </div>
-            <div class=" form-group">
-              <label>Business ID:</label>
-              <input type="input" class="form-control" name="update[business_id]" id="business_id" required>
+              </select>
             </div>
 
-            <div class=" form-group" id="">
-              <label>Last payment type:</label>
-              <input type="text" class="form-control" name="update[date_occupied]" id="last_pay_type" readonly>
-            </div>
-
-            <div class=" form-group" id="">
-              <label>last payment date:</label>
-              <input type="timestamp_end" class="form-control"  id="last_pay" readonly>
-            </div>
-          </div>
-
-
-          <div class="col-6">
             <div class=" form-group">
               <label>Nature of Business:</label>
               <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" required>
             </div>
-            <div class=" form-group" style="margin-top: 30px;">
+
+            <div class=" form-group" >
               <label>Stall No:</label>
               <input type="input" class="form-control" name="update[stall_number]" id="stall_number" required>
             </div>
-            <div class=" form-group" style="margin-top: 36px;">
+            <div class=" form-group" >
               <label>Area(sqm):</label>
               <input type="input" class="form-control" name="update[area]" id="area" required>
             </div>
@@ -150,15 +170,10 @@
               <label>Date Occupied:</label>
               <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" required>
             </div>
-
-            <div class=" form-group">
-              <label>Debt:</label>
-              <input type="input" class="form-control text-danger" id="debt_field" readonly>
-            </div>
-
-
           </div>
+
         </div>
+
       </div>
       <br>
       <div class="row mt-2">
