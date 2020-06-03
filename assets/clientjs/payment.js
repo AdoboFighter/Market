@@ -297,7 +297,9 @@ $(document).ready(function(){
     }
 
   });
-
+  $('#add_item').click(function(){
+      $('#add_item_window').modal("show");
+  });
   $('#sub_total').click(function(){
     if($(this).is(":checked")){
       // $(this).val(parseFloat($(this).val()).toFixed(2));
@@ -489,6 +491,42 @@ $(document).ready(function(){
   //change section -------------------------------------------------------------
   //change section -------------------------------------------------------------
   //change section -------------------------------------------------------------
+
+
+  $( "#add_row1" ).click(function() {
+    $('#add_item_window').modal("show");
+    $('#what_row').val("row1");
+
+  });
+
+  $('#add_item_form').submit(function(e){
+    e.preventDefault();
+    // var type = $('#payment_type_of_payment').val();
+    var type = $('#payment_type_of_payment option:selected').html()
+    // var date = $('#payment_effectivity').val();
+    // var date = new Date($('#payment_effectivity').val());
+    var amount = $('#payment_amount_to_pay').val();
+
+    console.log($('#payment_effectivity').val());
+    //PUTANG INA NMN KASI WHOOOOOOOOOOOOOOOO
+
+    if ($('#what_row').val() == "row1") {
+      $('#part1text').val(type);
+      $('#payment_effectivity1').val(date);
+      $('#part1num').val(amount);
+    }else if ($('#what_row').val() == "row2") {
+      $('#part1text1').val(type);
+      $('#payment_effectivity2').val(date);
+      $('#part1num').val(amount);
+    }else if ($('#what_row').val() == "row3") {
+
+    }
+
+      $('#add_item_window').modal("hide");
+
+
+
+  });
 
 
   var myInputs = document.querySelectorAll('.fixed');

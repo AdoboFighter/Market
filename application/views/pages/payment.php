@@ -112,130 +112,201 @@
 
             <div class ="row">
               <div class="col-6">
-                <div class = "row" id = "">
-                  <!-- paymentDet ID -->
-                  <!-- customer details -->
-                  <!-- customer details -->
-                  <div class ="col-6">
-                    <div class="mb-2">
-                      <label>Type of payment</label>
-                      <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
-                        <option selected value="">Please Select</option>
-                        <option value="4004">Annual Rental fee</option>
-                        <option value="4005">Semi Annual Fee</option>
-                        <option value="4006">Quarterly Annual Fee</option>
-                        <option value="4007">Water Services Fee</option>
-                        <option value="4008">Electrical Services Fee</option>
-                        <option value="4009">Monthly Rental Fee</option>
-                        <option value="4010">Weekly Rental Fee</option>
-                        <option value="4011">Daily Market Fee</option>
-                        <option value="4012">Privillage Market Fee</option>
-                        <option value="4014">Others</option>
-                        <option value="4015">Certification</option>
-                      </select>
-                    </div>
 
-                    <div class="mb-2">
-                      <label>Payment Effectivity</label>
-                      <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
-                    </div>
+                <!-- paymentDet ID -->
+                <!-- customer details -->
+                <!-- customer details -->
 
 
+                <!-- particulars -->
+                <!-- <h5>Particulars</h5> -->
+                <!-- <div class="row">
+                  <div class="col">
+                    <button type="button" class ="float-left stylish-color-dark btn text-white" id ="add_item">Add item</button>
+                  </div>
+                </div> -->
+
+                <div class="row mt-2">
+                  <div class="col">
                     <div class="mb-2">
                       <label>O.R</label>
                       <input type="text" maxlength="7" class="form-control payment_details" name="" id="payment_or_number" required>
                     </div>
-
-
-                    <div class="mb-2">
-                      <label>Amount to pay</label>
-                      <input type="text" placeholder="0.00" value="0.00" class="form-control payment_details ntw inputmoney" name="amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required>
-                    </div>
-
-                    <div class="mb-2">
-                      <label>Cash tendered</label>
-                      <input type="text"  placeholder="0.00"  class="form-control payment_details inputmoney" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                    </div>
-
                   </div>
-
-                  <!-- particulars -->
-                  <div class ="col-6">
-                    <h5>Particulars</h5>
-                    <div class="col-6">
-                      <input type="checkbox" name="sub_total" id = "sub_total" class = "ntw" value=""> &nbsp;<strong>Sub Total</strong> <br>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col">
-                        <label>Particulars</label>
-                        <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
-                      </div>
-
-                      <div class="col">
-                        <label>Price</label>
-                        <input type="text"  value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part1num" id="part1num" value = "0"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part2num" id="part2num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part3num" id="part3num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part4num" id="part4num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part5num" id="part5num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part6num" id="part6num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
-                      </div>
-                      <div class="col">
-                        <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part7num" id="part7num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
-                      </div>
-                    </div>
-                  </div>
-                  <!-- particulars end -->
                 </div>
+
+
+
+
+                <div class="row mt-3">
+                  <div class="col">
+                    <label>Particulars</label>
+                    <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
+                  </div>
+
+                  <div class="col">
+                    <label>Date Effectivity</label>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity1" >
+                  </div>
+
+                  <div class="col">
+                    <label>Price</label>
+                    <input type="text"  value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part1num" id="part1num" value = "0"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+
+                  <div class="col">
+                    <br>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row1">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row1">-</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
+                  </div>
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part2num" id="part2num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
+                  </div>
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part3num" id="part3num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
+                  </div>
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part4num" id="part4num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
+                  </div>
+
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part5num" id="part5num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
+                  </div>
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part6num" id="part6num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
+                  </div>
+
+                  <div class="col">
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                  </div>
+
+                  <div class="col">
+                    <input type="text" decimal="2" step="0.25" value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part7num" id="part7num" value = "0" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                  </div>
+                  <div class="col">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      &nbsp
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- particulars end -->
               </div>
 
               <div class="col-6" id = "">
+                <div class="mb-2">
+                  <label>Cash tendered</label>
+                  <input type="text"  placeholder="0.00"  class="form-control payment_details inputmoney" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                </div>
+                <br>
                 <!-- chequeDetails id -->
                 <div class="row mt-2">
                   <div class="col-6">
@@ -372,6 +443,57 @@
 
           <iframe src = "" id="frameasdas" height ="800" width = "100%">
           </iframe>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- END OF MODAL -->
+
+
+  <div id="add_item_window" class="modal fade right shadow" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalPreviewLabel">Add item</h5>
+          <button type="button" class="close"  aria-label="Close" data-dismiss="modal" id="close_modal_receipt2">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="add_item_form">
+          <div class="mb-2">
+            <input type="hidden" name="" id="what_row" required>
+            <label>Type of payment</label>
+            <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
+              <option selected value="">Please Select</option>
+              <option value="4004">Annual Rental fee</option>
+              <option value="4005">Semi Annual Fee</option>
+              <option value="4006">Quarterly Annual Fee</option>
+              <option value="4007">Water Services Fee</option>
+              <option value="4008">Electrical Services Fee</option>
+              <option value="4009">Monthly Rental Fee</option>
+              <option value="4010">Weekly Rental Fee</option>
+              <option value="4011">Daily Market Fee</option>
+              <option value="4012">Privillage Market Fee</option>
+              <option value="4014">Others</option>
+              <option value="4015">Certification</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label>Payment Effectivity</label>
+            <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+          </div>
+
+          <div class="mb-2">
+            <label>Amount to pay</label>
+            <input type="text" placeholder="0.00" value="0.00" class="form-control payment_details ntw inputmoney" name="amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required>
+          </div>
+          <br>
+          <button type="submit" class ="float-right stylish-color-dark btn text-white" id ="add_item_type">Add</button>
+        </form>
 
         </div>
 
