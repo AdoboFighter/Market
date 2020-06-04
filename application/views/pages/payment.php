@@ -142,6 +142,7 @@
                   <div class="col">
                     <label>Particulars</label>
                     <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id1" >
                   </div>
 
                   <div class="col">
@@ -167,10 +168,11 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part2text" id="part2text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id2" >
                   </div>
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity2" >
                   </div>
 
                   <div class="col">
@@ -179,9 +181,9 @@
 
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row2">+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row2">-</button>
                     </div>
                   </div>
 
@@ -190,10 +192,11 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part3text" id="part3text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id3" >
                   </div>
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity3" >
                   </div>
 
                   <div class="col">
@@ -202,9 +205,9 @@
 
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row3" >+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row3" >-</button>
                     </div>
                   </div>
                 </div>
@@ -212,10 +215,11 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part4text" id="part4text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id4" >
                   </div>
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity4" >
                   </div>
 
                   <div class="col">
@@ -223,9 +227,9 @@
                   </div>
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row4" >+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row4" >-</button>
                     </div>
                   </div>
 
@@ -234,11 +238,12 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part5text" id="part5text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id5" >
                   </div>
 
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity5" >
                   </div>
 
                   <div class="col">
@@ -246,9 +251,9 @@
                   </div>
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row5">+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row5">-</button>
                     </div>
                   </div>
 
@@ -257,10 +262,11 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part6text" id="part6text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id6" >
                   </div>
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity6" >
                   </div>
 
                   <div class="col">
@@ -269,9 +275,9 @@
 
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row6">+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row6">-</button>
                     </div>
                   </div>
                 </div>
@@ -279,10 +285,11 @@
                 <div class="row mt-2">
                   <div class="col">
                     <input type="text" class="form-control payment_details" name="part7text" id="part7text" >
+                    <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id7" >
                   </div>
 
                   <div class="col">
-                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
+                    <input type="date" class="form-control payment_details" name="" id="payment_effectivity7" >
                   </div>
 
                   <div class="col">
@@ -290,9 +297,9 @@
                   </div>
                   <div class="col">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm">+</button>
+                      <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row7" >+</button>
                       &nbsp
-                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm">-</button>
+                      <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row7" >-</button>
                     </div>
                   </div>
 
