@@ -523,6 +523,10 @@ CONTENT STYLE
    overflow:auto !important;
    }
 
+   .nobull {
+  list-style-type: none;
+ }
+
   </style>
   <link href="/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
   <link href="/assets/css/addons/datatables.min.css" rel="stylesheet">

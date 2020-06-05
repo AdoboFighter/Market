@@ -136,9 +136,56 @@
                 </div>
 
 
+                <!-- <div class="row mt-2">
+                  <div class="col">
+                    <div class="mb-2">
+                      <input type="checkbox" name="sub_total" id = "sub_total" class = "ntw" value=""> &nbsp;<strong>Sub Total</strong> <br>
+                    </div>
+                  </div>
+                </div> -->
+                <fieldset id="controls">
+                  <button id="addRow"class=" btn btn-outline-success waves-effect btn-sm" >add</button>
+                  <button id="removeRow" class=" btn btn-outline-danger waves-effect btn-sm" disabled>remove</button>
+                </fieldset>
+
+                <fieldset id="rows">
+                  <ul class="nobull">
+                    <li>
+                      <!-- <input type="text" id="ans1" name="ans1" /> -->
+                      <!-- <input type="text" id="ans2" name="ans2" /> -->
+                      <div class="row mt-3">
+                        <div class="col">
+                          <label>Particulars</label>
+                          <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
+                          <input type="hidden" class="form-control payment_details" name="part1text" id="paytype_id1" >
+                        </div>
+
+                        <div class="col">
+                          <label>Date Effectivity</label>
+                          <input type="date" class="form-control payment_details" name="" id="payment_effectivity1" >
+                        </div>
+
+                        <div class="col">
+                          <label>Price</label>
+                          <input type="text"  value="0.00"  placeholder="0.00"  class="form-control partnum payment_details ntw inputmoney" name="part1num" id="part1num" value = "0"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;">
+                        </div>
+
+                        <div class="col">
+                          <br>
+                          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button type="button" class=" btn btn-outline-success waves-effect btn-sm" id="add_row1">+</button>
+                            &nbsp
+                            <button type="button" class=" btn btn-outline-danger waves-effect btn-sm" id="del_row1">-</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </fieldset>
 
 
-                <div class="row mt-3">
+
+                <!-- <div class="row mt-3">
                   <div class="col">
                     <label>Particulars</label>
                     <input type="text" class="form-control payment_details" name="part1text" id="part1text" >
@@ -303,7 +350,7 @@
                     </div>
                   </div>
 
-                </div>
+                </div> -->
 
                 <!-- particulars end -->
               </div>
@@ -496,7 +543,7 @@
 
           <div class="mb-2">
             <label>Amount to pay</label>
-            <input type="text" placeholder="0.00" value="0.00" class="form-control payment_details ntw inputmoney" name="amount_to_pay" id="payment_amount_to_pay" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required>
+              <input type="text" placeholder="0.00" value="0.00" class="form-control payment_details ntw inputmoney" name="amount_to_pay" id="payment_amount_to_pay2" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required>
           </div>
           <br>
           <button type="submit" class ="float-right stylish-color-dark btn text-white" id ="add_item_type">Add</button>

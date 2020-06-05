@@ -1241,6 +1241,77 @@ class Mainmodel extends CI_model{
     }
   }
 
+  public static function numtowords($x)
+  {
+    $oneto19 = array("","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN","FIFTEEN","SIXTEEN","SEVENTEEN","EIGHTEEN","NINETEEN");
+    $tens = array("","","TWENTY","THIRTY","FOURTY","FIFTY","SIXTY","SEVENTY","EIGHTY","NINETY");
+    $hundreds = array("","ONE HUNDRED","TWO HUNDRED","THREE HUNDRED", "FOUR HUNDRED", "FIVE HUNDRED", "SIX HUNDRED", "SEVEN HUNDRED" ,"EIGHT HUNDRED" ,"NINE HUNDRED");
+    $scale = array("","","THOUSAND", "MILLION");
+    $num = number_format($x,2,".",",");
+    $num_arr = explode(".",$num);
+    $numwords = "";
+    $wholenum = $num_arr[0];
+    $decnum = $num_arr[1];
+    $whole_arr = explode(",",$wholenum);
+    $whole_count = count($whole_arr);
+    $scaleCounter = $whole_count;
+    for($i=0;$i<$whole_count;$i++)
+    {
+      $digitcount = strlen($whole_arr[$i]);
+      switch($digitcount)
+      {
+        case "3":
+        $digit3 = substr($whole_arr[$i],0,1);
+        $whole_arr[$i] = $whole_arr[$i] - ($digit3 * 100);
+        $numwords .= "".$hundreds[$digit3]." ";
+        case "2":
+        $digit2 = substr($whole_arr[$i],0,1);
+        if($digit2 < 2)
+        {
+          $digit1 = substr($whole_arr[$i],1,1);
+          $digit21 = $digit2."".$digit1;
+          $numwords .= $oneto19[$digit21]." ";
+          break;
+        }
+        else
+        {
+          $digit2 = substr($whole_arr[$i],0,1);
+          $whole_arr[$i] = $whole_arr[$i] - ($digit2 * 10);
+          $numwords .= $tens[$digit2]." ";
+        }
+        case "1":
+        $digit1 = substr($whole_arr[$i],0,1);
+        $whole_arr[$i] = $whole_arr[$i] - ($digit1 * 1);
+        $numwords .= $oneto19[$digit1]." ";
+        break;
+      }
+      $numwords .= $scale[$scaleCounter]." ";
+      $scaleCounter--;
+    }
+    if($decnum > 0){
+      $numwords .= " PESOS and ";
+      if($decnum < 20 ){
+        if($decnum<10)
+        {
+          $decnum = str_replace(0,"",$decnum);
+          $numwords .= $oneto19[$decnum];
+        }
+        else{
+          $numwords .= $oneto19[$decnum];
+        }
+      }elseif($decnum < 100){
+        $numwords .= $tens[substr($decnum,0,1)];
+        $numwords .= " ".$oneto19[substr($decnum,1,1)];
+      }
+      $numwords .= ' '.'CENTS';
+    }
+    else{
+      $numwords .= 'PESOS';
+    }
+    return $numwords;
+  }
+
+
 
 
   public function save_customer($inputData){

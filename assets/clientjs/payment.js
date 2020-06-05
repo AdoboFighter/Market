@@ -53,14 +53,19 @@ $(document).ready(function(){
     var cash_tendered2 = $('#payment_cash_tendered').val().replace(',', '');
     var cheque_display = $("#payment_cheque_total").text().replace(',', '');
 
+
     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
       //cash
       $('#total_amount_given').val($('#payment_cash_tendered').val());
 
-    }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+    }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val()) {
       // cash and cheque
-      console.log("cash and cheque");
-      var total_amount_given_var = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+
+      totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+      var num = parseFloat(totalgiven);
+      var total_amount_given_var = createCommas(num.toFixed(2));
+      // var total_amount_given_var = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+
       if ($('#payment_cash_tendered').val() == "") {
         $('#total_amount_given').val("");
       }else if ($("#payment_cheque_total").text() == "" || $("#payment_cheque_total").text() == 0) {
@@ -78,7 +83,7 @@ $(document).ready(function(){
   }
 
   function changeboth() {
-    var am_topay = $("#payment_amount_to_pay").val().replace(',', '');
+    var am_topay = $("#total").val().replace(',', '');
     cash_tendered = $("#payment_cash_tendered").val().replace(',', '');
     total = $('#total').val().replace(',', '');
     console.log($("#payment_amount_to_pay").val());
@@ -121,7 +126,7 @@ $(document).ready(function(){
   function changechequecash() {
     var cheque_display = $("#payment_cheque_total").text().replace(',', '');
     var cash_tendered2 = $('#payment_cash_tendered').val().replace(',', '');
-    var am_to_pay = $('#payment_amount_to_pay').val().replace(',', '');
+    var am_to_pay = $('#total').val().replace(',', '');
 
     change_cheque_cash = parseFloat(cash_tendered2) + parseFloat(cheque_display);
 
@@ -206,70 +211,79 @@ $(document).ready(function(){
       var num = parseFloat($(this).val());
       $(this).val(createCommas(num.toFixed(2)));
     }
+    });
+
+    $('#payment_amount_to_pay2').change(function(){
+      if ($(this).val() == "") {
+        console.log("hello nan");
+      }else {
+        var num = parseFloat($(this).val());
+        $(this).val(createCommas(num.toFixed(2)));
+      }
   });
 
-  $('#payment_amount_to_pay').change(function(){
-    if ($(this).val() == "") {
-      console.log("hello nan");
-    }else {
-      var num = parseFloat($(this).val());
-      $(this).val(createCommas(num.toFixed(2)));
-    }
-
-    if($('#sub_total').is(":not(:checked)")){
-      $('#total').val($('#payment_amount_to_pay').val());
-
-      if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-        // cash
-        changeboth();
-        totalamountgiven();
-      }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
-        // cash and cheque
-        changechequecash();
-        totalamountgiven();
-      }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-        //cheque only
-        changecheque();
-        totalamountgiven();
-      }
-
-      totalamountgiven();
-
-    }
-    if($('#sub_total').is(":checked")){
-      particular();
-      if($('#payment_amount_to_pay').val() == ""){
-        amount_to_pay = 0;
-      }
-      else
-      {
-        amount_to_pay = $('#payment_amount_to_pay').val();
-      }
-      // var totalcon = ;
-      // var atpcon = ;
-      total = parseFloat(total) + parseFloat(amount_to_pay);
-      $('#total').val(total);
-
-
-      if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-        // cash
-        changeboth();
-        totalamountgiven();
-      }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
-        // cash and cheque
-        changechequecash();
-        totalamountgiven();
-      }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-        //cheque only
-        changecheque();
-        totalamountgiven();
-      }
-
-      totalamountgiven();
-
-    }
-
-  });
+  // $('#payment_amount_to_pay').change(function(){
+  //   if ($(this).val() == "") {
+  //     console.log("hello nan");
+  //   }else {
+  //     var num = parseFloat($(this).val());
+  //     $(this).val(createCommas(num.toFixed(2)));
+  //   }
+  //
+  //   if($('#sub_total').is(":not(:checked)")){
+  //     $('#total').val($('#payment_amount_to_pay').val());
+  //
+  //     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+  //       // cash
+  //       changeboth();
+  //       totalamountgiven();
+  //     }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+  //       // cash and cheque
+  //       changechequecash();
+  //       totalamountgiven();
+  //     }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+  //       //cheque only
+  //       changecheque();
+  //       totalamountgiven();
+  //     }
+  //
+  //     totalamountgiven();
+  //
+  //   }
+  //   if($('#sub_total').is(":checked")){
+  //     particular();
+  //     if($('#payment_amount_to_pay').val() == ""){
+  //       amount_to_pay = 0;
+  //     }
+  //     else
+  //     {
+  //       amount_to_pay = $('#payment_amount_to_pay').val();
+  //     }
+  //     // var totalcon = ;
+  //     // var atpcon = ;
+  //     total = parseFloat(total) + parseFloat(amount_to_pay);
+  //     $('#total').val(total);
+  //
+  //
+  //     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+  //       // cash
+  //       changeboth();
+  //       totalamountgiven();
+  //     }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+  //       // cash and cheque
+  //       changechequecash();
+  //       totalamountgiven();
+  //     }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+  //       //cheque only
+  //       changecheque();
+  //       totalamountgiven();
+  //     }
+  //
+  //     totalamountgiven();
+  //
+  //   }
+  //
+  // });
 
   $('#payment_cash_tendered').change(function(){
     if ($(this).val() == "" || $(this).val() == null) {
@@ -302,26 +316,21 @@ $(document).ready(function(){
       $('#add_item_window').modal("show");
   });
 
+  function onchancgeparticular() {
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
+  }
+
   $('#sub_total').click(function(){
     if($(this).is(":checked")){
-      // $(this).val(parseFloat($(this).val()).toFixed(2));
       particular();
-      if($('#payment_amount_to_pay').val() == ""){
-        amount_to_pay = 0;
-      }
-      else
-      {
-        amount_to_pay = $('#payment_amount_to_pay').val();
-      }
-      var totalcon = $('#total').val().replace(',', '');
-      var atpcon = $('#payment_amount_to_pay').val().replace(',', '');
-      console.log(totalcon);
-      console.log(atpcon);
-      total = parseFloat(total) + parseFloat(atpcon);
+
       var numtotal = parseFloat(total);
+      console.log(numtotal);
       var totalconvert = createCommas(numtotal.toFixed(2));
       $('#total').val(totalconvert);
-
       if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
         // cash
         changeboth();
@@ -335,12 +344,11 @@ $(document).ready(function(){
         changecheque();
         totalamountgiven();
       }
-
     }
 
     else if($(this).is(":not(:checked)")){
       // $(this).val(parseFloat($(this).val()).toFixed(2));
-      $('#total').val($('#payment_amount_to_pay').val());
+      $('#total').val(0);
 
       if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
         // cash
@@ -539,6 +547,25 @@ $(document).ready(function(){
     $("#part1text").prop("disabled", false );
     $("#payment_effectivity1").prop( "disabled", false );
     $("#part1num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
+
+    if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+      // cash
+      changeboth();
+      totalamountgiven();
+    }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+      // cash and cheque
+      changechequecash();
+      totalamountgiven();
+    }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+      //cheque only
+      changecheque();
+      totalamountgiven();
+    }
+
   });
 
   $("#del_row2").click(function() {
@@ -550,6 +577,10 @@ $(document).ready(function(){
     $("#part2text").prop("disabled", false );
     $("#payment_effectivity2").prop( "disabled", false );
     $("#part2num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
   });
 
   $("#del_row3").click(function() {
@@ -561,6 +592,10 @@ $(document).ready(function(){
     $("#part3text").prop("disabled", false );
     $("#payment_effectivity3").prop( "disabled", false );
     $("#part3num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
   });
 
   $("#del_row4").click(function() {
@@ -572,6 +607,10 @@ $(document).ready(function(){
     $("#part4text").prop("disabled", false );
     $("#payment_effectivity4").prop( "disabled", false );
     $("#part4num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
 
   });
 
@@ -584,6 +623,10 @@ $(document).ready(function(){
     $("#part5text").prop("disabled", false );
     $("#payment_effectivity5").prop( "disabled", false );
     $("#part5num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
 
   });
 
@@ -596,6 +639,10 @@ $(document).ready(function(){
     $("#part6text").prop("disabled", false );
     $("#payment_effectivity6").prop( "disabled", false );
     $("#part6num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
 
   });
 
@@ -608,6 +655,10 @@ $(document).ready(function(){
     $("#part7text").prop("disabled", false );
     $("#payment_effectivity7").prop( "disabled", false );
     $("#part7num").prop( "disabled", false );
+    particular();
+    var numtotal = parseFloat(total);
+    var totalconvert = createCommas(numtotal.toFixed(2));
+    $('#total').val(totalconvert);
   });
 
   $('#payment_type_of_payment').change(function(){
@@ -616,30 +667,60 @@ $(document).ready(function(){
         $('#part1text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id1').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
+
+
       }else if ($('#what_row').val() == "row2") {
         $('#part2text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id2').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }else if ($('#what_row').val() == "row3") {
         $('#part3text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id3').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }else if ($('#what_row').val() == "row4") {
         $('#part4text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id4').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }else if ($('#what_row').val() == "row5") {
         $('#part5text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id5').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }else if ($('#what_row').val() == "row6") {
         $('#part6text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id6').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }else if ($('#what_row').val() == "row7") {
         $('#part7text').val("Details here");
         $('#add_item_window').modal("hide");
         $('#paytype_id7').val("4014");
+        particular();
+        var numtotal = parseFloat(total);
+        var totalconvert = createCommas(numtotal.toFixed(2));
+        $('#total').val(totalconvert);
       }
 
     }
@@ -652,7 +733,7 @@ $(document).ready(function(){
     var type = $('#payment_type_of_payment option:selected').html();
     var typeid = $('#payment_type_of_payment option:selected').val();
     var date = $('#payment_effectivity').val();
-    var amount = $('#payment_amount_to_pay').val();
+    var amount = $('#payment_amount_to_pay2').val();
     console.log($('#payment_effectivity').val());
     //PUTANG INA NMN KASI WHOOOOOOOOOOOOOOOO
 
@@ -665,6 +746,24 @@ $(document).ready(function(){
       $( "#part1text" ).prop( "disabled", true );
       $( "#payment_effectivity1" ).prop( "disabled", true );
       $( "#part1num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
+
+      if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+        // cash
+        changeboth();
+        totalamountgiven();
+      }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+        // cash and cheque
+        changechequecash();
+        totalamountgiven();
+      }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+        //cheque only
+        changecheque();
+        totalamountgiven();
+      }
 
     }else if ($('#what_row').val() == "row2") {
       $('#part2text').val(type);
@@ -675,6 +774,10 @@ $(document).ready(function(){
       $( "#part2text" ).prop( "disabled", true );
       $( "#payment_effectivity2" ).prop( "disabled", true );
       $( "#part2num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
 
     }else if ($('#what_row').val() == "row3") {
       $('#part3text').val(type);
@@ -685,6 +788,10 @@ $(document).ready(function(){
       $( "#part3text" ).prop( "disabled", true );
       $( "#payment_effectivity3" ).prop( "disabled", true );
       $( "#part3num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
 
     }else if ($('#what_row').val() == "row4") {
       $('#part4text').val(type);
@@ -695,6 +802,10 @@ $(document).ready(function(){
       $( "#part4text" ).prop( "disabled", true );
       $( "#payment_effectivity4" ).prop( "disabled", true );
       $( "#part4num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
 
     }else if ($('#what_row').val() == "row5") {
       $('#part5text').val(type);
@@ -705,6 +816,10 @@ $(document).ready(function(){
       $( "#part5text" ).prop( "disabled", true );
       $( "#payment_effectivity5" ).prop( "disabled", true );
       $( "#part5num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
 
     }else if ($('#what_row').val() == "row6") {
       $('#part6text').val(type);
@@ -715,6 +830,10 @@ $(document).ready(function(){
       $( "#part6text" ).prop( "disabled", true );
       $( "#payment_effectivity6" ).prop( "disabled", true );
       $( "#part6num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
 
     }else if ($('#what_row').val() == "row7") {
       $('#part7text').val(type);
@@ -725,6 +844,10 @@ $(document).ready(function(){
       $( "#part7text" ).prop( "disabled", true );
       $( "#payment_effectivity7" ).prop( "disabled", true );
       $( "#part7num" ).prop( "disabled", true );
+      particular();
+      var numtotal = parseFloat(total);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
     }
 
       $('#add_item_window').modal("hide");
@@ -1055,46 +1178,53 @@ $(document).ready(function(){
     });
 
     $('.partnum').change(function(){
-      if ($(this).val() == "") {
+      particular();
+      if (!$(this).val()) {
         console.log("hello nan");
       }else {
         var num = parseFloat($(this).val());
         $(this).val(createCommas(num.toFixed(2)));
       }
+      console.log(total);
+
+      var numtotal = parseFloat(total);
+      console.log(numtotal);
+      var totalconvert = createCommas(numtotal.toFixed(2));
+      $('#total').val(totalconvert);
+
+      // // $(this).val(parseFloat($(this).val()).toFixed(2));
+      // if($('#sub_total').is(":checked")){
+      //   particular();
+      //   // if($('#payment_amount_to_pay').val() == ""){
+      //   //   amount_to_pay = 0;
+      //   // }else {
+      //   //   amount_to_pay = $('#payment_amount_to_pay').val();
+      //   // }
+      //   // var totalcon = $('#total').val().replace(',', '');
+      //   // var atpcon = $('#payment_amount_to_pay').val().replace(',', '');
+      //   // total = parseFloat(totalcon) + parseFloat(atpcon);
+      //   var numtotal = parseFloat(total);
+      //   var totalconvert = createCommas(numtotal.toFixed(2));
+      //   $('#total').val(totalconvert);
       //
-      // $(this).val(parseFloat($(this).val()).toFixed(2));
-      if($('#sub_total').is(":checked")){
-        particular();
-        if($('#payment_amount_to_pay').val() == ""){
-          amount_to_pay = 0;
-        }else {
-          amount_to_pay = $('#payment_amount_to_pay').val();
-        }
-        var totalcon = $('#total').val().replace(',', '');
-        var atpcon = $('#payment_amount_to_pay').val().replace(',', '');
-        total = parseFloat(totalcon) + parseFloat(atpcon);
-        var numtotal = parseFloat(total);
-        var totalconvert = createCommas(numtotal.toFixed(2));
-        $('#total').val(totalconvert);
-
-
-        // $('#total').val(total);
-
-        if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-          // cash
-          changeboth();
-          totalamountgiven();
-        }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val().replace(',', '') > 0) {
-          // cash and cheque
-          changechequecash();
-          totalamountgiven();
-        }else if ($('#payment_cash_tendered').val().replace(',', '') == 0 ||  $('#payment_cash_tendered').val() == ""){
-          //cheque only
-          changecheque();
-          totalamountgiven();
-        }
-
-      }
+      //
+      //   // $('#total').val(total);
+      //
+      //   if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+      //     // cash
+      //     changeboth();
+      //     totalamountgiven();
+      //   }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val().replace(',', '') > 0) {
+      //     // cash and cheque
+      //     changechequecash();
+      //     totalamountgiven();
+      //   }else if ($('#payment_cash_tendered').val().replace(',', '') == 0 ||  $('#payment_cash_tendered').val() == ""){
+      //     //cheque only
+      //     changecheque();
+      //     totalamountgiven();
+      //   }
+      //
+      // }
     });
 
     $('#payment_submit').submit(function(e){
@@ -1140,11 +1270,11 @@ $(document).ready(function(){
       tenant_id = $('#payment_tenant_id').val();
       type_of_payment = $('#payment_type_of_payment').val();
       or_number =$('#payment_or_number').val();
-      amount_to_pay = $('#payment_amount_to_pay').val().replace(',', '');
+      // amount_to_pay = $('#payment_amount_to_pay').val().replace(',', '');
       cash_tendered = $('#payment_cash_tendered').val().replace(',', '');
       // payment_effectivity = $('#payment_effectivity').val();
       payment_name = $('#payment_name').val();
-      total = parseFloat($('#total').val());
+      total = parseFloat($('#total').val().replace(',', ''));
       var fund_id = 1;
       var payment_type = $('#payment_type').val();
 
@@ -1182,207 +1312,253 @@ $(document).ready(function(){
 
 
 
-      // if ($('#change').val() == "" || $('#change').val() == null) {
-      //   Swal.fire({
-      //     icon: 'error',
-      //     title: 'Complete the transaction first.',
-      //   });
-      // }else if ($('#change').val().replace(',', '') < 0) {
-      //   Swal.fire({
-      //     icon: 'error',
-      //     title: 'Insufficient amount.',
-      //   });
-      // }else {
-      //   if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-      //     // cash
-      //     $.ajax({
-      //       type: "POST",
-      //       data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-      //       url: global.settings.url +'/MainController/savetransaction',
-      //       success: function(res){
-      //
-      //         $.ajax({
-      //           type: "POST",
-      //           data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-      //           url: global.settings.url +'/MainController/paymentreceipt',
-      //           xhrFields: {
-      //             responseType: 'blob'
-      //           },
-      //
-      //           success:function(data)
-      //           {
-      //
-      //
-      //             // document.getElementById('frameasdas').contentWindow.location.reload();
-      //
-      //             var url = window.URL.createObjectURL(data);
-      //             $('#frameasdas').attr('src',url);
-      //             $('#rec').modal('show');
-      //
-      //             //  $('#frameasdas').attr('src',data);
-      //
-      //           },
-      //           error:function()
-      //           {
-      //
-      //           }
-      //
-      //         });
-      //
-      //         // $('#payer').val(payment_name);
-      //         // $('#totalprint').val(total);
-      //         // $('#cashcheck').val(payment_type);
-      //         // $('#print').modal('show');
-      //       },
-      //       error: function(res){
-      //
-      //       }
-      //     });
-      //
-      //   }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
-      //     // cash and cheque
-      //     $.ajax({
-      //       type: "POST",
-      //       data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-      //       url: global.settings.url +'/MainController/savetransaction',
-      //       success: function(res){
-      //         // $('#TenantPay').modal("hide");
-      //         res= jQuery.parseJSON(res);
-      //
-      //         transaction_id = res[0].transaction_id;
-      //         for(var i = 0; i< add_line.length;i++)
-      //         {
-      //
-      //           add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-      //           $.ajax({
-      //             type: "POST",
-      //             data: add_line[i],
-      //             url: global.settings.url +'/MainController/savecheque',
-      //
-      //             success: function(res){
-      //               // $('#TenantPay').modal("hide");
-      //             },
-      //             error: function(res){
-      //
-      //             }
-      //           });
-      //
-      //           check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-      //           check_number[i] =  add_line[i]['ch[cheque_number]'];
-      //           check_date[i] =    add_line[i]['ch[cheque_date]'];
-      //           bank[i] =          add_line[i]['ch[bank_branch]'];
-      //
-      //         }
-      //
-      //         $.ajax({
-      //           type: "POST",
-      //           data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-      //           url: global.settings.url +'/MainController/paymentreceipt',
-      //           xhrFields: {
-      //             responseType: 'blob'
-      //           },
-      //
-      //           success:function(data)
-      //           {
-      //
-      //             // document.getElementById('frameasdas').contentWindow.location.reload();
-      //
-      //             var url = window.URL.createObjectURL(data);
-      //             $('#frameasdas').attr('src',url);
-      //             $('#rec').modal('show');
-      //
-      //             //  $('#frameasdas').attr('src',data);
-      //
-      //
-      //           },
-      //           error:function()
-      //           {
-      //
-      //           }
-      //
-      //         });
-      //
-      //
-      //       },
-      //       error: function(res){
-      //
-      //       }
-      //     });
-      //
-      //   }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-      //     //cheque only
-      //     $.ajax({
-      //       type: "POST",
-      //       data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-      //       url: global.settings.url +'/MainController/savetransaction',
-      //       success: function(res){
-      //         // $('#TenantPay').modal("hide");
-      //         // testcheqdel();
-      //         res= jQuery.parseJSON(res);
-      //
-      //         transaction_id = res[0].transaction_id;
-      //         for(var i = 0; i< add_line.length;i++)
-      //         {
-      //
-      //           add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-      //
-      //           $.ajax({
-      //             type: "POST",
-      //             data: add_line[i],
-      //             url: global.settings.url +'/MainController/savecheque',
-      //             success: function(res){
-      //               $('#TenantPay').modal("hide");
-      //             },
-      //             error: function(res){
-      //
-      //             }
-      //           });
-      //           check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-      //           check_number[i] =  add_line[i]['ch[cheque_number]'];
-      //           check_date[i] =    add_line[i]['ch[cheque_date]'];
-      //           bank[i] =          add_line[i]['ch[bank_branch]'];
-      //         }
-      //
-      //         $.ajax({
-      //           type: "POST",
-      //           data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-      //           url: global.settings.url +'/MainController/paymentreceipt',
-      //           xhrFields: {
-      //             responseType: 'blob'
-      //           },
-      //
-      //           success:function(data)
-      //           {
-      //
-      //             // document.getElementById('frameasdas').contentWindow.location.reload();
-      //
-      //             var url = window.URL.createObjectURL(data);
-      //             $('#frameasdas').attr('src',url);
-      //             $('#rec').modal('show');
-      //
-      //             //  $('#frameasdas').attr('src',data);
-      //
-      //
-      //           },
-      //           error:function()
-      //           {
-      //
-      //           }
-      //
-      //         });
-      //       },
-      //       error: function(res){
-      //
-      //       }
-      //     });
-      //
-      //
-      //   }
-      //
-      // }
+      if ($('#change').val() == "" || $('#change').val() == null) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Complete the transaction first.',
+        });
+      }else if ($('#change').val().replace(',', '') < 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Insufficient amount.',
+        });
+      }else {
+        if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+          // cash
+          $.ajax({
+            type: "POST",
+            data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+            url: global.settings.url +'/MainController/savetransaction',
+            success: function(res){
+
+              $.ajax({
+                type: "POST",
+                data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+                url: global.settings.url +'/MainController/paymentreceipt',
+                xhrFields: {
+                  responseType: 'blob'
+                },
+
+                success:function(data)
+                {
+
+
+                  // document.getElementById('frameasdas').contentWindow.location.reload();
+
+                  var url = window.URL.createObjectURL(data);
+                  $('#frameasdas').attr('src',url);
+                  $('#rec').modal('show');
+
+                  //  $('#frameasdas').attr('src',data);
+
+                },
+                error:function()
+                {
+
+                }
+
+              });
+
+              // $('#payer').val(payment_name);
+              // $('#totalprint').val(total);
+              // $('#cashcheck').val(payment_type);
+              // $('#print').modal('show');
+            },
+            error: function(res){
+
+            }
+          });
+
+        }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+          // cash and cheque
+          $.ajax({
+            type: "POST",
+            data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+            url: global.settings.url +'/MainController/savetransaction',
+            success: function(res){
+              // $('#TenantPay').modal("hide");
+              res= jQuery.parseJSON(res);
+
+              transaction_id = res[0].transaction_id;
+              for(var i = 0; i< add_line.length;i++)
+              {
+
+                add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+                $.ajax({
+                  type: "POST",
+                  data: add_line[i],
+                  url: global.settings.url +'/MainController/savecheque',
+
+                  success: function(res){
+                    // $('#TenantPay').modal("hide");
+                  },
+                  error: function(res){
+
+                  }
+                });
+
+                check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+                check_number[i] =  add_line[i]['ch[cheque_number]'];
+                check_date[i] =    add_line[i]['ch[cheque_date]'];
+                bank[i] =          add_line[i]['ch[bank_branch]'];
+
+              }
+
+              $.ajax({
+                type: "POST",
+                data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+                url: global.settings.url +'/MainController/paymentreceipt',
+                xhrFields: {
+                  responseType: 'blob'
+                },
+
+                success:function(data)
+                {
+
+                  // document.getElementById('frameasdas').contentWindow.location.reload();
+
+                  var url = window.URL.createObjectURL(data);
+                  $('#frameasdas').attr('src',url);
+                  $('#rec').modal('show');
+
+                  //  $('#frameasdas').attr('src',data);
+
+
+                },
+                error:function()
+                {
+
+                }
+
+              });
+
+
+            },
+            error: function(res){
+
+            }
+          });
+
+        }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+          //cheque only
+          $.ajax({
+            type: "POST",
+            data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+            url: global.settings.url +'/MainController/savetransaction',
+            success: function(res){
+              // $('#TenantPay').modal("hide");
+              // testcheqdel();
+              res= jQuery.parseJSON(res);
+
+              transaction_id = res[0].transaction_id;
+              for(var i = 0; i< add_line.length;i++)
+              {
+
+                add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+
+                $.ajax({
+                  type: "POST",
+                  data: add_line[i],
+                  url: global.settings.url +'/MainController/savecheque',
+                  success: function(res){
+                    $('#TenantPay').modal("hide");
+                  },
+                  error: function(res){
+
+                  }
+                });
+                check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+                check_number[i] =  add_line[i]['ch[cheque_number]'];
+                check_date[i] =    add_line[i]['ch[cheque_date]'];
+                bank[i] =          add_line[i]['ch[bank_branch]'];
+              }
+
+              $.ajax({
+                type: "POST",
+                data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+                url: global.settings.url +'/MainController/paymentreceipt',
+                xhrFields: {
+                  responseType: 'blob'
+                },
+
+                success:function(data)
+                {
+
+                  // document.getElementById('frameasdas').contentWindow.location.reload();
+
+                  var url = window.URL.createObjectURL(data);
+                  $('#frameasdas').attr('src',url);
+                  $('#rec').modal('show');
+
+                  //  $('#frameasdas').attr('src',data);
+
+
+                },
+                error:function()
+                {
+
+                }
+
+              });
+            },
+            error: function(res){
+
+            }
+          });
+
+
+        }
+
+      }
 
 
     });
+
+
+      $('#addRow').click(
+        function() {
+          var curMaxInput = $('input:text').length;
+
+          $('#rows li:first')
+          .clone()
+          .insertAfter($('#rows li:last'))
+          .find('input:text:eq(0)')
+          .attr({'id': 'ans' + (curMaxInput + 1),
+          'name': 'ans' + (curMaxInput + 1)
+        })
+        .parent()
+        .find('input:text:eq(1)')
+        .attr({
+          'id': 'ans' + (curMaxInput + 2),
+          'name': 'ans' + (curMaxInput + 2)
+        });
+        $('#removeRow')
+        .removeAttr('disabled');
+        if ($('#rows li').length >= 5) {
+          $('#addRow')
+          .attr('disabled',true);
+        }
+        return false;
+      });
+
+      $('#removeRow').click(
+        function() {
+          if ($('#rows li').length > 1) {
+            $('#rows li:last')
+            .remove();
+          }
+          if ($('#rows li').length <= 1) {
+            $('#removeRow')
+            .attr('disabled', true);
+          }
+          else if ($('#rows li').length < 5) {
+            $('#addRow')
+            .removeAttr('disabled');
+
+          }
+          return false;
+        });
+
 
   });
 
