@@ -42,189 +42,212 @@ $(document).ready(function(){
   // });
   //DYNAMIC SELECT SECTIONS
   //DYNAMIC SELECT SECTIONS
-
-  $('#stallf_buss_id').keyup(function(){
-
-    var datereg = $('#stallf_date_reg').val();
-    var daterenew = $('#stallf_date_renew').val();
-    var bussID = $('#stallf_buss_id').val();
-    var bussname = $('#stallf_buss_name').val();
-
-    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
-      console.log("not white space");
-      $('#stallf_date_ocu').prop("disabled", false);
-      $('#stall_flr_lvl').prop("disabled", false);
-      $('#section_dyna').prop("disabled", false);
-      $('#stallf_num').prop("disabled", false);
-      $('#stall_sqr_m').prop("disabled", false);
-      $('#stallf_daily_fee').prop("disabled", false);
-    }else {
-      $('#stallf_date_ocu').prop("disabled", true);
-      $('#stall_flr_lvl').prop("disabled", true);
-      $('#section_dyna').prop("disabled", true);
-      $('#stallf_num').prop("disabled", true);
-      $('#stall_sqr_m').prop("disabled", true);
-      $('#stallf_daily_fee').prop("disabled", true);
-
-      $('#stallf_date_ocu').val("");
-      $('#stall_flr_lvl').val("");
-      $('#section_dyna').val("");
-      $('#stallf_num').val("");
-      $('#stall_sqr_m').val("");
-      $('#stallf_daily_fee').val("");
-
-    }
-
-  });
-
-  $('#stallf_date_reg').change(function() {
-    var datereg = $('#stallf_date_reg').val();
-    var daterenew = $('#stallf_date_renew').val();
-    var bussID = $('#stallf_buss_id').val();
-    var bussname = $('#stallf_buss_name').val();
-
-    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
-      console.log("not white space");
-      $('#stallf_date_ocu').prop("disabled", false);
-      $('#stall_flr_lvl').prop("disabled", false);
-      $('#section_dyna').prop("disabled", false);
-      $('#stallf_num').prop("disabled", false);
-      $('#stall_sqr_m').prop("disabled", false);
-      $('#stallf_daily_fee').prop("disabled", false);
-    }else {
-      $('#stallf_date_ocu').prop("disabled", true);
-      $('#stall_flr_lvl').prop("disabled", true);
-      $('#section_dyna').prop("disabled", true);
-      $('#stallf_num').prop("disabled", true);
-      $('#stall_sqr_m').prop("disabled", true);
-      $('#stallf_daily_fee').prop("disabled", true);
-
-      $('#stallf_date_ocu').val("");
-      $('#stall_flr_lvl').val("");
-      $('#section_dyna').val("");
-      $('#stallf_num').val("");
-      $('#stall_sqr_m').val("");
-      $('#stallf_daily_fee').val("");
-    }
-  });
-
-  $('#stallf_date_renew').change(function() {
-    var datereg = $('#stallf_date_reg').val();
-    var daterenew = $('#stallf_date_renew').val();
-    var bussID = $('#stallf_buss_id').val();
-    var bussname = $('#stallf_buss_name').val();
-
-    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
-      console.log("not white space");
-      $('#stallf_date_ocu').prop("disabled", false);
-      $('#stall_flr_lvl').prop("disabled", false);
-      $('#section_dyna').prop("disabled", false);
-      $('#stallf_num').prop("disabled", false);
-      $('#stall_sqr_m').prop("disabled", false);
-      $('#stallf_daily_fee').prop("disabled", false);
-    }else {
-      $('#stallf_date_ocu').prop("disabled", true);
-      $('#stall_flr_lvl').prop("disabled", true);
-      $('#section_dyna').prop("disabled", true);
-      $('#stallf_num').prop("disabled", true);
-      $('#stall_sqr_m').prop("disabled", true);
-      $('#stallf_daily_fee').prop("disabled", true);
-
-      $('#stallf_date_ocu').val("");
-      $('#stall_flr_lvl').val("");
-      $('#section_dyna').val("");
-      $('#stallf_num').val("");
-      $('#stall_sqr_m').val("");
-      $('#stallf_daily_fee').val("");
-    }
-
-  });
-
-
-
-
-  $('#stallf_buss_name').keyup(function(){
-    var datereg = $('#stallf_date_reg').val();
-    var daterenew = $('#stallf_date_renew').val();
-    var bussID = $('#stallf_buss_id').val();
-    var bussname = $('#stallf_buss_name').val();
-
-    if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
-      console.log("not white space");
-      $('#stallf_date_ocu').prop("disabled", false);
-      $('#stall_flr_lvl').prop("disabled", false);
-      $('#section_dyna').prop("disabled", false);
-      $('#stallf_num').prop("disabled", false);
-      $('#stall_sqr_m').prop("disabled", false);
-      $('#stallf_daily_fee').prop("disabled", false);
-    }else {
-      $('#stallf_date_ocu').prop("disabled", true);
-      $('#stall_flr_lvl').prop("disabled", true);
-      $('#section_dyna').prop("disabled", true);
-      $('#stallf_num').prop("disabled", true);
-      $('#stall_sqr_m').prop("disabled", true);
-      $('#stallf_daily_fee').prop("disabled", true);
-
-      $('#stallf_date_ocu').val("");
-      $('#stall_flr_lvl').val("");
-      $('#section_dyna').val("");
-      $('#stallf_num').val("");
-      $('#stall_sqr_m').val("");
-      $('#stallf_daily_fee').val("");
-    }
-  });
-
-
-
-
-
-
-  $('#sameas').on('change',function(){
-    if( $(this).is(':checked') ){
-      updatefield();
-    }else{
-      $("#fname, #mname, #lname, #add, #cont").unbind("keydown keyup", function() {
-        document.getElementById("ofname").onkeyup = null;
+  // Restricts input for each element in the set of matched elements to the given inputFilter.
+  (function($) {
+    $.fn.inputFilter = function(inputFilter) {
+      return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+        if (inputFilter(this.value)) {
+          this.oldValue = this.value;
+          this.oldSelectionStart = this.selectionStart;
+          this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+          this.value = this.oldValue;
+          this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+          this.value = "";
+        }
       });
-      $('#ofname').removeAttr('readonly');
-      $('#omname').removeAttr('readonly');
-      $('#olname').removeAttr('readonly');
-      $('#oadd').removeAttr('readonly');
-      $('#ocont').removeAttr('readonly');
-      document.getElementById("ofname").onkeyup = null;
-      document.getElementById('omname').onkeyup = null;
-      document.getElementById('olname').onkeyup = null;
-      document.getElementById('oadd').onkeyup = null;
-      document.getElementById("ocont").onkeyup = null;
+    };
+  }(jQuery));
 
-      document.getElementById("ofname").value = "";
-      document.getElementById("omname").value = "";
-      document.getElementById("olname").value = "";
-      document.getElementById("oadd").value = "";
-      document.getElementById("ocont").value = "";
-    }
-  });
+  $("#stallf_buss_id").inputFilter(function(value){
+    return /^-?\d*$/.test(value);  });
 
-  $('#save_customer').submit(function(e){
-    e.preventDefault();
+    $("#cont").inputFilter(function(value){
+      return /^-?\d*$/.test(value);  });
 
-    $.ajax({
-      url : global.settings.url +'/MainController/save_customer_controller',
-      type : 'POST',
-      data :$(this).serialize(),
-      dataType : 'json',
-      success : function(res){
-        console.log(res);
-        Swal.fire({
-          icon: 'success',
-          title: 'Tenant Added'
+      $('#stallf_buss_id').keyup(function(){
+
+        var datereg = $('#stallf_date_reg').val();
+        var daterenew = $('#stallf_date_renew').val();
+        var bussID = $('#stallf_buss_id').val();
+        var bussname = $('#stallf_buss_name').val();
+
+        if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+          console.log("not white space");
+          $('#stallf_date_ocu').prop("disabled", false);
+          $('#stall_flr_lvl').prop("disabled", false);
+          $('#section_dyna').prop("disabled", false);
+          $('#stallf_num').prop("disabled", false);
+          $('#stall_sqr_m').prop("disabled", false);
+          $('#stallf_daily_fee').prop("disabled", false);
+        }else {
+          $('#stallf_date_ocu').prop("disabled", true);
+          $('#stall_flr_lvl').prop("disabled", true);
+          $('#section_dyna').prop("disabled", true);
+          $('#stallf_num').prop("disabled", true);
+          $('#stall_sqr_m').prop("disabled", true);
+          $('#stallf_daily_fee').prop("disabled", true);
+
+          $('#stallf_date_ocu').val("");
+          $('#stall_flr_lvl').val("");
+          $('#section_dyna').val("");
+          $('#stallf_num').val("");
+          $('#stall_sqr_m').val("");
+          $('#stallf_daily_fee').val("");
+
+        }
+
+      });
+
+      $('#stallf_date_reg').change(function() {
+        var datereg = $('#stallf_date_reg').val();
+        var daterenew = $('#stallf_date_renew').val();
+        var bussID = $('#stallf_buss_id').val();
+        var bussname = $('#stallf_buss_name').val();
+
+        if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+          console.log("not white space");
+          $('#stallf_date_ocu').prop("disabled", false);
+          $('#stall_flr_lvl').prop("disabled", false);
+          $('#section_dyna').prop("disabled", false);
+          $('#stallf_num').prop("disabled", false);
+          $('#stall_sqr_m').prop("disabled", false);
+          $('#stallf_daily_fee').prop("disabled", false);
+        }else {
+          $('#stallf_date_ocu').prop("disabled", true);
+          $('#stall_flr_lvl').prop("disabled", true);
+          $('#section_dyna').prop("disabled", true);
+          $('#stallf_num').prop("disabled", true);
+          $('#stall_sqr_m').prop("disabled", true);
+          $('#stallf_daily_fee').prop("disabled", true);
+
+          $('#stallf_date_ocu').val("");
+          $('#stall_flr_lvl').val("");
+          $('#section_dyna').val("");
+          $('#stallf_num').val("");
+          $('#stall_sqr_m').val("");
+          $('#stallf_daily_fee').val("");
+        }
+      });
+
+      $('#stallf_date_renew').change(function() {
+        var datereg = $('#stallf_date_reg').val();
+        var daterenew = $('#stallf_date_renew').val();
+        var bussID = $('#stallf_buss_id').val();
+        var bussname = $('#stallf_buss_name').val();
+
+        if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+          console.log("not white space");
+          $('#stallf_date_ocu').prop("disabled", false);
+          $('#stall_flr_lvl').prop("disabled", false);
+          $('#section_dyna').prop("disabled", false);
+          $('#stallf_num').prop("disabled", false);
+          $('#stall_sqr_m').prop("disabled", false);
+          $('#stallf_daily_fee').prop("disabled", false);
+        }else {
+          $('#stallf_date_ocu').prop("disabled", true);
+          $('#stall_flr_lvl').prop("disabled", true);
+          $('#section_dyna').prop("disabled", true);
+          $('#stallf_num').prop("disabled", true);
+          $('#stall_sqr_m').prop("disabled", true);
+          $('#stallf_daily_fee').prop("disabled", true);
+
+          $('#stallf_date_ocu').val("");
+          $('#stall_flr_lvl').val("");
+          $('#section_dyna').val("");
+          $('#stallf_num').val("");
+          $('#stall_sqr_m').val("");
+          $('#stallf_daily_fee').val("");
+        }
+
+      });
+
+
+
+
+      $('#stallf_buss_name').keyup(function(){
+        var datereg = $('#stallf_date_reg').val();
+        var daterenew = $('#stallf_date_renew').val();
+        var bussID = $('#stallf_buss_id').val();
+        var bussname = $('#stallf_buss_name').val();
+
+        if ($("#stallf_buss_id").val().replace(/^\s+|\s+$/g, "").length != 0 && $("#stallf_buss_name").val().replace(/^\s+|\s+$/g, "").length != 0 && $('#stallf_date_reg').val() && $('#stallf_date_renew').val()) {
+          console.log("not white space");
+          $('#stallf_date_ocu').prop("disabled", false);
+          $('#stall_flr_lvl').prop("disabled", false);
+          $('#section_dyna').prop("disabled", false);
+          $('#stallf_num').prop("disabled", false);
+          $('#stall_sqr_m').prop("disabled", false);
+          $('#stallf_daily_fee').prop("disabled", false);
+        }else {
+          $('#stallf_date_ocu').prop("disabled", true);
+          $('#stall_flr_lvl').prop("disabled", true);
+          $('#section_dyna').prop("disabled", true);
+          $('#stallf_num').prop("disabled", true);
+          $('#stall_sqr_m').prop("disabled", true);
+          $('#stallf_daily_fee').prop("disabled", true);
+
+          $('#stallf_date_ocu').val("");
+          $('#stall_flr_lvl').val("");
+          $('#section_dyna').val("");
+          $('#stallf_num').val("");
+          $('#stall_sqr_m').val("");
+          $('#stallf_daily_fee').val("");
+        }
+      });
+
+
+
+
+
+
+      $('#sameas').on('change',function(){
+        if( $(this).is(':checked') ){
+          updatefield();
+        }else{
+          $("#fname, #mname, #lname, #add, #cont").unbind("keydown keyup", function() {
+            document.getElementById("ofname").onkeyup = null;
+          });
+          $('#ofname').removeAttr('readonly');
+          $('#omname').removeAttr('readonly');
+          $('#olname').removeAttr('readonly');
+          $('#oadd').removeAttr('readonly');
+          $('#ocont').removeAttr('readonly');
+          document.getElementById("ofname").onkeyup = null;
+          document.getElementById('omname').onkeyup = null;
+          document.getElementById('olname').onkeyup = null;
+          document.getElementById('oadd').onkeyup = null;
+          document.getElementById("ocont").onkeyup = null;
+
+          document.getElementById("ofname").value = "";
+          document.getElementById("omname").value = "";
+          document.getElementById("olname").value = "";
+          document.getElementById("oadd").value = "";
+          document.getElementById("ocont").value = "";
+        }
+      });
+
+      $('#save_customer').submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+          url : global.settings.url +'/MainController/save_customer_controller',
+          type : 'POST',
+          data :$(this).serialize(),
+          dataType : 'json',
+          success : function(res){
+            console.log(res);
+            Swal.fire({
+              icon: 'success',
+              title: 'Tenant Added'
+            });
+          },
+          error : function(xhr){
+            console.log(xhr.responseText);
+          }
+
         });
-      },
-      error : function(xhr){
-        console.log(xhr.responseText);
-      }
 
+      });
     });
-
-  });
-});

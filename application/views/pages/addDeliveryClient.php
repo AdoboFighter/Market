@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]" required>
+                    <input type="text" id="cont" class="form-control" name="customer[Owner_Contact_Num]" required>
                   </div>
                   <div class="text-right">
                     <button type="reset" class="btn stylish-color-dark text-white btn-center" onclick="clear();">Clear</button>
