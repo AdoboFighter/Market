@@ -3,6 +3,32 @@ var id;
 
 $(document).ready(function(){
 
+  (function($) {
+    $.fn.inputFilter = function(inputFilter) {
+      return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+        if (inputFilter(this.value)) {
+          this.oldValue = this.value;
+          this.oldSelectionStart = this.selectionStart;
+          this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+          this.value = this.oldValue;
+          this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+          this.value = "";
+        }
+      });
+    };
+  }(jQuery));
+
+  $("#business_id").inputFilter(function(value){
+    return /^-?\d*$/.test(value);  });
+
+  $("#occu_cn").inputFilter(function(value){
+      return /^-?\d*$/.test(value);  });
+
+  $("#owner_cn").inputFilter(function(value){
+        return /^-?\d*$/.test(value);  });
+
   $( "#payhistbtn" ).click(function() {
     $('#violationmodal').modal('show');
   });
@@ -105,8 +131,9 @@ $(document).ready(function(){
 
     ]
   });
-  $('.dataTables_length').addClass('bs-select');
+  // $('.dataTables_length').addClass('bs-select');
 }
+
 
 
 
@@ -162,7 +189,7 @@ $('#updatecustomerinfo').submit(function(e){
         title: 'Updated',
       });
       $('#client_table').DataTable().ajax.reload();
-      $('#updatecustomerinfo')[0].reset();
+      // $('#updatecustomerinfo')[0].reset();
     },
     error:function(res){
 
@@ -326,6 +353,10 @@ function customerinfo(id){
       $('#Section').val(res[0].Section);
       $('#date_occupied').val(res[0].date_occupied);
       $('#last_pay').val(res[0].payment_datetime);
+
+      $('#stallf_date_reg').val(res[0].date_registered);
+      $('#stallf_date_renew').val(res[0].date_renewed);
+
       // diffdates();
       // if (res[0].customer_id == null) {
       //   console.log("yepo");

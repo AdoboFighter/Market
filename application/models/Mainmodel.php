@@ -146,7 +146,9 @@ class Mainmodel extends CI_model{
     $data3 = array(
       'business_name' =>$data['business_name'],
       'business_id' =>$data['business_id'],
-      'nature_or_business' =>$data['nature_or_business']
+      'nature_or_business' =>$data['nature_or_business'],
+      'Date_Registered' =>$data['Date_Registered'],
+      'Date_Renewed' =>$data['Date_Renewed']
     );
 
 
@@ -1337,8 +1339,8 @@ class Mainmodel extends CI_model{
     $last_id = $this->db->insert_id();
 
     $data_tenant = array(
-      'business_id' => $inputData['Owner_Firstname'],
-      'business_name' => $inputData['Owner_Middlename'],
+      'business_id' => $inputData['Business_Id'],
+      'business_name' => $inputData['Business_Name'],
       'fk_customer_id' => $last_id,
       'date_registered' => $inputData['Date_Registered'],
       'date_renewed' => $inputData['Date_Renewed']

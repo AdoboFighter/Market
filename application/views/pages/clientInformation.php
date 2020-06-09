@@ -84,18 +84,18 @@
 
             <div class=" form-group">
               <label>Business ID:</label>
-              <input type="input" class="form-control" name="update[business_id]" id="business_id" required>
+              <input type="input" maxlength="7" class="form-control" name="update[business_id]" id="business_id" required>
             </div>
 
             <div class="form-group" id="">
               <label for="">Date Registered</label>
-              <input type="date" class="form-control" id="stallf_date_reg" name="customer[Date_Registered]" required>
+              <input type="date" class="form-control" id="stallf_date_reg" name="update[Date_Registered]" required>
               <span id="" class="text-danger"></span>
             </div>
 
             <div class="form-group" id="">
               <label for="">Date Renewed</label>
-              <input type="date" class="form-control" id="stallf_date_renew" name="customer[Date_Renewed]" required>
+              <input type="date" class="form-control" id="stallf_date_renew" name="update[Date_Renewed]" required>
               <span id="" class="text-danger"></span>
             </div>
 
@@ -200,7 +200,7 @@
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="update[owner_cn]" id="owner_cn" required>
+              <input type="text" maxlength="11" class="form-control" name="update[owner_cn]" id="owner_cn" required>
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="update[occu_cn]" id="occu_cn" required>
+              <input type="text" maxlength="11" class="form-control" name="update[occu_cn]" id="occu_cn" required>
             </div>
             <div class="row p-2">
               <div class="p-2">
