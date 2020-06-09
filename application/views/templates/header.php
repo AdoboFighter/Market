@@ -568,7 +568,9 @@ CONTENT STYLE
           <ul class="collapse list-unstyled" id="homeSubmenu2">
 
             <li>
-              <a href="<?php echo base_url() . 'pages/view/payment' ?>">Tenant</a>
+              <a href="<?php echo base_url() . 'pages/view/paymentTenant' ?>">Tenant</a>
+              <!-- <a href="<?php echo base_url() . 'pages/view/payment' ?>">Tenant</a> -->
+
             </li>
 
             <li>

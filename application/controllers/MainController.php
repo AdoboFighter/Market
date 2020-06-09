@@ -678,44 +678,87 @@ class MainController extends CI_Controller{
     $type_of_payment = $this->input->post('type_of_payment');
     $query = $this->model->getnature($type_of_payment);
     $ntw = $this->numtowords($this->input->post('total'));
-    $data = array(
-      'fullname' => $this->input->post('payment_name'),
-      'payment_type' => $this->input->post('payment_type'),
-      'text1' => $this->input->post('text1'),
-      'text2' => $this->input->post('text2'),
-      'text3' => $this->input->post('text3'),
-      'text4' => $this->input->post('text4'),
-      'text5' => $this->input->post('text5'),
-      'text6' => $this->input->post('text6'),
-      'text7' => $this->input->post('text7'),
-      'num1' =>  $this->input->post('num1'),
-      'num2' =>  $this->input->post('num2'),
-      'num3' =>  $this->input->post('num3'),
-      'num4' =>  $this->input->post('num4'),
-      'num5' =>  $this->input->post('num5'),
-      'num6' =>  $this->input->post('num6'),
-      'num7' =>  $this->input->post('num7'),
-      'total' => $this->input->post('total'),
-      'checkNum1' => $this->input->post('check_number[0]'),
-      'checkNum2' => $this->input->post('check_number[1]'),
-      'checkNum3' => $this->input->post('check_number[2]'),
-      'checkDate1' => $this->input->post('check_date[0]'),
-      'checkDate2' => $this->input->post('check_date[1]'),
-      'checkDate3' => $this->input->post('check_date[2]'),
-      'bank1' => $this->input->post('bank[0]'),
-      'bank2' => $this->input->post('bank[1]'),
-      'bank3' => $this->input->post('bank[2]'),
-      'ntw' => $this->input->post('ntw'),
-      'ntw' => $ntw,
-      'type_of_payment' => $query,
-      'amount_to_pay' => $this->input->post('amount_to_pay')
-    );
-    return $this->load->view('pages/receipt',$data);
+
+    
+    $id = $this->input->post('pay');
+    echo json_encode($id);
+
+
+
+    // $data = array(
+    //   'fullname' => $this->input->post('payment_name'),
+    //   'payment_type' => $this->input->post('payment_type'),
+    //   'text1' => $this->input->post('text1'),
+    //   'text2' => $this->input->post('text2'),
+    //   'text3' => $this->input->post('text3'),
+    //   'text4' => $this->input->post('text4'),
+    //   'text5' => $this->input->post('text5'),
+    //   'text6' => $this->input->post('text6'),
+    //   'text7' => $this->input->post('text7'),
+    //   'num1' =>  $this->input->post('num1'),
+    //   'num2' =>  $this->input->post('num2'),
+    //   'num3' =>  $this->input->post('num3'),
+    //   'num4' =>  $this->input->post('num4'),
+    //   'num5' =>  $this->input->post('num5'),
+    //   'num6' =>  $this->input->post('num6'),
+    //   'num7' =>  $this->input->post('num7'),
+    //   'total' => $this->input->post('total'),
+    //   'checkNum1' => $this->input->post('check_number[0]'),
+    //   'checkNum2' => $this->input->post('check_number[1]'),
+    //   'checkNum3' => $this->input->post('check_number[2]'),
+    //   'checkDate1' => $this->input->post('check_date[0]'),
+    //   'checkDate2' => $this->input->post('check_date[1]'),
+    //   'checkDate3' => $this->input->post('check_date[2]'),
+    //   'bank1' => $this->input->post('bank[0]'),
+    //   'bank2' => $this->input->post('bank[1]'),
+    //   'bank3' => $this->input->post('bank[2]'),
+    //   'ntw' => $this->input->post('ntw'),
+    //   'ntw' => $ntw,
+    //   'type_of_payment' => $query,
+    //   'amount_to_pay' => $this->input->post('amount_to_pay')
+    // );
+    // return $this->load->view('pages/receipt',$data);
   }
+
+
+
+
+
+public function paymentreceiptJO()
+{
+  $query = $this->model->getnature($type_of_payment);
+  $id = $this->input->post('pay');
+
+    $data = array(
+      "bank_branch" => $id['bank_branch'],
+      "cash_tendered" => $id['cash_tendered'],
+      "change" => $id['change'],
+      "cheque_amount" => $id['cheque_amount'],
+      "cheque_date" => $id['cheque_date'],
+      "cheque_number" => $id['cheque_number'],
+      "customID" => $id['customID'],
+      "date" => $id['date'],
+      "no" => $id['no'],
+      "particulars" => $id['particulars'],
+      "payment_or_number" => $id['payment_or_number'],
+      "payor" => $id['payor'],
+      "price" => $id['price'],
+      "stall_number" => $id['stall_number'],
+      "ttlAmt" => $id['ttlAmt'],
+    );
+
+  return $this->load->view('pages/receipt',$data);
+}
+
+
 
   public function paymentreceiptprint()
   {
     $type_of_payment = $this->input->post('type_of_payment');
+
+    $id = $this->input->post('pay');
+  
+
     $query = $this->model->getnature($type_of_payment);
     $data = array(
       'fullname' => $this->input->post('payment_name'),
