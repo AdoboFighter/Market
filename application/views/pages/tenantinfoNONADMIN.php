@@ -27,7 +27,7 @@
           <div class="form-group">
             <label>Category</label>
             <select class="form-control form-control-sm" id="search_cl_s">
-              <option selected value="">Please Select</option>
+              <option value="">Please Select</option>
               <option value="customer_id">Customer ID</option>
               <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
               <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
@@ -39,6 +39,7 @@
             </select>
           </div>
         </div>
+
 
       </div>
 
@@ -76,29 +77,61 @@
         <div class="row p-3">
 
           <div class="col-6">
-            <div class="form-group">
-              <label>Section</label>
-              <input type="input" class="form-control" name="update[business_name]" id="Section" readonly>
-            </div>
-            <div class="form-group" id="floorlevel">
-              <label>Floor Level</label>
-              <input type="input" class="form-control" name="update[business_name]" id="stall_flr_lvl" readonly>
-            </div>
-            <div class=" form-group" id="">
+            <div class=" form-group">
               <label>Business name:</label>
               <input type="input" class="form-control" name="update[business_name]" id="business_name" readonly>
             </div>
-            <div class=" form-group" id="">
+
+            <div class=" form-group">
               <label>Business ID:</label>
-              <input type="input" class="form-control" name="update[business_id]" id="business_id" readonly>
+              <input type="input" maxlength="7" class="form-control" name="update[business_id]" id="business_id" readonly>
+            </div>
+
+            <div class="form-group" id="">
+              <label for="">Date Registered</label>
+              <input type="date" class="form-control" id="stallf_date_reg" name="update[Date_Registered]" readonly>
+              <span id="" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="">
+              <label for="">Date Renewed</label>
+              <input type="date" class="form-control" id="stallf_date_renew" name="update[Date_Renewed]" readonly>
+              <span id="" class="text-danger"></span>
+            </div>
+
+            <div class=" form-group" id="">
+              <label>Last payment type:</label>
+              <input type="text" class="form-control" name="update[date_occupied]" id="last_pay_type" readonly>
+            </div>
+
+            <div class=" form-group" id="">
+              <label>last payment date:</label>
+              <input type="timestamp_end" class="form-control"  id="last_pay" readonly>
+            </div>
+
+            <div class=" form-group">
+              <label>Debt:</label>
+              <input type="input" class="form-control text-danger" id="debt_field" readonly>
             </div>
           </div>
 
+
           <div class="col-6">
+            <div class="form-group">
+              <label>Section</label>
+              <input type="input" class="form-control" id="Section" readonly>
+            </div>
+
+            <div class="form-group" id="floorlevel">
+              <label>Floor Level</label>
+              <input type="input" class="form-control" id="stall_flr_lvl" readonly>
+            </div>
+
             <div class=" form-group">
               <label>Nature of Business:</label>
               <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" readonly>
             </div>
+
             <div class=" form-group" >
               <label>Stall No:</label>
               <input type="input" class="form-control" name="update[stall_number]" id="stall_number" readonly>
@@ -111,16 +144,23 @@
               <label>Daily Fee:</label>
               <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" readonly>
             </div>
+
+            <div class=" form-group" id="">
+              <label>Date Occupied:</label>
+              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" readonly>
+            </div>
           </div>
+
         </div>
+
       </div>
       <br>
       <div class="row mt-2">
         <div class="col-6">
           <div class="card col p-3 shadow">
             <h5 class="font-weight-bold">Tenant's Information</h5>
-            <input type="hidden" id="customer_id" name="update[customer_id]">
-            <input type="hidden" id="stall_id" name="update[stall_id]">
+            <input type="text" hidden id="customer_id" name="update[customer_id]">
+            <input type="text" hidden id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
               <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" readonly>
@@ -139,7 +179,7 @@
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="update[owner_cn]" id="owner_cn" readonly>
+              <input type="text" maxlength="11" class="form-control" name="update[owner_cn]" id="owner_cn" readonly>
             </div>
           </div>
         </div>
@@ -165,15 +205,15 @@
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="update[occu_cn]" id="occu_cn" readonly>
+              <input type="text" maxlength="11" class="form-control" name="update[occu_cn]" id="occu_cn" readonly>
             </div>
             <div class="row p-2">
               <div class="p-2">
                 <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
               </div>
-              <!-- <div class="p-2">
-                <button class="btn btn-primary" type="submit">Update</button>
-              </div> -->
+              <div class="p-2">
+                <!-- <button class="btn btn-primary" type="submit">Update</button> -->
+              </div>
             </div>
           </div>
           <br>
@@ -185,7 +225,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
+                  <h5 class="modal-title" id="exampleModalPreviewLabel">Transaction history</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

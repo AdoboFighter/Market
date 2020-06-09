@@ -1515,49 +1515,55 @@ $(document).ready(function(){
     });
 
 
-      $('#addRow').click(
-        function() {
-          var curMaxInput = $('input:text').length;
+    $('#addRow').click(
+      function() {
+        var curMaxInput = $('input:text').length;
 
-          $('#rows li:first')
-          .clone()
-          .insertAfter($('#rows li:last'))
-          .find('input:text:eq(0)')
-          .attr({'id': 'ans' + (curMaxInput + 1),
-          'name': 'ans' + (curMaxInput + 1)
-        })
-        .parent()
-        .find('input:text:eq(1)')
-        .attr({
-          'id': 'ans' + (curMaxInput + 2),
-          'name': 'ans' + (curMaxInput + 2)
-        });
-        $('#removeRow')
-        .removeAttr('disabled');
-        if ($('#rows li').length >= 5) {
+
+        console.log(curMaxInput)
+
+
+        $('#rows li:first')
+        .clone()
+        .insertAfter($('#rows li:last'))
+        .find('input:text:eq(0)')
+        .attr({'id': 'ans' + (curMaxInput + 1),
+        'name': 'ans' + (curMaxInput + 1)
+      })
+
+      .parent()
+      .find('input:text:eq(1)')
+      .attr({
+        'id': 'ans' + (curMaxInput + 2),
+        'name': 'ans' + (curMaxInput + 2)
+      });
+      $('#removeRow')
+      .removeAttr('disabled');
+      if ($('#rows li').length >= 5) {
+        $('#addRow')
+        .attr('disabled',true);
+      }
+      return false;
+
+    });
+
+    $('#removeRow').click(
+      function() {
+        if ($('#rows li').length > 1) {
+          $('#rows li:last')
+          .remove();
+        }
+        if ($('#rows li').length <= 1) {
+          $('#removeRow')
+          .attr('disabled', true);
+        }
+        else if ($('#rows li').length < 5) {
           $('#addRow')
-          .attr('disabled',true);
+          .removeAttr('disabled');
+
         }
         return false;
       });
-
-      $('#removeRow').click(
-        function() {
-          if ($('#rows li').length > 1) {
-            $('#rows li:last')
-            .remove();
-          }
-          if ($('#rows li').length <= 1) {
-            $('#removeRow')
-            .attr('disabled', true);
-          }
-          else if ($('#rows li').length < 5) {
-            $('#addRow')
-            .removeAttr('disabled');
-
-          }
-          return false;
-        });
 
 
   });
