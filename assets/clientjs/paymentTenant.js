@@ -910,10 +910,7 @@ var bank = [];
 
     $('.dataTables_length').addClass('bs-select');
 
-    $( "#printbtn" ).click(function() {
-      $('#rec').modal("hide");
-      $('#print').modal("show");
-    });
+
 
     $( "#pintmodalclose" ).click(function() {
       $('#print').modal("hide");
@@ -1105,7 +1102,10 @@ var bank = [];
 
 
 
-
+    $( "#printbtn" ).click(function() {
+      $('#rec').modal("hide");
+      $('#print').modal("show");
+    });
 
 
 
@@ -1346,13 +1346,16 @@ var bank = [];
       $('#change').val(0);
     }else{
 
-      if(parseFloat(cheque_display) <= parseFloat(total))
+      var chq = parseFloat(cheque_display);
+      var ttl = parseFloat(total);
+
+      if(chq <= ttl)
       {
         $('#change').val("Invalid Input");
       }
       else
       {
-        change = parseFloat(cheque_display) - parseFloat(total) ;
+        change = chq - ttl ;
 
         var num = parseFloat(change);
         var changeconvert = createCommas(num.toFixed(2));
@@ -1429,16 +1432,416 @@ var bank = [];
 
 
 
+  // $('#payment_submit').submit(function(e){
+  //   e.preventDefault();
+
+
+    
+  //   var particulars = [];
+  //   var no = []
+  //   var particulars = []
+  //   var date = []
+  //   var price = []
+    
+  //   customer_id = $('#payment_customer_id').val();
+  //   tenant_id = $('#payment_tenant_id').val();
+  //   type_of_payment = $('#payment_type_of_payment').val();
+  //   or_number =$('#payment_or_number').val();
+  //   cash_tendered = $('#payment_cash_tendered').val().replace(',', '');
+  //   payment_name = $('#payment_name').val();
+  //   total = parseFloat($('#ttlAmt').val().replace(',', ''));
+  //   var fund_id = 1;
+  //   var payment_type = $('#payment_type').val();
+
+    
+
+  //   console.log("customer_id" +" - "+customer_id);
+  //   console.log("tenant_id" +" - "+tenant_id);
+  //   console.log("type_of_payment" +" - "+type_of_payment);
+  //   console.log("or_number" +" - "+or_number);
+  //   console.log("amount_to_pay" +" - "+amount_to_pay);
+  //   console.log("payment_name" +" - "+payment_name);
+  //   console.log("total" +" - "+total);
+  //   console.log("payment_type" +" - "+payment_type);
+
+
+
+
+
+
+  //   if ($('#payment_or_number').val() == "") {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Check OR number please',
+  //     });
+  //   }
+
+
+  //   else
+  //   {
+  //     var or_number = $('#payment_or_number').val();
+  //     $.ajax({
+  //       url: global.settings.url + '/MainController/checkOr',
+  //       type: 'POST',
+  //       data: {
+  //         or_number: or_number
+  //       },
+  //       dataType:'JSON',
+  //       success: function(res){
+
+  //         if(res=="meron"){
+  //           Swal.fire({
+  //             title: 'O.R number already exist!',
+  //             icon: 'error',
+  //             confirmButtonText: 'Ok'
+  //           })
+  //           $('#payment_or_number').val("");
+
+  //           return;
+
+  //         }
+
+  //         else{
+            
+  //         }
+
+  //       },
+  //       error: function(xhr){
+  //         console.log(xhr.responseText);
+  //       }
+  //     })
+      
+  //   }
+
+  //   if ($('#change').val() == "" || $('#change').val() == null) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Complete the transaction first.',
+  //     });
+  //   }else if ($('#change').val().replace(',', '') < 0 ||  $('#change').val() == 'Invalid Input') {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Insufficient amount.',
+  //     });
+  //   }else {
+
+
+
+
+
+  //     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+
+  //       $('#tbodyParticulars tr').each(function(row,tr){
+  //         no[row]={"no" : $(tr).find('td:eq(0)').text()}    
+  //         particulars[row]={"particulars" : $(tr).find('td:eq(1)').text()}    
+  //         date[row]={"date" :$(tr).find('td:eq(2)').text()}    
+  //         price[row]={"price" :$(tr).find('td:eq(3)').text().replace(/,/g, '')}    
+
+  //       });  
+
+  //       no = JSON.stringify(no);
+  //       particulars = JSON.stringify(particulars);
+  //       date = JSON.stringify(date);
+  //       price = JSON.stringify(price);
+
+  //       console.log(no);
+  //       console.log(particulars);
+  //       console.log(date);
+  //       console.log(price);
+
+
+  //       $("#no").val(no);
+  //       $("#particulars").val(particulars);
+  //       $("#date").val(date);
+  //       $("#price").val(price)  ;
+
+
+  //       console.log( $("#payment_submit").serializeArray());
+      
+        
+
+  //       // cash
+  //       // $.ajax({
+  //       //   type: "POST",
+  //       //   data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+  //       //   url: global.settings.url +'/MainController/savetransaction',
+  //       //   success: function(res){
+
+  //           $.ajax({
+  //             type: "POST",
+  //             data:$("#payment_submit").serialize(),
+  //             // data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+  //             url: global.settings.url +'/MainController/paymentreceiptJO',
+  //             xhrFields: {
+  //               responseType: 'blob'
+  //             },
+
+  //             success:function(data)
+  //             {
+  //               // document.getElementById('frameasdas').contentWindow.location.reload();
+
+  //               var url = window.URL.createObjectURL(data);
+  //               $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+  //               $('#rec').modal('show');
+  //               //  $('#frameasdas').attr('src',data);
+  //             },
+  //             error:function()
+  //             {
+  //             }
+
+  //           });
+
+  //           // $('#payer').val(payment_name);
+  //           // $('#totalprint').val(total);
+  //           // $('#cashcheck').val(payment_type);
+  //           // $('#print').modal('show');
+  //         // },
+  //       //   error: function(res){
+
+  //       //   }
+  //       // });
+
+  //     }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+  //       // cash and cheque
+  //       $('#tbodyParticulars tr').each(function(row,tr){
+  //         no[row]={"no" : $(tr).find('td:eq(0)').text()}    
+  //         particulars[row]={"particulars" : $(tr).find('td:eq(1)').text()}    
+  //         date[row]={"date" :$(tr).find('td:eq(2)').text()}    
+  //         price[row]={"price" :$(tr).find('td:eq(3)').text().replace(/,/g, '')}    
+
+  //       });  
+
+  //       no = JSON.stringify(no);
+  //       particulars = JSON.stringify(particulars);
+  //       date = JSON.stringify(date);
+  //       price = JSON.stringify(price);
+
+  //       console.log(no);
+  //       console.log(particulars);
+  //       console.log(date);
+  //       console.log(price);
+
+  
+  //       console.log($("#payment_submit").serializeArray());
+        
+
+  //       $.ajax({
+  //         type: "POST",
+  //         data:$("#payment_submit").serialize(),
+  //         // data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+  //         url: global.settings.url +'/MainController/savetransaction',
+  //         success: function(res){
+  //           // $('#TenantPay').modal("hide");
+  //           res= jQuery.parseJSON(res);
+
+  //           transaction_id = res[0].transaction_id;
+  //           for(var i = 0; i< add_line.length;i++)
+  //           {
+
+  //             add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+  //             $.ajax({
+  //               type: "POST",
+  //               data: add_line[i],
+  //               url: global.settings.url +'/MainController/savecheque',
+
+  //               success: function(res){
+  //                 // $('#TenantPay').modal("hide");
+  //               },
+  //               error: function(res){
+
+  //               }
+  //             });
+
+  //             check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+  //             check_number[i] =  add_line[i]['ch[cheque_number]'];
+  //             check_date[i] =    add_line[i]['ch[cheque_date]'];
+  //             bank[i] =          add_line[i]['ch[bank_branch]'];
+
+  //           }
+
+  //           $.ajax({
+  //             type: "POST",
+  //             data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+  //             url: global.settings.url +'/MainController/paymentreceipt',
+  //             xhrFields: {
+  //               responseType: 'blob'
+  //             },
+
+  //             success:function(data)
+  //             {
+
+  //               // document.getElementById('frameasdas').contentWindow.location.reload();
+
+  //               var url = window.URL.createObjectURL(data);
+  //               $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+  //               $('#rec').modal('show');
+
+  //               //  $('#frameasdas').attr('src',data);
+
+
+  //             },
+  //             error:function()
+  //             {
+
+  //             }
+
+  //           });
+
+
+  //         },
+  //         error: function(res){
+
+  //         }
+  //       });
+
+  //     }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+  //       //cheque only
+  //       $.ajax({
+  //         type: "POST",
+  //         // data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+  //         data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+  //         url: global.settings.url +'/MainController/savetransaction',
+  //         success: function(res){
+  //           // $('#TenantPay').modal("hide");
+  //           // testcheqdel();
+  //           res= jQuery.parseJSON(res);
+
+  //           transaction_id = res[0].transaction_id;
+  //           for(var i = 0; i< add_line.length;i++)
+  //           {
+
+  //             add_line[i]['ch[fk_transaction_id]'] = transaction_id;
+
+  //             $.ajax({
+  //               type: "POST",
+  //               data: add_line[i],
+  //               url: global.settings.url +'/MainController/savecheque',
+  //               success: function(res){
+  //                 $('#TenantPay').modal("hide");
+  //               },
+  //               error: function(res){
+
+  //               }
+  //             });
+  //             check_amount[i] =  add_line[i]['ch[cheque_amount]'];
+  //             check_number[i] =  add_line[i]['ch[cheque_number]'];
+  //             check_date[i] =    add_line[i]['ch[cheque_date]'];
+  //             bank[i] =          add_line[i]['ch[bank_branch]'];
+  //           }
+
+  //           $.ajax({
+  //             type: "POST",
+  //             data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
+  //             url: global.settings.url +'/MainController/paymentreceipt',
+  //             xhrFields: {
+  //               responseType: 'blob'
+  //             },
+
+  //             success:function(data)
+  //             {
+
+  //               // document.getElementById('frameasdas').contentWindow.location.reload();
+
+  //               var url = window.URL.createObjectURL(data);
+  //               $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+  //               $('#rec').modal('show');
+
+  //               //  $('#frameasdas').attr('src',data);
+
+
+  //             },
+  //             error:function()
+  //             {
+
+  //             }
+
+  //           });
+  //         },
+  //         error: function(res){
+
+  //         }
+  //       });
+
+
+  //     }
+
+  //   }
+
+
+  // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
   $('#payment_submit').submit(function(e){
     e.preventDefault();
 
 
     
     var particulars = [];
-    var no = []
-    var particulars = []
-    var date = []
-    var price = []
+    var no = [];
+    var particulars = [];
+    var date = [];
+    var price = [];
+
+    var chqno = [];
+    var chqAmount = [];
+    var chqdate = [];
+    var chqBranch = [];
+
     
     customer_id = $('#payment_customer_id').val();
     tenant_id = $('#payment_tenant_id').val();
@@ -1451,18 +1854,6 @@ var bank = [];
     var payment_type = $('#payment_type').val();
 
     
-
-    console.log("customer_id" +" - "+customer_id);
-    console.log("tenant_id" +" - "+tenant_id);
-    console.log("type_of_payment" +" - "+type_of_payment);
-    console.log("or_number" +" - "+or_number);
-    console.log("amount_to_pay" +" - "+amount_to_pay);
-    console.log("payment_name" +" - "+payment_name);
-    console.log("total" +" - "+total);
-    console.log("payment_type" +" - "+payment_type);
-
-
-
 
 
 
@@ -1493,22 +1884,13 @@ var bank = [];
               confirmButtonText: 'Ok'
             })
             $('#payment_or_number').val("");
-
             return;
-
           }
-
           else{
-            
-          }
+     
 
-        },
-        error: function(xhr){
-          console.log(xhr.responseText);
-        }
-      })
-      
-    }
+
+
 
     if ($('#change').val() == "" || $('#change').val() == null) {
       Swal.fire({
@@ -1525,9 +1907,6 @@ var bank = [];
 
 
 
-
-      if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-
         $('#tbodyParticulars tr').each(function(row,tr){
           no[row]={"no" : $(tr).find('td:eq(0)').text()}    
           particulars[row]={"particulars" : $(tr).find('td:eq(1)').text()}    
@@ -1541,21 +1920,46 @@ var bank = [];
         date = JSON.stringify(date);
         price = JSON.stringify(price);
 
-        console.log(no);
-        console.log(particulars);
-        console.log(date);
-        console.log(price);
-
-
         $("#no").val(no);
         $("#particulars").val(particulars);
         $("#date").val(date);
-        $("#price").val(price)  ;
-
+        $("#price").val(price);
 
         console.log( $("#payment_submit").serializeArray());
-      
+
+
+
+
+
+
+
+        $('#table_cheque tr').each(function(row,tr){
+          chqno[row]={"chqno" : $(tr).find('td:eq(0)').text()}    
+          chqAmount[row]={"chqAmount" : $(tr).find('td:eq(1)').text()}    
+          chqdate[row]={"chqdate" :$(tr).find('td:eq(2)').text()}    
+          chqBranch[row]={"chqBranch" :$(tr).find('td:eq(3)').text().replace(/,/g, '')}    
+        });  
+
+        chqno = JSON.stringify(chqno);
+        chqAmount = JSON.stringify(chqAmount);
+        chqdate = JSON.stringify(chqdate);
+        chqBranch = JSON.stringify(chqBranch);
+
+        $("#chqno").val(chqno);
+        $("#chqAmount").val(chqAmount);
+        $("#chqdate").val(chqdate);
+        $("#chqBranch").val(chqBranch);
+
+
+
+        console.log( $("#chqno").val());
         
+
+
+        // add_line = JSON.stringify(add_line);
+        // $("#addline").val(add_line);
+        // console.log($("#addline").val());
+
 
         // cash
         // $.ajax({
@@ -1567,209 +1971,50 @@ var bank = [];
             $.ajax({
               type: "POST",
               data:$("#payment_submit").serialize(),
-              // data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
               url: global.settings.url +'/MainController/paymentreceiptJO',
               xhrFields: {
                 responseType: 'blob'
               },
-
               success:function(data)
               {
-                // document.getElementById('frameasdas').contentWindow.location.reload();
-
                 var url = window.URL.createObjectURL(data);
                 $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
                 $('#rec').modal('show');
-
-                //  $('#frameasdas').attr('src',data);
-
               },
               error:function()
               {
-
               }
 
             });
 
-            // $('#payer').val(payment_name);
-            // $('#totalprint').val(total);
-            // $('#cashcheck').val(payment_type);
-            // $('#print').modal('show');
-          // },
+        // },
         //   error: function(res){
-
         //   }
         // });
 
-      }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
-        // cash and cheque
-        $('#tbodyParticulars tr').each(function(row,tr){
-          no[row]={"no" : $(tr).find('td:eq(0)').text()}    
-          particulars[row]={"particulars" : $(tr).find('td:eq(1)').text()}    
-          date[row]={"date" :$(tr).find('td:eq(2)').text()}    
-          price[row]={"price" :$(tr).find('td:eq(3)').text().replace(/,/g, '')}    
-
-        });  
-
-        no = JSON.stringify(no);
-        particulars = JSON.stringify(particulars);
-        date = JSON.stringify(date);
-        price = JSON.stringify(price);
-
-        console.log(no);
-        console.log(particulars);
-        console.log(date);
-        console.log(price);
-
-  
-        console.log($("#payment_submit").serializeArray());
-        
-
-        $.ajax({
-          type: "POST",
-          data:$("#payment_submit").serialize(),
-          // data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-          url: global.settings.url +'/MainController/savetransaction',
-          success: function(res){
-            // $('#TenantPay').modal("hide");
-            res= jQuery.parseJSON(res);
-
-            transaction_id = res[0].transaction_id;
-            for(var i = 0; i< add_line.length;i++)
-            {
-
-              add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-              $.ajax({
-                type: "POST",
-                data: add_line[i],
-                url: global.settings.url +'/MainController/savecheque',
-
-                success: function(res){
-                  // $('#TenantPay').modal("hide");
-                },
-                error: function(res){
-
-                }
-              });
-
-              check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-              check_number[i] =  add_line[i]['ch[cheque_number]'];
-              check_date[i] =    add_line[i]['ch[cheque_date]'];
-              bank[i] =          add_line[i]['ch[bank_branch]'];
-
-            }
-
-            $.ajax({
-              type: "POST",
-              data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-              url: global.settings.url +'/MainController/paymentreceipt',
-              xhrFields: {
-                responseType: 'blob'
-              },
-
-              success:function(data)
-              {
-
-                // document.getElementById('frameasdas').contentWindow.location.reload();
-
-                var url = window.URL.createObjectURL(data);
-                $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
-                $('#rec').modal('show');
-
-                //  $('#frameasdas').attr('src',data);
+      }
+      
 
 
-              },
-              error:function()
-              {
-
-              }
-
-            });
 
 
-          },
-          error: function(res){
+
+
+
+
 
           }
-        });
-
-      }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-        //cheque only
-        $.ajax({
-          type: "POST",
-          // data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-          data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
-          url: global.settings.url +'/MainController/savetransaction',
-          success: function(res){
-            // $('#TenantPay').modal("hide");
-            // testcheqdel();
-            res= jQuery.parseJSON(res);
-
-            transaction_id = res[0].transaction_id;
-            for(var i = 0; i< add_line.length;i++)
-            {
-
-              add_line[i]['ch[fk_transaction_id]'] = transaction_id;
-
-              $.ajax({
-                type: "POST",
-                data: add_line[i],
-                url: global.settings.url +'/MainController/savecheque',
-                success: function(res){
-                  $('#TenantPay').modal("hide");
-                },
-                error: function(res){
-
-                }
-              });
-              check_amount[i] =  add_line[i]['ch[cheque_amount]'];
-              check_number[i] =  add_line[i]['ch[cheque_number]'];
-              check_date[i] =    add_line[i]['ch[cheque_date]'];
-              bank[i] =          add_line[i]['ch[bank_branch]'];
-            }
-
-            $.ajax({
-              type: "POST",
-              data: {amount_to_pay:amount_to_pay,type_of_payment:type_of_payment,ntw:ntw,check_amount:check_amount,check_number:check_number,check_date:check_date,bank:bank,or_number:or_number,text1:text1,text2:text2,text3:text3,text4:text4,text5:text5,text6:text6,text7:text7,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6,num7:num7,payment_name:payment_name,total:total,payment_type:payment_type},
-              url: global.settings.url +'/MainController/paymentreceipt',
-              xhrFields: {
-                responseType: 'blob'
-              },
-
-              success:function(data)
-              {
-
-                // document.getElementById('frameasdas').contentWindow.location.reload();
-
-                var url = window.URL.createObjectURL(data);
-                $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
-                $('#rec').modal('show');
-
-                //  $('#frameasdas').attr('src',data);
-
-
-              },
-              error:function()
-              {
-
-              }
-
-            });
-          },
-          error: function(res){
-
-          }
-        });
-
-
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      })
       }
 
-    }
+
 
 
   });
-
 
 
 
@@ -1819,6 +2064,7 @@ function addNewRow()
 
   $("#add_Newitem_window").modal("show");
 
+  $('option:selected','#payment_type_of_payment').val("");
   $('option','#payment_type_of_payment').attr('disabled',false);
   $("#tbodyParticulars tr").each(function() {
     var type = $(this).find("td").eq(0).html();
@@ -1914,14 +2160,13 @@ function removeItem(row)
 
 
 
-  $('input[name="paymentCol"]').change(function(){
+  $('input[name="pay[paymentCol]"]').change(function(){
 
     $(".payment_details").val("");
     $("#total_amount_given").val(0.00);
     $("#payment_cheque_total").text(0.00);
     $("#change").val(0.00);
     $("#payment_or_number").val("");
-
 
 
     var table_cheque = document.getElementById("table_cheque");

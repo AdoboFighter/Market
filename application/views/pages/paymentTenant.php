@@ -83,27 +83,6 @@
 
   <!-- END OF MODAL -->
 
-  <div id="print" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close"  aria-label="Close" id="close_modal_receipt">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id ="printrec">
-            <h3 class = "text-center">Do you want to Print Receipt?</h3>
-            <div class = "text-center">
-              <button class = "btn btn-success"type ="submit" value = "yes"> Print Receipt</button>
-              <button class = "btn btn-danger" type ="button" value ="no" id="pintmodalclose">Close</button>
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
   <!-- END OF MODAL -->
 
 
@@ -285,17 +264,17 @@
             <div class="row p-3 ml-3">
               <div class="ml-2 text-white">Mode of Payment</div>
               <div class="custom-control custom-radio ml-3">
-                <input type="radio" class="custom-control-input" id="cashPayment" name="paymentCol" value="cash" checked>
+                <input type="radio" class="custom-control-input" id="cashPayment" name="pay[paymentCol]" value="cash" checked>
                 <label class="custom-control-label text-white" for="cashPayment">Cash</label>
               </div>
 
               <div class="custom-control custom-radio ml-3">
-                <input type="radio" class="custom-control-input" id="chequePayment" name="paymentCol" value="bank" >
+                <input type="radio" class="custom-control-input" id="chequePayment" name="pay[paymentCol]" value="bank" >
                 <label class="custom-control-label text-white" for="chequePayment">Bank</label>
               </div>
 
               <div class="custom-control custom-radio ml-3">
-                <input type="radio" class="custom-control-input" id="bankCashPayment" name="paymentCol" value="bankCash" >
+                <input type="radio" class="custom-control-input" id="bankCashPayment" name="pay[paymentCol]" value="bankCash" >
                 <label class="custom-control-label text-white" for="bankCashPayment">Bank/Cash</label>
               </div>
             </div>
@@ -409,12 +388,16 @@
                 </div>
 
 
-                <input type="text" class="form-control" name="pay[no]" id="no" readonly />
-                <input type="text" class="form-control" name="pay[particulars]" id="particulars" readonly />
-                <input type="text" class="form-control" name="pay[date]" id="date" readonly />
-                <input type="text" class="form-control" name="pay[price]" id="price" readonly />
+                <input type="text" hidden class="form-control" name="pay[no]" id="no" readonly />
+                <input type="text" hidden class="form-control" name="pay[particulars]" id="particulars" readonly />
+                <input type="text" hidden class="form-control" name="pay[date]" id="date" readonly />
+                <input type="text" hidden class="form-control" name="pay[price]" id="price" readonly />
 
-        
+                <input type="text" hidden class="form-control" name="pay[chqno]" id="chqno" readonly />
+                <input type="text" hidden class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
+                <input type="text" hidden class="form-control" name="pay[chqdate]" id="chqdate" readonly />
+                <input type="text" hidden class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
+
             <!-- end row -->
 
           </div>
@@ -516,3 +499,28 @@
 
 
 
+
+  <div id="print" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"  onclick="closeModal('print')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id ="printrec">
+            <h3 class = "text-center">Done Printing?</h3>
+            <div class = "text-center">
+              <button class = "btn btn-success rounded-pill"type ="submit" value = "yes">Yes</button>
+              <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose">No</button>
+
+              <iframe src = "" id="printFrame" hidden height ="500" width = "100%"> </iframe>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

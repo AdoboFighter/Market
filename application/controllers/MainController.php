@@ -726,7 +726,7 @@ class MainController extends CI_Controller{
 
 public function paymentreceiptJO()
 {
-  $query = $this->model->getnature($type_of_payment);
+ 
   $id = $this->input->post('pay');
 
     $data = array(
@@ -745,9 +745,14 @@ public function paymentreceiptJO()
       "price" => $id['price'],
       "stall_number" => $id['stall_number'],
       "ttlAmt" => $id['ttlAmt'],
+      "paymentCol" => $id['paymentCol'],
+      "chqno" => $id['chqno'],
+      "chqAmount" => $id['chqAmount'],
+      "chqdate" => $id['chqdate'],
+      "chqBranch" => $id['chqBranch']
     );
 
-  return $this->load->view('pages/receipt',$data);
+  return $this->load->view('pages/receipt0',$data);
 }
 
 
