@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group">
                     <label for="">Contact Number</label>
-                    <input type="text" class="form-control" name="customer[Owner_Contact_Num]" required>
+                    <input type="text" maxlength="11" id="cont" class="form-control" name="customer[Owner_Contact_Num]" required>
                   </div>
 
 
