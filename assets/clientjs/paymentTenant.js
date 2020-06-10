@@ -2311,6 +2311,15 @@ $('#add_Newitem_form').submit(function(e){
   console.log($('#payment_effectivity').val());
 
 
+  if(  $("#tbodyParticulars tr").length == 8 )
+  {
+    Swal.fire({
+      icon: 'error',
+      title: 'Only 8 Particulars Can Be Transact',
+    });
+  }
+
+  else{
 
  if (typeid == 4014)
  {
@@ -2347,25 +2356,25 @@ else{
 $("#tbodyParticulars").append(html);
 
 
+  chq_total();
+
+  computeAmount();
+  totalamountgiven();
 
 
-computeAmount();
-totalamountgiven();
-
-
-if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
-{ 
-  changeboth();
+  if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
+  { 
+    changeboth();
+  }
+  else if ($('input[name="pay[paymentCol]"]:checked').val() == 'bank')
+  {
+    changecheque();
+  }
+  else
+  {
+    changechequecash();
+  }
 }
-else if ($('input[name="pay[paymentCol]"]:checked').val() == 'bank')
-{
-  changecheque();
-}
-else
-{
-  changechequecash();
-}
-
 $('#add_Newitem_window').modal("hide");
 
 });
@@ -2386,7 +2395,10 @@ function removeItem(row)
 {
   var id =  $("#tbodyParticulars > tr").length;
   $(row).closest("tr").remove();
+  
   computeAmount();
+  chq_total();
+
 }
 
 
