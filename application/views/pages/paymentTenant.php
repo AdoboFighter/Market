@@ -295,7 +295,7 @@
             <div class="cashCol bankCashCol row mt-3" >
                 <div class="col-lg-12 mb-2">
                   <label>Cash tendered</label>
-                  <input type="text"  placeholder="0.00"  class="form-control payment_details text-right money2" name="pay[cash_tendered]" id="payment_cash_tendered" onchange="getChange(this.value)">
+                  <input type="text"  placeholder="0.00"  class="form-control payment_details text-right money2" name="pay[cash_tendered]" id="payment_cash_tendered" >
                   <!-- <input type="text"  placeholder="0.00"  class="form-control payment_details inputmoney" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;"> -->
                 </div>
             </div>
@@ -470,13 +470,39 @@
 
 
 
+  <div id="printModal" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"  onclick="closeModal('printModal')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id ="printrec">
+            <h3 class = "text-center">Done Printing?</h3>
+            <div class = "text-center">
+              <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
+              <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose">No</button>
+
+              <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
+
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 
 
   <div id="rec" class="modal fade right shadow" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header p-2">
-          <button class = "btn btn-success btn-sm m-2" id="printbtn">Print Receipt</button>
+          <button class = "btn btn-success btn-sm m-2" id="printbtn" type='button' onclick="printReceipt()">Print Receipt</button>
 
           <button type="button"  id="close_modal_receipt2"  class="close" onclick="closeModal('rec')" >
             <span aria-hidden="true">&times;</span>
@@ -498,29 +524,3 @@
 
 
 
-
-
-  <div id="print" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close"  onclick="closeModal('print')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id ="printrec">
-            <h3 class = "text-center">Done Printing?</h3>
-            <div class = "text-center">
-              <button class = "btn btn-success rounded-pill"type ="submit" value = "yes">Yes</button>
-              <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose">No</button>
-
-              <iframe src = "" id="printFrame" hidden height ="500" width = "100%"> </iframe>
-
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>

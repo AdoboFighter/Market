@@ -574,6 +574,15 @@ class MainController extends CI_Controller{
   }
 
 
+  public function savetransact()
+  {
+    $now = date('Y-m-d H:i:s');
+    $id = $this->input->post('pay');
+    echo json_encode( $this->model->savetransaction('transaction',$id));
+
+
+  }
+
   public function savecheque()
   {
     $data = $this->input->post('ch');
@@ -754,6 +763,42 @@ public function paymentreceiptJO()
 
   return $this->load->view('pages/receipt0',$data);
 }
+
+
+
+
+
+public function printreceipt()
+{
+ 
+  $id = $this->input->post('pay');
+
+    $data = array(
+      "bank_branch" => $id['bank_branch'],
+      "cash_tendered" => $id['cash_tendered'],
+      "change" => $id['change'],
+      "cheque_amount" => $id['cheque_amount'],
+      "cheque_date" => $id['cheque_date'],
+      "cheque_number" => $id['cheque_number'],
+      "customID" => $id['customID'],
+      "date" => $id['date'],
+      "no" => $id['no'],
+      "particulars" => $id['particulars'],
+      "payment_or_number" => $id['payment_or_number'],
+      "payor" => $id['payor'],
+      "price" => $id['price'],
+      "stall_number" => $id['stall_number'],
+      "ttlAmt" => $id['ttlAmt'],
+      "paymentCol" => $id['paymentCol'],
+      "chqno" => $id['chqno'],
+      "chqAmount" => $id['chqAmount'],
+      "chqdate" => $id['chqdate'],
+      "chqBranch" => $id['chqBranch']
+    );
+
+  return $this->load->view('pages/printreceipt',$data);
+}
+
 
 
 

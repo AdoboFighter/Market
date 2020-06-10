@@ -1695,6 +1695,7 @@ class Mainmodel extends CI_model{
 
   public function savepayment($table,$data)
   {
+    return $table;
     $this->db->insert($table,$data);
 
     $this->db->where($data);
@@ -1707,8 +1708,38 @@ class Mainmodel extends CI_model{
 
   }
 
+
+
+  
+  public function savetransaction($table,$data)
+  {
+    return $table;
+
+    $data_transaction = array(
+      'payment_nature_id' => $inputData['payment_type'],
+      'payment_amount' => $inputData['cash_tendered'],
+      'customer_id' => $inputData['customer_id'],
+      'or_number' => $inputData['OR'],
+      'effectivity' => $inputData['payment_effect']
+    );
+
+    $this->db->trans_start();
+    $this->db->insert('transaction', $data_transaction);
+
+    foreach ($query->result() as $r) {
+      array_push($dataArray,$r);
+    }
+    return $dataArray;
+
+  }
+
+
+
+
   public function savepayment2($table,$data)
   {
+
+    return $table;
     $query =  $this->db->insert($table,$data);
   }
 

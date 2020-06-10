@@ -6,16 +6,33 @@ use setasign\Fpdi\Fpdi;
 require_once(APPPATH.'/../assets/pdfmerge/TCPDF-master/tcpdf.php');
 require_once(APPPATH.'/../assets/pdfmerge/tcpdi/tcpdi.php');
 $this->load->helper('amountwords');
-ob_start();
 
 
 
 
+// date_default_timezone_set('Asia/Manila');
+// $date = date('m - d - Y');
+// $pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
+// $pdf->setSourceFile(APPPATH.'/..//assets/pdf/rec.pdf');
+// $tpl = $pdf->importPage(1);
+// $pdf->SetDisplayMode(100);
+// $size = $pdf->getTemplateSize($tpl);
+// $orientation = $size['h'] > $size['w'] ? 'P' : 'L';
+// $pdf->setPrintHeader(false);
+// $pdf->setPrintFooter(false);
+// $pdf->addPage($orientation);
+// $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
-date_default_timezone_set('Asia/Manila');
+// $pdf->SetMargins(0, 0, 0);
+// $pdf->SetHeaderMargin(0);
+// $pdf->SetFooterMargin(0);
+
+
 $date = date('m - d - Y');
 $pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
+// $pdf->setSourceFile(APPPATH.'/../assets/PDF/rec.pdf');
 $pdf->setSourceFile(APPPATH.'/..//assets/pdf/rec.pdf');
+
 $tpl = $pdf->importPage(1);
 $pdf->SetDisplayMode(100);
 $size = $pdf->getTemplateSize($tpl);
@@ -24,10 +41,11 @@ $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 $pdf->addPage($orientation);
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
+$pdf->SetAutoPageBreak(true, 0);
+$pdf->addpage();
+$pdf->deletePage(1);
 
-$pdf->SetMargins(0, 0, 0);
-$pdf->SetHeaderMargin(0);
-$pdf->SetFooterMargin(0);
+
 
 $pdf->Text(55,50 , $date);
 $pdf->Text(17,59 , 'City Goverment of San Pablo');
@@ -64,17 +82,17 @@ for ($r = 0 ; $r < $count ; $r++){
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($particulars[$r]->particulars == null ? ' ' : $particulars[$r]->particulars);
 
-    $pdf->MultiCell(41,0, $txt."\n", 1, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
+    $pdf->MultiCell(41,0, $txt."\n", 0, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
  
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($no[$r]->no == null ? ' ' : $no[$r]->no);
-    $pdf->MultiCell(28,0, $txt."\n", 1, 'L', 0, 0, 47,75 + $rowspace , true, 0, false, true, 10, 'M', true);
+    $pdf->MultiCell(28,0, $txt."\n", 0, 'L', 0, 0, 47,75 + $rowspace , true, 0, false, true, 10, 'M', true);
  
     
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($price[$r]->price == null ? ' ' : $price[$r]->price);
 
-    $pdf->MultiCell(25,0, $txt."\n", 1, 'R', 0, 0, 68,75 + $rowspace , true, 0, false, true, 10, 'M', true);
+    $pdf->MultiCell(25,0, $txt."\n", 0, 'R', 0, 0, 68,75 + $rowspace , true, 0, false, true, 10, 'M', true);
   
 }
 
@@ -86,7 +104,7 @@ $pdf->MultiCell(47,0, $txt."\n",0, 'R', 0, 0, 52, 122, true, 0, false, true, 10,
 
 $pdf->setCellPaddings(2, 4, 6, 8);
 $txt = ucwords(convert_number_to_words( str_replace(',', '', $ttlAmt)));
-$pdf->MultiCell(60,20, $txt."\n", 0, 'L', 1, 1,35, 128, true, 0, false, true, 24, 'M', true);
+$pdf->MultiCell(60,20, $txt."\n", 0, 'L',0, 0,35, 128, true, 0, false, true, 24, 'M', true);
 
 
 
@@ -106,8 +124,6 @@ $pdf->MultiCell(45,10, $txt."\n", 0, 'L', 0, 0,10, 165, true, 0, false, true, 10
 
 
 
-
-
 $pdf->setCellPaddings(2, 4, 6, 8);
 $pdf->MultiCell(20,22,($paymentCol == 'bank'|| $paymentCol == 'bankCash'  ? ( $chqBranch[1]->chqBranch == null ? '0' : $chqBranch[1]->chqBranch): '')."\n", 0, 'L', 0, 0,72,147, true, 1, false, true,16, 'M', true);
 
@@ -121,17 +137,20 @@ $pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash'  ? ( $
 
 
 
-
 // ---------------------------------------------------------
 
 
+$js = 'print(true);';
+ob_start();
 ob_end_clean();
-$pdf->IncludeJS("print();");
-$pdf->Output('example_001.pdf', 'I');
+$pdf->IncludeJS($js);
+$pdf->Output('name.pdf', 'I');
+
+EOD;
+
 
 //============================================================+
 // END OF FILE
 //============================================================+
 
-exit;
 ?>
