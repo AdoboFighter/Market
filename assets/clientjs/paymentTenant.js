@@ -1108,6 +1108,10 @@ var bank = [];
     var cheque_am_par = $("#payment_cheque_amount").val().replace(',', '');
     var cheque_date = $("#payment_cheque_date").val();
     var cheque_bank = $("#payment_bank_branch").val();
+
+
+
+
     if (isEmptyOrSpaces(cheque_num)) {
       Swal.fire({
         title: 'Please put your cheque number',
@@ -1142,11 +1146,15 @@ var bank = [];
           text: 'Maximum of 3'
         });
       }else{
-        cheque_total = parseFloat(cheque_total) + parseFloat(cheque_am_par);
 
-        var num = parseFloat(cheque_total);
-        var chequeamconvert = createCommas(num.toFixed(2));
-        $("#payment_cheque_total").text(chequeamconvert);
+
+        // cheque_total = parseFloat(cheque_total) + parseFloat(cheque_am_par);
+        // var num = parseFloat(cheque_total);
+        // var chequeamconvert = createCommas(num.toFixed(2));
+        // $("#payment_cheque_total").text(chequeamconvert);
+
+
+
 
         var table_cheque = $('#table_cheque').DataTable({
           "paging": false,
@@ -1174,9 +1182,10 @@ var bank = [];
         var td5 = document.createElement("td");
         td1.innerHTML = document.getElementById("payment_cheque_number").value;
         td2.innerHTML  = document.getElementById("payment_cheque_amount").value;
+        td2.setAttribute('class','amtClass text-right');
         td3.innerHTML  = document.getElementById("payment_cheque_date").value;
         td4.innerHTML  = document.getElementById("payment_bank_branch").value;
-        td5.innerHTML  = '<button type="button" class="btn_delete btn btn-danger btn-sm " id="'+row_id+'">Delete</button>';
+        td5.innerHTML  = '<button type="button" class="btn_delete btn btn-danger btn-sm " id="'+row_id+'" onclick="deleteChq('+row_id+',this)">Delete</button>';
         row.appendChild(td1);
         row.appendChild(td2);
         row.appendChild(td3);
@@ -1186,6 +1195,7 @@ var bank = [];
         row_id++;
         row_num++;
         table_cheque.destroy();
+        chq_total();
 
         if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
           // cash
@@ -1209,7 +1219,34 @@ var bank = [];
 
 
 
+function deleteChq(id, r)
+{
+  // $(row).closest('tr').remove();
+	var i = r.parentNode.parentNode.rowIndex;
+	document.getElementById("table_cheque").deleteRow(i);
+  add_line.splice(i-1,1);
+  console.log(add_line);
+  chq_total();
 
+
+  console.log("dsadsa");
+  
+
+     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+       // cash
+       changeboth();
+       totalamountgiven();
+     }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val().replace(',', '') > 0) {
+       // cash and cheque
+       changechequecash();
+       totalamountgiven();
+     }else if ($('#payment_cash_tendered').val().replace(',', '') == 0 ||  $('#payment_cash_tendered').val() == ""){
+       //cheque only
+       changecheque();
+       totalamountgiven();
+     }
+
+}
 
 
 
@@ -1240,10 +1277,34 @@ var bank = [];
 
 
 
+  function chq_total()
+  {
+    var total = 0;
+
+    $('.amtClass').each(function(){
+    // var chqtotal = $(tr).find("td").eq(1).html();
+    // var chqtotal =  $(tr).find('td:eq(1)').html();
+
+    var chqtotal =  $(this).html();
+    console.log(chqtotal);
+    console.log( parseFloat(chqtotal));
+    console.log( parseFloat(chqtotal.replace(/,/g, '')));
+    
+     total += parseFloat(chqtotal.replace(/,/g, ''));
+console.log(total);
+
+    });  
+
+    $("#payment_cheque_total").text(createCommas(total.toFixed(2)));
+  }
+
 
 
   
   function totalamountgiven() {
+    
+
+    
     var cash_tendered2 = $('#payment_cash_tendered').val().replace(',', '');
     var cheque_display = $("#payment_cheque_total").text().replace(',', '');
 
