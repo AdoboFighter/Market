@@ -2279,6 +2279,7 @@ $('#add_Newitem_window').on('shown.bs.modal', function (e) {
 
     $('#payment_effectivity').val("");
     $('#payment_amount_to_pay2').val("");
+    $('#otherSpec').attr('hidden',true);
     
 
     $('option','#payment_type_of_payment').attr('disabled',false);
@@ -2306,21 +2307,42 @@ $('#add_Newitem_form').submit(function(e){
   var typename = $('#payment_type_of_payment option:selected').text()
   var date = $('#payment_effectivity').val();
   var amount = $('#payment_amount_to_pay2').val();
+  var specOther = $('#specOther').val();
   console.log($('#payment_effectivity').val());
 
-  
-var id =  $("#tbodyParticulars > tr").length;
 
 
-id=id +1;
- var html = "";
- html += "<tr>";
- html += "<td>"+typeid+"</td>";
- html += "<td>"+typename+"</td>";
- html += "<td>"+date+"</td>";
- html += "<td class='text-right amtToPay'>"+amount+"</td>";
- html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
- html += "</tr>";
+ if (typeid == 4014)
+ {
+  if($('#specOther').val() == null)
+  {
+    Swal.fire({
+      icon: 'error',
+      title: 'Please Specify Other Particulars',
+    });
+  }
+  else{
+  var html = "";
+  html += "<tr>";
+  html += "<td>"+typeid+"</td>";
+  html += "<td>"+specOther+"</td>";
+  html += "<td>"+date+"</td>";
+  html += "<td class='text-right amtToPay'>"+amount+"</td>";
+  html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+  html += "</tr>";}
+ }
+
+ 
+else{
+  var html = "";
+  html += "<tr>";
+  html += "<td>"+typeid+"</td>";
+  html += "<td>"+typename+"</td>";
+  html += "<td>"+date+"</td>";
+  html += "<td class='text-right amtToPay'>"+amount+"</td>";
+  html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+  html += "</tr>";
+ }
 
 $("#tbodyParticulars").append(html);
 
@@ -2411,6 +2433,21 @@ $("#tbodyParticulars tr").each(function() {
 $("#ttlAmt").val(createCommas(amount.toFixed(2)));
 }
 
+
+$("#payment_type_of_payment").change(function(){
+
+  console.log($(this));
+  if ($(this).val() == 4014)
+  {
+    $("#otherSpec").val("");
+    $("#otherSpec").attr('hidden',false);
+  }
+
+  else{
+    $("#otherSpec").attr('hidden',true);
+  }
+  
+});
 
 
 
