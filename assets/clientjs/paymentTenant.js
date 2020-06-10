@@ -1296,7 +1296,7 @@ var bank = [];
       $('#change').val(0);
     }else {
 
-      if( parseFloat(cash_tendered) <=  parseFloat(total))
+      if( parseFloat(cash_tendered) <  parseFloat(total))
       {
         $('#change').val("Invalid Input");
       }
@@ -1340,7 +1340,7 @@ var bank = [];
       var chq = parseFloat(cheque_display);
       var ttl = parseFloat(total);
 
-      if(chq <= ttl)
+      if(chq < ttl)
       {
         $('#change').val("Invalid Input");
       }
@@ -1386,7 +1386,7 @@ var bank = [];
       var ttlAmt = parseFloat($('#ttlAmt').val().replace(',', ''));
       var chqCash = parseFloat(change_cheque_cash);
 
-      if(chqCash <= ttlAmt)
+      if(chqCash < ttlAmt)
       {
         $('#change').val("Invalid Input");
       }
@@ -2081,6 +2081,8 @@ function printReceipt()
                 dataType: 'json',
                 success: function(res){
                   console.log(res);
+                  successlog();
+
                 },
                 error: function(res){
       
@@ -2090,32 +2092,17 @@ function printReceipt()
             }}
       
           }
+
+          else
+          {
+            successlog();
+          }
         }//end count
 
 
 
-
-
-        // $('#printModal').modal('hide');
-        // $('#TenantModalPay').modal('hide');
-        // $("#payment_submit")[0].reset();
-
-
-        // $("#payment_cheque_total").text(0.00);
-    
-        // var table_cheque = document.getElementById("table_cheque");
-        // for (var i = table_cheque.rows.length - 1; i > 0; i--) {
-        //   table_cheque.deleteRow(i);
-        // }
-
-        // $("#tbodyParticulars").html("");
-
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'Successfully Saved',
-        // });
-            }
-          });
+      }
+    });
 
 
           
@@ -2131,7 +2118,6 @@ function printReceipt()
         // console.log(transaction_id);
 
 
-    
 
 
 
@@ -2146,7 +2132,29 @@ function printReceipt()
 
 
 
+function successlog(){
+  
+  $('#printModal').modal('hide');
+  $('#TenantModalPay').modal('hide');
+  $("#payment_submit")[0].reset();
 
+
+  $("#payment_cheque_total").text(0.00);
+
+  var table_cheque = document.getElementById("table_cheque");
+  for (var i = table_cheque.rows.length - 1; i > 0; i--) {
+    table_cheque.deleteRow(i);
+  }
+
+  $("#tbodyParticulars").html("");
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Successfully Saved',
+  });
+
+
+}
 
 
 
