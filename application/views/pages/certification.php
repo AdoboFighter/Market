@@ -32,7 +32,7 @@
 
 
 
-
+  <form id="certform">
     <div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -42,7 +42,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form id="certform">
+
             <div class="modal-body">
 
               <div class="mb-2 form-group" width="80">
@@ -89,6 +89,7 @@
         </div>
       </div>
     </div>
+  </form>
 
 
 

@@ -9,11 +9,7 @@ var month = monthNames[m.getMonth()];
 var d = new Date();
 var n = d.getDate();
 var year = new Date().getFullYear();
-
-
 $(document).ready(function(){
-
-
   $('#cert_table').DataTable({
     "ajax" : {
       "url" : global.settings.url + '/MainController/getcerttable',
@@ -25,19 +21,16 @@ $(document).ready(function(){
     {
       "data" : "c_info_fullname_owner"
     },
-
     {
       "data" : "c_info_address"
     },
     {
       "data" : "c_info_stall_number"
     },
-
     {
       "data" : "btn"
     }]
   });
-
   $('#location').on('change', function(e) {
     $('#cert').val(this.value);
     var typecert = $('#location option:selected').text();
@@ -61,12 +54,11 @@ $(document).ready(function(){
         console.log(xhr.responseText);
       }
     });
-
   });
-
   $('.dataTables_length').addClass('bs-select');
 
   $('#certform').submit(function(e){
+    console.log("hello");
     e.preventDefault();
     $.ajax({
       url: global.settings.url + '/MainController/updatecert',
@@ -80,17 +72,13 @@ $(document).ready(function(){
           title: 'Certification Effectivity Removed',
         });
         $('#cert_table').DataTable().ajax.reload();
-
       },
       error:function(res){
         console.log('sala');
       }
     });
   });
-
     });
-
-
   function fetchdata(id){
     $('#certmodal').modal("show");
     console.log(id);
@@ -102,7 +90,6 @@ $(document).ready(function(){
       success: function(res){
         console.log(res);
         res = res[0];
-
         $('#transaction_id').val(res.transaction_id );
         $('#fname').val(res.firstname );
         $('#mname').val(res.middlename );
@@ -120,17 +107,12 @@ $(document).ready(function(){
         $('#month').val(month);
         $('#year').val(year);
         $('#ornumber').val(res.or_number );
-
         var lastfourOR = $('#ornumber').val();
         var tranIDVVAR = $('#transaction_id').val();
         var datenosl = $('#today').val().replace(/\//g, '');
         var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-
         $('#todaynosl').val(datenosl);
         $('#refnum').val(datenosl + lastfour + tranIDVVAR);
-
-
-
       },
       error: function(xhr){
         console.log(xhr.responseText);
