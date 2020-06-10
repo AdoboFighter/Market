@@ -1711,26 +1711,13 @@ class Mainmodel extends CI_model{
 
 
   
-  public function savetransaction($table,$data)
+  public function savetransaction($table,$data,$count)
   {
-    return $table;
-
-    $data_transaction = array(
-      'payment_nature_id' => $inputData['payment_type'],
-      'payment_amount' => $inputData['cash_tendered'],
-      'customer_id' => $inputData['customer_id'],
-      'or_number' => $inputData['OR'],
-      'effectivity' => $inputData['payment_effect']
-    );
-
-    $this->db->trans_start();
-    $this->db->insert('transaction', $data_transaction);
-
-    foreach ($query->result() as $r) {
-      array_push($dataArray,$r);
-    }
-    return $dataArray;
-
+    $query = $this->db->insert($table,$data);
+    $transaction_id = $this->db->insert_id();
+    // return $transaction_id;
+    // return $count;
+    return array('query'=> $query, 'id'=>$transaction_id, 'count' => $count);
   }
 
 
@@ -1738,9 +1725,8 @@ class Mainmodel extends CI_model{
 
   public function savepayment2($table,$data)
   {
-
-    return $table;
     $query =  $this->db->insert($table,$data);
+    return $data;
   }
 
   public function updateSystemUserMod($inputData)

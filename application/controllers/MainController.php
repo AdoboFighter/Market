@@ -557,20 +557,23 @@ class MainController extends CI_Controller{
   public function savetransaction()
   {
     $now = date('Y-m-d H:i:s');
-    $transactionData = array(
-      'fund_id' => $this->input->post('fund_id'),
-      'payment_datetime'=>$now,
-      'payment_nature_id'=> $this->input->post('type_of_payment'),
-      'payment_amount'=> $this->input->post('cash_tendered'),
-      'customer_id'=> $this->input->post('customer_id'),
-      'or_number'=> $this->input->post('or_number'),
-      'effectivity'=> $this->input->post('payment_effectivity'),
-      'user_id'=> $this->session->userdata('user_id'),
-      'collector'=> $this->session->userdata('user_fullname'),
-    );
-    echo json_encode( $this->model->savepayment('transaction',$transactionData));
+    $count = $this->input->post("count");
 
-
+        $data = array(
+          'payment_datetime'=>$now
+          ,"customer_id" => $this->input->post("customer_id")
+          ,"payment_nature_id" => $this->input->post("no")
+          ,"effectivity" => $this->input->post("pay_effect")
+          ,"payment_amount" => $this->input->post("price")
+          ,"or_number" => $this->input->post("or_number")
+          ,"cash_rec" => $this->input->post("cash_tendered")
+          ,"amount_to_pay" => $this->input->post("total")
+          ,'collector'=> $this->session->userdata('user_fullname')
+          ,'user_id'=> $this->session->userdata('user_id')
+       
+          // ,"particulars" => $this->input->post("particulars")
+        );
+    echo json_encode( $this->model->savetransaction('transaction',$data, $count));
   }
 
 
