@@ -559,6 +559,11 @@ CONTENT STYLE
             <p><?php echo $this->session->userdata('user_fullname'); ?></p>
           </div>
         </div>
+
+        <li>
+          <a href="<?php echo base_url() . 'pages/view/dev' ?>">Dev Stuff</a>
+        </li>
+
         <li>
           <a href="<?php echo base_url() . 'pages/view/marketFloor' ?>">Market Floor</a>
         </li>
