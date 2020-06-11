@@ -74,7 +74,7 @@
 
                 <div class="mb-2">
                   <label>Customer ID</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_customer_id" readonly>
+                  <input type="text" class="form-control " name="" id="payment_customer_id" readonly>
                 </div>
 
               </div>
@@ -86,7 +86,7 @@
 
                 <div class="mb-2">
                   <label>Stall number</label>
-                  <input type="text" class="form-control payment_details" name="" id="payment_stall" readonly>
+                  <input type="text" class="form-control " name="" id="payment_stall" readonly>
                 </div>
 
               </div>
@@ -98,13 +98,13 @@
 
             <div class="mb-2">
               <label>Name</label>
-              <input type="text" class="form-control payment_details" name="" id="payment_name" readonly>
+              <input type="text" class="form-control " name="" id="payment_name" readonly>
             </div>
 
 
             <div class="mb-2">
               <label>Address</label>
-              <input type="text" class="form-control payment_details" name="" id="address" readonly>
+              <input type="text" class="form-control " name="" id="address" readonly>
             </div>
 
             <br>
