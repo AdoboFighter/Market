@@ -45,7 +45,9 @@ var bank = [];
 
 
 
-
+$(document).ready(function(){
+   $("#searchmodal").modal('show');
+});
 
 // $(document).ready(function(){
 
@@ -819,7 +821,13 @@ var bank = [];
     //   });
     // });
 
+    $('#searchbtn').click(function(){
+      $('#searchmodal').modal("show");
+    });
 
+    $('#view_cheq').click(function(){
+      $('#viewcheq').modal("show");
+    });
 
     $('#search_cl_s').on('change', function() {
       var search = $("#search_cl_f").val();
@@ -973,7 +981,6 @@ var bank = [];
 
 
       $('#addRow').click(
-
         function() {
           var curMaxInput = $('input:text').length;
 
@@ -1027,25 +1034,6 @@ var bank = [];
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // FOR NEW PAGES IN PAYMENT
   function fetchdata(id){
     $.ajax({
@@ -1078,6 +1066,9 @@ var bank = [];
           $('#payment_customer_id').val(res.customer_id);
           $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
           $('#payment_stall').val(res.unit_no);
+          $('#address').val(res.address);
+          $('#payorname').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#searchmodal').modal("hide");
         }
       },
       error: function(xhr){
@@ -2420,7 +2411,6 @@ $("#ttlAmt").val(createCommas(amount.toFixed(2)));
 //HELPERS
 
 $('.money2').mask("#,##0.00", {reverse: true});
-
 
 function createCommas(x) {
   var parts = x.toString().split(".");

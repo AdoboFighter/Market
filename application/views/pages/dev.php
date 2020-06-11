@@ -14,7 +14,22 @@
   <div class="container wow fadeIn">
 
     <!-- Heading -->
-    <h2 class="my-5 h2 text-center">Checkout form</h2>
+    <h2 class="text-center">Checkout form</h2>
+    <br>
+    <div class="row">
+
+      <div class="col-4">
+        <button class="btn btn-primary btn-sm btn-block" type="submit" id="searchbtn">Search</button>
+      </div>
+      <!-- <div class="col">
+        <h2 class="text-center">Checkout form</h2>
+      </div> -->
+
+
+
+    </div>
+
+    <br>
 
     <!--Grid row-->
     <div class="row">
@@ -89,7 +104,7 @@
 
             <div class="mb-2">
               <label>Address</label>
-              <input type="text" class="form-control payment_details" name="" id="" readonly>
+              <input type="text" class="form-control payment_details" name="" id="address" readonly>
             </div>
 
             <br>
@@ -138,7 +153,7 @@
 
 
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
 
           </form>
 
@@ -172,7 +187,7 @@
 
             <div class="mb-2">
               <label>Payor Name</label>
-              <input type="text" class="form-control payment_details" name="pay[payorname]" id="">
+              <input type="text" class="form-control payment_details" name="pay[payorname]" id="payorname">
             </div>
             <!-- <span class="text-muted">$12</span> -->
           </li>
@@ -202,7 +217,7 @@
               </div>
 
               <div class="">
-                <button type="button" class ="float-right stylish-color-dark btn text-white" id = "add_cheque_modal">View cheque</button>
+                <button type="button" class ="float-right stylish-color-dark btn text-white" id = "view_cheq">View cheque</button>
               </div>
             </div>
           </li>
@@ -246,7 +261,7 @@
           </div>
         </form> -->
         <!-- Promo code -->
-
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
       </div>
       <!--Grid column-->
 
@@ -435,6 +450,100 @@
     </div>
   </div>
 </div>
+
+<div id="viewcheq" class="modal fade right shadow" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-2">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Cheques</h5>
+
+        <button type="button"  id="close_modal_receipt2"  class="close" onclick="closeModal('viewcheq')" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <div id="searchmodal" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">Tenant search</h5>
+          <!-- <button type="button" class="close"  onclick="closeModal('searchmodal')">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body">
+          <div class="">
+            <div class="row p-3">
+
+              <div class="col">
+                <div class="form-group">
+                  <label>Search</label>
+                  <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
+                  aria-label="Search">
+                  <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="form-control form-control-sm" id="search_cl_s">
+                    <option selected value="">Please Select</option>
+                    <option value="customer_id">Customer ID</option>
+                    <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
+                    <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
+                    <option value="unit_no">Stall number</option>
+                    <option value="Section">Section</option>
+                    <option value="nature_or_business">Nature of business</option>
+                    <option value="sqm">Area(sqm)</option>
+                    <option value="dailyfee">Daily fee</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-12">
+              <table class="table table-striped table-bordered shadow" id="tableNoStall">
+                <thead>
+                  <tr>
+                    <td class="border border-dark">Customer ID</td>
+                    <td class="border border-dark">Stall no.</td>
+                    <td class="border border-dark">Section</td>
+                    <td class="border border-dark">Nature of business</td>
+                    <td class="border border-dark">Area(sqm)</td>
+                    <td class="border border-dark">Daily fee</td>
+                    <td class="border border-dark">Tenant's name</td>
+                    <td class="border border-dark">Occupant's name</td>
+                    <td class="border border-dark" scope="col">To pay</td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <br>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
 
 </div>
 <div class="overlay"></div>
