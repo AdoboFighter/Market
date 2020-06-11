@@ -443,6 +443,10 @@
               <option value="4015">Certification</option>
             </select>
           </div>
+          <div class="mb-2" hidden id="otherSpec">
+            <label>Specify Other</label>
+            <input type="text" class="form-control payment_details" name="" id="specOther">
+          </div>
 
           <div class="mb-2">
             <label>Payment Effectivity</label>

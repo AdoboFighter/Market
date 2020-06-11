@@ -772,18 +772,17 @@ var bank = [];
 
   $('#payment_cash_tendered').change(function(){
     if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-      // cash
+      console.log("dsaaaaaaa");
       changeboth();
-      totalamountgiven();
     }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
-      // cash and cheque
+      console.log("Dasdas");
       changechequecash();
-      totalamountgiven();
+
     }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-      //cheque only
+      console.log("dsavvvvv");
       changecheque();
-      totalamountgiven();
     }
+    totalamountgiven();
 
   });
 
@@ -1138,8 +1137,11 @@ var bank = [];
       });
     }else {
 
-      console.log(row_num);
-      if (row_num >= 4) {
+
+      var len = $("#table_cheque tr").length;
+
+      console.log(len);
+      if (len >= 4) {
         Swal.fire({
           icon: 'error',
           title: 'Cheque Limit',
@@ -1235,16 +1237,16 @@ function deleteChq(id, r)
      if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
        // cash
        changeboth();
-       totalamountgiven();
      }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val().replace(',', '') > 0) {
        // cash and cheque
        changechequecash();
-       totalamountgiven();
      }else if ($('#payment_cash_tendered').val().replace(',', '') == 0 ||  $('#payment_cash_tendered').val() == ""){
        //cheque only
        changecheque();
-       totalamountgiven();
      }
+     totalamountgiven();
+
+
 
 }
 
@@ -1282,16 +1284,10 @@ function deleteChq(id, r)
     var total = 0;
 
     $('.amtClass').each(function(){
-    // var chqtotal = $(tr).find("td").eq(1).html();
-    // var chqtotal =  $(tr).find('td:eq(1)').html();
 
     var chqtotal =  $(this).html();
-    console.log(chqtotal);
-    console.log( parseFloat(chqtotal));
-    console.log( parseFloat(chqtotal.replace(/,/g, '')));
     
      total += parseFloat(chqtotal.replace(/,/g, ''));
-console.log(total);
 
     });  
 
@@ -1305,34 +1301,54 @@ console.log(total);
     
 
     
-    var cash_tendered2 = $('#payment_cash_tendered').val().replace(',', '');
-    var cheque_display = $("#payment_cheque_total").text().replace(',', '');
+    var cash_tendered2 = $('#payment_cash_tendered').val().replace(/,/g, '');
+    var cheque_display = $("#payment_cheque_total").text().replace(/,/g, '');
 
+    
 
-    if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
-      //cash
+    var paymenttype = $('input[name="pay[paymentCol]"]:checked').val();
+    var num = 0;
+    if(paymenttype == 'cash')
+    {
       $('#total_amount_given').val($('#payment_cash_tendered').val());
-
-    }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val()) {
-      // cash and cheque
-
-      totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
-      var num = parseFloat(totalgiven);
-      var total_amount_given_var = createCommas(num.toFixed(2));
-      // var total_amount_given_var = parseFloat(cash_tendered2) + parseFloat(cheque_display);
-
-      if ($('#payment_cash_tendered').val() == "") {
-        $('#total_amount_given').val("");
-      }else if ($("#payment_cheque_total").text() == "" || $("#payment_cheque_total").text() == 0) {
-        $('#total_amount_given').val("");
-      }else {
-        $('#total_amount_given').val(total_amount_given_var);
-      }
-      }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
-      //cheque only
-      $('#total_amount_given').val($('#payment_cheque_total').text());
-
     }
+    else if (paymenttype == 'bank')
+    {
+      $('#total_amount_given').val($("#payment_cheque_total").text());
+    }
+    else
+    {
+      totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+      num = parseFloat(totalgiven);
+      $('#total_amount_given').val(createCommas(num.toFixed(2)));
+    }
+
+
+    // if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
+    //   //cash
+    //   $('#total_amount_given').val($('#payment_cash_tendered').val());
+
+    // }else if ($('#payment_cheque_total').text().length > 0 &&  $('#payment_cash_tendered').val() > 0) {
+    //   // cash and cheque
+
+    //   totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+    //   var num = parseFloat(totalgiven);
+      
+    //   var total_amount_given_var = createCommas(num.toFixed(2));
+    //   // var total_amount_given_var = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+
+    //   if ($('#payment_cash_tendered').val() == "") {
+    //     $('#total_amount_given').val("");
+    //   }else if ($("#payment_cheque_total").text() == "" || $("#payment_cheque_total").text() == 0) {
+    //     $('#total_amount_given').val("");
+    //   }else {
+    //     $('#total_amount_given').val(total_amount_given_var);
+    //   }
+    //   }else if ($('#payment_cash_tendered').val() == 0 ||  $('#payment_cash_tendered').val() == ""){
+    //   //cheque only
+    //   $('#total_amount_given').val($('#payment_cheque_total').text());
+
+    // }
 
 
   }
@@ -2263,6 +2279,7 @@ $('#add_Newitem_window').on('shown.bs.modal', function (e) {
 
     $('#payment_effectivity').val("");
     $('#payment_amount_to_pay2').val("");
+    $('#otherSpec').attr('hidden',true);
     
 
     $('option','#payment_type_of_payment').attr('disabled',false);
@@ -2290,44 +2307,74 @@ $('#add_Newitem_form').submit(function(e){
   var typename = $('#payment_type_of_payment option:selected').text()
   var date = $('#payment_effectivity').val();
   var amount = $('#payment_amount_to_pay2').val();
+  var specOther = $('#specOther').val();
   console.log($('#payment_effectivity').val());
 
-  
-var id =  $("#tbodyParticulars > tr").length;
 
+  if(  $("#tbodyParticulars tr").length == 8 )
+  {
+    Swal.fire({
+      icon: 'error',
+      title: 'Only 8 Particulars Can Be Transact',
+    });
+  }
 
-id=id +1;
- var html = "";
- html += "<tr>";
- html += "<td>"+typeid+"</td>";
- html += "<td>"+typename+"</td>";
- html += "<td>"+date+"</td>";
- html += "<td class='text-right amtToPay'>"+amount+"</td>";
- html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
- html += "</tr>";
+  else{
+
+ if (typeid == 4014)
+ {
+  if($('#specOther').val() == null)
+  {
+    Swal.fire({
+      icon: 'error',
+      title: 'Please Specify Other Particulars',
+    });
+  }
+  else{
+  var html = "";
+  html += "<tr>";
+  html += "<td>"+typeid+"</td>";
+  html += "<td>"+specOther+"</td>";
+  html += "<td>"+date+"</td>";
+  html += "<td class='text-right amtToPay'>"+amount+"</td>";
+  html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+  html += "</tr>";}
+ }
+
+ 
+else{
+  var html = "";
+  html += "<tr>";
+  html += "<td>"+typeid+"</td>";
+  html += "<td>"+typename+"</td>";
+  html += "<td>"+date+"</td>";
+  html += "<td class='text-right amtToPay'>"+amount+"</td>";
+  html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+  html += "</tr>";
+ }
 
 $("#tbodyParticulars").append(html);
 
 
+  chq_total();
+
+  computeAmount();
+  totalamountgiven();
 
 
-computeAmount();
-totalamountgiven();
-
-
-if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
-{ 
-  changeboth();
+  if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
+  { 
+    changeboth();
+  }
+  else if ($('input[name="pay[paymentCol]"]:checked').val() == 'bank')
+  {
+    changecheque();
+  }
+  else
+  {
+    changechequecash();
+  }
 }
-else if ($('input[name="pay[paymentCol]"]:checked').val() == 'bank')
-{
-  changecheque();
-}
-else
-{
-  changechequecash();
-}
-
 $('#add_Newitem_window').modal("hide");
 
 });
@@ -2348,7 +2395,10 @@ function removeItem(row)
 {
   var id =  $("#tbodyParticulars > tr").length;
   $(row).closest("tr").remove();
+  
   computeAmount();
+  chq_total();
+
 }
 
 
@@ -2395,6 +2445,21 @@ $("#tbodyParticulars tr").each(function() {
 $("#ttlAmt").val(createCommas(amount.toFixed(2)));
 }
 
+
+$("#payment_type_of_payment").change(function(){
+
+  console.log($(this));
+  if ($(this).val() == 4014)
+  {
+    $("#otherSpec").val("");
+    $("#otherSpec").attr('hidden',false);
+  }
+
+  else{
+    $("#otherSpec").attr('hidden',true);
+  }
+  
+});
 
 
 
