@@ -1,3 +1,18 @@
+<style>
+.inputTrans
+{
+		background-color:rgba(0, 0, 0, 0);
+		border: none;
+		outline:none;
+		height:30px;
+		transition:height 1s;
+		-webkit-transition:height 1s;
+		float:right;
+}
+</style>
+
+
+
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
@@ -224,30 +239,41 @@
           </li>
 
 
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="bankCol  bankCashCol" hidden>
+          <li class="list-group-item d-flex justify-content-between bg-light bankCol bankCashCol" hidden>
+            <div class="" >
               <h6 class="my-0">Cheque total</h6>
-            </div>
-            <span class="bankCol  bankCashCol" hidden>₱ <span class="" id="payment_cheque_total"> </span></span>
+              </div>
+       
+            <span class="" >₱ </span>
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[payment_cheque_total]" id="payment_cheque_total" placeholder="0.00" readonly />
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="">
               <h6 class="my-0">Cash total</h6>
             </div>
-            <span class="">₱  <span class="" id="cash_total"></span>0.00</span>
+            <!-- <span class="">₱  <span class="" id="cash_total"></span>0.00</span> -->
+            <span class="">₱</span>
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[cash_total]" id="cash_total" placeholder="0.00" readonly />
+
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="">
               <h6 class="my-0">Change</h6>
             </div>
-            <span class="">₱  <span class="" id="change"></span></span>
+            <!-- <span class="">₱  <span class="" id="change"></span></span> -->
+            <span class="">₱</span>
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[change]" id="change" placeholder="0.00" readonly />
+
           </li>
 
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (PHP)</span>
-            <strong>₱ <span class="" id="">0.00</span></strong>
+            <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
+            <strong>₱ </strong>
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
+
           </li>
         </ul>
         <!-- Cart -->
@@ -390,7 +416,7 @@
 
         <div class="col-lg-12 col-sm-12">
           <label>TOTAL CHEQUE AMOUNT</label>
-          <p class="text-success p-2 float-right" value="0.00" placeholder="0.00"  id="payment_cheque_total"></p>
+          <p class="text-success p-2 float-right" value="0.00" placeholder="0.00"  id="payment_chq_total"></p>
         </div>
 
 
