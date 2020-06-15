@@ -8,13 +8,16 @@
   </nav>
 
 <!-- new payment -->
-
+  <form id="payment_submit">
 <!--Main layout-->
 <main class="mt-5 ">
+
   <div class="container wow fadeIn">
+
 
     <!-- Heading -->
     <h2 class="text-center">Checkout form</h2>
+
     <br>
     <div class="row">
 
@@ -24,21 +27,19 @@
       <!-- <div class="col">
         <h2 class="text-center">Checkout form</h2>
       </div> -->
-
-
-
     </div>
 
     <br>
 
     <!--Grid row-->
-    <div class="row">
+    <!-- <form id="payment_submit" > -->
+    <div class="row ">
 
       <!--Grid column-->
-      <div class="col-md-8 mb-4">
+      <div class="col-md-8 mb-4 ">
 
         <!--Card-->
-        <div class="card">
+        <div class="card p-3">
 
           <!--Card content-->
           <form class="card-body">
@@ -227,26 +228,26 @@
             <div class="bankCol  bankCashCol" hidden>
               <h6 class="my-0">Cheque total</h6>
             </div>
-            <span class="bankCol  bankCashCol" hidden>-₱ 5</span>
+            <span class="bankCol  bankCashCol" hidden>₱ <span class="" id="payment_cheque_total"> </span></span>
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="">
               <h6 class="my-0">Cash total</h6>
             </div>
-            <span class="">₱ 5</span>
+            <span class="">₱  <span class="" id="cash_total"></span>0.00</span>
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="">
               <h6 class="my-0">Change</h6>
             </div>
-            <span class="">₱ 5</span>
+            <span class="">₱  <span class="" id="change"></span></span>
           </li>
 
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (PHP)</span>
-            <strong>₱ 20</strong>
+            <strong>₱ <span class="" id="">0.00</span></strong>
           </li>
         </ul>
         <!-- Cart -->
@@ -267,14 +268,18 @@
 
     </div>
     <!--Grid row-->
+  <!-- </form> -->
 
   </div>
 </main>
+
+</form>
+
 <!--Main layout-->
 
 <!-- new payment  -->
 
-<div id="add_Newitem_window" class="modal fade right shadow" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+<div id="add_Newitem_window" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
