@@ -203,7 +203,7 @@
 
             <div class="mb-2">
               <label>Payor Name</label>
-              <input type="text" class="form-control payment_details" name="pay[payorname]" id="payorname">
+              <input type="text" class="form-control " name="pay[payorname]" id="payorname">
             </div>
             <!-- <span class="text-muted">$12</span> -->
           </li>
@@ -215,7 +215,7 @@
             </div>
           </li>
 
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <li class="list-group-item d-flex justify-content-between lh-condensed cashCol">
             <div class=" mb-2">
               <label>Cash tendered</label>
               <input type="text"  placeholder="0.00"  class="form-control payment_details text-right money2" name="pay[cash_tendered]" id="payment_cash_tendered" >
