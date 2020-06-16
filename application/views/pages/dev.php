@@ -228,13 +228,10 @@
           <li class="list-group-item d-flex justify-content-between lh-condensed">
 
             <div class="bankCol  bankCashCol row mt-3" hidden>
-              <div class="">
-                <button type="button" class ="float-right stylish-color-dark btn text-white" id = "add_cheque_modal">Add cheque</button>
-              </div>
 
-              <div class="">
-                <button type="button" class ="float-right stylish-color-dark btn text-white" id = "view_cheq">View cheque</button>
-              </div>
+                <button type="button" class =" stylish-color-dark btn text-white" id = "add_cheque_modal">Add/View cheque</button>
+
+
             </div>
           </li>
 
@@ -243,8 +240,9 @@
             <div class="" >
               <h6 class="my-0">Cheque total</h6>
               </div>
-       
-            <span class="" >₱ </span>
+
+
+            <!-- <span class="" >₱ </span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[payment_cheque_total]" id="payment_cheque_total" placeholder="0.00" readonly />
           </li>
 
@@ -253,7 +251,7 @@
               <h6 class="my-0">Cash total</h6>
             </div>
             <!-- <span class="">₱  <span class="" id="cash_total"></span>0.00</span> -->
-            <span class="">₱</span>
+            <!-- <span class="">₱</span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[cash_total]" id="cash_total" placeholder="0.00" readonly />
 
           </li>
@@ -262,8 +260,9 @@
             <div class="">
               <h6 class="my-0">Change</h6>
             </div>
+            &nbsp
             <!-- <span class="">₱  <span class="" id="change"></span></span> -->
-            <span class="">₱</span>
+            <!-- <span class="">₱</span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[change]" id="change" placeholder="0.00" readonly />
 
           </li>
@@ -271,7 +270,7 @@
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (PHP)</span>
             <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
-            <strong>₱ </strong>
+            <!-- <strong>₱ </strong> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
 
           </li>
