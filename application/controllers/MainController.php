@@ -742,12 +742,17 @@ public function paymentreceiptJO()
   $id = $this->input->post('pay');
 
     $data = array(
-      "bank_branch" => $id['bank_branch'],
       "cash_tendered" => $id['cash_tendered'],
       "change" => $id['change'],
-      "cheque_amount" => $id['cheque_amount'],
-      "cheque_date" => $id['cheque_date'],
-      "cheque_number" => $id['cheque_number'],
+      // "bank_branch" => $id['bank_branch'],
+      // "cheque_amount" => $id['cheque_amount'],
+      // "cheque_date" => $id['cheque_date'],
+      // "cheque_number" => $id['cheque_number'],
+      "bank_branch" => $id['chqBranch'],
+      "cheque_date" => $id['chqdate'],
+      "cheque_number" => $id['chqno'],
+      "cheque_amount" => $id['chqAmount'],
+
       "customID" => $id['customID'],
       "date" => $id['date'],
       "no" => $id['no'],
@@ -777,12 +782,18 @@ public function printreceipt()
   $id = $this->input->post('pay');
 
     $data = array(
-      "bank_branch" => $id['bank_branch'],
       "cash_tendered" => $id['cash_tendered'],
       "change" => $id['change'],
-      "cheque_amount" => $id['cheque_amount'],
-      "cheque_date" => $id['cheque_date'],
-      "cheque_number" => $id['cheque_number'],
+      // "bank_branch" => $id['bank_branch'],
+      // "cheque_amount" => $id['cheque_amount'],
+      // "cheque_date" => $id['cheque_date'],
+      // "cheque_number" => $id['cheque_number'],
+
+      "bank_branch" => $id['chqBranch'],
+      "cheque_date" => $id['chqdate'],
+      "cheque_number" => $id['chqno'],
+      "cheque_amount" => $id['chqAmount'],
+
       "customID" => $id['customID'],
       "date" => $id['date'],
       "no" => $id['no'],
