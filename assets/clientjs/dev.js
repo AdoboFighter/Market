@@ -773,10 +773,12 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
   $('#payment_cash_tendered').change(function(){
+    // $('#cash_total').val($(this).val());
+
 
     console.log("ds");
 
-    
+
     if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
     {
       changeboth();
@@ -792,7 +794,7 @@ $("#payment_or_number").inputFilter(function(value) {
     $('#cash_total').val($('#payment_cash_tendered').val());
       totalamountgiven();
 
-    
+
     // if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
     //   // cash
     //   changeboth();
@@ -1222,7 +1224,7 @@ $("#payment_or_number").inputFilter(function(value) {
     {
       var paymenttype = $("input[name='pay[paymentCol]']:checked").val();
       console.log(paymenttype);
-      
+
 
       if(paymenttype == 'cash')
       {
@@ -1314,7 +1316,7 @@ $("#payment_or_number").inputFilter(function(value) {
       });
 
       console.log(total);
-      
+
       $("#payment_chq_total").text(createCommas(total.toFixed(2)));
       $("#payment_cheque_total").val(createCommas(total.toFixed(2)));
 
@@ -1328,7 +1330,7 @@ $("#payment_or_number").inputFilter(function(value) {
       var cash_tendered2 = $('#payment_cash_tendered').val().replace(/,/g, '');
       var cheque_display = $("#payment_cheque_total").val().replace(/,/g, '');
       console.log(cheque_display);
-      
+
 
       // if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
       //   //cash
@@ -1358,7 +1360,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
         var paymenttype = $("input[name='pay[paymentCol]']:checked").val();
         console.log(paymenttype);
-        
+
 
         if(paymenttype == 'cash')
         {
@@ -1376,7 +1378,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
           console.log(cash_tendered2);
           console.log(cheque_display);
-          
+
 
           totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
           var num = parseFloat(totalgiven);
@@ -1497,8 +1499,8 @@ $("#payment_or_number").inputFilter(function(value) {
 
         console.log(ttlAmt);
         console.log(chqCash);
-        
-        
+
+
         if(chqCash < ttlAmt)
         {
           $('#change').val("Invalid Input");
@@ -1867,6 +1869,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
     $('#payment_submit').submit(function(e){
+      console.log("test submit");
       e.preventDefault();
 
       var particulars = [];
@@ -2401,7 +2404,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
         })
         $("#ttlAmt").val(createCommas(amount.toFixed(2)));
-        
+
       }
 
       //HELPERS

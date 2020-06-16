@@ -90,7 +90,7 @@
 
                 <div class="mb-2">
                   <label>Customer ID</label>
-                  <input type="text" class="form-control " name="" id="payment_customer_id" readonly>
+                  <input type="text" class="form-control " name="pay[customID]" id="payment_customer_id" readonly>
                 </div>
 
               </div>
@@ -102,7 +102,7 @@
 
                 <div class="mb-2">
                   <label>Stall number</label>
-                  <input type="text" class="form-control " name="" id="payment_stall" readonly>
+                  <input type="text" class="form-control " name="pay[stall_number]" id="payment_stall" readonly>
                 </div>
 
               </div>
@@ -114,13 +114,13 @@
 
             <div class="mb-2">
               <label>Name</label>
-              <input type="text" class="form-control " name="" id="payment_name" readonly>
+              <input type="text" class="form-control " name="pay[payor]" id="payment_name" readonly>
             </div>
 
 
             <div class="mb-2">
               <label>Address</label>
-              <input type="text" class="form-control " name="" id="address" readonly>
+              <input type="text" class="form-control" id="address" readonly>
             </div>
 
             <br>
@@ -219,7 +219,7 @@
             <div class=" mb-2">
               <label>Cash tendered</label>
               <input type="text"  placeholder="0.00"  class="form-control payment_details text-right money2" name="pay[cash_tendered]" id="payment_cash_tendered" >
-              <!-- <input type="text"  placeholder="0.00"  class="form-control payment_details inputmoney" name="cash_tendered" id="payment_cash_tendered" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;"> -->
+
             </div>
           </li>
 
@@ -260,7 +260,6 @@
             <div class="">
               <h6 class="my-0">Change</h6>
             </div>
-            &nbsp
             <!-- <span class="">₱  <span class="" id="change"></span></span> -->
             <!-- <span class="">₱</span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[change]" id="change" placeholder="0.00" readonly />
@@ -287,8 +286,18 @@
           </div>
         </form> -->
         <!-- Promo code -->
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        <button class="btn btn-primary btn-lg btn-block" id = "payment_submit_btn" type="submit">Continue to checkout</button>
       </div>
+
+      <input type="text"  class="form-control" name="pay[no]" id="no" readonly />
+      <input type="text"  class="form-control" name="pay[particulars]" id="particulars" readonly />
+      <input type="text"  class="form-control" name="pay[date]" id="date" readonly />
+      <input type="text"  class="form-control" name="pay[price]" id="price" readonly />
+
+      <input type="text"  class="form-control" name="pay[chqno]" id="chqno" readonly />
+      <input type="text"  class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
+      <input type="text"  class="form-control" name="pay[chqdate]" id="chqdate" readonly />
+      <input type="text"  class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
       <!--Grid column-->
 
     </div>
