@@ -45,8 +45,7 @@ $pdf->SetAutoPageBreak(true, 0);
 $pdf->addpage();
 $pdf->deletePage(1);
 
-
-
+$pdf->Text(55,38 , $payment_or_number);
 $pdf->Text(55,50 , $date);
 $pdf->Text(17,59 , 'City Goverment of San Pablo');
 $pdf->Text(77,59 , 'Gr A');
@@ -74,7 +73,7 @@ $chqBranch =  json_decode($chqBranch);
 
 $count = count($no,COUNT_NORMAL);
 
-$rowspace = 0; 
+$rowspace = 0;
 
 for ($r = 0 ; $r < $count ; $r++){
     $rowspace = $rowspace + 5;
@@ -83,17 +82,17 @@ for ($r = 0 ; $r < $count ; $r++){
     $txt = ($particulars[$r]->particulars == null ? ' ' : $particulars[$r]->particulars);
 
     $pdf->MultiCell(41,0, $txt."\n", 0, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
- 
+
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($no[$r]->no == null ? ' ' : $no[$r]->no);
     $pdf->MultiCell(28,0, $txt."\n", 0, 'L', 0, 0, 47,75 + $rowspace , true, 0, false, true, 10, 'M', true);
- 
-    
+
+
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($price[$r]->price == null ? ' ' : $price[$r]->price);
 
     $pdf->MultiCell(25,0, $txt."\n", 0, 'R', 0, 0, 68,75 + $rowspace , true, 0, false, true, 10, 'M', true);
-  
+
 }
 
 
@@ -127,7 +126,7 @@ $pdf->MultiCell(45,10, $txt."\n", 0, 'L', 0, 0,10, 165, true, 0, false, true, 10
 $pdf->setCellPaddings(2, 4, 6, 8);
 $pdf->MultiCell(20,22,($paymentCol == 'bank'|| $paymentCol == 'bankCash'  ? ( $chqBranch[1]->chqBranch == null ? '0' : $chqBranch[1]->chqBranch): '')."\n", 0, 'L', 0, 0,72,147, true, 1, false, true,16, 'M', true);
 
-$pdf->setCellPaddings(2, 4, 6, 8);  
+$pdf->setCellPaddings(2, 4, 6, 8);
 $pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash' ? ( $chqdate[1]->chqdate == null ? '0' : $chqdate[1]->chqdate): '')."\n", 0, 'L', 0, 0,52,147, true, 1, false, true,16, 'M', true);
 
 $pdf->setCellPaddings(2, 4, 6, 8);

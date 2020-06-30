@@ -568,9 +568,10 @@ class MainController extends CI_Controller{
           ,"or_number" => $this->input->post("or_number")
           ,"cash_rec" => $this->input->post("cash_tendered")
           ,"amount_to_pay" => $this->input->post("total")
+          ,"payor" => $this->input->post("payor")
           ,'collector'=> $this->session->userdata('user_fullname')
           ,'user_id'=> $this->session->userdata('user_id')
-       
+
           // ,"particulars" => $this->input->post("particulars")
         );
     echo json_encode( $this->model->savetransaction('transaction',$data, $count));
@@ -691,7 +692,7 @@ class MainController extends CI_Controller{
     $query = $this->model->getnature($type_of_payment);
     $ntw = $this->numtowords($this->input->post('total'));
 
-    
+
     $id = $this->input->post('pay');
     echo json_encode($id);
 
@@ -738,7 +739,7 @@ class MainController extends CI_Controller{
 
 public function paymentreceiptJO()
 {
- 
+
   $id = $this->input->post('pay');
 
     $data = array(
@@ -778,7 +779,7 @@ public function paymentreceiptJO()
 
 public function printreceipt()
 {
- 
+
   $id = $this->input->post('pay');
 
     $data = array(
@@ -794,6 +795,7 @@ public function printreceipt()
       "cheque_number" => $id['chqno'],
       "cheque_amount" => $id['chqAmount'],
 
+      "payment_or_number" => $id['payment_or_number'],
       "customID" => $id['customID'],
       "date" => $id['date'],
       "no" => $id['no'],
@@ -821,7 +823,7 @@ public function printreceipt()
     $type_of_payment = $this->input->post('type_of_payment');
 
     $id = $this->input->post('pay');
-  
+
 
     $query = $this->model->getnature($type_of_payment);
     $data = array(

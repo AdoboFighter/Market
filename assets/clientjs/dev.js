@@ -665,10 +665,10 @@ $("#payment_or_number").inputFilter(function(value) {
 
   });
 
-  $( "#close_modal_payment" ).click(function() {
+  $( "#print_nolayout" ).click(function() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "Do you want to close the payment window?",
+      text: "Do you want to close the printing window?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -677,27 +677,27 @@ $("#payment_or_number").inputFilter(function(value) {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        $('#TenantModalPay').modal("hide");
+        $('#printModal').modal("hide");
       }
     })
   });
 
-  $( "#close_modal_receipt" ).click(function() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "Do you want to close the receipt window?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Close',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        $('#print').modal("hide");
-      }
-    })
-  });
+  // $( "#close_modal_receipt" ).click(function() {
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: "Do you want to close the receipt window?",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Close',
+  //     reverseButtons: true
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       $('#print').modal("hide");
+  //     }
+  //   })
+  // });
 
   $( "#close_modal_receipt2" ).click(function() {
     Swal.fire({
@@ -792,7 +792,7 @@ $("#payment_or_number").inputFilter(function(value) {
       changechequecash();
     }
     $('#cash_total').val($('#payment_cash_tendered').val());
-      totalamountgiven();
+    totalamountgiven();
 
 
     // if ($("#payment_cheque_total").text() == "" || $('#payment_cheque_total').text() == "0") {
@@ -851,24 +851,25 @@ $("#payment_or_number").inputFilter(function(value) {
     $('#viewcheq').modal("show");
   });
 
-  $('#search_cl_s').on('change', function(){
+  $('#search_cl_s').on('change', function() {
     var search = $("#search_cl_f").val();
     var searchcat = $(this).children("option:selected").val();
     if (isEmptyOrSpaces(search)) {
       console.log("do nothing");
-    }else if ($(this).children("option:selected").text() == "Please Select") {
-      console.log("do nothing");
     }else {
-      $('#tableNoStall').DataTable().clear().destroy();
+      $('#ParkingTable').DataTable().clear().destroy();
       search_client(search, searchcat);
     }
   });
+
 
   $('#search_cl_f').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       var search = $("#search_cl_f").val();
+
       var searchcat = $("#search_cl_s option:selected").val();
+
       if (isEmptyOrSpaces(search) && !$('#search_cl_s').val()) {
         Swal.fire({
           icon: 'error',
@@ -885,71 +886,47 @@ $("#payment_or_number").inputFilter(function(value) {
           title: 'Please Select a category',
         });
       }
+
       else {
-        $('#tableNoStall').DataTable().clear().destroy();
+        $('#ParkingTable').DataTable().clear().destroy();
         search_client(search, searchcat);
       }
     }
   });
 
+
+
   function search_client(search, searchcat) {
-    $('#tableNoStall').DataTable({
+    $('#ParkingTable').DataTable({
       "paging": true,
       "searching": false,
       "ordering": true,
       "ajax" : {
-        "url" : global.settings.url + '/MainController/gettenanttable',
+        "url" : global.settings.url + '/MainController/getparkingpaytablecon',
         "data": {search:search, searchcat:searchcat},
         "dataType": "json",
         "type": "POST"
       },
-      "columns" : [{
-        "data" : "id"
-      },
+      "columns" : [
+        {
+          "data" : "id"
+        },
 
-      {
-        "data" : "c_info_stall_number"
-      },
+        {
+          "data" : "pay_parking_lot"
+        },
 
-      {
-        "data" : "c_info_section"
-      },
+        {
+          "data" : "pay_parking_name"
+        },
 
-      {
-        "data" : "c_info_natbus"
-      },
-
-      {
-        "data" : "c_info_area"
-      },
-
-
-      {
-        "data" : "c_info_daily_fee"
-      },
-
-
-      {
-        "data" : "c_info_fullname_owner"
-      },
-
-      {
-        "data" : "c_info_fullname_occupant"
-      },
-      {
-        "data" : "btn"
-      }]
+        {
+          "data" : "btn"
+        }
+      ]
     });
     // $('.dataTables_length').addClass('bs-select');
   }
-
-  $('.dataTables_length').addClass('bs-select');
-
-
-
-  // $('#payment_or_number').change(function(){
-
-  // });
 
   $('.partnum').change(function(){
     particular();
@@ -1003,7 +980,12 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
   $('#addRow').click(
+
     function() {
+      $("#other_items").attr("hidden",true);
+      $("#others_f").attr("required",false);
+      $("#add_Newitem_form")[0].reset();
+
       var curMaxInput = $('input:text').length;
 
       $('#rows li:first')
@@ -1059,7 +1041,7 @@ $("#payment_or_number").inputFilter(function(value) {
     // FOR NEW PAGES IN PAYMENT
     function fetchdata(id){
       $.ajax({
-        url: global.settings.url + '/MainController/checkviolationpay',
+        url: global.settings.url + '/MainController/getparkingpay',
         type: 'POST',
         data: {
           id: id
@@ -1084,12 +1066,14 @@ $("#payment_or_number").inputFilter(function(value) {
             $('#payment_cheque_amount').val("");
             $('#payment_cheque_date').val("");
             $('#payment_bank_branch').val("");
-            stall_no = res.unit_no;
-            $('#payment_customer_id').val(res.customer_id);
+            // stall_no = res.unit_no;
+
+            $('#plate').val(res.middlename);
+            $('#park_lot').val(res.lot_no);
+
             $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-            $('#payment_stall').val(res.unit_no);
-            $('#address').val(res.address);
-            $('#payorname').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+            $('#payment_customer_id').val(res.customer_id);
+            $('#payor').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
             $('#searchmodal').modal("hide");
           }
         },
@@ -1358,34 +1342,34 @@ $("#payment_or_number").inputFilter(function(value) {
       //   }
 
 
-        var paymenttype = $("input[name='pay[paymentCol]']:checked").val();
-        console.log(paymenttype);
+      var paymenttype = $("input[name='pay[paymentCol]']:checked").val();
+      console.log(paymenttype);
 
 
-        if(paymenttype == 'cash')
-        {
-          $('#total_amount_given').val($('#payment_cash_tendered').val());
-        }
+      if(paymenttype == 'cash')
+      {
+        $('#total_amount_given').val($('#payment_cash_tendered').val());
+      }
 
-        else if(paymenttype == 'bank')
-        {
-          $('#total_amount_given').val($('#payment_cheque_total').val());
-        }
-        else{
-          ($('#payment_cash_tendered').val() == "")?cash_tendered2=0 : $('#payment_cash_tendered').val();
-          ($("#payment_cheque_total").val() == "")?cheque_display=0 : $('#payment_cash_tendered').val();
-
-
-          console.log(cash_tendered2);
-          console.log(cheque_display);
+      else if(paymenttype == 'bank')
+      {
+        $('#total_amount_given').val($('#payment_cheque_total').val());
+      }
+      else{
+        ($('#payment_cash_tendered').val() == "")?cash_tendered2=0 : $('#payment_cash_tendered').val();
+        ($("#payment_cheque_total").val() == "")?cheque_display=0 : $('#payment_cash_tendered').val();
 
 
-          totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
-          var num = parseFloat(totalgiven);
-          var total_amount_given_var = createCommas(num.toFixed(2));
-          $('#total_amount_given').val(total_amount_given_var);
+        console.log(cash_tendered2);
+        console.log(cheque_display);
 
-        }
+
+        totalgiven = parseFloat(cash_tendered2) + parseFloat(cheque_display);
+        var num = parseFloat(totalgiven);
+        var total_amount_given_var = createCommas(num.toFixed(2));
+        $('#total_amount_given').val(total_amount_given_var);
+
+      }
 
 
     }
@@ -1865,6 +1849,22 @@ $("#payment_or_number").inputFilter(function(value) {
     });
 
 
+    $("#payment_type_of_payment").change(function(e){
+      if ($(this).val() == 4014) {
+        // $('#other_items').show();
+        $('#other_items').removeAttr('hidden');
+        $("#others_f").attr("required",true);
+        console.log("hallu");
+      }else {
+        // $('#other_items').removeAttr('hidden');
+        $("#other_items").attr("hidden",true);
+        $("#others_f").attr("required",false);
+      }
+
+
+    });
+
+
 
 
 
@@ -2109,6 +2109,7 @@ $("#payment_or_number").inputFilter(function(value) {
       var tenant_id = $('#payment_tenant_id').val();
       var cash_tendered = $('#payment_cash_tendered').val().replace(',', '');
       var or_number =$('#payment_or_number').val();
+      var payor = $('#payor').val();
       var total = parseFloat($('#ttlAmt').val().replace(',', ''));
 
       var no =  jQuery.parseJSON($("#no").val());
@@ -2137,6 +2138,7 @@ $("#payment_or_number").inputFilter(function(value) {
             ,price:price[i].price
             ,or_number:or_number
             ,cash_tendered:cash_tendered
+            ,payor:payor
             ,total:total
             ,count:i
           },
@@ -2295,25 +2297,37 @@ $("#payment_or_number").inputFilter(function(value) {
         var typename = $('#payment_type_of_payment option:selected').text()
         var date = $('#payment_effectivity').val();
         var amount = $('#payment_amount_to_pay2').val();
+        var others_val = $('#others_f').val();
         console.log($('#payment_effectivity').val());
+        console.log(typeid);
+        if (typeid == 4014) {
+          console.log("testing others");
+          var id =  $("#tbodyParticulars > tr").length;
+          id=id +1;
+          var html = "";
+          html += "<tr>";
+          html += "<td>"+typeid+"</td>";
+          html += "<td>"+others_val+"</td>";
+          html += "<td>"+date+"</td>";
+          html += "<td class='text-right amtToPay'>"+amount+"</td>";
+          html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+          html += "</tr>";
+          $("#tbodyParticulars").append(html);
 
+        }else {
+          var id =  $("#tbodyParticulars > tr").length;
+          id=id +1;
+          var html = "";
+          html += "<tr>";
+          html += "<td>"+typeid+"</td>";
+          html += "<td>"+typename+"</td>";
+          html += "<td>"+date+"</td>";
+          html += "<td class='text-right amtToPay'>"+amount+"</td>";
+          html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
+          html += "</tr>";
+          $("#tbodyParticulars").append(html);
 
-        var id =  $("#tbodyParticulars > tr").length;
-
-
-        id=id +1;
-        var html = "";
-        html += "<tr>";
-        html += "<td>"+typeid+"</td>";
-        html += "<td>"+typename+"</td>";
-        html += "<td>"+date+"</td>";
-        html += "<td class='text-right amtToPay'>"+amount+"</td>";
-        html += "<td><button class='btn btn-outline-danger btn-sm' type='button' onclick='removeItem(this)'>Remove</button></td>";
-        html += "</tr>";
-
-        $("#tbodyParticulars").append(html);
-
-
+        }
 
 
         computeAmount();

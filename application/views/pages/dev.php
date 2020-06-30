@@ -31,7 +31,7 @@
 
 
     <!-- Heading -->
-    <h2 class="text-center">Checkout form</h2>
+    <h2 class="text-center">Parking Payment</h2>
 
     <br>
     <div class="row">
@@ -101,11 +101,13 @@
 
 
                 <div class="mb-2">
-                  <label>Stall number</label>
-                  <input type="text" class="form-control " name="pay[stall_number]" id="payment_stall" readonly>
+                  <label>Parking lot</label>
+                  <input type="text" class="form-control " name="pay[stall_number]" id="park_lot" readonly>
                 </div>
 
               </div>
+
+
               <!--Grid column-->
 
             </div>
@@ -114,14 +116,9 @@
 
             <div class="mb-2">
               <label>Name</label>
-              <input type="text" class="form-control " name="pay[payor]" id="payment_name" readonly>
+              <input type="text" class="form-control " name="pay[customer_name]" id="payment_name" readonly>
             </div>
 
-
-            <div class="mb-2">
-              <label>Address</label>
-              <input type="text" class="form-control" id="address" readonly>
-            </div>
 
             <br>
 
@@ -203,7 +200,7 @@
 
             <div class="mb-2">
               <label>Payor Name</label>
-              <input type="text" class="form-control " name="pay[payorname]" id="payorname">
+              <input type="text" class="form-control " name="pay[payor]" id="payor">
             </div>
             <!-- <span class="text-muted">$12</span> -->
           </li>
@@ -289,15 +286,15 @@
         <button class="btn btn-primary btn-lg btn-block" id = "payment_submit_btn" type="submit">Continue to checkout</button>
       </div>
 
-      <input type="text"  class="form-control" name="pay[no]" id="no" readonly />
-      <input type="text"  class="form-control" name="pay[particulars]" id="particulars" readonly />
-      <input type="text"  class="form-control" name="pay[date]" id="date" readonly />
-      <input type="text"  class="form-control" name="pay[price]" id="price" readonly />
+      <input type="text"  hidden class="form-control" name="pay[no]" id="no" readonly />
+      <input type="text"  hidden class="form-control" name="pay[particulars]" id="particulars" readonly />
+      <input type="text"  hidden class="form-control" name="pay[date]" id="date" readonly />
+      <input type="text"  hidden class="form-control" name="pay[price]" id="price" readonly />
 
-      <input type="text"  class="form-control" name="pay[chqno]" id="chqno" readonly />
-      <input type="text"  class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
-      <input type="text"  class="form-control" name="pay[chqdate]" id="chqdate" readonly />
-      <input type="text"  class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
+      <input type="text"  hidden class="form-control" name="pay[chqno]" id="chqno" readonly />
+      <input type="text"  hidden class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
+      <input type="text"  hidden class="form-control" name="pay[chqdate]" id="chqdate" readonly />
+      <input type="text"  hidden class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
       <!--Grid column-->
 
     </div>
@@ -343,10 +340,18 @@
           </select>
         </div>
 
+				<div class="mb-2" id="other_items" hidden>
+					<label>Others</label>
+					<input type="text" class="form-control payment_details" name="" id="others_f" placeholder="Please Specify">
+				</div>
+
         <div class="mb-2">
           <label>Payment Effectivity</label>
           <input type="date" class="form-control payment_details" name="" id="payment_effectivity" required>
         </div>
+
+
+
 
         <div class="mb-2">
           <label>Amount to pay</label>
@@ -384,7 +389,7 @@
                 </div>
 
                 <div class="col-lg-6 col-sm-12 mt-2">
-                  <label>Cheque Amount </label>
+                  <label >Cheque Amount</label>
                   <!-- <input type="text"  placeholder="0.00"  class="form-control payment_details inputmoney money2" name="pay[cheque_amount]" id="payment_cheque_amount"  onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;"> -->
                   <input type="text"  placeholder="0.00"  class="form-control payment_details  money2" name="pay[cheque_amount]" id="payment_cheque_amount">
                 </div>
@@ -410,7 +415,7 @@
                 <thead>
                   <tr>
                     <th class="border border-dark">Cheque no</th>
-                    <th class="border border-dark inputmoney">Cheque Amount</th>
+                    <th class="border border-dark ">Cheque Amount</th>
                     <th class="border border-dark">Cheque Date</th>
                     <th class="border border-dark">Bank Branch</th>
                     <th class="border border-dark">delete</th>
@@ -444,7 +449,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close"  onclick="closeModal('printModal')">
+        <button type="button" class="close" id="print_nolayout">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -474,7 +479,7 @@
       <div class="modal-header p-2">
         <button class = "btn btn-success btn-sm m-2" id="printbtn" type='button' onclick="printReceipt()">Print Receipt</button>
 
-        <button type="button"  id="close_modal_receipt2"  class="close" onclick="closeModal('rec')" >
+        <button type="button"  id="close_modal_receipt2"  class="close" onclick="closeModal()" >
           <span aria-hidden="true">&times;</span>
         </button>
 
@@ -538,15 +543,10 @@
                 <div class="form-group">
                   <label>Category</label>
                   <select class="form-control form-control-sm" id="search_cl_s">
-                    <option selected value="">Please Select</option>
-                    <option value="customer_id">Customer ID</option>
-                    <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
-                    <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
-                    <option value="unit_no">Stall number</option>
-                    <option value="Section">Section</option>
-                    <option value="nature_or_business">Nature of business</option>
-                    <option value="sqm">Area(sqm)</option>
-                    <option value="dailyfee">Daily fee</option>
+										<option selected value="">Please Select</option>
+										<option value="customer_id">Customer ID</option>
+										<option value="firstname">Company/Driver's Name</option>
+										<option value="middlename">Plate number</option>
                   </select>
                 </div>
               </div>
@@ -555,18 +555,13 @@
 
 
             <div class="col-12">
-              <table class="table table-striped table-bordered shadow" id="tableNoStall">
+              <table class="table table-striped table-bordered shadow" id="ParkingTable">
                 <thead>
                   <tr>
-                    <td class="border border-dark">Customer ID</td>
-                    <td class="border border-dark">Stall no.</td>
-                    <td class="border border-dark">Section</td>
-                    <td class="border border-dark">Nature of business</td>
-                    <td class="border border-dark">Area(sqm)</td>
-                    <td class="border border-dark">Daily fee</td>
-                    <td class="border border-dark">Tenant's name</td>
-                    <td class="border border-dark">Occupant's name</td>
-                    <td class="border border-dark" scope="col">To pay</td>
+										<td class="border border-dark">Customer ID</td>
+			              <td class="border border-dark">Company's/Driver's name</td>
+			              <td class="border border-dark">Plate number</td>
+			              <td class="border border-dark">Payment</td>
                   </tr>
                 </thead>
                 <tbody>
