@@ -37,7 +37,7 @@
         <div class="row">
 
           <div class="col-4">
-            <button class="btn btn-primary btn-sm btn-block" type="submit" id="searchbtn">Search</button>
+            <button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
           </div>
           <!-- <div class="col">
           <h2 class="text-center">Checkout form</h2>
@@ -138,14 +138,14 @@
 
 
                 <div class="table-responsive mb-3">
-                  <table class="table table-sm table-bordered">
-                    <thead>
+                  <table class="table table-sm table-bordered text-center">
+                    <thead >
                       <tr>
                         <td>No</td>
                         <td>Particulars</td>
                         <td>Date Effectivity</td>
                         <td>Price</td>
-                        <td>Action</td>
+                        <td >Action</td>
                       </tr>
                     </thead>
 
@@ -225,14 +225,14 @@
 
 
 
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <li class="list-group-item d-flex justify-content-center lh-condensed text-center">
 
-            <div class="bankCol  bankCashCol row mt-3" hidden>
+            <div class="bankCol  bankCashCol " hidden>
 
-              <button type="button" class =" stylish-color-dark btn text-white" id = "add_cheque_modal">Add/View cheque</button>
-
+              <button type="button" class =" stylish-color-dark btn text-white " id = "add_cheque_modal">Add/View cheque</button>
 
             </div>
+
           </li>
 
 
@@ -257,6 +257,22 @@
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light">
+            <span>Total (Amount Given)</span>
+            <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
+            <!-- <strong>₱ </strong> -->
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
+
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <span>Total (Amount to pay)</span>
+            <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
+            <!-- <strong>₱ </strong> -->
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_payment" name="pay[total_amount_given]" placeholder="0.00" readonly >
+
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between ">
             <div class="">
               <h6 class="my-0">Change</h6>
             </div>
@@ -266,13 +282,7 @@
 
           </li>
 
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (PHP)</span>
-            <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
-            <!-- <strong>₱ </strong> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
 
-          </li>
         </ul>
         <!-- Cart -->
 
@@ -525,69 +535,71 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="">Tenant search</h5>
-        <!-- <button type="button" class="close"  onclick="closeModal('searchmodal')">
-        <span aria-hidden="true">&times;</span>
-      </button> -->
-    </div>
-    <div class="modal-body">
-      <div class="">
-        <div class="row p-3">
-
-          <div class="col">
-            <div class="form-group">
-              <label>Search</label>
-              <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
-              aria-label="Search">
-              <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="form-group">
-              <label>Category</label>
-              <select class="form-control form-control-sm" id="search_cl_s">
-                <option selected value="">Please Select</option>
-                <option value="customer_id">Customer ID</option>
-                <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
-                <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
-                <option value="unit_no">Stall number</option>
-                <option value="Section">Section</option>
-                <option value="nature_or_business">Nature of business</option>
-                <option value="sqm">Area(sqm)</option>
-                <option value="dailyfee">Daily fee</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="tableNoStall">
-            <thead>
-              <tr>
-                <td class="border border-dark">Customer ID</td>
-                <td class="border border-dark">Stall no.</td>
-                <td class="border border-dark">Section</td>
-                <td class="border border-dark">Nature of business</td>
-                <td class="border border-dark">Area(sqm)</td>
-                <td class="border border-dark">Daily fee</td>
-                <td class="border border-dark">Tenant's name</td>
-                <td class="border border-dark">Occupant's name</td>
-                <td class="border border-dark" scope="col">To pay</td>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <br>
-        </div>
-
+        <a href="<?php echo base_url() . 'pages/view/home' ?>">
+        <button type="button" class="btn btn-primary">
+          To home
+        </button>
+      </a>
       </div>
-    </div>
+      <div class="modal-body">
+        <div class="">
+          <div class="row p-3">
 
+            <div class="col">
+              <div class="form-group">
+                <label>Search</label>
+                <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
+                aria-label="Search">
+                <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="form-group">
+                <label>Category</label>
+                <select class="form-control form-control-sm" id="search_cl_s">
+                  <option selected value="">Please Select</option>
+                  <option value="customer_id">Customer ID</option>
+                  <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
+                  <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
+                  <option value="unit_no">Stall number</option>
+                  <option value="Section">Section</option>
+                  <option value="nature_or_business">Nature of business</option>
+                  <option value="sqm">Area(sqm)</option>
+                  <option value="dailyfee">Daily fee</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-12">
+            <table class="table table-striped table-bordered shadow" id="tableNoStall">
+              <thead>
+                <tr>
+                  <td class="border border-dark">Customer ID</td>
+                  <td class="border border-dark">Stall no.</td>
+                  <td class="border border-dark">Section</td>
+                  <td class="border border-dark">Nature of business</td>
+                  <td class="border border-dark">Area(sqm)</td>
+                  <td class="border border-dark">Daily fee</td>
+                  <td class="border border-dark">Tenant's name</td>
+                  <td class="border border-dark">Occupant's name</td>
+                  <td class="border border-dark" scope="col">To pay</td>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <br>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
 </div>
 
 

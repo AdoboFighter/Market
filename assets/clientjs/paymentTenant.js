@@ -1031,7 +1031,7 @@ $("#payment_or_number").inputFilter(function(value) {
     }
     return false;
   });
-  
+
 
   $('#removeRow').click(
     function() {
@@ -1891,6 +1891,9 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
+
+
+
     $('#payment_submit').submit(function(e){
       console.log("test submit");
       e.preventDefault();
@@ -2441,6 +2444,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
         })
         $("#ttlAmt").val(createCommas(amount.toFixed(2)));
+        $("#total_payment").val($("#ttlAmt").val());
 
       }
 
