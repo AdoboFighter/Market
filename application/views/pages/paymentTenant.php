@@ -299,15 +299,15 @@
   <button class="btn btn-primary btn-lg btn-block" id = "payment_submit_btn" type="submit">Continue to checkout</button>
 </div>
 
-<input type="text"  hidden class="form-control" name="pay[no]" id="no" readonly />
-<input type="text"  hidden class="form-control" name="pay[particulars]" id="particulars" readonly />
-<input type="text"  hidden class="form-control" name="pay[date]" id="date" readonly />
-<input type="text"  hidden class="form-control" name="pay[price]" id="price" readonly />
+<input type="text"   class="form-control" name="pay[no]" id="no" readonly />
+<input type="text"   class="form-control" name="pay[particulars]" id="particulars" readonly />
+<input type="text"   class="form-control" name="pay[date]" id="date" readonly />
+<input type="text"   class="form-control" name="pay[price]" id="price" readonly />
 
-<input type="text"  hidden class="form-control" name="pay[chqno]" id="chqno" readonly />
-<input type="text"  hidden class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
-<input type="text"  hidden class="form-control" name="pay[chqdate]" id="chqdate" readonly />
-<input type="text"  hidden class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
+<input type="text"   class="form-control" name="pay[chqno]" id="chqno" readonly />
+<input type="text"   class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
+<input type="text"   class="form-control" name="pay[chqdate]" id="chqdate" readonly />
+<input type="text"   class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
 <!--Grid column-->
 
 </div>

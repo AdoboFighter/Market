@@ -25,19 +25,16 @@ $pdf->setPrintFooter(false);
 $pdf->addPage($orientation);
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
-$pdf->SetMargins(0, 0, 0);
-$pdf->SetHeaderMargin(0);
-$pdf->SetFooterMargin(0);
 $pdf->Text(55,38 , $payment_or_number);
-$pdf->Text(55,50 , $date);
-$pdf->Text(17,59 , 'City Goverment of San Pablo');
-$pdf->Text(77,59 , 'Gr A');
+$pdf->Text(55,49 , $date);
+$pdf->Text(17,55 , 'City Goverment of San Pablo');
+$pdf->Text(77,55 , 'Gr A');
 
 
 $pdf->setCellPaddings(2, 4, 6, 8);
 $txt =($payor == null ? '0' : $payor);
-$pdf->MultiCell(80,10, $txt."\n", 0, 'L', 0, 0,17, 60, true, 0, false, true, 20, 'M', true);
-
+$pdf->MultiCell(80,10, $txt."\n", 0, 'L', 0, 0,17, 55, true, 0, false, true, 20, 'M', true);
+$pdf->Text(17,60 , $stall_number);
 
 
 
