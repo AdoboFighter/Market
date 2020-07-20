@@ -560,9 +560,9 @@ CONTENT STYLE
           </div>
         </div>
 
-        <li>
+        <!-- <li>
           <a href="<?php echo base_url() . 'pages/view/dev' ?>">Dev Stuff</a>
-        </li>
+        </li> -->
 
         <li>
           <a href="<?php echo base_url() . 'pages/view/marketFloor' ?>">Market Floor</a>
