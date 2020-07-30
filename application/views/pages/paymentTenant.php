@@ -23,7 +23,7 @@
   </nav>
 
   <!-- new payment -->
-  <form id="payment_submit">
+
     <!--Main layout-->
     <main class="mt-5 ">
 
@@ -39,6 +39,8 @@
           <div class="col-4">
             <button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
           </div>
+
+            <form id="payment_submit">
           <!-- <div class="col">
           <h2 class="text-center">Checkout form</h2>
         </div> -->
@@ -299,15 +301,15 @@
   <button class="btn btn-primary btn-lg btn-block" id = "payment_submit_btn" type="submit">Continue to checkout</button>
 </div>
 
-<input type="text"   class="form-control" name="pay[no]" id="no" readonly />
-<input type="text"   class="form-control" name="pay[particulars]" id="particulars" readonly />
-<input type="text"   class="form-control" name="pay[date]" id="date" readonly />
-<input type="text"   class="form-control" name="pay[price]" id="price" readonly />
+<input type="hidden"   class="form-control" name="pay[no]" id="no" readonly />
+<input type="hidden"   class="form-control" name="pay[particulars]" id="particulars" readonly />
+<input type="hidden"   class="form-control" name="pay[date]" id="date" readonly />
+<input type="hidden"   class="form-control" name="pay[price]" id="price" readonly />
 
-<input type="text"   class="form-control" name="pay[chqno]" id="chqno" readonly />
-<input type="text"   class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
-<input type="text"   class="form-control" name="pay[chqdate]" id="chqdate" readonly />
-<input type="text"   class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
+<input type="hidden"   class="form-control" name="pay[chqno]" id="chqno" readonly />
+<input type="hidden"   class="form-control" name="pay[chqAmount]" id="chqAmount" readonly />
+<input type="hidden"   class="form-control" name="pay[chqdate]" id="chqdate" readonly />
+<input type="hidden"   class="form-control" name="pay[chqBranch]" id="chqBranch" readonly />
 <!--Grid column-->
 
 </div>
@@ -534,7 +536,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="">Tenant search</h5>
+        <h5 class="modal-title">Tenant search</h5>
         <a href="<?php echo base_url() . 'pages/view/home' ?>">
         <button type="button" class="btn btn-primary">
           To home

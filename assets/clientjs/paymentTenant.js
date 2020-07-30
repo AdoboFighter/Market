@@ -769,7 +769,23 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
+  $("#payment_cash_tendered").keyup(function(){
 
+    if($("input[name='pay[paymentCol]']:checked").val() == 'cash')
+    {
+      changeboth();
+    }
+    else if ($('input[name="pay[paymentCol]"]:checked').val() == 'bank')
+    {
+      changecheque();
+    }
+    else
+    {
+      changechequecash();
+    }
+    $('#cash_total').val($('#payment_cash_tendered').val());
+  totalamountgiven();
+  });
 
 
   $('#payment_cash_tendered').change(function(){
@@ -1895,7 +1911,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
     $('#payment_submit').submit(function(e){
-      console.log("test submit");
+
       e.preventDefault();
 
       var particulars = [];
@@ -2064,8 +2080,6 @@ $("#payment_or_number").inputFilter(function(value) {
           }
         })
       }
-
-
     });
 
 

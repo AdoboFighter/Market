@@ -63,9 +63,9 @@ for ($r = 0 ; $r < $count ; $r++){
 
     $pdf->MultiCell(41,0, $txt."\n", 1, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
 
-    $pdf->setCellPaddings(0, 0, 0, 0);
-    $txt = ($no[$r]->no == null ? ' ' : $no[$r]->no);
-    $pdf->MultiCell(28,0, $txt."\n", 1, 'L', 0, 0, 47,75 + $rowspace , true, 0, false, true, 10, 'M', true);
+    // $pdf->setCellPaddings(0, 0, 0, 0);
+    // $txt = ($no[$r]->no == null ? ' ' : $no[$r]->no);
+    // $pdf->MultiCell(28,0, $txt."\n", 1, 'L', 0, 0, 47,75 + $rowspace , true, 0, false, true, 10, 'M', true);
 
 
     $pdf->setCellPaddings(0, 0, 0, 0);
@@ -100,22 +100,43 @@ $pdf->setCellPaddings(2, 4, 6, 8);
 $txt =($payment_or_number == null ? '0' : $payment_or_number);
 $pdf->MultiCell(45,10, $txt."\n", 0, 'L', 0, 0,10, 165, true, 0, false, true, 10, 'M', true);
 
+$count2 = count($chqno,COUNT_NORMAL);
+$rowspace2 = 0;
+
+for ($r = 1 ; $r < $count2 ; $r++){
+    $rowspace2 = $rowspace2 + 5;
+
+    $pdf->setCellPaddings(0, 0, 0, 0);
+    // $txt = ($chqBranch[$r]->chqBranch == null ? ' ' : $chqBranch[$r]->chqBranch);
+    $pdf->MultiCell(25,22,($paymentCol == 'bank'|| $paymentCol == 'bankCash'  ? ( $chqBranch[$r]->chqBranch == null ? '0' : $chqBranch[$r]->chqBranch): '')."\n", 0, 'L', 0, 0,48,135 + $rowspace2, true, 1, false, true,16, 'M', true);
+
+    $pdf->setCellPaddings(0, 0, 0, 0);
+    // $txt = ($chqdate[$r]->chqdate == null ? ' ' : $chqdate[$r]->chqdate);
+    $pdf->MultiCell(25,22,($paymentCol == 'bank' || $paymentCol == 'bankCash' ? ( $chqdate[$r]->chqdate == null ? '0' : $chqdate[$r]->chqdate): '') ."\n", 0, 'L', 0, 0,68,135 + $rowspace2, true, 1, false, true,16, 'M', true);
+
+
+    $pdf->setCellPaddings(0, 0, 0, 0);
+    // $txt = ($chqAmount[$r]->chqAmount == null ? ' ' : $chqAmount[$r]->chqAmount);
+    $pdf->MultiCell(25,22,($paymentCol == 'bank' || $paymentCol == 'bankCash'  ? ( $chqAmount[$r]->chqAmount == null ? '0' : $chqAmount[$r]->chqAmount): '')."\n", 0, 'L', 0, 0,28,135 + $rowspace2, true, 1, false, true,16, 'M', true);
+
+}
 
 
 
 
-
-$pdf->setCellPaddings(2, 4, 6, 8);
-$pdf->MultiCell(20,22,($paymentCol == 'bank'|| $paymentCol == 'bankCash'  ? ( $chqBranch[1]->chqBranch == null ? '0' : $chqBranch[1]->chqBranch): '')."\n", 0, 'L', 0, 0,72,147, true, 1, false, true,16, 'M', true);
-
-$pdf->setCellPaddings(2, 4, 6, 8);
-$pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash' ? ( $chqdate[1]->chqdate == null ? '0' : $chqdate[1]->chqdate): '')."\n", 0, 'L', 0, 0,52,147, true, 1, false, true,16, 'M', true);
-
-$pdf->setCellPaddings(2, 4, 6, 8);
-$pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash'  ? ( $chqAmount[1]->chqAmount == null ? '0' : $chqAmount[1]->chqAmount): '')."\n", 0, 'L', 0, 0,32,147, true, 1, false, true,16, 'M', true);
-
-
-
+//
+//
+// $pdf->setCellPaddings(2, 4, 6, 8);
+// $pdf->MultiCell(20,22,($paymentCol == 'bank'|| $paymentCol == 'bankCash'  ? ( $chqBranch[1]->chqBranch == null ? '0' : $chqBranch[1]->chqBranch): '')."\n", 0, 'L', 0, 0,72,147, true, 1, false, true,16, 'M', true);
+//
+// $pdf->setCellPaddings(2, 4, 6, 8);
+// $pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash' ? ( $chqdate[1]->chqdate == null ? '0' : $chqdate[1]->chqdate): '')."\n", 0, 'L', 0, 0,52,147, true, 1, false, true,16, 'M', true);
+//
+// $pdf->setCellPaddings(2, 4, 6, 8);
+// $pdf->MultiCell(20,22,($paymentCol == 'bank' || $paymentCol == 'bankCash'  ? ( $chqAmount[1]->chqAmount == null ? '0' : $chqAmount[1]->chqAmount): '')."\n", 0, 'L', 0, 0,32,147, true, 1, false, true,16, 'M', true);
+//
+//
+//
 
 
 
