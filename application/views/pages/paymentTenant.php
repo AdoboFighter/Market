@@ -59,7 +59,7 @@
           <div class="card p-3">
 
             <!--Card content-->
-            <form class="card-body">
+
               <div class="col-lg-12 bg-info ">
                 <div class="row p-3 ml-3">
                   <div class="ml-2 text-white">Mode of Payment</div>
@@ -173,7 +173,7 @@
               <hr class="mb-4">
 
 
-            </form>
+
 
           </div>
           <!--/.Card-->
@@ -463,17 +463,17 @@
 <div id="printModal" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <!-- <div class="modal-header">
         <button type="button" class="close" id="print_nolayout">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+      </div> -->
       <div class="modal-body">
         <form id ="printrec">
-          <h3 class = "text-center">Done Printing?</h3>
+          <h3 class = "text-center">Print & save?</h3>
           <div class = "text-center">
             <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
-            <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose">No</button>
+            <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
 
             <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
 

@@ -25,7 +25,7 @@ $pdf->setPrintFooter(false);
 $pdf->addPage($orientation);
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
-$pdf->Text(55,38 , $payment_or_number);
+$pdf->Text(55,43 , $payment_or_number);
 $pdf->Text(55,49 , $date);
 $pdf->Text(17,55 , 'City Goverment of San Pablo');
 $pdf->Text(77,55 , 'Gr A');

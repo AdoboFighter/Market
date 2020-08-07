@@ -6,7 +6,7 @@ use setasign\Fpdi\Fpdi;
 require_once(APPPATH.'/../assets/pdfmerge/TCPDF-master/tcpdf.php');
 require_once(APPPATH.'/../assets/pdfmerge/tcpdi/tcpdi.php');
 $this->load->helper('amountwords');
-
+ob_start();
 
 
 
@@ -160,7 +160,7 @@ for ($r = 1 ; $r < $count2 ; $r++){
 
 
 $js = 'print(true);';
-ob_start();
+
 ob_end_clean();
 $pdf->IncludeJS($js);
 $pdf->Output('name.pdf', 'I');

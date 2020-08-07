@@ -909,6 +909,7 @@ $("#payment_or_number").inputFilter(function(value) {
   });
 
   function search_client(search, searchcat) {
+
     $('#tableNoStall').DataTable({
       "paging": true,
       "searching": false,
@@ -959,7 +960,7 @@ $("#payment_or_number").inputFilter(function(value) {
     // $('.dataTables_length').addClass('bs-select');
   }
 
-  $('.dataTables_length').addClass('bs-select');
+  // $('.dataTables_length').addClass('bs-select');
 
 
 
@@ -1905,13 +1906,8 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
-
-
-
-
-
     $('#payment_submit').submit(function(e){
-
+      console.log("hello");
       e.preventDefault();
 
       var particulars = [];
@@ -1968,10 +1964,6 @@ $("#payment_or_number").inputFilter(function(value) {
             }
             else{
 
-
-
-
-
               if ($('#change').val() == "" || $('#change').val() == null) {
                 Swal.fire({
                   icon: 'error',
@@ -1983,9 +1975,6 @@ $("#payment_or_number").inputFilter(function(value) {
                   title: 'Insufficient amount.',
                 });
               }else {
-
-
-
 
                 $('#tbodyParticulars tr').each(function(row,tr){
                   no[row]={"no" : $(tr).find('td:eq(0)').text()}
@@ -2005,13 +1994,6 @@ $("#payment_or_number").inputFilter(function(value) {
                 $("#date").val(date);
                 $("#price").val(price);
 
-
-
-
-
-
-
-
                 $('#table_cheque tr').each(function(row,tr){
                   chqno[row]={"chqno" : $(tr).find('td:eq(0)').text()}
                   chqAmount[row]={"chqAmount" : $(tr).find('td:eq(1)').text()}
@@ -2028,11 +2010,7 @@ $("#payment_or_number").inputFilter(function(value) {
                 $("#chqAmount").val(chqAmount);
                 $("#chqdate").val(chqdate);
                 $("#chqBranch").val(chqBranch);
-
-
-
                 chq_total();
-
 
                 // add_line = JSON.stringify(add_line);
                 // $("#addline").val(add_line);
@@ -2059,6 +2037,7 @@ $("#payment_or_number").inputFilter(function(value) {
                     var url = window.URL.createObjectURL(data);
                     $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
                     $('#rec').modal('show');
+                    $("#frameasdas").get(0).contentWindow.print();
                   },
                   error:function()
                   {
@@ -2089,15 +2068,11 @@ $("#payment_or_number").inputFilter(function(value) {
 
     function printReceipt()
     {
-
-
       $('#rec').modal("hide");
-
       $('#printModal').modal({
         backdrop: 'static',
         keyboard: false
       })
-      $('#printModal').modal('show');
 
       $.ajax({
         type: "POST",
@@ -2108,11 +2083,10 @@ $("#payment_or_number").inputFilter(function(value) {
         },
         success:function(res)
         {
-          console.log(res);
-          document.getElementById('printFrame').contentWindow.location.reload();
           var url = window.URL.createObjectURL(res);
-          $('#printFrame').attr('src', url);
-
+          $('#printFrame').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+          $('#printModal').modal('show');
+          $("#printFrame").get(0).contentWindow.print();
         },
         error:function()
         {
