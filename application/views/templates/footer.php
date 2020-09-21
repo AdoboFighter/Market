@@ -5,6 +5,8 @@
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+<!-- Print JS -->
+<script type="text/javascript" src="/assets/js/jQuery.print.js"></script>
 
 <!-- jQuery Custom Scroller CDN -->
 <script src="<?php echo base_url();?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>

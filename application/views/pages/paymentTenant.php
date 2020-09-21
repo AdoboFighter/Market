@@ -24,23 +24,23 @@
 
   <!-- new payment -->
 
-    <!--Main layout-->
-    <main class="mt-5 ">
+  <!--Main layout-->
+  <main class="mt-5 ">
 
-      <div class="container wow fadeIn">
+    <div class="container wow fadeIn">
 
 
-        <!-- Heading -->
-        <h2 class="text-center">Tenant </h2>
+      <!-- Heading -->
+      <h2 class="text-center">Tenant </h2>
 
-        <br>
-        <div class="row">
+      <br>
+      <div class="row">
 
-          <div class="col-4">
-            <button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
-          </div>
+        <div class="col-4">
+          <button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
+        </div>
 
-            <form id="payment_submit">
+        <form id="payment_submit">
           <!-- <div class="col">
           <h2 class="text-center">Checkout form</h2>
         </div> -->
@@ -60,117 +60,117 @@
 
             <!--Card content-->
 
-              <div class="col-lg-12 bg-info ">
-                <div class="row p-3 ml-3">
-                  <div class="ml-2 text-white">Mode of Payment</div>
-                  <div class="custom-control custom-radio ml-3">
-                    <input type="radio" class="custom-control-input" id="cashPayment" name="pay[paymentCol]" value="cash" checked>
-                    <label class="custom-control-label text-white" for="cashPayment">Cash</label>
-                  </div>
+            <div class="col-lg-12 bg-info ">
+              <div class="row p-3 ml-3">
+                <div class="ml-2 text-white">Mode of Payment</div>
+                <div class="custom-control custom-radio ml-3">
+                  <input type="radio" class="custom-control-input" id="cashPayment" name="pay[paymentCol]" value="cash" checked>
+                  <label class="custom-control-label text-white" for="cashPayment">Cash</label>
+                </div>
 
-                  <div class="custom-control custom-radio ml-3">
-                    <input type="radio" class="custom-control-input" id="chequePayment" name="pay[paymentCol]" value="bank" >
-                    <label class="custom-control-label text-white" for="chequePayment">Bank</label>
-                  </div>
+                <div class="custom-control custom-radio ml-3">
+                  <input type="radio" class="custom-control-input" id="chequePayment" name="pay[paymentCol]" value="bank" >
+                  <label class="custom-control-label text-white" for="chequePayment">Bank</label>
+                </div>
 
-                  <div class="custom-control custom-radio ml-3">
-                    <input type="radio" class="custom-control-input" id="bankCashPayment" name="pay[paymentCol]" value="bankCash" >
-                    <label class="custom-control-label text-white" for="bankCashPayment">Bank/Cash</label>
-                  </div>
+                <div class="custom-control custom-radio ml-3">
+                  <input type="radio" class="custom-control-input" id="bankCashPayment" name="pay[paymentCol]" value="bankCash" >
+                  <label class="custom-control-label text-white" for="bankCashPayment">Bank/Cash</label>
                 </div>
               </div>
-              <br>
-              <!--Grid row-->
+            </div>
+            <br>
+            <!--Grid row-->
+            <div class="row">
+
+
+
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-2">
+
+
+                <div class="mb-2">
+                  <label>Customer ID</label>
+                  <input type="text" class="form-control " name="pay[customID]" id="payment_customer_id" readonly>
+                </div>
+
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-2">
+
+
+                <div class="mb-2">
+                  <label>Stall number</label>
+                  <input type="text" class="form-control " name="pay[stall_number]" id="payment_stall" readonly>
+                </div>
+
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+
+            <div class="mb-2">
+              <label>Name</label>
+              <input type="text" class="form-control " name="pay[customer_name]" id="customer_name" readonly>
+            </div>
+
+
+            <div class="mb-2">
+              <label>Address</label>
+              <input type="text" class="form-control" id="address" readonly>
+            </div>
+
+            <br>
+
+            <div class="col-lg-12">
+
+
               <div class="row">
-
-
-
-
-                <!--Grid column-->
-                <div class="col-md-6 mb-2">
-
-
-                  <div class="mb-2">
-                    <label>Customer ID</label>
-                    <input type="text" class="form-control " name="pay[customID]" id="payment_customer_id" readonly>
-                  </div>
-
+                <div class="col-lg-6 mt-3 h3 "> ITEMS </div>
+                <div class="col-lg-6">
+                  <button id="addRow" class=" btn btn-outline-success waves-effect float-right" type="button" onclick="addNewRow()">ADD ITEM</button>
+                  <!-- <button id="removeRow" class=" btn btn-outline-danger waves-effect btn-sm " type="button" disabled>remove</button> -->
                 </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-md-6 mb-2">
-
-
-                  <div class="mb-2">
-                    <label>Stall number</label>
-                    <input type="text" class="form-control " name="pay[stall_number]" id="payment_stall" readonly>
-                  </div>
-
-                </div>
-                <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-
-              <div class="mb-2">
-                <label>Name</label>
-                <input type="text" class="form-control " name="pay[customer_name]" id="customer_name" readonly>
               </div>
 
 
-              <div class="mb-2">
-                <label>Address</label>
-                <input type="text" class="form-control" id="address" readonly>
-              </div>
+              <div class="table-responsive mb-3">
+                <table class="table table-sm table-bordered text-center">
+                  <thead >
+                    <tr>
+                      <td>No</td>
+                      <td>Particulars</td>
+                      <td>Date Effectivity</td>
+                      <td>Price</td>
+                      <td >Action</td>
+                    </tr>
+                  </thead>
 
-              <br>
-
-              <div class="col-lg-12">
-
-
-                <div class="row">
-                  <div class="col-lg-6 mt-3 h3 "> ITEMS </div>
-                  <div class="col-lg-6">
-                    <button id="addRow" class=" btn btn-outline-success waves-effect float-right" type="button" onclick="addNewRow()">ADD ITEM</button>
-                    <!-- <button id="removeRow" class=" btn btn-outline-danger waves-effect btn-sm " type="button" disabled>remove</button> -->
-                  </div>
-                </div>
-
-
-                <div class="table-responsive mb-3">
-                  <table class="table table-sm table-bordered text-center">
-                    <thead >
-                      <tr>
-                        <td>No</td>
-                        <td>Particulars</td>
-                        <td>Date Effectivity</td>
-                        <td>Price</td>
-                        <td >Action</td>
-                      </tr>
-                    </thead>
-
-                    <tbody id="tbodyParticulars"></tbody>
-                  </table>
-                </div>
-
-
+                  <tbody id="tbodyParticulars"></tbody>
+                </table>
               </div>
 
 
-
-              <!--Grid row-->
-              <div class="row">
+            </div>
 
 
 
+            <!--Grid row-->
+            <div class="row">
 
-              </div>
-              <!--Grid row-->
 
 
-              <hr class="mb-4">
+
+            </div>
+            <!--Grid row-->
+
+
+            <hr class="mb-4">
 
 
 
@@ -242,9 +242,6 @@
             <div class="" >
               <h6 class="my-0">Cheque total</h6>
             </div>
-
-
-            <!-- <span class="" >₱ </span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[payment_cheque_total]" id="payment_cheque_total" placeholder="0.00" readonly />
           </li>
 
@@ -252,8 +249,6 @@
             <div class="">
               <h6 class="my-0">Cash total</h6>
             </div>
-            <!-- <span class="">₱  <span class="" id="cash_total"></span>0.00</span> -->
-            <!-- <span class="">₱</span> -->
             <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[cash_total]" id="cash_total" placeholder="0.00" readonly />
 
           </li>
@@ -464,26 +459,26 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <!-- <div class="modal-header">
-        <button type="button" class="close" id="print_nolayout">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> -->
-      <div class="modal-body">
-        <form id ="printrec">
-          <h3 class = "text-center">Print & save?</h3>
-          <div class = "text-center">
-            <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
-            <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
+      <button type="button" class="close" id="print_nolayout">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <form id ="printrec">
+      <h3 class = "text-center">Save transaction?</h3>
+      <div class = "text-center">
+        <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
+        <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
 
-            <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
+        <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
 
 
-          </div>
-        </form>
       </div>
-
-    </div>
+    </form>
   </div>
+
+</div>
+</div>
 </div>
 
 
@@ -538,10 +533,10 @@
       <div class="modal-header">
         <h5 class="modal-title">Tenant search</h5>
         <a href="<?php echo base_url() . 'pages/view/home' ?>">
-        <button type="button" class="btn btn-primary">
-          To home
-        </button>
-      </a>
+          <button type="button" class="btn btn-primary">
+            To home
+          </button>
+        </a>
       </div>
       <div class="modal-body">
         <div class="">

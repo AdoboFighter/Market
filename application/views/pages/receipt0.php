@@ -82,7 +82,8 @@ $pdf->MultiCell(47,0, $txt."\n",0, 'R', 0, 0, 52, 122, true, 0, false, true, 10,
 
 
 $pdf->setCellPaddings(2, 4, 6, 8);
-$txt = ucwords(convert_number_to_words( str_replace(',', '', $ttlAmt)));
+$txt = ucwords(convert_number_to_words( str_replace(',', '',   $ttlAmt)));
+// $txt = str_replace('point', 'and',   $num2word);
 $pdf->MultiCell(60,20, $txt."\n", 0, 'L', 1, 1,35, 128, true, 0, false, true, 24, 'M', true);
 
 

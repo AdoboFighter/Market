@@ -23,7 +23,7 @@
   </nav>
 
 <!-- new payment -->
-  <form id="payment_submit">
+
 <!--Main layout-->
 <main class="mt-5 ">
 
@@ -34,16 +34,16 @@
     <h2 class="text-center">Ambulant Payment</h2>
 
     <br>
-    <div class="row">
+		<div class="row">
 
-      <div class="col-4">
-        <button class="btn btn-primary btn-sm btn-block" type="submit" id="searchbtn">Search</button>
-      </div>
-      <!-- <div class="col">
-        <h2 class="text-center">Checkout form</h2>
-      </div> -->
-    </div>
+			<div class="col-4">
+				<button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
+			</div>
 
+
+		</div>
+
+		  <form id="payment_submit">
     <br>
 
     <!--Grid row-->
@@ -235,54 +235,63 @@
 
 
 
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+					<li class="list-group-item d-flex justify-content-center lh-condensed text-center">
 
-            <div class="bankCol  bankCashCol row mt-3" hidden>
+            <div class="bankCol  bankCashCol " hidden>
 
-                <button type="button" class =" stylish-color-dark btn text-white" id = "add_cheque_modal">Add/View cheque</button>
-
+              <button type="button" class =" stylish-color-dark btn text-white " id = "add_cheque_modal">Add/View cheque</button>
 
             </div>
-          </li>
-
-
-          <li class="list-group-item d-flex justify-content-between bg-light bankCol bankCashCol" hidden>
-            <div class="" >
-              <h6 class="my-0">Cheque total</h6>
-              </div>
-
-
-            <!-- <span class="" >₱ </span> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[payment_cheque_total]" id="payment_cheque_total" placeholder="0.00" readonly />
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="">
-              <h6 class="my-0">Cash total</h6>
-            </div>
-            <!-- <span class="">₱  <span class="" id="cash_total"></span>0.00</span> -->
-            <!-- <span class="">₱</span> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[cash_total]" id="cash_total" placeholder="0.00" readonly />
 
           </li>
 
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="">
-              <h6 class="my-0">Change</h6>
-            </div>
-            <!-- <span class="">₱  <span class="" id="change"></span></span> -->
-            <!-- <span class="">₱</span> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[change]" id="change" placeholder="0.00" readonly />
 
-          </li>
+					<li class="list-group-item d-flex justify-content-between bg-light bankCol bankCashCol" hidden>
+						<div class="" >
+							<h6 class="my-0">Cheque total</h6>
+						</div>
 
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (PHP)</span>
-            <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
-            <!-- <strong>₱ </strong> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
 
-          </li>
+						<!-- <span class="" >₱ </span> -->
+						<input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[payment_cheque_total]" id="payment_cheque_total" placeholder="0.00" readonly />
+					</li>
+
+					<li class="list-group-item d-flex justify-content-between bg-light">
+						<div class="">
+							<h6 class="my-0">Cash total</h6>
+						</div>
+						<!-- <span class="">₱  <span class="" id="cash_total"></span>0.00</span> -->
+						<!-- <span class="">₱</span> -->
+						<input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[cash_total]" id="cash_total" placeholder="0.00" readonly />
+
+					</li>
+
+					<li class="list-group-item d-flex justify-content-between bg-light">
+						<span>Total (Amount Given)</span>
+						<!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
+						<!-- <strong>₱ </strong> -->
+						<input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_amount_given" name="pay[total_amount_given]" placeholder="0.00" readonly >
+
+					</li>
+
+					<li class="list-group-item d-flex justify-content-between bg-light">
+						<span>Total (Amount to pay)</span>
+						<!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
+						<!-- <strong>₱ </strong> -->
+						<input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_payment" name="pay[total_amount_given]" placeholder="0.00" readonly >
+
+					</li>
+
+					<li class="list-group-item d-flex justify-content-between ">
+						<div class="">
+							<h6 class="my-0">Change</h6>
+						</div>
+						<!-- <span class="">₱  <span class="" id="change"></span></span> -->
+						<!-- <span class="">₱</span> -->
+						<input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger" name="pay[change]" id="change" placeholder="0.00" readonly />
+
+					</li>
+
         </ul>
         <!-- Cart -->
 
@@ -461,17 +470,17 @@
 <div id="printModal" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" id="print_nolayout">
+      <!-- <div class="modal-header"> -->
+        <!-- <button type="button" class="close" id="print_nolayout">
           <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        </button> -->
+      <!-- </div> -->
       <div class="modal-body">
         <form id ="printrec">
-          <h3 class = "text-center">Done Printing?</h3>
+          <h3 class = "text-center">Save transaction?</h3>
           <div class = "text-center">
-            <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
-            <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose">No</button>
+						<button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
+            <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
 
             <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
 
@@ -534,10 +543,12 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="">Tenant search</h5>
-          <!-- <button type="button" class="close"  onclick="closeModal('searchmodal')">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
+          <h5 class="modal-title" id="">Ambulant search</h5>
+					<a href="<?php echo base_url() . 'pages/view/home' ?>">
+	        <button type="button" class="btn btn-primary">
+	          To home
+	        </button>
+	      </a>
         </div>
         <div class="modal-body">
           <div class="">

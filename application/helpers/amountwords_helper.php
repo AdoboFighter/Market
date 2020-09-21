@@ -1,7 +1,7 @@
 <?php
 
 function convert_number_to_words($number) {
-    
+
     $number = $number + 0;
 
 
@@ -9,7 +9,7 @@ function convert_number_to_words($number) {
     $conjunction = '  ';
     $separator   = ' ';
     $negative    = 'negative ';
-    $decimal     = ' point ';
+    $decimal     = ' pesos and ';
     $dictionary  = array(
         0                   => 'Zero',
         1                   => 'One',
@@ -109,7 +109,9 @@ function convert_number_to_words($number) {
         foreach (str_split((string) $fraction) as $number) {
             $words[] = $dictionary[$number];
         }
-    
+
+
+
         $string .= implode(' ', $words);
         $string .= ' Cents';
     }

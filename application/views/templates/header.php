@@ -15,6 +15,9 @@
   <!-- Bootstrap core CSS -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- PRINT JS -->
+  <link href="/assets/css/print.min.css" rel="stylesheet">
+
   <!-- Material Design Bootstrap -->
   <link href="/assets/css/mdb.min.css" rel="stylesheet">
 
@@ -560,9 +563,9 @@ CONTENT STYLE
           </div>
         </div>
 
-        <!-- <li>
+        <li>
           <a href="<?php echo base_url() . 'pages/view/dev' ?>">Dev Stuff</a>
-        </li> -->
+        </li>
 
         <li>
           <a href="<?php echo base_url() . 'pages/view/marketFloor' ?>">Market Floor</a>
