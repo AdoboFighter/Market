@@ -348,38 +348,33 @@ $("#payment_or_number").inputFilter(function(value) {
   });
 
 
+  $('#getviolationtable').DataTable({
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/get_violation_data_con',
+      dataSrc : 'data'
+    },
+    "columns" : [
+    {
+      "data" : "customer_id"
+    },
+    {
+      "data" : "description"
+    },
+    {
+      "data" : "date_occured"
+    },
 
-  function search_client(search, searchcat) {
-    $('#ParkingTable').DataTable({
-      "paging": true,
-      "searching": false,
-      "ordering": true,
-      "ajax" : {
-        "url" : global.settings.url + '/MainController/getparkingpaytablecon',
-        "data": {search:search, searchcat:searchcat},
-        "dataType": "json",
-        "type": "POST"
-      },
-      "columns" : [
-        {
-          "data" : "id"
-        },
+    {
+      "data" : "status"
+    },
+    {
+      "data" : "name"
+    },
+    {
+      "data" : "btn"
+    }]
+  });
 
-        {
-          "data" : "pay_parking_lot"
-        },
-
-        {
-          "data" : "pay_parking_name"
-        },
-
-        {
-          "data" : "btn"
-        }
-      ]
-    });
-    // $('.dataTables_length').addClass('bs-select');
-  }
 
   $('.partnum').change(function(){
     particular();
@@ -493,44 +488,83 @@ $("#payment_or_number").inputFilter(function(value) {
 
     // FOR NEW PAGES IN PAYMENT
     function fetchdata(id){
+      // $.ajax({
+      //   url: global.settings.url + '/MainController/getparkingpay',
+      //   type: 'POST',
+      //   data: {
+      //     id: id
+      //   },
+      //   dataType:'JSON',
+      //   success: function(res){
+      //     if (res == 'withviolation') {
+      //       Swal.fire({
+      //         icon: 'error',
+      //         title: 'Pay the violation first',
+      //       });
+      //     }else {
+      //       res = res[0];
+      //       // $('#TenantPay').modal("show");
+      //       clearitems();
+      //       $("#payment_chq_total").text(0.00);
+      //       $('#TenantModalPay').modal("show");
+      //       $('#paymentDet').hide();
+      //       $('#chequeDetails').hide();
+      //       $('#payment_type').val(null);
+      //       $('.payment_details').val('');
+      //       $('.rowrow').remove();
+      //       $('#payment_cheque_number').val("");
+      //       $('#payment_cheque_amount').val("");
+      //       $('#payment_cheque_date').val("");
+      //       $('#payment_bank_branch').val("");
+      //       // stall_no = res.unit_no;
+      //
+      //       $('#plate').val(res.middlename);
+      //       $('#park_lot').val(res.lot_no);
+      //
+      //       $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+      //       $('#payment_customer_id').val(res.customer_id);
+      //       $('#payor').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+      //       $('#searchmodal').modal("hide");
+      //     }
+      //   },
+      //   error: function(xhr){
+      //     console.log(xhr.responseText);
+      //   }
+      // })
+
       $.ajax({
-        url: global.settings.url + '/MainController/getparkingpay',
+        url: global.settings.url + '/MainController/get_customer_info_vio_con',
         type: 'POST',
         data: {
           id: id
         },
         dataType:'JSON',
         success: function(res){
-          if (res == 'withviolation') {
-            Swal.fire({
-              icon: 'error',
-              title: 'Pay the violation first',
-            });
-          }else {
-            res = res[0];
-            // $('#TenantPay').modal("show");
-            clearitems();
-            $("#payment_chq_total").text(0.00);
-            $('#TenantModalPay').modal("show");
-            $('#paymentDet').hide();
-            $('#chequeDetails').hide();
-            $('#payment_type').val(null);
-            $('.payment_details').val('');
-            $('.rowrow').remove();
-            $('#payment_cheque_number').val("");
-            $('#payment_cheque_amount').val("");
-            $('#payment_cheque_date').val("");
-            $('#payment_bank_branch').val("");
-            // stall_no = res.unit_no;
-
-            $('#plate').val(res.middlename);
-            $('#park_lot').val(res.lot_no);
-
-            $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-            $('#payment_customer_id').val(res.customer_id);
-            $('#payor').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-            $('#searchmodal').modal("hide");
-          }
+          console.log(res);
+          res = res[0];
+          clearitems();
+          $("#payment_chq_total").text(0.00);
+          $('#TenantModalPay').modal("show");
+          $('#paymentDet').hide();
+          $('#chequeDetails').hide();
+          $('#payment_type').val(null);
+          $('.payment_details').val('');
+          $('.rowrow').remove();
+          $('#payment_cheque_number').val("");
+          $('#payment_cheque_amount').val("");
+          $('#payment_cheque_date').val("");
+          $('#payment_bank_branch').val("");
+          stall_no = res.unit_no;
+          $('#payment_customer_id').val(res.customer_id);
+          $('#payment_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#customer_name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#payor').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#payment_stall').val(res.unit_no);
+          $('#address').val(res.address);
+          $('#payorname').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+          $('#violation_desc').val(res.description);
+          $('#violation_id').val(res.violation_id);
+          $('#searchmodal').modal("hide");
         },
         error: function(xhr){
           console.log(xhr.responseText);
@@ -1341,7 +1375,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
       customer_id = $('#payment_customer_id').val();
       tenant_id = $('#payment_tenant_id').val();
-      type_of_payment = $('#payment_type_of_payment').val();
+      type_of_payment = 4016;
       or_number =$('#payment_or_number').val();
       cash_tendered = $('#payment_cash_tendered').val().replace(',', '');
       payment_name = $('#payment_name').val();
@@ -1721,7 +1755,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
       $('#add_Newitem_window').on('shown.bs.modal', function (e) {
-        $("#payment_type_of_payment").val("");
+
 
         $('#payment_effectivity').val("");
         $('#payment_amount_to_pay2').val("");
@@ -1748,8 +1782,8 @@ $("#payment_or_number").inputFilter(function(value) {
       $('#add_Newitem_form').submit(function(e){
         e.preventDefault();
         var type = $('#payment_type_of_payment option:selected').html();
-        var typeid = $('#payment_type_of_payment option:selected').val();
-        var typename = $('#payment_type_of_payment option:selected').text()
+        var typeid = 4016;
+        var typename = "Violation";
         var date = $('#payment_effectivity').val();
         var amount = $('#payment_amount_to_pay2').val();
         var others_val = $('#others_f').val();

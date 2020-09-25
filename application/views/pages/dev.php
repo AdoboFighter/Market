@@ -87,7 +87,7 @@
 
 
               <!--Grid column-->
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
 
 
                 <div class="mb-2">
@@ -99,12 +99,24 @@
               <!--Grid column-->
 
               <!--Grid column-->
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
 
 
                 <div class="mb-2">
                   <label>Stall number</label>
                   <input type="text" class="form-control " name="pay[stall_number]" id="payment_stall" readonly>
+                </div>
+
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-4 mb-2">
+
+
+                <div class="mb-2">
+                  <label>Violation ID</label>
+                  <input type="text" class="form-control " name="pay[violation_id]" id="violation_id" readonly>
                 </div>
 
               </div>
@@ -120,10 +132,17 @@
             </div>
 
 
-            <div class="mb-2">
+            <!-- <div class="mb-2">
               <label>Address</label>
               <input type="text" class="form-control" id="address" readonly>
+            </div> -->
+
+            <div class="mb-2">
+              <label>Violation Description</label>
+                <textarea class="form-control rounded-0" id="violation_desc" rows="10" readonly></textarea>
             </div>
+
+
 
             <br>
 
@@ -334,20 +353,7 @@
           <div class="mb-2">
             <input type="hidden" name="" id="what_row" required>
             <label>Type of payment</label>
-            <select class="form-control form-control-sm payment_details" name="payment_type_of_payment" id="payment_type_of_payment" required>
-              <option selected value="">Please Select</option>
-              <option value="4004">Annual Rental fee</option>
-              <option value="4005">Semi Annual Fee</option>
-              <option value="4006">Quarterly Annual Fee</option>
-              <option value="4007">Water Services Fee</option>
-              <option value="4008">Electrical Services Fee</option>
-              <option value="4009">Monthly Rental Fee</option>
-              <option value="4010">Weekly Rental Fee</option>
-              <option value="4011">Daily Market Fee</option>
-              <option value="4012">Privillage Market Fee</option>
-              <option value="4014">Others</option>
-              <option value="4015">Certification</option>
-            </select>
+            <input type="date" class="form-control payment_details" name="" id="payment_type_of_payment" readonly value="Violation">
           </div>
 
           <div class="mb-2" id="other_items" hidden>
@@ -531,7 +537,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tenant search</h5>
+        <h5 class="modal-title">Violations</h5>
         <a href="<?php echo base_url() . 'pages/view/home' ?>">
           <button type="button" class="btn btn-primary">
             To home
@@ -539,60 +545,27 @@
         </a>
       </div>
       <div class="modal-body">
-        <div class="">
-          <div class="row p-3">
-
-            <div class="col">
-              <div class="form-group">
-                <label>Search</label>
-                <input class="form-control form-control-sm mr-3 w-75" type="text" id="search_cl_f" placeholder="Search (stall#, name, section, etc)"
-                aria-label="Search">
-                <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="form-group">
-                <label>Category</label>
-                <select class="form-control form-control-sm" id="search_cl_s">
-                  <option selected value="">Please Select</option>
-                  <option value="customer_id">Customer ID</option>
-                  <option value="firstname,' ',middlename,' ',lastname">Tenant's name</option>
-                  <option value="aofirstname,' ',aomiddlename,' ',aolastname">Occupant's name</option>
-                  <option value="unit_no">Stall number</option>
-                  <option value="Section">Section</option>
-                  <option value="nature_or_business">Nature of business</option>
-                  <option value="sqm">Area(sqm)</option>
-                  <option value="dailyfee">Daily fee</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-
-
+        <div class="row p-3">
           <div class="col-12">
-            <table class="table table-striped table-bordered shadow" id="tableNoStall">
+            <table class="table table-striped table-bordered" id="getviolationtable">
               <thead>
                 <tr>
                   <td class="border border-dark">Customer ID</td>
-                  <td class="border border-dark">Stall no.</td>
-                  <td class="border border-dark">Section</td>
-                  <td class="border border-dark">Nature of business</td>
-                  <td class="border border-dark">Area(sqm)</td>
-                  <td class="border border-dark">Daily fee</td>
-                  <td class="border border-dark">Tenant's name</td>
-                  <td class="border border-dark">Occupant's name</td>
-                  <td class="border border-dark" scope="col">To pay</td>
+                  <td class="border border-dark">description</td>
+                  <td class="border border-dark">date occurred</td>
+                  <td class="border border-dark">status</td>
+                  <td class="border border-dark">name</td>
+                  <td class="border border-dark">Resolve</td>
                 </tr>
               </thead>
               <tbody>
               </tbody>
             </table>
-            <br>
           </div>
-
         </div>
+
+
+
       </div>
 
     </div>

@@ -1546,6 +1546,7 @@ class Mainmodel extends CI_model{
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
+        'customer_id' => $r->customer_id,
         'description' => $r->description,
         'date_occured' => $r->date_occured,
         'status'=> $r->status,
