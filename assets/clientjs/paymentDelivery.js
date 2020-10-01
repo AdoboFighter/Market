@@ -281,6 +281,7 @@ $("#payment_or_number").inputFilter(function(value) {
 
   function search_client(search, searchcat) {
     $('#DeliveryTable').DataTable({
+      "autoWidth": false,
       "paging": true,
       "searching": false,
       "ordering": true,
@@ -1329,7 +1330,7 @@ $("#payment_or_number").inputFilter(function(value) {
                   {
 
                     var url = window.URL.createObjectURL(data);
-                    $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+                    $('#frameasdas').attr('src',url);
                     $('#rec').modal('show');
                   },
                   error:function()

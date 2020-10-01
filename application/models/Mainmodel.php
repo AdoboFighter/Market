@@ -1718,7 +1718,28 @@ class Mainmodel extends CI_model{
     $transaction_id = $this->db->insert_id();
     // return $transaction_id;
     // return $count;
+
+
     return array('query'=> $query, 'id'=>$transaction_id, 'count' => $count);
+  }
+
+  public function savetransactionviolation($table,$data,$count,$violation_id)
+  {
+    $query = $this->db->insert($table,$data);
+    $transaction_id = $this->db->insert_id();
+    // return $transaction_id;
+    // return $count;
+
+    $this->db->trans_start();
+    $paid = array(
+      'status' => "PAID"
+    );
+    $this->db->where($violation_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+
+
+    return array('query'=> $query, 'id'=>$transaction_id, 'count' => $count, 'violation_id' => $violation_id);
   }
 
 
@@ -1728,6 +1749,8 @@ class Mainmodel extends CI_model{
   {
     $query =  $this->db->insert($table,$data);
     return $data;
+
+
   }
 
   public function updateSystemUserMod($inputData)
@@ -2043,7 +2066,7 @@ class Mainmodel extends CI_model{
     $this->db->trans_complete();
     if ($this->db->trans_status() === FALSE)
     {
-      echo '<script>console.log("Shit not working")</script>';
+      echo '<script>console.log(" not working")</script>';
     }
   }
 

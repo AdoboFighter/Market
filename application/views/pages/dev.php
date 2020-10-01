@@ -545,9 +545,9 @@
         </a>
       </div>
       <div class="modal-body">
-        <div class="row p-3">
-          <div class="col-12">
-            <table class="table table-striped table-bordered" id="getviolationtable">
+
+          <div class="">
+            <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
               <thead>
                 <tr>
                   <td class="border border-dark">Customer ID</td>
@@ -562,7 +562,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+
 
 
 

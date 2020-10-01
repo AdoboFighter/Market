@@ -1600,7 +1600,7 @@ $("#payment_or_number").inputFilter(function(value) {
       var or_number =$('#payment_or_number').val();
       var payor = $('#payor').val();
       var total = parseFloat($('#ttlAmt').val().replace(',', ''));
-
+      var violation_id =$('#violation_id').val();
       var no =  jQuery.parseJSON($("#no").val());
       var particulars =  jQuery.parseJSON($("#particulars").val());
       var date =  jQuery.parseJSON($("#date").val());
@@ -1630,9 +1630,10 @@ $("#payment_or_number").inputFilter(function(value) {
             ,payor:payor
             ,total:total
             ,count:i
+            ,violation_id:violation_id
           },
 
-          url: global.settings.url +'/MainController/savetransaction',
+          url: global.settings.url +'/MainController/savetransactionviolation',
           dataType:'json',
           success: function(res){
             console.log(res);
@@ -1700,17 +1701,6 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
-
-        // console.log(i);
-        // console.log(count);
-        // console.log(arrlength);
-        // console.log(result);
-        // console.log(transaction_id);
-
-
-
-
-
       }
 
 
@@ -1734,6 +1724,8 @@ $("#payment_or_number").inputFilter(function(value) {
           icon: 'success',
           title: 'Successfully Saved',
         });
+
+
 
 
       }

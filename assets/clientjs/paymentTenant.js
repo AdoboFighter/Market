@@ -287,6 +287,7 @@ $("#payment_or_number").inputFilter(function(value) {
   function search_client(search, searchcat) {
 
     $('#tableNoStall').DataTable({
+      "autoWidth": false,
       "paging": true,
       "searching": false,
       "ordering": true,
@@ -1309,10 +1310,10 @@ $("#payment_or_number").inputFilter(function(value) {
                   {
 
                     var url = window.URL.createObjectURL(data);
-                    $('#frameasdas').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+                    $('#frameasdas').attr('src',url);
                     $('#rec').modal('show');
-                    $("#frameasdas").get(0).contentWindow.printMe();
-                    $("#frameasdas").print();
+                    // $("#frameasdas").get(0).contentWindow.printMe();
+                    // $("#frameasdas").print();
 
                   },
                   error:function()
@@ -1374,7 +1375,7 @@ $("#payment_or_number").inputFilter(function(value) {
         success:function(res)
         {
           var url = window.URL.createObjectURL(res);
-          $('#printFrame').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+          $('#printFrame').attr('src',url);
           $('#printModal').modal('show');
           $("#printFrame").get(0).contentWindow.print();
           $("#frameasdas").print();
