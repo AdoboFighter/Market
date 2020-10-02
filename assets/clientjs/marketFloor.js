@@ -653,65 +653,87 @@ $(document).ready(function(){
 
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
+  var myCustomColors = {
+    "FC-49": '#4E7387',
+    "FC-25":'#333333',
+    "name262":'#333333'
+    };
+
   var map = new jvm.Map({
     container: $('#map'),
     map: 'ground_floor',
     backgroundColor: '#22313F',
+    series: {
+        regions: [{
+
+            attribute: "fill",
+            values: {
+              "FC-49": '#4E7387',
+              "FC-25":'#333333',
+              "name262":'#333333'
+            },
+
+        }],
+
+    },
     onRegionClick: function (event, code) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Under development',
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'Under development',
+      // });
+
+      $('#basicExampleModal').modal('show');
+      $("#stallhead").text(map.getRegionName(code));
+      $("#stallhead_pay").text(map.getRegionName(code));
+      $("#stallinput").val(map.getRegionName(code));
+
+      var stall_list_table =  $('#stall_floor_info').DataTable({
+
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false,
+        searching: false,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getstallFLOOR/' + code,
+          "type": 'POST',
+          "dataType":'JSON',
+
+          dataSrc : 'data'
+        },
+        "columns" : [{
+          "data" : "unit_no"
+        },
+
+        {
+          "data" : "name"
+        },
+
+        {
+          "data" : "effectivity"
+        },
+
+
+
+        {
+          "data" : "payment"
+        },
+
+
+        {
+          "data" : "client_info"
+        }]
       });
 
-      // $('#basicExampleModal').modal('show');
-      // $("#stallhead").text(map.getRegionName(code));
-      // $("#stallhead_pay").text(map.getRegionName(code));
-      // $("#stallinput").val(map.getRegionName(code));
-      //
-      // var stall_list_table =  $('#stall_floor_info').DataTable({
-      //
-      //   "bPaginate": false,
-      //   "bLengthChange": false,
-      //   "bFilter": true,
-      //   "bInfo": false,
-      //   "bAutoWidth": false,
-      //   searching: false,
-      //   "ajax" : {
-      //     "url" : global.settings.url + '/MainController/getstallFLOOR/' + code,
-      //     "type": 'POST',
-      //     "dataType":'JSON',
-      //
-      //     dataSrc : 'data'
-      //   },
-      //   "columns" : [{
-      //     "data" : "unit_no"
-      //   },
-      //
-      //   {
-      //     "data" : "name"
-      //   },
-      //
-      //   {
-      //     "data" : "effectivity"
-      //   },
-      //
-      //
-      //
-      //   {
-      //     "data" : "payment"
-      //   },
-      //
-      //
-      //   {
-      //     "data" : "client_info"
-      //   }]
-      // });
-      //
-      // $('#basicExampleModal').on('hidden.bs.modal', function () {
-      //   stall_list_table.destroy();
-      // });
+      $('#basicExampleModal').on('hidden.bs.modal', function () {
+        stall_list_table.destroy();
+      });
     }
+
   });
+
+  map.series.regions[0].setValues(myCustomColors);
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
 

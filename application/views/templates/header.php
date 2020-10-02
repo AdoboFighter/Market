@@ -447,9 +447,9 @@ CONTENT STYLE
       overflow: hidden;
     }
 
-    path {
+    /* path {
       fill: white;
-    }
+    } */
 
 
     .tooltip span {
