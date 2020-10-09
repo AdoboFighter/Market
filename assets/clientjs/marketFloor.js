@@ -653,27 +653,95 @@ $(document).ready(function(){
 
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
-  var myCustomColors = {
-    "FC-49": '#4E7387',
-    "FC-25":'#333333',
-    "name262":'#333333'
-    };
+  var redstat = {
+    "FC-51":'#FF0000',
+    "FC-50":'#FF0000',
+    "FC-49":'#FF0000',
+    "FC-48":'#FF0000',
+    "FC-47":'#FF0000',
+    "FC-46":'#FF0000',
+    "FC-45":'#FF0000',
+    "FC-44":'#FF0000',
+    "FC-43":'#FF0000',
+    "FC-42":'#FF0000',
+    "FC-41":'#FF0000',
+    "FC-40":'#FF0000',
+    "FC-39":'#FF0000',
+    "FC-38":'#FF0000',
+    "FC-37":'#FF0000',
+    "FC-36":'#FF0000',
+    "FC-35":'#FF0000',
+  };
+
+  var greenstat = {
+    "FC-51":'#008000',
+    "FC-50":'#008000',
+    "FC-49":'#008000',
+    "FC-48":'#008000',
+    "FC-47":'#008000',
+    "FC-46":'#008000',
+    "FC-45":'#008000',
+    "FC-44":'#008000',
+    "FC-43":'#008000',
+    "FC-42":'#008000',
+    "FC-41":'#008000',
+    "FC-40":'#008000',
+    "FC-39":'#008000',
+    "FC-38":'#008000',
+    "FC-37":'#008000',
+    "FC-36":'#008000',
+    "FC-35":'#008000',
+  };
+
+  var orangestat = {
+    "FC-51":'#FFA500',
+    "FC-50":'#FFA500',
+    "FC-49":'#FFA500',
+    "FC-48":'#FFA500',
+    "FC-47":'#FFA500',
+    "FC-46":'#FFA500',
+    "FC-45":'#FFA500',
+    "FC-44":'#FFA500',
+    "FC-43":'#FFA500',
+    "FC-42":'#FFA500',
+    "FC-41":'#FFA500',
+    "FC-40":'#FFA500',
+    "FC-39":'#FFA500',
+    "FC-38":'#FFA500',
+    "FC-37":'#FFA500',
+    "FC-36":'#FFA500',
+    "FC-35":'#FFA500',
+  };
 
   var map = new jvm.Map({
     container: $('#map'),
     map: 'ground_floor',
     backgroundColor: '#22313F',
     series: {
-        regions: [{
+      regions: [{
 
-            attribute: "fill",
-            values: {
-              "FC-49": '#4E7387',
-              "FC-25":'#333333',
-              "name262":'#333333'
-            },
+        attribute: "fill",
+        values: {
+          "FC-51":'#FFFFFF',
+          "FC-50":'#FFFFFF',
+          "FC-49":'#FFFFFF',
+          "FC-48":'#FFFFFF',
+          "FC-47":'#FFFFFF',
+          "FC-46":'#FFFFFF',
+          "FC-45":'#FFFFFF',
+          "FC-44":'#FFFFFF',
+          "FC-43":'#FFFFFF',
+          "FC-42":'#FFFFFF',
+          "FC-41":'#FFFFFF',
+          "FC-40":'#FFFFFF',
+          "FC-39":'#FFFFFF',
+          "FC-38":'#FFFFFF',
+          "FC-37":'#FFFFFF',
+          "FC-36":'#FFFFFF',
+          "FC-35":'#FFFFFF',
+        },
 
-        }],
+      }],
 
     },
     onRegionClick: function (event, code) {
@@ -732,16 +800,38 @@ $(document).ready(function(){
     }
 
   });
+  
 
-  map.series.regions[0].setValues(myCustomColors);
+  $('#changecolor').on('change', function() {
+    var searchcat = $(this).children("option:selected").val();
+
+    if (searchcat == "redstat") {
+      map.series.regions[0].setValues(redstat);
+    }else if (searchcat == "greenstat") {
+      map.series.regions[0].setValues(greenstat);
+    }else {
+      map.series.regions[0].setValues(orangestat);
+    }
+  });
+
+
+
+
+
+
+
+
+  // map.series.regions[0].setValues(redstat);
+
+
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
   // jvector map jvector map jvector map jvector map jvector map jvector map jvector map jvector map
 
   $('.modal').on("hidden.bs.modal", function (e) { //fire on closing modal box
-       if ($('.modal:visible').length) { // check whether parent modal is opend after child modal close
-           $('body').addClass('modal-open'); // if open mean length is 1 then add a bootstrap css class to body of the page
-       }
-   });
+    if ($('.modal:visible').length) { // check whether parent modal is opend after child modal close
+      $('body').addClass('modal-open'); // if open mean length is 1 then add a bootstrap css class to body of the page
+    }
+  });
 });
 
 //end of doc ready end of doc ready end of doc ready end of doc ready

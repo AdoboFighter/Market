@@ -344,7 +344,7 @@
               <option value="4009">Monthly Rental Fee</option>
               <option value="4010">Weekly Rental Fee</option>
               <option value="4011">Daily Market Fee</option>
-              <option value="4012">Privillage Market Fee</option>
+              <option value="4012">Parking Fee</option>
               <option value="4014">Others</option>
               <option value="4015">Certification</option>
             </select>
@@ -487,7 +487,7 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header p-2">
-        <button class = "btn btn-success btn-sm m-2" id="printbtn" type='button' onclick="printReceipt()">Print Receipt</button>
+        <button class = "btn btn-success btn-sm m-2" id="printbtn" type='button' onclick="printReceipt()">Save transaction</button>
 
         <button type="button"  id="close_modal_receipt2"  class="close" onclick="closeModal()" >
           <span aria-hidden="true">&times;</span>

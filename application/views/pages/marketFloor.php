@@ -22,6 +22,12 @@
             </div>
             <div class="col">
               <h5>Registered Ambulants:<h5 id="numambu" class="text-success"></h5></h5>
+              <select class="form-control form-control-sm payment_details" id="changecolor" required>
+                <option selected value="">Please Select</option>
+                <option value="redstat">red</option>
+                <option value="greenstat">green</option>
+                <option value="orangestat">orange</option>
+              </select>
             </div>
           </div>
           <br>

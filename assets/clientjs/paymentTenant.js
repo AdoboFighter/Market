@@ -1335,21 +1335,21 @@ $("#payment_or_number").inputFilter(function(value) {
       }
     });
 
-    function printMe() {
-      window.print()
-    }
-
-    function printIframe(id)
-    {
-      var iframe = document.frames
-      ? document.frames[id]
-      : document.getElementById(id);
-      var ifWin = iframe.contentWindow || iframe;
-
-      iframe.focus();
-      ifWin.printPage();
-      return false;
-    }
+    // function printMe() {
+    //   window.print()
+    // }
+    //
+    // function printIframe(id)
+    // {
+    //   var iframe = document.frames
+    //   ? document.frames[id]
+    //   : document.getElementById(id);
+    //   var ifWin = iframe.contentWindow || iframe;
+    //
+    //   iframe.focus();
+    //   ifWin.printPage();
+    //   return false;
+    // }
 
 
 
@@ -1377,8 +1377,8 @@ $("#payment_or_number").inputFilter(function(value) {
           var url = window.URL.createObjectURL(res);
           $('#printFrame').attr('src',url);
           $('#printModal').modal('show');
-          $("#printFrame").get(0).contentWindow.print();
-          $("#frameasdas").print();
+          // $("#printFrame").get(0).contentWindow.print();
+          // $("#frameasdas").print();
         },
         error:function()
         {
