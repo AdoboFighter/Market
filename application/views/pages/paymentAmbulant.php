@@ -147,16 +147,16 @@
               </div>
 
 
-              <div class="table-responsive mb-3">
-                <table class="table table-sm table-bordered">
-                  <thead>
-                  <tr>
-                    <td>No</td>
-                    <td>Particulars</td>
-                    <td>Date Effectivity</td>
-                    <td>Price</td>
-                    <td>Action</td>
-                  </tr>
+							<div class="table-responsive mb-3">
+                <table class="table table-sm table-bordered text-center">
+                  <thead >
+                    <tr>
+                      <td>No</td>
+                      <td>Particulars</td>
+                      <td>Date Effectivity</td>
+                      <td>Price</td>
+                      <td >Action</td>
+                    </tr>
                   </thead>
 
                   <tbody id="tbodyParticulars"></tbody>
@@ -356,7 +356,7 @@
             <option value="4009">Monthly Rental Fee</option>
             <option value="4010">Weekly Rental Fee</option>
             <option value="4011">Daily Market Fee</option>
-            <option value="4012">Privillage Market Fee</option>
+            <option value="4012">Parking Fee</option>
             <option value="4014">Others</option>
             <option value="4015">Certification</option>
           </select>

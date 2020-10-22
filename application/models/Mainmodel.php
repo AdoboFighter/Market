@@ -846,11 +846,11 @@ class Mainmodel extends CI_model{
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-       'id' => $r->customer_id,
-       'pay_ambu_location' => $r->location,
-       'pay_ambu_locnum'=> $r->location_no,
-       'nature_of_business'=> $r->nature_of_business,
-       'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'id' => $r->customer_id,
+        'pay_ambu_location' => $r->location,
+        'pay_ambu_locnum'=> $r->location_no,
+        'nature_of_business'=> $r->nature_of_business,
+        'pay_ambu_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'btn'=>
 
         '<div class="">
@@ -1952,8 +1952,8 @@ class Mainmodel extends CI_model{
   public function updatecert($data){
     $data1 = array(
       'print_status' => 'PRINTED',
-        'reference_num' => $data['refnum'],
-        'cert_type' => $data['cert_type']
+      'reference_num' => $data['refnum'],
+      'cert_type' => $data['cert_type']
 
 
     );
@@ -2009,6 +2009,57 @@ class Mainmodel extends CI_model{
     $query = $this->db->get('transaction');
     return $query->num_rows();
   }
+
+  public function stallspaid()
+  {
+    $result =  array();
+    $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+    $this->db->group_start()
+                ->where('effectivity >=', $now)
+                ->where_in('payment_nature_id', $paynat)
+              ->group_end();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->num_rows();
+
+    // foreach($query->result() as $row)
+    // {
+    //   array_push($result,$row);
+    // }
+    // return $result;
+  }
+
+  public function debtstat()
+  {
+    $result =  array();
+    $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+    // $this->db->group_start()
+    //             ->where('effectivity <=', $now)
+    //             ->or_where('payment_nature_id', $paynat)
+    //           ->group_end();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'left');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'right');
+    $query = $this->db->get('customer');
+    return $query->num_rows();
+
+    // foreach($query->result() as $row)
+    // {
+    //   array_push($result,$row);
+    // }
+    // return $result;
+  }
+
+
+
+
+
 
 
   // public function stall_number_submit($inputData)

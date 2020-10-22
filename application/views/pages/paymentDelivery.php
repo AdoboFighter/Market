@@ -59,7 +59,7 @@
 					<div class="card p-3">
 
 						<!--Card content-->
-						<form class="card-body">
+
 							<div class="col-lg-12 bg-info ">
 								<div class="row p-3 ml-3">
 									<div class="ml-2 text-white">Mode of Payment</div>
@@ -137,7 +137,7 @@
 
 
 								<div class="table-responsive mb-3">
-									<table class="table table-sm table-bordered">
+									<table class="table table-sm table-bordered text-center">
 										<thead>
 											<tr>
 												<td>No</td>
@@ -170,7 +170,7 @@
 							<hr class="mb-4">
 
 
-						</form>
+
 
 					</div>
 					<!--/.Card-->
@@ -340,7 +340,7 @@
 							<option value="4009">Monthly Rental Fee</option>
 							<option value="4010">Weekly Rental Fee</option>
 							<option value="4011">Daily Market Fee</option>
-							<option value="4012">Privillage Market Fee</option>
+							<option value="4012">Parking Fee</option>
 							<option value="4014">Others</option>
 							<option value="4015">Certification</option>
 						</select>
@@ -454,13 +454,13 @@
 <div id="printModal" class="modal fade right" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<!-- <div class="modal-header">
 				<button type="button" class="close" id="print_nolayout">
 					<span aria-hidden="true">&times;</span>
 				</button>
-			</div>
+			</div> -->
 			<div class="modal-body">
-				<form id ="printrec">
+		    <form id ="printrec">
 		      <h3 class = "text-center">Save transaction?</h3>
 		      <div class = "text-center">
 		        <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
@@ -471,7 +471,7 @@
 
 		      </div>
 		    </form>
-			</div>
+		  </div>
 
 		</div>
 	</div>

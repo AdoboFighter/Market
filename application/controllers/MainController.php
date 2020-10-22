@@ -935,6 +935,16 @@ public function printreceipt()
     echo json_encode($this->model->numberofcurtrans());
   }
 
+  public function stallspaid()
+  {
+    echo json_encode($this->model->stallspaid());
+  }
+
+  public function debtstat()
+  {
+    echo json_encode($this->model->debtstat());
+  }
+
   public function getstallFLOOR()
   {
     $code =  $this->uri->segment(3);

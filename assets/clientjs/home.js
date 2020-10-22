@@ -68,6 +68,48 @@ $(document).ready(function(){
     });
   });
 
+  $('#stallspaid').text(function() {
+    $.ajax({
+      url: global.settings.url + '/MainController/stallspaid',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        if (res == null) {
+          $('#stallspaid').text("0");
+        } else {
+          $('#stallspaid').text(res);
+        }
+      },
+      error:function(res){
+        console.log('sala');
+      }
+    });
+  });
+
+  $('#debtstat').text(function() {
+    $.ajax({
+      url: global.settings.url + '/MainController/debtstat',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        if (res == null) {
+          $('#debtstat').text("0");
+        } else {
+          $('#debtstat').text(res);
+        }
+      },
+      error:function(res){
+        console.log('sala');
+      }
+    });
+  });
+
+
+
   $('#dateToday').text(month +","+" "+ n +" "+ year);
 
   $.ajax({

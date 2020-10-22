@@ -129,7 +129,7 @@
       <i class="fas fa-store fa-lg purple z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
       <div class="float-right text-right p-3">
         <p class="text-uppercase text-muted mb-1"><small>Stalls paid</small></p>
-        <h4 class="font-weight-bold mb-0">0</h4>
+        <h4 class="font-weight-bold mb-0" id="stallspaid"></h4>
       </div>
     </div>
 
@@ -173,7 +173,7 @@
     <i class="fas fa-money-bill-alt fa-lg green z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
     <div class="float-right text-right p-3">
       <p class="text-uppercase text-muted mb-1"><small>Users with debt</small></p>
-      <h4 class="font-weight-bold mb-0">0</h4>
+      <h4 class="font-weight-bold mb-0" id="debtstat"></h4>
     </div>
   </div>
 

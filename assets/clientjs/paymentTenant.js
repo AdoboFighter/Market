@@ -1390,20 +1390,6 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function savedatanow()
     {
 

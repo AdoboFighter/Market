@@ -1389,10 +1389,10 @@ $("#payment_or_number").inputFilter(function(value) {
           // $('#printFrame').attr('src', url);
 
           var url = window.URL.createObjectURL(res);
-          $('#printFrame').attr('src',url+'#toolbar=0&navpanes=0&scrollbar=0');
+          $('#printFrame').attr('src',url);
           $('#printModal').modal('show');
-          $("#printFrame").get(0).contentWindow.print();
-          $("#frameasdas").print();
+          // $("#printFrame").get(0).contentWindow.print();
+          // $("#frameasdas").print();
 
         },
         error:function()
@@ -1401,20 +1401,6 @@ $("#payment_or_number").inputFilter(function(value) {
         }
       });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
