@@ -2035,21 +2035,37 @@ class Mainmodel extends CI_model{
 
   public function debtstat()
   {
-    $result =  array();
+    $result = array();
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
     $now = date('Y-m-d');
     $this->load->helper('date');
-    // $this->db->group_start()
-    //             ->where('effectivity <=', $now)
-    //             ->or_where('payment_nature_id', $paynat)
-    //           ->group_end();
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'left');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'left');
-    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'right');
-    $query = $this->db->get('customer');
-    return $query->num_rows();
 
-    // foreach($query->result() as $row)
+    $this->db->group_start()
+                ->where('effectivity >=', $now)
+                ->where_in('payment_nature_id', $paynat)
+              ->group_end();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->order_by("effectivity", "DESC");
+    $query1 = $this->db->get('customer');
+
+
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query2 = $this->db->get('customer');
+
+
+    // $numdebt = $query1->num_rows(); - $query2->num_rows();;
+
+    // echo "Difference: ",$numdebt;
+
+
+    return  $query2->num_rows();
+
+    // return  $query2->num_rows() - $query1->num_rows();
+    //
+    // foreach($query2->result() as $row)
     // {
     //   array_push($result,$row);
     // }
