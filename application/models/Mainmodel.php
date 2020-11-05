@@ -2016,6 +2016,8 @@ class Mainmodel extends CI_model{
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
     $now = date('Y-m-d');
     $this->load->helper('date');
+
+    $this->db->select_max('effectivity');
     $this->db->group_start()
                 ->where('effectivity >=', $now)
                 ->where_in('payment_nature_id', $paynat)
@@ -2023,6 +2025,8 @@ class Mainmodel extends CI_model{
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->order_by("effectivity", "DESC");
+    $this->db->group_by('customer.customer_id');
     $query = $this->db->get('customer');
     return $query->num_rows();
 
@@ -2040,6 +2044,7 @@ class Mainmodel extends CI_model{
     $now = date('Y-m-d');
     $this->load->helper('date');
 
+    $this->db->select_max('effectivity');
     $this->db->group_start()
                 ->where('effectivity >=', $now)
                 ->where_in('payment_nature_id', $paynat)
@@ -2048,23 +2053,27 @@ class Mainmodel extends CI_model{
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
     $this->db->order_by("effectivity", "DESC");
+    $this->db->group_by('customer.customer_id');
     $query1 = $this->db->get('customer');
 
 
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->group_by('customer.customer_id');
     $query2 = $this->db->get('customer');
 
+    $diff1 = $query1->num_rows();
+    $diff2 = $query2->num_rows();
 
-    // $numdebt = $query1->num_rows(); - $query2->num_rows();;
+    $numdebt = $diff2 - $diff1;
 
-    // echo "Difference: ",$numdebt;
+    // echo "Difference: ", $numdebt;
 
 
-    return  $query2->num_rows();
+    return  $numdebt;
 
     // return  $query2->num_rows() - $query1->num_rows();
-    //
+
     // foreach($query2->result() as $row)
     // {
     //   array_push($result,$row);
