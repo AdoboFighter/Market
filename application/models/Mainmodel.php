@@ -91,6 +91,7 @@ class Mainmodel extends CI_model{
 
     $query = $this->db->select('*')
     ->from('user')
+    ->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level')
     ->where('username',$data['username'])
     ->get();
 
@@ -100,11 +101,14 @@ class Mainmodel extends CI_model{
       }
       if($data['password'] == $testpassword){
         foreach($query->result() as $r){
+
           $userdata['user_id'] = $r->user_id;
           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
           $userdata['position'] = $r->position;
-          $userdata['user_level'] = $r->user_level;
+          $userdata['user_level'] = $r->user_type;
+          $userdata['username'] = $r->username;
         } $userdata['flag'] = 1;
+
 
         $this->session->set_userdata($userdata);
         return $userdata;

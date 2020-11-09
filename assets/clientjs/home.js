@@ -11,6 +11,31 @@ var year = new Date().getFullYear();
 
 $(document).ready(function(){
 
+  $('#dateToday').text(month +","+" "+ n +" "+ year);
+
+  $.ajax({
+    url: global.settings.url +'/MainController/fetch_user',
+    type:'POST',
+    success:function(data)
+    {
+
+      console.log(data);
+      data = JSON.parse(data);
+
+      data.forEach(function(e, i){
+        // $('#user_select').append($('<option><option/>').val(e.user_id).text(e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname));
+        $('#user_select').append(new Option((e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname), (e.user_id)));
+        // $('#SysUser').append(new Option((e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname), (e.user_id)));
+      });
+    }
+  });
+
+  $('#user_select').change(function(){
+    console.log($(this).val());
+    console.log($(this).find(':selected').text());
+
+  });
+
   $('#numambu').text(function() {
     $.ajax({
       url: global.settings.url + '/MainController/numberofambu',
@@ -109,29 +134,56 @@ $(document).ready(function(){
   });
 
 
-
-  $('#dateToday').text(month +","+" "+ n +" "+ year);
-
-  $.ajax({
-    url: global.settings.url +'/MainController/fetch_user',
-    type:'POST',
-    success:function(data)
-    {
-
-      console.log(data);
-      data = JSON.parse(data);
-
-      data.forEach(function(e, i){
-        // $('#user_select').append($('<option><option/>').val(e.user_id).text(e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname));
-        $('#user_select').append(new Option((e.usr_firstname +' '+ e.usr_middlename+' '+e.usr_lastname), (e.user_id)));
-      });
-    }
-  });
-
-  $('#user_select').change(function(){
-    console.log($(this).val());
-    console.log($(this).find(':selected').text());
-
-  });
-
 });
+
+
+  $( "#userclick" ).on('click',function() {
+    $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+    $("#userdetailsmodal").modal('show');
+
+  });
+
+  $( "#regambuclick" ).on('click',function() {
+    $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
+
+  $( "#violationclick" ).on('click',function() {
+    $('#violationclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
+
+  $( "#stallspaidclick" ).on('click',function() {
+    $('#stallspaidclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
+
+  $( "#transtodayclick" ).on('click',function() {
+    $('#transtodayclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
+
+  $( "#dateclick" ).on('click',function() {
+    $('#dateclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
+
+  $( "#debtclick" ).on('click',function() {
+    $('#debtclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass();
+    });
+
+  });
