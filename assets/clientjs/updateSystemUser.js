@@ -123,6 +123,7 @@ $(document).ready(function(){
 
   function search_client(search, searchcat) {
     $('#sys_table').DataTable({
+      "autoWidth" : false,
       "paging": true,
       "searching": false,
       "ordering": true,

@@ -47,7 +47,7 @@
         </div>
         <div class="row p-3">
           <div class="col-12">
-            <table class="table table-striped table-bordered" id="add_vio_tab">
+            <table width="100%" class="table table-striped table-bordered" id="add_vio_tab">
               <thead>
                 <tr>
                   <td class="border border-dark">Customer ID</td>

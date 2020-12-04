@@ -7,7 +7,7 @@
     </div>
   </nav>
 
-  <form id="updateuser" name="updateuser">
+
     <h5 class="card-header text-center text-white bluegrads container justify-content-center">User List</h5>
     <br>
     <div class="container justify-content-center">
@@ -39,15 +39,15 @@
         </div>
         <div class="row p-3">
           <div class="col-12">
-            <table class="table table-striped table-bordered" id="sys_table">
+            <table width="100%" class="table table-striped table-bordered" id="sys_table">
               <thead>
                 <tr>
-                  <td class="border border-dark" scope="col">User ID</td>
-                  <td class="border border-dark" scope="col">name</td>
-                  <td class="border border-dark" scope="col">User Level</td>
-                  <td class="border border-dark" scope="col">address</td>
-                  <td class="border border-dark" scope="col">Position</td>
-                  <td class="border border-dark" scope="col">Load</td>
+                  <td class="border border-dark">User ID</td>
+                  <td class="border border-dark">name</td>
+                  <td class="border border-dark">User Level</td>
+                  <td class="border border-dark">address</td>
+                  <td class="border border-dark">Position</td>
+                  <td class="border border-dark">Load</td>
                 </tr>
               </thead>
               <tbody>
@@ -61,6 +61,8 @@
     </div>
     <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">User Information</h5>
     <br>
+
+    <form id="updateuser" name="updateuser">
     <div class="container justify-content-center">
       <div class="row mt-2">
         <div class="col-6">

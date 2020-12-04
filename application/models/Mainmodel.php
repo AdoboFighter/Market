@@ -82,12 +82,16 @@ class Mainmodel extends CI_model{
 
   public function login_acc($input)
   {
+    // $hash = '$2y$10$AU48IqTwyyySK0wzGl5XcOKNSLE5ZhGLQ2xPg4';
     $testpassword = "";
     $userdata = array();
     $data = array(
       'username' => $input['username'],
       'password' => $input['password']
+
     );
+
+
 
     $query = $this->db->select('*')
     ->from('user')
@@ -98,18 +102,21 @@ class Mainmodel extends CI_model{
     if($query->num_rows() > 0){
       foreach($query->result() as $k){
         $testpassword = $k->password;
-      }
-      if($data['password'] == $testpassword){
-        foreach($query->result() as $r){
 
+
+
+      }
+
+
+
+      if(md5($data['password']) == $testpassword){
+        foreach($query->result() as $r){
           $userdata['user_id'] = $r->user_id;
           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
           $userdata['position'] = $r->position;
           $userdata['user_level'] = $r->user_type;
           $userdata['username'] = $r->username;
         } $userdata['flag'] = 1;
-
-
         $this->session->set_userdata($userdata);
         return $userdata;
       }
@@ -118,10 +125,11 @@ class Mainmodel extends CI_model{
       }
 
     }
-    else{
 
+    else{
       return $userdata['res'] = 'usernameError';
     }
+
 
   }
 
@@ -237,13 +245,13 @@ class Mainmodel extends CI_model{
   function insert_sysUser($inputData){
 
 
-    $encrypted = SaferCrypto::encrypt($inputData['password'],'ching');
+    // $encrypted = SaferCrypto::encrypt($inputData['password'],'ching');
     $data1 = array(
       'usr_firstname' => $inputData['firstname'],
       'usr_middlename' => $inputData['middlename'],
       'usr_lastname' => $inputData['lastname'],
       'username' => $inputData['username'],
-      'password' => $encrypted ,
+      'password' => md5($inputData['password']),
       'position' => $inputData['position'],
       'user_level' => $inputData['user_lvl'],
       'usr_address' => $inputData['address'],
@@ -1797,7 +1805,7 @@ class Mainmodel extends CI_model{
       'usr_address' => $inputData['usr_add'],
       'usr_contact_number' => $inputData['usr_cn'],
       'username' => $inputData['usr_un'],
-      'password' => $inputData['usr_pass'],
+      'password' => md5($inputData['usr_pass']),
       'position' => $inputData['usr_position'],
       'user_level' => $inputData['user_lvl']
     );
@@ -1851,6 +1859,8 @@ class Mainmodel extends CI_model{
   {
     $this->db->where('user_id', $id);
     $query = $this->db->get('user');
+
+
     return $query->result();
     echo $query;
   }
@@ -2023,9 +2033,9 @@ class Mainmodel extends CI_model{
 
     $this->db->select_max('effectivity');
     $this->db->group_start()
-                ->where('effectivity >=', $now)
-                ->where_in('payment_nature_id', $paynat)
-              ->group_end();
+    ->where('effectivity >=', $now)
+    ->where_in('payment_nature_id', $paynat)
+    ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -2050,9 +2060,9 @@ class Mainmodel extends CI_model{
 
     $this->db->select_max('effectivity');
     $this->db->group_start()
-                ->where('effectivity >=', $now)
-                ->where_in('payment_nature_id', $paynat)
-              ->group_end();
+    ->where('effectivity >=', $now)
+    ->where_in('payment_nature_id', $paynat)
+    ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -2648,6 +2658,96 @@ class Mainmodel extends CI_model{
     );
     return $result;
   }
+
+
+  public function transtodaytable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+
+
+    $query = $this->db->select('*')
+    ->from('transaction')
+    ->like('payment_datetime', $now)
+    ->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner')
+    ->join('customer','customer.customer_id = transaction.customer_id','inner')
+    ->get();
+    $data =[];
+    foreach($query->result() as $k)
+    {
+      $data[] = array(
+        'id' => $k->customer_id,
+        'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+        'or' => $k->or_number,
+        'amount' =>$k->payment_amount,
+        'nature' =>$k->payment_nature_name,
+        'effectivity' =>$k->effectivity,
+        'date' =>$k->payment_datetime
+      );
+    }
+
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function stallpaidtable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+
+
+    $this->db->select_max('effectivity');
+    $this->db->group_start()
+    ->where('effectivity >=', $now)
+    ->where_in('payment_nature_id', $paynat)
+    ->group_end();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->order_by("effectivity", "DESC");
+    $this->db->group_by('customer.customer_id');
+    $query = $this->db->get();
+
+    $data =[];
+    foreach($query->result() as $k)
+    {
+      $data[] = array(
+        'id' => $k->customer_id,
+        'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+        'unit' => $k->unit_no,
+        'or' => $k->or_number,
+        'amount' =>$k->payment_amount,
+        'nature' =>$k->payment_nature_name,
+        'effectivity' =>$k->effectivity,
+        'date' =>$k->payment_datetime
+      );
+    }
+
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+
 
 
 

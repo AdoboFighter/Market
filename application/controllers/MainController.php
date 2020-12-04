@@ -1030,6 +1030,17 @@ public function printreceipt()
     echo json_encode($this->model->add_park_get_stall($search));
   }
 
+  public function transtodaytable()
+  {
+    $query = $this->model->transtodaytable();
+    echo json_encode($query);
+  }
+
+  public function stallpaidtable()
+  {
+    $query = $this->model->stallpaidtable();
+    echo json_encode($query);
+  }
 
 
 }

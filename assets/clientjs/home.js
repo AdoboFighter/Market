@@ -133,57 +133,145 @@ $(document).ready(function(){
     });
   });
 
+  $('#transtodaytable').DataTable({
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/transtodaytable',
+      dataSrc : 'data'
+    },
+    "columns" : [
+    {
+      "data" : "id"
+    },
+
+    {
+      "data" : "name"
+    },
+
+    {
+      "data" : "or"
+    },
+
+
+    {
+      "data" : "amount"
+    },
+
+    {
+      "data" : "nature"
+    },
+
+    {
+      "data" : "effectivity"
+    },
+
+    {
+      "data" : "date"
+    }]
+  });
+
+  $('#stallpaidtable').DataTable({
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/stallpaidtable',
+      dataSrc : 'data'
+    },
+    "columns" : [
+    {
+      "data" : "id"
+    },
+
+    {
+      "data" : "name"
+    },
+
+    {
+      "data" : "unit"
+    },
+
+    {
+      "data" : "or"
+    },
+
+
+    {
+      "data" : "amount"
+    },
+
+    {
+      "data" : "nature"
+    },
+
+    {
+      "data" : "effectivity"
+    },
+
+    {
+      "data" : "date"
+    }]
+  });
+
 
 });
 
 
-  $( "#userclick" ).on('click',function() {
-    $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
-
-    $("#userdetailsmodal").modal('show');
-
+$( "#userclick" ).on('click',function() {
+  $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#regambuclick" ).on('click',function() {
-    $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
+  $("#userdetailsmodal").modal('show');
 
+});
+
+$( "#regambuclick" ).on('click',function() {
+  $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#violationclick" ).on('click',function() {
-    $('#violationclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
+  $("#regambuclickmodal").modal('show');
 
+});
+
+$( "#violationclick" ).on('click',function() {
+  $('#violationclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#stallspaidclick" ).on('click',function() {
-    $('#stallspaidclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
+  $("#violationclickmodal").modal('show');
 
+});
+
+$( "#stallspaidclick" ).on('click',function() {
+  $('#stallspaidclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#transtodayclick" ).on('click',function() {
-    $('#transtodayclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
+  $("#stallspaidclickmodal").modal('show');
 
+});
+
+$( "#transtodayclick" ).on('click',function() {
+  $('#transtodayclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#dateclick" ).on('click',function() {
-    $('#dateclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
+  $("#transtodayclickmodal").modal('show');
 
+});
+
+$( "#dateclick" ).on('click',function() {
+  $('#dateclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
 
-  $( "#debtclick" ).on('click',function() {
-    $('#debtclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass();
-    });
 
+
+});
+
+$( "#debtclick" ).on('click',function() {
+  $('#debtclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass();
   });
+
+  $("#debtclickmodal").modal('show');
+
+});
