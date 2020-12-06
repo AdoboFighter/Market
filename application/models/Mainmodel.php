@@ -2710,17 +2710,18 @@ class Mainmodel extends CI_model{
     $this->load->helper('date');
 
 
-    $this->db->select_max('effectivity');
+    $this->db->select('*');
     $this->db->group_start()
     ->where('effectivity >=', $now)
-    ->where_in('payment_nature_id', $paynat)
+    ->where_in('payment_nature.payment_nature_id', $paynat)
     ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
     $this->db->order_by("effectivity", "DESC");
     $this->db->group_by('customer.customer_id');
-    $query = $this->db->get();
+    $query = $this->db->get('customer');
 
     $data =[];
     foreach($query->result() as $k)
@@ -2745,6 +2746,135 @@ class Mainmodel extends CI_model{
     );
     return $result;
   }
+
+  public function ambutablehome()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id=customer.customer_id');
+    $this->db->join('ambulant_unit', 'ambulant.ambulant_id=ambulant_unit.ambulant_id');
+    $query = $this->db->get('customer');
+
+    $data =[];
+    foreach($query->result() as $k)
+    {
+      $data[] = array(
+        'id' => $k->customer_id,
+        'pay_ambu_location' => $k->location,
+        'pay_ambu_locnum'=> $k->location_no,
+        'nature_of_business'=> $k->nature_of_business,
+        'pay_ambu_name'=> $k->firstname.' '.$k->middlename.' '.$k->lastname
+      );
+    }
+
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+  // public function debttableno()
+  // {
+  //
+  //   $draw = intval($this->input->get("draw"));
+  //   $start = intval($this->input->get("start"));
+  //   $length = intval($this->input->get("length"));
+  //   $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+  //   $now = date('Y-m-d');
+  //   $this->load->helper('date');
+  //
+  //
+  //   $this->db->select('*');
+  //   $this->db->where('IS NULL(transaction.effectivity)');
+  //   $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'right');
+  //   $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'right');
+  //   $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+  //   $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
+  //   $this->db->order_by("effectivity", "DESC");
+  //   $this->db->group_by('customer.customer_id');
+  //   $query = $this->db->get('customer');
+  //
+  //   $data =[];
+  //   foreach($query->result() as $k)
+  //   {
+  //     $data[] = array(
+  //       'id' => $k->customer_id,
+  //       'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+  //       'unit' => $k->unit_no,
+  //       'or' => $k->or_number,
+  //       'amount' =>$k->payment_amount,
+  //       'nature' =>$k->payment_nature_name,
+  //       'effectivity' =>$k->effectivity,
+  //       'date' =>$k->payment_datetime
+  //     );
+  //   }
+  //
+  //   $result = array(
+  //     "draw" => $draw,
+  //     "recordsTotal" => $query->num_rows(),
+  //     "recordsFiltered" => $query->num_rows(),
+  //     "data" => $data
+  //   );
+  //   return $result;
+  // }
+  //
+  //
+  // public function debttablewith()
+  // {
+  //
+  //   $draw = intval($this->input->get("draw"));
+  //   $start = intval($this->input->get("start"));
+  //   $length = intval($this->input->get("length"));
+  //   $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+  //   $now = date('Y-m-d');
+  //   $this->load->helper('date');
+  //
+  //
+  //   $this->db->select('*');
+  //   // $this->db->select('IFNULL(`effectivity`, "NO PASTA")');
+  //   // $this->db->group_start()
+  //   // ->where('effectivity >=', $now)
+  //   // ->where_in('payment_nature.payment_nature_id', $paynat)
+  //   // ->group_end();
+  //   $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  //   $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  //
+  //   $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
+  //   $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+  //   $this->db->order_by("effectivity", "DESC");
+  //   $this->db->group_by('customer.customer_id');
+  //   $query = $this->db->get('customer');
+  //
+  //   $data =[];
+  //   foreach($query->result() as $k)
+  //   {
+  //     $data[] = array(
+  //       'id' => $k->customer_id,
+  //       'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+  //       'unit' => $k->unit_no,
+  //       'or' => $k->or_number,
+  //       'amount' =>$k->payment_amount,
+  //       'nature' =>$k->effectivity,
+  //       'effectivity' =>$k->effectivity,
+  //       'date' =>$k->payment_datetime
+  //     );
+  //   }
+  //
+  //   $result = array(
+  //     "draw" => $draw,
+  //     "recordsTotal" => $query->num_rows(),
+  //     "recordsFiltered" => $query->num_rows(),
+  //     "data" => $data
+  //   );
+  //   return $result;
+  // }
+
 
 
 

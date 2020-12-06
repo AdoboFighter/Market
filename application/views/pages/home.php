@@ -250,72 +250,62 @@
 </div>
 
 <div id="regambuclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">System User</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Registered Ambulants</h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <div class="mb-2">
-          <label>System User</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_fullname'); ?>"readonly>
-        </div>
-
-        <div class="mb-2">
-          <label>Username</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('username'); ?>"readonly>
-        </div>
-
-        <div class="mb-2">
-          <label>Position</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('position'); ?>"readonly>
-        </div>
-
-        <div class="mb-2">
-          <label>User Level</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_level'); ?>"readonly>
-        </div>
+        <table width="100%" class="table table-striped table-bordered shadow" id="ambutablehome">
+          <thead>
+            <tr>
+              <td class="border border-dark">Customer ID</td>
+              <td class="border border-dark">Full Name</td>
+              <td class="border border-dark">Location</td>
+              <td class="border border-dark">Location Number</td>
+              <td class="border border-dark">Nature of business</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
 
       </div>
-
     </div>
   </div>
 </div>
 
 <div id="violationclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">System User</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Violations</h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <div class="mb-2">
-          <label>System User</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_fullname'); ?>"readonly>
-        </div>
 
-        <div class="mb-2">
-          <label>Username</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('username'); ?>"readonly>
-        </div>
+          <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
+            <thead>
+              <tr>
+                <td class="border border-dark">Customer ID</td>
+                <td class="border border-dark">description</td>
+                <td class="border border-dark">date occurred</td>
+                <td class="border border-dark">status</td>
+                <td class="border border-dark">name</td>
+                <!-- <td class="border border-dark">Resolve</td> -->
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
 
-        <div class="mb-2">
-          <label>Position</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('position'); ?>"readonly>
-        </div>
-
-        <div class="mb-2">
-          <label>User Level</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_level'); ?>"readonly>
-        </div>
 
       </div>
 
@@ -327,7 +317,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">System User</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Paid Stalls</h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -360,7 +350,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalPreviewLabel"> User</h5> -->
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Transactions Today</h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -424,38 +414,76 @@
 </div>
 
 <div id="debtclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">System User</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Debt list</h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <div class="mb-2">
-          <label>System User</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_fullname'); ?>"readonly>
-        </div>
+        <h5>Under Development</h5>
+        <!-- <ul class="nav nav-tabs nav-justified md-tabs bluegrads" id="myTabJust" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab-just" data-toggle="tab" href="#home-just" role="tab" aria-controls="home-just"
+            aria-selected="true">With Past Transaction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#profile-just" role="tab" aria-controls="profile-just"
+            aria-selected="false">No Past transactions</a>
+          </li>
+        </ul>
+        <div class="tab-content card pt-1" id="myTabContentJust"> -->
 
-        <div class="mb-2">
-          <label>Username</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('username'); ?>"readonly>
-        </div>
+<!--
+          <div class="tab-pane fade show active" id="home-just" role="tabpanel" aria-labelledby="home-tab-just">
+            <table width="100%" class="table table-sm table-bordered text-center" id="debttablewith">
+              <thead >
+                <tr>
+                  <td class="border border-dark">Customer ID</td>
+                  <td class="border border-dark">Name</td>
+                  <td class="border border-dark">Stall Number</td>
+                  <td class="border border-dark">O.R</td>
+                  <td class="border border-dark">Amount</td>
+                  <td class="border border-dark">Payment Type</td>
+                  <td class="border border-dark">Effectivity</td>
+                  <td class="border border-dark">Date & Time</td>
+                </tr>
+              </thead>
 
-        <div class="mb-2">
-          <label>Position</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('position'); ?>"readonly>
-        </div>
+              <tbody id="tbodyParticulars"></tbody>
+            </table>
+          </div>
 
-        <div class="mb-2">
-          <label>User Level</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_level'); ?>"readonly>
+
+          <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
+            <table width="100%" class="table table-sm table-bordered text-center" id="debttableno">
+              <thead >
+                <tr>
+                  <td class="border border-dark">Customer ID</td>
+                  <td class="border border-dark">Name</td>
+                  <td class="border border-dark">Stall Number</td>
+                  <td class="border border-dark">O.R</td>
+                  <td class="border border-dark">Amount</td>
+                  <td class="border border-dark">Payment Type</td>
+                  <td class="border border-dark">Effectivity</td>
+                  <td class="border border-dark">Date & Time</td>
+                </tr>
+              </thead>
+
+              <tbody id="tbodyParticulars"></tbody>
+            </table>
+            </div>
+
+
+
+
+          </div> -->
+
         </div>
 
       </div>
-
     </div>
   </div>
-</div>

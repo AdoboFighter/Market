@@ -139,139 +139,269 @@ $(document).ready(function(){
       dataSrc : 'data'
     },
     "columns" : [
-    {
-      "data" : "id"
-    },
+      {
+        "data" : "id"
+      },
 
-    {
-      "data" : "name"
-    },
+      {
+        "data" : "name"
+      },
 
-    {
-      "data" : "or"
-    },
-
-
-    {
-      "data" : "amount"
-    },
-
-    {
-      "data" : "nature"
-    },
-
-    {
-      "data" : "effectivity"
-    },
-
-    {
-      "data" : "date"
-    }]
-  });
-
-  $('#stallpaidtable').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/stallpaidtable',
-      dataSrc : 'data'
-    },
-    "columns" : [
-    {
-      "data" : "id"
-    },
-
-    {
-      "data" : "name"
-    },
-
-    {
-      "data" : "unit"
-    },
-
-    {
-      "data" : "or"
-    },
+      {
+        "data" : "or"
+      },
 
 
-    {
-      "data" : "amount"
-    },
+      {
+        "data" : "amount"
+      },
 
-    {
-      "data" : "nature"
-    },
+      {
+        "data" : "nature"
+      },
 
-    {
-      "data" : "effectivity"
-    },
+      {
+        "data" : "effectivity"
+      },
 
-    {
-      "data" : "date"
-    }]
-  });
+      {
+        "data" : "date"
+      }]
+    });
 
+    $('#stallpaidtable').DataTable({
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/stallpaidtable',
+        dataSrc : 'data'
+      },
+      "columns" : [
+        {
+          "data" : "id"
+        },
 
-});
+        {
+          "data" : "name"
+        },
 
+        {
+          "data" : "unit"
+        },
 
-$( "#userclick" ).on('click',function() {
-  $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
-
-  $("#userdetailsmodal").modal('show');
-
-});
-
-$( "#regambuclick" ).on('click',function() {
-  $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
-
-  $("#regambuclickmodal").modal('show');
-
-});
-
-$( "#violationclick" ).on('click',function() {
-  $('#violationclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
-
-  $("#violationclickmodal").modal('show');
-
-});
-
-$( "#stallspaidclick" ).on('click',function() {
-  $('#stallspaidclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
-
-  $("#stallspaidclickmodal").modal('show');
-
-});
-
-$( "#transtodayclick" ).on('click',function() {
-  $('#transtodayclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
-
-  $("#transtodayclickmodal").modal('show');
-
-});
-
-$( "#dateclick" ).on('click',function() {
-  $('#dateclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
+        {
+          "data" : "or"
+        },
 
 
+        {
+          "data" : "amount"
+        },
 
-});
+        {
+          "data" : "nature"
+        },
 
-$( "#debtclick" ).on('click',function() {
-  $('#debtclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass();
-  });
+        {
+          "data" : "effectivity"
+        },
 
-  $("#debtclickmodal").modal('show');
+        {
+          "data" : "date"
+        }]
+      });
 
-});
+      $('#ambutablehome').DataTable({
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/ambutablehome',
+          dataSrc : 'data'
+        },
+        "columns" : [
+          {
+            "data" : "id"
+          },
+          {
+            "data" : "pay_ambu_name"
+          },
+
+          {
+            "data" : "pay_ambu_location"
+          },
+
+          {
+            "data" : "pay_ambu_locnum"
+          },
+
+          {
+            "data" : "nature_of_business"
+          }]
+        });
+
+      // $('#debttablewith').DataTable({
+      //   "ajax" : {
+      //     "url" : global.settings.url + '/MainController/debttablewith',
+      //     dataSrc : 'data'
+      //   },
+      //   "columns" : [
+      //     {
+      //       "data" : "id"
+      //     },
+      //
+      //     {
+      //       "data" : "name"
+      //     },
+      //
+      //     {
+      //       "data" : "unit"
+      //     },
+      //
+      //     {
+      //       "data" : "or"
+      //     },
+      //
+      //
+      //     {
+      //       "data" : "amount"
+      //     },
+      //
+      //     {
+      //       "data" : "nature"
+      //     },
+      //
+      //     {
+      //       "data" : "effectivity"
+      //     },
+      //
+      //     {
+      //       "data" : "date"
+      //     }]
+      //   });
+      //
+      //   $('#debttableno').DataTable({
+      //     "ajax" : {
+      //       "url" : global.settings.url + '/MainController/debttableno',
+      //       dataSrc : 'data'
+      //     },
+      //     "columns" : [
+      //       {
+      //         "data" : "id"
+      //       },
+      //
+      //       {
+      //         "data" : "name"
+      //       },
+      //
+      //       {
+      //         "data" : "unit"
+      //       },
+      //
+      //       {
+      //         "data" : "or"
+      //       },
+      //
+      //
+      //       {
+      //         "data" : "amount"
+      //       },
+      //
+      //       {
+      //         "data" : "nature"
+      //       },
+      //
+      //       {
+      //         "data" : "effectivity"
+      //       },
+      //
+      //       {
+      //         "data" : "date"
+      //       }]
+      //     });
+
+      $('#getviolationtable').DataTable({
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/get_violation_data_con',
+          dataSrc : 'data'
+        },
+        "columns" : [
+        {
+          "data" : "customer_id"
+        },
+        {
+          "data" : "description"
+        },
+        {
+          "data" : "date_occured"
+        },
+
+        {
+          "data" : "status"
+        },
+        {
+          "data" : "name"
+        }]
+      });
+
+
+      });
+
+
+      $( "#userclick" ).on('click',function() {
+        $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#userdetailsmodal").modal('show');
+
+      });
+
+      $( "#regambuclick" ).on('click',function() {
+        $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#regambuclickmodal").modal('show');
+
+      });
+
+      $( "#violationclick" ).on('click',function() {
+        $('#violationclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#violationclickmodal").modal('show');
+
+      });
+
+      $( "#stallspaidclick" ).on('click',function() {
+        $('#stallspaidclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#stallspaidclickmodal").modal('show');
+
+      });
+
+      $( "#transtodayclick" ).on('click',function() {
+        $('#transtodayclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#transtodayclickmodal").modal('show');
+
+      });
+
+      $( "#dateclick" ).on('click',function() {
+        $('#dateclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+
+
+      });
+
+      $( "#debtclick" ).on('click',function() {
+        $('#debtclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#debtclickmodal").modal('show');
+
+      });

@@ -1042,6 +1042,25 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function ambutablehome()
+  {
+    $query = $this->model->ambutablehome();
+    echo json_encode($query);
+  }
+
+  // public function debttablewith()
+  // {
+  //   $query = $this->model->debttablewith();
+  //   echo json_encode($query);
+  // }
+  //
+  // public function debttableno()
+  // {
+  //   $query = $this->model->debttableno();
+  //   echo json_encode($query);
+  // }
+
+
 
 }
 

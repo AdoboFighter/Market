@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.3.155',
-	'username' => 'mac',
+	'hostname' => 'localhost',
+	'username' => 'root',
 	'password' => '1234',
-	'database' => 'market_db',
+	'database' => 'newmarket',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
