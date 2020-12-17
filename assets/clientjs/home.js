@@ -275,45 +275,46 @@ $(document).ready(function(){
       //     }]
       //   });
       //
-      //   $('#debttableno').DataTable({
-      //     "ajax" : {
-      //       "url" : global.settings.url + '/MainController/debttableno',
-      //       dataSrc : 'data'
-      //     },
-      //     "columns" : [
-      //       {
-      //         "data" : "id"
-      //       },
-      //
-      //       {
-      //         "data" : "name"
-      //       },
-      //
-      //       {
-      //         "data" : "unit"
-      //       },
-      //
-      //       {
-      //         "data" : "or"
-      //       },
-      //
-      //
-      //       {
-      //         "data" : "amount"
-      //       },
-      //
-      //       {
-      //         "data" : "nature"
-      //       },
-      //
-      //       {
-      //         "data" : "effectivity"
-      //       },
-      //
-      //       {
-      //         "data" : "date"
-      //       }]
-      //     });
+
+        $('#debttable').DataTable({
+          "ajax" : {
+            "url" : global.settings.url + '/MainController/debttable',
+            dataSrc : 'data'
+          },
+          "columns" : [
+            {
+              "data" : "id"
+            },
+
+            {
+              "data" : "name"
+            },
+
+            {
+              "data" : "unit"
+            },
+
+            {
+              "data" : "or"
+            },
+
+
+            {
+              "data" : "amount"
+            },
+
+            {
+              "data" : "nature"
+            },
+
+            {
+              "data" : "effectivity"
+            },
+
+            {
+              "data" : "date"
+            }]
+          });
 
       $('#getviolationtable').DataTable({
         "ajax" : {

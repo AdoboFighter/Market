@@ -1048,11 +1048,11 @@ public function printreceipt()
     echo json_encode($query);
   }
 
-  // public function debttablewith()
-  // {
-  //   $query = $this->model->debttablewith();
-  //   echo json_encode($query);
-  // }
+  public function debttable()
+  {
+    $query = $this->model->debttable();
+    echo json_encode($query);
+  }
   //
   // public function debttableno()
   // {

@@ -134,6 +134,46 @@
 </div>
 </form>
 
+<div class="modal fade" id="loginauthmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="login_account">
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label>User ID</label>
+          <input type="text" class="form-control" id="usr_id_auth" disabled>
+        </div>
+
+        <div class="mb-2">
+          <label>Username</label>
+          <input type="text" class="form-control" name="login[username]" id="username" disabled>
+        </div>
+
+        <div class="mb-2">
+          <label>Password</label>
+          <input type="text" class="form-control" name="login[password]" id="password">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button type="submit" class="btn bluegrads text-white">Confirm</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <div id="success" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content p-3">

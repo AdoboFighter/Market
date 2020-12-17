@@ -361,13 +361,18 @@
           </div>
 
 
-
+          <div class="custom-control custom-checkbox mb-2">
+            <input type="checkbox" class="custom-control-input" id="sub_total_box" checked>
+            <label class="custom-control-label" for="sub_total_box">Sub total</label>
+          </div>
 
           <div class="mb-2">
             <label>Amount to pay</label>
             <!-- <input type="text" placeholder="0.00" value="0.00" class="form-control payment_details ntw inputmoney money2" name="amount_to_pay" id="payment_amount_to_pay2" onkeypress="return isNumberKey(this, event);" ondrop="return false;" onpaste="return false;" oncontextmenu="return false;" required> -->
-            <input type="text" placeholder="0.00" value="0.00" class="form-control text-right money2" name="amount_to_pay" id="payment_amount_to_pay2" onfocus="this.value=''" required>
+            <input type="text" placeholder="0.00" value="0.00" class="form-control text-right money2" name="amount_to_pay" id="payment_amount_to_pay2" onfocus="this.value=''" >
           </div>
+
+
           <br>
           <button type="submit" class ="float-right stylish-color-dark btn text-white" id ="add_item_type">Add</button>
         </form>

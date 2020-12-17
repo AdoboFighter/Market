@@ -359,7 +359,9 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
   $('#addRow').click(
+
     function() {
+      $("#payment_amount_to_pay2").prop("disabled", false );
       $("#other_items").attr("hidden",true);
       $("#others_f").attr("required",false);
       $("#add_Newitem_form")[0].reset();
@@ -1761,3 +1763,22 @@ $("#payment_or_number").inputFilter(function(value) {
           }
           return true;
         }
+
+//new shit
+//new shit
+//new shit
+//new shit
+
+$('#sub_total_box').click(function(){
+  if($(this).is(":checked")){
+    console.log("checked");
+    $("#payment_amount_to_pay2").prop("disabled", false );
+
+  }
+
+  else if($(this).is(":not(:checked)")){
+    console.log("not checked");
+    $("#payment_amount_to_pay2").prop("disabled", true );
+    $("#payment_amount_to_pay2").val(0);
+  }
+});

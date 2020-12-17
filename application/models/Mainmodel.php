@@ -1842,7 +1842,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
+        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
       );
     }
@@ -2825,55 +2825,53 @@ class Mainmodel extends CI_model{
   // }
   //
   //
-  // public function debttablewith()
-  // {
-  //
-  //   $draw = intval($this->input->get("draw"));
-  //   $start = intval($this->input->get("start"));
-  //   $length = intval($this->input->get("length"));
-  //   $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
-  //   $now = date('Y-m-d');
-  //   $this->load->helper('date');
-  //
-  //
-  //   $this->db->select('*');
-  //   // $this->db->select('IFNULL(`effectivity`, "NO PASTA")');
-  //   // $this->db->group_start()
-  //   // ->where('effectivity >=', $now)
-  //   // ->where_in('payment_nature.payment_nature_id', $paynat)
-  //   // ->group_end();
-  //   $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-  //   $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-  //
-  //   $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
-  //   $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
-  //   $this->db->order_by("effectivity", "DESC");
-  //   $this->db->group_by('customer.customer_id');
-  //   $query = $this->db->get('customer');
-  //
-  //   $data =[];
-  //   foreach($query->result() as $k)
-  //   {
-  //     $data[] = array(
-  //       'id' => $k->customer_id,
-  //       'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
-  //       'unit' => $k->unit_no,
-  //       'or' => $k->or_number,
-  //       'amount' =>$k->payment_amount,
-  //       'nature' =>$k->effectivity,
-  //       'effectivity' =>$k->effectivity,
-  //       'date' =>$k->payment_datetime
-  //     );
-  //   }
-  //
-  //   $result = array(
-  //     "draw" => $draw,
-  //     "recordsTotal" => $query->num_rows(),
-  //     "recordsFiltered" => $query->num_rows(),
-  //     "data" => $data
-  //   );
-  //   return $result;
-  // }
+  public function debttable()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+    $now = date('Y-m-d');
+    $this->load->helper('date');
+
+
+    $this->db->select('*');
+    $this->db->group_start()
+    ->where('effectivity >=', $now)
+    ->where_in('payment_nature.payment_nature_id', $paynat)
+    ->group_end();
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->order_by("effectivity", "DESC");
+    $this->db->group_by('customer.customer_id');
+    $query = $this->db->get('customer');
+
+    $data =[];
+    foreach($query->result() as $k)
+    {
+      $data[] = array(
+        'id' => $k->customer_id,
+        'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+        'unit' => $k->unit_no,
+        'or' => $k->or_number,
+        'amount' =>$k->payment_amount,
+        'nature' =>$k->effectivity,
+        'effectivity' =>$k->effectivity,
+        'date' =>$k->payment_datetime
+      );
+    }
+
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
 
 
 
