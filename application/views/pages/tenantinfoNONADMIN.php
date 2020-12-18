@@ -68,7 +68,7 @@
   </div>
   <br>
   <br>
-  <form id="updatecustomerinfo">
+  <form id="updatecustomerinfo2">
     <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
     <br>
     <div class="container justify-content-center">
@@ -79,23 +79,23 @@
           <div class="col-6">
             <div class=" form-group">
               <label>Business name:</label>
-              <input type="input" class="form-control" name="update[business_name]" id="business_name" readonly>
+              <input type="input" class="form-control" name="update[business_name]" id="business_name" >
             </div>
 
             <div class=" form-group">
               <label>Business ID:</label>
-              <input type="input" maxlength="7" class="form-control" name="update[business_id]" id="business_id" readonly>
+              <input type="input" maxlength="7" class="form-control" name="update[business_id]" id="business_id" >
             </div>
 
             <div class="form-group" id="">
               <label for="">Date Registered</label>
-              <input type="date" class="form-control" id="stallf_date_reg" name="update[Date_Registered]" readonly>
+              <input type="date" class="form-control" id="stallf_date_reg" name="update[Date_Registered]" >
               <span id="" class="text-danger"></span>
             </div>
 
             <div class="form-group" id="">
               <label for="">Date Renewed</label>
-              <input type="date" class="form-control" id="stallf_date_renew" name="update[Date_Renewed]" readonly>
+              <input type="date" class="form-control" id="stallf_date_renew" name="update[Date_Renewed]" >
               <span id="" class="text-danger"></span>
             </div>
 
@@ -119,35 +119,35 @@
           <div class="col-6">
             <div class="form-group">
               <label>Section</label>
-              <input type="input" class="form-control" id="Section" readonly>
+              <input type="input" class="form-control" id="Section" >
             </div>
 
             <div class="form-group" id="floorlevel">
               <label>Floor Level</label>
-              <input type="input" class="form-control" id="stall_flr_lvl" readonly>
+              <input type="input" class="form-control" id="stall_flr_lvl" >
             </div>
 
             <div class=" form-group">
               <label>Nature of Business:</label>
-              <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" readonly>
+              <input type="input" class="form-control" name="update[nature_or_business]" id="nature_or_business" >
             </div>
 
             <div class=" form-group" >
               <label>Stall No:</label>
-              <input type="input" class="form-control" name="update[stall_number]" id="stall_number" readonly>
+              <input type="input" class="form-control" name="update[stall_number]" id="stall_number" >
             </div>
             <div class=" form-group" >
               <label>Area(sqm):</label>
-              <input type="input" class="form-control" name="update[area]" id="area" readonly>
+              <input type="input" class="form-control" name="update[area]" id="area" >
             </div>
             <div class=" form-group">
               <label>Daily Fee:</label>
-              <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" readonly>
+              <input type="input" class="form-control" name="update[daily_fee]" id="daily_fee" >
             </div>
 
             <div class=" form-group" id="">
               <label>Date Occupied:</label>
-              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" readonly>
+              <input type="date" class="form-control" name="update[date_occupied]" id="date_occupied" >
             </div>
           </div>
 
@@ -163,23 +163,23 @@
             <input type="text" hidden id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
-              <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" readonly>
+              <input type="input" class="form-control" name="update[owner_fn]" id="owner_fn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Middile name:</label>
-              <input type="input" class="form-control" name="update[owner_mn]" id="owner_mn" readonly>
+              <input type="input" class="form-control" name="update[owner_mn]" id="owner_mn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Last name:</label>
-              <input type="input" class="form-control" name="update[owner_ln]" id="owner_ln" readonly>
+              <input type="input" class="form-control" name="update[owner_ln]" id="owner_ln" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Address:</label>
-              <input type="input" class="form-control" name="update[owner_add]" id="owner_add" readonly>
+              <input type="input" class="form-control" name="update[owner_add]" id="owner_add" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="text" maxlength="11" class="form-control" name="update[owner_cn]" id="owner_cn" readonly>
+              <input type="text" maxlength="11" class="form-control" name="update[owner_cn]" id="owner_cn" >
             </div>
           </div>
         </div>
@@ -189,31 +189,33 @@
             <h5 class="font-weight-bold">Occupant's Information</h5>
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
-              <input type="input" class="form-control" name="update[occu_fn]" id="occu_fn" readonly>
+              <input type="input" class="form-control" name="update[occu_fn]" id="occu_fn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Middile name:</label>
-              <input type="input" class="form-control" name="update[occu_mn]" id="occu_mn" readonly>
+              <input type="input" class="form-control" name="update[occu_mn]" id="occu_mn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Last name:</label>
-              <input type="input" class="form-control" name="update[occu_ln]" id="occu_ln" readonly>
+              <input type="input" class="form-control" name="update[occu_ln]" id="occu_ln" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Address:</label>
-              <input type="input" class="form-control" name="update[occu_add]" id="occu_add" readonly>
+              <input type="input" class="form-control" name="update[occu_add]" id="occu_add" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="text" maxlength="11" class="form-control" name="update[occu_cn]" id="occu_cn" readonly>
+              <input type="text" maxlength="11" class="form-control" name="update[occu_cn]" id="occu_cn" >
             </div>
             <div class="row p-2">
               <div class="p-2">
                 <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
               </div>
+
               <div class="p-2">
-                <!-- <button class="btn btn-primary" type="submit">Update</button> -->
+                <button class="btn btn-primary" type="button" onclick="openauth()">Update</button>
               </div>
+
             </div>
           </div>
           <br>
@@ -261,3 +263,39 @@
 </div>
 
 <div class="overlay"></div>
+
+
+
+<div class="modal fade" id="loginauthmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="login_account">
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label>Username</label>
+          <input type="text" class="form-control" name="login[username]" id="username">
+        </div>
+
+        <div class="mb-2">
+          <label>Password</label>
+          <input type="text" class="form-control" name="login[password]" id="password">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button type="submit" class="btn bluegrads text-white">Confirm</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

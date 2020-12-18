@@ -114,7 +114,7 @@ class Mainmodel extends CI_model{
           $userdata['user_id'] = $r->user_id;
           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
           $userdata['position'] = $r->position;
-          $userdata['user_level'] = $r->user_type;
+          $userdata['user_level'] = $r->user_level;
           $userdata['username'] = $r->username;
         } $userdata['flag'] = 1;
         $this->session->set_userdata($userdata);
