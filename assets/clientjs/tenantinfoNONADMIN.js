@@ -371,29 +371,28 @@ $(document).ready(function(){
     }
 
 
-    function submitDetailsForm() {
-      console.log("loob ng submit deatils");
-      $('#updatecustomerinfo2').submit(function(e){
-        e.preventDefault();
-        $.ajax({
-          url: global.settings.url + '/MainController/updatecustomerinfo',
-          type: 'POST',
-          data: $(this).serialize(),
-          dataType:'JSON',
-          success: function(res){
-            Swal.fire({
-              icon: 'success',
-              title: 'Updated',
-            });
-            $('#client_table').DataTable().ajax.reload();
-            // $('#updatecustomerinfo')[0].reset();
-          },
-          error:function(res){
+    $('#updatecustomerinfo2').submit(function(e){
+      console.log("helllo");
+      e.preventDefault();
+      $.ajax({
+        url: global.settings.url + '/MainController/updatecustomerinfo',
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType:'JSON',
+        success: function(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+          });
+          $('#client_table').DataTable().ajax.reload();
+          // $('#updatecustomerinfo')[0].reset();
+        },
+        error:function(res){
 
-          }
-        });
+        }
       });
-    }
+    });
+    
 
     $('#login_account').submit(function(e){
       e.preventDefault();
@@ -418,7 +417,7 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
                 $("#loginauthmodal").modal('hide');
-                submitDetailsForm();
+                $( "#updatecustomerinfo2" ).submit();
 
 
 

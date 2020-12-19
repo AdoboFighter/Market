@@ -152,7 +152,8 @@ class Mainmodel extends CI_model{
       'unit_no' =>$data['stall_number'],
       'sqm' =>$data['area'],
       'dailyfee' =>$data['daily_fee'],
-      'floor_level' =>$data['floor_level']
+      'floor_level' =>$data['floor_level'],
+      'section' =>$data['section'],
     );
 
     $data3 = array(

@@ -119,12 +119,12 @@
           <div class="col-6">
             <div class="form-group">
               <label>Section</label>
-              <input type="input" class="form-control" id="Section" >
+              <input type="input" class="form-control" name="update[section]" id="Section" >
             </div>
 
             <div class="form-group" id="floorlevel">
               <label>Floor Level</label>
-              <input type="input" class="form-control" id="stall_flr_lvl" >
+              <input type="input" class="form-control" name="update[floor_level]"  id="stall_flr_lvl" >
             </div>
 
             <div class=" form-group">
