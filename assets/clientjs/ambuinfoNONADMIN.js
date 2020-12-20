@@ -97,58 +97,6 @@ $(document).ready(function(){
 
 
 
-  // datable =  $('#AmbulantTable').DataTable({
-  //   "ajax" : {
-  //     "url" : global.settings.url + '/MainController/getPayAmbulantTableCon',
-  //     dataSrc : 'data'
-  //   },
-  //   "columns" : [
-  //     {
-  //       "data" : "id"
-  //     },
-  //     {
-  //       "data" : "pay_ambu_name"
-  //     },
-  //
-  //     {
-  //       "data" : "pay_ambu_location"
-  //     },
-  //
-  //     {
-  //       "data" : "pay_ambu_locnum"
-  //     },
-  //
-  //     {
-  //       "data" : "btn"
-  //     }
-  //   ]
-  //
-  //   });
-
-  $('.dataTables_length').addClass('bs-select');
-  $('#updatecustomerinfo').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-      url: global.settings.url + '/MainController/updateambulantinfo',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        Swal.fire(
-          'Success',
-          'User Information Updated',
-          'success'
-        );
-        $('#updatecustomerinfo')[0].reset();
-        datable.ajax.reload();
-      },
-      error:function(res){
-
-      }
-    });
-
-  });
-
 });
 
 function fetchdata(id){
@@ -220,3 +168,100 @@ function transactionhistory(id)
 
   $('.dataTables_length').addClass('bs-select');
 }
+
+function openauth(){
+  $("#loginauthmodal").modal('show');
+}
+
+
+$('#updatecustomerinfo').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: global.settings.url + '/MainController/updateambulantinfo',
+    type: 'POST',
+    data: $(this).serialize(),
+    dataType:'JSON',
+    success: function(res){
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated',
+      });
+    console.log("lehoo");
+      $('#updatecustomerinfo')[0].reset();
+      $('#AmbulantTable').DataTable().ajax.reload();
+      $('#updatecustomerinfo')[0].reset();
+    },
+    error:function(res){
+
+    }
+  });
+
+});
+
+
+
+$('#login_account').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url : global.settings.url + '/Pages/login_acc',
+    type : 'POST',
+    data : $(this).serialize(),
+    dataType : 'json',
+    success : function(res){
+
+      if(res.user_level == 0)
+      {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Do you want to save changes?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+            $("#loginauthmodal").modal('hide');
+            $( "#updatecustomerinfo" ).submit();
+            $('#login_account')[0].reset();
+
+
+          } else{
+            console.log("no");
+
+          }
+
+        })
+
+
+      }else if (res.user_level == 1) {
+        Swal.fire({
+          icon: 'error',
+          title: 'User Not Authorized'
+        });
+      }
+      else if(res == 'usernameError'){
+        Swal.fire({
+          icon: 'error',
+          title: 'Wrong Credentials',
+          text: 'Username not found'
+        });
+      }
+      else if(res == 'passwordError'){
+        Swal.fire({
+          icon: 'error',
+          title: 'Wrong Credentials',
+          text: 'password does not match'
+        });
+      }
+
+
+    },
+    error : function(xhr){
+      console.log('kenneth');
+      console.log(xhr.responseText);
+    }
+  })
+
+});

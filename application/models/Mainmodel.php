@@ -1829,7 +1829,10 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
+    $usertype = array("1","2");
+
     $this->db->like("concat($searchcat)",$search);
+    $this->db->where_in('user.user_id', $usertype);
     $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
     $query = $this->db->get('user');
     $data = [];

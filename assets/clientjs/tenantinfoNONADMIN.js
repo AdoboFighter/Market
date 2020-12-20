@@ -365,14 +365,11 @@ $(document).ready(function(){
 
 
     function openauth(){
-
       $("#loginauthmodal").modal('show');
-
     }
 
 
-    $('#updatecustomerinfo2').submit(function(e){
-      console.log("helllo");
+    $('#updatecustomerinfo').submit(function(e){
       e.preventDefault();
       $.ajax({
         url: global.settings.url + '/MainController/updatecustomerinfo',
@@ -385,14 +382,14 @@ $(document).ready(function(){
             title: 'Updated',
           });
           $('#client_table').DataTable().ajax.reload();
-          // $('#updatecustomerinfo')[0].reset();
+          $('#updatecustomerinfo')[0].reset();
         },
         error:function(res){
 
         }
       });
     });
-    
+
 
     $('#login_account').submit(function(e){
       e.preventDefault();
@@ -417,8 +414,8 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
                 $("#loginauthmodal").modal('hide');
-                $( "#updatecustomerinfo2" ).submit();
-
+                $( "#updatecustomerinfo" ).submit();
+                $('#login_account')[0].reset();
 
 
               } else{

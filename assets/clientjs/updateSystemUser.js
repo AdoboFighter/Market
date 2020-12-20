@@ -140,26 +140,8 @@ function search_client(search, searchcat) {
 
 function fetchdata(id){
 
-  $("#loginauthmodal").modal('show');
-  console.log(id);
-  $.ajax({
-    url: global.settings.url + '/MainController/getusercon',
-    type: 'POST',
-    data: {
-      id: id
-    },
-    dataType:'JSON',
-    success: function(res){
-      console.log(res);
-      res = res[0];
-      $('#usr_un_auth').val(res.username);
-      $('#usr_id_auth').val(res.user_id);
-    },
-    error: function(xhr){
-      console.log(xhr.responseText);
-    }
-  })
-
+  // $("#loginauthmodal").modal('show');
+  // console.log(id);
   // $.ajax({
   //   url: global.settings.url + '/MainController/getusercon',
   //   type: 'POST',
@@ -170,31 +152,42 @@ function fetchdata(id){
   //   success: function(res){
   //     console.log(res);
   //     res = res[0];
-  //     $('#usr_id').val(res.user_id );
-  //     $('#usr_fn').val(res.usr_firstname );
-  //     $('#usr_mn').val(res.usr_middlename);
-  //     $('#usr_ln').val(res.usr_lastname);
-  //     $('#usr_add').val(res.usr_address);
-  //     $('#usr_cn').val(res.usr_contact_number);
-  //     $('#usr_un').val(res.username);
   //     $('#usr_un_auth').val(res.username);
   //     $('#usr_id_auth').val(res.user_id);
-  //     // $('#usr_pass').val(res.password);
-  //     $('#usr_position').val(res.position);
-  //     $('#user_lvl').val(res.user_level);
-  //
-  //   },
-  //   error: function(xhr){
-  //     console.log(xhr.responseText);
-  //   }
-  // })
   //   },
   //   error: function(xhr){
   //     console.log(xhr.responseText);
   //   }
   // })
 
+  $.ajax({
+    url: global.settings.url + '/MainController/getusercon',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType:'JSON',
+    success: function(res){
+      console.log(res);
+      res = res[0];
+      $('#usr_id').val(res.user_id );
+      $('#usr_fn').val(res.usr_firstname );
+      $('#usr_mn').val(res.usr_middlename);
+      $('#usr_ln').val(res.usr_lastname);
+      $('#usr_add').val(res.usr_address);
+      $('#usr_cn').val(res.usr_contact_number);
+      $('#usr_un').val(res.username);
+      $('#usr_un_auth').val(res.username);
+      $('#usr_id_auth').val(res.user_id);
+      // $('#usr_pass').val(res.password);
+      $('#usr_position').val(res.position);
+      $('#user_lvl').val(res.user_level);
 
+    },
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  })
 }
 
 

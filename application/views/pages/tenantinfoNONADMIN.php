@@ -68,7 +68,7 @@
   </div>
   <br>
   <br>
-  <form id="updatecustomerinfo2">
+  <form id="updatecustomerinfo">
     <h5 class="card-header text-center text-white bluegrads container justify-content-center" id="sect2">Client Information</h5>
     <br>
     <div class="container justify-content-center">
@@ -267,16 +267,16 @@
 
 
 <div class="modal fade" id="loginauthmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form id="login_account">
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form id="login_account">
       <div class="modal-body">
 
         <div class="mb-2">
@@ -286,7 +286,7 @@
 
         <div class="mb-2">
           <label>Password</label>
-          <input type="text" class="form-control" name="login[password]" id="password">
+          <input type="password" class="form-control" name="login[password]" id="password">
         </div>
 
 
@@ -295,7 +295,7 @@
         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
         <button type="submit" class="btn bluegrads text-white">Confirm</button>
       </div>
-      </form>
-    </div>
+    </form>
   </div>
+</div>
 </div>

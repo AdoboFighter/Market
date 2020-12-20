@@ -1,41 +1,31 @@
 var datable;
 
-$(document).ready(function(){
 
-  $( "#payhistbtn" ).click(function() {
-    $('#violationmodal').modal('show');
+$( "#payhistbtn" ).click(function() {
+  $('#violationmodal').modal('show');
 
+});
+
+$.fn.inputFilter = function(inputFilter) {
+  return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+    if (inputFilter(this.value)) {
+      this.oldValue = this.value;
+      this.oldSelectionStart = this.selectionStart;
+      this.oldSelectionEnd = this.selectionEnd;
+    } else if (this.hasOwnProperty("oldValue")) {
+      this.value = this.oldValue;
+      this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+    } else {
+      this.value = "";
+    }
   });
+};
 
-  $.fn.inputFilter = function(inputFilter) {
-    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-      if (inputFilter(this.value)) {
-        this.oldValue = this.value;
-        this.oldSelectionStart = this.selectionStart;
-        this.oldSelectionEnd = this.selectionEnd;
-      } else if (this.hasOwnProperty("oldValue")) {
-        this.value = this.oldValue;
-        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-      } else {
-        this.value = "";
-      }
-    });
-  };
+$( "#payhistbtn" ).click(function() {
+  $('#violationmodal').modal('show');
+});
 
-  $( "#payhistbtn" ).click(function() {
-    $('#violationmodal').modal('show');
-  });
 
-//   $('#search_cl_f').keypress(function(event){
-//   var keycode = (event.keyCode ? event.keyCode : event.which);
-//   if(keycode == '13'){
-//     var search = $("#search_cl_f").val();
-//
-//     $('#parkTable').DataTable().clear().destroy();
-//     search_client(search);
-//
-//   }
-// });
 
 function isEmptyOrSpaces(str){
   return str === null || str.match(/^ *$/) !== null;
@@ -117,137 +107,171 @@ function search_client(search, searchcat) {
         "data" : "btn"
       }
 
-  ]
+    ]
   });
-    $('.dataTables_length').addClass('bs-select');
+  $('.dataTables_length').addClass('bs-select');
 }
 
+$('.dataTables_length').addClass('bs-select');
+
+$("#park_lot").inputFilter(function(value) {
+  return /^-?\d*$/.test(value); });
 
 
+  function fetchdata(id){
+    fetchdata2(id);
+    transactionhistory(id);
+  }
 
-  // datable = $('#parkTable').DataTable({
-  //   "ajax" : {
-  //     "url" : global.settings.url + '/MainController/getparkingpaytablecon',
-  //     dataSrc : 'data'
-  //   },
-  //   "columns" : [
-  //     {
-  //       "data" : "id"
-  //     },
-  //
-  //     {
-  //       "data" : "pay_parking_lot"
-  //     },
-  //
-  //     {
-  //       "data" : "pay_parking_name"
-  //     },
-  //
-  //     {
-  //       "data" : "btn"
-  //     }]
-  //   });
-    $('.dataTables_length').addClass('bs-select');
+  function fetchdata2(id){
 
-    $("#park_lot").inputFilter(function(value) {
-      return /^-?\d*$/.test(value); });
-
-      $('#updatecustomerinfo').submit(function(e){
-        e.preventDefault();
+    console.log(id);
+    $.ajax({
+      url: global.settings.url + '/MainController/getparkingpay',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        res = res[0];
+        $('#customer_id').val(id);
+        $('#name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+        $('#stall').val(res.unit_no);
+        $('#park_lot').val(res.lot_no);
+        $('#driver_id').val(res.driver_id);
 
 
-        $.ajax({
-          url: global.settings.url + '/MainController/updateparkinginfo',
-          type: 'POST',
-          data: $(this).serialize(),
-          dataType:'JSON',
-          success: function(res){
-            Swal.fire({
-              icon: 'success',
-              title: 'Updated',
-            });
-            $('#updatecustomerinfo')[0].reset();
-            datable.ajax.reload();
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    })
+  }
 
-          },
-          error:function(res){
 
-          }
-        });
+  function transactionhistory(id)
+  {
+    $('#pay_hist_tab').DataTable().destroy();
 
-      });
+    $('#pay_hist_tab').DataTable({
+      "ajax" : {
+        "url" : global.settings.url + '/MainController/getcustomertransactionhistorypark/' + id,
+        type: 'GET',
+        dataSrc : "data",
+      },
+      "columns" : [{
+        "data" : "or_no"
+      },
 
+      {
+        "data" : "nature_of_payment"
+      },
+
+      {
+        "data" : "amount"
+      },
+
+
+      {
+        "data" : "date"
+      }]
 
     });
 
+    $('.dataTables_length').addClass('bs-select');
+  }
+
+  function openauth(){
+    $("#loginauthmodal").modal('show');
+  }
 
 
+  $('#updatecustomerinfo').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: global.settings.url + '/MainController/updateparkinginfo',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType:'JSON',
+      success: function(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
+        });
+        $('#parkTable').DataTable().ajax.reload();
+        $('#updatecustomerinfo')[0].reset();
+      },
+      error:function(res){
+
+      }
+    });
+  });
 
 
-    function fetchdata(id){
-      fetchdata2(id);
-      transactionhistory(id);
+  $('#login_account').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url : global.settings.url + '/Pages/login_acc',
+      type : 'POST',
+      data : $(this).serialize(),
+      dataType : 'json',
+      success : function(res){
 
-    }
-
-    function fetchdata2(id){
-
-      console.log(id);
-      $.ajax({
-        url: global.settings.url + '/MainController/getparkingpay',
-        type: 'POST',
-        data: {
-          id: id
-        },
-        dataType:'JSON',
-        success: function(res){
-          console.log(res);
-          res = res[0];
-          $('#customer_id').val(id);
-          $('#name').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-          $('#stall').val(res.unit_no);
-          $('#park_lot').val(res.lot_no);
-          $('#driver_id').val(res.driver_id);
+        if(res.user_level == 0)
+        {
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to save changes?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.value) {
+              $("#loginauthmodal").modal('hide');
+              $("#updatecustomerinfo").submit();
+              $('#login_account')[0].reset();
 
 
-        },
-        error: function(xhr){
-          console.log(xhr.responseText);
+            } else{
+              console.log("no");
+
+            }
+
+          })
+
+
+        }else if (res.user_level == 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'User Not Authorized'
+          });
         }
-      })
-    }
+        else if(res == 'usernameError'){
+          Swal.fire({
+            icon: 'error',
+            title: 'Wrong Credentials',
+            text: 'Username not found'
+          });
+        }
+        else if(res == 'passwordError'){
+          Swal.fire({
+            icon: 'error',
+            title: 'Wrong Credentials',
+            text: 'password does not match'
+          });
+        }
 
 
-    function transactionhistory(id)
-    {
-      $('#pay_hist_tab').DataTable().destroy();
+      },
+      error : function(xhr){
+        console.log('kenneth');
+        console.log(xhr.responseText);
+      }
+    })
 
-      $('#pay_hist_tab').DataTable({
-        "ajax" : {
-          "url" : global.settings.url + '/MainController/getcustomertransactionhistorypark/' + id,
-          type: 'GET',
-          dataSrc : "data",
-        },
-        "columns" : [{
-          "data" : "or_no"
-        },
-
-        {
-          "data" : "nature_of_payment"
-        },
-
-        {
-          "data" : "amount"
-        },
-
-
-        {
-          "data" : "date"
-        }]
-
-      });
-
-
-
-      $('.dataTables_length').addClass('bs-select');
-    }
+  });

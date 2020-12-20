@@ -10,6 +10,7 @@
 
   <h5 class="card-header text-center text-white bluegrads container justify-content-center">Client List</h5>
   <br>
+  <form id="updatecustomerinfo">
   <div class="container justify-content-center">
     <div class="card m-1 shadow">
       <div class="row p-3">
@@ -67,17 +68,17 @@
 
             <div class="mb-2 form-group" id="">
               <label>Company/Driver's name:</label>
-              <input type="input" class="form-control" name="update[delivery_fn]" id="del_fn" readonly>
+              <input type="input" class="form-control" name="update[delivery_fn]" id="del_fn" >
             </div>
 
             <div class="mb-2 form-group" id="">
               <label>Plate Number:</label>
-              <input type="input" class="form-control" name="update[delivery_mn]" id="del_mn" readonly>
+              <input type="input" class="form-control" name="update[delivery_mn]" id="del_mn" >
             </div>
 
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" readonly>
+              <input type="input" class="form-control" name="update[delivery_cn]" id="del_cn" >
             </div>
         </div>
         <br>
@@ -93,45 +94,22 @@
             <div class="p-2">
               <button class="btn stylish-color-dark text-white" type="button" id="payhistbtn">Payment History</button>
             </div>
+
             <div class="p-2">
-              <!-- <button class="btn btn-primary" type="submit">Update</button> -->
+              <button class="btn btn-primary" type="button" onclick="openauth()">Update</button>
             </div>
+
           </div>
         </div>
         </form>
       </div>
     </div>
   </div>
+  </form>
 
 
 
-  <div id="violationmodal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
-            <thead>
-              <tr>
-                <td class="border border-dark">OR#</td>
-                <td class="border border-dark">Nature or payment</td>
-                <td class="border border-dark">Amount</td>
-                <td class="border border-dark">Date</td>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
 
-      </div>
-    </div>
-  </div>
   <!-- END OF MODAL -->
 
 </div>
@@ -139,4 +117,66 @@
 
 
 <div class="overlay"></div>
-readonly
+
+<div id="violationmodal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Tenant Payment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered shadow" id="pay_hist_tab" style="width:100%">
+          <thead>
+            <tr>
+              <td class="border border-dark">OR#</td>
+              <td class="border border-dark">Nature or payment</td>
+              <td class="border border-dark">Amount</td>
+              <td class="border border-dark">Date</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="loginauthmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form id="login_account">
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label>Username</label>
+          <input type="text" class="form-control" name="login[username]" id="username">
+        </div>
+
+        <div class="mb-2">
+          <label>Password</label>
+          <input type="password" class="form-control" name="login[password]" id="password">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button type="submit" class="btn bluegrads text-white">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
