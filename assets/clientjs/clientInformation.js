@@ -316,6 +316,9 @@ function fetchdata(id){
   customerinfo(id);
   transactionhistory(id);
   getdebt(id);
+  $('html, body').animate({
+    scrollTop: $("#sect2").offset().top
+  });
 }
 
 function customerinfo(id){

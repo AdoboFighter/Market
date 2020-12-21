@@ -3,6 +3,8 @@ var id;
 
 $(document).ready(function(){
 
+
+
   (function($) {
     $.fn.inputFilter = function(inputFilter) {
       return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
@@ -131,50 +133,8 @@ $(document).ready(function(){
 
           ]
         });
-        // $('.dataTables_length').addClass('bs-select');
+        $('.dataTables_length').addClass('bs-select');
       }
-
-
-
-
-      // $('#client_table').DataTable({
-      //   "ajax" : {
-      //     "url" : global.settings.url + '/MainController/getcustomertable',
-      //     dataSrc : 'data'
-      //   },
-      //   "columns" : [{
-      //     "data" : "id"
-      //   },
-      //
-      //   {
-      //     "data" : "c_info_stall_number"
-      //   },
-      //
-      //   {
-      //     "data" : "c_info_area"
-      //   },
-      //
-      //
-      //   {
-      //     "data" : "c_info_daily_fee"
-      //   },
-      //
-      //
-      //   {
-      //     "data" : "c_info_fullname_owner"
-      //   },
-      //
-      //   {
-      //     "data" : "c_info_fullname_occupant"
-      //   },
-      //   {
-      //     "data" : "btn"
-      //   }]
-      // });
-
-
-
-      $('.dataTables_length').addClass('bs-select');
 
 
 
@@ -230,13 +190,7 @@ $(document).ready(function(){
         var start = new Date("2010-04-01");
       }
 
-      // var end   = new Date(),
-      // diff  = new Date(end - dp1),
-      // days  = diff/1000/60/60/24;
-      // days;
-      // var debt = days * daily;
-      // document.getElementById('debt_field').value = debt;
-      // console.log(days);
+
     }
 
     function getdebt(id) {
@@ -271,10 +225,18 @@ $(document).ready(function(){
     }
 
     function fetchdata(id){
-      document.getElementById("updatecustomerinfo2").reset();
+      document.getElementById("updatecustomerinfo").reset();
       customerinfo(id);
       transactionhistory(id);
       getdebt(id);
+      $('html, body').animate({
+        scrollTop: $("#sect2").offset().top
+      });
+    }
+
+    function scrollToAnchor(aid){
+      var aTag = $("div[id='"+ aid +"']");
+      $('html,body').animate({scrollTop: aTag.offset().top},'slow');
     }
 
     function customerinfo(id){

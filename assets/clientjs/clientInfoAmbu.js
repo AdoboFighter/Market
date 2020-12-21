@@ -156,8 +156,12 @@ $(document).ready(function(){
 });
 
 function fetchdata(id){
+  document.getElementById("updatecustomerinfo").reset();
   customerinfo(id);
   transactionhistory(id);
+  $('html, body').animate({
+    scrollTop: $("#sect2").offset().top
+  });
 
 }
 

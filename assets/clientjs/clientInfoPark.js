@@ -185,8 +185,12 @@ function search_client(search, searchcat) {
 
 
     function fetchdata(id){
+      document.getElementById("updatecustomerinfo").reset();
       fetchdata2(id);
       transactionhistory(id);
+      $('html, body').animate({
+        scrollTop: $("#sect2").offset().top
+      });
 
     }
 

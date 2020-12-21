@@ -119,8 +119,12 @@ $("#park_lot").inputFilter(function(value) {
 
 
   function fetchdata(id){
+    document.getElementById("updatecustomerinfo").reset();
     fetchdata2(id);
     transactionhistory(id);
+    $('html, body').animate({
+      scrollTop: $("#sect2").offset().top
+    });
   }
 
   function fetchdata2(id){
