@@ -50,7 +50,7 @@
       </div>
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="tablecon">
+          <table width="100%" class="table table-striped table-bordered shadow" id="tablecon">
             <thead class="">
               <tr>
                 <td class="border border-dark">no</td>

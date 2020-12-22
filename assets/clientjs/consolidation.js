@@ -82,6 +82,7 @@ $(document).ready(function(){
    function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
 
     $('#tablecon').DataTable({
+      "autoWidth": false,
       "ajax" : {
         type: "POST",
          data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},

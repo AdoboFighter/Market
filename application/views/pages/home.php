@@ -425,62 +425,22 @@
       <div class="modal-body">
 
         <h5>Under Development</h5>
-        <!-- <ul class="nav nav-tabs nav-justified md-tabs bluegrads" id="myTabJust" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab-just" data-toggle="tab" href="#home-just" role="tab" aria-controls="home-just"
-            aria-selected="true">With Past Transaction</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#profile-just" role="tab" aria-controls="profile-just"
-            aria-selected="false">No Past transactions</a>
-          </li>
-        </ul>
-        <div class="tab-content card pt-1" id="myTabContentJust"> -->
+        <table width="100%" class="table table-sm table-bordered text-center" id="debttable">
+          <thead >
+            <tr>
+              <td class="border border-dark">Customer ID</td>
+              <td class="border border-dark">Name</td>
+              <td class="border border-dark">Stall Number</td>
+              <td class="border border-dark">O.R</td>
+              <td class="border border-dark">Amount</td>
+              <td class="border border-dark">Payment Type</td>
+              <td class="border border-dark">Effectivity</td>
+              <td class="border border-dark">Date & Time</td>
+            </tr>
+          </thead>
 
-<!--
-          <div class="tab-pane fade show active" id="home-just" role="tabpanel" aria-labelledby="home-tab-just">
-            <table width="100%" class="table table-sm table-bordered text-center" id="debttablewith">
-              <thead >
-                <tr>
-                  <td class="border border-dark">Customer ID</td>
-                  <td class="border border-dark">Name</td>
-                  <td class="border border-dark">Stall Number</td>
-                  <td class="border border-dark">O.R</td>
-                  <td class="border border-dark">Amount</td>
-                  <td class="border border-dark">Payment Type</td>
-                  <td class="border border-dark">Effectivity</td>
-                  <td class="border border-dark">Date & Time</td>
-                </tr>
-              </thead>
-
-              <tbody id="tbodyParticulars"></tbody>
-            </table>
-          </div>
-
-
-          <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
-            <table width="100%" class="table table-sm table-bordered text-center" id="debttableno">
-              <thead >
-                <tr>
-                  <td class="border border-dark">Customer ID</td>
-                  <td class="border border-dark">Name</td>
-                  <td class="border border-dark">Stall Number</td>
-                  <td class="border border-dark">O.R</td>
-                  <td class="border border-dark">Amount</td>
-                  <td class="border border-dark">Payment Type</td>
-                  <td class="border border-dark">Effectivity</td>
-                  <td class="border border-dark">Date & Time</td>
-                </tr>
-              </thead>
-
-              <tbody id="tbodyParticulars"></tbody>
-            </table>
-            </div>
-
-
-
-
-          </div> -->
+          <tbody id="tbodyParticulars"></tbody>
+        </table>
 
         </div>
 
