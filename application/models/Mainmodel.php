@@ -426,7 +426,7 @@ class Mainmodel extends CI_model{
         'pay_nature' =>$r->payment_nature_id,
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
-        'pay_collector' =>$r->collector,
+        'pay_collector' =>$r->collector
       );
     }
     $result = array(
@@ -2882,6 +2882,69 @@ class Mainmodel extends CI_model{
   }
 
 
+  public function consolidationtablesortTenant($sort){
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+
+    $this->db->select('*')
+    ->from('transaction');
+    // $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+
+    if($sort != null)
+    {
+      $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+      $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+      $this->db->join('stall', 'stall.tenant_id = tenant.tenant_id', 'inner');
+
+    }
+    else {
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+    if($sort['conDateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
+    }
+    if($sort['conDateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
+    }
+    if($sort['conCollectorName'])
+    {
+      $this->db->where('user_id',$sort['conCollectorName']);
+    }
+
+
+
+    $query = $this->db->get();
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'pay_or' => $r->or_number,
+        'pay_amount' =>$r->payment_amount,
+        'pay_nature' =>$r->payment_nature_id,
+        'pay_date' => $r->payment_datetime,
+        'pay_fund' =>$r->fund_name,
+        'pay_collector' =>$r->collector,
+        'unit_no' =>$r->unit_no
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
 
 
 
@@ -2893,4 +2956,6 @@ class Mainmodel extends CI_model{
 
 
 }
+
+
 ?>

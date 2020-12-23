@@ -1053,12 +1053,22 @@ public function printreceipt()
     $query = $this->model->debttable();
     echo json_encode($query);
   }
-  //
-  // public function debttableno()
-  // {
-  //   $query = $this->model->debttableno();
-  //   echo json_encode($query);
-  // }
+
+  public function consolidationtablesortTenant()
+  {
+
+    $sort = array(
+      'conClientType' => $this->input->post('conClientType'),
+      'conDateFrom'=> $this->input->post('conDateFrom'),
+      'conDateTo'=> $this->input->post('conDateTo'),
+      'conCollectorName'=> $this->input->post('conCollectorName')
+    );
+
+
+    $query = $this->model->consolidationtablesortTenant($sort);
+    echo json_encode($query);
+  }
+
 
 
 
