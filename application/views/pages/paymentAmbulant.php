@@ -373,7 +373,10 @@
         </div>
 
 
-
+				<div class="custom-control custom-checkbox mb-2">
+					<input type="checkbox" class="custom-control-input" id="sub_total_box" checked>
+					<label class="custom-control-label" for="sub_total_box">Sub total</label>
+				</div>
 
         <div class="mb-2">
           <label>Amount to pay</label>
