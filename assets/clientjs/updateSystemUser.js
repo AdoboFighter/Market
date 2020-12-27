@@ -5,46 +5,57 @@ $(document).ready(function(){
   $('.dataTables_length').addClass('bs-select');
 
   $('#updateuser').submit(function(e){
+    user_id = $('#usr_id').val();
     e.preventDefault();
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "Do you want to save changes?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        $('#rec').modal("hide");
-        console.log("yes");
-        console.log( $('#updateuser').serializeArray() );
-        $.ajax({
-          url : global.settings.url +'/MainController/updateSystemUserCon',
-          type : 'POST',
-          data :$(this).serialize(),
-          dataType : 'json',
-          success : function(res){
-            console.log(res);
-            $('#sys_table').DataTable().ajax.reload();
-            $('#updateuser').trigger("reset");
-            Swal.fire({
-              icon: 'success',
-              title: 'System user updated',
-            });
+    if(user_id == null || user_id == ''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Select a user',
+        text: 'Select a user to load data',
+      })
+    }else {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to save changes?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          $('#rec').modal("hide");
+          console.log("yes");
+          console.log( $('#updateuser').serializeArray() );
+          $.ajax({
+            url : global.settings.url +'/MainController/updateSystemUserCon',
+            type : 'POST',
+            data :$(this).serialize(),
+            dataType : 'json',
+            success : function(res){
+              console.log(res);
+              $('#sys_table').DataTable().ajax.reload();
+              $('#updateuser').trigger("reset");
+              Swal.fire({
+                icon: 'success',
+                title: 'System user updated',
+              });
 
-          },
-          error : function(xhr){
-            console.log(xhr.responseText);
-          }
+            },
+            error : function(xhr){
+              console.log(xhr.responseText);
+            }
 
-        });
-      } else{
-        console.log("no");
-      }
+          });
+        } else{
+          console.log("no");
+        }
 
-    })
+      })
+    }
+
+
 
 
   });

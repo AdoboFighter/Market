@@ -74,23 +74,23 @@
 
             <div class="mb-2 form-group" id="">
               <label>First name:</label>
-              <input type="input" class="form-control" name="upsys[usr_fn]" id="usr_fn" required>
+              <input type="input" class="form-control" name="upsys[usr_fn]" id="usr_fn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Middile name:</label>
-              <input type="input" class="form-control" name="upsys[usr_mn]" id="usr_mn" required>
+              <input type="input" class="form-control" name="upsys[usr_mn]" id="usr_mn" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Last name:</label>
-              <input type="input" class="form-control" name="upsys[usr_ln]" id="usr_ln" required>
+              <input type="input" class="form-control" name="upsys[usr_ln]" id="usr_ln" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Address:</label>
-              <input type="input" class="form-control" name="upsys[usr_add]" id="usr_add" required>
+              <input type="input" class="form-control" name="upsys[usr_add]" id="usr_add" >
             </div>
             <div class="mb-2 form-group" id="">
               <label>Contact Number:</label>
-              <input type="input" class="form-control" name="upsys[usr_cn]" id="usr_cn" required>
+              <input type="input" class="form-control" name="upsys[usr_cn]" id="usr_cn" >
             </div>
           </div>
           <br>
@@ -115,7 +115,7 @@
 
             <div class="mb-2">
               <label>User Level</label>
-              <select class="form-control form-control-sm" name="upsys[user_lvl]" id="user_lvl" required="">
+              <select class="form-control form-control-sm" name="upsys[user_lvl]" id="user_lvl" >
                 <option selected value="">Please Select</option>
                 <option value="0">Admin</option>
                 <option value="1">Collecting Officer</option>
