@@ -49,9 +49,82 @@ $(document).ready(function(){
 
   $('#client_type').change(function(){
     conClientType = $(this).val();
-    $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
-  })
+
+    if (conClientType == "tenant") {
+      $('#tablecon').parent().find('.table thead tr').append('<th class="border border-dark">stall number</th>');
+      $('#tablecon').dataTable().fnDestroy();
+
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+
+      $('#tablecon').dataTable().fnDestroy();
+
+      // Get index of parent TD among its siblings (add one for nth-child)
+      var ndx = $('#tablecon').parent().index() + 9;
+      // Find all TD elements with the same index
+      $('th', event.delegateTarget).remove(':nth-child(' + ndx + ')');
+      $('td', event.delegateTarget).remove(':nth-child(' + ndx + ')');
+
+
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+
+    }
+
+  });
+
+  function loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName){
+
+    $('#tablecon').DataTable({
+      "autoWidth": false,
+      "ajax" : {
+        type: "POST",
+        data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
+        "url" : global.settings.url + '/MainController/consolidationtablesortTenant',
+        dataSrc : 'data'
+      },
+      "columns" : [{
+        "data" : "id"
+      },
+      {
+        "data" : "pay_fullname"
+      },
+
+      {
+        "data" : "pay_or"
+      },
+
+
+      {
+        "data" : "pay_amount"
+      },
+
+      {
+        "data" : "pay_nature"
+      },
+
+      {
+        "data" : "pay_date"
+      },
+
+      {
+        "data" : "pay_fund"
+      },
+
+      {
+        "data" : "pay_collector"
+      },
+
+      {
+        "data" : "unit_no"
+      }]
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+
+
+  }
+
 
 
   function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
@@ -82,6 +155,7 @@ $(document).ready(function(){
    function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
 
     $('#tablecon').DataTable({
+      "autoWidth":false,
       "ajax" : {
         type: "POST",
          data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
@@ -128,11 +202,6 @@ $(document).ready(function(){
 loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
 
   getCollector();
-
-
-
-
-
 
 });
 

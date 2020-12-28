@@ -246,6 +246,8 @@ class MainController extends CI_Controller{
 
   }
 
+
+
   public function printconsexcel()
   {
     $sort = array(
@@ -285,6 +287,79 @@ class MainController extends CI_Controller{
     echo json_encode($sort);
 
   }
+
+  //reports on tenant only------------------------------------------------------
+  //reports on tenant only------------------------------------------------------
+  //reports on tenant only------------------------------------------------------
+  //reports on tenant only------------------------------------------------------
+
+  public function getconsexcelteanant()
+  {
+
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+      'excelCollector'=> $this->input->post('exCollector')
+    );
+
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+
+  }
+
+  public function printconsexceltenant()
+  {
+    $sort = array(
+      'conClientType' => $this->session->userdata('excelClient'),
+      'conDateFrom' => $this->session->userdata('excelDateFrom'),
+      'conDateTo' => $this->session->userdata('excelDateTo'),
+      'conCollectorName' => $this->session->userdata('excelCollector'),
+    );
+
+    $query = $this->model->consexceltenant($sort);
+
+    $result = array(
+      "query" => $query,
+      "sort" => $sort,
+      "user" => $this->session->userdata('user_fullname'),
+    );
+    echo json_encode($result);
+    $this->session->unset_userdata('excelClient');
+    $this->session->unset_userdata('excelDateFrom');
+    $this->session->unset_userdata('excelDateTo');
+    $this->session->unset_userdata('excelCollector');
+
+  }
+
+  public function gettransexceltenant()
+  {
+
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+    );
+
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+
+  }
+
+
+
+  //reports on tenant only end------------------------------------------------------
+  //reports on tenant only end------------------------------------------------------
+  //reports on tenant only end------------------------------------------------------
+  //reports on tenant only end------------------------------------------------------
+
+
+
+
 
   public function printtransact()
   {

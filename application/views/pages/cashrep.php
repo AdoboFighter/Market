@@ -49,7 +49,7 @@
       </div>
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="tablecon">
+          <table width="100%" class="table table-striped table-bordered shadow" id="tablecon">
             <thead class="">
               <tr>
                 <td class="border border-dark">no</td>
@@ -60,6 +60,7 @@
                 <td class="border border-dark">Date & Time</td>
                 <td class="border border-dark">Fund</td>
                 <td class="border border-dark">collector</td>
+                <!-- <td class="border border-dark">stall_number</td> -->
               </tr>
             </thead>
             <tbody>

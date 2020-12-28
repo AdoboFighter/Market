@@ -223,24 +223,47 @@ $('#genrep').click(function(){
   }
   else
   {
-    $.ajax({
-      url : global.settings.url +'/MainController/getconsexcel',
-      type : 'POST',
-      data :{exCollector:exCollector, exDateFrom:exDateFrom, exDateTo:exDateTo, exClientType:exClientType},
-      dataType : 'json',
-      success : function(data){
+    if (exClientType == "tenant") {
+      console.log('pasok');
+      $.ajax({
+        url : global.settings.url +'/MainController/getconsexcelteanant',
+        type : 'POST',
+        data :{exCollector:exCollector, exDateFrom:exDateFrom, exDateTo:exDateTo, exClientType:exClientType},
+        dataType : 'json',
+        success : function(data){
+
+          console.log('pasok');
+
+          window.open(global.settings.url + '/pages/view/printstall', '_blank');
+
+
+        },
+        error : function(xhr){
+
+        }
+
+      });
+    }else {
+      $.ajax({
+        url : global.settings.url +'/MainController/getconsexcel',
+        type : 'POST',
+        data :{exCollector:exCollector, exDateFrom:exDateFrom, exDateTo:exDateTo, exClientType:exClientType},
+        dataType : 'json',
+        success : function(data){
 
 
 
-        window.open(global.settings.url + '/pages/view/print', '_blank');
+          window.open(global.settings.url + '/pages/view/print', '_blank');
 
 
-      },
-      error : function(xhr){
+        },
+        error : function(xhr){
 
-      }
+        }
 
-    });
+      });
+    }
+
 
   }
 

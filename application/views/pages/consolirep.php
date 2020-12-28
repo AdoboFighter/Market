@@ -1,9 +1,8 @@
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary bluegrads">
     <div class="container-fluid ">
-      <button type="button" id="sidebarCollapse" class="btn white btn-sm ">
-        <img src="<?php echo base_url();?>assets/images/electronicmarketsystem.png" width="40" height="40">
-        E-Market
+      <button type="button" id="sidebarCollapse" class="btn  btn-md ">
+        <i class="fas fa-bars fa-2x" style="color: #f5f5f5;"></i>
       </button>
     </div>
   </nav>
@@ -50,7 +49,7 @@
       </div>
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="tablecon">
+          <table width="100%" class="table table-striped table-bordered shadow" id="tablecon">
             <thead class="">
               <tr>
                 <td class="border border-dark">no</td>
@@ -61,6 +60,7 @@
                 <td class="border border-dark">Date & Time</td>
                 <td class="border border-dark">Fund</td>
                 <td class="border border-dark">collector</td>
+                <!-- <td class="border border-dark">stall_number</td> -->
               </tr>
             </thead>
             <tbody>
