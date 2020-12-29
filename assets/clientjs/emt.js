@@ -8,16 +8,41 @@ $(document).ready(function(){
 
 
 
-  $("#client_type").on('change',function(){
+  // $("#client_type").on('change',function(){
+  //
+  //    clientType = $(this).val();
+  //
+  //
+  //    $('#tableNoStall').dataTable().fnDestroy();
+  //    loadDataTable(clientType,dateFrom,dateTo);
+  //
+  // });
 
-     clientType = $(this).val();
+  $('#client_type').change(function(){
+    clientType = $(this).val();
+
+    if (clientType == "tenant") {
+      $('#tableNoStall').parent().find('.table thead tr').append('<th class="border border-dark">stall number</th>');
+      $('#tableNoStall').dataTable().fnDestroy();
+
+      loadDataTableTenant(clientType,dateFrom,dateTo);
+    }else {
+
+      $('#tableNoStall').dataTable().fnDestroy();
+
+      // Get index of parent TD among its siblings (add one for nth-child)
+      var ndx = $('#tableNoStall').parent().index() + 8;
+      // Find all TD elements with the same index
+      $('th', event.delegateTarget).remove(':nth-child(' + ndx + ')');
+      $('td', event.delegateTarget).remove(':nth-child(' + ndx + ')');
 
 
-     $('#tableNoStall').dataTable().fnDestroy();
-     loadDataTable(clientType,dateFrom,dateTo);
+      loadDataTable(clientType,dateFrom,dateTo);
 
 
-  });
+    }
+
+  })
 
    $("#date_from").on('change',function(){
 
@@ -38,9 +63,58 @@ $(document).ready(function(){
 
   });
 
+  function loadDataTableTenant(clientType,dateFrom,dateTo){
+
+     $('#tableNoStall').DataTable({
+       "autoWidth" : false,
+      "ajax" : {
+        type: "POST",
+        data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
+        "url" : global.settings.url + '/MainController/consolidationtablesortTenant',
+        dataSrc : 'data'
+      },
+      "columns" : [{
+        "data" : "id"
+      },
+      {
+        "data" : "pay_fullname"
+      },
+
+      {
+        "data" : "pay_or"
+      },
+
+
+      {
+        "data" : "pay_amount"
+      },
+
+      {
+        "data" : "pay_nature"
+      },
+
+      {
+        "data" : "pay_date"
+      },
+
+      {
+        "data" : "pay_fund"
+      },
+
+
+
+      {
+        "data" : "unit_no"
+      }]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  }
+
+
   function loadDataTable(clientType,dateFrom,dateTo){
 
      $('#tableNoStall').DataTable({
+       "autoWidth" : false,
       "ajax" : {
         type: "POST",
         data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
@@ -105,24 +179,48 @@ $('#genrep').click(function(){
 
   else{
 
-    $.ajax({
-      url : global.settings.url +'/MainController/gettransexcel',
-      type : 'POST',
-      data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
-      dataType : 'json',
-      success : function(data){
+    if (exClientType == "tenant") {
+      console.log('pasok');
+      $.ajax({
+        url : global.settings.url +'/MainController/gettransexceltenant',
+        type : 'POST',
+        data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
+        dataType : 'json',
+        success : function(data){
+
+          console.log('pasok');
+
+          window.open(global.settings.url + '/pages/view/printtransacttenant', '_blank');
+
+
+        },
+        error : function(xhr){
+
+        }
+
+      });
+    }else {
+      $.ajax({
+        url : global.settings.url +'/MainController/gettransexcel',
+        type : 'POST',
+        data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
+        dataType : 'json',
+        success : function(data){
 
 
 
-          window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+            window.open(global.settings.url + '/pages/view/printtransact', '_blank');
 
 
-      },
-      error : function(xhr){
+        },
+        error : function(xhr){
 
-      }
+        }
 
-    });
+      });
+    }
+
+
 
 
   }

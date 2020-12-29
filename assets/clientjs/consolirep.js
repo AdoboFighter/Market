@@ -71,7 +71,80 @@ $(document).ready(function(){
 
     }
 
-  });
+  })
+
+
+  function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
+
+    $.ajax({
+      url: global.settings.url + '/MainController/getcons',
+      type: 'POST',
+      data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+
+
+
+
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    })
+  }
+
+
+
+
+
+
+  function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
+
+    $('#tablecon').DataTable({
+      "autoWidth": false,
+      "ajax" : {
+        type: "POST",
+        data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
+        "url" : global.settings.url + '/MainController/getcons',
+        dataSrc : 'data'
+      },
+      "columns" : [{
+        "data" : "id"
+      },
+      {
+        "data" : "pay_fullname"
+      },
+
+      {
+        "data" : "pay_or"
+      },
+
+
+      {
+        "data" : "pay_amount"
+      },
+
+      {
+        "data" : "pay_nature"
+      },
+
+      {
+        "data" : "pay_date"
+      },
+
+      {
+        "data" : "pay_fund"
+      },
+      {
+        "data" : "pay_collector"
+      }]
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+
+
+  }
 
   function loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName){
 
@@ -122,84 +195,13 @@ $(document).ready(function(){
     $('.dataTables_length').addClass('bs-select');
 
 
-  }
-
-
-  function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
-
-    $.ajax({
-      url: global.settings.url + '/MainController/consolirepbackend',
-      type: 'POST',
-      data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-
-
-
-
-      },
-      error: function(xhr){
-        console.log(xhr.responseText);
-      }
-    })
-  }
-
-  function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
-
-    $('#tablecon').DataTable({
-      "ajax" : {
-        "autoWidth": false,
-        type: "POST",
-        data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
-        "url" : global.settings.url + '/MainController/consolirepbackend',
-        dataSrc : 'data'
-      },
-      "columns" : [{
-        "data" : "id"
-      },
-      {
-        "data" : "pay_fullname"
-      },
-
-      {
-        "data" : "pay_or"
-      },
-
-
-      {
-        "data" : "pay_amount"
-      },
-
-      {
-        "data" : "pay_nature"
-      },
-
-      {
-        "data" : "pay_date"
-      },
-
-      {
-        "data" : "pay_fund"
-      },
-      {
-        "data" : "pay_collector"
-      }]
-    });
-    $('.dataTables_length').addClass('bs-select');
-
-
 
   }
+
 
   loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
 
   getCollector();
-
-
-
-
-
 
 });
 
@@ -268,9 +270,6 @@ $('#genrep').click(function(){
 
 
 });
-
-
-
 
 
 function getCollector()

@@ -1144,6 +1144,33 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function consolidationtablesortTenant2()
+  {
+
+    $sort = array(
+      'conClientType' => $this->input->post('conClientType'),
+      'conDateFrom'=> $this->input->post('conDateFrom'),
+      'conDateTo'=> $this->input->post('conDateTo'),
+      'conCollectorName'=> $this->input->post('conCollectorName')
+    );
+
+
+    $query = $this->model->consolidationtablesortTenant2($sort);
+    echo json_encode($query);
+  }
+
+
+  public function emtbackendTenant()
+  {
+    $sort['clientType'] = $this->input->post('clientType');
+    $sort['dateFrom'] = $this->input->post('dateFrom');
+    $sort['dateTo'] = $this->input->post('dateTo');
+
+    $query = $this->model->emtbackendTenant($sort);
+
+    echo json_encode($query);
+  }
+
 
 
 
