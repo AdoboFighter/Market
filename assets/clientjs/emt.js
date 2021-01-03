@@ -101,8 +101,6 @@ $(document).ready(function(){
         "data" : "pay_fund"
       },
 
-
-
       {
         "data" : "unit_no"
       }]
@@ -165,8 +163,6 @@ $('#genrep').click(function(){
   exDateTo = $('#date_to').val();
 
 
-
-
   if(exDateFrom == "" || exDateTo == "")
   {
     Swal.fire({
@@ -187,12 +183,7 @@ $('#genrep').click(function(){
         data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
         dataType : 'json',
         success : function(data){
-
-          console.log('pasok');
-
           window.open(global.settings.url + '/pages/view/printtransacttenant', '_blank');
-
-
         },
         error : function(xhr){
 
@@ -207,11 +198,7 @@ $('#genrep').click(function(){
         dataType : 'json',
         success : function(data){
 
-
-
             window.open(global.settings.url + '/pages/view/printtransact', '_blank');
-
-
         },
         error : function(xhr){
 
@@ -220,14 +207,7 @@ $('#genrep').click(function(){
       });
     }
 
-
-
-
   }
-
-
-
-
 
 
 });

@@ -353,6 +353,15 @@ $(document).ready(function(){
 
       });
 
+      $( "#notesclick" ).on('click',function() {
+        $('#notesclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $(this).removeClass();
+        });
+
+        $("#notesclick").modal('show');
+
+      });
+
       $( "#regambuclick" ).on('click',function() {
         $('#regambuclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
           $(this).removeClass();

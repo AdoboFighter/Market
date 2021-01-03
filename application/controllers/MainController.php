@@ -1069,6 +1069,17 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function otcbackendtenant()
+  {
+    $sort['clientType'] = $this->input->post('clientType');
+    $sort['dateFrom'] = $this->input->post('dateFrom');
+    $sort['dateTo'] = $this->input->post('dateTo');
+
+    $query = $this->model->otcbackendtenant($sort);
+
+    echo json_encode($query);
+  }
+
   public function cashrepbackend()
   {
 

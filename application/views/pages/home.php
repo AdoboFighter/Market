@@ -24,7 +24,7 @@
 
               <div class="">
                 <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-                <div class="float-left text-left p-3">
+                <div class="float-right text-left p-3">
                   <p class="text-uppercase text-muted mb-1"><small>User:</small></p>
                   <h4 class="font-weight-bold mb-0"><?php echo $this->session->userdata('user_fullname'); ?></h4>
                 </div>
@@ -40,7 +40,29 @@
 
           </div>
         </div>
+        <br>
         <!-- Admin card -->
+        <div id="notesclick">
+          <div class="card mt-3">
+
+            <div class="">
+              <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+              <div class="float-right text-left p-3">
+                <p class="text-uppercase text-muted mb-1"><small>Notes</small></p>
+                <h4 class="font-weight-bold mb-0"></h4>
+              </div>
+            </div>
+
+            <div class="card-body pt-0">
+              <!-- <div class="progress md-progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="100"></div>
+            </div>
+            <p class="card-text">Better than last week (75%)</p> -->
+          </div>
+
+        </div>
+      </div>
 
       </div>
       <!--Grid column-->

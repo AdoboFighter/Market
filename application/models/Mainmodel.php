@@ -3129,6 +3129,75 @@ class Mainmodel extends CI_model{
   }
 
 
+  public function otcbackendtenant($sort)
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    // $query = $this->db->query("SELECT * FROM transaction");
+    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
+    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    // $query = $this->db->get('transaction');
+    $this->db->select('*')
+    ->from('transaction');
+
+
+    //QUERY with SORT
+    if($sort != null){
+
+      $this->db->not_like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+      $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
+      $this->db->join('stall', 'stall.tenant_id = tenant.tenant_id', 'inner');
+
+    }
+    else{
+      $this->db->not_like('or_number', "M");
+      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
+      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
+    }
+
+    if($sort['dateFrom'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['dateFrom'] );
+    }
+    if($sort['dateTo'])
+    {
+      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
+    }
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+
+
+    $query = $this->db->get();
+
+
+
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
+        'trans_or' => $r->or_number,
+        'trans_amount'=> $r->payment_amount,
+        'trans_nature'=> $r->payment_nature_name,
+        'trans_date'=> $r->payment_datetime,
+        'trans_fund'=> $r->fund_name,
+        'unit_no'=> $r->unit_no
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
 
 
 
