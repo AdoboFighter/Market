@@ -47,9 +47,9 @@
 
             <div class="">
               <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-              <div class="float-right text-left p-3">
+              <div class="float-right text-right p-3">
                 <p class="text-uppercase text-muted mb-1"><small>Notes</small></p>
-                <h4 class="font-weight-bold mb-0"></h4>
+                <h4 class="font-weight-bold mb-0">View Stall List</h4>
               </div>
             </div>
 
@@ -64,46 +64,21 @@
         </div>
       </div>
 
-      </div>
-      <!--Grid column-->
+    </div>
+    <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-4 col-md-6 mb-4">
-
-        <!-- Admin card -->
-        <div id="dateclick">
-          <div class="card mt-3">
-
-            <div class="">
-              <i class="far fa-calendar-alt fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-              <div class="float-right text-right p-3">
-                <p class="text-uppercase text-muted mb-1"><small>Date</small></p>
-                <h4 class="font-weight-bold mb-0" id="dateToday"></h4>
-              </div>
-            </div>
-
-            <div class="card-body pt-0">
-              <!-- <div class="progress md-progress">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0"
-              aria-valuemax="100"></div>
-            </div>
-            <p class="card-text">Worse than last week (46%)</p> -->
-          </div>
-
-        </div>
-      </div>
-      <!-- Admin card -->
-      <br>
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-6 mb-4">
 
       <!-- Admin card -->
-      <div id="regambuclick">
+      <div id="dateclick">
         <div class="card mt-3">
 
           <div class="">
-            <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+            <i class="far fa-calendar-alt fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
             <div class="float-right text-right p-3">
-              <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
-              <h4 class="font-weight-bold mb-0" id="numambu"></h4>
+              <p class="text-uppercase text-muted mb-1"><small>Date</small></p>
+              <h4 class="font-weight-bold mb-0" id="dateToday"></h4>
             </div>
           </div>
 
@@ -117,18 +92,18 @@
 
       </div>
     </div>
-
     <!-- Admin card -->
     <br>
+
     <!-- Admin card -->
-    <div id="violationclick">
+    <div id="regambuclick">
       <div class="card mt-3">
 
         <div class="">
-          <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+          <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
           <div class="float-right text-right p-3">
-            <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
-            <h4 class="font-weight-bold mb-0" id="numvio"></h4>
+            <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
+            <h4 class="font-weight-bold mb-0" id="numambu"></h4>
           </div>
         </div>
 
@@ -144,6 +119,31 @@
   </div>
 
   <!-- Admin card -->
+  <br>
+  <!-- Admin card -->
+  <div id="violationclick">
+    <div class="card mt-3">
+
+      <div class="">
+        <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+        <div class="float-right text-right p-3">
+          <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
+          <h4 class="font-weight-bold mb-0" id="numvio"></h4>
+        </div>
+      </div>
+
+      <div class="card-body pt-0">
+        <!-- <div class="progress md-progress">
+        <div class="progress-bar bg-danger" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0"
+        aria-valuemax="100"></div>
+      </div>
+      <p class="card-text">Worse than last week (46%)</p> -->
+    </div>
+
+  </div>
+</div>
+
+<!-- Admin card -->
 
 </div>
 <!--Grid column-->
@@ -313,20 +313,20 @@
       <div class="modal-body">
 
 
-          <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
-            <thead>
-              <tr>
-                <td class="border border-dark">Customer ID</td>
-                <td class="border border-dark">description</td>
-                <td class="border border-dark">date occurred</td>
-                <td class="border border-dark">status</td>
-                <td class="border border-dark">name</td>
-                <!-- <td class="border border-dark">Resolve</td> -->
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
+          <thead>
+            <tr>
+              <td class="border border-dark">Customer ID</td>
+              <td class="border border-dark">description</td>
+              <td class="border border-dark">date occurred</td>
+              <td class="border border-dark">status</td>
+              <td class="border border-dark">name</td>
+              <!-- <td class="border border-dark">Resolve</td> -->
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
 
 
       </div>
@@ -464,8 +464,99 @@
           <tbody id="tbodyParticulars"></tbody>
         </table>
 
-        </div>
-
       </div>
+
     </div>
   </div>
+</div>
+
+
+<div id="notesclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Stall list</h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- <h5>Stall list</h5> -->
+        <table width="100%" class="table table-sm table-bordered text-center" id="notestable">
+          <thead >
+            <tr>
+              <td class="border border-dark">ID</td>
+              <td class="border border-dark">Name</td>
+              <td class="border border-dark">Stall Number</td>
+              <td class="border border-dark">View Notes</td>
+              <td class="border border-dark">Add new notes</td>
+            </tr>
+          </thead>
+
+          <tbody id="tbodyParticulars"></tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="notesaddmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Add New Note</h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="noteaddform">
+          <div class="p-2">
+            <h5 class="font-weight-bold">Note Details</h5>
+            <div class="form-group">
+              <label for="">Title</label>
+              <input type="text" class="form-control" name="note[date]" required>
+            </div>
+            <div class="form-group">
+              <label for="">Date</label>
+              <input type="Date" class="form-control" name="note[date]" required>
+            </div>
+            <div class="form-group">
+              <label for="">Note Details</label>
+              <textarea class="form-control" rows="3" name="note[desc]" required></textarea>
+            </div>
+
+            <input type="text" class="form-control" name="note[id]" id="note_id" required>
+
+            <button type="submit" class="btn btn-primary">Add note</button>
+            <button type="reset" class="btn stylish-color-dark text-white">Clear</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="notesviewmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Notes</h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

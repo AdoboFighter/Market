@@ -1182,6 +1182,11 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function getstallnotes()
+  {
+    $query = $this->model->getstallnotes();
+    echo json_encode($query);
+  }
 
 
 
