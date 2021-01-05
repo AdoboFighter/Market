@@ -518,7 +518,7 @@
             <h5 class="font-weight-bold">Note Details</h5>
             <div class="form-group">
               <label for="">Title</label>
-              <input type="text" class="form-control" name="note[date]" required>
+              <input type="text" class="form-control" name="note[title]" required>
             </div>
             <div class="form-group">
               <label for="">Date</label>
@@ -532,7 +532,7 @@
             <input type="text" class="form-control" name="note[id]" id="note_id" required>
 
             <button type="submit" class="btn btn-primary">Add note</button>
-            <button type="reset" class="btn stylish-color-dark text-white">Clear</button>
+            <!-- <button type="reset" class="btn stylish-color-dark text-white">Clear</button> -->
           </div>
         </form>
       </div>
@@ -545,7 +545,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Notes</h5>
+        <h5 class="modal-title" id="namednote"></h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -553,6 +553,19 @@
       <div class="modal-body">
 
 
+        <table width="100%" class="table table-sm table-bordered text-center" id="viewnotestable">
+          <thead >
+            <tr>
+              <!-- <td class="border border-dark">ID</td> -->
+              <td width="40%" class="border border-dark">title</td>
+              <td class="border border-dark">Date Added</td>
+              <td class="border border-dark">View Note</td>
+              <td class="border border-dark">Delete</td>
+            </tr>
+          </thead>
+
+          <tbody id="tbodyParticulars"></tbody>
+        </table>
 
 
       </div>

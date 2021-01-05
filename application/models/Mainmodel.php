@@ -3239,6 +3239,77 @@ class Mainmodel extends CI_model{
   }
 
 
+  public function save_notes($inputData)
+  {
+    $data_violation = array(
+      'title' => $inputData['title'],
+      'note' => $inputData['desc'],
+      'date_added' => $inputData['date'],
+      'fk_customer_id_note' => $inputData['id']
+    );
+
+
+    $this->db->insert('notes', $data_violation);
+
+  }
+
+
+  public function getviewnote($fk_custid_note)
+  {
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $this->db->like("concat(fk_customer_id_note)",$fk_custid_note);
+    // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer.customer_id');
+    // $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    // $this->db->join('notes', 'notes.fk_customer_id_note=customer.customer_id');
+    $query = $this->db->get('notes');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        // 'id' => $r->customer_id,
+        'title' => $r->title,
+        'date_added' => $r->date_added,
+        'btn_view' =>
+
+        '<div class="">
+        <button type="button" onclick="viewnotedb('.$r->note_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">View Note</button>
+        </div>'
+        ,
+        'btn_delete' =>
+
+        '<div class="">
+        <button type="button" onclick="deletenotedb('.$r->note_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">delete note</button>
+        </div>'
+
+
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+
+  public function getnameheader($id)
+  {
+    $this->db->where('customer_id', $id);
+    $query = $this->db->get('customer');
+    return $query;
+  }
+
+
+
+
+
+
+
+
+
 
 
 

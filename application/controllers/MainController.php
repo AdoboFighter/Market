@@ -1188,6 +1188,26 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function save_notes()
+  {
+    $inputData = $this->input->post('note');
+    echo json_encode($this->model->save_notes($inputData)) ;
+  }
+
+
+  public function getviewnote()
+  {
+    $fk_custid_note = $this->input->post('fk_custid_note');
+    echo json_encode($this->model->getviewnote($fk_custid_note));
+  }
+
+  public function getnameheader(){
+
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getnameheader($id));
+  }
+
+
 
 
 }

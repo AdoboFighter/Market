@@ -432,29 +432,11 @@ $(document).ready(function(){
 
               function viewnotes(id) {
                 $("#notesviewmodal").modal('show');
-                // $.ajax({
-                //   url: global.settings.url + '/MainController/gettenantpay',
-                //   type: 'POST',
-                //   data: {
-                //     id: id
-                //   },
-                //   dataType:'JSON',
-                //   success: function(res){
-                //     console.log(res);
-                //     res = res[0];
-                //     $('#stall_id_f').val(res.stall_id );
-                //     $('#stall_num_f').val(res.unit_no );
-                //     $('#owner_f').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-                //     $('#address_f').val(res.address);
-                //     $('#occu_f').val(res.aofirstname + ' '+ res.aomiddlename +' ' + res.aolastname);
-                //
-                //
-                //   },
-                //   error: function(xhr){
-                //     console.log(xhr.responseText);
-                //   }
-                // })
-
+                $("#notesclickmodal").modal("toggle");
+                // var fk_custid_note = $("#note_id").val();
+                $('#viewnotestable').DataTable().clear().destroy();
+                getviewnote(id);
+                getnameheader(id);
 
               }
 
@@ -468,17 +450,18 @@ $(document).ready(function(){
                 e.preventDefault();
                 console.log( $('#violationform').serializeArray());
                 $.ajax({
-                  url : global.settings.url +'/MainController/save_violation_con',
+                  url : global.settings.url +'/MainController/save_notes',
                   type : 'POST',
                   data :$(this).serialize(),
                   dataType : 'json',
                   success : function(res){
                     Swal.fire({
                       icon: 'success',
-                      title: 'Note Added',
-                      text: 'This tenant must pay the fee before doing any transactions',
+                      title: 'Note Added'
+                      // text: 'This tenant must pay the fee before doing any transactions',
                     });
-                    // $('#violationmodal').modal("toggle");
+                    $('#notesaddmodal').modal("toggle");
+                    $('#noteaddform')[0].reset();
                     console.log(res);
                   },
                   error : function(xhr){
@@ -486,3 +469,53 @@ $(document).ready(function(){
                   }
                 });
               });
+
+              function getnameheader(id) {
+                $.ajax({
+                  url: global.settings.url + '/MainController/getnameheader',
+                  type: 'POST',
+                  data: $(this).serialize(),
+                  dataType:{id: id},
+                  success: function(res){
+                    console.log(res);
+                    console.log("hello get name header");
+                    $('#namednote').text(res.customer_id);
+
+                  },
+                  error:function(res){
+                    console.log('sala');
+                  }
+                });
+              }
+
+
+              function getviewnote(fk_custid_note) {
+
+                $('#viewnotestable').DataTable({
+                  "paging": true,
+                  "searching": false,
+                  "ordering": true,
+                  "ajax" : {
+                    "url" : global.settings.url + '/MainController/getviewnote',
+                    "data": {fk_custid_note:fk_custid_note},
+                    "dataType": "json",
+                    "type": "POST"
+                  },
+                  "columns" : [{
+                    "data" : "title"
+                  },
+
+                  {
+                    "data" : "date_added"
+                  },
+
+                  {
+                    "data" : "btn_view"
+                  },
+
+                  {
+                    "data" : "btn_delete"
+                  }]
+                });
+                $('.dataTables_length').addClass('bs-select');
+              }

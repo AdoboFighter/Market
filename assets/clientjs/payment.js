@@ -735,7 +735,6 @@ $(document).ready(function(){
     var date = $('#payment_effectivity').val();
     var amount = $('#payment_amount_to_pay2').val();
     console.log($('#payment_effectivity').val());
-    //PUTANG INA NMN KASI WHOOOOOOOOOOOOOOOO
 
     if ($('#what_row').val() == "row1") {
       $('#part1text').val(type);
