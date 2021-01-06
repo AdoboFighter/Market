@@ -48,8 +48,8 @@
             <div class="">
               <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-right p-3">
-                <p class="text-uppercase text-muted mb-1"><small>Notes</small></p>
-                <h4 class="font-weight-bold mb-0">View Stall List</h4>
+                <!-- <p class="text-uppercase text-muted mb-1"><small>Notes</small></p> -->
+                <h4 class="font-weight-bold mb-0">Notes</h4>
               </div>
             </div>
 
@@ -507,7 +507,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Add New Note</h5>
+        <h5 class="modal-title" id="notesmodaldynamic"></h5>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -515,23 +515,24 @@
       <div class="modal-body">
         <form id="noteaddform">
           <div class="p-2">
-            <h5 class="font-weight-bold">Note Details</h5>
+            <!-- <h5 class="font-weight-bold">Note Details</h5> -->
             <div class="form-group">
               <label for="">Title</label>
-              <input type="text" class="form-control" name="note[title]" required>
+              <input type="text" class="form-control" name="note[title]" id="note_title" required>
             </div>
             <div class="form-group">
               <label for="">Date</label>
-              <input type="Date" class="form-control" name="note[date]" required>
+              <input type="Date" class="form-control" name="note[date]" id="note_date"required>
             </div>
             <div class="form-group">
               <label for="">Note Details</label>
-              <textarea class="form-control" rows="3" name="note[desc]" required></textarea>
+              <textarea class="form-control" rows="3" name="note[desc]" id="note_desc"required></textarea>
             </div>
 
-            <input type="text" class="form-control" name="note[id]" id="note_id" required>
+            <input type="text" class="form-control" name="note[note_id_fk]" id="note_id_fk" required disabled >
+            <input type="text" class="form-control" name="note[note_id]" id="note_id" required disabled >
 
-            <button type="submit" class="btn btn-primary">Add note</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             <!-- <button type="reset" class="btn stylish-color-dark text-white">Clear</button> -->
           </div>
         </form>

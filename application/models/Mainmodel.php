@@ -3245,7 +3245,7 @@ class Mainmodel extends CI_model{
       'title' => $inputData['title'],
       'note' => $inputData['desc'],
       'date_added' => $inputData['date'],
-      'fk_customer_id_note' => $inputData['id']
+      'fk_customer_id_note' => $inputData['note_id_fk']
     );
 
 
@@ -3298,8 +3298,35 @@ class Mainmodel extends CI_model{
   public function getnameheader($id)
   {
     $this->db->where('customer_id', $id);
+    $this->db->join('tenant', 'customer.customer_id=tenant.fk_customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $query = $this->db->get('customer');
-    return $query;
+    return $query->result();
+    echo $query;
+  }
+
+  public function getnotesingles($id)
+  {
+    $this->db->like("concat(note_id)",$id);
+    $query = $this->db->get('notes');
+    return $query->result();
+    echo $query;
+  }
+
+
+  public function update_note($data){
+
+    $data1 = array(
+      'title' =>$data['title'],
+      'date_added' =>$data['date'],
+      'note' =>$data['desc']
+    );
+
+    $this->db->where('note_id',$data['note_id'])
+    ->update('notes',$data1);
+
+
+    return true;
   }
 
 

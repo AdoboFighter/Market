@@ -1201,11 +1201,29 @@ public function printreceipt()
     echo json_encode($this->model->getviewnote($fk_custid_note));
   }
 
-  public function getnameheader(){
 
+
+  public function getnameheader()
+  {
     $id = $this->input->post('id');
     echo json_encode($this->model->getnameheader($id));
   }
+
+
+  public function getnotesingles()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->getnotesingles($id));
+  }
+
+
+  public function update_note()
+  {
+    $data = $this->input->post('note');
+    $query = $this->model->update_note($data);
+    echo json_encode($query);
+  }
+
 
 
 

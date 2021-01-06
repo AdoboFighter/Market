@@ -433,7 +433,6 @@ $(document).ready(function(){
               function viewnotes(id) {
                 $("#notesviewmodal").modal('show');
                 $("#notesclickmodal").modal("toggle");
-                // var fk_custid_note = $("#note_id").val();
                 $('#viewnotestable').DataTable().clear().destroy();
                 getviewnote(id);
                 getnameheader(id);
@@ -441,51 +440,79 @@ $(document).ready(function(){
               }
 
               function addnotes(id) {
-                $('#note_id').val(id);
+                $('#noteaddform')[0].reset();
+                $('#note_id_fk').val(id);
+                $('#notesmodaldynamic').text("Add new note");
                 $("#notesaddmodal").modal('show');
               }
 
               $('#noteaddform').submit(function(e){
+                var isNewOrUpdate =  $('#note_id').val();
+                if (isNewOrUpdate == "" || isNewOrUpdate == null) {
+                  e.preventDefault();
+                  $.ajax({
+                    url : global.settings.url +'/MainController/save_notes',
+                    type : 'POST',
+                    data :$(this).serialize(),
+                    dataType : 'json',
+                    success : function(res){
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Note Added'
+                        // text: 'This tenant must pay the fee before doing any transactions',
+                      });
+                      $('#notesaddmodal').modal("toggle");
+                      $('#noteaddform')[0].reset();
+                      console.log(res);
+                    },
+                    error : function(xhr){
+                      console.log(xhr.responseText);
+                    }
+                  });
+                }else {
+                  e.preventDefault();
+                  $.ajax({
+                    url : global.settings.url +'/MainController/update_note',
+                    type : 'POST',
+                    data :$(this).serialize(),
+                    dataType : 'json',
+                    success : function(res){
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Note Saved'
+                        // text: 'This tenant must pay the fee before doing any transactions',
+                      });
+                      $('#notesaddmodal').modal("toggle");
+                      $('#noteaddform')[0].reset();
+                      console.log(res);
+                    },
+                    error : function(xhr){
+                      console.log(xhr.responseText);
+                    }
+                  });
+                }
 
-                e.preventDefault();
-                console.log( $('#violationform').serializeArray());
-                $.ajax({
-                  url : global.settings.url +'/MainController/save_notes',
-                  type : 'POST',
-                  data :$(this).serialize(),
-                  dataType : 'json',
-                  success : function(res){
-                    Swal.fire({
-                      icon: 'success',
-                      title: 'Note Added'
-                      // text: 'This tenant must pay the fee before doing any transactions',
-                    });
-                    $('#notesaddmodal').modal("toggle");
-                    $('#noteaddform')[0].reset();
-                    console.log(res);
-                  },
-                  error : function(xhr){
-                    console.log(xhr.responseText);
-                  }
-                });
+
               });
 
               function getnameheader(id) {
                 $.ajax({
-                  url: global.settings.url + '/MainController/getnameheader',
+                  url: global.settings.url + '/MainController/getcustomerinfocon',
                   type: 'POST',
-                  data: $(this).serialize(),
-                  dataType:{id: id},
+                  data: {
+                    id: id
+                  },
+                  dataType:'JSON',
                   success: function(res){
-                    console.log(res);
-                    console.log("hello get name header");
-                    $('#namednote').text(res.customer_id);
+                    console.log(res.unit_no);
+                    $('#namednote').text(res[0].unit_no);
 
                   },
-                  error:function(res){
-                    console.log('sala');
+                  error: function(xhr){
+                    console.log(xhr.responseText);
+                    console.log("putang ina lang :)???");
                   }
-                });
+                })
               }
 
 
@@ -518,4 +545,33 @@ $(document).ready(function(){
                   }]
                 });
                 $('.dataTables_length').addClass('bs-select');
+              }
+
+              function viewnotedb(id) {
+                $("#notesviewmodal").modal('toggle');
+                $("#notesaddmodal").modal('show');
+
+                $.ajax({
+                  url: global.settings.url + '/MainController/getnotesingles',
+                  type: 'POST',
+                  data: {
+                    id: id
+                  },
+                  dataType:'JSON',
+                  success: function(res){
+                    console.log(res.unit_no);
+                    $('#notesmodaldynamic').text("Note Details");
+                    // $('#dynamicbtnnotetxt').text("Save");
+                    $('#note_id').val(res[0].note_id);
+                    $('#note_title').val(res[0].title);
+                    $('#note_date').val(res[0].date_added);
+                    $('#note_desc').val(res[0].note);
+                    $('#note_id_fk').val(res[0].fk_customer_id_note);
+
+                  },
+                  error: function(xhr){
+                    console.log(xhr.responseText);
+                  }
+                })
+
               }
