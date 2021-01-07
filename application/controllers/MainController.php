@@ -1224,6 +1224,13 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function delete_note()
+  {
+    $id = $this->input->post('id');
+    $query = $this->model->delete_note($id);
+    echo json_encode($query);
+  }
+
 
 
 

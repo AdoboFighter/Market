@@ -3198,6 +3198,48 @@ class Mainmodel extends CI_model{
   }
 
 
+  // public function getstallnotes()
+  // {
+  //   $draw = intval($this->input->get("draw"));
+  //   $start = intval($this->input->get("start"));
+  //   $length = intval($this->input->get("length"));
+  //
+  //   // $this->db->like("concat($searchcat)",$search);
+  //   $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+  //   $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+  //   // $this->db->join('notes', 'notes.fk_customer_id_note=customer.customer_id');
+  //   $query = $this->db->get('customer');
+  //   $data = [];
+  //   foreach ($query->result() as $r) {
+  //     $data[] = array(
+  //       'id' => $r->customer_id,
+  //       'name' => $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname,
+  //       'unit_no' => $r->unit_no,
+  //       'btn_view' =>
+  //
+  //       '<div class="">
+  //       <button type="button" onclick="viewnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">View Notes</button>
+  //       </div>'
+  //       ,
+  //       'btn_add' =>
+  //
+  //       '<div class="">
+  //       <button type="button" onclick="addnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add notes</button>
+  //       </div>'
+  //       ,
+  //
+  //     );
+  //   }
+  //   $result = array(
+  //     "draw" => $draw,
+  //     "recordsTotal" => $query->num_rows(),
+  //     "recordsFiltered" => $query->num_rows(),
+  //     "data" => $data
+  //   );
+  //   return $result;
+  // }
+
+
   public function getstallnotes()
   {
     $draw = intval($this->input->get("draw"));
@@ -3205,8 +3247,9 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
 
     // $this->db->like("concat($searchcat)",$search);
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id' ,'left');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id' ,'left');
+    $this->db->join('notes', 'notes.fk_customer_id_note=customer.customer_id');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
@@ -3328,6 +3371,17 @@ class Mainmodel extends CI_model{
 
     return true;
   }
+
+
+  public function delete_note($id)
+  {
+    $this->db->where("note_id",$id);
+    $this->db->delete('notes');
+
+  }
+
+
+
 
 
 

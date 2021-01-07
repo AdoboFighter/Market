@@ -44,9 +44,9 @@
         <!-- Admin card -->
         <div id="notesclick">
           <div class="card mt-3">
-
+            <!-- <i class="fas fa-sticky-note"></i> -->
             <div class="">
-              <i class="fas fa-user-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+              <i class="fas fa-sticky-note fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-right p-3">
                 <!-- <p class="text-uppercase text-muted mb-1"><small>Notes</small></p> -->
                 <h4 class="font-weight-bold mb-0">Notes</h4>
@@ -529,8 +529,8 @@
               <textarea class="form-control" rows="3" name="note[desc]" id="note_desc"required></textarea>
             </div>
 
-            <input type="text" class="form-control" name="note[note_id_fk]" id="note_id_fk" required disabled >
-            <input type="text" class="form-control" name="note[note_id]" id="note_id" required disabled >
+            <input type="text" class="form-control" name="note[note_id_fk]" id="note_id_fk" required hidden >
+            <input type="text" class="form-control" name="note[note_id]" id="note_id" hidden >
 
             <button type="submit" class="btn btn-primary">Save</button>
             <!-- <button type="reset" class="btn stylish-color-dark text-white">Clear</button> -->

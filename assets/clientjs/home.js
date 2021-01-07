@@ -575,3 +575,28 @@ $(document).ready(function(){
                 })
 
               }
+
+              function deletenotedb(id) {
+                console.log(id);
+                $.ajax({
+                  url : global.settings.url +'/MainController/delete_note',
+                  type : 'POST',
+                  data :{
+                    id: id
+                  },
+                  dataType : 'json',
+                  success : function(res){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Note removed'
+                      // text: 'This tenant must pay the fee before doing any transactions',
+                    });
+                    $('#viewnotestable').DataTable().ajax.reload();
+                    console.log(res);
+                  },
+                  error : function(xhr){
+                    console.log(xhr.responseText);
+                  }
+                });
+
+              }
