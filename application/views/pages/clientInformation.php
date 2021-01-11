@@ -57,6 +57,7 @@
                 <td class="border border-dark">Tenant's name</td>
                 <td class="border border-dark">Occupant's name</td>
                 <td class="border border-dark">load data</td>
+                <td class="border border-dark">Add notes</td>
               </tr>
             </thead>
             <tbody>
@@ -282,3 +283,44 @@
 </div>
 
 <div class="overlay"></div>
+
+
+
+<div id="notesaddmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesmodaldynamic"></h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="noteaddform">
+          <div class="p-2">
+            <!-- <h5 class="font-weight-bold">Note Details</h5> -->
+            <div class="form-group">
+              <label for="">Title</label>
+              <input type="text" class="form-control" name="note[title]" id="note_title" required>
+            </div>
+            <div class="form-group">
+              <label for="">Date</label>
+              <input type="Date" class="form-control" name="note[date]" id="note_date"required>
+            </div>
+            <div class="form-group">
+              <label for="">Note Details</label>
+              <textarea class="form-control" rows="3" name="note[desc]" id="note_desc"required></textarea>
+            </div>
+
+            <input type="text" class="form-control" name="note[note_id_fk]" id="note_id_fk" required hidden>
+            <input type="text" class="form-control" name="note[note_id]" id="note_id" hidden >
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <!-- <button type="reset" class="btn stylish-color-dark text-white">Clear</button> -->
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
