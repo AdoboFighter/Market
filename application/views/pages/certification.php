@@ -48,11 +48,25 @@
               <div class="mb-2 form-group" width="80">
                 <label>Select type</label>
                 <select class="form-control form-control-sm" name="transact[payment_type]" id="location">
-                  <option selected value="">Please Select</option>
+                  <!-- <option selected value="">Please Select</option>
                   <option value="PDF2fcertification">2f certification</option>
+                  <option value="pdftransfer2f">Certification of transfer(2nd flr)</option>
+                  <option value="pdfcease2f">cease operation 2nd floor</option>
+                  <option value="pdfceasegf">cease operation ground floor</option>
                   <option value="PDFwaterdistrict">Certification for water district</option>
                   <option value="PDFnoownership">Certification for no ownership and operation</option>
-                  <option value="PDFqrtest">Test</option>
+                  <option value="PDFqrtest">Test</option> -->
+
+                  <option selected value="">Please Select</option>
+                  <option value="pdfcease2f">Cease operation(2nd floor)</option>
+                  <option value="pdfceasegf">Cease operation(Ground floor)</option>
+                  <option value="pdftransfer2f">Certification of transfer(2nd floor)</option>
+                  <option value="pdftransfergf">Certification of transfer(Ground floor)</option>
+                  <option value="pdfcertnonoperation">Certification of no operation</option>
+                  <option value="pdfcertgf">Certification for Ground floor</option>
+                  <option value="pdfcert3rd">Certification for 3rd floor</option>
+
+
                 </select>
               </div>
               <input type="text" hidden id="transaction_id" name="cert[transaction_id]">
