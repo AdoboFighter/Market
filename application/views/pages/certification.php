@@ -44,36 +44,27 @@
 
 
 
-  <form id="certform">
-    <div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="submit" class="btn btn-primary" width="50">Remove effectivity</button>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+    <form id="certform">
+      <div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="submit" class="btn btn-primary" width="50">Remove effectivity</button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 
             <div class="modal-body">
 
               <div class="mb-2 form-group" width="80">
                 <label>Select type</label>
-                <select class="form-control form-control-sm" name="transact[payment_type]" id="location">
-                  <!-- <option selected value="">Please Select</option>
-                  <option value="PDF2fcertification">2f certification</option>
-                  <option value="pdftransfer2f">Certification of transfer(2nd flr)</option>
-                  <option value="pdfcease2f">cease operation 2nd floor</option>
-                  <option value="pdfceasegf">cease operation ground floor</option>
-                  <option value="PDFwaterdistrict">Certification for water district</option>
-                  <option value="PDFnoownership">Certification for no ownership and operation</option>
-                  <option value="PDFqrtest">Test</option> -->
+                <select class="form-control form-control-sm" name="transact[cert_type_select]" id="cert_type_select">
+
 
                   <option selected value="">Please Select</option>
-                  <option value="pdfcease2f">Cease operation(2nd floor)</option>
-                  <option value="pdfceasegf">Cease operation(Ground floor)</option>
-                  <option value="pdftransfer2f">Certification of transfer(2nd floor)</option>
-                  <option value="pdftransfergf">Certification of transfer(Ground floor)</option>
+                  <option value="pdfcease2f">Cease of operation</option>
+                  <option value="pdftransfer2f">Certificate of transfer</option>
                   <option value="pdfcertnonoperation">Certification of no operation</option>
                   <option value="pdfcertgf">Certification for Ground floor</option>
                   <option value="pdfcert3rd">Certification for 3rd floor</option>
@@ -107,10 +98,10 @@
               <iframe id="iframe_preview_formgen" frameborder="0" marginwidth="0" marginheight="0" height="600" width="100%"></iframe>
 
               <!-- this is for ambulant
-                   this is for ambulant
-                   this is for ambulant
-                   this is for ambulant
-                   this is for ambulant-->
+              this is for ambulant
+              this is for ambulant
+              this is for ambulant
+              this is for ambulant-->
 
               <input type="text" hidden id="location" name="cert[location]">
               <input type="text" hidden id="Location_num" name="cert[Location_num]">
@@ -122,10 +113,10 @@
 
             </div>
 
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
 
 
 
@@ -138,3 +129,138 @@
 
 </div>
 <div class="overlay"></div>
+
+
+<div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Cease Operation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Floor</label>
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="cease_operation_floor">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Ground floor</option>
+            <option value="ambulant">2nd floor</option>
+            <option value="ambulant">3rd floor</option>
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Certify vendor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Floor</label>
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="client_type">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Ground floor</option>
+            <option value="ambulant">2nd floor</option>
+            <option value="ambulant">3rd floor</option>
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Certification of transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Floor</label>
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="client_type">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Ground floor</option>
+            <option value="ambulant">2nd floor</option>
+            <option value="ambulant">3rd floor</option>
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Business nature change</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Floor</label>
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="client_type">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Ground floor</option>
+            <option value="ambulant">2nd floor</option>
+            <option value="ambulant">3rd floor</option>
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
