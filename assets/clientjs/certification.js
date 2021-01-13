@@ -9,77 +9,187 @@ var month = monthNames[m.getMonth()];
 var d = new Date();
 var n = d.getDate();
 var year = new Date().getFullYear();
+
 $(document).ready(function(){
-  $('#cert_table').DataTable({
-    "ajax" : {
-      "url" : global.settings.url + '/MainController/getcerttable',
-      dataSrc : 'data'
-    },
-    "columns" : [{
-      "data" : "id"
-    },
-    {
-      "data" : "c_info_fullname_owner"
-    },
-    {
-      "data" : "c_info_address"
-    },
-    {
-      "data" : "c_info_stall_number"
-    },
-    {
-      "data" : "btn"
-    }]
+
+  $('#client_type').on('change', function(e) {
+
+    if ($(this).val() == "tenant") {
+      console.log("tenant");
+      $('#cert_table').DataTable().clear().destroy();
+      $('#changecolumn').text("Stall number");
+      $('#cert_table').DataTable({
+        "autoWidth": false,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getcerttable',
+          dataSrc : 'data'
+        },
+        "columns" : [{
+          "data" : "id"
+        },
+        {
+          "data" : "c_info_fullname_owner"
+        },
+        {
+          "data" : "c_info_address"
+        },
+        {
+          "data" : "c_info_stall_number"
+        },
+        {
+          "data" : "btn"
+        }]
+      });
+    }else if ($(this).val() == "ambulant") {
+
+      $('#cert_table').DataTable().clear().destroy();
+      $('#changecolumn').text("Location");
+      $('#cert_table').DataTable({
+        "autoWidth": false,
+        "ajax" : {
+          "url" : global.settings.url + '/MainController/getcerttableAmbulant',
+          dataSrc : 'data'
+        },
+        "columns" : [{
+          "data" : "id"
+        },
+        {
+          "data" : "c_info_fullname_owner"
+        },
+        {
+          "data" : "c_info_address"
+        },
+        {
+          "data" : "c_info_stall_number"
+        },
+        {
+          "data" : "btn"
+        }]
+      });
+      console.log("ambulant");
+    }
+
   });
+
+  // $('#cert_table').DataTable({
+  //   "ajax" : {
+  //     "url" : global.settings.url + '/MainController/getcerttable',
+  //     dataSrc : 'data'
+  //   },
+  //   "columns" : [{
+  //     "data" : "id"
+  //   },
+  //   {
+  //     "data" : "c_info_fullname_owner"
+  //   },
+  //   {
+  //     "data" : "c_info_address"
+  //   },
+  //   {
+  //     "data" : "c_info_stall_number"
+  //   },
+  //   {
+  //     "data" : "btn"
+  //   }]
+  // });
+
+
   $('#location').on('change', function(e) {
+
+    var typeselect = $('#client_type').val();
+    e.preventDefault();
+
+    if (typeselect == "tenant") {
+      console.log("tenant change pdf");
+      $.ajax({
+        url : global.settings.url + '/MainController/pdf2fcert',
+        type : 'POST',
+        data : $('#certform').serialize(),
+        xhrFields: {
+          responseType: 'blob'
+        },
+        success : function(res){
+          //   $('#modalBirthday').modal('show');
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(res);
+          a.href = url;
+          $('#iframe_preview_formgen').attr('src',url);
+        },
+        error : function(xhr){
+          console.log(xhr.responseText);
+        }
+      });
+
+    }else if (typeselect == "ambulant") {
+      console.log("ambulant change pdf");
+      $.ajax({
+        url : global.settings.url + '/MainController/pdf2fcertambulant',
+        type : 'POST',
+        data : $('#certform').serialize(),
+        xhrFields: {
+          responseType: 'blob'
+        },
+        success : function(res){
+          //   $('#modalBirthday').modal('show');
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(res);
+          a.href = url;
+          $('#iframe_preview_formgen').attr('src',url);
+        },
+        error : function(xhr){
+          console.log(xhr.responseText);
+        }
+      });
+    }
+
     $('#cert').val(this.value);
     var typecert = $('#location option:selected').text();
     $('#cert_type').val(typecert);
-    e.preventDefault();
-    $.ajax({
-      url : global.settings.url + '/MainController/pdf2fcert',
-      type : 'POST',
-      data : $('#certform').serialize(),
-      xhrFields: {
-        responseType: 'blob'
-      },
-      success : function(res){
-        //   $('#modalBirthday').modal('show');
-        var a = document.createElement('a');
-        var url = window.URL.createObjectURL(res);
-        a.href = url;
-        $('#iframe_preview_formgen').attr('src',url);
-      },
-      error : function(xhr){
-        console.log(xhr.responseText);
-      }
-    });
+
+
   });
+
+
   $('.dataTables_length').addClass('bs-select');
 
-  $('#certform').submit(function(e){
-    console.log("hello");
-    e.preventDefault();
-    $.ajax({
-      url: global.settings.url + '/MainController/updatecert',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        $('#certmodal').modal("toggle");
-        Swal.fire({
-          icon: 'success',
-          title: 'Certification Effectivity Removed',
-        });
-        $('#cert_table').DataTable().ajax.reload();
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
+
+
+
+
+//end of document ready
+});
+
+$('#certform').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: global.settings.url + '/MainController/updatecert',
+    type: 'POST',
+    data: $(this).serialize(),
+    dataType:'JSON',
+    success: function(res){
+      $('#certmodal').modal("toggle");
+      Swal.fire({
+        icon: 'success',
+        title: 'Certification Effectivity Removed',
+      });
+      $('#cert_table').DataTable().ajax.reload();
+    },
+    error:function(res){
+      console.log('sala');
+    }
   });
-    });
-  function fetchdata(id){
+
+});
+
+
+function fetchdata(id){
+
+
+  var typeselect = $('#client_type').val();
+  // e.preventDefault();
+
+  if (typeselect == "tenant") {
+    console.log("tenant change pdf");
     $('#certmodal').modal("show");
     console.log(id);
     $.ajax({
@@ -110,12 +220,63 @@ $(document).ready(function(){
         var lastfourOR = $('#ornumber').val();
         var tranIDVVAR = $('#transaction_id').val();
         var datenosl = $('#today').val().replace(/\//g, '');
-        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-        $('#todaynosl').val(datenosl);
-        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
-      },
-      error: function(xhr){
-        console.log(xhr.responseText);
-      }
-    })
+          var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+          $('#todaynosl').val(datenosl);
+          $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      })
+
+  }else if (typeselect == "ambulant") {
+    console.log("ambulant change pdf");
+    $('#certmodal').modal("show");
+    console.log(id);
+    $.ajax({
+      url: global.settings.url + '/MainController/get_cert_info_ambulant',
+      type: 'POST',
+      data: {id: id},
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        res = res[0];
+        $('#transaction_id').val(res.transaction_id );
+        $('#fname').val(res.firstname );
+        $('#mname').val(res.middlename );
+        $('#lname').val(res.lastname);
+        $('#address').val(res.address);
+        $('#natbus').val(res.nature_of_business);
+
+
+
+        $('#location').val(res[0].location);
+        $('#Location_num').val(res[0].Location_num);
+
+
+        $('#or_number').val(res.or_number);
+        $('#payment_amount').val(res.payment_amount);
+        $('#address').val(res.address);
+        $('#today').val(currentDate);
+        $('#days').val(n);
+        $('#month').val(month);
+        $('#year').val(year);
+        $('#ornumber').val(res.or_number );
+        var lastfourOR = $('#ornumber').val();
+        var tranIDVVAR = $('#transaction_id').val();
+        var datenosl = $('#today').val().replace(/\//g, '');
+          var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+          $('#todaynosl').val(datenosl);
+          $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      })
+  }
+
+
+
+
+
   }

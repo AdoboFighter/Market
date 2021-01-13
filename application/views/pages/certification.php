@@ -12,14 +12,26 @@
   <div class="container justify-content-center ">
     <div class="card m-3 shadow">
       <div class="row p-3">
+
         <div class="col-12">
-          <table class="table p-2 table-hover table-bordered shadow border border-dark" id="cert_table">
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="client_type">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Tenant</option>
+            <option value="ambulant">Ambulant</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row p-3">
+
+        <div class="col-12">
+          <table width="100%" class="table p-2 table-hover table-bordered shadow border border-dark" id="cert_table">
             <thead>
               <tr>
                 <td class="border border-dark">transaction ID</td>
                 <td class="border border-dark">Name</td>
                 <td class="border border-dark">Address</td>
-                <td class="border border-dark">Stall No.</td>
+                <td id="changecolumn" class="border border-dark"></td>
                 <td class="border border-dark">Print</td>
               </tr>
             </thead>
@@ -93,6 +105,16 @@
               <input type="text" hidden id="payment_amount" name="cert[payment_amount]">
               <input type="text" hidden id="cert_type" name="cert[cert_type]">
               <iframe id="iframe_preview_formgen" frameborder="0" marginwidth="0" marginheight="0" height="600" width="100%"></iframe>
+
+              <!-- this is for ambulant
+                   this is for ambulant
+                   this is for ambulant
+                   this is for ambulant
+                   this is for ambulant-->
+
+              <input type="text" hidden id="location" name="cert[location]">
+              <input type="text" hidden id="Location_num" name="cert[Location_num]">
+
 
 
             </div>

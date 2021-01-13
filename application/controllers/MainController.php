@@ -776,13 +776,48 @@ class MainController extends CI_Controller{
       'address' => $inputData['address'],
       'refnum' => $inputData['refnum']
     );
-    return $this->load->view('pages/'.$inputData['cert'],$data);
+    return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+  }
+
+  public function pdf2fcertambulant()
+  {
+    $inputData = $this->input->post('cert');
+
+    $data = array(
+      'fname' => $inputData['fname'],
+      'mname' => $inputData['mname'],
+      'lname' => $inputData['lname'],
+      'address' => $inputData['address'],
+      'sysuser' => $inputData['sysuser'],
+      'natbus' => $inputData['natbus'],
+      'flrlvl' => $inputData['natbus'],
+      'sysuser' => $inputData['sysuser'],
+
+      'stall' => $inputData['location'],
+      'floor_level' => $inputData['Location_num'],
+
+      'days' => $inputData['days'],
+      'month' => $inputData['month'],
+      'year' => $inputData['year'],
+      'or_number' => $inputData['or_number'],
+      'payment_amount' => $inputData['payment_amount'],
+      'today' => $inputData['today'],
+      'address' => $inputData['address'],
+      'refnum' => $inputData['refnum']
+    );
+    return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
   }
 
   public function get_cert_info_con()
   {
     $id = $this->input->post('id');
     echo json_encode($this->model->get_cert_info_mod($id));
+  }
+
+  public function get_cert_info_ambulant()
+  {
+    $id = $this->input->post('id');
+    echo json_encode($this->model->get_cert_info_ambulant($id));
   }
 
   public function updatecert()
@@ -1229,6 +1264,11 @@ public function printreceipt()
     $id = $this->input->post('id');
     $query = $this->model->delete_note($id);
     echo json_encode($query);
+  }
+
+  public function getcerttableAmbulant()
+  {
+    echo json_encode($this->model->getcerttableAmbulant());
   }
 
 

@@ -3353,6 +3353,56 @@ class Mainmodel extends CI_model{
 
   }
 
+  public function getcerttableAmbulant()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'TO_PRINT');
+
+    $this->db->where($array);
+
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant_unit.ambulant_id = ambulant.ambulant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'id' => $r->transaction_id,
+        'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'c_info_stall_number' => $r->location_no,
+        'c_info_address' => $r->address,
+
+        'btn'=>
+
+        '<div class="">
+        <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        </div>'
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function get_cert_info_ambulant($id)
+  {
+    $this->db->where('transaction_id', $id);
+    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
+    $this->db->join('ambulant_unit', 'ambulant_unit.ambulant_id = ambulant.ambulant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $query = $this->db->get('customer');
+    return $query->result();
+  }
+
+
+
 
 
 
