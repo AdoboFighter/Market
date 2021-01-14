@@ -1905,6 +1905,12 @@ class Mainmodel extends CI_model{
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        </div>',
+
+        'btn2'=>
+
+        '<div class="">
+        <button type="button" onclick="removecert('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Remove</button>
         </div>'
       );
     }
@@ -3379,6 +3385,12 @@ class Mainmodel extends CI_model{
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        </div>',
+
+        'btn2'=>
+
+        '<div class="">
+        <button type="button" onclick="removecert('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Remove</button>
         </div>'
       );
     }

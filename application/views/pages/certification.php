@@ -33,6 +33,8 @@
                 <td class="border border-dark">Address</td>
                 <td id="changecolumn" class="border border-dark"></td>
                 <td class="border border-dark">Print</td>
+                <td class="border border-dark">Remove</td>
+
               </tr>
             </thead>
             <tbody>
@@ -66,8 +68,7 @@
                   <option value="pdfcease2f">Cease of operation</option>
                   <option value="pdftransfer2f">Certificate of transfer</option>
                   <option value="pdfcertnonoperation">Certification of no operation</option>
-                  <option value="pdfcertgf">Certification for Ground floor</option>
-                  <option value="pdfcert3rd">Certification for 3rd floor</option>
+                  <option value="pdfcertgf">Market Certification</option>
 
 
                 </select>
@@ -130,6 +131,60 @@
 </div>
 <div class="overlay"></div>
 
+
+<div id="certmodal-" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Cease Operation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Floor</label>
+          <select class="form-control form-control-sm" name="transact[payment_type]" id="cease_operation_floor">
+            <option selected value="">Please Select</option>
+            <option value="tenant">Ground floor</option>
+            <option value="ambulant">2nd floor</option>
+            <option value="ambulant">3rd floor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">cease1</label>
+          <input type="text" class="form-control" name="" id="cease1">
+        </div>
+
+        <div class="form-group">
+          <label for="">cease2</label>
+          <input type="text" class="form-control" name="" id="cease2">
+        </div>
+
+
+        <div class="form-group">
+          <label for="">transfer1</label>
+          <input type="text" class="form-control" name="" id="transfer1">
+        </div>
+
+        <div class="form-group">
+          <label for="">transfer2</label>
+          <input type="text" class="form-control" name="" id="transfer2">
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <div id="certmodal" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -258,6 +313,63 @@
 
       </div>
       <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="select_cert" data-backdrop="static" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="submit" class="btn btn-primary" width="50">Remove effectivity</button> -->
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Select Certification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-2 form-group" width="80">
+          <label>Select type</label>
+          <select class="form-control form-control-sm" name="transact[cert_type_select]" id="cert_type_select">
+
+
+            <option selected value="">Please Select</option>
+            <option value="cease">Cease of operation</option>
+            <option value="transfer">Certificate of transfer</option>
+            <option value="pdfcertnonoperation">Certification of no operation</option>
+            <option value="pdfcertgf">Market Certification</option>
+
+
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">cease1</label>
+          <input type="text" class="form-control" name="" id="cease1">
+        </div>
+
+        <div class="form-group">
+          <label for="">cease2</label>
+          <input type="text" class="form-control" name="" id="cease2">
+        </div>
+
+
+        <div class="form-group">
+          <label for="">transfer1</label>
+          <input type="text" class="form-control" name="" id="transfer1">
+        </div>
+
+        <div class="form-group">
+          <label for="">transfer2</label>
+          <input type="text" class="form-control" name="" id="transfer2">
+        </div>
+
 
       </div>
 

@@ -39,6 +39,9 @@ $(document).ready(function(){
         },
         {
           "data" : "btn"
+        },
+        {
+          "data" : "btn2"
         }]
       });
     }else if ($(this).val() == "ambulant") {
@@ -65,6 +68,9 @@ $(document).ready(function(){
         },
         {
           "data" : "btn"
+        },
+        {
+          "data" : "btn2"
         }]
       });
       console.log("ambulant");
@@ -120,6 +126,14 @@ $(document).ready(function(){
           console.log(xhr.responseText);
         }
       });
+
+      if (true) {
+
+      }else if (true) {
+
+      }else if (true) {
+
+      }
 
     }else if (typeselect == "ambulant") {
       console.log("ambulant change pdf");
@@ -183,6 +197,42 @@ $('#certform').submit(function(e){
 });
 
 
+$('#cert_type_select').on('change', function(e) {
+  $('#iframe_preview_formgen').attr('src', $('iframe_preview_formgen').attr('src'));
+
+  if ($(this).val() == "cease") {
+    $('#cease1').attr('type','hidden');
+    $('#cease2').attr('type','hidden');
+  }else if ($(this).val() == "transfer") {
+    $('#transfer1').attr('type','hidden');
+    $('#transfer2').attr('type','hidden');
+
+  }
+
+});
+
+
+function removecert(id){
+  $.ajax({
+    url: global.settings.url + '/MainController/updatecert',
+    type: 'POST',
+    data: {id: id},
+    dataType:'JSON',
+    success: function(res){
+      Swal.fire({
+        icon: 'success',
+        title: 'Certification Effectivity Removed',
+      });
+      $('#cert_table').DataTable().ajax.reload();
+      },
+      error: function(xhr){
+        console.log(xhr.responseText);
+      }
+    });
+
+}
+
+
 function fetchdata(id){
   var urlclear = '';
   $('#iframe_preview_formgen').attr('src',urlclear);
@@ -192,12 +242,12 @@ function fetchdata(id){
 
   if (typeselect == "tenant") {
     console.log("tenant change pdf");
-    $('#certmodal').modal("show");
+    $('#select_cert').modal("show");
     getcertinfoTenant(id);
 
   }else if (typeselect == "ambulant") {
     console.log("ambulant change pdf");
-    $('#certmodal').modal("show");
+    $('#select_cert').modal("show");
     getcertinfoAmbu(id);
 
   }

@@ -822,9 +822,8 @@ class MainController extends CI_Controller{
 
   public function updatecert()
   {
-    $data = $this->input->post('cert');
-    $query = $this->model->updatecert($data);
-    echo json_encode($query);
+    $id = $this->input->post('id');
+    echo json_encode($this->model->updatecert($id));
   }
 
   public function paymentreceipt()
