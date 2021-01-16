@@ -11,6 +11,15 @@ var n = d.getDate();
 var year = new Date().getFullYear();
 
 $(document).ready(function(){
+  offcert();
+
+
+  $("#testremove").click(function(){
+    console.log('hello');
+    $("#ceaseform").toggle();
+
+
+  });
 
   $('#client_type').on('change', function(e) {
     $('#iframe_preview_formgen').attr('src', $('iframe_preview_formgen').attr('src'));
@@ -127,14 +136,6 @@ $(document).ready(function(){
         }
       });
 
-      if (true) {
-
-      }else if (true) {
-
-      }else if (true) {
-
-      }
-
     }else if (typeselect == "ambulant") {
       console.log("ambulant change pdf");
       $.ajax({
@@ -197,19 +198,41 @@ $('#certform').submit(function(e){
 });
 
 
-$('#cert_type_select').on('change', function(e) {
+
+
+$('#cert_type_select1').on('change', function(e) {
   $('#iframe_preview_formgen').attr('src', $('iframe_preview_formgen').attr('src'));
 
   if ($(this).val() == "cease") {
-    $('#cease1').attr('type','hidden');
-    $('#cease2').attr('type','hidden');
+    $("#ceaseform").toggle();
+    $("#transferform").hide();
+
   }else if ($(this).val() == "transfer") {
-    $('#transfer1').attr('type','hidden');
-    $('#transfer2').attr('type','hidden');
+    $("#transferform").toggle();
+    $("#ceaseform").hide();
+    $("#operationform").hide();
+    $("#marketform").hide();
+
+  }else if ($(this).val() == "operation") {
+    $("#operationform").toggle();
+    $("#ceaseform").hide();
+    $("#transfer").hide();
+    $("#marketform").hide();
+
+
+  }else if ($(this).val() == "market") {
+    $("#marketform").toggle();
+    $("#ceaseform").hide();
+    $("#operationform").hide();
+    $("#transfer").hide();
 
   }
 
 });
+
+function ceasetoggleform() {
+
+}
 
 
 function removecert(id){
@@ -329,4 +352,11 @@ function getcertinfoAmbu(id) {
           console.log(xhr.responseText);
         }
       })
+    }
+
+    function offcert() {
+      $("#ceaseform").toggle();
+      $("#transferform").toggle();
+      $("#operationform").toggle();
+      $("#marketform").toggle();
     }

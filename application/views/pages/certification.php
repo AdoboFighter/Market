@@ -326,7 +326,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <button type="submit" class="btn btn-primary" width="50">Remove effectivity</button> -->
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Select Certification</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Generate Certification</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -336,39 +336,90 @@
 
         <div class="mb-2 form-group" width="80">
           <label>Select type</label>
-          <select class="form-control form-control-sm" name="transact[cert_type_select]" id="cert_type_select">
-
-
+          <select class="form-control form-control-sm" name="transact[cert_type_select]" id="cert_type_select1">
             <option selected value="">Please Select</option>
             <option value="cease">Cease of operation</option>
             <option value="transfer">Certificate of transfer</option>
-            <option value="pdfcertnonoperation">Certification of no operation</option>
-            <option value="pdfcertgf">Market Certification</option>
-
-
+            <option value="operation">Certification of no operation</option>
+            <option value="market">Market Certification</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="">cease1</label>
-          <input type="text" class="form-control" name="" id="cease1">
-        </div>
+        <form id="ceaseform">
 
-        <div class="form-group">
-          <label for="">cease2</label>
-          <input type="text" class="form-control" name="" id="cease2">
-        </div>
+          <div class="form-group" >
+            <label for="">Floor:</label>
+            <select class="form-control form-control-sm" name="transact[cert_type_select]" id="cease_floor">
+              <option selected value="">Please Select</option>
+              <option value="ground">Ground Floor</option>
+              <option value="2nd">2nd Floor</option>
+              <option value="3rd">3rd Floor</option>
+            </select>
+          </div>
 
 
-        <div class="form-group">
-          <label for="">transfer1</label>
-          <input type="text" class="form-control" name="" id="transfer1">
-        </div>
+          <div class="form-group" >
+            <label for="">Ceased operation Since:</label>
+            <input type="date" class="form-control" name=""  id="ceasedate" placeholder="mm/dd/yyyy">
+          </div>
 
-        <div class="form-group">
-          <label for="">transfer2</label>
-          <input type="text" class="form-control" name="" id="transfer2">
-        </div>
+        </form>
+
+        <form id="transferform">
+
+          <div class="form-group" >
+            <label for="">Floor:</label>
+            <select class="form-control form-control-sm" name="transact[cert_type_select]" id="transfer_floor">
+              <option selected value="">Please Select</option>
+              <option value="ground">Ground Floor</option>
+              <option value="2nd">2nd Floor</option>
+              <option value="3rd">3rd Floor</option>
+            </select>
+          </div>
+
+          <div class="form-group" >
+            <label for="">Transfer to:</label>
+            <input type="text" class="form-control" name=""  id="transfer_to">
+          </div>
+
+          <div class="form-group" >
+            <label for="">Affidavit of Transfer of Rights dated:</label>
+            <input type="date" class="form-control" name=""  id="transfer_date" placeholder="mm/dd/yyyy">
+          </div>
+
+        </form>
+
+        <form id="marketform">
+
+          <div class="form-group" >
+            <label for="">Floor:</label>
+            <select class="form-control form-control-sm" name="transact[cert_type_select]" id="market_floor">
+              <option selected value="">Please Select</option>
+              <option value="ground">Ground Floor</option>
+              <option value="2nd">2nd Floor</option>
+              <option value="3rd">3rd Floor</option>
+            </select>
+          </div>
+
+
+
+        </form>
+
+        <form id="operationform">
+
+
+          <div class="form-group" >
+            <label for="">Pick date:</label>
+            <input type="month" class="form-control" name=""  id="operation_date1">
+            <p1>to</p1>
+            <input type="month" class="form-control" name=""  id="operation_date2">
+          </div>
+
+
+
+
+
+        </form>
 
 
       </div>
