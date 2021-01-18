@@ -202,10 +202,14 @@ $('#certform').submit(function(e){
 
 $('#cert_type_select1').on('change', function(e) {
   $('#iframe_preview_formgen').attr('src', $('iframe_preview_formgen').attr('src'));
+  var trans_id = $("#transaction_id").val();
 
   if ($(this).val() == "cease") {
     $("#ceaseform").toggle();
     $("#transferform").hide();
+    $("#operationform").hide();
+    $("#marketform").hide();
+    completeformtenant(trans_id);
 
   }else if ($(this).val() == "transfer") {
     $("#transferform").toggle();
@@ -216,7 +220,7 @@ $('#cert_type_select1').on('change', function(e) {
   }else if ($(this).val() == "operation") {
     $("#operationform").toggle();
     $("#ceaseform").hide();
-    $("#transfer").hide();
+    $("#transferform").hide();
     $("#marketform").hide();
 
 
@@ -304,6 +308,8 @@ function getcertinfoAmbu(id) {
       $('#ornumber').val(res.or_number );
       var lastfourOR = $('#ornumber').val();
       var tranIDVVAR = $('#transaction_id').val();
+
+      console.log($('#today').val() + 'hello');
       var datenosl = $('#today').val().replace(/\//g, '');
         var lastfour = lastfourOR.substr(lastfourOR.length - 4);
         $('#todaynosl').val(datenosl);
@@ -315,6 +321,50 @@ function getcertinfoAmbu(id) {
     });
   }
 
+  function completeformtenant(id) {
+    $("#aftercease").after(' <input type="text" id="todaynosl" name="cert[todaynosl]"> ');
+    $("#aftercease").after(' <input type="text" id="ornumber" name="cert[ornumber]"> ');
+    $("#aftercease").after(' <input type="text" id="refnum" name="cert[refnum]"> ');
+    $("#aftercease").after(' <input type="text" id="cert" name="cert[cert]"> ');
+    $("#aftercease").after(' <input type="text" id="fname" name="cert[fname]"> ');
+    $("#aftercease").after(' <input type="text" id="mname" name="cert[mname]"> ');
+    $("#aftercease").after(' <input type="text" id="lname" name="cert[lname]"> ');
+    $("#aftercease").after(' <input type="text" id="address" name="cert[address]"> ');
+    $("#aftercease").after(' <input type="text" id="natbus" name="cert[natbus]"> ');
+    $("#aftercease").after(' <input type="text" id="stall" name="cert[stall]"> ');
+    $("#aftercease").after(' <input type="text" id="flrlvl" name="cert[flrlvl]"> ');
+    $("#aftercease").after(' <input type="text" id="floor_level" name="cert[floor_level]"> ');
+    $("#aftercease").after(' <input type="text" id="OR" name="cert[OR]"> ');
+    $("#aftercease").after(' <input type="text" id="or_number" name="cert[or_number]"> ');
+    $("#aftercease").after(' <input type="text" id="payment_amount" name="cert[payment_amount]"> ');
+    $("#aftercease").after(' <input type="text" id="cert_type" name="cert[cert_type]"> ');
+    getcertinfoTenant(id);
+  }
+
+  function completeformambulant() {
+    $("#aftercease").after(' <input type="text" hidden id="todaynosl" name="cert[todaynosl]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="ornumber" name="cert[ornumber]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="refnum" name="cert[refnum]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="cert" name="cert[cert]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="fname" name="cert[fname]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="mname" name="cert[mname]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="lname" name="cert[lname]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="address" name="cert[address]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="natbus" name="cert[natbus]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="stall" name="cert[stall]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="flrlvl" name="cert[flrlvl]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="floor_level" name="cert[floor_level]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="days" name="cert[days]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="month" name="cert[month]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="year" name="cert[year]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="OR" name="cert[OR]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="today" name="cert[today]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="or_number" name="cert[or_number]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="refdate" name="cert[refdate]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="payment_amount" name="cert[payment_amount]"> ');
+    $("#aftercease").after(' <input type="text" hidden id="cert_type" name="cert[cert_type]"> ');
+  }
+
   function getcertinfoTenant(id) {
     $.ajax({
       url: global.settings.url + '/MainController/get_cert_info_con',
@@ -324,6 +374,7 @@ function getcertinfoAmbu(id) {
       success: function(res){
         console.log(res);
         res = res[0];
+        // completeformtenant();
         $('#transaction_id').val(res.transaction_id );
         $('#fname').val(res.firstname );
         $('#mname').val(res.middlename );
