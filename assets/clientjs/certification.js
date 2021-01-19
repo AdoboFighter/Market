@@ -113,14 +113,18 @@ $(document).ready(function(){
   $('#cert_type_select').on('change', function(e) {
 
     var typeselect = $('#client_type').val();
+
     e.preventDefault();
 
     if (typeselect == "tenant") {
+      var dataString = $("#basecertform, #ceaseform").serialize();
+
+
       console.log("tenant change pdf");
       $.ajax({
         url : global.settings.url + '/MainController/pdf2fcert',
         type : 'POST',
-        data : $('#certform').serialize(),
+        data : dataString,
         xhrFields: {
           responseType: 'blob'
         },
@@ -175,6 +179,33 @@ $(document).ready(function(){
   //end of document ready
 });
 
+$('#ceaseform').submit(function(e){
+  e.preventDefault();
+  var dataString = $("#basecertform, #ceaseform").serialize();
+  $.ajax({
+    url : global.settings.url + '/MainController/pdf2fcert',
+    type : 'POST',
+    data : dataString,
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success : function(res){
+      //   $('#modalBirthday').modal('show');
+      var a = document.createElement('a');
+      var url = window.URL.createObjectURL(res);
+      a.href = url;
+      $('#select_cert').modal('toggle')
+      $('#iframe_preview_formgen').attr('src',url);
+      $('#certmodal').modal('toggle');
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+
+});
+
+
 $('#certform').submit(function(e){
   e.preventDefault();
   $.ajax({
@@ -200,6 +231,7 @@ $('#certform').submit(function(e){
 
 
 
+
 $('#cert_type_select1').on('change', function(e) {
   $('#iframe_preview_formgen').attr('src', $('iframe_preview_formgen').attr('src'));
   var trans_id = $("#transaction_id").val();
@@ -209,7 +241,7 @@ $('#cert_type_select1').on('change', function(e) {
     $("#transferform").hide();
     $("#operationform").hide();
     $("#marketform").hide();
-    completeformtenant(trans_id);
+    ceaseforminputs(trans_id);
 
   }else if ($(this).val() == "transfer") {
     $("#transferform").toggle();
@@ -321,48 +353,26 @@ function getcertinfoAmbu(id) {
     });
   }
 
-  function completeformtenant(id) {
-    $("#aftercease").after(' <input type="text" id="todaynosl" name="cert[todaynosl]"> ');
-    $("#aftercease").after(' <input type="text" id="ornumber" name="cert[ornumber]"> ');
-    $("#aftercease").after(' <input type="text" id="refnum" name="cert[refnum]"> ');
-    $("#aftercease").after(' <input type="text" id="cert" name="cert[cert]"> ');
-    $("#aftercease").after(' <input type="text" id="fname" name="cert[fname]"> ');
-    $("#aftercease").after(' <input type="text" id="mname" name="cert[mname]"> ');
-    $("#aftercease").after(' <input type="text" id="lname" name="cert[lname]"> ');
-    $("#aftercease").after(' <input type="text" id="address" name="cert[address]"> ');
-    $("#aftercease").after(' <input type="text" id="natbus" name="cert[natbus]"> ');
-    $("#aftercease").after(' <input type="text" id="stall" name="cert[stall]"> ');
-    $("#aftercease").after(' <input type="text" id="flrlvl" name="cert[flrlvl]"> ');
-    $("#aftercease").after(' <input type="text" id="floor_level" name="cert[floor_level]"> ');
-    $("#aftercease").after(' <input type="text" id="OR" name="cert[OR]"> ');
-    $("#aftercease").after(' <input type="text" id="or_number" name="cert[or_number]"> ');
-    $("#aftercease").after(' <input type="text" id="payment_amount" name="cert[payment_amount]"> ');
-    $("#aftercease").after(' <input type="text" id="cert_type" name="cert[cert_type]"> ');
-    getcertinfoTenant(id);
-  }
+  function ceaseforminputs(id) {
 
-  function completeformambulant() {
-    $("#aftercease").after(' <input type="text" hidden id="todaynosl" name="cert[todaynosl]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="ornumber" name="cert[ornumber]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="refnum" name="cert[refnum]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="cert" name="cert[cert]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="fname" name="cert[fname]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="mname" name="cert[mname]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="lname" name="cert[lname]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="address" name="cert[address]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="natbus" name="cert[natbus]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="stall" name="cert[stall]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="flrlvl" name="cert[flrlvl]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="floor_level" name="cert[floor_level]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="days" name="cert[days]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="month" name="cert[month]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="year" name="cert[year]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="OR" name="cert[OR]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="today" name="cert[today]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="or_number" name="cert[or_number]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="refdate" name="cert[refdate]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="payment_amount" name="cert[payment_amount]"> ');
-    $("#aftercease").after(' <input type="text" hidden id="cert_type" name="cert[cert_type]"> ');
+    $("input").remove(".inputdynacease");
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="refnum" name="cert[refnum]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="cert" name="cert[cert]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="fname" name="cert[fname]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="mname" name="cert[mname]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
+    $("#aftercease").after(' <input type="text" class="inputdynacease" id="cert_type" name="cert[cert_type]"> ');
+    getcertinfoTenant(id);
   }
 
   function getcertinfoTenant(id) {
