@@ -87,88 +87,6 @@ $(document).ready(function(){
 
   });
 
-  // $('#cert_table').DataTable({
-  //   "ajax" : {
-  //     "url" : global.settings.url + '/MainController/getcerttable',
-  //     dataSrc : 'data'
-  //   },
-  //   "columns" : [{
-  //     "data" : "id"
-  //   },
-  //   {
-  //     "data" : "c_info_fullname_owner"
-  //   },
-  //   {
-  //     "data" : "c_info_address"
-  //   },
-  //   {
-  //     "data" : "c_info_stall_number"
-  //   },
-  //   {
-  //     "data" : "btn"
-  //   }]
-  // });
-
-
-  $('#cert_type_select').on('change', function(e) {
-
-    var typeselect = $('#client_type').val();
-
-    e.preventDefault();
-
-    if (typeselect == "tenant") {
-      var dataString = $("#basecertform, #ceaseform").serialize();
-
-
-      console.log("tenant change pdf");
-      $.ajax({
-        url : global.settings.url + '/MainController/pdf2fcert',
-        type : 'POST',
-        data : dataString,
-        xhrFields: {
-          responseType: 'blob'
-        },
-        success : function(res){
-          //   $('#modalBirthday').modal('show');
-          var a = document.createElement('a');
-          var url = window.URL.createObjectURL(res);
-          a.href = url;
-          $('#iframe_preview_formgen').attr('src',url);
-        },
-        error : function(xhr){
-          console.log(xhr.responseText);
-        }
-      });
-
-    }else if (typeselect == "ambulant") {
-      console.log("ambulant change pdf");
-      $.ajax({
-        url : global.settings.url + '/MainController/pdf2fcertambulant',
-        type : 'POST',
-        data : $('#certform').serialize(),
-        xhrFields: {
-          responseType: 'blob'
-        },
-        success : function(res){
-          //   $('#modalBirthday').modal('show');
-          var a = document.createElement('a');
-          var url = window.URL.createObjectURL(res);
-          a.href = url;
-          $('#iframe_preview_formgen').attr('src',url);
-        },
-        error : function(xhr){
-          console.log(xhr.responseText);
-        }
-      });
-    }
-
-    $('#cert').val(this.value);
-    var typecert = $('#location option:selected').text();
-    $('#cert_type').val(typecert);
-
-
-  });
-
 
   $('.dataTables_length').addClass('bs-select');
 
@@ -180,28 +98,61 @@ $(document).ready(function(){
 });
 
 $('#ceaseform').submit(function(e){
+  var typeselect = $('#client_type').val();
+  var formtype = $("#cert_type_select1").val();
+  var stringtest = "#"+formtype+"form";
+  console.log(stringtest);
+
   e.preventDefault();
-  var dataString = $("#basecertform, #ceaseform").serialize();
-  $.ajax({
-    url : global.settings.url + '/MainController/pdf2fcert',
-    type : 'POST',
-    data : dataString,
-    xhrFields: {
-      responseType: 'blob'
-    },
-    success : function(res){
-      //   $('#modalBirthday').modal('show');
-      var a = document.createElement('a');
-      var url = window.URL.createObjectURL(res);
-      a.href = url;
-      $('#select_cert').modal('toggle')
-      $('#iframe_preview_formgen').attr('src',url);
-      $('#certmodal').modal('toggle');
-    },
-    error : function(xhr){
-      console.log(xhr.responseText);
-    }
-  });
+
+  if (typeselect == "tenant") {
+
+  var dataString = $('#basecertform, ' + stringtest).serialize();
+    $.ajax({
+      url : global.settings.url + '/MainController/pdf2fcert',
+      type : 'POST',
+      data : dataString,
+      xhrFields: {
+        responseType: 'blob'
+      },
+      success : function(res){
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(res);
+        a.href = url;
+        $('#select_cert').modal('toggle')
+        $('#iframe_preview_formgen').attr('src',url);
+        $('#certmodal').modal('toggle');
+      },
+      error : function(xhr){
+        console.log(xhr.responseText);
+      }
+    });
+
+  }else if (typeselect == "ambulant") {
+    var dataString = $('#basecertform, ' + stringtest).serialize();
+    console.log("ambulant change pdf");
+    $.ajax({
+      url : global.settings.url + '/MainController/pdf2fcertambulant',
+      type : 'POST',
+      data : dataString,
+      xhrFields: {
+        responseType: 'blob'
+      },
+      success : function(res){
+        //   $('#modalBirthday').modal('show');
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(res);
+        a.href = url;
+        $('#iframe_preview_formgen').attr('src',url);
+      },
+      error : function(xhr){
+        console.log(xhr.responseText);
+      }
+    });
+  }
+
+
+
 
 });
 
@@ -241,7 +192,7 @@ $('#cert_type_select1').on('change', function(e) {
     $("#transferform").hide();
     $("#operationform").hide();
     $("#marketform").hide();
-    ceaseforminputs(trans_id);
+    genforminputs(trans_id);
 
   }else if ($(this).val() == "transfer") {
     $("#transferform").toggle();
@@ -353,13 +304,17 @@ function getcertinfoAmbu(id) {
     });
   }
 
-  function ceaseforminputs(id) {
+
+
+  function genforminputs(id) {
 
     $("input").remove(".inputdynacease");
+    var typeselect = $('#client_type').val();
+
+
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="refnum" name="cert[refnum]"> ');
-    $("#aftercease").after(' <input type="text" class="inputdynacease" id="cert" name="cert[cert]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="fname" name="cert[fname]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="mname" name="cert[mname]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
@@ -372,10 +327,61 @@ function getcertinfoAmbu(id) {
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="cert_type" name="cert[cert_type]"> ');
-    getcertinfoTenant(id);
+    $('#cert').val($('#cert_type_select1').val());
+    if (typeselect == "ambulant") {
+      $('#clientfield').val("TEMPORARY/AMBULANT vendor");
+
+    }else if (typeselect == "tenant") {
+      $('#clientfield').val("LESSEE");
+
+    }
+
+    floodfields(id);
   }
 
+
   function getcertinfoTenant(id) {
+    $.ajax({
+      url: global.settings.url + '/MainController/get_cert_info_con',
+      type: 'POST',
+      data: {id: id},
+      dataType:'JSON',
+      success: function(res){
+        console.log(res);
+        res = res[0];
+        // completeformtenant();
+        $('#transaction_id').val(res.transaction_id );
+        $('#fname').val(res.firstname );
+        $('#mname').val(res.middlename );
+        $('#lname').val(res.lastname);
+        $('#address').val(res.address);
+        $('#natbus').val(res.nature_or_business);
+        $('#flrlvl').val(res.address);
+        $('#stall').val(res.unit_no);
+        $('#floor_level').val(res.floor_level);
+        $('#or_number').val(res.or_number);
+        $('#payment_amount').val(res.payment_amount);
+        $('#address').val(res.address);
+        $('#today').val(currentDate);
+        $('#days').val(n);
+        $('#month').val(month);
+        $('#year').val(year);
+        $('#ornumber').val(res.or_number );
+        // var lastfourOR = $('#ornumber').val();
+        // var tranIDVVAR = $('#transaction_id').val();
+        // var datenosl = $('#today').val().replace(/\//g, '');
+        // var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+        // $('#todaynosl').val(datenosl);
+        // $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      })
+    }
+
+
+  function floodfields(id) {
     $.ajax({
       url: global.settings.url + '/MainController/get_cert_info_con',
       type: 'POST',
@@ -405,9 +411,9 @@ function getcertinfoAmbu(id) {
         var lastfourOR = $('#ornumber').val();
         var tranIDVVAR = $('#transaction_id').val();
         var datenosl = $('#today').val().replace(/\//g, '');
-          var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-          $('#todaynosl').val(datenosl);
-          $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+        $('#todaynosl').val(datenosl);
+        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
         },
         error: function(xhr){
           console.log(xhr.responseText);

@@ -51,7 +51,6 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <!-- <button type="submit" class="btn btn-primary" width="50">Remove effectivity</button> -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -59,9 +58,7 @@
 
             <div class="modal-body">
 
-              <input type="text" hidden id="location" name="cert[location]">
-              <input type="text" hidden id="Location_num" name="cert[Location_num]">
-
+            <iframe id="iframe_preview_formgen" frameborder="0" marginwidth="0" marginheight="0" height="600" width="100%"></iframe>
 
             </div>
             <div class="modal-footer">
@@ -121,22 +118,12 @@
         <input type="text" id="year" name="cert[year]">
         <input type="text" id="today" name="cert[today]">
         <input type="text" id="refdate" name="cert[refdate]">
-        <input type="text" id="cert" name="cert[cert]"> 
+        <input type="text" id="cert" name="cert[cert]">
+        <input type="text" id="clientfield" name="cert[client]">
 
       </form>
 
         <form id="ceaseform">
-
-          <div class="form-group" >
-            <label for="">Floor:</label>
-            <select class="form-control form-control-sm" name="cert[cert_type_select]" id="cease_floor">
-              <option selected value="">Please Select</option>
-              <option value="ground">Ground Floor</option>
-              <option value="2nd">2nd Floor</option>
-              <option value="3rd">3rd Floor</option>
-            </select>
-          </div>
-
 
           <div class="form-group" id="aftercease">
             <label for="">Ceased operation Since:</label>

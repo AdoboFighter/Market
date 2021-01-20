@@ -752,11 +752,40 @@ class MainController extends CI_Controller{
 
 
 
+  // public function pdf2fcert()
+  // {
+  //   $inputData = $this->input->post('cert');
+  //
+  //   $data = array(
+  //     'fname' => $inputData['fname'],
+  //     'mname' => $inputData['mname'],
+  //     'lname' => $inputData['lname'],
+  //     'address' => $inputData['address'],
+  //     'sysuser' => $inputData['sysuser'],
+  //     'natbus' => $inputData['natbus'],
+  //     'flrlvl' => $inputData['natbus'],
+  //     'sysuser' => $inputData['sysuser'],
+  //     'stall' => $inputData['stall'],
+  //     'floor_level' => $inputData['floor_level'],
+  //     'days' => $inputData['days'],
+  //     'month' => $inputData['month'],
+  //     'year' => $inputData['year'],
+  //     'or_number' => $inputData['or_number'],
+  //     'payment_amount' => $inputData['payment_amount'],
+  //     'today' => $inputData['today'],
+  //     'address' => $inputData['address'],
+  //     'refnum' => $inputData['refnum']
+  //   );
+  //   return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+  // }
+
   public function pdf2fcert()
   {
     $inputData = $this->input->post('cert');
 
     $data = array(
+      'ceasedate' => $inputData['ceasedate'],
+      'client' => $inputData['client'],
       'fname' => $inputData['fname'],
       'mname' => $inputData['mname'],
       'lname' => $inputData['lname'],
