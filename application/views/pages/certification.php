@@ -121,6 +121,16 @@
         <input type="text" id="cert" name="cert[cert]">
         <input type="text" id="clientfield" name="cert[client]">
 
+        <!-- stall fields -->
+        <input type="text" id="stall" name="cert[stall]" placeholder="stall">
+        <input type="text" id="flrlvl" name="cert[flrlvl]" placeholder="floor">
+        <!-- ambulant fields -->
+        <input type="text" id="location" name="cert[location]" placeholder="location">
+        <input type="text" id="location_no" name="cert[location_no]" placeholder="location number">
+
+
+
+
       </form>
 
         <form id="ceaseform">
@@ -139,23 +149,13 @@
         <form id="transferform">
 
           <div class="form-group" >
-            <label for="">Floor:</label>
-            <select class="form-control form-control-sm" name="transact[cert_type_select]" id="transfer_floor">
-              <option selected value="">Please Select</option>
-              <option value="ground">Ground Floor</option>
-              <option value="2nd">2nd Floor</option>
-              <option value="3rd">3rd Floor</option>
-            </select>
-          </div>
-
-          <div class="form-group" >
             <label for="">Transfer to:</label>
-            <input type="text" class="form-control" name=""  id="transfer_to">
+            <input type="text" class="form-control" name="cert[transfer_to]"  id="transfer_to">
           </div>
 
           <div class="form-group" >
             <label for="">Affidavit of Transfer of Rights dated:</label>
-            <input type="date" class="form-control" name=""  id="transfer_date" placeholder="mm/dd/yyyy">
+            <input type="date" class="form-control" name="cert[transfer_date]"  id="transfer_date" placeholder="mm/dd/yyyy">
           </div>
 
           <button type="submit" class="btn btn-primary float-right">Generate</button>
@@ -164,18 +164,7 @@
 
         <form id="marketform">
 
-          <div class="form-group" >
-            <label for="">Floor:</label>
-            <select class="form-control form-control-sm" name="transact[cert_type_select]" id="market_floor">
-              <option selected value="">Please Select</option>
-              <option value="ground">Ground Floor</option>
-              <option value="2nd">2nd Floor</option>
-              <option value="3rd">3rd Floor</option>
-            </select>
-          </div>
-
           <button type="submit" class="btn btn-primary float-right">Generate</button>
-
 
 
         </form>
@@ -185,9 +174,9 @@
 
           <div class="form-group" >
             <label for="">Pick date:</label>
-            <input type="month" class="form-control" name=""  id="operation_date1">
+            <input type="month" class="form-control" name="cert[operation_date1]"  id="operation_date1">
             <p1>to</p1>
-            <input type="month" class="form-control" name=""  id="operation_date2">
+            <input type="month" class="form-control" name="cert[operation_date2]"  id="operation_date2">
           </div>
 
           <button type="submit" class="btn btn-primary float-right">Generate</button>

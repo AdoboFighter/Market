@@ -784,7 +784,14 @@ class MainController extends CI_Controller{
     $inputData = $this->input->post('cert');
 
     $data = array(
+      
       'ceasedate' => $inputData['ceasedate'],
+
+      'location' => $inputData['location'],
+      'location_no' => $inputData['location_no'],
+
+
+
       'client' => $inputData['client'],
       'fname' => $inputData['fname'],
       'mname' => $inputData['mname'],
@@ -805,14 +812,33 @@ class MainController extends CI_Controller{
       'address' => $inputData['address'],
       'refnum' => $inputData['refnum']
     );
-    return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+
+    if ($inputData['client'] == "LESSEE") {
+
+      return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+
+    }elseif ($inputData['client'] == "TEMPORARY/AMBULANT vendor") {
+
+      return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
+    }
+
+
   }
 
-  public function pdf2fcertambulant()
+  public function pdftransfer()
   {
     $inputData = $this->input->post('cert');
 
     $data = array(
+
+      // transfer
+      'transfer_to' => $inputData['transfer_to'],
+      'transfer_date' => $inputData['transfer_date'],
+
+      'location' => $inputData['location'],
+      'location_no' => $inputData['location_no'],
+
+      'client' => $inputData['client'],
       'fname' => $inputData['fname'],
       'mname' => $inputData['mname'],
       'lname' => $inputData['lname'],
@@ -821,10 +847,8 @@ class MainController extends CI_Controller{
       'natbus' => $inputData['natbus'],
       'flrlvl' => $inputData['natbus'],
       'sysuser' => $inputData['sysuser'],
-
-      'stall' => $inputData['location'],
-      'floor_level' => $inputData['Location_num'],
-
+      'stall' => $inputData['stall'],
+      'floor_level' => $inputData['floor_level'],
       'days' => $inputData['days'],
       'month' => $inputData['month'],
       'year' => $inputData['year'],
@@ -834,8 +858,19 @@ class MainController extends CI_Controller{
       'address' => $inputData['address'],
       'refnum' => $inputData['refnum']
     );
-    return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
+
+    if ($inputData['client'] == "LESSEE") {
+
+      return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+
+    }elseif ($inputData['client'] == "TEMPORARY/AMBULANT vendor") {
+
+      return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
+    }
+
+
   }
+
 
   public function get_cert_info_con()
   {

@@ -17,7 +17,7 @@ $pdf->addPage('P', 'A4');
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
 
-$txt = '    This is to certify that Mr./Mrs./Ms. '.$fname.' '.$mname.' '.$lname.' BY: ' .$sysuser.' is a Market Stall Holder, whose nature of business is '.$natbus.', With Map# '.$stall.' at the '.$floor_level.' San Pablo City Shopping Mall & public Market has ceased operating his/her business since PUT INPUTED DATE HERE!';
+$txt = '    This is to certify that Mr./Mrs./Ms. '.$fname.' '.$mname.' '.$lname.' BY: ' .$sysuser.' is a ' .$client.', whose nature of business is '.$natbus.', With Map# '.$location_no.' at the '.$location.' San Pablo City Shopping Mall & public Market has ceased operating his/her business since '.$ceasedate.'                ';
 $pdf->MultiCell(150, 100, $txt, 100, 'J', 100, 100, 33, 120, true);
 
 $txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose it may serve.';
