@@ -784,9 +784,10 @@ class MainController extends CI_Controller{
     $inputData = $this->input->post('cert');
 
     $data = array(
-      
+
       'ceasedate' => $inputData['ceasedate'],
 
+      //if ambulant
       'location' => $inputData['location'],
       'location_no' => $inputData['location_no'],
 
@@ -835,6 +836,56 @@ class MainController extends CI_Controller{
       'transfer_to' => $inputData['transfer_to'],
       'transfer_date' => $inputData['transfer_date'],
 
+
+      //if ambulant
+      'location' => $inputData['location'],
+      'location_no' => $inputData['location_no'],
+
+      'client' => $inputData['client'],
+      'fname' => $inputData['fname'],
+      'mname' => $inputData['mname'],
+      'lname' => $inputData['lname'],
+      'address' => $inputData['address'],
+      'sysuser' => $inputData['sysuser'],
+      'natbus' => $inputData['natbus'],
+      'flrlvl' => $inputData['natbus'],
+      'sysuser' => $inputData['sysuser'],
+      'stall' => $inputData['stall'],
+      'floor_level' => $inputData['floor_level'],
+      'days' => $inputData['days'],
+      'month' => $inputData['month'],
+      'year' => $inputData['year'],
+      'or_number' => $inputData['or_number'],
+      'payment_amount' => $inputData['payment_amount'],
+      'today' => $inputData['today'],
+      'address' => $inputData['address'],
+      'refnum' => $inputData['refnum']
+    );
+
+    if ($inputData['client'] == "LESSEE") {
+
+      return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+
+    }elseif ($inputData['client'] == "TEMPORARY/AMBULANT vendor") {
+
+      return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
+    }
+
+
+  }
+
+  public function pdfoperation()
+  {
+    $inputData = $this->input->post('cert');
+
+    $data = array(
+
+      // transfer
+      'operation_date1' => $inputData['operation_date1'],
+      'operation_date2' => $inputData['operation_date2'],
+
+
+      //if ambulant
       'location' => $inputData['location'],
       'location_no' => $inputData['location_no'],
 

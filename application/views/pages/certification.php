@@ -153,7 +153,7 @@
             <input type="text" class="form-control" name="cert[transfer_to]"  id="transfer_to">
           </div>
 
-          <div class="form-group" >
+          <div class="form-group" id="aftertransfer">
             <label for="">Affidavit of Transfer of Rights dated:</label>
             <input type="date" class="form-control" name="cert[transfer_date]"  id="transfer_date" placeholder="mm/dd/yyyy">
           </div>
@@ -172,7 +172,7 @@
         <form id="operationform">
 
 
-          <div class="form-group" >
+          <div class="form-group" id="afteroperation">
             <label for="">Pick date:</label>
             <input type="month" class="form-control" name="cert[operation_date1]"  id="operation_date1">
             <p1>to</p1>

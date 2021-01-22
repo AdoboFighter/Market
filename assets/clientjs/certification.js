@@ -169,6 +169,42 @@ $('#transferform').submit(function(e){
 });
 
 
+$('#operationform').submit(function(e){
+  var typeselect = $('#client_type').val();
+  var formtype = $("#cert_type_select1").val();
+  var stringtest = "#"+formtype+"form";
+  console.log(stringtest);
+
+  e.preventDefault();
+
+  var dataString = $('#basecertform, ' + stringtest).serialize();
+  $.ajax({
+    url : global.settings.url + '/MainController/pdfoperation',
+    type : 'POST',
+    data : dataString,
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success : function(res){
+      var a = document.createElement('a');
+      var url = window.URL.createObjectURL(res);
+      a.href = url;
+      $('#select_cert').modal('toggle')
+      $('#iframe_preview_formgen').attr('src',url);
+      $('#certmodal').modal('toggle');
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+
+
+
+
+
+});
+
+
 $('#certform').submit(function(e){
   e.preventDefault();
   $.ajax({
@@ -204,7 +240,7 @@ $('#cert_type_select1').on('change', function(e) {
     $("#transferform").hide();
     $("#operationform").hide();
     $("#marketform").hide();
-    genforminputs(trans_id);
+    genformcease(trans_id);
 
   }else if ($(this).val() == "transfer") {
 
@@ -220,14 +256,14 @@ $('#cert_type_select1').on('change', function(e) {
     $("#ceaseform").hide();
     $("#operationform").hide();
     $("#marketform").hide();
-    genforminputs(trans_id);
+    genformtransfer(trans_id);
 
   }else if ($(this).val() == "operation") {
     $("#operationform").toggle();
     $("#ceaseform").hide();
     $("#transferform").hide();
     $("#marketform").hide();
-    genforminputs(trans_id);
+    genformoperation(trans_id);
 
 
   }else if ($(this).val() == "market") {
@@ -334,7 +370,7 @@ function getcertinfoAmbu(id) {
 
 
 
-  function genforminputs(id) {
+  function genformcease(id) {
 
     $("input").remove(".inputdynacease");
     var typeselect = $('#client_type').val();
@@ -370,48 +406,79 @@ function getcertinfoAmbu(id) {
   }
 
 
-  function getcertinfoTenant(id) {
-    $.ajax({
-      url: global.settings.url + '/MainController/get_cert_info_con',
-      type: 'POST',
-      data: {id: id},
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        res = res[0];
-        // completeformtenant();
-        $('#transaction_id').val(res.transaction_id );
-        $('#fname').val(res.firstname );
-        $('#mname').val(res.middlename );
-        $('#lname').val(res.lastname);
-        $('#address').val(res.address);
-        $('#natbus').val(res.nature_or_business);
-        $('#flrlvl').val(res.address);
-        $('#stall').val(res.unit_no);
-        $('#floor_level').val(res.floor_level);
-        $('#or_number').val(res.or_number);
-        $('#payment_amount').val(res.payment_amount);
-        $('#address').val(res.address);
-        $('#today').val(currentDate);
-        $('#days').val(n);
-        $('#month').val(month);
-        $('#year').val(year);
-        $('#ornumber').val(res.or_number );
-        var lastfourOR = $('#ornumber').val();
-        var tranIDVVAR = $('#transaction_id').val();
-        var datenosl = $('#today').val().replace(/\//g, '');
-        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-        $('#todaynosl').val(datenosl);
-        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
-      },
-      error: function(xhr){
-        console.log(xhr.responseText);
-      }
-    })
+  function genformtransfer(id) {
+
+    $("input").remove(".inputdynacease");
+    var typeselect = $('#client_type').val();
+
+
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="refnum" name="cert[refnum]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="fname" name="cert[fname]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="mname" name="cert[mname]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
+    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
+    $('#cert').val($('#cert_type_select1').val());
+
+    if (typeselect == "ambulant") {
+      $('#clientfield').val("TEMPORARY/AMBULANT vendor");
+      getcertinfoAmbu(id);
+
+    }else if (typeselect == "tenant") {
+      $('#clientfield').val("LESSEE");
+      getcertinfoTenant(id);
+
+    }
+
+    // floodfields(id);
+  }
+
+  function genformoperation(id) {
+
+    $("input").remove(".inputdynacease");
+    var typeselect = $('#client_type').val();
+
+
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="refnum" name="cert[refnum]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="fname" name="cert[fname]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="mname" name="cert[mname]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
+    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
+    $('#cert').val($('#cert_type_select1').val());
+
+    if (typeselect == "ambulant") {
+      $('#clientfield').val("TEMPORARY/AMBULANT vendor");
+      getcertinfoAmbu(id);
+
+    }else if (typeselect == "tenant") {
+      $('#clientfield').val("LESSEE");
+      getcertinfoTenant(id);
+
+    }
+
+    // floodfields(id);
   }
 
 
-  function floodfields(id) {
+
+  function getcertinfoTenant(id) {
     $.ajax({
       url: global.settings.url + '/MainController/get_cert_info_con',
       type: 'POST',
@@ -451,19 +518,60 @@ function getcertinfoAmbu(id) {
       })
     }
 
-    function offcert() {
-      $("#ceaseform").hide();
-      $("#transferform").hide();
-      $("#operationform").hide();
-      $("#marketform").hide();
-    }
 
-    $("#select_cert").on('hidden.bs.modal', function() {
-      offcert();
-      $("#basecertform")[0].reset();
-      $("#ceaseform")[0].reset();
-      $("#transferform")[0].reset();
-      $("#marketform")[0].reset();
-      $("#operationform")[0].reset();
+    function floodfields(id) {
+      $.ajax({
+        url: global.settings.url + '/MainController/get_cert_info_con',
+        type: 'POST',
+        data: {id: id},
+        dataType:'JSON',
+        success: function(res){
+          console.log(res);
+          res = res[0];
+          // completeformtenant();
+          $('#transaction_id').val(res.transaction_id );
+          $('#fname').val(res.firstname );
+          $('#mname').val(res.middlename );
+          $('#lname').val(res.lastname);
+          $('#address').val(res.address);
+          $('#natbus').val(res.nature_or_business);
+          $('#flrlvl').val(res.address);
+          $('#stall').val(res.unit_no);
+          $('#floor_level').val(res.floor_level);
+          $('#or_number').val(res.or_number);
+          $('#payment_amount').val(res.payment_amount);
+          $('#address').val(res.address);
+          $('#today').val(currentDate);
+          $('#days').val(n);
+          $('#month').val(month);
+          $('#year').val(year);
+          $('#ornumber').val(res.or_number );
+          var lastfourOR = $('#ornumber').val();
+          var tranIDVVAR = $('#transaction_id').val();
+          var datenosl = $('#today').val().replace(/\//g, '');
+            var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+            $('#todaynosl').val(datenosl);
+            $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+          },
+          error: function(xhr){
+            console.log(xhr.responseText);
+          }
+        })
+      }
 
-    });
+      function offcert() {
+        $("#ceaseform").hide();
+        $("#transferform").hide();
+        $("#operationform").hide();
+        $("#marketform").hide();
+      }
+
+      $("#select_cert").on('hidden.bs.modal', function() {
+        offcert();
+        $("#basecertform")[0].reset();
+        $("#ceaseform")[0].reset();
+        $("#transferform")[0].reset();
+        $("#marketform")[0].reset();
+        $("#operationform")[0].reset();
+
+      });
