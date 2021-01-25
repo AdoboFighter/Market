@@ -16,7 +16,7 @@ $pdf->addPage('P', 'A4');
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
 
-$txt = '    This is to certify that Mr./Mrs./Ms.'.$fname.' '.$mname.' '.$lname.' is a sub-lessee at the 3rd Floor of San Pablo City Shopping Mall and Public Market, San Pablo City described as 3rd Floor Stall # ' .$stall.'  whose nature of business is '.$natbus.' ';
+$txt = '    This is to certify that Mr./Mrs./Ms.'.$fname.' '.$mname.' '.$lname.' is a sub-lessee at the '.$floor_level.' of San Pablo City Shopping Mall and Public Market, San Pablo City described as 3rd Floor Stall # ' .$stall.'  whose nature of business is '.$natbus.' ';
 $pdf->MultiCell(150, 100, $txt, 100, 'J', 100, 100, 33, 130, true);
 
 $txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose it may serve.';

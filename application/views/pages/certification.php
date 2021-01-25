@@ -137,7 +137,7 @@
 
           <div class="form-group" id="aftercease">
             <label for="">Ceased operation Since:</label>
-            <input type="date" class="form-control" name="cert[ceasedate]"  id="ceasedate" placeholder="mm/dd/yyyy">
+            <input type="date" class="form-control" name="cert[ceasedate]"  id="ceasedate" placeholder="mm/dd/yyyy" required>
           </div>
 
 
@@ -150,12 +150,12 @@
 
           <div class="form-group" >
             <label for="">Transfer to:</label>
-            <input type="text" class="form-control" name="cert[transfer_to]"  id="transfer_to">
+            <input type="text" class="form-control" name="cert[transfer_to]"  id="transfer_to" required>
           </div>
 
           <div class="form-group" id="aftertransfer">
             <label for="">Affidavit of Transfer of Rights dated:</label>
-            <input type="date" class="form-control" name="cert[transfer_date]"  id="transfer_date" placeholder="mm/dd/yyyy">
+            <input type="date" class="form-control" name="cert[transfer_date]"  id="transfer_date" placeholder="mm/dd/yyyy" required>
           </div>
 
           <button type="submit" class="btn btn-primary float-right">Generate</button>
@@ -164,7 +164,10 @@
 
         <form id="marketform">
 
-          <button type="submit" class="btn btn-primary float-right">Generate</button>
+
+
+
+          <button type="submit" id="aftermarket" class="btn btn-primary float-right">Generate</button>
 
 
         </form>

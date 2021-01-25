@@ -16,12 +16,12 @@ $pdf->addPage('P', 'A4');
 $pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 
 
-$txt = '    This is to certify that '.$fname.' '.$mname.' '.$lname.' BY: ' .$sysuser.' is a Market Stall Holder, whose nature of business is '.$natbus.', With Map# '.$stall.' at the '.$floor_level.'                                                                                             ';
-$pdf->MultiCell(150, 100, $txt, 100, 'J', 100, 100, 33, 130, true);
+$txt = '    This is to certify that as of this date, based on our record, Mr./Mrs./Ms. '.$fname.' '.$mname.' '.$lname.' is a TEMPORARY / AMBULANT vendor, whose nature of business is '.$natbus.' with Map No: '.$location_no.' of the San Pablo City Shopping Mall and Public Market.                             ';
+$pdf->MultiCell(150, 1, $txt, 100, 'J', 100, 100, 33, 130, true);
 
-$txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose it may serve.                                                                                             ';
+$txt2 = '    Issued this '.$days.'th day of '.$month.', '.$year.' for whatever legal purpose it may serve.';
 
-$pdf->MultiCell(150, 100, $txt2, 100, 'J', 100, 100, 33, 150, true);
+$pdf->MultiCell(150, 1, $txt2, 100, 'J', 100, 100, 33, 160, true);
 
 $style = array(
     'border' => 2,

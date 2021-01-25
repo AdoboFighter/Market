@@ -204,6 +204,41 @@ $('#operationform').submit(function(e){
 
 });
 
+$('#marketform').submit(function(e){
+  var typeselect = $('#client_type').val();
+  var formtype = $("#cert_type_select1").val();
+  var stringtest = "#"+formtype+"form";
+  console.log(stringtest);
+
+  e.preventDefault();
+
+  var dataString = $('#basecertform, ' + stringtest).serialize();
+  $.ajax({
+    url : global.settings.url + '/MainController/pdfmarket',
+    type : 'POST',
+    data : dataString,
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success : function(res){
+      var a = document.createElement('a');
+      var url = window.URL.createObjectURL(res);
+      a.href = url;
+      $('#select_cert').modal('toggle')
+      $('#iframe_preview_formgen').attr('src',url);
+      $('#certmodal').modal('toggle');
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+
+
+
+
+
+});
+
 
 $('#certform').submit(function(e){
   e.preventDefault();
@@ -244,14 +279,6 @@ $('#cert_type_select1').on('change', function(e) {
 
   }else if ($(this).val() == "transfer") {
 
-    if ($("#client_type").val() == "ambulant") {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Certificate of transfer is only for Stall holders',
-      });
-    }
-
-
     $("#transferform").toggle();
     $("#ceaseform").hide();
     $("#operationform").hide();
@@ -271,6 +298,7 @@ $('#cert_type_select1').on('change', function(e) {
     $("#ceaseform").hide();
     $("#operationform").hide();
     $("#transfer").hide();
+    genformmarket(trans_id);
 
   }else {
     offcert();
@@ -278,9 +306,6 @@ $('#cert_type_select1').on('change', function(e) {
 
 });
 
-function ceasetoggleform() {
-
-}
 
 
 function removecert(id){
@@ -384,8 +409,6 @@ function getcertinfoAmbu(id) {
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
-    $("#aftercease").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
-    $("#aftercease").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
     $("#aftercease").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
@@ -420,8 +443,6 @@ function getcertinfoAmbu(id) {
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
-    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
-    $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
     $("#aftertransfer").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
@@ -455,12 +476,43 @@ function getcertinfoAmbu(id) {
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
-    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="stall" name="cert[stall]"> ');
-    $("#afteroperation").after(' <input type="text" class="inputdynacease" id="flrlvl" name="cert[flrlvl]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
     $("#afteroperation").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
+    $('#cert').val($('#cert_type_select1').val());
+
+    if (typeselect == "ambulant") {
+      $('#clientfield').val("TEMPORARY/AMBULANT vendor");
+      getcertinfoAmbu(id);
+
+    }else if (typeselect == "tenant") {
+      $('#clientfield').val("LESSEE");
+      getcertinfoTenant(id);
+
+    }
+
+    // floodfields(id);
+  }
+
+  function genformmarket(id) {
+
+    $("input").remove(".inputdynacease");
+    var typeselect = $('#client_type').val();
+
+
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="refnum" name="cert[refnum]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="fname" name="cert[fname]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="mname" name="cert[mname]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="lname" name="cert[lname]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="address" name="cert[address]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="natbus" name="cert[natbus]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="OR" name="cert[OR]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="or_number" name="cert[or_number]"> ');
+    $("#aftermarket").after(' <input type="text" class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
     $('#cert').val($('#cert_type_select1').val());
 
     if (typeselect == "ambulant") {

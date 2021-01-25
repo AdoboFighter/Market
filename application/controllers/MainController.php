@@ -922,6 +922,49 @@ class MainController extends CI_Controller{
 
   }
 
+  public function pdfmarket()
+  {
+    $inputData = $this->input->post('cert');
+
+    $data = array(
+
+      //if ambulant
+      'location' => $inputData['location'],
+      'location_no' => $inputData['location_no'],
+
+      'client' => $inputData['client'],
+      'fname' => $inputData['fname'],
+      'mname' => $inputData['mname'],
+      'lname' => $inputData['lname'],
+      'address' => $inputData['address'],
+      'sysuser' => $inputData['sysuser'],
+      'natbus' => $inputData['natbus'],
+      'flrlvl' => $inputData['natbus'],
+      'sysuser' => $inputData['sysuser'],
+      'stall' => $inputData['stall'],
+      'floor_level' => $inputData['floor_level'],
+      'days' => $inputData['days'],
+      'month' => $inputData['month'],
+      'year' => $inputData['year'],
+      'or_number' => $inputData['or_number'],
+      'payment_amount' => $inputData['payment_amount'],
+      'today' => $inputData['today'],
+      'address' => $inputData['address'],
+      'refnum' => $inputData['refnum']
+    );
+
+    if ($inputData['client'] == "LESSEE") {
+
+      return $this->load->view('pdftenant/'.$inputData['cert'],$data);
+
+    }elseif ($inputData['client'] == "TEMPORARY/AMBULANT vendor") {
+
+      return $this->load->view('pdfambulant/'.$inputData['cert'],$data);
+    }
+
+
+  }
+
 
   public function get_cert_info_con()
   {
