@@ -1984,14 +1984,15 @@ class Mainmodel extends CI_model{
   }
 
   public function updatecert($data){
+
     $data1 = array(
       'print_status' => 'PRINTED',
-      'reference_num' => $data['refnum'],
-      'cert_type' => $data['cert_type']
-
+      'reference_num' => $data['ref_num1'],
+      'cert_type' => $data['cert_type1']
 
     );
-    $this->db->where('transaction_id',$data['transaction_id'])
+
+    $this->db->where('transaction_id',$data['trans_id1'])
     ->update('transaction',$data1);
     return true;
   }
@@ -2655,6 +2656,39 @@ class Mainmodel extends CI_model{
     $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
     $this->db->like("concat($searchcat)",$search);
     $this->db->where($array);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'cert_trans_id' => $r->transaction_id,
+        'cert_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'cert_dop' => $r->payment_datetime,
+        'cert_type' => $r->cert_type,
+        'cert_ref_num' => $r->reference_num,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+  public function getcertprinttableOLD()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
+    // $this->db->like("concat($searchcat)",$search);
+    // $this->db->where($array);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');

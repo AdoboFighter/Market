@@ -750,6 +750,12 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcertprinttable($search, $searchcat));
   }
 
+  public function getcertprinttableOLD()
+  {
+    echo json_encode($this->model->getcertprinttableOLD());
+  }
+
+
 
 
   // public function pdf2fcert()
@@ -810,8 +816,8 @@ class MainController extends CI_Controller{
       'or_number' => $inputData['or_number'],
       'payment_amount' => $inputData['payment_amount'],
       'today' => $inputData['today'],
-      'address' => $inputData['address'],
-      'refnum' => $inputData['refnum']
+      'address' => $inputData['address']
+      // 'refnum' => $inputData['refnum']
     );
 
     if ($inputData['client'] == "LESSEE") {
@@ -980,7 +986,7 @@ class MainController extends CI_Controller{
 
   public function updatecert()
   {
-    $id = $this->input->post('id');
+    $id = $this->input->post('certup');
     echo json_encode($this->model->updatecert($id));
   }
 

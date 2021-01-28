@@ -13,6 +13,34 @@ var year = new Date().getFullYear();
 
 $(document).ready(function(){
 
+  $('#cert_table').DataTable({
+    "paging": true,
+    "ordering": true,
+    "ajax" : {
+      "url" : global.settings.url + '/MainController/getcertprinttableOLD',
+      dataSrc : 'data'
+    },
+    "columns" : [{
+      "data" : "cert_trans_id"
+    },
+    {
+      "data" : "cert_name"
+    },
+
+    {
+      "data" : "cert_dop"
+    },
+    {
+      "data" : "cert_type"
+    },
+
+    {
+      "data" : "cert_ref_num"
+    }
+  ]
+});
+
+
   function isEmptyOrSpaces(str){
     return str === null || str.match(/^ *$/) !== null;
   }
@@ -63,35 +91,7 @@ $(document).ready(function(){
   });
 
   function search_client(search, searchcat) {
-    $('#cert_table').DataTable({
-      "paging": true,
-      "searching": false,
-      "ordering": true,
-      "ajax" : {
-        "url" : global.settings.url + '/MainController/getcertprinttable',
-        "data": {search:search, searchcat:searchcat},
-        "dataType": "json",
-        "type": "POST"
-      },
-      "columns" : [{
-        "data" : "cert_trans_id"
-      },
-      {
-        "data" : "cert_name"
-      },
 
-      {
-        "data" : "cert_dop"
-      },
-      {
-        "data" : "cert_type"
-      },
-
-      {
-        "data" : "cert_ref_num"
-      }
-    ]
-  });
   $('.dataTables_length').addClass('bs-select');
 }
 

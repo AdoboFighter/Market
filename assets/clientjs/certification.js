@@ -18,7 +18,6 @@ $(document).ready(function(){
     console.log('hello');
     $("#ceaseform").toggle();
 
-
   });
 
   $('#client_type').on('change', function(e) {
@@ -48,9 +47,6 @@ $(document).ready(function(){
         },
         {
           "data" : "btn"
-        },
-        {
-          "data" : "btn2"
         }]
       });
     }else if ($(this).val() == "ambulant") {
@@ -77,9 +73,6 @@ $(document).ready(function(){
         },
         {
           "data" : "btn"
-        },
-        {
-          "data" : "btn2"
         }]
       });
       console.log("ambulant");
@@ -118,17 +111,29 @@ $('#ceaseform').submit(function(e){
       var a = document.createElement('a');
       var url = window.URL.createObjectURL(res);
       a.href = url;
-      $('#select_cert').modal('toggle')
+      $('#select_cert').modal('toggle');
       $('#iframe_preview_formgen').attr('src',url);
       $('#certmodal').modal('toggle');
+
+      $('#ref_num1').val($('#refnum').val());
+      $('#trans_id1').val($('#transaction_id').val());
+      $('#cert_type1').val($('#cert_type_select1 option:selected').text());
+
+
+      // var lastfourOR = $('#ornumber').val();
+      // var tranIDVVAR = $('#transaction_id').val();
+      // console.log($('#today').val() + 'hello');
+      // var datenosl = $('#today').val().replace(/\//g, '');
+      // var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+      // $('#todaynosl').val(datenosl);
+      // $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+
+
     },
     error : function(xhr){
       console.log(xhr.responseText);
     }
   });
-
-
-
 
 
 });
@@ -240,7 +245,7 @@ $('#marketform').submit(function(e){
 });
 
 
-$('#certform').submit(function(e){
+$('#updateform').submit(function(e){
   e.preventDefault();
   $.ajax({
     url: global.settings.url + '/MainController/updatecert',
@@ -380,12 +385,11 @@ function getcertinfoAmbu(id) {
       $('#ornumber').val(res.or_number );
       var lastfourOR = $('#ornumber').val();
       var tranIDVVAR = $('#transaction_id').val();
-
       console.log($('#today').val() + 'hello');
       var datenosl = $('#today').val().replace(/\//g, '');
-        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-        $('#todaynosl').val(datenosl);
-        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+      var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+      $('#todaynosl').val(datenosl);
+      $('#refnum').val(datenosl + lastfour + tranIDVVAR);
       },
       error: function(xhr){
         console.log(xhr.responseText);
@@ -400,19 +404,18 @@ function getcertinfoAmbu(id) {
     $("input").remove(".inputdynacease");
     var typeselect = $('#client_type').val();
 
-
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="refnum" name="cert[refnum]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="fname" name="cert[fname]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="mname" name="cert[mname]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="lname" name="cert[lname]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="address" name="cert[address]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="natbus" name="cert[natbus]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="OR" name="cert[OR]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="or_number" name="cert[or_number]"> ');
-    $("#aftercease").after(' <input type="text" hidden class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
+    // $("#aftercease").after(' <input type="text"  class="inputdynacease" id="refnum" name="cert[refnum]"> ');
+    // $("#aftercease").after(' <input type="text"  class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
+    // $("#aftercease").after(' <input type="text"  class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
+    // $("#aftercease").after(' <input type="text"  class="inputdynacease" id="OR" name="cert[OR]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="fname" name="cert[fname]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="mname" name="cert[mname]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="lname" name="cert[lname]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="address" name="cert[address]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="natbus" name="cert[natbus]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="or_number" name="cert[or_number]"> ');
+    $("#aftercease").after(' <input type="text"  class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
     $('#cert').val($('#cert_type_select1').val());
 
     if (typeselect == "ambulant") {
@@ -560,9 +563,9 @@ function getcertinfoAmbu(id) {
         var lastfourOR = $('#ornumber').val();
         var tranIDVVAR = $('#transaction_id').val();
         var datenosl = $('#today').val().replace(/\//g, '');
-          var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-          $('#todaynosl').val(datenosl);
-          $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+        $('#todaynosl').val(datenosl);
+        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
         },
         error: function(xhr){
           console.log(xhr.responseText);
