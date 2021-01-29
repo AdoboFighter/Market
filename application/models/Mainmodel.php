@@ -2688,7 +2688,7 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
     $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
     // $this->db->like("concat($searchcat)",$search);
-    // $this->db->where($array);
+    $this->db->where($array);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');

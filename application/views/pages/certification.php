@@ -117,31 +117,31 @@
           </select>
         </div>
 
-        <input type="text"  id="transaction_id" name="">
-        <input type="text"  id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
-        <input type="text"  id="days" name="cert[days]">
-        <input type="text"  id="month" name="cert[month]">
-        <input type="text"  id="year" name="cert[year]">
-        <input type="text"  id="today" name="cert[today]">
+        <input type="text" hidden id="transaction_id" name="">
+        <input type="text" hidden id="sysuser" name="cert[sysuser]" value="<?php echo $this->session->userdata('user_fullname'); ?>">
+        <input type="text" hidden id="days" name="cert[days]">
+        <input type="text" hidden id="month" name="cert[month]">
+        <input type="text" hidden id="year" name="cert[year]">
+        <input type="text" hidden id="today" name="cert[today]">
 
 
-        <input type="text"  id="clientfield" name="cert[client]">
+        <input type="text" hidden id="clientfield" name="cert[client]">
 
         <!-- reference number -->
-        <input type="text"  id="todaynosl" name="cert[todaynosl]">
-        <input type="text"  id="ornumber" name="cert[ornumber]">
-        <input type="text"  id="refnum" name="cert[refnum]">
-        <input type="text"  id="cert" name="cert[cert]">
+        <input type="text" hidden id="todaynosl" name="cert[todaynosl]">
+        <input type="text" hidden id="ornumber" name="cert[ornumber]">
+        <input type="text" hidden id="refnum" name="cert[refnum]">
+        <input type="text" hidden id="cert" name="cert[cert]">
         <!-- <input type="text"  id="refdate" name="cert[refdate]"> -->
 
 
 
         <!-- stall fields -->
-        <input type="text"  id="stall" name="cert[stall]" placeholder="stall">
-        <input type="text"  id="flrlvl" name="cert[flrlvl]" placeholder="floor">
+        <input type="text" hidden id="stall" name="cert[stall]" placeholder="stall">
+        <input type="text" hidden id="flrlvl" name="cert[flrlvl]" placeholder="floor">
         <!-- ambulant fields -->
-        <input type="text"  id="location" name="cert[location]" placeholder="location">
-        <input type="text"  id="location_no" name="cert[location_no]" placeholder="location number">
+        <input type="text" hidden id="location" name="cert[location]" placeholder="location">
+        <input type="text" hidden id="location_no" name="cert[location_no]" placeholder="location number">
 
 
 
