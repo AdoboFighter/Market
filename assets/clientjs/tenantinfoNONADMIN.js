@@ -83,58 +83,114 @@ $(document).ready(function(){
           }
         });
 
-        function search_client(search, searchcat) {
-          $('#client_table').DataTable({
-            "paging": true,
-            "searching": false,
-            "ordering": true,
-            "ajax" : {
-              "url" : global.settings.url + '/MainController/getcustomerinfotable',
-              "data": {search:search, searchcat:searchcat},
-              "dataType": "json",
-              "type": "POST"
-            },
-            "columns" : [{
-              "data" : "id"
-            },
+      //   function search_client(search, searchcat) {
+      //     $('#client_table').DataTable({
+      //       "paging": true,
+      //       "searching": false,
+      //       "ordering": true,
+      //       "ajax" : {
+      //         "url" : global.settings.url + '/MainController/getcustomerinfotable',
+      //         "data": {search:search, searchcat:searchcat},
+      //         "dataType": "json",
+      //         "type": "POST"
+      //       },
+      //       "columns" : [{
+      //         "data" : "id"
+      //       },
+      //
+      //       {
+      //         "data" : "c_info_stall_number"
+      //       },
+      //
+      //       {
+      //         "data" : "c_info_section"
+      //       },
+      //
+      //       {
+      //         "data" : "c_info_natbus"
+      //       },
+      //
+      //       {
+      //         "data" : "c_info_area"
+      //       },
+      //
+      //
+      //       {
+      //         "data" : "c_info_daily_fee"
+      //       },
+      //
+      //
+      //       {
+      //         "data" : "c_info_fullname_owner"
+      //       },
+      //
+      //       {
+      //         "data" : "c_info_fullname_occupant"
+      //       },
+      //       {
+      //         "data" : "btn"
+      //       }
+      //
+      //     ]
+      //   });
+      //   $('.dataTables_length').addClass('bs-select');
+      // }
 
-            {
-              "data" : "c_info_stall_number"
-            },
+      function search_client(search, searchcat) {
+        $('#client_table').DataTable({
+          "paging": true,
+          "searching": false,
+          "ordering": true,
+          "ajax" : {
+            "url" : global.settings.url + '/MainController/getcustomerinfotable',
+            "data": {search:search, searchcat:searchcat},
+            "dataType": "json",
+            "type": "POST"
+          },
+          "columns" : [{
+            "data" : "id"
+          },
 
-            {
-              "data" : "c_info_section"
-            },
+          {
+            "data" : "c_info_stall_number"
+          },
 
-            {
-              "data" : "c_info_natbus"
-            },
+          {
+            "data" : "c_info_section"
+          },
 
-            {
-              "data" : "c_info_area"
-            },
+          {
+            "data" : "c_info_natbus"
+          },
+
+          {
+            "data" : "c_info_area"
+          },
 
 
-            {
-              "data" : "c_info_daily_fee"
-            },
+          {
+            "data" : "c_info_daily_fee"
+          },
 
 
-            {
-              "data" : "c_info_fullname_owner"
-            },
+          {
+            "data" : "c_info_fullname_owner"
+          },
 
-            {
-              "data" : "c_info_fullname_occupant"
-            },
-            {
-              "data" : "btn"
-            }
+          {
+            "data" : "c_info_fullname_occupant"
+          },
+          {
+            "data" : "btn"
+          },
+          {
+            "data" : "btn2"
+          }
 
-          ]
-        });
-        $('.dataTables_length').addClass('bs-select');
-      }
+        ]
+      });
+      // $('.dataTables_length').addClass('bs-select');
+    }
 
 
 
@@ -327,7 +383,16 @@ $(document).ready(function(){
 
 
     function openauth(){
-      $("#loginauthmodal").modal('show');
+      if ($('#customer_id').val() == null || $('#customer_id').val() == "") {
+        Swal.fire({
+          icon: 'info',
+          title: 'Load Data First',
+        });
+      }else {
+        $("#loginauthmodal").modal('show');
+
+      }
+
     }
 
 
@@ -416,5 +481,38 @@ $(document).ready(function(){
           console.log(xhr.responseText);
         }
       })
+
+    });
+
+    function addnotes(id) {
+      $('#noteaddform')[0].reset();
+      $('#note_id_fk').val(id);
+      $('#notesmodaldynamic').text("Add new note");
+      $("#notesaddmodal").modal('show');
+    }
+
+
+    $('#noteaddform').submit(function(e){
+
+      e.preventDefault();
+      $.ajax({
+        url : global.settings.url +'/MainController/save_notes',
+        type : 'POST',
+        data :$(this).serialize(),
+        dataType : 'json',
+        success : function(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Note Added'
+            // text: 'This tenant must pay the fee before doing any transactions',
+          });
+          $('#notesaddmodal').modal("toggle");
+          $('#noteaddform')[0].reset();
+          console.log(res);
+        },
+        error : function(xhr){
+          console.log(xhr.responseText);
+        }
+      });
 
     });

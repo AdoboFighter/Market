@@ -45,7 +45,7 @@
 
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered" id="client_table">
+          <table class="table table-striped table-bordered" id="client_table" width="90%">
             <thead>
               <tr>
                 <td class="border border-dark">Customer ID</td>
@@ -181,7 +181,7 @@
         <div class="col-6">
           <div class="card col p-3 shadow">
             <h5 class="font-weight-bold">Tenant's Information</h5>
-            <input type="text" hidden id="customer_id" name="update[customer_id]">
+            <input type="text"  id="customer_id" name="update[customer_id]">
             <input type="text" hidden id="stall_id" name="update[stall_id]">
             <div class="mb-2 form-group" id="">
               <label>First name:</label>

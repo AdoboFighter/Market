@@ -154,6 +154,7 @@ class Mainmodel extends CI_model{
       'dailyfee' =>$data['daily_fee'],
       'floor_level' =>$data['floor_level'],
       'section' =>$data['section'],
+      'date_occupied' =>$data['date_occupied']
     );
 
     $data3 = array(
