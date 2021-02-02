@@ -246,8 +246,6 @@ class MainController extends CI_Controller{
 
   }
 
-
-
   public function printconsexcel()
   {
     $sort = array(
@@ -288,79 +286,6 @@ class MainController extends CI_Controller{
 
   }
 
-  //reports on tenant only------------------------------------------------------
-  //reports on tenant only------------------------------------------------------
-  //reports on tenant only------------------------------------------------------
-  //reports on tenant only------------------------------------------------------
-
-  public function getconsexcelteanant()
-  {
-
-    $sort = array(
-      'excelClient' => $this->input->post('exClientType'),
-      'excelDateFrom'=> $this->input->post('exDateFrom'),
-      'excelDateTo'=> $this->input->post('exDateTo'),
-      'excelCollector'=> $this->input->post('exCollector')
-    );
-
-
-    $this->session->set_userdata($sort);
-
-    echo json_encode($sort);
-
-  }
-
-  public function printconsexceltenant()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-      'conCollectorName' => $this->session->userdata('excelCollector'),
-    );
-
-    $query = $this->model->consexceltenant($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-    echo json_encode($result);
-    $this->session->unset_userdata('excelClient');
-    $this->session->unset_userdata('excelDateFrom');
-    $this->session->unset_userdata('excelDateTo');
-    $this->session->unset_userdata('excelCollector');
-
-  }
-
-  public function gettransexceltenant()
-  {
-
-    $sort = array(
-      'excelClient' => $this->input->post('exClientType'),
-      'excelDateFrom'=> $this->input->post('exDateFrom'),
-      'excelDateTo'=> $this->input->post('exDateTo'),
-    );
-
-
-    $this->session->set_userdata($sort);
-
-    echo json_encode($sort);
-
-  }
-
-
-
-  //reports on tenant only end------------------------------------------------------
-  //reports on tenant only end------------------------------------------------------
-  //reports on tenant only end------------------------------------------------------
-  //reports on tenant only end------------------------------------------------------
-
-
-
-
-
   public function printtransact()
   {
     $sort = array(
@@ -371,106 +296,6 @@ class MainController extends CI_Controller{
     );
 
     $query = $this->model->transactexcel($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-
-    echo json_encode($result);
-
-    $this->session->unset_userdata('excelClient');
-    $this->session->unset_userdata('excelDateFrom');
-    $this->session->unset_userdata('excelDateTo');
-    $this->session->unset_userdata('excelCollector');
-  }
-
-  public function printconsexcelotc()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-
-    );
-
-    $query = $this->model->printconsexcelotc($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-
-    echo json_encode($result);
-
-    $this->session->unset_userdata('excelClient');
-    $this->session->unset_userdata('excelDateFrom');
-    $this->session->unset_userdata('excelDateTo');
-    $this->session->unset_userdata('excelCollector');
-  }
-
-  public function printconsexcelotcstall()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-
-    );
-
-    $query = $this->model->printconsexcelotcstall($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-
-    echo json_encode($result);
-
-    $this->session->unset_userdata('excelClient');
-    $this->session->unset_userdata('excelDateFrom');
-    $this->session->unset_userdata('excelDateTo');
-    $this->session->unset_userdata('excelCollector');
-  }
-
-  public function printtransactemt()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-
-    );
-
-    $query = $this->model->printtransactemt($sort);
-
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
-
-    echo json_encode($result);
-
-    $this->session->unset_userdata('excelClient');
-    $this->session->unset_userdata('excelDateFrom');
-    $this->session->unset_userdata('excelDateTo');
-    $this->session->unset_userdata('excelCollector');
-  }
-
-  public function printtransactemtstall()
-  {
-    $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
-
-    );
-
-    $query = $this->model->printtransactemtstall($sort);
 
     $result = array(
       "query" => $query,
@@ -850,15 +675,9 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->getcertprinttable($search, $searchcat));
   }
 
-  public function getcertprinttableOLD()
-  {
-    echo json_encode($this->model->getcertprinttableOLD());
-  }
 
 
-
-
-  // public function pdf2fcert()
+    // public function pdf2fcert()
   // {
   //   $inputData = $this->input->post('cert');
   //
@@ -1078,16 +897,11 @@ class MainController extends CI_Controller{
     echo json_encode($this->model->get_cert_info_mod($id));
   }
 
-  public function get_cert_info_ambulant()
-  {
-    $id = $this->input->post('id');
-    echo json_encode($this->model->get_cert_info_ambulant($id));
-  }
-
   public function updatecert()
   {
-    $id = $this->input->post('certup');
-    echo json_encode($this->model->updatecert($id));
+    $data = $this->input->post('cert');
+    $query = $this->model->updatecert($data);
+    echo json_encode($query);
   }
 
   public function paymentreceipt()
@@ -1367,17 +1181,6 @@ public function printreceipt()
     echo json_encode($query);
   }
 
-  public function otcbackendtenant()
-  {
-    $sort['clientType'] = $this->input->post('clientType');
-    $sort['dateFrom'] = $this->input->post('dateFrom');
-    $sort['dateTo'] = $this->input->post('dateTo');
-
-    $query = $this->model->otcbackendtenant($sort);
-
-    echo json_encode($query);
-  }
-
   public function cashrepbackend()
   {
 
@@ -1529,9 +1332,67 @@ public function printreceipt()
     echo json_encode($query);
   }
 
-  public function getcerttableAmbulant()
+    public function getcerttableAmbulant()
   {
     echo json_encode($this->model->getcerttableAmbulant());
+  }
+
+    public function gettransexceltenant()
+  {
+
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+    );
+
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+
+  }
+
+    public function printconsexceltenant()
+  {
+    $sort = array(
+      'conClientType' => $this->session->userdata('excelClient'),
+      'conDateFrom' => $this->session->userdata('excelDateFrom'),
+      'conDateTo' => $this->session->userdata('excelDateTo'),
+      'conCollectorName' => $this->session->userdata('excelCollector'),
+    );
+
+    $query = $this->model->consexceltenant($sort);
+
+    $result = array(
+      "query" => $query,
+      "sort" => $sort,
+      "user" => $this->session->userdata('user_fullname'),
+    );
+    echo json_encode($result);
+    $this->session->unset_userdata('excelClient');
+    $this->session->unset_userdata('excelDateFrom');
+    $this->session->unset_userdata('excelDateTo');
+    $this->session->unset_userdata('excelCollector');
+
+  }
+
+
+    public function getconsexcelteanant()
+  {
+
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+      'excelCollector'=> $this->input->post('exCollector')
+    );
+
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+
   }
 
 

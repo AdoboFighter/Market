@@ -49,7 +49,14 @@ $(document).ready(function(){
      dateFrom = $(this).val();
 
       $('#tableNoStall').dataTable().fnDestroy();
-      loadDataTable(clientType,dateFrom,dateTo);
+
+      if (clientType == "tenant") {
+        loadDataTableTenant(clientType,dateFrom,dateTo);
+      }else {
+        loadDataTable(clientType,dateFrom,dateTo);
+      }
+
+
 
   });
 
@@ -59,7 +66,12 @@ $(document).ready(function(){
     dateTo = $(this).val();
 
     $('#tableNoStall').dataTable().fnDestroy();
-    loadDataTable(clientType,dateFrom,dateTo);
+    if (clientType == "tenant") {
+      loadDataTableTenant(clientType,dateFrom,dateTo);
+    }else {
+      loadDataTable(clientType,dateFrom,dateTo);
+    }
+
 
   });
 
@@ -70,35 +82,35 @@ $(document).ready(function(){
       "ajax" : {
         type: "POST",
         data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
-        "url" : global.settings.url + '/MainController/consolidationtablesortTenant',
+        "url" : global.settings.url + '/MainController/emtbackendTenant',
         dataSrc : 'data'
       },
       "columns" : [{
         "data" : "id"
       },
       {
-        "data" : "pay_fullname"
+        "data" : "trans_fullname"
       },
 
       {
-        "data" : "pay_or"
+        "data" : "trans_or"
       },
 
 
       {
-        "data" : "pay_amount"
+        "data" : "trans_amount"
       },
 
       {
-        "data" : "pay_nature"
+        "data" : "trans_nature"
       },
 
       {
-        "data" : "pay_date"
+        "data" : "trans_date"
       },
 
       {
-        "data" : "pay_fund"
+        "data" : "trans_fund"
       },
 
       {
@@ -183,7 +195,7 @@ $('#genrep').click(function(){
         data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
         dataType : 'json',
         success : function(data){
-          window.open(global.settings.url + '/pages/view/printtransacttenant', '_blank');
+          window.open(global.settings.url + '/pages/view/printtransactemtstall', '_blank');
         },
         error : function(xhr){
 
@@ -198,7 +210,7 @@ $('#genrep').click(function(){
         dataType : 'json',
         success : function(data){
 
-            window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+            window.open(global.settings.url + '/pages/view/printtransactemt', '_blank');
         },
         error : function(xhr){
 

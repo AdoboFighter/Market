@@ -30,22 +30,53 @@ $('#client_type').change(function(){
 
 });
 
+// $("#date_from").on('change',function(){
+//
+//   dateFrom = $(this).val();
+//
+//   $('#tableNoStall').dataTable().fnDestroy();
+//   loadDataTable(clientType,dateFrom,dateTo);
+//
+// });
+//
+//
+// $("#date_to").on('change',function(){
+//
+//   dateTo = $(this).val();
+//
+//   $('#tableNoStall').dataTable().fnDestroy();
+//   loadDataTable(clientType,dateFrom,dateTo);
+//
+// });
+
 $("#date_from").on('change',function(){
 
   dateFrom = $(this).val();
 
-  $('#tableNoStall').dataTable().fnDestroy();
-  loadDataTable(clientType,dateFrom,dateTo);
+   $('#tableNoStall').dataTable().fnDestroy();
+
+   if (clientType == "tenant") {
+     loadDataTableTenant(clientType,dateFrom,dateTo);
+   }else {
+     loadDataTable(clientType,dateFrom,dateTo);
+   }
+
+
 
 });
 
 
 $("#date_to").on('change',function(){
 
-  dateTo = $(this).val();
+ dateTo = $(this).val();
 
-  $('#tableNoStall').dataTable().fnDestroy();
-  loadDataTable(clientType,dateFrom,dateTo);
+ $('#tableNoStall').dataTable().fnDestroy();
+ if (clientType == "tenant") {
+   loadDataTableTenant(clientType,dateFrom,dateTo);
+ }else {
+   loadDataTable(clientType,dateFrom,dateTo);
+ }
+
 
 });
 
@@ -186,7 +217,7 @@ $('#genrep').click(function(){
 
           console.log('pasok');
 
-          window.open(global.settings.url + '/pages/view/printtransacttenant', '_blank');
+          window.open(global.settings.url + '/pages/view/printtransactotc', '_blank');
 
 
         },
@@ -205,7 +236,7 @@ $('#genrep').click(function(){
 
 
 
-          window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+          window.open(global.settings.url + '/pages/view/printtransactotc', '_blank');
 
 
         },

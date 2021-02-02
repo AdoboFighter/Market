@@ -89,10 +89,8 @@ $(document).ready(function(){
 
         {
           "data" : "btn"
-        },
-        {
-          "data" : "btn2"
         }
+        
       ]
     });
     $('.dataTables_length').addClass('bs-select');

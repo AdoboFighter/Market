@@ -48,7 +48,7 @@
                 <td class="border border-dark">Location Number</td>
                 <td class="border border-dark">Nature of business</td>
                 <td class="border border-dark">Load Info</td>
-                <td class="border border-dark">Add notes</td>
+                <!-- <td class="border border-dark">Add notes</td> -->
               </tr>
             </thead>
             <tbody>

@@ -82,16 +82,12 @@ class Mainmodel extends CI_model{
 
   public function login_acc($input)
   {
-    // $hash = '$2y$10$AU48IqTwyyySK0wzGl5XcOKNSLE5ZhGLQ2xPg4';
     $testpassword = "";
     $userdata = array();
     $data = array(
       'username' => $input['username'],
       'password' => $input['password']
-
     );
-
-
 
     $query = $this->db->select('*')
     ->from('user')
@@ -103,20 +99,18 @@ class Mainmodel extends CI_model{
       foreach($query->result() as $k){
         $testpassword = $k->password;
 
-
-
       }
-
-
-
       if(md5($data['password']) == $testpassword){
         foreach($query->result() as $r){
+
           $userdata['user_id'] = $r->user_id;
           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
           $userdata['position'] = $r->position;
           $userdata['user_level'] = $r->user_level;
           $userdata['username'] = $r->username;
         } $userdata['flag'] = 1;
+
+
         $this->session->set_userdata($userdata);
         return $userdata;
       }
@@ -125,11 +119,10 @@ class Mainmodel extends CI_model{
       }
 
     }
-
     else{
+
       return $userdata['res'] = 'usernameError';
     }
-
 
   }
 
@@ -152,9 +145,7 @@ class Mainmodel extends CI_model{
       'unit_no' =>$data['stall_number'],
       'sqm' =>$data['area'],
       'dailyfee' =>$data['daily_fee'],
-      'floor_level' =>$data['floor_level'],
-      'section' =>$data['section'],
-      'date_occupied' =>$data['date_occupied']
+      'floor_level' =>$data['floor_level']
     );
 
     $data3 = array(
@@ -427,7 +418,7 @@ class Mainmodel extends CI_model{
         'pay_nature' =>$r->payment_nature_id,
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
-        'pay_collector' =>$r->collector
+        'pay_collector' =>$r->collector,
       );
     }
     $result = array(
@@ -725,379 +716,6 @@ class Mainmodel extends CI_model{
     return $data;
   }
 
-  public function printconsexcelotc($sort)
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    // $query = $this->db->query("SELECT * FROM transaction");
-    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-
-    // $query = $this->db->get('transaction');
-    $this->db->select('*')
-    ->from('transaction');
-
-
-    //QUERY with SORT
-    if($sort['conClientType']){
-
-
-      switch($sort['conClientType']){
-        case 'ambulant':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'parking':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-        break;
-
-        case 'tenant':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'delivery':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        default:
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        break;
-      }
-    }
-    else{
-      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    }
-
-    if($sort['conDateFrom'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-    }
-    if($sort['conDateTo'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-    }
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
-    $query = $this->db->get();
-
-
-
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->transaction_id,
-        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'trans_or' => $r->or_number,
-        'trans_amount'=> $r->payment_amount,
-        'trans_nature'=> $r->payment_nature_name,
-        'trans_date'=> $r->payment_datetime,
-        'trans_fund'=> $r->fund_name,
-        'trans_stall'=> $r->unit_no
-      );
-    }
-
-    return $data;
-  }
-
-
-  public function printconsexcelotcstall($sort)
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    // $query = $this->db->query("SELECT * FROM transaction");
-    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-
-    // $query = $this->db->get('transaction');
-    $this->db->select('*')
-    ->from('transaction');
-
-
-    //QUERY with SORT
-    if($sort['conClientType']){
-
-
-      switch($sort['conClientType']){
-        case 'ambulant':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'parking':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-        break;
-
-        case 'tenant':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'delivery':
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        default:
-        $this->db->not_like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        break;
-      }
-    }
-    else{
-      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    }
-
-    if($sort['conDateFrom'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-    }
-    if($sort['conDateTo'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-    }
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
-    $query = $this->db->get();
-
-
-
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->transaction_id,
-        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'trans_or' => $r->or_number,
-        'trans_amount'=> $r->payment_amount,
-        'trans_nature'=> $r->payment_nature_name,
-        'trans_date'=> $r->payment_datetime,
-        'trans_fund'=> $r->fund_name
-      );
-    }
-
-    return $data;
-  }
-
-  public function printtransactemtstall($sort)
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    // $query = $this->db->query("SELECT * FROM transaction");
-    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-
-    // $query = $this->db->get('transaction');
-    $this->db->select('*')
-    ->from('transaction');
-
-
-    //QUERY with SORT
-    if($sort['conClientType']){
-
-
-      switch($sort['conClientType']){
-        case 'ambulant':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'parking':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-        break;
-
-        case 'tenant':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('stall', 'stall.tenant_id = tenant.tenant_id', 'inner');
-        break;
-
-        case 'delivery':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        default:
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        break;
-      }
-    }
-    else{
-      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    }
-
-    if($sort['conDateFrom'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-    }
-    if($sort['conDateTo'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-    }
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
-    $query = $this->db->get();
-
-
-
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->transaction_id,
-        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'trans_or' => $r->or_number,
-        'trans_amount'=> $r->payment_amount,
-        'trans_nature'=> $r->payment_nature_name,
-        'trans_date'=> $r->payment_datetime,
-        'trans_fund'=> $r->fund_name,
-        'trans_stall'=> $r->unit_no
-      );
-    }
-
-    return $data;
-  }
-
-  public function printtransactemt($sort)
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    // $query = $this->db->query("SELECT * FROM transaction");
-    // $this->db->join('fund', 'fund.fund_id=transaction.fund_id', 'inner');
-    // $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-
-    // $query = $this->db->get('transaction');
-    $this->db->select('*')
-    ->from('transaction');
-
-
-    //QUERY with SORT
-    if($sort['conClientType']){
-
-
-      switch($sort['conClientType']){
-        case 'ambulant':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-        break;
-
-        case 'parking':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('driver', 'driver.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('parking_lot', 'parking_lot.driver_id = driver.driver_id', 'inner');
-        break;
-
-        case 'tenant':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
-        $this->db->join('stall', 'stall.tenant_id = tenant.tenant_id', 'inner');
-        break;
-
-        case 'delivery':
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        $this->db->join('delivery', 'delivery.fk_customer_id = customer.customer_id', 'inner');
-        break;
-
-        default:
-        $this->db->like('or_number', "M");
-        $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-        $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-        break;
-      }
-    }
-    else{
-      $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
-      $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
-    }
-
-    if($sort['conDateFrom'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")>=', $sort['conDateFrom'] );
-    }
-    if($sort['conDateTo'])
-    {
-      $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
-    }
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
-    $query = $this->db->get();
-
-
-
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'id' => $r->transaction_id,
-        'trans_fullname' => $r->firstname.' '.$r->middlename.' '.$r->lastname ,
-        'trans_or' => $r->or_number,
-        'trans_amount'=> $r->payment_amount,
-        'trans_nature'=> $r->payment_nature_name,
-        'trans_date'=> $r->payment_datetime,
-        'trans_fund'=> $r->fund_name
-      );
-    }
-
-    return $data;
-  }
-
   public function getcustomerinfomod($id)
   {
     $this->db->where('customer_id', $id);
@@ -1142,8 +760,45 @@ class Mainmodel extends CI_model{
   }
 
 
+// old no notes
+//   public function getcustomerinfotablemod($search, $searchcat)
+//   {
+//     $draw = intval($this->input->get("draw"));
+//     $start = intval($this->input->get("start"));
+//     $length = intval($this->input->get("length"));
+//     // $this->db->like("concat(firstname,' ',middlename,' ',lastname,' ',unit_no,' ',aofirstname,' ',aomiddlename,' ',aolastname,' ',section,' ',nature_or_business,' ',customer_id,'',sqm)",$search);
+//     $this->db->like("concat($searchcat)",$search);
+//     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
+//     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+//     $query = $this->db->get('customer');
+//     $data = [];
+//     foreach ($query->result() as $r) {
+//       $data[] = array(
+//         'id' => $r->customer_id,
+//         'c_info_stall_number' => $r->unit_no,
+//         'c_info_section' => $r->Section,
+//         'c_info_natbus' => $r->nature_or_business,
+//         'c_info_area' => $r->sqm,
+//         'c_info_daily_fee'=> $r->dailyfee,
+//         'c_info_fullname_owner'=> $r->aofirstname.' '.$r->aomiddlename.' '.$r->aolastname ,
+//         'c_info_fullname_occupant'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+//         'btn'=>
 
-  public function getcustomerinfotablemod($search, $searchcat)
+//         '<div class="">
+//         <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
+//         </div>'
+//       );
+//     }
+//     $result = array(
+//       "draw" => $draw,
+//       "recordsTotal" => $query->num_rows(),
+//       "recordsFiltered" => $query->num_rows(),
+//       "data" => $data
+//     );
+//     return $result;
+//   }
+
+    public function getcustomerinfotablemod($search, $searchcat)
   {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
@@ -1247,13 +902,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button>
-        </div>',
-
-        'btn2'=>
-
-        '<div class="">
-        <button type="button" onclick="addnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add note</button>
+        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button></a>
         </div>'
       );
     }
@@ -1329,13 +978,6 @@ class Mainmodel extends CI_model{
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
-        ,
-        'btn2' =>
-
-        '<div class="">
-        <button type="button" onclick="addnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add notes</button>
-        </div>'
-        ,
       );
     }
     $result = array(
@@ -2222,14 +1864,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $usertype = array(1,2);
-
-
-    $this->db->group_start()
-    ->like("concat($searchcat)",$search)
-    ->where_in('user.user_level', $usertype)
-    ->group_end();
-    // $this->db->like("concat($searchcat)",$search);
+    $this->db->like("concat($searchcat)",$search);
     $this->db->join('sysuser_type', 'sysuser_type.usertype_id=user.user_level', 'inner');
     $query = $this->db->get('user');
     $data = [];
@@ -2243,7 +1878,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
+        <a href="#sect2" class="text-white"><button type="button" onclick="fetchdata('.$r->user_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button></a>
         </div>'
       );
     }
@@ -2260,8 +1895,6 @@ class Mainmodel extends CI_model{
   {
     $this->db->where('user_id', $id);
     $query = $this->db->get('user');
-
-
     return $query->result();
     echo $query;
   }
@@ -2292,12 +1925,6 @@ class Mainmodel extends CI_model{
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
-        </div>',
-
-        'btn2'=>
-
-        '<div class="">
-        <button type="button" onclick="removecert('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Remove</button>
         </div>'
       );
     }
@@ -2371,15 +1998,14 @@ class Mainmodel extends CI_model{
   }
 
   public function updatecert($data){
-
     $data1 = array(
       'print_status' => 'PRINTED',
-      'reference_num' => $data['ref_num1'],
-      'cert_type' => $data['cert_type1']
+      'reference_num' => $data['refnum'],
+      'cert_type' => $data['cert_type']
+
 
     );
-
-    $this->db->where('transaction_id',$data['trans_id1'])
+    $this->db->where('transaction_id',$data['transaction_id'])
     ->update('transaction',$data1);
     return true;
   }
@@ -2441,9 +2067,9 @@ class Mainmodel extends CI_model{
 
     $this->db->select_max('effectivity');
     $this->db->group_start()
-    ->where('effectivity >=', $now)
-    ->where_in('payment_nature_id', $paynat)
-    ->group_end();
+                ->where('effectivity >=', $now)
+                ->where_in('payment_nature_id', $paynat)
+              ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -2468,9 +2094,9 @@ class Mainmodel extends CI_model{
 
     $this->db->select_max('effectivity');
     $this->db->group_start()
-    ->where('effectivity >=', $now)
-    ->where_in('payment_nature_id', $paynat)
-    ->group_end();
+                ->where('effectivity >=', $now)
+                ->where_in('payment_nature_id', $paynat)
+              ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
@@ -3067,39 +2693,6 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function getcertprinttableOLD()
-  {
-
-    $draw = intval($this->input->get("draw"));
-    $start = intval($this->input->get("start"));
-    $length = intval($this->input->get("length"));
-    $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
-    // $this->db->like("concat($searchcat)",$search);
-    $this->db->where($array);
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
-
-    $query = $this->db->get('customer');
-    $data = [];
-    foreach ($query->result() as $r) {
-      $data[] = array(
-        'cert_trans_id' => $r->transaction_id,
-        'cert_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
-        'cert_dop' => $r->payment_datetime,
-        'cert_type' => $r->cert_type,
-        'cert_ref_num' => $r->reference_num,
-      );
-    }
-    $result = array(
-      "draw" => $draw,
-      "recordsTotal" => $query->num_rows(),
-      "recordsFiltered" => $query->num_rows(),
-      "data" => $data
-    );
-    return $result;
-  }
-
 
   public function transtodaytable()
   {
@@ -3266,6 +2859,56 @@ class Mainmodel extends CI_model{
   // }
   //
   //
+  // public function debttablewith()
+  // {
+  //
+  //   $draw = intval($this->input->get("draw"));
+  //   $start = intval($this->input->get("start"));
+  //   $length = intval($this->input->get("length"));
+  //   $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+  //   $now = date('Y-m-d');
+  //   $this->load->helper('date');
+  //
+  //
+  //   $this->db->select('*');
+  //   // $this->db->select('IFNULL(`effectivity`, "NO PASTA")');
+  //   // $this->db->group_start()
+  //   // ->where('effectivity >=', $now)
+  //   // ->where_in('payment_nature.payment_nature_id', $paynat)
+  //   // ->group_end();
+  //   $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+  //   $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+  //
+  //   $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
+  //   $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+  //   $this->db->order_by("effectivity", "DESC");
+  //   $this->db->group_by('customer.customer_id');
+  //   $query = $this->db->get('customer');
+  //
+  //   $data =[];
+  //   foreach($query->result() as $k)
+  //   {
+  //     $data[] = array(
+  //       'id' => $k->customer_id,
+  //       'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
+  //       'unit' => $k->unit_no,
+  //       'or' => $k->or_number,
+  //       'amount' =>$k->payment_amount,
+  //       'nature' =>$k->effectivity,
+  //       'effectivity' =>$k->effectivity,
+  //       'date' =>$k->payment_datetime
+  //     );
+  //   }
+  //
+  //   $result = array(
+  //     "draw" => $draw,
+  //     "recordsTotal" => $query->num_rows(),
+  //     "recordsFiltered" => $query->num_rows(),
+  //     "data" => $data
+  //   );
+  //   return $result;
+  // }
+
   public function debttable()
   {
 
@@ -3451,7 +3094,6 @@ class Mainmodel extends CI_model{
 
     if($sort != null)
     {
-      $this->db->like('or_number', "M");
       $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
       $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
       $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
@@ -3494,6 +3136,7 @@ class Mainmodel extends CI_model{
 
     return $data;
   }
+
 
   public function emtbackendTenant($sort)
   {
@@ -3633,6 +3276,7 @@ class Mainmodel extends CI_model{
 
 
 
+
   public function getstallnotes()
   {
     $draw = intval($this->input->get("draw"));
@@ -3703,7 +3347,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(fk_customer_id_note)",$fk_custid_note);
+    $this->db->where("fk_customer_id_note",$fk_custid_note);
     // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer.customer_id');
     // $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
     // $this->db->join('notes', 'notes.fk_customer_id_note=customer.customer_id');
@@ -3781,7 +3425,40 @@ class Mainmodel extends CI_model{
 
   }
 
-  public function getcerttableAmbulant()
+    public function getcertprinttableOLD()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'PRINTED');
+    // $this->db->like("concat($searchcat)",$search);
+    $this->db->where($array);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'cert_trans_id' => $r->transaction_id,
+        'cert_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'cert_dop' => $r->payment_datetime,
+        'cert_type' => $r->cert_type,
+        'cert_ref_num' => $r->reference_num,
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
+    public function getcerttableAmbulant()
   {
 
     $draw = intval($this->input->get("draw"));
@@ -3825,31 +3502,6 @@ class Mainmodel extends CI_model{
     return $result;
   }
 
-  public function get_cert_info_ambulant($id)
-  {
-    $this->db->where('transaction_id', $id);
-    $this->db->join('ambulant', 'ambulant.fk_customer_customer_id = customer.customer_id', 'inner');
-    $this->db->join('ambulant_unit', 'ambulant_unit.ambulant_id = ambulant.ambulant_id', 'inner');
-    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
-    $query = $this->db->get('customer');
-    return $query->result();
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3862,6 +3514,4 @@ class Mainmodel extends CI_model{
 
 
 }
-
-
 ?>
