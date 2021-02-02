@@ -82,8 +82,10 @@ function search_client(search, searchcat) {
 
       {
         "data" : "btn"
+      },
+      {
+        "data" : "btn2"
       }
-
     ]
   });
   $('.dataTables_length').addClass('bs-select');
@@ -259,3 +261,51 @@ $('#login_account').submit(function(e){
   })
 
 });
+
+
+function addnotes(id) {
+  $('#noteaddform')[0].reset();
+  $('#note_id_fk').val(id);
+  $('#notesmodaldynamic').text("Add new note");
+  $("#notesaddmodal").modal('show');
+}
+
+
+$('#noteaddform').submit(function(e){
+
+  e.preventDefault();
+  $.ajax({
+    url : global.settings.url +'/MainController/save_notes',
+    type : 'POST',
+    data :$(this).serialize(),
+    dataType : 'json',
+    success : function(res){
+      Swal.fire({
+        icon: 'success',
+        title: 'Note Added'
+        // text: 'This tenant must pay the fee before doing any transactions',
+      });
+      $('#notesaddmodal').modal("toggle");
+      $('#noteaddform')[0].reset();
+      console.log(res);
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+
+});
+
+
+function openauth(){
+  if ($('#customer_id').val() == null || $('#customer_id').val() == "") {
+    Swal.fire({
+      icon: 'info',
+      title: 'Load Data First',
+    });
+  }else {
+    $("#loginauthmodal").modal('show');
+
+  }
+
+}

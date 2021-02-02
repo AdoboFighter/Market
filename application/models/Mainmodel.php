@@ -875,6 +875,12 @@ class Mainmodel extends CI_model{
 
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3 text-white" name="button" id="loadcus">Load Data</button>
+        </div>',
+
+        'btn2'=>
+
+        '<div class="">
+        <button type="button" onclick="addnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add note</button>
         </div>'
       );
     }
@@ -950,6 +956,13 @@ class Mainmodel extends CI_model{
         '<div class="">
         <button type="button" onclick="fetchdata('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Load Data</button>
         </div>'
+        ,
+        'btn2' =>
+
+        '<div class="">
+        <button type="button" onclick="addnotes('.$r->customer_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Add notes</button>
+        </div>'
+        ,
       );
     }
     $result = array(

@@ -45,6 +45,7 @@
                 <td class="border border-dark">Company/Driver's Name</td>
                 <td class="border border-dark">Plate Number</td>
                 <td class="border border-dark">Load Data</td>
+                <td class="border border-dark">Add notes</td>
               </tr>
             </thead>
             <tbody>
@@ -87,8 +88,8 @@
       <div class="col-6 ">
         <div class="card col p-3">
           <div class="mb-2">
-            <label>Delivery ID</label>
-            <input type="text" class="form-control" name="update[delivery_id]" id="del_id" readonly>
+            <!-- <label>Delivery ID</label> -->
+            <input type="text" hidden class="form-control" name="update[delivery_id]" id="del_id" readonly>
           </div>
           <div class="row p-2">
             <div class="p-2">
@@ -179,4 +180,77 @@ aria-hidden="true">
     </form>
   </div>
 </div>
+</div>
+
+<div class="modal fade" id="loginauthmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Confirm Credentials</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form id="login_account">
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label>Username</label>
+          <input type="text" class="form-control" name="login[username]" id="username">
+        </div>
+
+        <div class="mb-2">
+          <label>Password</label>
+          <input type="password" class="form-control" name="login[password]" id="password">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button type="submit" class="btn bluegrads text-white">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<div id="notesaddmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesmodaldynamic"></h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="noteaddform">
+          <div class="p-2">
+            <!-- <h5 class="font-weight-bold">Note Details</h5> -->
+            <div class="form-group">
+              <label for="">Title</label>
+              <input type="text" class="form-control" name="note[title]" id="note_title" required>
+            </div>
+            <div class="form-group">
+              <label for="">Date</label>
+              <input type="Date" class="form-control" name="note[date]" id="note_date"required>
+            </div>
+            <div class="form-group">
+              <label for="">Note Details</label>
+              <textarea class="form-control" rows="3" name="note[desc]" id="note_desc"required></textarea>
+            </div>
+
+            <input type="text" class="form-control" name="note[note_id_fk]" id="note_id_fk" required hidden>
+            <input type="text" class="form-control" name="note[note_id]" id="note_id" hidden >
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <!-- <button type="reset" class="btn stylish-color-dark text-white">Clear</button> -->
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
 </div>
