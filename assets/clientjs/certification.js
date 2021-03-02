@@ -261,7 +261,9 @@ $('#marketform').submit(function(e){
 
 
 $('#updateform').submit(function(e){
+  console.log("hello");
   e.preventDefault();
+
   Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -272,6 +274,9 @@ $('#updateform').submit(function(e){
   confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
   if (result.isConfirmed) {
+
+
+  }else {
     $.ajax({
       url: global.settings.url + '/MainController/updatecert',
       type: 'POST',
@@ -289,7 +294,6 @@ $('#updateform').submit(function(e){
         console.log('sala');
       }
     });
-
   }
 })
 

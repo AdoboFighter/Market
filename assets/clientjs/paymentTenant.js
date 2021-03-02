@@ -434,6 +434,9 @@ $("#payment_or_number").inputFilter(function(value) {
             $('#TenantModalPay').modal("show");
             $('#paymentDet').hide();
             $('#chequeDetails').hide();
+
+
+
             $('#payment_type').val(null);
             $('.payment_details').val('');
             $('.rowrow').remove();
@@ -450,6 +453,7 @@ $("#payment_or_number").inputFilter(function(value) {
             $('#address').val(res.address);
             $('#payorname').val(res.firstname + ' '+ res.middlename +' ' + res.lastname);
             $('#searchmodal').modal("hide");
+            $('#ttlAmt').val(null);
           }
         },
         error: function(xhr){
@@ -1252,12 +1256,14 @@ $("#payment_or_number").inputFilter(function(value) {
             }
             else{
 
-              if ($('#change').val() == "" || $('#change').val() == null) {
+              if ($('#change').val() == "" || $('#change').val() == null ||  $('#ttlAmt').val().replace(',', '') < 0 || $('#total_amount_given').val().replace(',', '') < 0
+              || $('#total_amount_given').val().replace(',', '') == 0 ||  $('#ttlAmt').val().replace(',', '') == 0
+              ||  $('#total_payment').val().replace(',', '') < 0 || $('#total_payment').val().replace(',', '') < 0 ){
                 Swal.fire({
                   icon: 'error',
                   title: 'Complete the transaction first.',
                 });
-              }else if ($('#change').val().replace(',', '') < 0 ||  $('#change').val() == 'Invalid Input') {
+              }else if ($('#change').val().replace(',', '') < 0 ||  $('#change').val() == 'Invalid Input' || isNaN($('#change').val())) {
                 Swal.fire({
                   icon: 'error',
                   title: 'Insufficient amount.',

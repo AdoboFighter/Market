@@ -2532,9 +2532,9 @@ class Mainmodel extends CI_model{
     $length = intval($this->input->get("length"));
     $this->db->like('unit_no',  $inputData.'-');
     $this->db->or_where('unit_no',  $inputData);
-    // $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
-    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
-    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id' , 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id' , 'inner');
     $this->db->group_by("customer.customer_id");
     // $this->db->order_by('effectivity', 'DESC');
     $query = $this->db->get('customer');

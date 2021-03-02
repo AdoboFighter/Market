@@ -134,6 +134,8 @@ $(document).ready(function(){
   });
 
   $('#transtodaytable').DataTable({
+    processing: true,
+    serverSide: true,
     "ajax" : {
       "url" : global.settings.url + '/MainController/transtodaytable',
       dataSrc : 'data'

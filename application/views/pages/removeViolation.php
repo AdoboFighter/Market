@@ -353,7 +353,7 @@
           <div class="mb-2">
             <input type="hidden" name="" id="what_row" required>
             <label>Type of payment</label>
-            <input type="date" class="form-control payment_details" name="" id="payment_type_of_payment" readonly value="Violation">
+            <input type="text" class="form-control payment_details" name="" id="payment_type_of_payment" readonly value="Violation">
           </div>
 
           <div class="mb-2" id="other_items" hidden>

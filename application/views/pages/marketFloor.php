@@ -14,7 +14,7 @@
     <div class="card transparentnav noshadnav" >
       <div class="row">
         <div class="col-3">
-          <h2>FLOOR 1</h2>
+          <h2 >FLOOR 1</h2>
           <br>
           <div class="row">
             <div class="col-4">
