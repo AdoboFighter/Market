@@ -1416,6 +1416,9 @@ $("#payment_or_number").inputFilter(function(value) {
       var arrlength =  no.length - 1;
       var count = 0;
 
+      var cash_rec = $('#cash_total').val();
+      var cheque_rec = $('#payment_cheque_total').val();
+
 
       for (var i = 0; i < no.length; i++) {
 
@@ -1437,6 +1440,8 @@ $("#payment_or_number").inputFilter(function(value) {
             ,payor:payor
             ,total:total
             ,count:i
+            ,cheque_rec:cheque_rec
+            ,cash_rec:cash_rec
           },
 
           url: global.settings.url +'/MainController/savetransaction',
