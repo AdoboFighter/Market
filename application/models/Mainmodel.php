@@ -2279,11 +2279,12 @@ class Mainmodel extends CI_model{
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->group_by('or_number');
     $query = $this->db->get('customer');
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
-        'id' => $r->transaction_id,
+        'id' => $r->or_number,
         'c_info_fullname_owner'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
         'c_info_stall_number' => $r->unit_no,
         'c_info_address' => $r->address,
@@ -2291,7 +2292,7 @@ class Mainmodel extends CI_model{
         'btn'=>
 
         '<div class="">
-        <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3" name="button" id="loadcus">Print</button>
+        <button type="button" onclick="fetchdata('.$r->transaction_id.'); " class="btn btn-sm btn-info ml-3 " name="button" id="loadcus">Print</button>
         </div>',
 
         'btn2'=>

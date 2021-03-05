@@ -261,42 +261,57 @@ $('#marketform').submit(function(e){
 
 
 $('#updateform').submit(function(e){
-  console.log("hello");
   e.preventDefault();
+  // $.ajax({
+  //   url: global.settings.url + '/MainController/updatecert',
+  //   type: 'POST',
+  //   data: $(this).serialize(),
+  //   dataType:'JSON',
+  //   success: function(res){
+  //     $('#certmodal').modal("toggle");
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'Certification Effectivity Removed',
+  //     });
+  //     $('#cert_table').DataTable().ajax.reload();
+  //   },
+  //   error:function(res){
+  //     console.log('sala');
+  //   }
+  // });
 
   Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
+    title: 'Remove Effectivity?',
+    text: "are you sure?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Remove',
+    // reverseButtons: true
   }).then((result) => {
-  if (result.isConfirmed) {
-
-
-  }else {
-    $.ajax({
-      url: global.settings.url + '/MainController/updatecert',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        $('#certmodal').modal("toggle");
-        Swal.fire({
-          icon: 'success',
-          title: 'Certification Effectivity Removed',
-        });
-        $('#cert_table').DataTable().ajax.reload();
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  }
-})
-
+    if (result.value) {
+      $.ajax({
+        url: global.settings.url + '/MainController/updatecert',
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType:'JSON',
+        success: function(res){
+          $('#certmodal').modal("toggle");
+          Swal.fire({
+            icon: 'success',
+            title: 'Certification Effectivity Removed',
+          });
+          $('#cert_table').DataTable().ajax.reload();
+        },
+        error:function(res){
+          console.log('sala');
+        }
+      });
+    }else {
+      console.log("do nothing");
+    }
+  })
 
 
 
@@ -316,19 +331,6 @@ $('#cert_type_select1').on('change', function(e) {
     $("#operationform").hide();
     $("#marketform").hide();
     genformcease(trans_id);
-
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="todaynosl" name="cert[todaynosl]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="ornumber" name="cert[ornumber]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="refnum" name="cert[refnum]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="fname" name="cert[fname]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="mname" name="cert[mname]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="lname" name="cert[lname]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="address" name="cert[address]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="natbus" name="cert[natbus]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="floor_level" name="cert[floor_level]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="OR" name="cert[OR]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="or_number" name="cert[or_number]"> ');
-    // $("#aftermarket").after(' <input type="text" hidden class="inputdynacease" id="payment_amount" name="cert[payment_amount]"> ');
 
   }else if ($(this).val() == "transfer") {
 
@@ -350,7 +352,7 @@ $('#cert_type_select1').on('change', function(e) {
     $("#marketform").toggle();
     $("#ceaseform").hide();
     $("#operationform").hide();
-    $("#transfer").hide();
+    $("#transferform").hide();
     genformmarket(trans_id);
 
   }else {
@@ -435,9 +437,9 @@ function getcertinfoAmbu(id) {
       var tranIDVVAR = $('#transaction_id').val();
       console.log($('#today').val() + 'hello');
       var datenosl = $('#today').val().replace(/\//g, '');
-      var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-      $('#todaynosl').val(datenosl);
-      $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+        $('#todaynosl').val(datenosl);
+        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
       },
       error: function(xhr){
         console.log(xhr.responseText);
@@ -599,9 +601,9 @@ function getcertinfoAmbu(id) {
         var lastfourOR = $('#ornumber').val();
         var tranIDVVAR = $('#transaction_id').val();
         var datenosl = $('#today').val().replace(/\//g, '');
-        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
-        $('#todaynosl').val(datenosl);
-        $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+          var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+          $('#todaynosl').val(datenosl);
+          $('#refnum').val(datenosl + lastfour + tranIDVVAR);
         },
         error: function(xhr){
           console.log(xhr.responseText);

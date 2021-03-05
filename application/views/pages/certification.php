@@ -28,13 +28,12 @@
           <table width="100%" class="table p-2 table-hover table-bordered shadow border border-dark" id="cert_table">
             <thead>
               <tr>
-                <td class="border border-dark">transaction ID</td>
-                <td class="border border-dark">Name</td>
-                <td class="border border-dark">Address</td>
+                <td class="border border-dark" width="20%">OR Number</td>
+                <td class="border border-dark" width="35%">Name</td>
+                <td class="border border-dark" width="30%">Address</td>
                 <td id="changecolumn" class="border border-dark"></td>
-                <td class="border border-dark">Print</td>
+                <td class="border border-dark" width="5%">Print</td>
                 <!-- <td class="border border-dark">Remove</td> -->
-
               </tr>
             </thead>
             <tbody>

@@ -211,32 +211,6 @@ $(document).ready(function(){
         }]
       });
 
-      $('#ambutablehome').DataTable({
-        "ajax" : {
-          "url" : global.settings.url + '/MainController/ambutablehome',
-          dataSrc : 'data'
-        },
-        "columns" : [
-          {
-            "data" : "id"
-          },
-          {
-            "data" : "pay_ambu_name"
-          },
-
-          {
-            "data" : "pay_ambu_location"
-          },
-
-          {
-            "data" : "pay_ambu_locnum"
-          },
-
-          {
-            "data" : "nature_of_business"
-          }]
-        });
-
         $('#ambutablehome').DataTable({
           "ajax" : {
             "url" : global.settings.url + '/MainController/ambutablehome',

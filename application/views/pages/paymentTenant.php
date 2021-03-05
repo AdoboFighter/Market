@@ -265,7 +265,7 @@
             <span>Total (Amount to pay)</span>
             <!-- <strong>₱ <span class="" id="">0.00</span></strong> -->
             <!-- <strong>₱ </strong> -->
-            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_payment" name="pay[total_amount_given]" placeholder="0.00" readonly >
+            <input type="text" class="inputTrans text-right float-right w-100 payment_details text-danger"  id="total_payment" name="pay[total_payment]" placeholder="0.00" readonly >
 
           </li>
 

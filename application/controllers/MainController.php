@@ -917,8 +917,8 @@ class MainController extends CI_Controller{
       'or_number' => $inputData['or_number'],
       'payment_amount' => $inputData['payment_amount'],
       'today' => $inputData['today'],
-      'address' => $inputData['address']
-      // 'refnum' => $inputData['refnum']
+      'address' => $inputData['address'],
+      'refnum' => $inputData['refnum']
     );
 
     if ($inputData['client'] == "LESSEE") {
