@@ -3837,6 +3837,22 @@ class Mainmodel extends CI_model{
   }
 
 
+  public function cancelor($data){
+
+    $data1 = array(
+      'cancel_status' => "CANCELLED",
+      'remarks' =>$data['remarks_f']
+    );
+
+    $this->db->where('or_number',$data['ORnum_f'])
+    ->update('transaction',$data1);
+
+
+    return $data;
+  }
+
+
+
 
 
 

@@ -41,6 +41,7 @@
           </div>
         </div>
         <br>
+
         <!-- Admin card -->
         <div id="notesclick">
           <div class="card mt-3">
@@ -63,22 +64,17 @@
 
         </div>
       </div>
-
-    </div>
-    <!--Grid column-->
-
-    <!--Grid column-->
-    <div class="col-lg-4 col-md-6 mb-4">
+      <br>
 
       <!-- Admin card -->
-      <div id="dateclick">
+      <div id="ORcancelclick">
         <div class="card mt-3">
 
           <div class="">
-            <i class="far fa-calendar-alt fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+            <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
             <div class="float-right text-right p-3">
-              <p class="text-uppercase text-muted mb-1"><small>Date</small></p>
-              <h4 class="font-weight-bold mb-0" id="dateToday"></h4>
+              <!-- <p class="text-uppercase text-muted mb-1"><small>Cancel OR</small></p> -->
+              <h4 class="font-weight-bold mb-0">Cancel OR</h4>
             </div>
           </div>
 
@@ -92,18 +88,22 @@
 
       </div>
     </div>
-    <!-- Admin card -->
-    <br>
+
+  </div>
+  <!--Grid column-->
+
+  <!--Grid column-->
+  <div class="col-lg-4 col-md-6 mb-4">
 
     <!-- Admin card -->
-    <div id="regambuclick">
+    <div id="dateclick">
       <div class="card mt-3">
 
         <div class="">
-          <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+          <i class="far fa-calendar-alt fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
           <div class="float-right text-right p-3">
-            <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
-            <h4 class="font-weight-bold mb-0" id="numambu"></h4>
+            <p class="text-uppercase text-muted mb-1"><small>Date</small></p>
+            <h4 class="font-weight-bold mb-0" id="dateToday"></h4>
           </div>
         </div>
 
@@ -117,18 +117,18 @@
 
     </div>
   </div>
-
   <!-- Admin card -->
   <br>
+
   <!-- Admin card -->
-  <div id="violationclick">
+  <div id="regambuclick">
     <div class="card mt-3">
 
       <div class="">
-        <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+        <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
         <div class="float-right text-right p-3">
-          <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
-          <h4 class="font-weight-bold mb-0" id="numvio"></h4>
+          <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
+          <h4 class="font-weight-bold mb-0" id="numambu"></h4>
         </div>
       </div>
 
@@ -141,6 +141,31 @@
     </div>
 
   </div>
+</div>
+
+<!-- Admin card -->
+<br>
+<!-- Admin card -->
+<div id="violationclick">
+  <div class="card mt-3">
+
+    <div class="">
+      <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+      <div class="float-right text-right p-3">
+        <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
+        <h4 class="font-weight-bold mb-0" id="numvio"></h4>
+      </div>
+    </div>
+
+    <div class="card-body pt-0">
+      <!-- <div class="progress md-progress">
+      <div class="progress-bar bg-danger" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0"
+      aria-valuemax="100"></div>
+    </div>
+    <p class="card-text">Worse than last week (46%)</p> -->
+  </div>
+
+</div>
 </div>
 
 <!-- Admin card -->
@@ -574,3 +599,34 @@
     </div>
   </div>
 </div>
+
+<div id="ORcancelmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="">Cancel OR</h5>
+        <button type="button" class="close"  id="" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form id="cancelorform">
+
+          <div class="form-group">
+            <label for="">OR number</label>
+            <input type="text" class="form-control" name="cancel[ORnum_f]" id="ORnum_f"required>
+          </div>
+          <div class="form-group">
+            <label for="">Remarks</label>
+            <textarea class="form-control" rows="4" name="cancel[remarks_f]" id="remarks_f"required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Cancel OR</button>
+        </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>

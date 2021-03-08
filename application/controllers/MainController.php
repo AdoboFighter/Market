@@ -1269,7 +1269,6 @@ public function printreceipt()
 
 
   public function checkOr(){
-
     $or_number = $this->input->post('or_number');
     $query =$this->model->checkOr($or_number);
     echo json_encode($query);
@@ -1533,6 +1532,19 @@ public function printreceipt()
   public function getcerttableAmbulant()
   {
     echo json_encode($this->model->getcerttableAmbulant());
+  }
+
+  public function cancelor()
+  {
+    $data = $this->input->post('cancel');
+    $query = $this->model->cancelor($data);
+    echo json_encode($query);
+  }
+
+
+  public function getcancelledor()
+  {
+    echo json_encode($this->model->getcertprinttableOLD());
   }
 
 

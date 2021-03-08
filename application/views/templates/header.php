@@ -685,6 +685,10 @@ CONTENT STYLE
               <a href="<?php echo base_url() . 'pages/view/cheque' ?>">Cheque list</a>
             </li>
 
+            <li>
+              <a href="<?php echo base_url() . 'pages/view/cancelledor' ?>">cancelled OR</a>
+            </li>
+
           </ul>
         </li>
 
