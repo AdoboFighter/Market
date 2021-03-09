@@ -13,7 +13,7 @@ var year = new Date().getFullYear();
 
 $(document).ready(function(){
 
-  $('#cert_table').DataTable({
+  $('#cancel_table').DataTable({
     "paging": true,
     "ordering": true,
     "ajax" : {
@@ -21,21 +21,24 @@ $(document).ready(function(){
       dataSrc : 'data'
     },
     "columns" : [{
-      "data" : "cert_trans_id"
+      "data" : "cancel_ornum"
     },
     {
-      "data" : "cert_name"
-    },
-
-    {
-      "data" : "cert_dop"
-    },
-    {
-      "data" : "cert_type"
+      "data" : "cancel_name"
     },
 
     {
-      "data" : "cert_ref_num"
+      "data" : "cancel_dop"
+    },
+    {
+      "data" : "cancel_top"
+    },
+
+    {
+      "data" : "cancel_status"
+    },
+    {
+      "data" : "cancel_remarks"
     }
   ]
 });

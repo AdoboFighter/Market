@@ -141,9 +141,9 @@ $(document).ready(function(){
       dataSrc : 'data'
     },
     "columns" : [
-      {
-        "data" : "id"
-      },
+      // {
+      //   "data" : "id"
+      // },
 
       {
         "data" : "name"
@@ -168,7 +168,13 @@ $(document).ready(function(){
 
       {
         "data" : "date"
-      }]
+      },
+
+      {
+        "data" : "cancel"
+      }
+
+     ]
     });
 
     $('#stallpaidtable').DataTable({
@@ -177,9 +183,9 @@ $(document).ready(function(){
         dataSrc : 'data'
       },
       "columns" : [
-        {
-          "data" : "id"
-        },
+        // {
+        //   "data" : "id"
+        // },
 
         {
           "data" : "name"

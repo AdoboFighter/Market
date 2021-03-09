@@ -1544,7 +1544,7 @@ public function printreceipt()
 
   public function getcancelledor()
   {
-    echo json_encode($this->model->getcertprinttableOLD());
+    echo json_encode($this->model->getcancelledor());
   }
 
 

@@ -2648,6 +2648,7 @@ class Mainmodel extends CI_model{
   public function emtbackend($sort)
   {
 
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -2716,7 +2717,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
+    $this->db->where($array);
 
     $query = $this->db->get();
 
@@ -2745,7 +2746,7 @@ class Mainmodel extends CI_model{
 
   public function otcbackend($sort)
   {
-
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -2815,7 +2816,7 @@ class Mainmodel extends CI_model{
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
 
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
@@ -3122,13 +3123,14 @@ class Mainmodel extends CI_model{
     foreach($query->result() as $k)
     {
       $data[] = array(
-        'id' => $k->customer_id,
+        // 'id' => $k->customer_id,
         'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
         'or' => $k->or_number,
         'amount' =>$k->payment_amount,
         'nature' =>$k->payment_nature_name,
         'effectivity' =>$k->effectivity,
-        'date' =>$k->payment_datetime
+        'date' =>$k->payment_datetime,
+        'cancel' =>$k->cancel_status
       );
     }
 
@@ -3148,6 +3150,7 @@ class Mainmodel extends CI_model{
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+    $array = array('cancel_status' => 'NOT');
     $now = date('Y-m-d');
     $this->load->helper('date');
 
@@ -3155,6 +3158,7 @@ class Mainmodel extends CI_model{
     $this->db->select('*');
     $this->db->group_start()
     ->where('effectivity >=', $now)
+    ->where($array)
     ->where_in('payment_nature.payment_nature_id', $paynat)
     ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
@@ -3162,14 +3166,14 @@ class Mainmodel extends CI_model{
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
     $this->db->order_by("effectivity", "DESC");
-    $this->db->group_by('customer.customer_id');
+    $this->db->group_by('or_number');
     $query = $this->db->get('customer');
 
     $data =[];
     foreach($query->result() as $k)
     {
       $data[] = array(
-        'id' => $k->customer_id,
+        // 'id' => $k->customer_id,
         'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
         'unit' => $k->unit_no,
         'or' => $k->or_number,
@@ -3498,6 +3502,7 @@ class Mainmodel extends CI_model{
 
   public function emtbackendTenant($sort)
   {
+    $array = array('cancel_status' => 'NOT');
 
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
@@ -3535,7 +3540,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
+    $this->db->where($array);
 
     $query = $this->db->get();
 
@@ -3788,7 +3793,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $array = array('payment_nature_id' => 4015, 'print_status' => 'TO_PRINT');
+    $array = array('payment_nature_id' => 4015, 'print_status' => 'TO_PRINT', 'cancel_status' => 'NOT');
 
     $this->db->where($array);
 
@@ -3850,6 +3855,41 @@ class Mainmodel extends CI_model{
 
     return $data;
   }
+
+  public function getcancelledor()
+  {
+
+    $draw = intval($this->input->get("draw"));
+    $start = intval($this->input->get("start"));
+    $length = intval($this->input->get("length"));
+    $array = array('cancel_status' => 'CANCELLED');
+    // $this->db->like("concat($searchcat)",$search);
+    $this->db->where($array);
+    $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $query = $this->db->get('customer');
+    $data = [];
+    foreach ($query->result() as $r) {
+      $data[] = array(
+        'cancel_ornum' => $r->or_number,
+        'cancel_name'=> $r->firstname.' '.$r->middlename.' '.$r->lastname,
+        'cancel_dop' => $r->payment_datetime,
+        'cancel_top' => $r->payment_nature_name,
+        'cancel_status' => $r->cancel_status,
+        'cancel_remarks' => $r->remarks
+      );
+    }
+    $result = array(
+      "draw" => $draw,
+      "recordsTotal" => $query->num_rows(),
+      "recordsFiltered" => $query->num_rows(),
+      "data" => $data
+    );
+    return $result;
+  }
+
 
 
 
