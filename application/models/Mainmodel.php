@@ -727,7 +727,7 @@ class Mainmodel extends CI_model{
 
   public function printconsexcelotc($sort)
   {
-
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -796,7 +796,7 @@ class Mainmodel extends CI_model{
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
 
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
@@ -821,7 +821,7 @@ class Mainmodel extends CI_model{
 
   public function printconsexcelotcstall($sort)
   {
-
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -889,8 +889,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
@@ -914,6 +913,7 @@ class Mainmodel extends CI_model{
   public function printtransactemtstall($sort)
   {
 
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -982,8 +982,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
@@ -1007,7 +1006,7 @@ class Mainmodel extends CI_model{
 
   public function printtransactemt($sort)
   {
-
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -1076,8 +1075,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
@@ -2718,7 +2716,6 @@ class Mainmodel extends CI_model{
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
     $this->db->where($array);
-
     $query = $this->db->get();
 
 
@@ -2815,7 +2812,6 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
     $this->db->where($array);
     $query = $this->db->get();
 
@@ -3503,7 +3499,6 @@ class Mainmodel extends CI_model{
   public function emtbackendTenant($sort)
   {
     $array = array('cancel_status' => 'NOT');
-
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -3541,7 +3536,6 @@ class Mainmodel extends CI_model{
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
     $this->db->where($array);
-
     $query = $this->db->get();
 
 
@@ -3571,7 +3565,7 @@ class Mainmodel extends CI_model{
 
   public function otcbackendtenant($sort)
   {
-
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -3609,8 +3603,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['dateTo'] );
     }
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-
-
+    $this->db->where($array);
     $query = $this->db->get();
 
 
