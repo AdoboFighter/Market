@@ -32,19 +32,40 @@ $(document).ready(function(){
   $('#collector_name').change(function(){
     conCollectorName = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    // loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
+
   });
 
+
   $('#date_from').change(function(){
+
     conDateFrom = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
+
   });
 
   $('#date_to').change(function(){
     conDateTo = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
+    
   });
 
   $('#client_type').change(function(){
@@ -127,25 +148,25 @@ $(document).ready(function(){
 
 
 
-  function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
-
-  $.ajax({
-    url: global.settings.url + '/MainController/cashrepbackend',
-    type: 'POST',
-    data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
-    dataType:'JSON',
-    success: function(res){
-      console.log(res);
-
-
-
-
-    },
-    error: function(xhr){
-      console.log(xhr.responseText);
-    }
-  })
-  }
+  // function loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName){
+  //
+  // $.ajax({
+  //   url: global.settings.url + '/MainController/cashrepbackend',
+  //   type: 'POST',
+  //   data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},
+  //   dataType:'JSON',
+  //   success: function(res){
+  //     console.log(res);
+  //
+  //
+  //
+  //
+  //   },
+  //   error: function(xhr){
+  //     console.log(xhr.responseText);
+  //   }
+  // })
+  // }
 
 
 
@@ -156,6 +177,9 @@ $(document).ready(function(){
 
     $('#tablecon').DataTable({
       "autoWidth":false,
+      "paging": true,
+      "searching": false,
+      "ordering": true,
       "ajax" : {
         type: "POST",
          data: {conClientType:conClientType,conDateFrom:conDateFrom,conCollectorName:conCollectorName,conDateTo:conDateTo},

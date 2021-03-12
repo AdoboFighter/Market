@@ -30,21 +30,41 @@ $(document).ready(function(){
 
 
   $('#collector_name').change(function(){
+
     conCollectorName = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
+
   });
 
   $('#date_from').change(function(){
     conDateFrom = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
+
   });
 
   $('#date_to').change(function(){
     conDateTo = $(this).val();
     $('#tablecon').dataTable().fnDestroy();
-    loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+
+    if ($('#client_type').val() == "tenant") {
+      loaddatatabletenant(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }else {
+
+      loaddatatable(conClientType,conDateTo,conDateFrom,conCollectorName);
+    }
   });
 
   $('#client_type').change(function(){

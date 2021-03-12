@@ -349,6 +349,9 @@ class Mainmodel extends CI_model{
   }
 
   public function consolidationtablesort($sort){
+
+    $array = array('cancel_status' => 'NOT');
+
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -414,7 +417,8 @@ class Mainmodel extends CI_model{
       $this->db->where('user_id',$sort['conCollectorName']);
     }
 
-
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->where($array);
 
     $query = $this->db->get();
     $data = [];
@@ -424,7 +428,7 @@ class Mainmodel extends CI_model{
         'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
         'pay_or' => $r->or_number,
         'pay_amount' =>$r->payment_amount,
-        'pay_nature' =>$r->payment_nature_id,
+        'pay_nature' =>$r->payment_nature_name,
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
         'pay_collector' =>$r->collector
@@ -2839,6 +2843,8 @@ class Mainmodel extends CI_model{
   }
 
   public function cashrepbackend($sort){
+
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -2909,10 +2915,10 @@ class Mainmodel extends CI_model{
     {
       $this->db->where('user_id',$sort['conCollectorName']);
     }
-
-
-
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->where($array);
     $query = $this->db->get();
+
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -2920,7 +2926,7 @@ class Mainmodel extends CI_model{
         'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
         'pay_or' => $r->or_number,
         'pay_amount' =>$r->payment_amount,
-        'pay_nature' =>$r->payment_nature_id,
+        'pay_nature' =>$r->payment_nature_name,
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
         'pay_collector' =>$r->collector,
@@ -3317,6 +3323,8 @@ class Mainmodel extends CI_model{
 
 
   public function consolidationtablesortTenant($sort){
+
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -3352,10 +3360,10 @@ class Mainmodel extends CI_model{
     {
       $this->db->where('user_id',$sort['conCollectorName']);
     }
-
-
-
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
+    $this->db->where($array);
     $query = $this->db->get();
+
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -3363,7 +3371,7 @@ class Mainmodel extends CI_model{
         'pay_fullname' =>$r->firstname.' '.$r->middlename.' '.$r->lastname,
         'pay_or' => $r->or_number,
         'pay_amount' =>$r->payment_amount,
-        'pay_nature' =>$r->payment_nature_id,
+        'pay_nature' =>$r->payment_nature_name,
         'pay_date' => $r->payment_datetime,
         'pay_fund' =>$r->fund_name,
         'pay_collector' =>$r->collector,
@@ -3380,6 +3388,8 @@ class Mainmodel extends CI_model{
   }
 
   public function consolidationtablesortTenant2($sort){
+
+    $array = array('cancel_status' => 'NOT');
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -3415,9 +3425,10 @@ class Mainmodel extends CI_model{
       $this->db->where('user_id',$sort['conCollectorName']);
     }
 
-
-
+    $this->db->where($array);
     $query = $this->db->get();
+
+
     $data = [];
     foreach ($query->result() as $r) {
       $data[] = array(
@@ -3856,7 +3867,6 @@ class Mainmodel extends CI_model{
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     $array = array('cancel_status' => 'CANCELLED');
-    // $this->db->like("concat($searchcat)",$search);
     $this->db->where($array);
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');

@@ -30,25 +30,6 @@ $('#client_type').change(function(){
 
 });
 
-// $("#date_from").on('change',function(){
-//
-//   dateFrom = $(this).val();
-//
-//   $('#tableNoStall').dataTable().fnDestroy();
-//   loadDataTable(clientType,dateFrom,dateTo);
-//
-// });
-//
-//
-// $("#date_to").on('change',function(){
-//
-//   dateTo = $(this).val();
-//
-//   $('#tableNoStall').dataTable().fnDestroy();
-//   loadDataTable(clientType,dateFrom,dateTo);
-//
-// });
-
 $("#date_from").on('change',function(){
 
   dateFrom = $(this).val();
@@ -60,8 +41,6 @@ $("#date_from").on('change',function(){
    }else {
      loadDataTable(clientType,dateFrom,dateTo);
    }
-
-
 
 });
 
