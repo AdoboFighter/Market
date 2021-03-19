@@ -34,6 +34,7 @@ $(document).ready(function() {
   });
 });
 </script>
+<script src="<?php echo base_url().'assets/js/inputmask.js' ?> "></script>
 <script src="<?php echo base_url().'assets/global.js' ?> "></script>
 <script src="<?php echo base_url().'assets/clientjs/'.$js_file?>"></script>
 <script src="<?php echo base_url().'assets/clientjs/allpayment.js' ?> "></script>

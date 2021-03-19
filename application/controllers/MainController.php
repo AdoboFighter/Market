@@ -1548,6 +1548,13 @@ public function printreceipt()
   }
 
 
+  public function update_pass()
+  {
+    $data = $this->input->post('pass');
+    echo json_encode($this->model->update_pass($data));
+  }
+
+
 
 
 

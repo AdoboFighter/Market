@@ -2201,7 +2201,7 @@ class Mainmodel extends CI_model{
       'usr_address' => $inputData['usr_add'],
       'usr_contact_number' => $inputData['usr_cn'],
       'username' => $inputData['usr_un'],
-      'password' => md5($inputData['usr_pass']),
+      // 'password' => md5($inputData['usr_pass']),
       'position' => $inputData['usr_position'],
       'user_level' => $inputData['user_lvl']
     );
@@ -3337,7 +3337,7 @@ class Mainmodel extends CI_model{
 
     if($sort != null)
     {
-      $this->db->like('or_number', "M");
+      // $this->db->like('or_number', "M");
       $this->db->join('fund', 'transaction.fund_id = fund.fund_id', 'inner');
       $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
       $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');
@@ -3891,6 +3891,19 @@ class Mainmodel extends CI_model{
       "data" => $data
     );
     return $result;
+  }
+
+  public function update_pass($data){
+
+    $data1 = array(
+      'password' => md5($data['password_change'])
+    );
+
+    $this->db->where('user_id',$data['user_id_change'])
+    ->update('user',$data1);
+
+
+
   }
 
 

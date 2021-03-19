@@ -206,7 +206,7 @@ $("#payment_or_number").inputFilter(function(value) {
       changechequecash();
     }
     $('#cash_total').val($('#payment_cash_tendered').val());
-  totalamountgiven();
+    totalamountgiven();
   });
 
 
@@ -986,10 +986,6 @@ $("#payment_or_number").inputFilter(function(value) {
         },
         success:function(res)
         {
-          // console.log(res);
-          // document.getElementById('printFrame').contentWindow.location.reload();
-          // var url = window.URL.createObjectURL(res);
-          // $('#printFrame').attr('src', url);
           var url = window.URL.createObjectURL(res);
           $('#printFrame').attr('src',url);
           $('#printModal').modal('show');

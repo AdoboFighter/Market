@@ -2,6 +2,19 @@ var datable;
 
 $(document).ready(function(){
 
+  $("#show_hide_password a").on('click', function(event) {
+    event.preventDefault();
+    if($('#show_hide_password input').attr("type") == "text"){
+        $('#show_hide_password input').attr('type', 'password');
+        $('#show_hide_password i').addClass( "fa-eye-slash" );
+        $('#show_hide_password i').removeClass( "fa-eye" );
+    }else if($('#show_hide_password input').attr("type") == "password"){
+        $('#show_hide_password input').attr('type', 'text');
+        $('#show_hide_password i').removeClass( "fa-eye-slash" );
+        $('#show_hide_password i').addClass( "fa-eye" );
+    }
+});
+
   $('.dataTables_length').addClass('bs-select');
 
   $('#updateuser').submit(function(e){
@@ -111,6 +124,19 @@ $(document).ready(function(){
 
 });
 
+function changepassshow() {
+  if ($('#usr_id').val() == "" ||  $('#usr_id').val() == null) {
+    Swal.fire({
+      title: 'No select a client first',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
+  }else{
+    $("#user_id_change").val($("#usr_id").val());
+    $("#changepassmodal").modal('show');
+  }
+}
+
 
 function search_client(search, searchcat) {
   $('#sys_table').DataTable({
@@ -151,27 +177,9 @@ function search_client(search, searchcat) {
 
 
 function fetchdata(id){
-
-  // $("#loginauthmodal").modal('show');
-  // console.log(id);
-  // $.ajax({
-  //   url: global.settings.url + '/MainController/getusercon',
-  //   type: 'POST',
-  //   data: {
-  //     id: id
-  //   },
-  //   dataType:'JSON',
-  //   success: function(res){
-  //     console.log(res);
-  //     res = res[0];
-  //     $('#usr_un_auth').val(res.username);
-  //     $('#usr_id_auth').val(res.user_id);
-  //   },
-  //   error: function(xhr){
-  //     console.log(xhr.responseText);
-  //   }
-  // })
-
+  $('html, body').animate({
+    scrollTop: $("#sect2").offset().top
+  });
   $.ajax({
     url: global.settings.url + '/MainController/getusercon',
     type: 'POST',
@@ -267,5 +275,29 @@ $('#login_account').submit(function(e){
       console.log(xhr.responseText);
     }
   })
+});
+
+
+$('#passform').submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url : global.settings.url +'/MainController/update_pass',
+    type : 'POST',
+    data :$(this).serialize(),
+    dataType : 'json',
+    success : function(res){
+      Swal.fire({
+        icon: 'success',
+        title: 'Password changed'
+        // text: 'This tenant must pay the fee before doing any transactions',
+      });
+
+      console.log(res);
+    },
+    error : function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+  // console.log("pass form test");
 
 });
