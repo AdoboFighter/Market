@@ -3286,7 +3286,7 @@ class Mainmodel extends CI_model{
 
     $this->db->select('*');
     $this->db->group_start()
-    ->where('effectivity >=', $now)
+    ->where('effectivity <=', $now)
     ->where_in('payment_nature.payment_nature_id', $paynat)
     ->group_end();
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
