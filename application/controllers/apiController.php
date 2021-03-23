@@ -5,10 +5,16 @@ class apiController extends CI_Controller{
     parent::__construct();
 
     // To set session inside the model could be use to get session ids.
-    header ("Access-Control-Allow-Methods: GET, OPTIONS");
-    header( 'Access-Control-Allow-Origin: *');
-    header("Access Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
-    header( "Access-Control-Allow=Headers: X-Requested-With, content-type, X-Token, x-token, x-csrf-token, ");
+    // header ("Access-Control-Allow-Methods: GET, OPTIONS");
+    // header( 'Access-Control-Allow-Origin: *');
+    // header("Access Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    // header( "Access-Control-Allow=Headers: X-Requested-With, content-type, X-Token, x-token, x-csrf-token, ");
+
+		     
+		header('Access-Control-Allow-Origin: *'); 
+		header('Access-Control-Allow- Methods: POST, GET, PUT, DELETE, OPTIONS'); 
+		header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token, X-csrf-token');
+	 
     $this->load->library('session');
     $this->load->library('form_validation');
     date_default_timezone_set('Asia/Manila');
@@ -22,8 +28,7 @@ class apiController extends CI_Controller{
   {
     $search = $this->input->post('search');
     $searchcat = $this->input->post('searchcat');;
-    echo json_encode($this->model->searchStall($search, $searchcat));
-
+    echo json_encode($this->model->searchStall($search, $searchcat) , JSON_PRETTY_PRINT);
   }
 
   public function saveTransaction()
@@ -46,7 +51,7 @@ class apiController extends CI_Controller{
           ,"cheque_rec" => $this->input->post("cheque_rec")
         );
 
-
+return $data;
     echo json_encode( $this->model->saveTransaction('transaction',$data, $count));
   }
 

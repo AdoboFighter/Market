@@ -11,12 +11,14 @@ class apiModel extends CI_model{
        $this->load->database();
    }
 
-   public function searchStall($searchcat,$search)
+   public function searchStall($search,$searchcat)
    {
-     $this->db->like("concat($searchcat)",$search);
+     $this->db->where("concat($searchcat)",$search);
      $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id');
      $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
-     $query = $this->db->get('customer');
+		 $query = $this->db->get('customer');
+		 
+		 return $query->result();
    }
 
    public function saveTransaction($table,$data,$count)
