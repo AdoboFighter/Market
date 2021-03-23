@@ -18,6 +18,13 @@ class apiModel extends CI_model{
      $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
      $query = $this->db->get('customer');
    }
+
+   public function saveTransaction($table,$data,$count)
+   {
+     $query = $this->db->insert($table,$data);
+     $transaction_id = $this->db->insert_id();
+     return array('query'=> $query, 'id'=>$transaction_id, 'count' => $count);
+   }
 }
 
 ?>
