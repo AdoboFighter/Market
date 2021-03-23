@@ -34,25 +34,26 @@ class apiController extends CI_Controller{
   public function saveTransaction()
   {
     $now = date('Y-m-d H:i:s');
-    $count = $this->input->post("count");
+    $data = $this->input->post("data");
 
-        $data = array(
-          'payment_datetime'=>$now
-          ,"customer_id" => $this->input->post("customer_id")
-          ,"payment_nature_id" => $this->input->post("no")
-          ,"effectivity" => $this->input->post("pay_effect")
-          ,"payment_amount" => $this->input->post("price")
-          ,"or_number" => $this->input->post("or_number")
-          ,"cash_rec" => $this->input->post("cash_tendered")
-          ,"amount_to_pay" => $this->input->post("total")
-          ,"payor" => $this->input->post("payor")
-          ,'collector'=> $this->session->userdata('user_fullname')
-          ,'user_id'=> $this->session->userdata('user_id')
-          ,"cheque_rec" => $this->input->post("cheque_rec")
-        );
+    // $count = $this->input->post("count");
+    //     $data = array(
+    //       'payment_datetime'=>$now
+    //       ,"customer_id" => $this->input->post("customer_id")
+    //       ,"payment_nature_id" => $this->input->post("no")
+    //       ,"effectivity" => $this->input->post("pay_effect")
+    //       ,"payment_amount" => $this->input->post("price")
+    //       ,"or_number" => $this->input->post("or_number")
+    //       ,"cash_rec" => $this->input->post("cash_tendered")
+    //       ,"amount_to_pay" => $this->input->post("total")
+    //       ,"payor" => $this->input->post("payor")
+    //       ,'collector'=> $this->session->userdata('user_fullname')
+    //       ,'user_id'=> $this->session->userdata('user_id')
+    //       ,"cheque_rec" => $this->input->post("cheque_rec")
+    //     );
 
-return $data;
-    echo json_encode( $this->model->saveTransaction('transaction',$data, $count));
+		return $data;
+    echo json_encode( $this->model->saveTransaction('transaction',$data, $data['count']));
   }
 
 
