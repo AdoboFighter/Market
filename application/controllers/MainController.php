@@ -751,7 +751,6 @@ class MainController extends CI_Controller{
           // ,"particulars" => $this->input->post("particulars")
         );
 
-
     echo json_encode( $this->model->savetransaction('transaction',$data, $count));
   }
 
