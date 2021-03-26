@@ -134,8 +134,6 @@ $(document).ready(function(){
   });
 
   $('#transtodaytable').DataTable({
-    processing: true,
-    serverSide: true,
     "ajax" : {
       "url" : global.settings.url + '/MainController/transtodaytable',
       dataSrc : 'data'
@@ -273,14 +271,12 @@ $(document).ready(function(){
 
 
           $('#debttable').DataTable({
+            "autoWidth": false,
             "ajax" : {
               "url" : global.settings.url + '/MainController/debttable',
               dataSrc : 'data'
             },
             "columns" : [
-              {
-                "data" : "id"
-              },
 
               {
                 "data" : "name"
@@ -305,10 +301,6 @@ $(document).ready(function(){
 
               {
                 "data" : "effectivity"
-              },
-
-              {
-                "data" : "date"
               }]
             });
 

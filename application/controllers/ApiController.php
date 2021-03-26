@@ -1,15 +1,21 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow- Methods: POST, GET, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token, X-csrf-token');
 
 // require (APPPATH.'/libraries/REST_Controller.php');
 // use Restserver\Libraries\REST_Controller;
-class apiController extends CI_Controller{
+class ApiController extends CI_Controller{
   public function __construct() {
-   
+
 
     // To set session inside the model could be use to get session ids.
-		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
-		header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, content-type, X-Token, x-token, x-csrf-token, Origin');
+		// header('Access-Control-Allow-Origin: *');
+		// header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+		// header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, content-type, X-Token, x-token, x-csrf-token, Origin');
+
 
 	  parent::__construct();
     date_default_timezone_set('Asia/Manila');
@@ -18,35 +24,44 @@ class apiController extends CI_Controller{
     $this->load->library('session');
     $this->load->library('form_validation');
 
+
+
   }
+
+
+
 
   public function searchStall()
   {
     $search = $this->input->post('search');
     $searchcat = $this->input->post('searchcat');
+    $data = [];
+		$data = [
+			"firstname" => "Marco",
+			"middlename" => "Eseo",
+			"lastname" => "Tolentino",
+			"address" => "TGA DITO",
+			"customer_id" => "1",
+		];
+		// $data = [];
 
-		// $data = [
-		// 	"firstname" => "Marco",
-		// 	"middlename" => "Eseo",
-		// 	"lastname" => "Tolentino",
-		// 	"address" => "TGA DITO",
-		// 	"customer_id" => "1",
-		// ];
-		$data = [];
-	
-		$query = $this->model->searchStall($search, $searchcat);
-		foreach($query->result() as $k)
-		{
-			$data = [
-				"firstname" => $k->firstname,
-				"middlename" => $k->middlename,
-				"lastname" => $k->lastname,
-				"address" => $k->address,
-				"customer_id" => $k->customer_id,
-				"collector" => $this->session->userdata('user_fullname'),
-			];
-		}
-		echo json_encode($data);
+		// $query = $this->model->searchStall($search, $searchcat);
+    echo json_encode($data);
+
+		// foreach($query->result() as $k)
+		// {
+		// 	$data = [
+		// 		"firstname" => $k->firstname,
+		// 		"middlename" => $k->middlename,
+		// 		"lastname" => $k->lastname,
+		// 		"address" => $k->address,
+		// 		"customer_id" => $k->customer_id,
+		// 		"collector" => $this->session->userdata('user_fullname'),
+		// 	];
+		// }
+		// echo json_encode($data);
+
+    // echo $data;
 		// echo json_encode($this->model->searchStall($search, $searchcat));
   }
 

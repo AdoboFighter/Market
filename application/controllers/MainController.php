@@ -70,6 +70,8 @@ class UnsafeCrypto
 
 class MainController extends CI_Controller{
 
+
+
   public function __construct()
   {
     parent::__construct();
@@ -1434,6 +1436,8 @@ public function printreceipt()
   public function debttable()
   {
     $query = $this->model->debttable();
+    $item = "bullshit";
+    array_walk_recursive($query,function(&$item){$item=strval($item);});
     echo json_encode($query);
   }
 

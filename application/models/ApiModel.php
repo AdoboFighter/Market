@@ -1,6 +1,6 @@
 <?php
 
-class apiModel extends CI_model{
+class ApiModel extends CI_model{
 
   public function __construct() {
        parent::__construct();
@@ -20,7 +20,7 @@ class apiModel extends CI_model{
 								->join('tenant', 'tenant.fk_customer_id=customer.customer_id')
 								->join('stall', 'stall.tenant_id=tenant.tenant_id')
 								->get();
-		
+
 		return $query;
 
 		//   $this->db->where($searchcat,$search);
@@ -29,7 +29,7 @@ class apiModel extends CI_model{
     //  $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
 		//  $query = $this->db->get('customer');
 		//  return $query;
-		 
+
 		//  if($query->num_rows() > 0 ){
 		//  	return $query->result();
 		// 	}

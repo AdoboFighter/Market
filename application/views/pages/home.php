@@ -476,14 +476,12 @@
         <table width="100%" class="table table-sm table-bordered text-center" id="debttable">
           <thead >
             <tr>
-              <td class="border border-dark">Customer ID</td>
               <td class="border border-dark">Name</td>
               <td class="border border-dark">Stall Number</td>
               <td class="border border-dark">O.R</td>
               <td class="border border-dark">Amount</td>
               <td class="border border-dark">Payment Type</td>
               <td class="border border-dark">Effectivity</td>
-              <td class="border border-dark">Date & Time</td>
             </tr>
           </thead>
 

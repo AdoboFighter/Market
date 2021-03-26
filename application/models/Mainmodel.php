@@ -3275,7 +3275,6 @@ class Mainmodel extends CI_model{
   //
   public function debttable()
   {
-
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
@@ -3284,32 +3283,49 @@ class Mainmodel extends CI_model{
     $this->load->helper('date');
 
 
-    $this->db->select('*');
-    $this->db->group_start()
-    ->where('effectivity <=', $now)
-    ->where_in('payment_nature.payment_nature_id', $paynat)
-    ->group_end();
+
+    $this->db->select("firstname, middlename, lastname, unit_no,
+    or_number, payment_nature_name, payment_amount,effectivity");
+    $this->db->select_max('effectivity');
+    $this->db->select("COALESCE(NULLIF(effectivity,''), 'NO PAST TRANSACTIONS')");
+    $this->db->select('COALESCE(NULLIF(payment_amount,""), "NO PAST TRANSACTIONS"),');
+
+
+
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
-    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
-    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
-    $this->db->order_by("effectivity", "DESC");
+    $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
+    $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
+    $this->db->group_start()
+
+    ->where('effectivity <=', $now)
+    ->where_in('transaction.payment_nature_id', $paynat)
+    ->or_where('transaction_id IS NULL')
+    ->group_end();
+
+
+    $this->db->order_by("effectivity", "ASC");
     $this->db->group_by('customer.customer_id');
+
     $query = $this->db->get('customer');
 
     $data =[];
     foreach($query->result() as $k)
     {
       $data[] = array(
-        'id' => $k->customer_id,
         'name' => $k->firstname.' '.$k->middlename.' '.$k->lastname,
         'unit' => $k->unit_no,
         'or' => $k->or_number,
         'amount' =>$k->payment_amount,
-        'nature' =>$k->effectivity,
-        'effectivity' =>$k->effectivity,
-        'date' =>$k->payment_datetime
+        'nature' =>$k->payment_nature_name,
+        'effectivity' =>$k->effectivity
       );
+
+      foreach ($data as $key => $value) {
+        if (is_null($value)) {
+          $data[$key] = "No Past transaction";
+        }
+      }
     }
 
     $result = array(
