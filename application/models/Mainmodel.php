@@ -3281,23 +3281,32 @@ class Mainmodel extends CI_model{
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
     $now = date('Y-m-d');
     $this->load->helper('date');
+    $nopast = "NO past transactions";
+    $string = '';
 
 
 
     $this->db->select("firstname, middlename, lastname, unit_no,
     or_number, payment_nature_name, payment_amount,effectivity");
-    $this->db->select_max('effectivity');
-    $this->db->select("COALESCE(NULLIF(effectivity,''), 'NO PAST TRANSACTIONS')");
-    $this->db->select('COALESCE(NULLIF(payment_amount,""), "NO PAST TRANSACTIONS"),');
+
+    // $this->db->select('COALESCE(NULLIF(firstname, ""), "Incomplete Info") AS firstname', false);
+    // $this->db->select('COALESCE(NULLIF(middlename, ""), "Incomplete Info") AS middlename', false);
+    // $this->db->select('COALESCE(NULLIF(lastname, ""), "Incomplete Info") AS lastname', false);
+    $this->db->select('COALESCE(NULLIF(unit_no, ""), "Incomplete Info") AS unit_no', false);
 
 
+    $this->db->select('COALESCE(NULLIF(or_number, ""), "No past transaction") AS or_number', false);
+    $this->db->select('COALESCE(NULLIF(payment_nature_name, ""), "No past transaction") AS payment_nature_name', false);
+    $this->db->select('COALESCE(NULLIF(payment_amount, ""), "No past transaction") AS payment_amount', false);
+    $this->db->select('MAX(COALESCE(NULLIF(effectivity, ""), "No past transaction")) AS effectivity',false);
 
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'left');
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'left');
-    $this->db->group_start()
 
+
+    $this->db->group_start()
     ->where('effectivity <=', $now)
     ->where_in('transaction.payment_nature_id', $paynat)
     ->or_where('transaction_id IS NULL')
