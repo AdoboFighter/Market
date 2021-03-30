@@ -3286,7 +3286,7 @@ class Mainmodel extends CI_model{
 
 
 
-    $this->db->select("firstname, middlename, lastname, unit_no,
+    $this->db->select("customer.customer_id, firstname, middlename, lastname, unit_no,
     or_number, payment_nature_name, payment_amount,effectivity");
 
     // $this->db->select('COALESCE(NULLIF(firstname, ""), "Incomplete Info") AS firstname', false);
@@ -3327,7 +3327,12 @@ class Mainmodel extends CI_model{
         'or' => $k->or_number,
         'amount' =>$k->payment_amount,
         'nature' =>$k->payment_nature_name,
-        'effectivity' =>$k->effectivity
+        'effectivity' =>$k->effectivity,
+        'btn_view' =>
+
+        '<div class="">
+        <button type="button" onclick="topay('.$k->customer_id.');" class="btn btn-sm btn-info ml-3" name="button" id="loadcus">To payment</button>
+        </div>'
       );
 
       foreach ($data as $key => $value) {

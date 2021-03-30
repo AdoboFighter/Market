@@ -577,7 +577,7 @@ CONTENT STYLE
 
             <li>
               <a href="<?php echo base_url() . 'pages/view/paymentTenant' ?>">Tenant</a>
-              <!-- <a href="<?php echo base_url() . 'pages/view/payment' ?>">Tenant</a> -->
+
 
             </li>
 
