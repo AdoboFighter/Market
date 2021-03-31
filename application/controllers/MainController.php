@@ -1558,6 +1558,25 @@ public function printreceipt()
   }
 
 
+  public function proceedtopay()
+  {
+    $idar = array(
+      'id' => $this->session->userdata('id')
+    );
+
+    $query = $this->model->proceedtopay($idar);
+
+    $result = array(
+      "query" => $query,
+      "sort" => $sort,
+      "user" => $this->session->userdata('user_fullname'),
+    );
+
+    echo json_encode($result);
+
+  }
+
+
 
 
 

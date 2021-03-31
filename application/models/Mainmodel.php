@@ -3936,6 +3936,15 @@ class Mainmodel extends CI_model{
 
   }
 
+  public function proceedtopay($idar)
+  {
+    $this->db->where('customer_id', $id);
+    $this->db->join('customer', 'tenant.fk_customer_id=customer.customer_id', 'inner');
+    $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
+    $query = $this->db->get('tenant');
+    return $query->result();
+  }
+
 
 
 

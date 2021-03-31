@@ -685,7 +685,24 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
 
-                console.log("proceed to payment");
+                $.ajax({
+                  url : global.settings.url +'/MainController/gettransexcel',
+                  type : 'POST',
+                  data :{id:id},
+                  dataType : 'json',
+                  success : function(data){
+
+
+
+                      window.open(global.settings.url + '/pages/view/dev', '_blank');
+
+
+                  },
+                  error : function(xhr){
+
+                  }
+
+                });
 
               }else {
                 console.log("do nothing");
