@@ -474,6 +474,32 @@
       <div class = "text-center">
         <button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
         <button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
+        <button class = "btn btn-info rounded-pill" type ="button" id="testrefnum"  onclick="refnumtest()">Close</button>
+
+        <div class="col-lg-6 col-sm-12 mt-2">
+          <label>Today</label>
+          <input type="text" class="form-control payment_details" name="" id="today">
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mt-2">
+          <label>Days</label>
+          <input type="text" class="form-control payment_details" name="" id="days">
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mt-2">
+          <label>Month</label>
+          <input type="text" class="form-control payment_details" name="" id="month">
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mt-2">
+          <label>year</label>
+          <input type="text" class="form-control payment_details" name="" id="year">
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mt-2">
+          <label>or Number#</label>
+          <input type="text" class="form-control payment_details" name="" id="orref">
+        </div>
 
         <iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
 

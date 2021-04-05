@@ -749,6 +749,7 @@ class MainController extends CI_Controller{
           ,'collector'=> $this->session->userdata('user_fullname')
           ,'user_id'=> $this->session->userdata('user_id')
           ,"cheque_rec" => $this->input->post("cheque_rec")
+          ,"reference_num" => $this->input->post("reference_num")
 
           // ,"particulars" => $this->input->post("particulars")
         );

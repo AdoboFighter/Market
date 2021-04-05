@@ -43,6 +43,17 @@ var check_date = [];
 var bank = [];
 
 
+var fullDate = new Date();
+var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+const m = new Date();
+var month = monthNames[m.getMonth()];
+var d = new Date();
+var n = d.getDate();
+var year = new Date().getFullYear();
+
 
 
 $(document).ready(function(){
@@ -1095,6 +1106,23 @@ $("#payment_or_number").inputFilter(function(value) {
       var cash_rec = $('#cash_total').val();
       var cheque_rec = $('#payment_cheque_total').val();
 
+      //reference number
+
+      $('#today').val(currentDate);
+      $('#days').val(n);
+      $('#month').val(month);
+      $('#year').val(year);
+      $('#ornumber').val(res.or_number );
+      var lastfourOR = $('#ornumber').val();
+      // var tranIDVVAR = $('#transaction_id').val();
+      console.log($('#today').val() + 'hello');
+      var datenosl = $('#today').val().replace(/\//g, '');
+      var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+      $('#todaynosl').val(datenosl);
+      var refnumpay $('#refnum').val(datenosl + lastfour );
+
+
+
 
       for (var i = 0; i < no.length; i++) {
 
@@ -1118,6 +1146,7 @@ $("#payment_or_number").inputFilter(function(value) {
             ,count:i
             ,cheque_rec:cheque_rec
             ,cash_rec:cash_rec
+            ,reference_num:refnumpay
           },
 
           url: global.settings.url +'/MainController/savetransaction',
@@ -1469,3 +1498,24 @@ $("#payment_or_number").inputFilter(function(value) {
             $("#payment_amount_to_pay2").val(0);
           }
         });
+
+      function refnumtest() {
+
+        $('#today').val(currentDate);
+        $('#days').val(n);
+        $('#month').val(month);
+        $('#year').val(year);
+        $('#orref').val($('#payment_or_number').val());
+
+        var lastfourOR = $('#payment_or_number').val();
+        // var tranIDVVAR = $('#transaction_id').val();
+        var datenosl = $('#today').val().replace(/\//g, '');
+        var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+        // $('#todaynosl').val(datenosl);
+        // $('#refnum').val(datenosl + lastfour + tranIDVVAR);
+
+        console.log(datenosl + lastfour);
+
+
+
+      }

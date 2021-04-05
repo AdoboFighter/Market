@@ -2155,6 +2155,17 @@ class Mainmodel extends CI_model{
   {
     $query = $this->db->insert($table,$data);
     $transaction_id = $this->db->insert_id();
+
+    $this->db->trans_start();
+    $paid = array(
+      'reference_num' => "PAID"
+    );
+    $this->db->where($transaction_id);
+    $this->db->update('violation', $paid);
+    $this->db->trans_complete();
+
+
+    $last_id = $this->db->insert_id();
     // return $transaction_id;
     // return $count;
 
