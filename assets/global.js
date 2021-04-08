@@ -1,8 +1,8 @@
 var global = {
-	settings: {
-		url: "http://192.168.1.3:8080/"
-		//  url : 'http://192.168.3.155/'
-		// url : 'http://68dbbedd.ngrok.io'
-		//url : 'https://4502482d.ngrok.io'
-	}
+settings: {
+	// url: "http://192.168.3.132/"
+	url: "http://192.168.3.132:8080/"
+	 // url : 'http://4e4d2c34f42c.ngrok.io'
+
+}
 };

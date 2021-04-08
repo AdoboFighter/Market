@@ -1,32 +1,52 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+// defined('BASEPATH') OR exit('No direct script access allowed');
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow- Methods: POST, GET, PUT, DELETE, OPTIONS');
+// header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token, X-csrf-token');
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow- Methods: POST, GET, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token, X-csrf-token');
 
 // require (APPPATH.'/libraries/REST_Controller.php');
 // use Restserver\Libraries\REST_Controller;
 class ApiController extends CI_Controller{
-  public function __construct() {
+  // public function __construct() {
+  //
+  //
+  //   // To set session inside the model could be use to get session ids.
+	// 	// header('Access-Control-Allow-Origin: *');
+	// 	// header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+	// 	// header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, content-type, X-Token, x-token, x-csrf-token, Origin');
+  //   //
+  //
+	//   parent::__construct();
+  //   date_default_timezone_set('Asia/Manila');
+  //   $this->load->helper('url');
+  //   $this->load->model('ApiModel', 'model');
+  //   $this->load->library('session');
+  //   $this->load->library('form_validation');
+  //
+  //
+  //
+  // }
+
+  public function __construct($config = 'rest')
+   {
+       parent::__construct($config);
+
+       header('Access-Control-Allow-Origin: *');
+       header("Access-Control-Allow-Headers: X-CSRF-Token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
+       header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+       $method = $_SERVER['REQUEST_METHOD'];
+       if ($method == "OPTIONS") {
+           die();
+       }
+       date_default_timezone_set('Asia/Manila');
+       $this->load->helper('url');
+       $this->load->model('ApiModel', 'model');
+       $this->load->library('session');
+       $this->load->library('form_validation');
+   }
 
 
-    // To set session inside the model could be use to get session ids.
-		// header('Access-Control-Allow-Origin: *');
-		// header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
-		// header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, content-type, X-Token, x-token, x-csrf-token, Origin');
-
-
-	  parent::__construct();
-    date_default_timezone_set('Asia/Manila');
-    $this->load->helper('url');
-    $this->load->model('apiModel', 'model');
-    $this->load->library('session');
-    $this->load->library('form_validation');
-
-
-
-  }
 
 
 
@@ -45,8 +65,11 @@ class ApiController extends CI_Controller{
 		];
 		// $data = [];
 
-		// $query = $this->model->searchStall($search, $searchcat);
-    echo json_encode($data);
+		$query = $this->model->searchStall($search, $searchcat);
+    echo json_encode($query);
+
+    return $search;
+    return $searchcat;
 
 		// foreach($query->result() as $k)
 		// {
@@ -69,6 +92,7 @@ class ApiController extends CI_Controller{
   {
     $now = date('Y-m-d H:i:s');
     $data = $this->input->post("data");
+    $count = $this->input->post('count');
 
     // $count = $this->input->post("count");
     //     $data = array(
@@ -86,8 +110,8 @@ class ApiController extends CI_Controller{
     //       ,"cheque_rec" => $this->input->post("cheque_rec")
     //     );
 
-		return $data;
-    echo json_encode( $this->model->saveTransaction('transaction',$data, $data['count']));
+		// return $data;
+    echo json_encode( $this->model->saveTransaction('transaction',$data, $count));
   }
 
 

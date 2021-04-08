@@ -21,7 +21,7 @@ class ApiModel extends CI_model{
 								->join('stall', 'stall.tenant_id=tenant.tenant_id')
 								->get();
 
-		return $query;
+		return $query->result();
 
 		//   $this->db->where($searchcat,$search);
     // //  $this->db->where("CONCAT($searchcat)",$search);

@@ -685,24 +685,50 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
 
+
+
                 $.ajax({
-                  url : global.settings.url +'/MainController/gettransexcel',
+                  url : global.settings.url +'/MainController/proceedtopay/' + id,
                   type : 'POST',
-                  data :{id:id},
-                  dataType : 'json',
-                  success : function(data){
-
-
-
-                      window.open(global.settings.url + '/pages/view/dev', '_blank');
-
+                  data : {id:id},
+                  dataType : 'html',
+                  success : function(res){
+                    console.log("controller worikng");
+                    window.open(global.settings.url + '/pages/view/dev/', id);
+                    // location.href = global.settings.url + '/pages/view/dev', '_blank';
 
                   },
                   error : function(xhr){
-
+                    console.log('Controller not working');
+                    console.log(xhr.responseText);
                   }
+                })
 
-                });
+                // $.ajax({
+                //   url : global.settings.url +'/MainController/proceedtopay/' + id,
+                //   type : 'POST',
+                //
+                //   dataType : 'json',
+                //   success : function(res){
+                //
+                //     console.log(res);
+                //     var a = document.createElement('a');
+                //     var url = window.URL.createObjectURL(res);
+                //
+                //     a.href = global.settings.url + '/pages/view/dev';
+                //
+                //     location.href = global.settings.url + '/pages/view/dev';
+                //     window.open(global.settings.url + '/pages/view/dev', '_blank');
+                //
+                //
+                //
+                //   },
+                //   error : function(xhr){
+                //     console.log("controller not working");
+                //
+                //   }
+                //
+                // });
 
               }else {
                 console.log("do nothing");

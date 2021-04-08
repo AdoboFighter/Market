@@ -2155,10 +2155,11 @@ class Mainmodel extends CI_model{
   {
     $query = $this->db->insert($table,$data);
     $transaction_id = $this->db->insert_id();
+    // $ref_numar
 
     $this->db->trans_start();
     $paid = array(
-      'reference_num' => "PAID"
+      'reference_num' => $inputData['reference_num'],
     );
     $this->db->where($transaction_id);
     $this->db->update('violation', $paid);

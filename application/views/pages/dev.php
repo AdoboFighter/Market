@@ -13,7 +13,7 @@
     <div class="card-body">
       <div class="form-group">
         <label>Customer id</label>
-        <input class="form-control form-control-sm mr-3 w-75" type="text" id="customID" placeholder="Search (stall#, name, section, etc)"
+        <input value="<?php echo $id;?>" class="form-control form-control-sm mr-3 w-75" type="text" id="customID" placeholder="Search (stall#, name, section, etc)"
         aria-label="Search">
         <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
       </div>

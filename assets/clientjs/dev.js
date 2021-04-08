@@ -12,6 +12,6 @@ var exClientType;
 
 $(document).ready(function(){
 
-  
+
 
 });

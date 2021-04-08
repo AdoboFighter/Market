@@ -1559,21 +1559,18 @@ public function printreceipt()
   }
 
 
-  public function proceedtopay()
+  public function proceedtopay($id)
   {
-    $idar = array(
-      'id' => $this->session->userdata('id')
-    );
 
-    $query = $this->model->proceedtopay($idar);
+    $id = $this->uri->segment(3);
 
-    $result = array(
-      "query" => $query,
-      "sort" => $sort,
-      "user" => $this->session->userdata('user_fullname'),
-    );
+    $data['id'] = $id;
+    $data2 = $this->load->view('pages/dev', $id, true);
 
-    echo json_encode($result);
+
+  	return $data2;
+    // echo json_encode($this->load->view('pages/dev', $data, false));
+
 
   }
 
