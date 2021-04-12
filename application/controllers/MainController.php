@@ -1558,17 +1558,20 @@ public function printreceipt()
     echo json_encode($this->model->update_pass($data));
   }
 
-
+  
   public function proceedtopay($id)
   {
 
-    $id = $this->uri->segment(3);
+    // $id = $this->uri->segment(3);
 
     $data['id'] = $id;
-    $data2 = $this->load->view('pages/dev', $id, true);
+    $dataPage = array(
+      'id' => $id
+    );
+    $this->load->view('pages/dev', $data);
 
 
-  	return $data2;
+  	// return $data2;
     // echo json_encode($this->load->view('pages/dev', $data, false));
 
 

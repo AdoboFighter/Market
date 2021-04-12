@@ -685,24 +685,24 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
 
+                window.open(global.settings.url + '/pages/view/dev/'+id,'_blank');
 
-
-                $.ajax({
-                  url : global.settings.url +'/MainController/proceedtopay/' + id,
-                  type : 'POST',
-                  data : {id:id},
-                  dataType : 'html',
-                  success : function(res){
-                    console.log("controller worikng");
-                    window.open(global.settings.url + '/pages/view/dev/', id);
-                    // location.href = global.settings.url + '/pages/view/dev', '_blank';
-
-                  },
-                  error : function(xhr){
-                    console.log('Controller not working');
-                    console.log(xhr.responseText);
-                  }
-                })
+                // $.ajax({
+                //   url : global.settings.url +'/MainController/proceedtopay/' + id,
+                //   type : 'POST',
+                //   data : {id:id},
+                //   dataType : 'html',
+                //   success : function(res){
+                //     console.log("controller worikng");
+                //     window.open(global.settings.url + '/pages/view/dev/MainController?proceedtopay='+id,'_blank');
+                //     // location.href = global.settings.url + '/pages/view/dev', '_blank';
+                //
+                //   },
+                //   error : function(xhr){
+                //     console.log('Controller not working');
+                //     console.log(xhr.responseText);
+                //   }
+                // })
 
                 // $.ajax({
                 //   url : global.settings.url +'/MainController/proceedtopay/' + id,
