@@ -42,6 +42,21 @@ var check_amount = [];
 var check_date = [];
 var bank = [];
 
+//reference number variables
+//reference number variables
+
+var fullDate = new Date();
+var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+const m = new Date();
+var month = monthNames[m.getMonth()];
+var d = new Date();
+var n = d.getDate();
+var year = new Date().getFullYear();
+
+
 
 
 
@@ -1553,13 +1568,140 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
 
+    // ols savedata now without reference num,ber
+    // function savedatanow()
+    // {
+    //   // type_of_payment = $('#payment_type_of_payment').val();
+    //   // payment_name = $('#payment_name').val();
+    //   // var fund_id = 1;
+    //   // var payment_type = $('#payment_type').val();
+    //
+    //   var customer_id = $('#payment_customer_id').val();
+    //   var tenant_id = $('#payment_tenant_id').val();
+    //   var cash_tendered = $('#payment_cash_tendered').val().replace(',', '');
+    //   var or_number =$('#payment_or_number').val();
+    //   var payor = $('#payor').val();
+    //   var total = parseFloat($('#ttlAmt').val().replace(',', ''));
+    //
+    //   var no =  jQuery.parseJSON($("#no").val());
+    //   var particulars =  jQuery.parseJSON($("#particulars").val());
+    //   var date =  jQuery.parseJSON($("#date").val());
+    //   var price = jQuery.parseJSON($("#price").val());
+    //   var transaction_id = 0;
+    //   var arrlength =  no.length - 1;
+    //   var count = 0;
+    //
+    //   var cash_rec = $('#cash_total').val();
+    //   var cheque_rec = $('#payment_cheque_total').val();
+    //
+    //
+    //   for (var i = 0; i < no.length; i++) {
+    //
+    //
+    //
+    //     $.ajax({
+    //       type: "POST",
+    //       // data:{fund_id:fund_id,payment_type:payment_type,customer_id:customer_id,tenant_id:tenant_id,type_of_payment:type_of_payment,or_number:or_number,amount_to_pay:amount_to_pay,cash_tendered:cash_tendered,payment_effectivity:payment_effectivity},
+    //       data:
+    //       {
+    //         customer_id:customer_id
+    //         ,tenant_id:tenant_id
+    //         ,no:no[i].no
+    //         ,particulars:particulars[i].particulars
+    //         ,pay_effect:date[i].date
+    //         ,price:price[i].price
+    //         ,or_number:or_number
+    //         ,cash_tendered:cash_tendered
+    //         ,payor:payor
+    //         ,total:total
+    //         ,count:i
+    //         ,cheque_rec:cheque_rec
+    //         ,cash_rec:cash_rec
+    //       },
+    //
+    //       url: global.settings.url +'/MainController/savetransaction',
+    //       dataType:'json',
+    //       success: function(res){
+    //         console.log(res);
+    //
+    //         result = res.query;
+    //         transaction_id = res.id;
+    //
+    //         console.log(res.count);
+    //         console.log(arrlength);
+    //         console.log(result);
+    //         console.log(transaction_id);
+    //
+    //
+    //
+    //         if (res.count == arrlength && result == true)
+    //         {
+    //           var paymenttype = $("input[name='pay[paymentCol]']:checked").val();
+    //           console.log(paymenttype);
+    //
+    //           if (paymenttype == 'bankCash' || paymenttype == 'bank')
+    //           {
+    //             console.log(add_line);
+    //
+    //             if (add_line.length > 0){
+    //
+    //               for(var c = 0; c < add_line.length;c++)
+    //               {
+    //                 add_line[c]['ch[fk_transaction_id]'] = transaction_id;
+    //                 console.log(add_line[c]['ch[fk_transaction_id]']);
+    //                 console.log(add_line[c]);
+    //
+    //                 $.ajax({
+    //                   type: "POST",
+    //                   data: add_line[c],
+    //                   url: global.settings.url +'/MainController/savecheque',
+    //                   dataType: 'json',
+    //                   success: function(res){
+    //                     console.log(res);
+    //                     successlog();
+    //
+    //                   },
+    //                   error: function(res){
+    //
+    //                   }
+    //                 });
+    //
+    //               }}
+    //
+    //             }
+    //
+    //             else
+    //             {
+    //               successlog();
+    //             }
+    //           }//end count
+    //
+    //
+    //
+    //         }
+    //       });
+    //
+    //
+    //
+    //     }//end of for loop
+    //
+    //
+    //
+    //
+    //     // console.log(i);
+    //     // console.log(count);
+    //     // console.log(arrlength);
+    //     // console.log(result);
+    //     // console.log(transaction_id);
+    //
+    //
+    //
+    //
+    //
+    //   }
 
     function savedatanow()
     {
-      // type_of_payment = $('#payment_type_of_payment').val();
-      // payment_name = $('#payment_name').val();
-      // var fund_id = 1;
-      // var payment_type = $('#payment_type').val();
 
       var customer_id = $('#payment_customer_id').val();
       var tenant_id = $('#payment_tenant_id').val();
@@ -1578,6 +1720,25 @@ $("#payment_or_number").inputFilter(function(value) {
 
       var cash_rec = $('#cash_total').val();
       var cheque_rec = $('#payment_cheque_total').val();
+
+      //reference number
+
+      $('#today').val(currentDate);
+      $('#days').val(n);
+      $('#month').val(month);
+      $('#year').val(year);
+      $('#orref').val($('#payment_or_number').val());
+      var lastfourOR = $('#payment_or_number').val();
+      // var tranIDVVAR = $('#transaction_id').val();
+      console.log($('#today').val() + 'hello');
+      var datenosl = $('#today').val().replace(/\//g, '');
+      var lastfour = lastfourOR.substr(lastfourOR.length - 4);
+      $('#todaynosl').val(datenosl);
+      var refnumpay = datenosl + lastfour;
+      $('#refnum').val(datenosl + lastfour );
+
+
+
 
 
       for (var i = 0; i < no.length; i++) {
@@ -1602,6 +1763,7 @@ $("#payment_or_number").inputFilter(function(value) {
             ,count:i
             ,cheque_rec:cheque_rec
             ,cash_rec:cash_rec
+            ,reference_num:refnumpay
           },
 
           url: global.settings.url +'/MainController/savetransaction',
@@ -1669,19 +1831,6 @@ $("#payment_or_number").inputFilter(function(value) {
 
 
         }//end of for loop
-
-
-
-
-        // console.log(i);
-        // console.log(count);
-        // console.log(arrlength);
-        // console.log(result);
-        // console.log(transaction_id);
-
-
-
-
 
       }
 

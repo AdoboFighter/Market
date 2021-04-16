@@ -465,6 +465,42 @@
 						<button class = "btn btn-success rounded-pill" type ="button" value = "yes" onclick="savedatanow()">Yes</button>
 						<button class = "btn btn-danger rounded-pill" type ="button" value ="no" id="pintmodalclose"  data-dismiss="modal" onclick="closeModal()">Close</button>
 
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>Today</label> -->
+							<input type="text" class="form-control payment_details" name="" id="today" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>Todaynos1</label> -->
+							<input type="text"  id="todaynosl" name="" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>Days</label> -->
+							<input type="text" class="form-control payment_details" name="" id="days" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>Month</label> -->
+							<input type="text" class="form-control payment_details" name="" id="month" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>year</label> -->
+							<input type="text" class="form-control payment_details" name="" id="year" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>or Number#</label> -->
+							<input type="text" class="form-control payment_details" name="" id="orref" hidden>
+						</div>
+
+						<div class="col-lg-6 col-sm-12 mt-2">
+							<!-- <label>Ref fum</label> -->
+							<input type="text" class="form-control payment_details" name="" id="refnum" hidden>
+						</div>
+
+
 						<iframe src = "" id="printFrame"  height ="500" width = "100%"> </iframe>
 
 

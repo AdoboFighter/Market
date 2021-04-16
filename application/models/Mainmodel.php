@@ -2151,27 +2151,55 @@ class Mainmodel extends CI_model{
 
 
 
+  // public function savetransaction($table,$data,$count)
+  // {
+  //   $query = $this->db->insert($table,$data);
+  //   $last_id = $this->db->insert_id();
+  //   // $ref_numar
+  //   // $finalrefnum = $data['reference_num'] . ' ' . $transaction_id;
+  //   $newrefnum = array(
+  //     'reference_num' => "ONLYFORTESTING",
+  //   );
+  //   $this->db->trans_start();
+  //
+  //   $this->db->where($last_id);
+  //   $this->db->update('transaction', $newrefnum);
+  //   $this->db->trans_complete();
+  //
+  //
+  //   $last_id = $this->db->insert_id();
+  //   // return $transaction_id;
+  //   // return $count;
+  //
+  //
+  //   return array('query'=> $query, 'id'=>$last_id, 'count' => $count);
+  // }
+
   public function savetransaction($table,$data,$count)
   {
     $query = $this->db->insert($table,$data);
-    $transaction_id = $this->db->insert_id();
+    $last_id = $this->db->insert_id();
+
     // $ref_numar
+    $finalrefnum = $data['reference_num'] . '' . $last_id;
 
     $this->db->trans_start();
-    $paid = array(
-      'reference_num' => $inputData['reference_num'],
+
+    $newrefnum = array(
+      'reference_num' => $finalrefnum,
     );
-    $this->db->where($transaction_id);
-    $this->db->update('violation', $paid);
+
+    $this->db->where('transaction_id', $last_id);
+    $this->db->update('transaction', $newrefnum);
     $this->db->trans_complete();
-
-
-    $last_id = $this->db->insert_id();
+    //
+    //
+    // $last_id = $this->db->insert_id();
     // return $transaction_id;
     // return $count;
 
 
-    return array('query'=> $query, 'id'=>$transaction_id, 'count' => $count);
+    return array('query'=> $query, 'id'=>$last_id, 'count' => $count);
   }
 
   public function savetransactionviolation($table,$data,$count,$violation_id)
@@ -2389,7 +2417,6 @@ class Mainmodel extends CI_model{
 
     $data1 = array(
       'print_status' => 'PRINTED',
-      'reference_num' => $data['ref_num1'],
       'cert_type' => $data['cert_type1']
 
     );

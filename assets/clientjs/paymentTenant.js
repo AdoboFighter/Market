@@ -42,6 +42,8 @@ var check_amount = [];
 var check_date = [];
 var bank = [];
 
+//reference number variables
+//reference number variables
 
 var fullDate = new Date();
 var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
@@ -1112,14 +1114,16 @@ $("#payment_or_number").inputFilter(function(value) {
       $('#days').val(n);
       $('#month').val(month);
       $('#year').val(year);
-      $('#ornumber').val(res.or_number );
-      var lastfourOR = $('#ornumber').val();
+      $('#orref').val($('#payment_or_number').val());
+      var lastfourOR = $('#payment_or_number').val();
       // var tranIDVVAR = $('#transaction_id').val();
       console.log($('#today').val() + 'hello');
       var datenosl = $('#today').val().replace(/\//g, '');
       var lastfour = lastfourOR.substr(lastfourOR.length - 4);
       $('#todaynosl').val(datenosl);
-      var refnumpay $('#refnum').val(datenosl + lastfour );
+      var refnumpay = datenosl + lastfour;
+      $('#refnum').val(datenosl + lastfour );
+
 
 
 
