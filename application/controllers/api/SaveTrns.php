@@ -12,7 +12,7 @@ class SaveTrns extends CI_Controller {
         $now = date('Y-m-d H:i:s');
         $data = json_decode(file_get_contents('php://input'));
         $effDate = date("Y/m/d");
-        $query = "INSERT INTO market_db.transaction(
+        $query = "INSERT INTO newmarket.transaction(
             fund_id,
             payment_datetime,
             payment_nature_id,
@@ -33,7 +33,7 @@ class SaveTrns extends CI_Controller {
             '$data->CollectorName'
             )";
         $this->db->query($query);
-        $res = $this->db->query("SELECT transaction_id FROM market_db.transaction ORDER BY transaction_id DESC")->result();
+        $res = $this->db->query("SELECT transaction_id FROM newmarket.transaction ORDER BY transaction_id DESC")->result();
         $this->db->close();
         echo $this->generateOR($res[0]->transaction_id);
 
@@ -53,7 +53,25 @@ class SaveTrns extends CI_Controller {
             $idOR = substr(strval($id), -9);
             $ORNum = $TrnGen . $idOR;
         }
-        $this->db->query("UPDATE market_db.transaction SET or_number = '$ORNum' WHERE transaction_id = '$id'");
+
+
+        //reference number function
+
+        //date
+        $datenow = date("d/m/Y");
+        $datewo = str_replace('/', '', $datenow);
+
+        //or
+        // $base_or = $inputData['or'];
+        $last4_or = substr($ORNum, -4);
+
+        // reference number w/o transid
+        $new_ref =  $datewo . '' . $last4_or . '' . $id;
+
+
+
+
+        $this->db->query("UPDATE newmarket.transaction SET or_number = '$ORNum', reference_num = '$new_ref' WHERE transaction_id = '$id'");
         $this->db->close();
         return $ORNum;
     }

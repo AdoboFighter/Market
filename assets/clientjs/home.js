@@ -685,7 +685,7 @@ $(document).ready(function(){
             }).then((result) => {
               if (result.value) {
 
-                window.open(global.settings.url + '/pages/view/dev/'+id,'_blank');
+                window.open(global.settings.url + '/pages/view/paymentTenant/'+id,'_blank');
 
                 // $.ajax({
                 //   url : global.settings.url +'/MainController/proceedtopay/' + id,

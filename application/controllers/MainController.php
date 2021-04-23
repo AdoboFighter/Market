@@ -1558,7 +1558,7 @@ public function printreceipt()
     echo json_encode($this->model->update_pass($data));
   }
 
-  
+
   public function proceedtopay($id)
   {
 
@@ -1575,6 +1575,12 @@ public function printreceipt()
     // echo json_encode($this->load->view('pages/dev', $data, false));
 
 
+  }
+
+  public function testrefnumphp()
+  {
+    $inputData = $this->input->post('test');
+    echo json_encode($this->model->testrefnumphp($inputData)) ;
   }
 
 

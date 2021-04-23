@@ -2184,11 +2184,9 @@ class Mainmodel extends CI_model{
     $finalrefnum = $data['reference_num'] . '' . $last_id;
 
     $this->db->trans_start();
-
     $newrefnum = array(
       'reference_num' => $finalrefnum,
     );
-
     $this->db->where('transaction_id', $last_id);
     $this->db->update('transaction', $newrefnum);
     $this->db->trans_complete();
@@ -3984,31 +3982,43 @@ class Mainmodel extends CI_model{
     return $query->result();
   }
 
+  public function testrefnumphp($inputData)
+  {
 
+    //date
+    $datenow = date("d/m/Y");
+    $datewo = str_replace('/', '', $datenow);
 
+    //or
+    $base_or = $inputData['or'];
+    $last4_or = substr($base_or, -4);
 
+    // reference number w/o transid
+    $new_ref =  $datewo . '' . $last4_or;
 
+    $data = array(
+      'or_number' => $inputData['or'],
+      'reference_num' => $new_ref
+    );
 
+    $this->db->insert('transaction', $data);
 
+    $last_id = $this->db->insert_id();
 
+    // $ref_numar
+    $finalrefnum = $new_ref. '' . $last_id;
 
+    $this->db->trans_start();
 
+    $newrefnum = array(
+      'reference_num' => $finalrefnum,
+    );
 
+    $this->db->where('transaction_id', $last_id);
+    $this->db->update('transaction', $newrefnum);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $this->db->trans_complete();
+  }
 
 
 
