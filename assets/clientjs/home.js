@@ -736,3 +736,204 @@ $(document).ready(function(){
             })
 
           }
+
+          function debttablereload() {
+            $('#debttable').DataTable().clear().destroy();
+
+            $('#debttable').DataTable({
+              "autoWidth": false,
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/debttable',
+                dataSrc : 'data'
+              },
+              "columns" : [
+
+                {
+                  "data" : "name"
+                },
+
+                {
+                  "data" : "unit"
+                },
+
+                {
+                  "data" : "or"
+                },
+
+
+                {
+                  "data" : "amount"
+                },
+
+                {
+                  "data" : "nature"
+                },
+
+                {
+                  "data" : "effectivity"
+                },
+
+                {
+                  "data" : "btn_view"
+                }]
+              });
+
+            console.log("test reload");
+
+          }
+
+          function transactionsreload() {
+
+            $('#transtodaytable').DataTable().clear().destroy();
+
+            $('#transtodaytable').DataTable({
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/transtodaytable',
+                dataSrc : 'data'
+              },
+              "columns" : [
+                // {
+                //   "data" : "id"
+                // },
+
+                {
+                  "data" : "name"
+                },
+
+                {
+                  "data" : "or"
+                },
+
+
+                {
+                  "data" : "amount"
+                },
+
+                {
+                  "data" : "nature"
+                },
+
+                {
+                  "data" : "effectivity"
+                },
+
+                {
+                  "data" : "date"
+                },
+
+                {
+                  "data" : "cancel"
+                }
+
+              ]
+            });
+
+          }
+
+          function paidstallsreload() {
+
+            $('#stallpaidtable').DataTable().clear().destroy();
+
+            $('#stallpaidtable').DataTable({
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/stallpaidtable',
+                dataSrc : 'data'
+              },
+              "columns" : [
+                // {
+                //   "data" : "id"
+                // },
+
+                {
+                  "data" : "name"
+                },
+
+                {
+                  "data" : "unit"
+                },
+
+                {
+                  "data" : "or"
+                },
+
+
+                {
+                  "data" : "amount"
+                },
+
+                {
+                  "data" : "nature"
+                },
+
+                {
+                  "data" : "effectivity"
+                },
+
+                {
+                  "data" : "date"
+                }]
+              });
+
+          }
+
+          function violationreload() {
+
+            $('#getviolationtable').DataTable().clear().destroy();
+
+            $('#getviolationtable').DataTable({
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/get_violation_data_con',
+                dataSrc : 'data'
+              },
+              "columns" : [
+                {
+                  "data" : "customer_id"
+                },
+                {
+                  "data" : "description"
+                },
+                {
+                  "data" : "date_occured"
+                },
+
+                {
+                  "data" : "status"
+                },
+                {
+                  "data" : "name"
+                }]
+              });
+
+          }
+
+          function ambulantreload() {
+
+            $('#ambutablehome').DataTable().clear().destroy();
+
+            $('#ambutablehome').DataTable({
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/ambutablehome',
+                dataSrc : 'data'
+              },
+              "columns" : [
+                {
+                  "data" : "id"
+                },
+                {
+                  "data" : "pay_ambu_name"
+                },
+
+                {
+                  "data" : "pay_ambu_location"
+                },
+
+                {
+                  "data" : "pay_ambu_locnum"
+                },
+
+                {
+                  "data" : "nature_of_business"
+                }]
+              });
+
+          }

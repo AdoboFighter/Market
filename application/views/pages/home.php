@@ -307,6 +307,8 @@
       </div>
       <div class="modal-body">
 
+        <button onclick="ambulantreload();" type="button" class="btn btn-primary">Reload</button>
+
         <table width="100%" class="table table-striped table-bordered shadow" id="ambutablehome">
           <thead>
             <tr>
@@ -337,6 +339,7 @@
       </div>
       <div class="modal-body">
 
+        <button onclick="violationreload();" type="button" class="btn btn-primary">Reload</button>
 
         <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
           <thead>
@@ -370,7 +373,7 @@
         </button>
       </div>
       <div class="modal-body">
-
+        <button onclick="paidstallsreload();" type="button" class="btn btn-primary">Reload</button>
         <table width="100%" class="table table-sm table-bordered text-center" id="stallpaidtable">
           <thead >
             <tr>
@@ -403,6 +406,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <button onclick="transactionsreload();"type="button" class="btn btn-primary">Reload</button>
 
         <table width="100%" class="table table-sm table-bordered text-center" id="transtodaytable">
           <thead >
@@ -466,13 +470,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalPreviewLabel">Debt list</h5>
-        <button type="button" class="close"  id="" data-dismiss="modal">
+        <button type="button" class="close"  id="" data-dismiss="modal" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <h5>Under Development</h5>
+        <!-- <h5>Under Development</h5> -->
+        <button onclick="debttablereload();" type="button" class="btn btn-primary">Reload</button>
         <table width="100%" class="table table-sm table-bordered text-center" id="debttable">
           <thead >
             <tr>
