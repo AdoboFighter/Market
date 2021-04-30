@@ -497,7 +497,6 @@ $(document).ready(function(){
               },
               error: function(xhr){
                 console.log(xhr.responseText);
-                console.log("putang ina lang :)???");
               }
             })
           }

@@ -3194,18 +3194,23 @@ class Mainmodel extends CI_model{
     $this->load->helper('date');
 
 
-    $this->db->select('*');
+    $this->db->select("customer.customer_id, firstname, middlename, lastname, unit_no,
+    or_number, payment_nature_name, payment_amount, payment_datetime");
+    $this->db->select('MAX(effectivity) AS effectivity');
+
     $this->db->group_start()
     ->where('effectivity >=', $now)
     ->where($array)
     ->where_in('payment_nature.payment_nature_id', $paynat)
     ->group_end();
+
     $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer_id', 'inner');
     $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id', 'inner');
     $this->db->join('transaction', 'customer.customer_id=transaction.customer_id', 'inner');
     $this->db->join('payment_nature', 'payment_nature.payment_nature_id = transaction.payment_nature_id', 'inner');
     $this->db->order_by("effectivity", "DESC");
-    $this->db->group_by('or_number');
+    // $this->db->limit(1);
+    $this->db->group_by('customer.customer_id');
     $query = $this->db->get('customer');
 
     $data =[];
@@ -3344,9 +3349,11 @@ class Mainmodel extends CI_model{
 
 
     $this->db->group_start()
+
     ->where('effectivity <=', $now)
     ->where_in('transaction.payment_nature_id', $paynat)
-    ->or_where('transaction_id IS NULL')
+    // ->where_not_in('effectivity >=', $now)
+    // ->or_where('transaction_id IS NULL')
     ->group_end();
 
 
