@@ -487,6 +487,7 @@
               <td class="border border-dark">Amount</td>
               <td class="border border-dark">Payment Type</td>
               <td class="border border-dark">Effectivity</td>
+              <td class="border border-dark">STATUS</td>
               <td class="border border-dark">Pay</td>
             </tr>
           </thead>

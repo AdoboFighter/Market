@@ -304,6 +304,10 @@ $(document).ready(function(){
             },
 
             {
+              "data" : "paidstat"
+            },
+
+            {
               "data" : "btn_view"
             }]
           });

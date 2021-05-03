@@ -3321,15 +3321,24 @@ class Mainmodel extends CI_model{
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
+
     $now = date('Y-m-d');
     $this->load->helper('date');
     $nopast = "NO past transactions";
     $string = '';
 
+      $validdates = array($now);
+
 
 
     $this->db->select("customer.customer_id, firstname, middlename, lastname, unit_no,
-    or_number, payment_nature_name, payment_amount,effectivity");
+    or_number, payment_nature_name, payment_amount,effectivity,
+
+    CASE WHEN effectivity >= $now THEN 'paid'
+    WHEN effectivity < $now THEN 'notpaid'
+    else 'NO PAST TRANSACTION' END AS PAIDSTAT
+
+    ");
 
     // $this->db->select('COALESCE(NULLIF(firstname, ""), "Incomplete Info") AS firstname', false);
     // $this->db->select('COALESCE(NULLIF(middlename, ""), "Incomplete Info") AS middlename', false);
@@ -3350,10 +3359,10 @@ class Mainmodel extends CI_model{
 
     $this->db->group_start()
 
-    ->where('effectivity <=', $now)
+    ->where('PAIDSTAT', 'NO PAST TRANSACTION')
+    ->where('PAIDSTAT', 'notpaid')
     ->where_in('transaction.payment_nature_id', $paynat)
-    // ->where_not_in('effectivity >=', $now)
-    // ->or_where('transaction_id IS NULL')
+    ->or_where('transaction_id IS NULL')
     ->group_end();
 
 
@@ -3372,6 +3381,7 @@ class Mainmodel extends CI_model{
         'amount' =>$k->payment_amount,
         'nature' =>$k->payment_nature_name,
         'effectivity' =>$k->effectivity,
+        'paidstat' =>$k->PAIDSTAT,
         'btn_view' =>
 
         '<div class="">
