@@ -3332,11 +3332,18 @@ class Mainmodel extends CI_model{
 
 
     $this->db->select("customer.customer_id, firstname, middlename, lastname, unit_no,
-    or_number, payment_nature_name, payment_amount,effectivity,
+    or_number, payment_nature_name, payment_amount, effectivity,
 
-    CASE WHEN effectivity >= $now THEN 'paid'
-    WHEN effectivity < $now THEN 'notpaid'
-    else 'NO PAST TRANSACTION' END AS PAIDSTAT
+    CASE
+
+    WHEN Date(effectivity) = DATE(curdate()) THEN 'YES1'
+    WHEN Date(effectivity) > DATE(curdate()) THEN 'YES'
+    WHEN Date(effectivity) < DATE(curdate()) THEN 'NO'
+    WHEN effectivity IS NULL THEN 'nopast'
+
+    else 'Else cond'
+
+    END AS PAIDSTAT
 
     ");
 
@@ -3359,8 +3366,8 @@ class Mainmodel extends CI_model{
 
     $this->db->group_start()
 
-    ->where('PAIDSTAT', 'NO PAST TRANSACTION')
-    ->where('PAIDSTAT', 'notpaid')
+    // ->where('PAIDSTAT', 'NO PAST TRANSACTION')
+    // ->where('PAIDSTAT', 'notpaid')
     ->where_in('transaction.payment_nature_id', $paynat)
     ->or_where('transaction_id IS NULL')
     ->group_end();
