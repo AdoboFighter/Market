@@ -3321,28 +3321,21 @@ class Mainmodel extends CI_model{
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
     $paynat = array('4004', '4004', '4005', '4006', '4009', '4010', '4011');
-
     $now = date('Y-m-d');
     $this->load->helper('date');
     $nopast = "NO past transactions";
     $string = '';
 
-      $validdates = array($now);
-
 
 
     $this->db->select("customer.customer_id, firstname, middlename, lastname, unit_no,
-    or_number, payment_nature_name, payment_amount, effectivity,
+    or_number, payment_nature_name, payment_amount,effectivity,
 
     CASE
-
-    WHEN Date(effectivity) = DATE(curdate()) THEN 'YES1'
-    WHEN Date(effectivity) > DATE(curdate()) THEN 'YES'
-    WHEN Date(effectivity) < DATE(curdate()) THEN 'NO'
-    WHEN effectivity IS NULL THEN 'nopast'
-
+    WHEN max(effectivity) >= curdate() THEN 'PAID'
+    WHEN max(effectivity) <  curdate() THEN 'NOT PAID'
+    WHEN max(effectivity) IS NULL THEN 'no past transaction'
     else 'Else cond'
-
     END AS PAIDSTAT
 
     ");
@@ -3365,9 +3358,7 @@ class Mainmodel extends CI_model{
 
 
     $this->db->group_start()
-
-    // ->where('PAIDSTAT', 'NO PAST TRANSACTION')
-    // ->where('PAIDSTAT', 'notpaid')
+    // ->where('effectivity <=', $now)
     ->where_in('transaction.payment_nature_id', $paynat)
     ->or_where('transaction_id IS NULL')
     ->group_end();
