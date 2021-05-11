@@ -686,6 +686,10 @@ CONTENT STYLE
             </li>
 
             <li>
+              <a href="<?php echo base_url() . 'pages/view/bystall' ?>">By stall number</a>
+            </li>
+
+            <li>
               <a href="<?php echo base_url() . 'pages/view/cancelledor' ?>">cancelled OR</a>
             </li>
 

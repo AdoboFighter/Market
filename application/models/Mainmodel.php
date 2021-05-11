@@ -114,7 +114,8 @@ class Mainmodel extends CI_model{
           $userdata['user_id'] = $r->user_id;
           $userdata['user_fullname'] = $r->usr_firstname." ".$r->usr_middlename." ".$r->usr_lastname;
           $userdata['position'] = $r->position;
-          $userdata['user_level'] = $r->user_level;
+          $userdata['user_level'] = $r->user_type;
+          $userdata['user_type'] = $r->user_type;
           $userdata['username'] = $r->username;
         } $userdata['flag'] = 1;
         $this->session->set_userdata($userdata);
@@ -3200,6 +3201,7 @@ class Mainmodel extends CI_model{
 
     $this->db->group_start()
     ->where('effectivity >=', $now)
+    ->where('cancel_status', 'NOT')
     ->where($array)
     ->where_in('payment_nature.payment_nature_id', $paynat)
     ->group_end();
@@ -3358,7 +3360,7 @@ class Mainmodel extends CI_model{
 
 
     $this->db->group_start()
-    // ->where('effectivity <=', $now)
+    ->where('cancel_status', 'NOT')
     ->where_in('transaction.payment_nature_id', $paynat)
     ->or_where('transaction_id IS NULL')
     ->group_end();
@@ -3795,7 +3797,7 @@ class Mainmodel extends CI_model{
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $this->db->like("concat(fk_customer_id_note)",$fk_custid_note);
+    $this->db->where("concat(fk_customer_id_note)",$fk_custid_note);
     // $this->db->join('tenant', 'tenant.fk_customer_id=customer.customer.customer_id');
     // $this->db->join('stall', 'stall.tenant_id=tenant.tenant_id');
     // $this->db->join('notes', 'notes.fk_customer_id_note=customer.customer_id');

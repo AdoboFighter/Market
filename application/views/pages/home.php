@@ -287,7 +287,7 @@
 
         <div class="mb-2">
           <label>User Level</label>
-          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_level'); ?>"readonly>
+          <input type="text" class="form-control"  value="<?php echo $this->session->userdata('user_type'); ?>"readonly>
         </div>
 
       </div>
@@ -469,7 +469,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Debt list</h5>
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Market fee status</h5>
         <button type="button" class="close"  id="" data-dismiss="modal" >
           <span aria-hidden="true">&times;</span>
         </button>

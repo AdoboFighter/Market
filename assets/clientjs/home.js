@@ -11,6 +11,8 @@ var year = new Date().getFullYear();
 
 $(document).ready(function(){
 
+  loadnumbers();
+
   $('#dateToday').text(month +","+" "+ n +" "+ year);
 
   $.ajax({
@@ -36,102 +38,7 @@ $(document).ready(function(){
 
   });
 
-  $('#numambu').text(function() {
-    $.ajax({
-      url: global.settings.url + '/MainController/numberofambu',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        $('#numambu').text(res);
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  });
 
-  $('#numvio').text(function() {
-    $.ajax({
-      url: global.settings.url + '/MainController/numberofviolation',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        if (res == null) {
-          $('#numvio').text("0");
-        } else {
-          $('#numvio').text(res);
-        }
-
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  });
-
-  $('#numoftrans').text(function() {
-    $.ajax({
-      url: global.settings.url + '/MainController/numberofcurtrans',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        if (res == null) {
-          $('#numoftrans').text("0");
-        } else {
-          $('#numoftrans').text(res);
-        }
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  });
-
-  $('#stallspaid').text(function() {
-    $.ajax({
-      url: global.settings.url + '/MainController/stallspaid',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        if (res == null) {
-          $('#stallspaid').text("0");
-        } else {
-          $('#stallspaid').text(res);
-        }
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  });
-
-  $('#debtstat').text(function() {
-    $.ajax({
-      url: global.settings.url + '/MainController/debtstat',
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType:'JSON',
-      success: function(res){
-        console.log(res);
-        if (res == null) {
-          $('#debtstat').text("0");
-        } else {
-          $('#debtstat').text(res);
-        }
-      },
-      error:function(res){
-        console.log('sala');
-      }
-    });
-  });
 
   $('#transtodaytable').DataTable({
     "ajax" : {
@@ -339,6 +246,105 @@ $(document).ready(function(){
 
           });
 
+          function loadnumbers() {
+            $('#numambu').text(function() {
+              $.ajax({
+                url: global.settings.url + '/MainController/numberofambu',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType:'JSON',
+                success: function(res){
+                  console.log(res);
+                  $('#numambu').text(res);
+                },
+                error:function(res){
+                  console.log('sala');
+                }
+              });
+            });
+
+            $('#numvio').text(function() {
+              $.ajax({
+                url: global.settings.url + '/MainController/numberofviolation',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType:'JSON',
+                success: function(res){
+                  console.log(res);
+                  if (res == null) {
+                    $('#numvio').text("0");
+                  } else {
+                    $('#numvio').text(res);
+                  }
+
+                },
+                error:function(res){
+                  console.log('sala');
+                }
+              });
+            });
+
+            $('#numoftrans').text(function() {
+              $.ajax({
+                url: global.settings.url + '/MainController/numberofcurtrans',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType:'JSON',
+                success: function(res){
+                  console.log(res);
+                  if (res == null) {
+                    $('#numoftrans').text("0");
+                  } else {
+                    $('#numoftrans').text(res);
+                  }
+                },
+                error:function(res){
+                  console.log('sala');
+                }
+              });
+            });
+
+            $('#stallspaid').text(function() {
+              $.ajax({
+                url: global.settings.url + '/MainController/stallspaid',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType:'JSON',
+                success: function(res){
+                  console.log(res);
+                  if (res == null) {
+                    $('#stallspaid').text("0");
+                  } else {
+                    $('#stallspaid').text(res);
+                  }
+                },
+                error:function(res){
+                  console.log('sala');
+                }
+              });
+            });
+
+            $('#debtstat').text(function() {
+              $.ajax({
+                url: global.settings.url + '/MainController/debtstat',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType:'JSON',
+                success: function(res){
+                  console.log(res);
+                  if (res == null) {
+                    $('#debtstat').text("0");
+                  } else {
+                    $('#debtstat').text(res);
+                  }
+                },
+                error:function(res){
+                  console.log('sala');
+                }
+              });
+            });
+          }
+
 
           $( "#userclick" ).on('click',function() {
             $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -354,6 +360,8 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            notesreload();
+
             $("#notesclickmodal").modal('show');
 
           });
@@ -363,6 +371,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            ambulantreload();
             $("#regambuclickmodal").modal('show');
 
           });
@@ -372,6 +381,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            violationreload();
             $("#violationclickmodal").modal('show');
 
           });
@@ -381,6 +391,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            paidstallsreload();
             $("#stallspaidclickmodal").modal('show');
 
           });
@@ -390,6 +401,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            transactionsreload();
             $("#transtodayclickmodal").modal('show');
 
           });
@@ -408,6 +420,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            debttablereload();
             $("#debtclickmodal").modal('show');
 
           });
@@ -417,6 +430,7 @@ $(document).ready(function(){
               $(this).removeClass();
             });
 
+            $("#cancelorform").trigger("reset");
             $("#ORcancelmodal").modal('show');
 
           });
@@ -507,6 +521,7 @@ $(document).ready(function(){
 
           function getviewnote(fk_custid_note) {
 
+
             $('#viewnotestable').DataTable({
               "paging": true,
               "searching": false,
@@ -580,7 +595,9 @@ $(document).ready(function(){
                   title: 'Note removed'
                   // text: 'This tenant must pay the fee before doing any transactions',
                 });
+
                 $('#viewnotestable').DataTable().ajax.reload();
+                notesreload();
                 console.log(res);
               },
               error : function(xhr){
@@ -596,23 +613,6 @@ $(document).ready(function(){
             var form = $(this);
             e.preventDefault();
 
-            // $.ajax({
-            //   url: global.settings.url + '/MainController/cancelor',
-            //   type: 'POST',
-            //   data: $(this).serialize(),
-            //   dataType:'JSON',
-            //   success: function(res){
-            //     $('#ORcancelmodal').modal("toggle");
-            //     Swal.fire({
-            //       icon: 'success',
-            //       title: 'OR cancelled',
-            //     });
-            //
-            //   },
-            //   error:function(res){
-            //     console.log('sala');
-            //   }
-            // });
 
             $.ajax({
               url: global.settings.url + '/MainController/checkOr',
@@ -648,6 +648,8 @@ $(document).ready(function(){
                         data: form.serialize(),
                         dataType:'JSON',
                         success: function(res){
+                          loadnumbers();
+                          $("#cancelorform").trigger("reset");
                           $('#ORcancelmodal').modal("toggle");
                           Swal.fire({
                             icon: 'success',
@@ -939,6 +941,39 @@ $(document).ready(function(){
 
                 {
                   "data" : "nature_of_business"
+                }]
+              });
+
+          }
+
+          function notesreload() {
+            $('#notestable').DataTable().clear().destroy();
+
+            $('#notestable').DataTable({
+              "ajax" : {
+                "url" : global.settings.url + '/MainController/getstallnotes',
+                dataSrc : 'data'
+              },
+              "columns" : [
+                {
+                  "data" : "id"
+                },
+
+                {
+                  "data" : "name"
+                },
+
+                {
+                  "data" : "unit_no"
+                },
+
+                {
+                  "data" : "btn_view"
+                },
+
+
+                {
+                  "data" : "btn_add"
                 }]
               });
 
