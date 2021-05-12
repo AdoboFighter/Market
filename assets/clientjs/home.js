@@ -220,6 +220,7 @@ $(document).ready(function(){
           });
 
           $('#getviolationtable').DataTable({
+            "autoWidth": false,
             "ajax" : {
               "url" : global.settings.url + '/MainController/get_violation_data_con',
               dataSrc : 'data'
@@ -746,235 +747,244 @@ $(document).ready(function(){
             $('#debttable').DataTable().clear().destroy();
 
             $('#debttable').DataTable({
+              // 'rowCallback': function(row, data, index){
+              //   if( data[6] == "PAID"){
+              //     $('td', row).eq(6).addClass('text-success');
+              //   }
+              //   if ( data[6] == "NOT PAID") {
+              //     $('td', row).eq(6).addClass('text-danger');
+              //   }},
               "autoWidth": false,
               "ajax" : {
                 "url" : global.settings.url + '/MainController/debttable',
                 dataSrc : 'data'
               },
-              "columns" : [
 
-                {
-                  "data" : "name"
-                },
+                "columns" : [
 
-                {
-                  "data" : "unit"
-                },
+                  {
+                    "data" : "name"
+                  },
 
-                {
-                  "data" : "or"
-                },
+                  {
+                    "data" : "unit"
+                  },
 
-
-                {
-                  "data" : "amount"
-                },
-
-                {
-                  "data" : "nature"
-                },
-
-                {
-                  "data" : "effectivity"
-                },
-
-                {
-                  "data" : "paidstat"
-                },
-
-                {
-                  "data" : "btn_view"
-                }]
-              });
-            console.log("test reload");
-
-          }
-
-          function transactionsreload() {
-
-            $('#transtodaytable').DataTable().clear().destroy();
-
-            $('#transtodaytable').DataTable({
-              "ajax" : {
-                "url" : global.settings.url + '/MainController/transtodaytable',
-                dataSrc : 'data'
-              },
-              "columns" : [
-                // {
-                //   "data" : "id"
-                // },
-
-                {
-                  "data" : "name"
-                },
-
-                {
-                  "data" : "or"
-                },
+                  {
+                    "data" : "or"
+                  },
 
 
-                {
-                  "data" : "amount"
-                },
+                  {
+                    "data" : "amount"
+                  },
 
-                {
-                  "data" : "nature"
-                },
+                  {
+                    "data" : "nature"
+                  },
 
-                {
-                  "data" : "effectivity"
-                },
+                  {
+                    "data" : "effectivity"
+                  },
 
-                {
-                  "data" : "date"
-                },
+                  {
+                    "data" : "paidstat"
+                  },
 
-                {
-                  "data" : "cancel"
+                  {
+                    "data" : "btn_view"
+                  }]
+                });
+                console.log("test reload");
+
+              }
+
+              function transactionsreload() {
+
+                $('#transtodaytable').DataTable().clear().destroy();
+
+                $('#transtodaytable').DataTable({
+                  "ajax" : {
+                    "url" : global.settings.url + '/MainController/transtodaytable',
+                    dataSrc : 'data'
+                  },
+                  "columns" : [
+                    // {
+                    //   "data" : "id"
+                    // },
+
+                    {
+                      "data" : "name"
+                    },
+
+                    {
+                      "data" : "or"
+                    },
+
+
+                    {
+                      "data" : "amount"
+                    },
+
+                    {
+                      "data" : "nature"
+                    },
+
+                    {
+                      "data" : "effectivity"
+                    },
+
+                    {
+                      "data" : "date"
+                    },
+
+                    {
+                      "data" : "cancel"
+                    }
+
+                  ]
+                });
+
+              }
+
+              function paidstallsreload() {
+
+                $('#stallpaidtable').DataTable().clear().destroy();
+
+                $('#stallpaidtable').DataTable({
+                  "ajax" : {
+                    "url" : global.settings.url + '/MainController/stallpaidtable',
+                    dataSrc : 'data'
+                  },
+                  "columns" : [
+                    // {
+                    //   "data" : "id"
+                    // },
+
+                    {
+                      "data" : "name"
+                    },
+
+                    {
+                      "data" : "unit"
+                    },
+
+                    {
+                      "data" : "or"
+                    },
+
+
+                    {
+                      "data" : "amount"
+                    },
+
+                    {
+                      "data" : "nature"
+                    },
+
+                    {
+                      "data" : "effectivity"
+                    },
+
+                    {
+                      "data" : "date"
+                    }]
+                  });
+
                 }
 
-              ]
-            });
+                function violationreload() {
 
-          }
+                  $('#getviolationtable').DataTable().clear().destroy();
 
-          function paidstallsreload() {
+                  $('#getviolationtable').DataTable({
+                    "ajax" : {
+                      "url" : global.settings.url + '/MainController/get_violation_data_con',
+                      dataSrc : 'data'
+                    },
+                    "columns" : [
+                      {
+                        "data" : "customer_id"
+                      },
+                      {
+                        "data" : "description"
+                      },
+                      {
+                        "data" : "date_occured"
+                      },
 
-            $('#stallpaidtable').DataTable().clear().destroy();
+                      {
+                        "data" : "status"
+                      },
+                      {
+                        "data" : "name"
+                      }]
+                    });
 
-            $('#stallpaidtable').DataTable({
-              "ajax" : {
-                "url" : global.settings.url + '/MainController/stallpaidtable',
-                dataSrc : 'data'
-              },
-              "columns" : [
-                // {
-                //   "data" : "id"
-                // },
+                  }
 
-                {
-                  "data" : "name"
-                },
+                  function ambulantreload() {
 
-                {
-                  "data" : "unit"
-                },
+                    $('#ambutablehome').DataTable().clear().destroy();
 
-                {
-                  "data" : "or"
-                },
+                    $('#ambutablehome').DataTable({
+                      "autoWidth": false,
+                      "ajax" : {
+                        "url" : global.settings.url + '/MainController/ambutablehome',
+                        dataSrc : 'data'
+                      },
+                      "columns" : [
+                        {
+                          "data" : "id"
+                        },
+                        {
+                          "data" : "pay_ambu_name"
+                        },
 
+                        {
+                          "data" : "pay_ambu_location"
+                        },
 
-                {
-                  "data" : "amount"
-                },
+                        {
+                          "data" : "pay_ambu_locnum"
+                        },
 
-                {
-                  "data" : "nature"
-                },
+                        {
+                          "data" : "nature_of_business"
+                        }]
+                      });
 
-                {
-                  "data" : "effectivity"
-                },
+                    }
 
-                {
-                  "data" : "date"
-                }]
-              });
+                    function notesreload() {
+                      $('#notestable').DataTable().clear().destroy();
 
-          }
+                      $('#notestable').DataTable({
+                        "ajax" : {
+                          "url" : global.settings.url + '/MainController/getstallnotes',
+                          dataSrc : 'data'
+                        },
+                        "columns" : [
+                          {
+                            "data" : "id"
+                          },
 
-          function violationreload() {
+                          {
+                            "data" : "name"
+                          },
 
-            $('#getviolationtable').DataTable().clear().destroy();
+                          {
+                            "data" : "unit_no"
+                          },
 
-            $('#getviolationtable').DataTable({
-              "ajax" : {
-                "url" : global.settings.url + '/MainController/get_violation_data_con',
-                dataSrc : 'data'
-              },
-              "columns" : [
-                {
-                  "data" : "customer_id"
-                },
-                {
-                  "data" : "description"
-                },
-                {
-                  "data" : "date_occured"
-                },
-
-                {
-                  "data" : "status"
-                },
-                {
-                  "data" : "name"
-                }]
-              });
-
-          }
-
-          function ambulantreload() {
-
-            $('#ambutablehome').DataTable().clear().destroy();
-
-            $('#ambutablehome').DataTable({
-              "ajax" : {
-                "url" : global.settings.url + '/MainController/ambutablehome',
-                dataSrc : 'data'
-              },
-              "columns" : [
-                {
-                  "data" : "id"
-                },
-                {
-                  "data" : "pay_ambu_name"
-                },
-
-                {
-                  "data" : "pay_ambu_location"
-                },
-
-                {
-                  "data" : "pay_ambu_locnum"
-                },
-
-                {
-                  "data" : "nature_of_business"
-                }]
-              });
-
-          }
-
-          function notesreload() {
-            $('#notestable').DataTable().clear().destroy();
-
-            $('#notestable').DataTable({
-              "ajax" : {
-                "url" : global.settings.url + '/MainController/getstallnotes',
-                dataSrc : 'data'
-              },
-              "columns" : [
-                {
-                  "data" : "id"
-                },
-
-                {
-                  "data" : "name"
-                },
-
-                {
-                  "data" : "unit_no"
-                },
-
-                {
-                  "data" : "btn_view"
-                },
+                          {
+                            "data" : "btn_view"
+                          },
 
 
-                {
-                  "data" : "btn_add"
-                }]
-              });
+                          {
+                            "data" : "btn_add"
+                          }]
+                        });
 
-          }
+                      }

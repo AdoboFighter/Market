@@ -8,7 +8,12 @@
   </nav>
 
   <!-- pagecontents dito mo lagay  -->
-  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">Transaction History</h5>
+
+  <h5 class="card-header text-center bg-primary text-white bluegrads container justify-content-center mb-2">
+    <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark">
+      <i class="fas fa-search"></i>
+    </button>
+    Transaction History</h5>
   <div class="container justify-content-center">
     <div class="card m-3 shadow">
       <div class="row p-3">
@@ -16,7 +21,7 @@
           <div class="mb-2 form-group font-weight-bold" id="">
             <div class="mb-2 form-group font-weight-bold sort" id="">
               <label>Unit no:</label>
-              <p unit="unit"></p>
+              <p id="unit_no"></p>
             </div>
 
           </div>
@@ -48,7 +53,7 @@
       </div>
       <div class="row p-3">
         <div class="col-12">
-          <table class="table table-striped table-bordered shadow" id="tableNoStall">
+          <table class="table table-striped table-bordered shadow" id="">
             <thead>
               <tr>
                 <td class="border border-dark">no</td>

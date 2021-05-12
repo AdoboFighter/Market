@@ -299,15 +299,16 @@
 <div id="regambuclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header d-flex align-items-center">
         <h5 class="modal-title" id="exampleModalPreviewLabel">Registered Ambulants</h5>
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="ambulantreload();">
+          <i class="fas fa-redo"></i>
+        </a>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
-        <button onclick="ambulantreload();" type="button" class="btn btn-primary">Reload</button>
 
         <table width="100%" class="table table-striped table-bordered shadow" id="ambutablehome">
           <thead>
@@ -331,15 +332,18 @@
 <div id="violationclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header d-flex align-items-center">
         <h5 class="modal-title" id="exampleModalPreviewLabel">Violations</h5>
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="violationreload();">
+          <i class="fas fa-redo"></i>
+        </a>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <button onclick="violationreload();" type="button" class="btn btn-primary">Reload</button>
+
 
         <table width="100%" class="table table-striped table-bordered" id="getviolationtable">
           <thead>
@@ -349,7 +353,6 @@
               <td class="border border-dark">date occurred</td>
               <td class="border border-dark">status</td>
               <td class="border border-dark">name</td>
-              <!-- <td class="border border-dark">Resolve</td> -->
             </tr>
           </thead>
           <tbody>
@@ -366,14 +369,16 @@
 <div id="stallspaidclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header d-flex align-items-center">
         <h5 class="modal-title" id="exampleModalPreviewLabel">Paid Stalls</h5>
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="paidstallsreload();">
+          <i class="fas fa-redo"></i>
+        </a>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <button onclick="paidstallsreload();" type="button" class="btn btn-primary">Reload</button>
         <table width="100%" class="table table-sm table-bordered text-center" id="stallpaidtable">
           <thead >
             <tr>
@@ -399,14 +404,16 @@
 <div id="transtodayclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header d-flex align-items-center">
         <h5 class="modal-title" id="exampleModalPreviewLabel">Transactions Today</h5>
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="transactionsreload();">
+          <i class="fas fa-redo"></i>
+        </a>
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <button onclick="transactionsreload();"type="button" class="btn btn-primary">Reload</button>
 
         <table width="100%" class="table table-sm table-bordered text-center" id="transtodaytable">
           <thead >
@@ -432,52 +439,24 @@
 </div>
 
 
-<div id="stallspaidclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalPreviewLabel"> User</h5> -->
-        <button type="button" class="close"  id="" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <table width="100%" class="table table-sm table-bordered text-center" id="stallpaidtable">
-          <thead >
-            <tr>
-              <td class="border border-dark">Customer ID</td>
-              <td class="border border-dark">Name</td>
-              <td class="border border-dark">O.R</td>
-              <td class="border border-dark">Amount</td>
-              <td class="border border-dark">Payment Type</td>
-              <td class="border border-dark">Effectivity</td>
-              <td class="border border-dark">Date & Time</td>
-            </tr>
-          </thead>
-
-          <tbody id="tbodyParticulars"></tbody>
-        </table>
-
-      </div>
-
-    </div>
-  </div>
-</div>
 
 <div id="debtclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header d-flex align-items-center">
+        <br>
         <h5 class="modal-title" id="exampleModalPreviewLabel">Market fee status</h5>
-        <button type="button" class="close"  id="" data-dismiss="modal" >
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="debttablereload();">
+          <i class="fas fa-redo"></i>
+        </a>
+
+        <button type="button " class="close"  id="" data-dismiss="modal" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <!-- <h5>Under Development</h5> -->
-        <button onclick="debttablereload();" type="button" class="btn btn-primary">Reload</button>
         <table width="100%" class="table table-sm table-bordered text-center" id="debttable">
           <thead >
             <tr>
@@ -505,8 +484,13 @@
 <div id="notesclickmodal" class="modal fade right shadow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" style="overflow:auto" >
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Stall list</h5>
+      <div class="modal-header d-flex align-items-center">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Notes</h5>
+
+        <a class="btn btn-primary ml-3" style="background-color: #3b5998;" href="#!" role="button" onclick="notesreload();">
+          <i class="fas fa-redo"></i>
+        </a>
+
         <button type="button" class="close"  id="" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
