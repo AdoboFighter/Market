@@ -18,6 +18,8 @@
         <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4">
 
+
+
           <!-- Admin card -->
           <div id="userclick">
             <div class="card mt-3">
@@ -43,14 +45,13 @@
         <br>
 
         <!-- Admin card -->
-        <div id="notesclick">
+        <div id="reloaddb">
           <div class="card mt-3">
-            <!-- <i class="fas fa-sticky-note"></i> -->
+
             <div class="">
-              <i class="fas fa-sticky-note fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-              <div class="float-right text-right p-3">
-                <!-- <p class="text-uppercase text-muted mb-1"><small>Notes</small></p> -->
-                <h4 class="font-weight-bold mb-0">Notes</h4>
+              <i class="fas fa-redo-alt fa-lg success-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+              <div class="float-right text-left p-3">
+                <h4 class="font-weight-bold mb-0">Reload</h4>
               </div>
             </div>
 
@@ -66,28 +67,67 @@
       </div>
       <br>
 
-      <!-- Admin card -->
-      <div id="ORcancelclick">
-        <div class="card mt-3">
 
-          <div class="">
-            <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-            <div class="float-right text-right p-3">
-              <!-- <p class="text-uppercase text-muted mb-1"><small>Cancel OR</small></p> -->
-              <h4 class="font-weight-bold mb-0">Cancel OR</h4>
-            </div>
-          </div>
 
-          <div class="card-body pt-0">
-            <!-- <div class="progress md-progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0"
-            aria-valuemax="100"></div>
-          </div>
-          <p class="card-text">Worse than last week (46%)</p> -->
-        </div>
+        <!-- Admin card -->
+        <div class="row">
+       <div class="col-md">
+         <!-- Admin card -->
+         <div id="ORcancelclick">
+           <div class="card mt-3">
 
-      </div>
-    </div>
+             <div class="">
+               <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+               <div class="float-right text-right p-3">
+                 <!-- <p class="text-uppercase text-muted mb-1"><small>Cancel OR</small></p> -->
+                 <h4 class="font-weight-bold mb-0">Cancel OR</h4>
+               </div>
+             </div>
+
+             <div class="card-body pt-0">
+               <!-- <div class="progress md-progress">
+               <div class="progress-bar bg-danger" role="progressbar" style="width: 46%" aria-valuenow="46" aria-valuemin="0"
+               aria-valuemax="100"></div>
+             </div>
+             <p class="card-text">Worse than last week (46%)</p> -->
+           </div>
+
+         </div>
+       </div>
+
+       </div>
+
+       <div class="col-md">
+
+         <div id="notesclick">
+           <div class="card mt-3">
+             <!-- <i class="fas fa-sticky-note"></i> -->
+             <div class="">
+               <i class="fas fa-sticky-note fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+               <div class="float-right text-right p-3">
+                 <!-- <p class="text-uppercase text-muted mb-1"><small>Notes</small></p> -->
+                 <h4 class="font-weight-bold mb-0">Notes</h4>
+               </div>
+             </div>
+
+             <div class="card-body pt-0">
+               <!-- <div class="progress md-progress">
+               <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+               aria-valuemax="100"></div>
+             </div>
+             <p class="card-text">Better than last week (75%)</p> -->
+           </div>
+
+         </div>
+       </div>
+
+       </div>
+
+     </div>
+     <br>
+
+
+
 
   </div>
   <!--Grid column-->

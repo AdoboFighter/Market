@@ -346,6 +346,16 @@ $(document).ready(function(){
             });
           }
 
+          $( "#reloaddb" ).on('click',function() {
+            $('#reloaddb').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $(this).removeClass();
+            });
+
+            loadnumbers();
+
+
+          });
+
 
           $( "#userclick" ).on('click',function() {
             $('#userclick').addClass('animated bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -744,6 +754,7 @@ $(document).ready(function(){
           }
 
           function debttablereload() {
+            loadnumbers();
             $('#debttable').DataTable().clear().destroy();
 
             $('#debttable').DataTable({
@@ -800,6 +811,7 @@ $(document).ready(function(){
               }
 
               function transactionsreload() {
+                loadnumbers();
 
                 $('#transtodaytable').DataTable().clear().destroy();
 
@@ -848,6 +860,7 @@ $(document).ready(function(){
               }
 
               function paidstallsreload() {
+                loadnumbers();
 
                 $('#stallpaidtable').DataTable().clear().destroy();
 
@@ -894,6 +907,7 @@ $(document).ready(function(){
                 }
 
                 function violationreload() {
+                  loadnumbers();
 
                   $('#getviolationtable').DataTable().clear().destroy();
 
@@ -924,6 +938,7 @@ $(document).ready(function(){
                   }
 
                   function ambulantreload() {
+                    loadnumbers();
 
                     $('#ambutablehome').DataTable().clear().destroy();
 
@@ -957,6 +972,7 @@ $(document).ready(function(){
                     }
 
                     function notesreload() {
+                      loadnumbers();
                       $('#notestable').DataTable().clear().destroy();
 
                       $('#notestable').DataTable({

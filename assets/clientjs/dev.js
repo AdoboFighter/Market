@@ -1,9 +1,93 @@
+var datableTransaction;
+var id;
+var dateFrom;
+var dateTo;
+
 
 $(document).ready(function(){
- // $("#searchmodal").modal('toggle');
+  $("#searchmodal").modal('toggle');
 });
 
+
+
+
+
+  $("#client_type").on('change',function(){
+
+     clientType = $(this).val();
+
+
+     $('#tableNoStall').dataTable().fnDestroy();
+     loadDataTable(clientType,dateFrom,dateTo);
+
+
+  });
+
+   $("#date_from").on('change',function(){
+
+     dateFrom = $(this).val();
+
+      $('#tableNoStall').dataTable().fnDestroy();
+      loadDataTable(clientType,dateFrom,dateTo);
+
+  });
+
+
+   $("#date_to").on('change',function(){
+
+    dateTo = $(this).val();
+
+    $('#tableNoStall').dataTable().fnDestroy();
+    loadDataTable(clientType,dateFrom,dateTo);
+
+  });
+
+  function loadDataTable(clientType,dateFrom,dateTo){
+
+     $('#transtable').DataTable({
+      "ajax" : {
+        type: "POST",
+        data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
+        "url" : global.settings.url + '/MainController/gettransactiontable',
+        dataSrc : 'data'
+      },
+      "columns" : [{
+        "data" : "id"
+      },
+      {
+        "data" : "trans_fullname"
+      },
+
+      {
+        "data" : "trans_or"
+      },
+
+
+      {
+        "data" : "trans_amount"
+      },
+
+      {
+        "data" : "trans_nature"
+      },
+
+      {
+        "data" : "trans_date"
+      },
+
+      {
+        "data" : "trans_fund"
+      }]
+    });
+    $('.dataTables_length').addClass('bs-select');
+  }
+
+
 //search
+
+$('#searchbtn').click(function(){
+  $('#searchmodal').modal("show");
+});
 
 function isEmptyOrSpaces(str){
   return str === null || str.match(/^ *$/) !== null;
@@ -123,7 +207,10 @@ function fetchdata(id){
           title: 'Pay the violation first',
         });
       }else {
+        console.log("shiit");
         res = res[0];
+        loadDataTable();
+        $('#customer_idf').val(res.customer_id);
         $('#unit_no').text(res.unit_no);
         $('#name').text(res.firstname + ' '+ res.middlename +' ' + res.lastname);
         $('#searchmodal').modal("hide");
@@ -134,4 +221,12 @@ function fetchdata(id){
     }
   })
 
+}
+
+function loadhistory() {
+  var id = $('#customer_idf').val();
+  var dateFrom = $('#date_from').val();
+  var dateTo = $('#date_to').val();
+
+  loadDataTable(clientType,dateFrom,dateTo);
 }
