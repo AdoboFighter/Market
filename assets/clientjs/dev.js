@@ -1,86 +1,72 @@
 var datableTransaction;
-var id;
+var customer_id;
 var dateFrom;
 var dateTo;
 
 
 $(document).ready(function(){
   $("#searchmodal").modal('toggle');
+
+  $("#date_from").on('change',function(){
+
+    // dateFrom = $(this).val();
+
+    $('#transtable').dataTable().fnDestroy();
+    loadDataTable(customer_id,dateFrom,dateTo);
+
+  });
+
+
+  $("#date_to").on('change',function(){
+
+    // dateTo = $(this).val();
+
+    $('#transtable').dataTable().fnDestroy();
+    loadDataTable(customer_id,dateFrom,dateTo);
+
+  });
+
 });
 
 
 
+function loadDataTable(customer_id,dateFrom,dateTo){
+
+  $('#transtable').DataTable({
+     fixedColumns: true,
+    "ajax" : {
+      type: "POST",
+      data:{customer_id:customer_id,dateFrom:dateFrom,dateTo:dateTo},
+      "url" : global.settings.url + '/MainController/gettransactionstalltable',
+      dataSrc : 'data'
+    },
+    "columns" : [{
+      "data" : "id"
+    },
+
+    {
+      "data" : "trans_or"
+    },
 
 
-  $("#client_type").on('change',function(){
+    {
+      "data" : "trans_amount"
+    },
 
-     clientType = $(this).val();
+    {
+      "data" : "trans_nature"
+    },
 
+    {
+      "data" : "trans_date"
+    },
 
-     $('#tableNoStall').dataTable().fnDestroy();
-     loadDataTable(clientType,dateFrom,dateTo);
-
-
+    {
+      "data" : "trans_fund"
+    }]
   });
-
-   $("#date_from").on('change',function(){
-
-     dateFrom = $(this).val();
-
-      $('#tableNoStall').dataTable().fnDestroy();
-      loadDataTable(clientType,dateFrom,dateTo);
-
-  });
-
-
-   $("#date_to").on('change',function(){
-
-    dateTo = $(this).val();
-
-    $('#tableNoStall').dataTable().fnDestroy();
-    loadDataTable(clientType,dateFrom,dateTo);
-
-  });
-
-  function loadDataTable(clientType,dateFrom,dateTo){
-
-     $('#transtable').DataTable({
-      "ajax" : {
-        type: "POST",
-        data:{clientType:clientType,dateFrom:dateFrom,dateTo:dateTo},
-        "url" : global.settings.url + '/MainController/gettransactiontable',
-        dataSrc : 'data'
-      },
-      "columns" : [{
-        "data" : "id"
-      },
-      {
-        "data" : "trans_fullname"
-      },
-
-      {
-        "data" : "trans_or"
-      },
-
-
-      {
-        "data" : "trans_amount"
-      },
-
-      {
-        "data" : "trans_nature"
-      },
-
-      {
-        "data" : "trans_date"
-      },
-
-      {
-        "data" : "trans_fund"
-      }]
-    });
-    $('.dataTables_length').addClass('bs-select');
-  }
+  $('.dataTables_length').addClass('bs-select');
+}
 
 
 //search
@@ -201,20 +187,25 @@ function fetchdata(id){
     },
     dataType:'JSON',
     success: function(res){
-      if (res == 'withviolation') {
-        Swal.fire({
-          icon: 'error',
-          title: 'Pay the violation first',
-        });
-      }else {
-        console.log("shiit");
-        res = res[0];
-        loadDataTable();
-        $('#customer_idf').val(res.customer_id);
-        $('#unit_no').text(res.unit_no);
-        $('#name').text(res.firstname + ' '+ res.middlename +' ' + res.lastname);
-        $('#searchmodal').modal("hide");
-      }
+      $('#searchmodal').modal("hide");
+      res = res[0];
+
+      $('#customer_idf').val(res.customer_id);
+      $('#unit_no').text(res.unit_no);
+      $('#name').text(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+      loadhistory();
+      // if (res == 'withviolation') {
+      //
+      //
+      // }else {
+      //   res = res[0];
+      //   $('#searchmodal').modal("hide");
+      //   loadhistory();
+      //   $('#customer_idf').val(res.customer_id);
+      //   $('#unit_no').text(res.unit_no);
+      //   $('#name').text(res.firstname + ' '+ res.middlename +' ' + res.lastname);
+      //
+      // }
     },
     error: function(xhr){
       console.log(xhr.responseText);
@@ -224,9 +215,58 @@ function fetchdata(id){
 }
 
 function loadhistory() {
-  var id = $('#customer_idf').val();
-  var dateFrom = $('#date_from').val();
-  var dateTo = $('#date_to').val();
+  $('#transtable').dataTable().fnDestroy();
 
-  loadDataTable(clientType,dateFrom,dateTo);
+
+    customer_id = $('#customer_idf').val();
+    dateFrom = $('#date_from').val();
+    dateTo = $('#date_to').val();
+    console.log("hello" + customer_id);
+
+  loadDataTable(customer_id,dateFrom,dateTo);
 }
+
+
+$('#genrep').click(function(){
+
+  exCustomerId = $('#customer_idf').val();
+  exDateFrom = $('#date_from').val();
+  exDateTo = $('#date_to').val();
+
+
+
+
+  if(exDateFrom == "" || exDateTo == "")
+  {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Pick a Date',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
+  }
+
+  else{
+
+    $.ajax({
+      url : global.settings.url +'/MainController/gettransexcel',
+      type : 'POST',
+      data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
+      dataType : 'json',
+      success : function(data){
+
+          window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+
+      },
+      error : function(xhr){
+
+      }
+
+    });
+
+
+  }
+
+
+
+});

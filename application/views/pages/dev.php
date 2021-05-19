@@ -41,7 +41,7 @@
 
               <div class="col-3">
                 <div class="mb-2 form-group font-weight-bold" id="">
-                  <input type="hidden"   class="form-control" name="" id="customer_idf"  >
+                  <input type="text"   class="form-control" name="" id="customer_idf" hidden>
                   <div class="mb-2 form-group font-weight-bold sort" id="">
                     <label>Name:</label>
                     <p id="name"></p>
@@ -66,7 +66,7 @@
             </div>
             <div class="row p-3">
               <div class="col-12">
-                <table class="table table-striped table-bordered shadow" id="">
+                <table class="table table-striped table-bordered shadow" id="transtable">
                   <thead>
                     <tr>
                       <td class="border border-dark">no</td>

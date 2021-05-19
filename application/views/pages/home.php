@@ -49,7 +49,7 @@
           <div class="card mt-3">
 
             <div class="">
-              <i class="fas fa-redo-alt fa-lg success-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+              <i class="fas fa-redo-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
               <div class="float-right text-left p-3">
                 <h4 class="font-weight-bold mb-0">Reload</h4>
               </div>
@@ -165,7 +165,7 @@
     <div class="card mt-3">
 
       <div class="">
-        <i class="fas fa-walking fa-lg brown z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+        <i class="fas fa-walking fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
         <div class="float-right text-right p-3">
           <p class="text-uppercase text-muted mb-1"><small>Registered Ambulants</small></p>
           <h4 class="font-weight-bold mb-0" id="numambu"></h4>
@@ -190,7 +190,7 @@
   <div class="card mt-3">
 
     <div class="">
-      <i class="fas fa-ban fa-lg red z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+      <i class="fas fa-ban fa-lg teal z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
       <div class="float-right text-right p-3">
         <p class="text-uppercase text-muted mb-1"><small>Violations</small></p>
         <h4 class="font-weight-bold mb-0" id="numvio"></h4>
@@ -245,7 +245,7 @@
   <div class="card mt-3">
 
     <div class="">
-      <i class="fas fa-cash-register fa-lg blue z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+      <i class="fas fa-cash-register fa-lg purple z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
       <div class="float-right text-right p-3">
         <p class="text-uppercase text-muted mb-1"><small>Transactions Today</small></p>
         <h4 class="font-weight-bold mb-0" id="numoftrans"></h4>
@@ -266,7 +266,7 @@
   <div class="card mt-3">
 
     <div>
-      <i class="fas fa-money-bill-alt fa-lg green z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+      <i class="fas fa-money-bill-alt fa-lg purple z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
       <div class="float-right text-right p-3">
         <p class="text-uppercase text-muted mb-1"><small>Users with debt</small></p>
         <h4 class="font-weight-bold mb-0" id="debtstat"></h4>

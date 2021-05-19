@@ -1583,6 +1583,17 @@ public function printreceipt()
     echo json_encode($this->model->testrefnumphp($inputData)) ;
   }
 
+  public function gettransactionstalltable()
+  {
+    $sort['customer_id'] = $this->input->post('customer_id');
+    $sort['dateFrom'] = $this->input->post('dateFrom');
+    $sort['dateTo'] = $this->input->post('dateTo');
+
+    $query = $this->model->gettransactionstalltable($sort);
+
+    echo json_encode($query);
+  }
+
 
 
 
