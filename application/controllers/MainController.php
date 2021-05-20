@@ -1594,6 +1594,47 @@ public function printreceipt()
     echo json_encode($query);
   }
 
+  public function getTransactByStallExcel()
+  {
+
+    $sort = array(
+      'excelClient' => $this->input->post('exClientType'),
+      'excelDateFrom'=> $this->input->post('exDateFrom'),
+      'excelDateTo'=> $this->input->post('exDateTo'),
+    );
+
+
+    $this->session->set_userdata($sort);
+
+    echo json_encode($sort);
+
+  }
+
+  public function printTransactByStallExcel()
+  {
+    $sort = array(
+      'conClientType' => $this->session->userdata('excelClient'),
+      'conDateFrom' => $this->session->userdata('excelDateFrom'),
+      'conDateTo' => $this->session->userdata('excelDateTo'),
+
+    );
+
+    $query = $this->model->transactexcel($sort);
+
+    $result = array(
+      "query" => $query,
+      "sort" => $sort,
+      "user" => $this->session->userdata('user_fullname'),
+    );
+
+    echo json_encode($result);
+
+    $this->session->unset_userdata('excelClient');
+    $this->session->unset_userdata('excelDateFrom');
+    $this->session->unset_userdata('excelDateTo');
+    $this->session->unset_userdata('excelCollector');
+  }
+
 
 
 
