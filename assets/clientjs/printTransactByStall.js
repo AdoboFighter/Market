@@ -7,7 +7,7 @@ $(document).ready(function(){
     {
 
         $.ajax({
-            url : global.settings.url +'/MainController/printtransactemt',
+            url : global.settings.url +'/MainController/printTransactByStallExcel',
             type : 'POST',
             data:{id:1},
             dataType : 'json',
@@ -35,6 +35,8 @@ $(document).ready(function(){
 
             $('#dft').text("Date From: "+data.sort.conDateFrom+" Date To: "+data.sort.conDateTo);
 
+            $('#name').text("Name: "+data.sort.conFullName);
+            $('#stall').text("Stall number: "+data.sort.conStallNumber);
             $('#user').text("Collector: "+data.user);
 
             $('#thebody').append(html_print);

@@ -26,6 +26,8 @@
 
         <br>
           <h4 class="text-center" id = "user"></h4>
+          <h4 class="text-center" id = "name"></h4>
+          <h4 class="text-center" id = "stall"></h4>
           <h4 class="text-center" id = "dft"></h4>
 
 

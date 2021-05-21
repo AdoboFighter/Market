@@ -65,6 +65,8 @@ function loadDataTable(customer_id,dateFrom,dateTo){
       "data" : "trans_fund"
     }]
   });
+
+
   $('.dataTables_length').addClass('bs-select');
 }
 
@@ -230,10 +232,13 @@ function loadhistory() {
 $('#genrep').click(function(){
 
   exCustomerId = $('#customer_idf').val();
+  exStallNumber= $('#unit_no').text();
+  exFullname= $('#name').text();
   exDateFrom = $('#date_from').val();
   exDateTo = $('#date_to').val();
 
-
+  console.log(exStallNumber
+ + exFullname);
 
 
   if(exDateFrom == "" || exDateTo == "")
@@ -249,13 +254,13 @@ $('#genrep').click(function(){
   else{
 
     $.ajax({
-      url : global.settings.url +'/MainController/gettransexcel',
+      url : global.settings.url +'/MainController/getTransactByStallExcel',
       type : 'POST',
-      data :{exClientType:exClientType, exDateFrom:exDateFrom, exDateTo:exDateTo},
+      data :{exCustomerId:exCustomerId, exStallNumber:exStallNumber, exDateFrom:exDateFrom, exDateTo:exDateTo},
       dataType : 'json',
       success : function(data){
 
-          window.open(global.settings.url + '/pages/view/printtransact', '_blank');
+          window.open(global.settings.url + '/pages/view/printTransactByStall', '_blank');
 
       },
       error : function(xhr){

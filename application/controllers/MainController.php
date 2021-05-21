@@ -1598,7 +1598,9 @@ public function printreceipt()
   {
 
     $sort = array(
-      'excelClient' => $this->input->post('exClientType'),
+      'exCustomerId' => $this->input->post('exCustomerId'),
+      'exCustomerId' => $this->input->post('exCustomerId'),
+      'exFullname' => $this->input->post('exFullname'),
       'excelDateFrom'=> $this->input->post('exDateFrom'),
       'excelDateTo'=> $this->input->post('exDateTo'),
     );
@@ -1613,13 +1615,16 @@ public function printreceipt()
   public function printTransactByStallExcel()
   {
     $sort = array(
-      'conClientType' => $this->session->userdata('excelClient'),
-      'conDateFrom' => $this->session->userdata('excelDateFrom'),
-      'conDateTo' => $this->session->userdata('excelDateTo'),
+      'conClientType' => $this->input->post('conClientType'),
+
+      'conStallNumber' => $this->input->post('exStallNumber'),
+      'conDateFrom' => $this->input->post('excelDateFrom'),
+      'conDateTo' => $this->input->post('excelDateTo'),
+
 
     );
 
-    $query = $this->model->transactexcel($sort);
+    $query = $this->model->transactByStallExcel($sort);
 
     $result = array(
       "query" => $query,
@@ -1629,7 +1634,7 @@ public function printreceipt()
 
     echo json_encode($result);
 
-    $this->session->unset_userdata('excelClient');
+    $this->session->unset_userdata('exCustomerId');
     $this->session->unset_userdata('excelDateFrom');
     $this->session->unset_userdata('excelDateTo');
     $this->session->unset_userdata('excelCollector');
