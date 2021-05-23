@@ -4119,6 +4119,7 @@ class Mainmodel extends CI_model{
       $this->db->where('date_format(payment_datetime, "%Y-%m-%d")<=', $sort['conDateTo'] );
     }
 
+    $this->db->where('customer.customer_id', $sort['customer_id'] );
     $this->db->join('fund', 'fund.fund_id = transaction.fund_id', 'inner');
     $this->db->join('customer', 'customer.customer_id=transaction.customer_id', 'inner');
     $this->db->join('tenant', 'tenant.fk_customer_id = customer.customer_id', 'inner');

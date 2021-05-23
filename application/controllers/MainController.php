@@ -1616,7 +1616,7 @@ public function printreceipt()
   {
     $sort = array(
       'conClientType' => $this->input->post('conClientType'),
-
+      'conCustomerId' => $this->input->post('exCustomerId'),
       'conStallNumber' => $this->input->post('exStallNumber'),
       'conDateFrom' => $this->input->post('excelDateFrom'),
       'conDateTo' => $this->input->post('excelDateTo'),
