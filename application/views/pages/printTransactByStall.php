@@ -37,7 +37,7 @@
           <thead>
           <tr>
               <td>No.</td>
-              <td>Name</td>
+              <td>Type</td>
               <td>OR Number</td>
               <td>Amount</td>
               <td>Date/Time</td></td>

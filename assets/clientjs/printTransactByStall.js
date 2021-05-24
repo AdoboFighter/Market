@@ -24,7 +24,7 @@ $(document).ready(function(){
                 num = 1 + i;
                 html_print += "<tr>";
                 html_print += "<td>"+num+"</td>";
-                html_print += "<td>"+data.query[i].trans_fullname+"</td>";
+                html_print += "<td>"+data.query[i].trans_nature+"</td>";
                 html_print += "<td>"+data.query[i].trans_or+"</td>";
                 html_print += "<td class='text-right'>"+data.query[i].trans_amount+"</td>";
                 html_print += "<td>"+data.query[i].trans_date+"</td>";
