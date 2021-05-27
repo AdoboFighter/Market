@@ -27,16 +27,22 @@
 
 		<div class="container wow fadeIn">
 
+			<div class=" d-flex align-items-center justify-content-center ">
+				<h2 class="mr-2" id="exampleModalPreviewLabel">Parking Payment</h5>
+					<a type="button" class="btn-floating btn-lg blue-gradient" id="searchbtn"><i class="fas fa-search" aria-hidden="true"></i></a>
+
+			</div>
+
 
 			<!-- Heading -->
-			<h2 class="text-center">Parking Payment</h2>
+			<!-- <h2 class="text-center">Parking Payment</h2> -->
 
 			<br>
 			<div class="row">
 
-				<div class="col-4">
+				<!-- <div class="col-4">
 					<button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
-				</div>
+				</div> -->
 
 				<form id="payment_submit">
 					<!-- <div class="col">

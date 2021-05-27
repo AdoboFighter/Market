@@ -29,16 +29,23 @@
 
     <div class="container wow fadeIn">
 
+      <div class=" d-flex align-items-center justify-content-center ">
+        <h2 class="mr-2" id="exampleModalPreviewLabel">Violations</h5>
+          <a type="button" class="btn-floating btn-lg blue-gradient" id="searchbtn"><i class="fas fa-search" aria-hidden="true"></i></a>
+
+      </div>
+
+
 
       <!-- Heading -->
-      <h2 class="text-center">Violation</h2>
+      <!-- <h2 class="text-center">Violation</h2> -->
 
       <br>
       <div class="row">
 
-        <div class="col-4">
+        <!-- <div class="col-4">
           <button class="btn btn-primary btn-sm" id="searchbtn">Search</button>
-        </div>
+        </div> -->
 
         <form id="payment_submit">
           <!-- <div class="col">
@@ -213,7 +220,7 @@
         <ul class="list-group mb-3 z-depth-1">
           <li class="list-group-item d-flex justify-content-between lh-condensed">
 
-            <div class="mb-2">
+            <div class="mb-2 w-100" >
               <label>O.R</label>
               <input type="text"  maxlength="7" class="form-control payment_details ntw text-danger inputmoney" name="pay[payment_or_number]" id="payment_or_number" required/>
             </div>
@@ -222,7 +229,7 @@
 
           <li class="list-group-item d-flex justify-content-between lh-condensed">
 
-            <div class="mb-2">
+            <div class="mb-2  w-100">
               <label>Payor Name</label>
               <input type="text" class="form-control " name="pay[payor]" id="payor">
             </div>
@@ -230,14 +237,14 @@
           </li>
 
           <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class=" mb-2">
+            <div class=" mb-2 w-100">
               <label>Amount To Pay</label>
               <input type="text"  placeholder="0.00"  class="form-control text-right" name="pay[ttlAmt]" id="ttlAmt" readonly>
             </div>
           </li>
 
           <li class="list-group-item d-flex justify-content-between lh-condensed cashCol">
-            <div class=" mb-2">
+            <div class=" mb-2 w-100">
               <label>Cash tendered</label>
               <input type="text"  placeholder="0.00"  class="form-control payment_details text-right money2" name="pay[cash_tendered]" id="payment_cash_tendered" >
 
