@@ -61,7 +61,7 @@ for ($r = 0 ; $r < $count ; $r++){
     $pdf->setCellPaddings(0, 0, 0, 0);
     $txt = ($particulars[$r]->particulars == null ? ' ' : $particulars[$r]->particulars);
 
-    $pdf->MultiCell(41,0, $txt."\n", 1, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
+    $pdf->MultiCell(80,0, $txt."\n", 1, 'L', 0, 0, 7,75 + $rowspace , true, 0, false, true, 10, 'M', true);
 
     // $pdf->setCellPaddings(0, 0, 0, 0);
     // $txt = ($no[$r]->no == null ? ' ' : $no[$r]->no);
